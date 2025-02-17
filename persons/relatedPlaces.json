@@ -1,0 +1,2907 @@
+
+  { "type" : "FeatureCollection",
+    "features" : 
+    [ 
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.99806,
+            35.99861 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/162",
+          "name" : "Qenneshrin",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/99",
+              "title" : "Severus Sebokht — ܣܐܘܝܪܐ\n                        ܣܐܒܘܟܬ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 42.195833,
+            37.325 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/88",
+          "name" : "Gazarta — ܓܙܪܬܐ ܕܒܪ ܥܘܡܪ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/243",
+              "title" : "Metropolitan Gabriel of Bartelle — ܕܝܘܣܩܘܪܘܣ ܕܓܙܪܬܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 38.6666666,
+            38.1666666 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/63",
+          "name" : "Claudia — ܩܠܘܕܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/237",
+              "title" : "Dionysios Slibo, bishop of Claudia — ܕܝܘܢܢܘܣܝܘܣ ܨܠܝܒܐ ܕܩܠܘܕܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 29.904133,
+            31.195371 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/572",
+          "name" : "Alexandria — ܐܠܟܣܢܕܪܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/88",
+              "title" : "Athanasius I Gamolo — ܐܬܢܐܣܝܘܣ ܩܕܡܝܐ ܓܡܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/48",
+              "title" : "Mara, metropolitan of Amid — ܡܪܐ ܕܐܡܝܕ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/75",
+              "title" : "Peter of Kallinikos — ܦܛܪܘܣ\n                        ܏ܓ ܩܠܘܢܝܩܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/49",
+              "title" : "Sergius of Reshʿayna — ܣܪܓܝܣ\n                        ܪܫܥܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/58",
+              "title" : "Zechariah Rhetor — ܙܟܪܝܐ\n                        ܡܠܝܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/167",
+              "title" : "John III (IV) — ܝܘܚܢܢ\n                        ܬܠܝܬܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/72",
+              "title" : "Paul II, Patriarch of Antioch — ܦܘܠܘܣ ܬܪܝܢܐ ܦܛܪܝܪܟܐ ܕܐܢܛܝܘܟܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/113",
+              "title" : "Jacob of Edessa — ܝܥܩܘܒ\n                        ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/109",
+              "title" : "Athanasius II of Balad — ܐܬܢܐܣܝܘܣ ܕܬܪܝܢ ܒܠܕܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/145",
+              "title" : "Cyriacus, patriarch of Antioch — ܩܘܪܝܐܩܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/150",
+              "title" : "Theodosius, metropolitan of Edessa — ܬܐܘܕܘܣܝܘܣ ܕܐܘܪܗܝ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.5348059738,
+            32.7335787681 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/214",
+          "name" : "Ḥawrān — ܚܘܪܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/75",
+              "title" : "Peter of Kallinikos — ܦܛܪܘܣ\n                        ܏ܓ ܩܠܘܢܝܩܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/132",
+              "title" : "John III — ܐܝܘܐܢܝܣ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 39.766666,
+            37.233333 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/200",
+          "name" : "Tella — ܬܠܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/63",
+              "title" : "Elijah the Monk — ܐܠܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/59",
+              "title" : "Daniel of Salah — ܕܢܝܐܝܠ\n                        ܨܠܚܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/70",
+              "title" : "Cyriacus of Tella — ܩܘܪܝܩܘܣ\n                        ܕܬܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/101",
+              "title" : "Jonah of Tella — ܝܘܢܢ\n                        ܕܬܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/132",
+              "title" : "John III — ܐܝܘܐܢܝܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/131",
+              "title" : "John of Mor Matay — ܝܘܚܢܢ\n                        ܕܡܪܝ ܡܬܝ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.842222,
+            34.021667 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/228",
+          "name" : "Musa al-Ḥabashi — ܕܝܪܐ ܕܡܪܝ ܡܘܫܐ ܟܘܫܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/277",
+              "title" : "Nuh the Lebanese, patriarch — ܢܘܚ ܠܒܢܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/273",
+              "title" : "David Puniqoyo — ܕܘܝܕ\n                        ܦܘܢܝܩܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/280",
+              "title" : "Ignatius Jacob I, patriarch of Antioch — ܝܥܩܘܒ ܩܕܡܝܐ\n                " } ],
+          "type" : "monastery" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.709444,
+            34.730833 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/215",
+          "name" : "Emesa — ܚܡܨ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/281",
+              "title" : "Gregorius Joseph, metropolitan of Jerusalem —\n                        ܝܘܣܦ ܐܝܒܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/126",
+              "title" : "Constantine, bishop of Edessa — ܩܘܣܛܢܛܝܢ ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.933333,
+            37.583333 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/89",
+          "name" : "Marʿash — ܡܪܥܫ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/214",
+              "title" : "Ignatius Romanus, metropolitan of Jerusalem —\n                        ܐܝܓܢܐܛܝܘܣ ܪܘܡܐܢܘܣ ܕܐܘܪܫܠܡ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/212",
+              "title" : "Dionysios bar Salibi — ܕܝܘܢܢܘܣܝܘܣ ܒܪ ܨܠܝܒܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/117",
+              "title" : "David of Germanicea — ܕܘܝܕ\n                        ܕܓܪܡܐܢܝܩܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 62.1925,
+            37.662778 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/607",
+          "name" : "Merv — ܡܪܘ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/49",
+              "title" : "Sergius of Reshʿayna — ܣܪܓܝܣ\n                        ܪܫܥܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/555",
+              "title" : "Ishoʿdad of Merv — ܝܫܘܥܕܕ\n                        ܡܪܘܙܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 38.42424,
+            36.97608 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/48",
+          "name" : "Serugh — ܣܪܘܓ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/1092",
+              "title" : "Aaron of Serugh — ܐܗܪܘܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/113",
+              "title" : "Jacob of Edessa — ܝܥܩܘܒ\n                        ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/130",
+              "title" : "Phocas of Edessa — ܦܘܩܐ\n                        ܐܘܪܗܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.48333,
+            38.73333 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/60",
+          "name" : "Caesarea — ܩܣܪܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/247",
+              "title" : "Michael I (III), patriarch — ܡܝܟܐܝܠ ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 37.057146,
+            35.050807 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/411",
+          "name" : "Salamiyya — ܣܠܡܝܗ̇",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/141",
+              "title" : "Elijah of Harran — ܐܠܝܐ\n                        ܚܪܢܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 37.692332,
+            37.427054 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/405",
+          "name" : "Raʿban — ܪܥܒܐܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/232",
+              "title" : "Yeshuʿ of Hesno d-Kifo — ܝܫܘܥ\n                        ܚܣܢ ܟܐܦܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.85,
+            34.43333 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/203",
+          "name" : "Tripolis — ܛܪܝܦܘܠܝܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/239",
+              "title" : "Gregorius bar Hebraeus — ܓܪܝܓܘܪܝܘܣ ܒܪ ܥܒܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/281",
+              "title" : "Gregorius Joseph, metropolitan of Jerusalem —\n                        ܝܘܣܦ ܐܝܒܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/235",
+              "title" : "Slibo of Edessa, maphrian — ܨܠܝܒܐ ܐܘܪܗܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.468078,
+            37.500035 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/217",
+          "name" : "Ḥaḥ — ܚܐܚ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/2822",
+              "title" : "Sliba of Hah, Rabban" },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/262",
+              "title" : "Ignatius Qumo of Beth Sbirino, patriarch — ܩܘܡܐ ܣܒܝܪܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/248",
+              "title" : "Cyril of Hah — ܩܘܪܝܠܠܘܣ\n                        ܕܚܐܚ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/268",
+              "title" : "Ignatius ʿAziz bar Sobto, patriarch — ܥܙܝܙ ܒܪ ܣܒܬܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 39.033889,
+            36.8775 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/216",
+          "name" : "Ḥarran — ܚܪܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/229",
+              "title" : "Jacob bar Tashkako — ܝܥܩܘܒ ܒܪ\n                        ܬܫܟܟܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/71",
+              "title" : "Sergius bar Karyo — ܣܪܓܝܣ ܒܪ\n                        ܟܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/172",
+              "title" : "Job of Manʿem — ܐܝܘܒ\n                        ܡܢܥܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/13",
+              "title" : "Ephrem — ܐܦܪܝܡ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/119",
+              "title" : "Elijah I — ܐܠܝܐ\n                        ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/125",
+              "title" : "Simeon of the Olives — ܫܡܥܘܢ\n                        ܕܙܝ̈ܬܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/145",
+              "title" : "Cyriacus, patriarch of Antioch — ܩܘܪܝܐܩܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/144",
+              "title" : "David bar Paulos — ܕܘܝܕ ܒܪ\n                        ܦܘܠܘܣ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.735987,
+            35.922817 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/410",
+          "name" : "Sarmin — ܣܪܡܝܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/72",
+              "title" : "Paul II, Patriarch of Antioch — ܦܘܠܘܣ ܬܪܝܢܐ ܦܛܪܝܪܟܐ ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 37.359985,
+            37.153671 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/75",
+          "name" : "Doliche — ܕܠܘܟ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 33.93333,
+            36.36667 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/174",
+          "name" : "Seleucia",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.94896,
+            36.73466 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/65",
+          "name" : "Cyrrhus — ܩܘܪܘܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/169",
+              "title" : "Theodosius, the patriarch — ܦܛܪܝܪܟܐ ܬܐܘܕܘܣܝܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/152",
+              "title" : "Benjamin, metropolitan of Edessa — ܒܢܝܡܝܢ ܕܐܘܪܗܝ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 40.235101,
+            37.937557 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/399",
+          "name" : "Yoḥannan Urṭaya — ܕܝܪܐ ܕܡܪܝ ܝܘܚܢܢ ܕܐܘܪ̈ܛܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " } ],
+          "type" : "monastery" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 38.90284,
+            37.105188 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/398",
+          "name" : "Mor Yaʿqub Malpono — ܕܝܪܐ ܕܡܪܝ ܝܥܩܘܒ ܡܠܦܢܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/42",
+              "title" : "Jacob of Serugh — ܝܥܩܘܒ\n                        ܕܣܪܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/145",
+              "title" : "Cyriacus, patriarch of Antioch — ܩܘܪܝܐܩܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/152",
+              "title" : "Benjamin, metropolitan of Edessa — ܒܢܝܡܝܢ ܕܐܘܪܗܝ\n                " } ],
+          "type" : "monastery" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 48.2537285,
+            32.1887935 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/415",
+          "name" : "Susa — ܫܘܫ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/9",
+              "title" : "Simeon bar Sabbaʿe — ܫܡܥܘܢ ܒܪ\n                        ܨܒܥ̈ܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 44.5812226667,
+            33.094703 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/58",
+          "name" : "Ctesiphon — ܩܛܝܣܦܘܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/9",
+              "title" : "Simeon bar Sabbaʿe — ܫܡܥܘܢ ܒܪ\n                        ܨܒܥ̈ܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/23",
+              "title" : "Ahai, catholicos — ܐܚܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/24",
+              "title" : " Maʿna, catholicos — ܡܥܢܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.292,
+            33.513 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/66",
+          "name" : "Damascus — ܕܪܡܣܘܩ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/281",
+              "title" : "Gregorius Joseph, metropolitan of Jerusalem —\n                        ܝܘܣܦ ܐܝܒܪܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 40.210556,
+            37.981944 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/8",
+          "name" : "Amida — ܐܡܝܕ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/88",
+              "title" : "Athanasius I Gamolo — ܐܬܢܐܣܝܘܣ ܩܕܡܝܐ ܓܡܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/212",
+              "title" : "Dionysios bar Salibi — ܕܝܘܢܢܘܣܝܘܣ ܒܪ ܨܠܝܒܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/116",
+              "title" : "Simeon of Samosata — ܫܡܥܘܢ\n                        ܫܡܝܫܛܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/274",
+              "title" : "Addai of Beth Sbirino — ܐܕܝ\n                        ܣܒܝܪܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/271",
+              "title" : "John bar Shayullah — ܦܛܪܝܪܟܐ\n                        ܝܘܚܢܢ ܒܪ ܫܝܠܠܗ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/13",
+              "title" : "Ephrem — ܐܦܪܝܡ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/108",
+              "title" : "Thomas of Amid — ܬܐܘܡܐ\n                        ܐܡܝܕܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/280",
+              "title" : "Ignatius Jacob I, patriarch of Antioch — ܝܥܩܘܒ ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/257",
+              "title" : "Abraham II Gharib — ܐܒܪܗܡ ܒܪ\n                        ܓܪܝܒ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/255",
+              "title" : "Joseph bar Gharib of Amid — ܝܘܣܦ ܒܪ ܓܪܝܒ ܕܐܡܝܕ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/42",
+              "title" : "Jacob of Serugh — ܝܥܩܘܒ\n                        ܕܣܪܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/221",
+              "title" : "Abraham of Tel Besme — ܐܒܪܗܡ\n                        ܕܬܠܒܣ̈ܡܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/169",
+              "title" : "Theodosius, the patriarch — ܦܛܪܝܪܟܐ ܬܐܘܕܘܣܝܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/226",
+              "title" : "Hasnon of Edessa — ܚܣܢܘܢ\n                        ܐܘܪܗܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/193",
+              "title" : "John bar Shushan — ܝܘܚܢܢ ܒܪ\n                        ܫܘܫܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/85",
+              "title" : "Cyriacus of Amida — ܩܘܪܝܐܩܘܣ\n                        ܕܐܡܝܕ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 43.640686,
+            33.4000693333 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/211",
+          "name" : "Peruz Shapur — ܐܢܒܐܪ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.905556,
+            37.263889 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/9",
+          "name" : "ʿAyn Zarba — ܥܝܢ ܙܪܒܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/217",
+              "title" : "Michael the Great — ܡܝܟܐܝܠ\n                        ܩܕܡܝܐ ܪܒܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 40.948011,
+            37.1783845 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/67",
+          "name" : "Dara — ܕܪܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/161",
+              "title" : "John, metropolitan of Dara — ܐܝܘܐܢܝܣ ܕܕܪܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/149",
+              "title" : "Lazarus bar Sobtho — ܠܥܙܪ ܒܪ\n                        ܣܒܬܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/113",
+              "title" : "Jacob of Edessa — ܝܥܩܘܒ\n                        ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/139",
+              "title" : "George of Bʿeltan — ܓܘܪܓܝ\n                        ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/42",
+              "title" : "Jacob of Serugh — ܝܥܩܘܒ\n                        ܕܣܪܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/209",
+              "title" : "John of Mardin — ܝܘܚܢܢ\n                        ܕܡܪܕܝܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/155",
+              "title" : "Dionysios of Tel Mahre — ܕܝܘܢܢܘܣܝܘܣ ܬܠܡܚܪܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 40.04962,
+            36.82584 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/172",
+          "name" : "Reshʿayna — ܪܝܫ ܥܝܢܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/111",
+              "title" : "John bar Kipho — ܝܘܚܢܢ ܒܪ\n                        ܟܐܦܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/135",
+              "title" : "Cyriacus, metropolitan of of Tur ʿAbdin — ܩܘܪܝܐܩܘܣ ܕܣܝܓܣܬܐܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/121",
+              "title" : "Sobho of Reshʿayna — ܡܫܡܫܢܐ\n                        ܣܒܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/154",
+              "title" : "Anton of Tagrit — ܐܢܛܘܢ\n                        ܬܓܪܝܬܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/50",
+              "title" : "John of Tella — ܝܘܚܢܢ\n                        ܕܬܠܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 34.75,
+            31.25 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/698",
+          "name" : "Filasṭīn — ܦܠܫܬ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/206",
+              "title" : "John bar Andrawos — ܝܘܚܢܢ ܒܪ\n                        ܐܢܕܪܐܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.081667,
+            32.927778 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/14",
+          "name" : "Acre",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/206",
+              "title" : "John bar Andrawos — ܝܘܚܢܢ ܒܪ\n                        ܐܢܕܪܐܘܣ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 32.292698,
+            31.255258 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/316",
+          "name" : "Tinnīs — ܬܢܝܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/155",
+              "title" : "Dionysios of Tel Mahre — ܕܝܘܢܢܘܣܝܘܣ ܬܠܡܚܪܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 30.854274,
+            36.961406 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1469",
+          "name" : "Perga — ܦܪܓܝ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.951027,
+            40.609983 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/466",
+          "name" : "Niksār — ܢܝܟܣܐܪ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/247",
+              "title" : "Michael I (III), patriarch — ܡܝܟܐܝܠ ܩܕܡܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 21.75,
+            41.25 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/512",
+          "name" : "Macedonia — ܡܩܕܘܢܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/198",
+              "title" : "Ignatius III, metropolitan of Melitene — ܐܝܓܢܐܛܝܘܣ ܕܡܝܠܝܛܝܢܝ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 34.894124,
+            31.607738 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1508",
+          "name" : "Gubrin — ܒܝܬ ܓܘܒܪ̈ܝܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/145",
+              "title" : "Cyriacus, patriarch of Antioch — ܩܘܪܝܐܩܘܣ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 27.964125,
+            36.195597 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1534",
+          "name" : "Rhodes — ܪܘܕܘܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " } ],
+          "type" : "island" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 27.420201,
+            37.042901 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1468",
+          "name" : "Halicarnassus — ܗܐܠܝܩܪܢܣܘܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 26.1342123,
+            39.2074811 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1478",
+          "name" : "Mytilene — ܡܝܕܠܝܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/58",
+              "title" : "Zechariah Rhetor — ܙܟܪܝܐ\n                        ܡܠܝܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " } ],
+          "type" : "island" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 31.4591482445,
+            16.1010829332 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/715",
+          "name" : "Egypt",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/89",
+              "title" : "Severus, bishop of Samosata — ܣܘܝܪܝܘܣ ܕܫܡܝܫܛ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/271",
+              "title" : "John bar Shayullah — ܦܛܪܝܪܟܐ\n                        ܝܘܚܢܢ ܒܪ ܫܝܠܠܗ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/256",
+              "title" : "Daniel of Mardin — ܕܢܝܐܝܠ\n                        ܡܪܕܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/82",
+              "title" : "Paul, metropolitan of Tella — ܦܘܠܘܣ ܕܬܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/155",
+              "title" : "Dionysios of Tel Mahre — ܕܝܘܢܢܘܣܝܘܣ ܬܠܡܚܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/87",
+              "title" : "Thomas of Harqel — ܬܐܘܡܐ\n                        ܚܪܩܠܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/150",
+              "title" : "Theodosius, metropolitan of Edessa — ܬܐܘܕܘܣܝܘܣ ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/84",
+              "title" : "Paul, metropolitan of Edessa — ܦܘܠܘܣ ܕܐܘܪܗܝ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 30.9479600355,
+            36.921937827 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1531",
+          "name" : "Pamphylia — ܦܡܦܝܠܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 32.6288214881,
+            35.0444470024 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/714",
+          "name" : "Cyprus — ܩܘܦܪܘܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/99",
+              "title" : "Severus Sebokht — ܣܐܘܝܪܐ\n                        ܣܐܒܘܟܬ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/276",
+              "title" : "Sergius of Hah — ܣܪܓܝܣ\n                        ܚܐܚܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/86",
+              "title" : "Abba Paul — ܐܒܐ\n                        ܦܘܠܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/84",
+              "title" : "Paul, metropolitan of Edessa — ܦܘܠܘܣ ܕܐܘܪܗܝ\n                " } ],
+          "type" : "island" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 29.923486,
+            40.76445 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/502",
+          "name" : "Izmīd — ܐܙܡܝܕ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/13",
+              "title" : "Ephrem — ܐܦܪܝܡ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.21667,
+            31.78333 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/104",
+          "name" : "Jerusalem — ܐܘܪܫܠܡ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/214",
+              "title" : "Ignatius Romanus, metropolitan of Jerusalem —\n                        ܐܝܓܢܐܛܝܘܣ ܪܘܡܐܢܘܣ ܕܐܘܪܫܠܡ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/203",
+              "title" : "Michael of Marʿash — ܡܝܟܐܝܠ\n                        ܡܪܥܫܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/216",
+              "title" : "Theodore bar Wahbun — ܒܪ\n                        ܘܗܒܘܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/212",
+              "title" : "Dionysios bar Salibi — ܕܝܘܢܢܘܣܝܘܣ ܒܪ ܨܠܝܒܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/173",
+              "title" : "Moses bar Kipho — ܡܘܫܐ ܒܪ\n                        ܟܐܦܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/205",
+              "title" : "Timothy of Gargar — ܛܝܡܬܐܘܣ\n                        ܕܓܪܓܪ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/276",
+              "title" : "Sergius of Hah — ܣܪܓܝܣ\n                        ܚܐܚܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/274",
+              "title" : "Addai of Beth Sbirino — ܐܕܝ\n                        ܣܒܝܪܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/259",
+              "title" : "Isaiah of Beth Sbirino — ܐܫܥܝܐ ܣܒܝܪܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/272",
+              "title" : "George of Beth Sbirino — ܓܘܪܓܝܘܣ ܣܒܝܪܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/281",
+              "title" : "Gregorius Joseph, metropolitan of Jerusalem —\n                        ܝܘܣܦ ܐܝܒܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/220",
+              "title" : "Ignatius Sahdo, metropolitan of Jerusalem — ܐܝܓܢܐܛܝܘܣ ܣܗܕܐ ܕܐܘܪܫܠܡ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/237",
+              "title" : "Dionysios Slibo, bishop of Claudia — ܕܝܘܢܢܘܣܝܘܣ ܨܠܝܒܐ ܕܩܠܘܕܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.398,
+            35.418 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/11",
+          "name" : "Apamea — ܐܘܦܡܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/119",
+              "title" : "Elijah I — ܐܠܝܐ\n                        ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/226",
+              "title" : "Hasnon of Edessa — ܚܣܢܘܢ\n                        ܐܘܪܗܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 29.1282355,
+            36.512941 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1533",
+          "name" : "Lycia — ܠܘܩܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 32.75,
+            37.25 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1532",
+          "name" : "Lycaonia — ܠܘܩܐܢܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 28.159216,
+            38.746057 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1526",
+          "name" : "Lydia — ܠܘܕܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 39.5,
+            37.5 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1452",
+          "name" : "Mesopotamia — ܒܝܬ ܢܗܪ̈ܝܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/16",
+              "title" : "ʿAbshmayya — ܥܒܫܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.15,
+            36.2 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/10",
+          "name" : "Antioch — ܐܢܛܝܘܟܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/201",
+              "title" : "Athanasius VII — ܐܬܐܢܐܣܝܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/217",
+              "title" : "Michael the Great — ܡܝܟܐܝܠ\n                        ܩܕܡܝܐ ܪܒܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/61",
+              "title" : "John II of Qenneshre — ܝܘܚܢܢ\n                        ܬܪܝܢܐ ܕܩܢܫܪܝܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/49",
+              "title" : "Sergius of Reshʿayna — ܣܪܓܝܣ\n                        ܪܫܥܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/239",
+              "title" : "Gregorius bar Hebraeus — ܓܪܝܓܘܪܝܘܣ ܒܪ ܥܒܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/28",
+              "title" : "Jacob, the deacon — ܝܥܩܘܒ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/113",
+              "title" : "Jacob of Edessa — ܝܥܩܘܒ\n                        ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/139",
+              "title" : "George of Bʿeltan — ܓܘܪܓܝ\n                        ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/132",
+              "title" : "John III — ܐܝܘܐܢܝܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/119",
+              "title" : "Elijah I — ܐܠܝܐ\n                        ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/25",
+              "title" : "Marutha of Maypherqat — ܡܪܘܬܐ\n                        ܕܡܝܦܪܩܛ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/50",
+              "title" : "John of Tella — ܝܘܚܢܢ\n                        ܕܬܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.166038,
+            36.589023 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/663",
+          "name" : "Iskenderun",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 43.116667,
+            36.366667 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/139",
+          "name" : "Mosul — ܡܘܨܠ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/189",
+              "title" : "Ignatius bar Qiqi — ܐܝܓܢܐܛܝܘܣ\n                        ܒܪ ܩܝܩܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/173",
+              "title" : "Moses bar Kipho — ܡܘܫܐ ܒܪ\n                        ܟܐܦܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/239",
+              "title" : "Gregorius bar Hebraeus — ܓܪܝܓܘܪܝܘܣ ܒܪ ܥܒܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/208",
+              "title" : "Ignatius II, maphrian of the East — ܐܝܓܢܐܛܝܘܣ ܠܥܙܪ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/236",
+              "title" : "John bar Maʿdani — ܝܘܚܢܢ ܒܪ\n                        ܡܥܕܢܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/182",
+              "title" : "Matthew of al-Hassasa — ܡܬܝ\n                        ܕܚܨܨܢܝ̈ܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.003257,
+            38.1427855 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/134",
+          "name" : "Maypherqaṭ — ܡܝܦܪܩܛ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/179",
+              "title" : "Jacob of Maypherqat — ܝܥܩܘܒ\n                        ܕܡܝܦܪܩܛ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 33.349677,
+            36.759213 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1477",
+          "name" : "Meloe — ܡܝܠܘܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 48.5,
+            31.5 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/34",
+          "name" : "Beth Huzaye — ܟܘܙܣܬܐܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/8",
+              "title" : "Miles, bishop of Sus — ܡܝܠܣ\n                " } ],
+          "type" : "diocese" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 28.516667,
+            38.35 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1476",
+          "name" : "Philadelphia — ܦܝܠܐܕܠܦܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 39.016667,
+            35.95 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/109",
+          "name" : "Kallinikos — ܩܐܠܘܢܝܩܝ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/139",
+              "title" : "George of Bʿeltan — ܓܘܪܓܝ\n                        ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/154",
+              "title" : "Anton of Tagrit — ܐܢܛܘܢ\n                        ܬܓܪܝܬܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/155",
+              "title" : "Dionysios of Tel Mahre — ܕܝܘܢܢܘܣܝܘܣ ܬܠܡܚܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/146",
+              "title" : "Athanos, malphono — ܐܬܢܘܣ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 42.437347,
+            36.36904 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1489",
+          "name" : "Talʿafar — ܬܠ ܥܦܪ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/217",
+              "title" : "Michael the Great — ܡܝܟܐܝܠ\n                        ܩܕܡܝܐ ܪܒܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/212",
+              "title" : "Dionysios bar Salibi — ܕܝܘܢܢܘܣܝܘܣ ܒܪ ܨܠܝܒܝ\n                " } ],
+          "type" : "fortification" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 26.053,
+            38.414 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1529",
+          "name" : "Chios — ܟܝܘ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " } ],
+          "type" : "island" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 33.88707,
+            36.424325 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1475",
+          "name" : "Tagai — ܛܐܟܐܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "unknown" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 37.95,
+            36.53333 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/122",
+          "name" : "Mabbug — ܡܒܘܓ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/206",
+              "title" : "John bar Andrawos — ܝܘܚܢܢ ܒܪ\n                        ܐܢܕܪܐܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/212",
+              "title" : "Dionysios bar Salibi — ܕܝܘܢܢܘܣܝܘܣ ܒܪ ܨܠܝܒܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/35",
+              "title" : "Polycarp, chorepiscopus of Mabbug — ܦܘܠܝܩܪܦܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/133",
+              "title" : "Elijah, bishop of Sinjar — ܐܠܝܐ ܕܫܝܓܪ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/87",
+              "title" : "Thomas of Harqel — ܬܐܘܡܐ\n                        ܚܪܩܠܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 38.31463,
+            38.34767 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/136",
+          "name" : "Melitene — ܡܝܠܝܛܝܢܝ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/174",
+              "title" : "Ezekiel II, metropolitan of Melitene — ܚܙܩܝܐܝܠ ܕܡܝܠܝܛܝܢܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/207",
+              "title" : "Sliba of Qarikara — ܨܠܝܒܐ\n                        ܩܪܝܟܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/198",
+              "title" : "Ignatius III, metropolitan of Melitene — ܐܝܓܢܐܛܝܘܣ ܕܡܝܠܝܛܝܢܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/204",
+              "title" : "Eudochus of Melitene — ܐܒܕܘܟܘܣ ܡܝܠܝܛܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/1092",
+              "title" : "Aaron of Serugh — ܐܗܪܘܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/235",
+              "title" : "Slibo of Edessa, maphrian — ܨܠܝܒܐ ܐܘܪܗܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/208",
+              "title" : "Ignatius II, maphrian of the East — ܐܝܓܢܐܛܝܘܣ ܠܥܙܪ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/222",
+              "title" : "Gregorius Jacob, maphrian of the East — ܓܪܝܓܘܪܝܘܣ ܝܥܩܘܒ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/237",
+              "title" : "Dionysios Slibo, bishop of Claudia — ܕܝܘܢܢܘܣܝܘܣ ܨܠܝܒܐ ܕܩܠܘܕܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/192",
+              "title" : "Joseph of Melitene — ܝܘܣܦ\n                        ܡܝܠܝܛܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/232",
+              "title" : "Yeshuʿ of Hesno d-Kifo — ܝܫܘܥ\n                        ܚܣܢ ܟܐܦܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/193",
+              "title" : "John bar Shushan — ܝܘܚܢܢ ܒܪ\n                        ܫܘܫܢ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 27.5,
+            42.5 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1459",
+          "name" : "Thrace — ܬܪܐܩܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " } ],
+          "type" : "province" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 44.5,
+            35.5 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/33",
+          "name" : "Beth Garmai — ܒܝܬ ܓܪ̈ܡܝ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " } ],
+          "type" : "diocese" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.8836795,
+            34.8974275 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1471",
+          "name" : "Antaradus — ܐܢܛܐܪܐܕܘܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 34.433158,
+            31.530845 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/456",
+          "name" : "Mayuma — ܡܐܝܘܡܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/58",
+              "title" : "Zechariah Rhetor — ܙܟܪܝܐ\n                        ܡܠܝܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/39",
+              "title" : "John Rufus — ܝܘܚܢܢ\n                        ܪܘܦܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.82794385,
+            40.66680835 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/292",
+          "name" : "Amāsiyya — ܐܡܐܣܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/247",
+              "title" : "Michael I (III), patriarch — ܡܝܟܐܝܠ ܩܕܡܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.939185,
+            36.131236 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1464",
+          "name" : "Dayro d-Mor Tumo — ܕܝܪܐ ܕܡܪܝ ܬܐܘܡܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/48",
+              "title" : "Mara, metropolitan of Amid — ܡܪܐ ܕܐܡܝܕ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/52",
+              "title" : "John bar Aphtonia — ܝܘܚܢܢ ܒܪ\n                        ܐܦܬܘܢܝܐ\n                " } ],
+          "type" : "monastery" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 24.749106,
+            42.147439 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1458",
+          "name" : "Philippopolis — ܦܝܠܝܦܘܠܝ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 12.4861685,
+            41.8917375 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/641",
+          "name" : "Rome — ܪܘܡܝ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/49",
+              "title" : "Sergius of Reshʿayna — ܣܪܓܝܣ\n                        ܪܫܥܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/17",
+              "title" : "Isaac of Amid — ܐܝܣܚܩ\n                        ܐܡܝܕܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.34,
+            37.33 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/24",
+          "name" : "Anḥil — ܐܢܚܠ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/118",
+              "title" : "Moses of Anhil — ܡܘܫܐ ܕܒܝܬ\n                        ܢܚ̈ܠܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 27.425929777,
+            37.0370402584 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1472",
+          "name" : "Caria — ܩܐܪܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 37.16667,
+            36.21667 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/18",
+          "name" : "Aleppo — ܚܠܒ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/239",
+              "title" : "Gregorius bar Hebraeus — ܓܪܝܓܘܪܝܘܣ ܒܪ ܥܒܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/102",
+              "title" : "Matthew, metropolitan of Aleppo — ܡܬܝ ܕܚܠܒ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/113",
+              "title" : "Jacob of Edessa — ܝܥܩܘܒ\n                        ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/109",
+              "title" : "Athanasius II of Balad — ܐܬܢܐܣܝܘܣ ܕܬܪܝܢ ܒܠܕܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/27",
+              "title" : "Balai, bishop of Balsh — ܒܠܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/42",
+              "title" : "Jacob of Serugh — ܝܥܩܘܒ\n                        ܕܣܪܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/235",
+              "title" : "Slibo of Edessa, maphrian — ܨܠܝܒܐ ܐܘܪܗܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 34.028159,
+            38.37335 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/290",
+          "name" : "Aqsarāy — ܐܩܣܪܐܝ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/247",
+              "title" : "Michael I (III), patriarch — ܡܝܟܐܝܠ ܩܕܡܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 39.5,
+            39.75 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/284",
+          "name" : "Erzincan — ܐܪܙܢܓܐܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/254",
+              "title" : "Abraham of Mardin — ܐܒܪܗܡ\n                        ܡܪܕܝܢܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.384722,
+            37.973889 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/285",
+          "name" : "Arzun — ܐܪܙܘܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/42",
+              "title" : "Jacob of Serugh — ܝܥܩܘܒ\n                        ܕܣܪܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/7",
+              "title" : "Isaiah bar Hadbo — ܐܫܥܝܐ ܒܪ\n                        ܚܕܒܘ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 32.492331,
+            37.872202 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/440",
+          "name" : "Konia — ܐܝܩܘܢܝܘܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/247",
+              "title" : "Michael I (III), patriarch — ܡܝܟܐܝܠ ܩܕܡܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 32.600128,
+            31.049917 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/1473",
+          "name" : "Pelusium",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.5,
+            36.5 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/31",
+          "name" : "Beth ʿArbaye — ܒܐܥܪ̈ܒܐܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/67",
+              "title" : "Ahudemmeh — ܐܚܘܕܐܡܗ\n                " } ],
+          "type" : "diocese" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 40.737778,
+            37.316667 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/130",
+          "name" : "Mardin — ܡܪܕܝܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/229",
+              "title" : "Jacob bar Tashkako — ܝܥܩܘܒ ܒܪ\n                        ܬܫܟܟܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/217",
+              "title" : "Michael the Great — ܡܝܟܐܝܠ\n                        ܩܕܡܝܐ ܪܒܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/206",
+              "title" : "John bar Andrawos — ܝܘܚܢܢ ܒܪ\n                        ܐܢܕܪܐܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/212",
+              "title" : "Dionysios bar Salibi — ܕܝܘܢܢܘܣܝܘܣ ܒܪ ܨܠܝܒܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/207",
+              "title" : "Sliba of Qarikara — ܨܠܝܒܐ\n                        ܩܪܝܟܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/211",
+              "title" : "Elijah of Kaysum — ܐܠܝܐ\n                        ܕܟܝܫܘܡ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/249",
+              "title" : "Ignatius I (V) bar Wahib — ܒܪ\n                        ܘܗܝܒ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/261",
+              "title" : "Simeon of Amid — ܫܡܥܘܢ\n                        ܐܡܝܕܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/242",
+              "title" : "Abu al-Hasan Ibn Mahruma — ܐܒܘ ܐܠܚܣܢ ܒܪ ܡܚܪܘܡܗ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/281",
+              "title" : "Gregorius Joseph, metropolitan of Jerusalem —\n                        ܝܘܣܦ ܐܝܒܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/121",
+              "title" : "Sobho of Reshʿayna — ܡܫܡܫܢܐ\n                        ܣܒܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/250",
+              "title" : "Yeshuʿ bar Khayrun — ܝܫܘܥ ܒܪ\n                        ܟܝܪܘܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/209",
+              "title" : "John of Mardin — ܝܘܚܢܢ\n                        ܕܡܪܕܝܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/57",
+              "title" : "Thomas of Germanicea — ܬܐܘܡܐ\n                        ܕܓܪܡܐܢܝܩܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/236",
+              "title" : "John bar Maʿdani — ܝܘܚܢܢ ܒܪ\n                        ܡܥܕܢܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/90",
+              "title" : "Thomas the Priest — ܩܫܝܫܐ\n                        ܬܐܘܡܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.78333,
+            35.51667 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/118",
+          "name" : "Laodicea — ܠܕܝܩܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.716667,
+            34.016667 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/143",
+          "name" : "Nabk — ܢܒܟ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/280",
+              "title" : "Ignatius Jacob I, patriarch of Antioch — ܝܥܩܘܒ ܩܕܡܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.44194,
+            30.32861 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/157",
+          "name" : "Petra — ܦܐܛܪܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/48",
+              "title" : "Mara, metropolitan of Amid — ܡܪܐ ܕܐܡܝܕ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.5,
+            32.5 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/180",
+          "name" : "Scythopolis",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 40.888056,
+            37.538333 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/4",
+          "name" : "Ṣawro — ܨܘܪܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/271",
+              "title" : "John bar Shayullah — ܦܛܪܝܪܟܐ\n                        ܝܘܚܢܢ ܒܪ ܫܝܠܠܗ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.5,
+            37.5 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/221",
+          "name" : "Ṭur ʿAbdin — ܛܘܪܥܒܕܝܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/206",
+              "title" : "John bar Andrawos — ܝܘܚܢܢ ܒܪ\n                        ܐܢܕܪܐܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/172",
+              "title" : "Job of Manʿem — ܐܝܘܒ\n                        ܡܢܥܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/128",
+              "title" : "Daniel bar Moses — ܕܢܝܐܝܠ ܒܪ\n                        ܡܘܫܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/274",
+              "title" : "Addai of Beth Sbirino — ܐܕܝ\n                        ܣܒܝܪܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/248",
+              "title" : "Cyril of Hah — ܩܘܪܝܠܠܘܣ\n                        ܕܚܐܚ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/249",
+              "title" : "Ignatius I (V) bar Wahib — ܒܪ\n                        ܘܗܝܒ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/113",
+              "title" : "Jacob of Edessa — ܝܥܩܘܒ\n                        ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/270",
+              "title" : "Yeshuʿ of Beth Sbirino — ܝܫܘܥ\n                        ܣܒܝܪܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/273",
+              "title" : "David Puniqoyo — ܕܘܝܕ\n                        ܦܘܢܝܩܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/135",
+              "title" : "Cyriacus, metropolitan of of Tur ʿAbdin — ܩܘܪܝܐܩܘܣ ܕܣܝܓܣܬܐܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/268",
+              "title" : "Ignatius ʿAziz bar Sobto, patriarch — ܥܙܝܙ ܒܪ ܣܒܬܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/278",
+              "title" : "ʿAziz of Midyat — ܥܙܝܙ\n                        ܡܕܝܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/251",
+              "title" : "Slibo bar Khayrun — ܨܠܝܒܐ ܒܪ\n                        ܟܝܪܘܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/279",
+              "title" : "Masʿud of Tur ʿAbdin, patriarch — ܡܣܥܘܕ ܙܐܙܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/125",
+              "title" : "Simeon of the Olives — ܫܡܥܘܢ\n                        ܕܙܝ̈ܬܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/253",
+              "title" : "Abu al-Wafa of Hesno d-Kifo — ܐܒܘܐܠܘܦܐ ܚܣܢ ܟܐܦܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/246",
+              "title" : "Yeshuʿ bar Kilu — ܝܫܘܥ ܒܪ\n                        ܟܝܠܘ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/118",
+              "title" : "Moses of Anhil — ܡܘܫܐ ܕܒܝܬ\n                        ܢܚ̈ܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/191",
+              "title" : "John of Tur ʿAbdin — ܝܘܚܢܢ\n                        ܕܛܘܪܥܒܕܝܢ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.21639,
+            33.26889 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/195",
+          "name" : "Tyros",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 34.17373,
+            36.48362 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/181",
+          "name" : "Sebaste",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/247",
+              "title" : "Michael I (III), patriarch — ܡܝܟܐܝܠ ܩܕܡܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 38.27875,
+            37.75972 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/94",
+          "name" : "Ḥiṣn Manṣūr — ܚܣܢ ܡܢܨܘܪ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/163",
+              "title" : "Simeon of Hisn Mansur — ܫܡܥܘܢ\n                        ܕܚܣܢ ܡܢܨܘܪ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/26",
+              "title" : "Rabbula of Edessa — ܪܒܘܠܐ\n                        ܕܐܘܪܗܝ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.21667,
+            37.06667 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/142",
+          "name" : "Nisibis — ܢܨܝܒܝܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/229",
+              "title" : "Jacob bar Tashkako — ܝܥܩܘܒ ܒܪ\n                        ܬܫܟܟܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/148",
+              "title" : "Habib b. Khidma Abu Raʾita of Tagrit — ܚܒܝܒ ܐܒܘ ܪܐܝܛܗ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/1550",
+              "title" : "Abraham of Nisibis — ܐܒܪܗܡ\n                        ܕܢܨܝܒܝܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/166",
+              "title" : "Isaac — ܐܝܣܚܩ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/13",
+              "title" : "Ephrem — ܐܦܪܝܡ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/109",
+              "title" : "Athanasius II of Balad — ܐܬܢܐܣܝܘܣ ܕܬܪܝܢ ܒܠܕܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/156",
+              "title" : "Nonnus of Nisibis — ܢܘܢܐ\n                        ܢܨܝܒܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/53",
+              "title" : "Simeon of Beth Arsham — ܫܡܥܘܢ\n                        ܕܒܝܬ ܐܪܫܡ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/231",
+              "title" : "Jacob bar Shakko — ܝܥܩܘܒ ܒܪ\n                        ܫܟܟܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.922,
+            36.124 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/183",
+          "name" : "Seleucia Pieria",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/48",
+              "title" : "Mara, metropolitan of Amid — ܡܪܐ ܕܐܡܝܕ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/52",
+              "title" : "John bar Aphtonia — ܝܘܚܢܢ ܒܪ\n                        ܐܦܬܘܢܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 27.5,
+            27.5 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/7",
+          "name" : "Aegyptus — ܡܨܪܝܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/89",
+              "title" : "Severus, bishop of Samosata — ܣܘܝܪܝܘܣ ܕܫܡܝܫܛ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/36",
+              "title" : "Stephen Bar Sudayli — ܐܣܛܦܐܢ\n                        ܒܪ ܨܘܕܐܝ̈ܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/82",
+              "title" : "Paul, metropolitan of Tella — ܦܘܠܘܣ ܕܬܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/87",
+              "title" : "Thomas of Harqel — ܬܐܘܡܐ\n                        ܚܪܩܠܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/84",
+              "title" : "Paul, metropolitan of Edessa — ܦܘܠܘܣ ܕܐܘܪܗܝ\n                " } ],
+          "type" : "province" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.75,
+            37.25 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/55",
+          "name" : "Cilicia — ܩܝܠܝܩܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 44.422,
+            33.325 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/41",
+          "name" : "Baghdad — ܒܓܕܕ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/176",
+              "title" : "Rupil, the monk — ܪܘܦܝܠ\n                        ܕܝܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/228",
+              "title" : "Theodore of Antioch — ܬܐܘܕܘܪܝ\n                        ܐܢܛܝܘܟܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/188",
+              "title" : "ʿĪsa b. Zurʿa — ܥܝܣܐ ܒܪ\n                        ܙܘܪܥܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/177",
+              "title" : "Denha the Philosopher — ܕܢܚܐ\n                        ܦܝܠܣܘܦܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/149",
+              "title" : "Lazarus bar Sobtho — ܠܥܙܪ ܒܪ\n                        ܣܒܬܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/239",
+              "title" : "Gregorius bar Hebraeus — ܓܪܝܓܘܪܝܘܣ ܒܪ ܥܒܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/937",
+              "title" : "Benjamin the Monk — ܒܢܝܡܝܢ\n                        ܕܝܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/139",
+              "title" : "George of Bʿeltan — ܓܘܪܓܝ\n                        ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/180",
+              "title" : "Yahya b. ʿAdi — ܝܚܝܐ ܒܪ\n                        ܥܕܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/236",
+              "title" : "John bar Maʿdani — ܝܘܚܢܢ ܒܪ\n                        ܡܥܕܢܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/155",
+              "title" : "Dionysios of Tel Mahre — ܕܝܘܢܢܘܣܝܘܣ ܬܠܡܚܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/231",
+              "title" : "Jacob bar Shakko — ܝܥܩܘܒ ܒܪ\n                        ܫܟܟܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 39.002571,
+            35.978601 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/356",
+          "name" : "Mar Zakkay — ܕܝܪܐ ܕܡܪܝ ܙܟܝ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/167",
+              "title" : "John III (IV) — ܝܘܚܢܢ\n                        ܬܠܝܬܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/100",
+              "title" : "Aitalaha the Monk — ܕܝܪܝܐ\n                        ܐܝܬܐܠܗܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/168",
+              "title" : "Ignatius II — ܐܝܓܢܐܛܝܘܣ\n                        ܬܪܝܢܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/93",
+              "title" : "Marutha of Tagrit — ܡܪܘܬܐ\n                        ܕܬܓܪܝܬ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/50",
+              "title" : "John of Tella — ܝܘܚܢܢ\n                        ܕܬܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/85",
+              "title" : "Cyriacus of Amida — ܩܘܪܝܐܩܘܣ\n                        ܕܐܡܝܕ\n                " } ],
+          "type" : "monastery" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 28.979938,
+            41.008548 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/586",
+          "name" : "Constantinople — ܩܘܣܛܢܛܝܢܘܦܘܠܝܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/215",
+              "title" : "Aaron the Monk — ܕܝܪܝܐ\n                        ܐܗܪܘܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/49",
+              "title" : "Sergius of Reshʿayna — ܣܪܓܝܣ\n                        ܪܫܥܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/58",
+              "title" : "Zechariah Rhetor — ܙܟܪܝܐ\n                        ܡܠܝܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/198",
+              "title" : "Ignatius III, metropolitan of Melitene — ܐܝܓܢܐܛܝܘܣ ܕܡܝܠܝܛܝܢܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/210",
+              "title" : "Basil bar Shumone — ܒܣܝܠܝܘܣ\n                        ܒܪ ܫܘܡܢܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/17",
+              "title" : "Isaac of Amid — ܐܝܣܚܩ\n                        ܐܡܝܕܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/273",
+              "title" : "David Puniqoyo — ܕܘܝܕ\n                        ܦܘܢܝܩܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/26",
+              "title" : "Rabbula of Edessa — ܪܒܘܠܐ\n                        ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/30",
+              "title" : "Samuel, the priest — ܫܡܘܐܝܠ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/25",
+              "title" : "Marutha of Maypherqat — ܡܪܘܬܐ\n                        ܕܡܝܦܪܩܛ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/55",
+              "title" : "Samuel of Reshʿayna — ܫܡܘܐܝܠ\n                        ܪܝܫܥܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/50",
+              "title" : "John of Tella — ܝܘܚܢܢ\n                        ܕܬܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/52",
+              "title" : "John bar Aphtonia — ܝܘܚܢܢ ܒܪ\n                        ܐܦܬܘܢܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 36.483333,
+            32.516667 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/40",
+          "name" : "Bostra — ܒܘܨܪ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/94",
+              "title" : "John of Busra — ܝܘܚܢܢ\n                        ܕܒܘܨܪ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 44.522222,
+            33.094444 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/182",
+          "name" : "Seleucia — ܣܠܝܩ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/9",
+              "title" : "Simeon bar Sabbaʿe — ܫܡܥܘܢ ܒܪ\n                        ܨܒܥ̈ܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/25",
+              "title" : "Marutha of Maypherqat — ܡܪܘܬܐ\n                        ܕܡܝܦܪܩܛ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/53",
+              "title" : "Simeon of Beth Arsham — ܫܡܥܘܢ\n                        ܕܒܝܬ ܐܪܫܡ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 34.9,
+            36.916667 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/196",
+          "name" : "Tarsos — ܛܪܣܘܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/216",
+              "title" : "Theodore bar Wahbun — ܒܪ\n                        ܘܗܒܘܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 38.015,
+            36.82972 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/83",
+          "name" : "Europos — ܓܪܐܒܠܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/52",
+              "title" : "John bar Aphtonia — ܝܘܚܢܢ ܒܪ\n                        ܐܦܬܘܢܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 37.837917,
+            37.270778 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/97",
+          "name" : "Qalʿa Rumayta — ܩܠܥܐ ܪܘܡܝܬܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/216",
+              "title" : "Theodore bar Wahbun — ܒܪ\n                        ܘܗܒܘܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/232",
+              "title" : "Yeshuʿ of Hesno d-Kifo — ܝܫܘܥ\n                        ܚܣܢ ܟܐܦܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 27.339722,
+            37.941944 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/623",
+          "name" : "Ephesus — ܐܦܣܘܣ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/74",
+              "title" : "John of Ephesus — ܝܘܚܢܢ\n                        ܕܐܦܣܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/30",
+              "title" : "Samuel, the priest — ܫܡܘܐܝܠ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.4025,
+            37.483889 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/2",
+          "name" : "Ṣalaḥ — ܨܠܚ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/264",
+              "title" : "Barsoum Maʿdanoyo, maphrian of the East — ܒܪܨܘܡ ܡܥܕܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/278",
+              "title" : "ʿAziz of Midyat — ܥܙܝܙ\n                        ܡܕܝܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 38.8,
+            37.15 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/78",
+          "name" : "Edessa — ܐܘܪܗܝ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/76",
+              "title" : "Julian I — ܝܘܠܝܢܐ\n                        ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/217",
+              "title" : "Michael the Great — ܡܝܟܐܝܠ\n                        ܩܕܡܝܐ ܪܒܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/216",
+              "title" : "Theodore bar Wahbun — ܒܪ\n                        ܘܗܒܘܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/202",
+              "title" : "Basil Abu Ghalib Ibn al-Sabouni — ܒܣܝܠܝܘܣ ܐܒܘ ܓܐܠܒ ܒܪ ܨܐܒܘܢܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/212",
+              "title" : "Dionysios bar Salibi — ܕܝܘܢܢܘܣܝܘܣ ܒܪ ܨܠܝܒܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/73",
+              "title" : "Cyrus of Batnan — ܩܘܪܐ\n                        ܕܒܛܢܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/28",
+              "title" : "Jacob, the deacon — ܝܥܩܘܒ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/15",
+              "title" : "Asuna — ܐܣܘܢܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/113",
+              "title" : "Jacob of Edessa — ܝܥܩܘܒ\n                        ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/853",
+              "title" : "Zenobius — ܙܢܘܒܝܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/13",
+              "title" : "Ephrem — ܐܦܪܝܡ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/20",
+              "title" : "Cyrillona — ܩܘܪܠܘܢܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/109",
+              "title" : "Athanasius II of Balad — ܐܬܢܐܣܝܘܣ ܕܬܪܝܢ ܒܠܕܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/126",
+              "title" : "Constantine, bishop of Edessa — ܩܘܣܛܢܛܝܢ ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/127",
+              "title" : "John the Stylite of Litarba — ܝܘܚܢܢ ܐܬܐܪܒܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/24",
+              "title" : " Maʿna, catholicos — ܡܥܢܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/30",
+              "title" : "Samuel, the priest — ܫܡܘܐܝܠ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/118",
+              "title" : "Moses of Anhil — ܡܘܫܐ ܕܒܝܬ\n                        ܢܚ̈ܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/42",
+              "title" : "Jacob of Serugh — ܝܥܩܘܒ\n                        ܕܣܪܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/221",
+              "title" : "Abraham of Tel Besme — ܐܒܪܗܡ\n                        ܕܬܠܒܣ̈ܡܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/209",
+              "title" : "John of Mardin — ܝܘܚܢܢ\n                        ܕܡܪܕܝܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/220",
+              "title" : "Ignatius Sahdo, metropolitan of Jerusalem — ܐܝܓܢܐܛܝܘܣ ܣܗܕܐ ܕܐܘܪܫܠܡ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/80",
+              "title" : "Simeon of Edessa — ܫܡܥܘܢ\n                        ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/142",
+              "title" : "Theodorus bar Zarudi — ܬܐܘܕܘܪܘܣ ܒܪ ܙܪܘܕܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/154",
+              "title" : "Anton of Tagrit — ܐܢܛܘܢ\n                        ܬܓܪܝܬܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/69",
+              "title" : "Jacob Baradaeus — ܝܥܩܘܒ\n                        ܒܘܪܕܥܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/236",
+              "title" : "John bar Maʿdani — ܝܘܚܢܢ ܒܪ\n                        ܡܥܕܢܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/155",
+              "title" : "Dionysios of Tel Mahre — ܕܝܘܢܢܘܣܝܘܣ ܬܠܡܚܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/226",
+              "title" : "Hasnon of Edessa — ܚܣܢܘܢ\n                        ܐܘܪܗܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/150",
+              "title" : "Theodosius, metropolitan of Edessa — ܬܐܘܕܘܣܝܘܣ ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/84",
+              "title" : "Paul, metropolitan of Edessa — ܦܘܠܘܣ ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/152",
+              "title" : "Benjamin, metropolitan of Edessa — ܒܢܝܡܝܢ ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/47",
+              "title" : "Paul, bishop of Kallinikos — ܦܘܠܘܣ ܕܩܠܘܢܝܩܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/52",
+              "title" : "John bar Aphtonia — ܝܘܚܢܢ ܒܪ\n                        ܐܦܬܘܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/153",
+              "title" : "Basil of Samosata — ܒܣܝܠܝܘܣ\n                        ܕܫܡܝܫܛ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 62.5,
+            32.5 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/409",
+          "name" : "Sijistān — ܣܓܣܬܐܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/135",
+              "title" : "Cyriacus, metropolitan of of Tur ʿAbdin — ܩܘܪܝܐܩܘܣ ܕܣܝܓܣܬܐܢ\n                " } ],
+          "type" : "region" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.473406,
+            37.211579 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/384",
+          "name" : "Gawgal — ܕܝܪܐ ܕܓܘܓܠ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " } ],
+          "type" : "monastery" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 43.392187,
+            36.491605 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/227",
+          "name" : "Mor Matay — ܕܝܪܐ ܕܡܪܝ ܡܬܝ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/88",
+              "title" : "Athanasius I Gamolo — ܐܬܢܐܣܝܘܣ ܩܕܡܝܐ ܓܡܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/159",
+              "title" : "Barhadbshabba of Mor Matay — ܕܝܪܝܐ ܒܪ ܚܕ ܒܫܒܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/239",
+              "title" : "Gregorius bar Hebraeus — ܓܪܝܓܘܪܝܘܣ ܒܪ ܥܒܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/106",
+              "title" : "Severus bar Mashqo — ܣܘܝܪܐ\n                        ܕܬܪܝܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/1057",
+              "title" : "Aitalaha of Nineveh — ܐܝܬܐܠܗܐ\n                        ܢܝܢܘܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/111",
+              "title" : "John bar Kipho — ܝܘܚܢܢ ܒܪ\n                        ܟܐܦܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/105",
+              "title" : "Gabriel, Rabban — ܓܒܪܐܝܠ ܕܒܝܬ\n                        ܪܒܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/243",
+              "title" : "Metropolitan Gabriel of Bartelle — ܕܝܘܣܩܘܪܘܣ ܕܓܙܪܬܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/123",
+              "title" : "Sabrishoʿ of Beth Rabban — ܣܒܪ ܝܫܘܥ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/241",
+              "title" : "Abu Nasr of Bartelle — ܐܒܘ\n                        ܢܨܪ ܒܪܛܠܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/131",
+              "title" : "John of Mor Matay — ܝܘܚܢܢ\n                        ܕܡܪܝ ܡܬܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/938",
+              "title" : "Ramishuʿ of Beth Rabban — ܪܡܝܫܘܥ ܕܒܝܬ ܪܒܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/97",
+              "title" : "Denha I, maphrian — ܕܢܚܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/93",
+              "title" : "Marutha of Tagrit — ܡܪܘܬܐ\n                        ܕܬܓܪܝܬ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/233",
+              "title" : "Gregorius John, bishop of Mor Matay Monastery —\n                        ܓܪܝܓܘܪܝܘܣ ܝܘܚܢܢ ܕܡܪܝ ܡܬܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/144",
+              "title" : "David bar Paulos — ܕܘܝܕ ܒܪ\n                        ܦܘܠܘܣ\n                " } ],
+          "type" : "monastery" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.5385,
+            37.321778 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/226",
+          "name" : "Mor Gabriel — ܕܝܪܐ ܕܩܪܛܡܝܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/172",
+              "title" : "Job of Manʿem — ܐܝܘܒ\n                        ܡܢܥܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/263",
+              "title" : "Behnam Hadloyo — ܒܗܢܡ\n                        ܚܕܠܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/262",
+              "title" : "Ignatius Qumo of Beth Sbirino, patriarch — ܩܘܡܐ ܣܒܝܪܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/270",
+              "title" : "Yeshuʿ of Beth Sbirino — ܝܫܘܥ\n                        ܣܒܝܪܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/272",
+              "title" : "George of Beth Sbirino — ܓܘܪܓܝܘܣ ܣܒܝܪܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/267",
+              "title" : "Gharib of Beth Manʿem — ܓܪܝܒ\n                        ܡܢܥܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/269",
+              "title" : "Malke Saqo — ܡܠܟܐ\n                        ܣܩܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/268",
+              "title" : "Ignatius ʿAziz bar Sobto, patriarch — ܥܙܝܙ ܒܪ ܣܒܬܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/125",
+              "title" : "Simeon of the Olives — ܫܡܥܘܢ\n                        ܕܙܝ̈ܬܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/234",
+              "title" : "Basil of Beth Sbirino — ܒܣܝܠܝܘܣ ܣܒܝܪܝܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/169",
+              "title" : "Theodosius, the patriarch — ܦܛܪܝܪܟܐ ܬܐܘܕܘܣܝܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/191",
+              "title" : "John of Tur ʿAbdin — ܝܘܚܢܢ\n                        ܕܛܘܪܥܒܕܝܢ\n                " } ],
+          "type" : "monastery" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.39806,
+            33.56056 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/187",
+          "name" : "Sidon",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/25",
+              "title" : "Marutha of Maypherqat — ܡܪܘܬܐ\n                        ܕܡܝܦܪܩܛ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 43.68333,
+            34.6 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/193",
+          "name" : "Tagrit — ܬܓܪܝܬ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/177",
+              "title" : "Denha the Philosopher — ܕܢܚܐ\n                        ܦܝܠܣܘܦܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/173",
+              "title" : "Moses bar Kipho — ܡܘܫܐ ܒܪ\n                        ܟܐܦܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/111",
+              "title" : "John bar Kipho — ܝܘܚܢܢ ܒܪ\n                        ܟܐܦܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/143",
+              "title" : "Simeon of Tagrit — ܫܡܥܘܢ ܒܪ\n                        ܥܡܪ̈ܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/155",
+              "title" : "Dionysios of Tel Mahre — ܕܝܘܢܢܘܣܝܘܣ ܬܠܡܚܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/93",
+              "title" : "Marutha of Tagrit — ܡܪܘܬܐ\n                        ܕܬܓܪܝܬ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/144",
+              "title" : "David bar Paulos — ܕܘܝܕ ܒܪ\n                        ܦܘܠܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/92",
+              "title" : "John of the Sedre — ܝܘܚܢܢ\n                        ܕܣܕܪ̈ܘܗܝ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 43.15278,
+            36.35944 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/144",
+          "name" : "Nineveh — ܢܝܢܘܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/99",
+              "title" : "Severus Sebokht — ܣܐܘܝܪܐ\n                        ܣܐܒܘܟܬ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/239",
+              "title" : "Gregorius bar Hebraeus — ܓܪܝܓܘܪܝܘܣ ܒܪ ܥܒܪܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 38.47134,
+            37.56452 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/178",
+          "name" : "Samosata — ܫܡܝܫܛ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/89",
+              "title" : "Severus, bishop of Samosata — ܣܘܝܪܝܘܣ ܕܫܡܝܫܛ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/158",
+              "title" : "Arabi, metropolitan of Samosata — ܐܪܐܒܝ ܕܫܡܝܫܛ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/139",
+              "title" : "George of Bʿeltan — ܓܘܪܓܝ\n                        ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/26",
+              "title" : "Rabbula of Edessa — ܪܒܘܠܐ\n                        ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/169",
+              "title" : "Theodosius, the patriarch — ܦܛܪܝܪܟܐ ܬܐܘܕܘܣܝܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/153",
+              "title" : "Basil of Samosata — ܒܣܝܠܝܘܣ\n                        ܕܫܡܝܫܛ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 39.032222,
+            38.028889 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/86",
+          "name" : "Gargar — ܓܪܓܪ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/205",
+              "title" : "Timothy of Gargar — ܛܝܡܬܐܘܣ\n                        ܕܓܪܓܪ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.413056,
+            37.714167 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/92",
+          "name" : "Ḥesno d-Kifo — ܚܣܢܐ ܕܟܐܦܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/279",
+              "title" : "Masʿud of Tur ʿAbdin, patriarch — ܡܣܥܘܕ ܙܐܙܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 33.91667,
+            36.7 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/146",
+          "name" : "Olba",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 38.847326,
+            35.8808455 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/185",
+          "name" : "Shura",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 38.034807,
+            36.827426 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/230",
+          "name" : "Qenneshre — ܕܝܪܐ ܕܩܢܫܪܝܢ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/88",
+              "title" : "Athanasius I Gamolo — ܐܬܢܐܣܝܘܣ ܩܕܡܝܐ ܓܡܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/76",
+              "title" : "Julian I — ܝܘܠܝܢܐ\n                        ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/89",
+              "title" : "Severus, bishop of Samosata — ܣܘܝܪܝܘܣ ܕܫܡܝܫܛ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/71",
+              "title" : "Sergius bar Karyo — ܣܪܓܝܣ ܒܪ\n                        ܟܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/99",
+              "title" : "Severus Sebokht — ܣܐܘܝܪܐ\n                        ܣܐܒܘܟܬ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/72",
+              "title" : "Paul II, Patriarch of Antioch — ܦܘܠܘܣ ܬܪܝܢܐ ܦܛܪܝܪܟܐ ܕܐܢܛܝܘܟܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/113",
+              "title" : "Jacob of Edessa — ܝܥܩܘܒ\n                        ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/112",
+              "title" : "Simeon of Qenneshre — ܫܡܥܘܢ\n                        ܕܩܢܫܪܝܢ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/139",
+              "title" : "George of Bʿeltan — ܓܘܪܓܝ\n                        ܩܕܡܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/109",
+              "title" : "Athanasius II of Balad — ܐܬܢܐܣܝܘܣ ܕܬܪܝܢ ܒܠܕܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/122",
+              "title" : "George, bishop of the Arabs — ܓܘܪܓܝ ܐܦܝܣܩܘܦܐ ܕܥܪ̈ܒܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/57",
+              "title" : "Thomas of Germanicea — ܬܐܘܡܐ\n                        ܕܓܪܡܐܢܝܩܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/141",
+              "title" : "Elijah of Harran — ܐܠܝܐ\n                        ܚܪܢܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/155",
+              "title" : "Dionysios of Tel Mahre — ܕܝܘܢܢܘܣܝܘܣ ܬܠܡܚܪܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/87",
+              "title" : "Thomas of Harqel — ܬܐܘܡܐ\n                        ܚܪܩܠܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/78",
+              "title" : "John the Chanter — ܝܘܚܢܢ\n                        ܦܣܐܠܛܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/150",
+              "title" : "Theodosius, metropolitan of Edessa — ܬܐܘܕܘܣܝܘܣ ܕܐܘܪܗܝ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/153",
+              "title" : "Basil of Samosata — ܒܣܝܠܝܘܣ\n                        ܕܫܡܝܫܛ\n                " } ],
+          "type" : "monastery" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 44.44985,
+            31.88332 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/219",
+          "name" : "Ḥirta — ܚܐܪܬܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/44",
+              "title" : "Philoxenos of Mabbug — ܦܝܠܠܘܟܣܝܢܘܣ ܕܡܒܘܓ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/53",
+              "title" : "Simeon of Beth Arsham — ܫܡܥܘܢ\n                        ܕܒܝܬ ܐܪܫܡ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 41.859566,
+            36.321337 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/184",
+          "name" : "Sinjar — ܫܝܓܪ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/133",
+              "title" : "Elijah, bishop of Sinjar — ܐܠܝܐ ܕܫܝܓܪ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/50",
+              "title" : "John of Tella — ܝܘܚܢܢ\n                        ܕܬܠܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 35.51306,
+            33.88694 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/46",
+          "name" : "Beirut — ܒܝܪܘܬ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/58",
+              "title" : "Zechariah Rhetor — ܙܟܪܝܐ\n                        ܡܠܝܠܐ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/39",
+              "title" : "John Rufus — ܝܘܚܢܢ\n                        ܪܘܦܘܣ\n                " },
+            
+            { "id" : "http:\/\/syriaca.org\/person\/51",
+              "title" : "Severus of Antioch — ܣܘܝܪܝܘܣ\n                        ܕܐܢܛܝܘܟܝܐ\n                " } ],
+          "type" : "settlement" } },
+      
+      { "type" : "Feature",
+        "geometry" : 
+        { "type" : "Point",
+          "coordinates" : 
+          [ 29.715443,
+            40.426679 ] },
+        "properties" : 
+        { "uri" : "http:\/\/syriaca.org\/place\/621",
+          "name" : "Nicaea — ܢܝܩܝܐ",
+          "relatedRecords" : 
+          [ 
+            { "id" : "http:\/\/syriaca.org\/person\/68",
+              "title" : "Sergius the Monk — ܕܝܪܝܐ\n                        ܣܪܓܝܣ\n                " } ],
+          "type" : "settlement" } } ] }
