@@ -2,6 +2,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     xmlns:t="http://www.tei-c.org/ns/1.0" 
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:x="http://www.w3.org/1999/xhtml" 
     xmlns:srophe="https://srophe.app" 
     xmlns:saxon="http://saxon.sf.net/" 
@@ -42,6 +43,7 @@
  <!-- import component stylesheets for HTML page portions -->
  <!-- =================================================================== -->
     <xsl:import href="tei2html.xsl"/>
+<!--    <xsl:import href="helper-functions.xsl"/>-->
     <xsl:import href="maps.xsl"/>
 <!--    <xsl:import href="json.xsl"/>-->
 <!--    <xsl:import href="relationships.xsl"/>-->
@@ -185,6 +187,7 @@
                 <xsl:when test="$convert = 'false' and $outputFile != ''">HTML</xsl:when>
                 <xsl:when test="/html:div[@data-template-with]">HTML</xsl:when>
                 <xsl:when test="/t:TEI">TEI</xsl:when>
+                <xsl:when test="/rdf:RDF">RDF</xsl:when>
                 <xsl:otherwise>OTHER: <xsl:value-of select="name(root(.))"/></xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -238,10 +241,26 @@
                     </xsl:if>
                     <path idno="{$idno}"><xsl:value-of select="concat(replace($idno,$base-uri,concat($staticSitePath,'data')),'.html')"/></path>
                 </xsl:when>
+                <xsl:when test="$fileType = 'RDF'">
+                    <!-- Output a page for each rdf:Description (with http://syriaca.org/taxonomy/) -->
+                    <xsl:for-each select="//rdf:Description[starts-with(@rdf:about,'http://syriaca.org/taxonomy/')]">
+                        <xsl:if test="replace(@rdf:about,'http://syriaca.org/taxonomy/','') != ''">
+                            <xsl:variable name="idno" select="@rdf:about"/>
+                            <xsl:choose>
+                                <xsl:when test="$idno = 'http://syriaca.org/taxonomy/syriac-taxonomy'">
+                                    <path idno="{$idno}"><xsl:value-of select="concat($staticSitePath,'/taxonomy/browse.html')"/></path>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <path idno="{$idno}"><xsl:value-of select="concat(replace($idno,$base-uri,concat($staticSitePath,'data')),'.html')"/></path>        
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:if>
+                    </xsl:for-each>                    
+                </xsl:when>
                 <xsl:otherwise><xsl:message>Unrecognizable file type <xsl:value-of select="$fileType"/> [<xsl:value-of select="$documentURI"/>]</xsl:message></xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="nodes" select="//t:TEI"/>
+        <xsl:variable name="nodes" select="//t:TEI | //rdf:RDF"/>
         <xsl:for-each-group select="$path/child::*" group-by=".">
             <xsl:result-document href="{replace(.,'.xml','.html')}">
                 <xsl:choose>
@@ -255,6 +274,13 @@
                     <xsl:when test="$fileType = 'TEI'">
                         <xsl:call-template name="htmlPage">
                             <xsl:with-param name="pageType" select="'TEI'"/>
+                            <xsl:with-param name="nodes" select="$nodes"/>
+                            <xsl:with-param name="idno" select="@idno"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="$fileType = 'RDF'">
+                        <xsl:call-template name="htmlPage">
+                            <xsl:with-param name="pageType" select="'RDF'"/>
                             <xsl:with-param name="nodes" select="$nodes"/>
                             <xsl:with-param name="idno" select="@idno"/>
                         </xsl:call-template>
@@ -327,6 +353,14 @@
                             <xsl:otherwise><xsl:message>Error Can not find matching template for TEI page <xsl:value-of select="replace(concat($staticSitePath,'/siteGenerator/components/',string($collectionValues/@template),'.html'),'//','/')"/></xsl:message></xsl:otherwise>
                         </xsl:choose>
                     </xsl:when>
+                    <xsl:when test="$pageType = 'RDF'">
+                        <xsl:choose>
+                            <xsl:when test="$collectionTemplate/child::*">
+                                <xsl:sequence select="$collectionTemplate"/> 
+                            </xsl:when>
+                            <xsl:otherwise><xsl:message>Error Can not find matching template for TEI page <xsl:value-of select="replace(concat($staticSitePath,'/siteGenerator/components/',string($collectionValues/@template),'.html'),'//','/')"/></xsl:message></xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:when>
                 </xsl:choose>
             </xsl:variable>
                 <xsl:choose>
@@ -346,7 +380,6 @@
                         <xsl:choose>
                             <xsl:when test="$template/descendant::html:nav">
                                 <xsl:copy-of select="$template/descendant::html:nav"/>
-<!--                                  <xsl:apply-templates select="$template/descendant::html:nav"/>-->
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:call-template name="genericNav"/>
@@ -360,6 +393,9 @@
                 <xsl:choose>
                     <xsl:when test="$pageType = 'HTML'">
                         <xsl:copy-of select="$nodes"/>
+                    </xsl:when>
+                    <xsl:when test="$pageType = 'RDF'">
+                        <xsl:apply-templates select="$nodes/rdf:Description[@rdf:about = $idno]"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:choose>
@@ -486,6 +522,184 @@
             </xsl:if>
             <xsl:apply-templates/>
         </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="rdf:Description">
+        <xsl:variable name="id" select="@rdf:about"/>
+        <xsl:choose>
+            <xsl:when test="child::*:hasTopConcept">
+                <div class="main-content-block">
+                    <div class="interior-content">
+                        <h1>Browse Taxonomy</h1>
+                        <ul class="list-unstyled indent">
+                            <xsl:for-each select="*:hasTopConcept">
+                                <xsl:sort select="@rdf:resource"/>
+                                <xsl:variable name="id" select="@rdf:resource"/>
+                                <xsl:for-each select="//rdf:Description[@rdf:about = $id]">
+                                    <xsl:sort select="*:prefLabel[@xml:lang='en']"/>
+                                    <li>
+                                        <xsl:choose>
+                                            <xsl:when test="*:narrower">
+                                                <xsl:variable name="uID" select="tokenize(@rdf:about,'/')[last()]"/>
+                                                <a href="#" type="button" class="expandTerms" data-toggle="collapse" data-target="#view{$uID}" style="display:inline-block;margin:.5em .75em;">
+                                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                                </a>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <a href="#" type="button" class="expandTerms" style="display:inline-block;margin:.5em 1.25em;">
+                                                    &#160;
+                                                </a>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                        <a href="{concat(replace($id,$base-uri,concat($staticSitePath,'data')),'.html')}"><xsl:value-of select="*:prefLabel[@xml:lang='en']"/></a>
+                                            <xsl:call-template name="narrowerTerms">
+                                                <xsl:with-param name="node" select="."/>
+                                            </xsl:call-template>
+                                    </li>
+                                </xsl:for-each>
+                            </xsl:for-each>
+                        </ul>
+                    </div>
+                </div>
+            </xsl:when>
+            <xsl:otherwise>
+                <div class="main-content-block">
+                    <div class="interior-content">
+                        <div class="container otherFormats" xmlns="http://www.w3.org/1999/xhtml">
+                            <a href="javascript:window.print();" type="button" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to send this page to the printer." >
+                                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+                            </a><xsl:text>&#160;</xsl:text>
+                            <!-- WS:NOTE needs work on the link.  -->
+                            <a href="{concat($dataPath,'.rdf')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the RDF-XML data for this record." >
+                                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> RDF/XML
+                            </a><xsl:text>&#160;</xsl:text>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7 col-lg-8">
+                                <div class="title">
+                                    <h1><span id="title">
+                                        <xsl:value-of select="*:prefLabel[@xml:lang='en']"/>
+                                        <xsl:if test="*:prefLabel[@xml:lang='syr']">
+                                            <xsl:text> - </xsl:text>
+                                            <xsl:value-of select="*:prefLabel[@xml:lang='syr']"/>
+                                        </xsl:if>
+                                    </span></h1>
+                                </div>
+                                <div class="idno seriesStmt"
+                                    style="margin:0; margin-top:.25em; margin-bottom: 1em; padding:1em; color: #999999;">
+                                    <small><span class="uri"> <button type="button" class="btn btn-default btn-xs" 
+                                        id="idnoBtn" data-clipboard-action="copy" data-clipboard-target="#syriaca-id">
+                                        <span class="srp-label">URI</span></button> 
+                                        <span id="syriaca-id"><xsl:value-of select="$id"/></span><script>
+                                            var clipboard = new Clipboard('#idnoBtn');
+                                            clipboard.on('success', function(e) {
+                                            console.log(e);
+                                            });
+                                            
+                                            clipboard.on('error', function(e) {
+                                            console.log(e);
+                                            });
+                                        </script> 
+                                    </span></small>
+                                    <div>
+                                        <xsl:if test="*:scopeNote[@xml:lang='en']">
+                                            <h3>Scope Note</h3>
+                                            <p class="indent"><xsl:apply-templates select="*:scopeNote[@xml:lang='en']"/></p>
+                                        </xsl:if>
+                                        <h3>Label(s)</h3>
+                                        <xsl:for-each-group select="*:prefLabel" group-by="@xml:lang">
+                                            <h4><xsl:value-of select="local:expand-lang(current-grouping-key(),'')"/></h4>
+                                            <p class="indent"><xsl:for-each select="current-group()">
+                                                <xsl:value-of select="."/><xsl:if test="position() != last()"><xsl:text>, </xsl:text></xsl:if>
+                                            </xsl:for-each></p>
+                                        </xsl:for-each-group>
+                                        <xsl:if test="*:altLabel">
+                                            <h3>Alternate Label(s)</h3>
+                                            <xsl:for-each-group select="*:altLabel" group-by="@xml:lang">
+                                                <h4><xsl:value-of select="local:expand-lang(current-grouping-key(),'')"/></h4>
+                                                <p class="indent"><xsl:for-each select="current-group()">
+                                                    <xsl:value-of select="."/><xsl:if test="position() != last()"><xsl:text>, </xsl:text></xsl:if>
+                                                </xsl:for-each></p>
+                                            </xsl:for-each-group>
+                                        </xsl:if>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-lg-4 right-menu">
+                                <xsl:if test="*:broader">
+                                    <h4>Broader</h4>
+                                    <ul>
+                                        <xsl:for-each select="*:broader">
+                                            <xsl:variable name="broaderID" select="@rdf:resource"/>
+                                            <xsl:for-each select="//rdf:Description[@rdf:about = $broaderID]">
+                                                <li><a href="{concat(replace($broaderID,$base-uri,concat($staticSitePath,'data')),'.html')}"><xsl:value-of select="*:prefLabel[@xml:lang='en']"/></a></li>
+                                            </xsl:for-each>
+                                        </xsl:for-each>
+                                    </ul>
+                                </xsl:if>
+                                <xsl:if test="*:narrower">
+                                    <h4>Narrower</h4>
+                                    <ul>
+                                        <xsl:for-each select="*:narrower">
+                                            <xsl:variable name="narrowerID" select="@rdf:resource"/>
+                                            <xsl:for-each select="//rdf:Description[@rdf:about = $narrowerID]">
+                                                <li><a href="{concat(replace($narrowerID,$base-uri,concat($staticSitePath,'data')),'.html')}"><xsl:value-of select="*:prefLabel[@xml:lang='en']"/></a></li>
+                                            </xsl:for-each>
+                                        </xsl:for-each>
+                                    </ul>
+                                </xsl:if>
+                                <xsl:if test="*:related">
+                                    <h4>See also</h4>
+                                    <ul>
+                                        <xsl:for-each select="*:related">
+                                            <xsl:variable name="relatedID" select="@rdf:resource"/>
+                                            <xsl:for-each select="//rdf:Description[@rdf:about = $relatedID]">
+                                                <li><a href="{concat(replace($relatedID,$base-uri,concat($staticSitePath,'data')),'.html')}"><xsl:value-of select="*:prefLabel[@xml:lang='en']"/></a></li>
+                                            </xsl:for-each>    
+                                        </xsl:for-each>
+                                    </ul>
+                                </xsl:if>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template name="narrowerTerms">
+        <xsl:param name="node"/>
+        <xsl:if test="$node/*:narrower">
+            <xsl:variable name="uID" select="tokenize(@rdf:about,'/')[last()]"/>
+            <ul class="collapse list-unstyled indent" id="view{$uID}">
+                <xsl:for-each select="$node/*:narrower">
+                    <xsl:sort select="@rdf:resource"/>
+                    <xsl:variable name="termID" select="@rdf:resource"/>
+                    <xsl:for-each select="//rdf:Description[@rdf:about = $termID]">
+                        <li>
+                            <xsl:choose>
+                                <xsl:when test="*:narrower">
+                                    <xsl:variable name="uID" select="tokenize(@rdf:about,'/')[last()]"/>
+                                    <a href="#" type="button" class="expandTerms" data-toggle="collapse" data-target="#view{$uID}" style="display:inline-block;margin:.5em .75em;">
+                                        <span class="glyphicon glyphicon-plus-sign"></span>
+                                    </a>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <a href="#" type="button" class="expandTerms" style="display:inline-block;margin:.5em 1.25em;">
+                                        &#160;
+                                    </a>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            <a href="{concat(replace($termID,$base-uri,concat($staticSitePath,'data')),'.html')}"><xsl:value-of select="*:prefLabel[@xml:lang='en']"/></a>
+                            <xsl:call-template name="narrowerTerms">
+                                <xsl:with-param name="node" select="."/>
+                            </xsl:call-template>
+                        </li>
+                    </xsl:for-each>
+                </xsl:for-each>
+            </ul>
+        </xsl:if>
     </xsl:template>
     
     <xsl:template name="otherDataFormats">
