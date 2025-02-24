@@ -929,8 +929,8 @@
     </xsl:template>
     <xsl:template match="tei:title" mode="citation">
         <xsl:choose>
-            <xsl:when test="@level = 'a'"> "<xsl:apply-templates mode="citation"/>" </xsl:when>
-            <xsl:otherwise> &lt;i&gt;<xsl:apply-templates mode="citation"/>&lt;/i&gt; </xsl:otherwise>
+            <xsl:when test="@level = 'a'"> "<xsl:value-of select="replace(normalize-space(.),'“|”','')"/>" </xsl:when>
+            <xsl:otherwise> &lt;i&gt;<xsl:value-of select="replace(normalize-space(.),'“|”','')"/>&lt;/i&gt; </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     <xsl:template match="text()" mode="citation">
