@@ -95,14 +95,14 @@ declare function local:places($node, $id, $idShort, $typeShort){
 (
 (:Series statement:)
     for $series in $node/descendant::tei:seriesStmt
-    return local:make-triple(local:make-uri($id), 'rdfs:partOf', local:make-literal($series/tei:idno/text(),'','')),
+    return local:make-triple(local:make-uri($id), 'rdfs:partOf', local:make-uri($series/tei:idno/text())),
 (: RDFs Label from headwords:)
     for $headword in $node/descendant::tei:palce/tei:placeName[@srophe:tags='#syriaca-headword']
     let $lang := $headword/@xml:lang
     return local:make-triple(local:make-uri($id), 'rdfs:label', local:make-literal($headword/descendant-or-self::text(),$lang,'')),
 (: hasCitation - bibl referenes :)
     for $citation in $node/descendant::tei:bibl/tei:ptr/@target[contains(., 'syriaca.org/bibl')]
-    return local:make-triple(local:make-uri($id), 'rdfs:label', local:make-uri($citation)),
+    return local:make-triple(local:make-uri($id), 'lawd:hasCitation', local:make-uri($citation)),
 (:primaryTopicOf idno in publication statement :)
     local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri($node/descendant::tei:publicationStmt/tei:idno/text())),
     local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno/text(),'/tei','/html'))),
@@ -119,9 +119,9 @@ declare function local:places($node, $id, $idShort, $typeShort){
     :) 
 (: relations :)
     for $relPers in $node/descendant::tei:text/descendant::tei:persName/@ref
-    return local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri($relPers)),
+    return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPers)),
     for $relPlace in $node/descendant::tei:text/descendant::tei:placeName/@ref
-    return local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri($relPlace)),
+    return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPlace)),
 (: Name varients :)
     for $nameVariant in $node/descendant::tei:place/tei:placeName 
     return local:make-triple(local:make-uri($id), 'swdt:name-variant', local:make-literal($nameVariant/descendant-or-self::text(),$nameVariant/@xml:lang,'')),
@@ -196,7 +196,7 @@ declare function local:places($node, $id, $idShort, $typeShort){
         else if($religiousCom/@notAfter) then 
             local:make-triple(concat('swds:has-religious-community-',$idShort,'-',$p), 'spq:not-after', local:make-date(string($religiousCom/@notAfter)))
         else if($religiousCom/@from) then 
-            local:make-triple(concat('swds:has-religious-community-',$idShort,'-',$p), 'spq:not-from', local:make-date(string($religiousCom/@from)))
+            local:make-triple(concat('swds:has-religious-community-',$idShort,'-',$p), 'spq:from', local:make-date(string($religiousCom/@from)))
         else if($religiousCom/@to) then 
             local:make-triple(concat('swds:has-religious-community-',$idShort,'-',$p), 'spq:not-to', local:make-date(string($religiousCom/@to)))
         else ()
@@ -246,7 +246,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
 (
 (:Series statement:)
     for $series in $node/descendant::tei:seriesStmt
-    return local:make-triple(local:make-uri($id), 'rdfs:partOf', local:make-literal($series/tei:idno/text(),'','')),
+    return local:make-triple(local:make-uri($id), 'rdfs:partOf', local:make-uri($series/tei:idno/text())),
 (: RDFs Label from headwords:)
     for $headword in $node/descendant::tei:person/tei:persName[@srophe:tags='#syriaca-headword'] | $node/descendant::tei:personGrp/tei:persName[@srophe:tags='#syriaca-headword']
     let $lang := $headword/@xml:lang
@@ -529,7 +529,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
         else if($occupation/@notAfter) then 
             local:make-triple(concat('swds:occupation-',$idShort,'-',$p), 'spq:not-after', local:make-date(string($occupation/@notAfter)))
         else if($occupation/@from) then 
-            local:make-triple(concat('swds:occupation-',$idShort,'-',$p), 'spq:not-from', local:make-date(string($occupation/@from)))
+            local:make-triple(concat('swds:occupation-',$idShort,'-',$p), 'spq:from', local:make-date(string($occupation/@from)))
         else if($occupation/@to) then 
             local:make-triple(concat('swds:occupation-',$idShort,'-',$p), 'spq:not-to', local:make-date(string($occupation/@to)))
         else ()
@@ -551,7 +551,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
         else if($economic/@notAfter) then 
             local:make-triple(concat('swds:socio-economic-status-',$idShort,'-',$p), 'spq:not-after', local:make-date(string($economic/@notAfter)))
         else if($economic/@from) then 
-            local:make-triple(concat('swds:socio-economic-status-',$idShort,'-',$p), 'spq:not-from', local:make-date(string($economic/@from)))
+            local:make-triple(concat('swds:socio-economic-status-',$idShort,'-',$p), 'spq:from', local:make-date(string($economic/@from)))
         else if($economic/@to) then 
             local:make-triple(concat('swds:socio-economic-status-',$idShort,'-',$p), 'spq:not-to', local:make-date(string($economic/@to)))
         else ()
@@ -573,7 +573,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
         else if($status/@notAfter) then 
             local:make-triple(concat('swds:status-',$idShort,'-',$p), 'spq:not-after', local:make-date(string($status/@notAfter)))
         else if($status/@from) then 
-            local:make-triple(concat('swds:status-',$idShort,'-',$p), 'spq:not-from', local:make-date(string($status/@from)))
+            local:make-triple(concat('swds:status-',$idShort,'-',$p), 'spq:from', local:make-date(string($status/@from)))
         else if($status/@to) then 
             local:make-triple(concat('swds:status-',$idShort,'-',$p), 'spq:not-to', local:make-date(string($status/@to)))
         else ()
@@ -595,7 +595,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
         else if($commemorates/@notAfter) then 
             local:make-triple(concat('swds:commemorates-',$idShort,'-',$p), 'spq:not-after', local:make-date(string($commemorates/@notAfter)))
         else if($commemorates/@from) then 
-            local:make-triple(concat('swds:commemorates-',$idShort,'-',$p), 'spq:not-from', local:make-date(string($commemorates/@from)))
+            local:make-triple(concat('swds:commemorates-',$idShort,'-',$p), 'spq:from', local:make-date(string($commemorates/@from)))
         else if($commemorates/@to) then 
             local:make-triple(concat('swds:commemorates-',$idShort,'-',$p), 'spq:not-to', local:make-date(string($commemorates/@to)))
         else ()
