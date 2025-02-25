@@ -221,7 +221,8 @@
                     <path><xsl:value-of select="concat($staticSitePath,$filename)"/></path>
                 </xsl:when>
                 <xsl:when test="$fileType = 'HTML'">
-                    <path idno=""><xsl:value-of select="concat($staticSitePath,replace($resource-path,$applicationPath,''))"/></path>
+                    <!--<path idno=""><xsl:value-of select="concat($staticSitePath,replace($resource-path,$applicationPath,''))"/></path>-->
+                    <path><xsl:value-of select="concat($staticSitePath,$filename)"/></path>
                 </xsl:when>
                 <xsl:when test="$fileType = 'TEI'">
                     <xsl:variable name="idno" select="replace(descendant::t:publicationStmt/t:idno[@type='URI'],'/tei','')"/>
@@ -260,7 +261,7 @@
                 <xsl:otherwise><xsl:message>Unrecognizable file type <xsl:value-of select="$fileType"/> [<xsl:value-of select="$documentURI"/>]</xsl:message></xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="nodes" select="//t:TEI | //rdf:RDF"/>
+        <xsl:variable name="nodes" select="//t:TEI | //rdf:RDF | *"/>
         <xsl:for-each-group select="$path/child::*" group-by=".">
             <xsl:result-document href="{replace(.,'.xml','.html')}">
                 <xsl:choose>
@@ -268,7 +269,7 @@
                         <xsl:call-template name="htmlPage">
                             <xsl:with-param name="pageType" select="'HTML'"/>
                             <xsl:with-param name="nodes" select="$nodes"/>
-                            <xsl:with-param name="idno" select="."/>
+                            <xsl:with-param name="idno" select="''"/>
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:when test="$fileType = 'TEI'">
@@ -307,10 +308,46 @@
         </xsl:variable>
         <xsl:variable name="collectionValues" select="$config/descendant::*:collection[@record-URI-pattern = $collectionURIPattern][1]"/>        
         <xsl:variable name="collectionTemplate">
-            <xsl:variable name="templatePath" select="replace(concat($staticSitePath,'/siteGenerator/components/',string($collectionValues/@template),'.html'),'//','/')"/>
-            <xsl:if test="doc-available(xs:anyURI($templatePath))">
-                <xsl:sequence select="document(xs:anyURI($templatePath))"/>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="$idno != ''">
+                    <!--<xsl:message> TEI record with an idno: <xsl:value-of select="$idno"/></xsl:message>-->
+                    <xsl:variable name="templatePath" select="replace(concat($staticSitePath,'/siteGenerator/components/',string($collectionValues/@template),'.html'),'//','/')"/>
+                    <xsl:if test="doc-available(xs:anyURI($templatePath))">
+                        <xsl:sequence select="document(xs:anyURI($templatePath))"/>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:when test="$convert = 'false' and $outputFile != ''">
+<!--                    <xsl:message>Generate new HTML page</xsl:message>-->
+                    <xsl:variable name="templatePath">
+                        <xsl:choose>
+                            <xsl:when test="$config/descendant::*:collection[@name = $outputCollection]/@template">
+                                <xsl:value-of select="concat($config/descendant::*:collection[@name = $outputCollection]/@template,'.html')"/>        
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="'page.html'"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:variable name="fullTemplatePath"><xsl:value-of select="concat($staticSitePath,'/', replace($templatePath,'templates/','siteGenerator/components/'))"/></xsl:variable>
+                    <xsl:if test="doc-available($fullTemplatePath)">
+                        <xsl:sequence select="document($fullTemplatePath)"/>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:when test="$nodes/@data-template-with != ''">
+<!--                    <xsl:message>Convert HTML from old format </xsl:message>-->
+                    <xsl:variable name="templatePath" select="replace(concat($staticSitePath,'/siteGenerator/components/',substring-after($nodes/@data-template-with,'templates/')),'//','/')"/>
+                    <xsl:if test="doc-available(xs:anyURI($templatePath))">
+                        <xsl:sequence select="document(xs:anyURI($templatePath))"/>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!--<xsl:message>Find generic page.html template</xsl:message>-->
+                    <xsl:variable name="templatePath" select="replace(concat($staticSitePath,'/siteGenerator/components/page.html'),'//','/')"/>
+                    <xsl:if test="doc-available(xs:anyURI($templatePath))">
+                        <xsl:sequence select="document(xs:anyURI($templatePath))"/>
+                    </xsl:if>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
         <xsl:variable name="collection" select="$collectionValues/@name"/>
         <!-- <xsl:apply-templates/> -->
@@ -320,29 +357,10 @@
                 <xsl:choose>
                     <xsl:when test="$pageType = 'HTML'">
                         <xsl:choose>
-                            <xsl:when test="$convert = 'false' and $outputFile != ''">
-                                <xsl:variable name="templatePath">
-                                    <xsl:choose>
-                                        <xsl:when test="$config/descendant::*:collection[@name = $outputCollection]/@template">
-                                            <xsl:value-of select="concat($config/descendant::*:collection[@name = $outputCollection]/@template,'.html')"/>        
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:value-of select="'page.html'"/>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </xsl:variable>
-                                <xsl:variable name="fullTemplatePath"><xsl:value-of select="concat($staticSitePath,'/', replace($templatePath,'templates/','siteGenerator/components/'))"/></xsl:variable>
-                                <xsl:if test="doc-available($fullTemplatePath)">
-                                    <xsl:sequence select="document($fullTemplatePath)"/>
-                                </xsl:if>
+                            <xsl:when test="$collectionTemplate/child::*">
+                                <xsl:sequence select="$collectionTemplate"/> 
                             </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:variable name="templatePath"><xsl:value-of select="string(/*:div/@data-template-with)"/></xsl:variable>
-                                <xsl:variable name="fullTemplatePath"><xsl:value-of select="concat($staticSitePath,'/', replace($templatePath,'templates/','siteGenerator/components/'))"/></xsl:variable>
-                                <xsl:if test="doc-available($fullTemplatePath)">
-                                    <xsl:sequence select="document($fullTemplatePath)"/>
-                                </xsl:if>
-                            </xsl:otherwise>
+                            <xsl:otherwise><xsl:message>Error Can not find matching template for HTML page <xsl:value-of select="replace(concat($staticSitePath,'/siteGenerator/components/',string($collectionValues/@template),'.html'),'//','/')"/></xsl:message></xsl:otherwise>
                         </xsl:choose>
                     </xsl:when>
                     <xsl:when test="$pageType = 'TEI'">
@@ -364,7 +382,7 @@
                 </xsl:choose>
             </xsl:variable>
                 <xsl:choose>
-                    <xsl:when test="$template/child::*">
+                    <xsl:when test="$template/descendant::*:head">
                         <xsl:choose>
                             <xsl:when test="$template/descendant::*:head">
                                 <xsl:copy-of select="$template/descendant::*:head"/>
@@ -372,7 +390,7 @@
                             <xsl:otherwise><xsl:message>Error in template, check template for html:head </xsl:message></xsl:otherwise>
                         </xsl:choose>
                     </xsl:when>
-                    <xsl:otherwise><xsl:message>No template found </xsl:message></xsl:otherwise>
+                    <xsl:otherwise><xsl:message>No template found for html:head element</xsl:message></xsl:otherwise>
                 </xsl:choose>
             <body id="body">
                 <xsl:choose>
@@ -382,11 +400,13 @@
                                 <xsl:copy-of select="$template/descendant::html:nav"/>
                             </xsl:when>
                             <xsl:otherwise>
+                                <xsl:message>No template found for html:head element</xsl:message>
                                 <xsl:call-template name="genericNav"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
+                        <xsl:message>No template found for html:head element</xsl:message>
                         <xsl:call-template name="genericNav"/>
                     </xsl:otherwise>
                 </xsl:choose>
