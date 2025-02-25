@@ -122,6 +122,7 @@ declare function local:places($node, $id, $idShort, $typeShort){
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPers)),
     for $relPlace in $node/descendant::tei:text/descendant::tei:placeName/@ref
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPlace)),
+
 (: Name varients :)
     for $nameVariant in $node/descendant::tei:place/tei:placeName 
     return local:make-triple(local:make-uri($id), 'swdt:name-variant', local:make-literal($nameVariant/descendant-or-self::text(),$nameVariant/@xml:lang,'')),
@@ -218,10 +219,10 @@ declare function local:places($node, $id, $idShort, $typeShort){
                local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$ap), 'spr:reference-URL', local:make-uri($id))
                ), 
           for $s at $m1p in tokenize($relation/@mutual,' ')
-          let $sRef := $s
+          let $sRef := substring-after($s,'syriaca.org/')
           return   
             for $o at $m2p in tokenize($relation/@mutual,' ')[. != $s]
-            let $oRef := $o
+            let $oRef := substring-after($o,'syriaca.org/')
             return 
                (
                local:make-triple(local:make-uri($sRef), concat('swdt:',$relRef), local:make-uri($oRef)),
@@ -371,7 +372,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
                 local:make-triple(local:make-uri($id), 'swdt:birth-notBefore', local:make-date(string($birth/@notBefore))),
                 local:make-triple(local:make-uri($id), 'sp:birth-notBefore', concat('swds:birth-notBefore','-',$idShort,'-',$p)),
                 local:make-triple(concat('swds:birth-notBefore','-',$idShort,'-',$p), 'sps:birth-notBefore', local:make-date(string($birth/@notBefore))),
-                local:make-triple(concat('swds:birth-notBefore','-',$idShort,'-',$p), 'spr:reference-URL', local:make-uri($id)),
+                local:make-triple(concat('swds:birth-notBefore','-',$idShort,'-',$p), 'spr:reference-URL', concat('swd:person/',$idShort)),
                 local:make-triple(local:make-uri($id), 'swdt:birth-notAfter', local:make-date(string($birth/@notAfter))),
                 local:make-triple(local:make-uri($id), 'sp:birth-notAfter', concat('swds:birth-notAfter','-',$idShort,'-',$p)),
                 local:make-triple(concat('swds:birth-notAfter','-',$idShort,'-',$p), 'sps:birth-notAfter', local:make-date(string($birth/@notAfter))),
