@@ -1,49 +1,50 @@
 const state = {
+    totalResults: 0,
+    currentPage: 1,
     from: 0,
     size: 25,
     lang: '',
     query: '',
-    series: '',
-    totalResults: 0,
-    currentPage: 1,
     letter: 'a',
     searchType: '',
-    fullText: '',
-    placeName: '',
+    allCbssSubjects: '',
+    sortFactor: '',
+    isLoading: false,
+    // OpenSearch data fields
+    abstract: '',
     attestations: '',
     attestationRangeStart: '',
     attestationRangeEnd: '',
-    eventRangeStart: '',
-    eventRangeEnd: '',
-    stateRangeStart: '',
-    stateRangeEnd: '',
-    type: [],
-    gender: '',
-    persName: '',
-    state: '',
-    stateType: '',
+    author: '',
     birthRangeStart: '',
     birthRangeEnd: '',
-    deathRangeStart: '',
-    deathRangeEnd: '',
-    floruitRangeStart: '',
-    floruitRangeEnd: '',
-    title: '',
-    author: '',
-    idno: '',
-    BHO: '',
-    BHS: '',
-    CPG: '',
-    prologue: '',
-    abstract: '',
-    incipit: '',
-    explicit: '',
     cbssPubDateStart: '',
     cbssPubDateEnd: '',
+    cbssSubject: '',
+    deathRangeStart: '',
+    deathRangeEnd: '',
+    eventRangeStart: '',
+    eventRangeEnd: '',
+    explicit: '',
+    floruitRangeStart: '',
+    floruitRangeEnd: '',
+    fullText: '',
+    gender: '',
+    idno: '',
+    incipit: '',
+    keyword: '',
+    persName: '',
+    placeName: '',
+    prologue: '',
     publisher: '',
     pubPlace: '',
-    cbssSubject: '',
-    keyword: '',
+    series: '',
+    state: '',
+    stateRangeStart: '',
+    stateRangeEnd: '',
+    stateType: '',
+    title: '',
+    type: [],
 };
 
 // Base API URL
@@ -51,9 +52,12 @@ const apiUrl = "https://50fnejdk87.execute-api.us-east-1.amazonaws.com/opensearc
 
 // Fetch results and update UI
 function fetchAndRenderAdvancedSearchResults() {
-    //built from url params
-    const queryParams = new URLSearchParams(buildQueryParams());
+    // if (state.isLoading) return; // Prevent duplicate requests
+    // state.isLoading = true;
 
+    // Build query parameters from state
+    const queryParams = new URLSearchParams(buildQueryParams());
+    
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
         .then(response => response.json())
         .then(data => {
@@ -64,65 +68,18 @@ function fetchAndRenderAdvancedSearchResults() {
             if (state.totalResults > state.size) {
                 renderPagination(state.totalResults, state.size, state.currentPage, changePage);
             }
+            
         })
         .catch(error => {
             handleError('search-results', 'Error fetching search results.');
             console.error(error);
         });
-}
 
-// Update state and fetch results for a specific page
-function changePage(page) {
-    state.currentPage = page;
-    state.from = (page - 1) * state.size;
-    if(state.searchType === 'browse' || state.query === 'cbssAuthor' || state.searchType === 'letter' || state.searchType === 'cbssSubject'){
-        console.log("change page search type: " + state.searchType);
-        getPaginatedBrowse();
-    } else {
-        fetchAndRenderAdvancedSearchResults();
-    }
-}
-
-
-// Render pagination buttons
-function renderPagination(totalResults, resultsPerPage, currentPage, onPageChange) {
-    const totalPages = Math.ceil(totalResults / resultsPerPage);
-    const paginationContainer = document.getElementById('searchPagination');
-    paginationContainer.innerHTML = '';
-    const maxPageNumbers = 5; // Maximum number of page numbers to display
-
-    // Calculate the start and end page range dynamically
-    let startPage = Math.max(1, currentPage - Math.floor(maxPageNumbers / 2));
-    let endPage = Math.min(totalPages, startPage + maxPageNumbers - 1);
-
-    // Adjust the startPage if we are near the last pages and need to show exactly `maxPageNumbers`
-    if (endPage - startPage + 1 < maxPageNumbers) {
-        startPage = Math.max(1, endPage - maxPageNumbers + 1);
-    }
-
-
-    // Add page number buttons
-    for (let page = startPage; page <= endPage; page++) {
-        const pageButton = createPaginationButton(page, () => onPageChange(page));
-        if (page === currentPage) {
-            pageButton.classList.add('active'); // Highlight the current page
-        }
-        paginationContainer.appendChild(pageButton);
-}
-
+    state.isLoading = false;
+    window.history.pushState({}, '', `?${queryParams.toString()}`);
 
 }
 
-// Create a pagination button
-function createPaginationButton(text, onClick) {
-    const button = document.createElement('button');
-    //btn btn-default
-    button.classList.add('btn');
-    button.classList.add('btn-default');
-    button.textContent = text;
-    button.onclick = onClick;
-    return button;
-}
 
 // Display search results
 function displayResults(data) {
@@ -257,6 +214,7 @@ function displayResults(data) {
 
             resultsContainer.appendChild(resultItem);
         });
+        // setupShowSearchToggle()
     } else {
     resultsContainer.innerHTML = '<p>No results found.</p>';
     }
@@ -270,13 +228,15 @@ function handleError(containerId, message) {
 }
 
 function getBrowse(series) {
+    //This defines a first page load browse, retains letter and series in state, lang
     state.query = series; // Retain the series in state.query
+    state.series = series; // Set the series in state.series also
     state.from = 0; // Reset for the first page
     state.letter = state.letter || 'a'; // Default to 'a' if undefined
-    state.searchType = 'letter'; // Set search type to 'browse'
+    state.searchType = 'letter'; 
     const params = {
         searchType: 'letter',
-        q: state.query, // Retain the query which is the series name in the case of browse
+        q: series, // Retain the query which is the series name in the case of browse
         letter: state.letter,
         from: state.from,
         size: state.size,
@@ -290,6 +250,8 @@ function getBrowse(series) {
 
     // Create URLSearchParams with filtered parameters
     const queryParams = new URLSearchParams(filteredBrowseParams);
+    // new query parameters to url (without reloading)
+    window.history.pushState({}, '', `?${queryParams.toString()}`);
 
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
         .then(response => response.json())
@@ -303,8 +265,10 @@ function getBrowse(series) {
             console.error(error);
         });
 }
-function getPaginatedBrowse() {
 
+function getPaginatedBrowse() {
+    state.query = state.query || 'cbssAuthor';  
+    state.series = state.series || 'Comprehensive Bibliography on Syriac Studies'; 
     const params = {
         searchType: state.searchType,
         q: state.query, // Retain the query which is the series name in the case of browse
@@ -330,10 +294,6 @@ function getPaginatedBrowse() {
             state.totalResults = data.hits.total.value;
             displayResultsInfo(state.totalResults);
             if(state.query === 'cbssAuthor' || state.series === 'Comprehensive Bibliography on Syriac Studies'){ displayCBSSAuthorResults(data); }
-            else if(state.query === 'cbssSubject'){ 
-                console.log("cbssSubject q with no series designated");
-                displayCBSSDocumentResults(data); 
-            }
             else{displayResults(data);}
         })
         .catch(error => {
@@ -341,6 +301,7 @@ function getPaginatedBrowse() {
             console.error(error);
         });
 }
+
 function displayResultsInfo(totalResults) {
     const browseInfoContainer = document.getElementById('search-info');
     
@@ -348,26 +309,66 @@ function displayResultsInfo(totalResults) {
     browseInfoContainer.innerHTML = '';
 
     // Display total results count
+    if (state.query != 'cbssSubject') {
+    
     browseInfoContainer.innerHTML = `
         <br/>
         <p>Total Results: ${totalResults}</p>
     `;
+    }
     const paginationContainer = document.getElementById('searchPagination');
     paginationContainer.innerHTML = '';
-    if (totalResults > state.size) {
+    if (totalResults > state.size && state.query === 'cbssAuthor' || (totalResults > state.size && state.query != 'cbssSubject')) {
         renderPagination(totalResults, state.size, state.currentPage, changePage);
-    }
+    } 
+    
 
 }
+
 function initializeStateFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
-    state.keyword = urlParams.get('keyword') || ''; // Default to empty query if not set
-    state.series = urlParams.get('series') || ''; // Default to empty query if not set
-    state.searchType = urlParams.get('searchType') || ''; // Retrieve searchType from the URL
+    
+    // Set default values if the parameter is missing
+    state.lang = urlParams.get('lang') || 'en';
+    state.query = urlParams.get('q') || '';
+    state.series = urlParams.get('series') || '';
+    state.searchType = urlParams.get('searchType') || '';
+    state.keyword = urlParams.get('keyword') || '';
+    state.from = Number(urlParams.get('from')) || 0;
+    state.size = Number(urlParams.get('size')) || 25;
+    state.letter = urlParams.get('letter') || '';
 
-    state.query = urlParams.get('q') || ''; // Retrieve query from the URL
-    if(state.keyword){
+    // Load additional filters
+    state.placeName = urlParams.get('placeName') || '';
+    state.attestations = urlParams.get('attestations') || '';
+    state.attestationRangeStart = urlParams.get('attestationRangeStart') || '';
+    state.attestationRangeEnd = urlParams.get('attestationRangeEnd') || '';
+    state.birthRangeStart = urlParams.get('birthRangeStart') || '';
+    state.birthRangeEnd = urlParams.get('birthRangeEnd') || '';
+    state.deathRangeStart = urlParams.get('deathRangeStart') || '';
+    state.deathRangeEnd = urlParams.get('deathRangeEnd') || '';
+    state.floruitRangeStart = urlParams.get('floruitRangeStart') || '';
+    state.floruitRangeEnd = urlParams.get('floruitRangeEnd') || '';
+    state.title = urlParams.get('title') || '';
+    state.author = urlParams.get('author') || '';
+    state.BHO = urlParams.get('BHO') || '';
+    state.BHS = urlParams.get('BHS') || '';
+    state.CPG = urlParams.get('CPG') || '';
+    state.prologue = urlParams.get('prologue') || '';
+    state.abstract = urlParams.get('abstract') || '';
+    state.incipit = urlParams.get('incipit') || '';
+    state.explicit = urlParams.get('explicit') || '';
+    state.cbssPubDateStart = urlParams.get('cbssPubDateStart') || '';
+    state.cbssPubDateEnd = urlParams.get('cbssPubDateEnd') || '';
+    state.publisher = urlParams.get('publisher') || '';
+    state.pubPlace = urlParams.get('pubPlace') || '';
+    state.cbssSubject = urlParams.get('cbssSubject') ||urlParams.get('subject') ||''; 
+    state.keyword = urlParams.get('keyword') || '';
+    state.sortFactor = urlParams.get('sortFactor') || 'author';
+    state.fullText = urlParams.get('fullText') || '';
+    state.type = urlParams.getAll('type') || [];
+
+    if (state.keyword) {
         fetchAndRenderAdvancedSearchResults();
     }
 }
@@ -418,6 +419,19 @@ function browseAlphaMenu() {
             event.preventDefault(); // Prevent page reload
             state.letter = letter; // Update state
             state.from = 0; // Reset pagination
+                        const newUrlParams = new URLSearchParams({
+                searchType: 'letter',
+                q: state.query,
+                letter: state.letter, 
+                size: state.size,
+                lang: state.lang
+            });
+            window.history.pushState({}, '', `?${newUrlParams.toString()}`); // Update URL
+
+            console.log("Updated Letter:", state.letter); 
+            console.log("Updated URL:", window.location.href); 
+            console.log("Series: ", state.query);
+            console.log("Lang: ", state.lang);
             getBrowse(state.query); // Trigger browse function
         });
 
@@ -425,9 +439,12 @@ function browseAlphaMenu() {
         menuContainer.appendChild(menuItem);
     });
 }
+
 function browseCbssAlphaMenu() {
     const urlParams = new URLSearchParams(window.location.search);
     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
+    state.searchType = urlParams.get('searchType') || 'browse'; // Retrieve searchType from the URL
+    state.query = urlParams.get('q') || 'cbssAuthor'; // Retrieve query from the URL
     const alphabets = {
         en: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z',
         rus: 'А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я',
@@ -442,7 +459,7 @@ function browseCbssAlphaMenu() {
     const alphabet = alphabets[state.lang] || alphabets.en;
     // Set the default letter based on the language-- this is not yet necessary
     if (state.lang === 'syr') {
-        state.letter = 'ܐ'; // Default to first Syriac letter
+        state.letter =  'ܐ'; // Default to first Syriac letter
     } else if (state.lang === 'ar') {
         state.letter = 'ا'; // Default to first Arabic letter
     } else if (state.lang === 'he') {
@@ -465,6 +482,7 @@ function browseCbssAlphaMenu() {
 
     // Create alphabet navigation
     alphabet.split(' ').forEach(letter => {
+        
         const menuItem = document.createElement('li');
         menuItem.classList.add('ui-menu-item');
         menuItem.setAttribute('role', 'menuitem');
@@ -476,9 +494,24 @@ function browseCbssAlphaMenu() {
 
         // Attach event listener for letter selection
         menuLink.addEventListener('click', (event) => {
+            
             event.preventDefault(); // Prevent page reload
             state.letter = letter; // Update state
             state.from = 0; // Reset pagination
+            state.currentPage = 1;
+            const newUrlParams = new URLSearchParams({
+                searchType: 'letter',
+                q: state.query,
+                letter: state.letter, 
+                size: state.size,
+                lang: state.lang
+            });
+
+            window.history.pushState({}, '', `?${newUrlParams.toString()}`); // Update URL
+
+            console.log("Updated Letter:", state.letter); 
+            console.log("Updated URL:", window.location.href); 
+
             getCBSSBrowse(); // Trigger the CBSS browse function
         });
 
@@ -490,9 +523,12 @@ function browseCbssAlphaMenu() {
 
 function getCBSSBrowse() {
     // Set state for CBSS browse
-    initializeStateFromURL();
+    //initializeStateFromURL();
     state.from = 0; // Reset for the first page
     state.letter = state.letter || 'a'; // Default letter if not already set
+    state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
+    state.searchType = state.searchType || 'browse'; // Set search type to 'browse'
+    state.query = state.query || 'cbssAuthor'; // Set query to 'cbssAuthor' by default
     const queryParams = new URLSearchParams({
         searchType: state.searchType,
         q: state.query,
@@ -500,13 +536,15 @@ function getCBSSBrowse() {
         from: state.from,
         size: state.size,
         lang: state.lang,
+        series: state.series
     });
+    window.history.pushState({}, '', `?${queryParams.toString()}`);
 
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
         .then(response => response.json())
         .then(data => {
             state.totalResults = data.hits.total.value;
-            // displayResultsInfo(state.totalResults); 
+            displayResultsInfo(state.totalResults); 
             if(state.query === 'cbssAuthor' ){ displayCBSSAuthorResults(data); }
             if(state.query === 'cbssSubject' ){ displayCBSSSubjectResults(data); }   })
         .catch(error => {
@@ -514,39 +552,56 @@ function getCBSSBrowse() {
             console.error(error);
         });
 }
+
 function displayCBSSSubjectResults(data) {
+    setupInfiniteScroll(); // Initialize infinite scroll
     const resultsContainer = document.getElementById("search-results");
     resultsContainer.innerHTML = ''; // Clear previous results
-    console.log("cbsssubjectresults", state.letter);
+    const docResultsContainer = document.getElementById("document-search-results");
+    docResultsContainer.innerHTML = ''; // Clear previous results
+    const submenuResultsContainer = document.getElementById("common-subject-menu");
+    submenuResultsContainer.innerHTML = ''; // Clear previous results
     // Ensure aggregation data is available
+    console.log("Current Letter in State:", state.letter);
     const subjects = data.aggregations?.unique_subjects?.buckets || [];
 
+    // Sort subjects alphabetically (ignoring case)
+    subjects.sort((a, b) => a.key.toLowerCase().localeCompare(b.key.toLowerCase()));
+    state.allCbssSubjects = subjects;
+
+    // Convert state.letter to lowercase for case-insensitive comparison
+    // const filteredSubjects = subjects.filter(subject => 
+    //     subject.key.trim().toLowerCase().startsWith(state.letter.toLowerCase())
+    // );
+    const filteredSubjects = subjects;
+    console.log(`Filtered subjects for letter "${state.letter}":`, filteredSubjects);
     // Filter subjects that start with the designated letter
-    const filteredSubjects = subjects.filter(subject => 
-        subject.key.toLowerCase().startsWith(state.letter.toLowerCase())
-    );
+   
     state.totalResults = filteredSubjects.length;
     displayResultsInfo(state.totalResults); 
-    if (state.totalResults > state.size) {
-        renderPagination(state.totalResults, state.size, state.currentPage, changePage);
-    }
+
     if (filteredSubjects.length > 0) {
-        const list = document.createElement("ul"); // Create a list to display subjects
-        list.classList.add("subject-list"); // Add a class for styling
+        const list = document.createElement("div"); // Create a list to display subjects
+        //list.classList.add("subject-list"); // Add a class for styling
+        list.style.display = "flex";
+        list.style.flexDirection = "column";
+        list.style.alignItems = "left"; // Center the list
+        list.style.margin = "20px auto"; // Center horizontally
+        list.style.width = "fit-content"; // Adjust width based on content
 
         filteredSubjects.forEach(subject => {
-            const listItem = document.createElement("li");
+            const listItem = document.createElement("div");
             const link = document.createElement("a");
 
             link.href = "#"; // Placeholder, will be handled by the click event
-            link.textContent = `${subject.key} (${subject.doc_count})`; // Display the subject name and count
+            link.textContent = `${subject.key} `; // Display the subject name and count-- doc count inaccurate, driving me crazy, undercounting
             link.style.textDecoration = "none"; // Style the link
-            link.style.color = "#007bff";
 
             // Attach click event to fetch CBSS records for this subject
             link.addEventListener("click", (event) => {
                 event.preventDefault(); // Prevent default anchor behavior
                 state.subject = subject.key;
+
                 fetchCBSSRecordsBySubject(subject.key); // Fetch records for the clicked subject
             });
 
@@ -561,17 +616,24 @@ function displayCBSSSubjectResults(data) {
 }
 // Function to fetch CBSS document entries by subject
 function fetchCBSSRecordsBySubject(subjectKey) {
-    const apiUrl = "https://50fnejdk87.execute-api.us-east-1.amazonaws.com/opensearch-api-test";
-    state.searchType = "cbssSubject";     
 
+    if (state.isLoading) return; // Prevent multiple calls
+    state.isLoading = true; 
+    state.searchType = "cbssSubject";   
+    //Not sure if this is necessary  
+    state.subject = subjectKey;
     // Build query parameters
+    console.log("sortFactor", state.sortFactor);
     const queryParams = new URLSearchParams({
         searchType: "cbssSubject",        
-        subject: subjectKey, 
+        subject: state.subject, 
         size: state.size, 
-        from: state.from
+        from: state.from,
+        sort: state.sortFactor
     });
-    
+    if(state.currentPage === 1){
+        fetchCbssRelatedSubjects();
+    }
     // Fetch data from the API
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
         .then(response => {
@@ -582,70 +644,309 @@ function fetchCBSSRecordsBySubject(subjectKey) {
         })
         .then(data => {
             state.totalResults = data.hits.total.value;
+            //change this for infinite scrolling?
             displayResultsInfo(state.totalResults);
             // Display the results
             displayCBSSDocumentResults(data, subjectKey);
+            //Change this for infinite scrolling?
+            createSortDocumentResultButton(data);
+            state.isLoading = false;
         })
         .catch(error => {
             console.error('Error fetching CBSS records:', error);
             handleError('search-results', 'Error fetching CBSS records.');
+            state.isLoading = false;
         });
+
+}
+function fetchCbssRelatedSubjects() {
+        // Build related subject query parameters //don't need to do this for every subject search
+        console.log("fetchCBSSRecordsBySubject RelSearch", state.subject);   
+        const queryParamsRelSubject = new URLSearchParams({
+            searchType: "cbssRelSubject",        
+            subject: state.subject
+        });  
+    
+        fetch(`${apiUrl}?${queryParamsRelSubject.toString()}`, { method: 'GET' })  
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // state.totalResults = data.hits.total.value;
+                // Display the results
+                displayCBSSSubjectsinCommonResults(data, state.subject);
+            })
+            .catch(error => {
+                console.error('Error fetching CBSS related subject records:', error);
+                handleError('search-results', 'Error fetching CBSS records.');
+    
+            });  
+}
+function displayCBSSSubjectsinCommonResults(data, selectedSubject) {
+    const menuContainer = document.getElementById("common-subject-menu"); // Fix incorrect ID
+    menuContainer.innerHTML = ""; // Clear existing menu
+    
+
+    if (!data.aggregations || !data.aggregations.unique_subjects) {
+        console.error("No subjects found in aggregation.");
+        menuContainer.innerHTML = `<p>No related subjects found.</p>`;
+        return;
+    }
+
+    const subjects = data.aggregations.unique_subjects.buckets || [];
+
+    // Create a scrollable div instead of <select>
+    const scrollContainer = document.createElement("div");
+    scrollContainer.style.maxHeight = "400px"; // Limit height to allow scrolling
+    scrollContainer.style.overflowY = "auto"; // Enable scrolling
+    const subjectHeading = document.createElement("h3");
+    subjectHeading.textContent = `Related Subjects:`;
+    subjectHeading.style.marginBottom = "10px"; // Adjust as needed
+    menuContainer.appendChild(subjectHeading);
+    scrollContainer.style.position = "sticky";
+    scrollContainer.style.top = "0";
+    scrollContainer.style.zIndex = "1";
+    scrollContainer.appendChild(subjectHeading);   
+    subjects.forEach(subject => {
+        if (!selectedSubject.split(", ").includes(subject.key)) {
+            const button = document.createElement("button");
+            // button.textContent = `${subject.key} (${subject.doc_count})`;
+            button.textContent = `${subject.key}`;
+            button.style.display = "block";
+            button.style.width = "100%";
+            button.style.padding = "5px";
+            button.style.border = "none";
+            button.style.background = "#f4f4f4";
+            button.style.cursor = "pointer";
+            button.style.color = "#337ab7";
+
+            button.onclick = () => {
+                state.currentPage = 1;
+                state.from = 0;
+                fetchCBSSRecordsBySubject(subject.key+", "+selectedSubject);
+            };
+
+            scrollContainer.appendChild(button);
+        }
+    });
+    menuContainer.appendChild(scrollContainer);
 }
 
 // Function to display CBSS document results
 function displayCBSSDocumentResults(data, subjectKey) {
-    const resultsContainer = document.getElementById("search-results");
-    resultsContainer.innerHTML = ''; // Clear previous results
+    // Split subjects if there are multiple
+    let subjectsArray = subjectKey.split(",").map(s => s.trim());
+    const previousResultsContainer = document.getElementById("search-results");
+    previousResultsContainer.innerHTML = ''; // Clear previous results
+    const resultsContainer = document.getElementById("document-search-results");
+    if (state.currentPage === 0 || state.currentPage === 1) {
+        resultsContainer.innerHTML = ''; // Clear previous results only on first load
+        const subjectHeader = document.createElement("h3");
+        subjectHeader.textContent = subjectsArray.length > 1 ? "Selected Subjects:" : "Selected Subject:";
+        subjectHeader.style.marginBottom = "30px";
+        subjectHeader.style.fontWeight = "bold";
+        resultsContainer.appendChild(subjectHeader);
+        // Create container for subject tags
+        const subjectContainer = document.createElement("div");
+        subjectContainer.style.marginBottom = "30px"; 
 
-    // Add a subject heading
-    const subjectHeading = document.createElement("h3");
-    subjectHeading.textContent = `Subject: ${subjectKey}`;
-    resultsContainer.appendChild(subjectHeading);
+        subjectsArray.forEach(subject => {
+            // Create the grey box for each subject
+            const subjectTag = document.createElement("div");
+            subjectTag.classList.add("subject-tag");
+            subjectTag.style.display = "inline-block";
+            subjectTag.style.backgroundColor = "#e0e0e0";
+            subjectTag.style.padding = "8px 16px";
+            subjectTag.style.margin = "8px";
+            subjectTag.style.borderRadius = "8px";
+            subjectTag.style.fontSize = "16px";
+            subjectTag.style.cursor = "pointer";
+            subjectTag.style.position = "relative";
 
+            // Add subject name
+            const subjectText = document.createElement("span");
+            subjectText.textContent = subject;
+
+            // Create the remove button (❌)
+            
+            const removeButton = document.createElement("span");
+            removeButton.textContent = " ❌";
+            removeButton.style.marginLeft = "12px";
+            removeButton.style.color = "#d9534f";
+            removeButton.style.cursor = "pointer";
+            removeButton.style.fontSize = "12px";
+
+    
+
+            // Attach event listener to remove subject
+            removeButton.addEventListener("click", (event) => {
+                event.stopPropagation(); // Prevent triggering any parent click events
+
+                // Remove subject from the array
+                subjectsArray = subjectsArray.filter(s => s !== subject);
+
+                // Update state & trigger new search
+                state.subject = subjectsArray.join(", ");
+                if (subjectsArray.length > 0) {
+                    state.currentPage = 1;
+                    state.from = 0;
+                    fetchCBSSRecordsBySubject(state.subject);
+                } else {
+                    resultsContainer.innerHTML = "<p>No subjects selected.</p>";
+                }
+            });
+
+            
+            // Append elements to the tag
+            subjectTag.appendChild(subjectText);
+            if(subjectsArray.length > 1){
+                subjectTag.appendChild(removeButton);
+            } 
+            subjectContainer.appendChild(subjectTag);
+        });
+
+        // Add the subject tags container to the results container
+        resultsContainer.appendChild(subjectContainer);
+    }       
     if (data.hits && data.hits.hits.length > 0) {
         
         // Extract and sort the results by author name
-        const sortedHits = data.hits.hits.sort((a, b) => {
-            const authorA = Array.isArray(a._source.author)
-                ? a._source.author.join(", ")
-                : a._source.author || "No Author";
-            const authorB = Array.isArray(b._source.author)
-                ? b._source.author.join(", ")
-                : b._source.author || "No Author";
+        const sortedHits = sortDocumentResultRequest(data, state.sortFactor);
 
-            // Convert to lowercase for case-insensitive comparison
-            return authorA.toLowerCase().localeCompare(authorB.toLowerCase());
-        });
-
-        // Render the sorted results
+ 
         sortedHits.forEach(hit => {
             const resultItem = document.createElement("div");
             resultItem.classList.add("result-item");
             resultItem.style.marginBottom = "15px"; // Add spacing between items
-
+        
             // Extract relevant fields from the hit source
-            const subject = hit._source.subject || 'No Subject';
-            const citation = hit._source.citation || 'No Citation';
-            const idno = hit._source.idno || '#';
-
+            let subjects = hit._source.subject || [];
+            const citation = hit._source.citation || "No Citation";
+            const idno = hit._source.idno || "#";
+        
+            // Ensure subjects are formatted correctly as an array
+            if (!Array.isArray(subjects)) {
+                subjects = subjects.split(",").map(s => s.trim());
+            }
+        
+            // Create a container for the subject links
+            const docSubjectContainer = document.createElement("p");
+            const docSubjectHeading = document.createElement("h4");
+            docSubjectHeading.textContent = "Subjects:";
+            docSubjectContainer.textContent = "Subjects: ";
+            docSubjectContainer.style.marginBottom = "30px"; // Add spacing below subjects
+        
+            // Create a comma-separated list of clickable subject links
+            const subjectLinks = subjects.map(subject => {
+                const subjectLink = document.createElement("a");
+                subjectLink.textContent = subject;
+                subjectLink.href = "#"; // Prevents full page reload
+                // subjectLink.style.color = "#007bff"; // Makes text blue
+                subjectLink.style.textDecoration = "none"; // Removes underline
+                subjectLink.style.cursor = "pointer"; // Shows pointer on hover
+        
+                // Attach event listener to trigger subject search
+                subjectLink.addEventListener("click", (event) => {
+                    event.preventDefault(); // Prevents default anchor behavior
+                    state.currentPage = 1;
+                    state.from = 0;
+                    fetchCBSSRecordsBySubject(subject);
+                });
+        
+                return subjectLink;
+            });
+        
+            // Append subject links with a comma separator
+            subjectLinks.forEach((link, index) => {
+                docSubjectContainer.appendChild(link);
+                if (index < subjectLinks.length - 1) {
+                    docSubjectContainer.appendChild(document.createTextNode(", ")); // Add comma separator
+                }
+            });
+        
             // Create clickable URI
-            const uri = idno !== '#' ? `<a href="${idno}" target="_blank">${idno}</a>` : '';
-
-            // Populate the result item with details
+            const uri = idno !== "#" ? `<a href="${idno}" target="_blank">${idno}</a>` : "";
+        
+            // Add result details
             resultItem.innerHTML = `
                 <div>
-                    <strong>${citation}</strong>
-                    <br/>
-                    <p>Subjects: ${subject}</p>
-                    <p>URI: ${uri}</p>
+                    <p><strong>${citation}</strong><br/>URI: ${uri}</p>
                 </div>
             `;
-
+        
+            // Append subjects to result item
+            resultItem.appendChild(docSubjectContainer);
+        
+            // Append result item to the results container
             resultsContainer.appendChild(resultItem);
         });
+        isLoading = false; // Allow more requests
+
     } else {
-        resultsContainer.innerHTML = '<p>No records found for the selected subject.</p>';
+        if (state.currentPage === 0) {
+            resultsContainer.innerHTML = '<p>No records found for the selected subject.</p>';
+        }
     }
+}
+function createSortDocumentResultButton(data) {
+    const container = document.getElementById('searchPagination');
+    container.innerHTML = '';
+        // Create a Sort Button
+        const sortButton = document.createElement("button");
+        sortButton.textContent = "Sort by Date";
+        sortButton.style.display = "block";
+        sortButton.style.padding = "8px 16px";
+        sortButton.style.fontSize = "16px";
+        sortButton.style.border = "none";
+        sortButton.style.cursor = "pointer";
+        sortButton.style.borderRadius = "8px";
+    
+        // Attach sorting event listener
+        sortButton.addEventListener("click", function () {
+            state.from = 0;
+            state.currentPage = 1;
+            state.sortFactor = "date";
+            fetchCBSSRecordsBySubject(state.subject);
+            // displayCBSSDocumentResults(data, state.subject);
+        });
+    
+        container.appendChild(sortButton);
+
+}
+
+function sortDocumentResultRequest(data, factor) {
+    console.log("Sort Factor:", factor);
+    const sortedHits = data.hits.hits.sort((a, b) => {
+        if (factor === "author"|| !factor) {
+        const authorA = Array.isArray(a._source.author)
+            ? a._source.author.join(", ")
+            : a._source.author || "No Author";
+        const authorB = Array.isArray(b._source.author)
+            ? b._source.author.join(", ")
+            : b._source.author || "No Author";
+
+        // Convert to lowercase for case-insensitive comparison
+        return authorA.toLowerCase().localeCompare(authorB.toLowerCase(
+
+        ));
+    } else if (factor === "title") {
+        const titleA = a._source.title || "No Title";
+        const titleB = b._source.title || "No Title";
+        return titleA.toLowerCase().localeCompare(titleB.toLowerCase());
+    } else if (factor === "date") {  
+        console.log("PubDateStarts: "+a._source.cbssPubDateStart, b._source.cbssPubDateStart);
+
+        // Convert date strings to actual Date objects (assuming ISO or YYYY-MM-DD format)
+        const dateA = a._source.cbssPubDateStart ? new Date(a._source.cbssPubDateStart) : new Date(0);
+        const dateB = b._source.cbssPubDateStart ? new Date(b._source.cbssPubDateStart) : new Date(0);
+
+        return dateA - dateB; // Sort ascending (earliest first)
+    }
+    });
+    return sortedHits;
 }
 
 //Winona's styling implementation
@@ -699,7 +1000,7 @@ function displayCBSSAuthorResults(data) {
             bdiElement.innerHTML = `
                 ${title}
                 <br/>URI: 
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                <a href="${url}" target="_blank"  ">
                     <span class="tei-title title-analytic">${url}</span>
                 </a>
               `;
@@ -710,7 +1011,7 @@ function displayCBSSAuthorResults(data) {
         resultsContainer.innerHTML = '<p>No results found.</p>';
     }
 }
-//Advanced Search
+// Advanced Search
 // Handle form submission
 document.addEventListener('DOMContentLoaded', () => {
     initializeStateFromURL();
@@ -723,6 +1024,11 @@ document.addEventListener('DOMContentLoaded', () => {
             updateStateFromForm(this); // Update state with form data
             fetchAndRenderAdvancedSearchResults(); 
         });
+    }
+    console.log(state.searchType);
+    if(document.getElementById('document-search-results') && state.searchType === 'cbssSubject' ){
+        console.log("Document Search Results Div Found");
+        setupInfiniteScroll();
     }
     // currently not needed: url params are used to initialize state
     // if(document.getElementById('site_search_form')){
@@ -737,11 +1043,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // }
 
 });
-//Not needed?
+// Function set in search.html files to run search on page load
 function runSearch() {
-    state.currentPage = 1;
-    state.from = 0;
+    // Initialize state from existing URL parameters
+    initializeStateFromURL();
+    // Fetch and render search results if URL search parameters are present
+    if(window.location.search){
+        fetchAndRenderAdvancedSearchResults();
+    }
 }
+
 
 // Helper function to get form data and update state
 function updateStateFromForm(form) {
@@ -828,45 +1139,54 @@ function updateStateFromForm(form) {
 // Build the API query based on state
 function buildQueryParams() {
     const params = {
-        fullText: state.fullText,
-        placeName: state.placeName,
+        from: state.from,
+        size: state.size,
+        sort: state.sortFactor,
+        lang: state.lang,
+        q: state.query,
+        searchType: state.searchType,
+        letter: state.letter,
+        
         attestations: state.attestations,
         attestationRangeStart: state.attestationRangeStart,
         attestationRangeEnd: state.attestationRangeEnd,
-        eventRangeStart: state.eventRangeStart,
-        eventRangeEnd: state.eventRangeEnd,
-        stateType: state.stateType,
-        stateRangeStart: state.stateRangeStart,
-        stateRangeEnd: state.stateRangeEnd,
-        type: state.type.join(','), // Join array elements with commas for query string
-        series: state.series,
-        from: state.from,
-        size: state.size,
-        gender: state.gender,
-        persName: state.persName,
-        state: state.state,
+        author: state.author,
         birthRangeStart: state.birthRangeStart,
         birthRangeEnd: state.birthRangeEnd,
         deathRangeStart: state.deathRangeStart,
         deathRangeEnd: state.deathRangeEnd,
+        eventRangeStart: state.eventRangeStart,
+        eventRangeEnd: state.eventRangeEnd,
         floruitRangeStart: state.floruitRangeStart,
         floruitRangeEnd: state.floruitRangeEnd,
+        fullText: state.fullText,
+        gender: state.gender,
         idno: state.idno,
+        persName: state.persName,
+        placeName: state.placeName,
+        series: state.series,
+        state: state.state,
+        stateType: state.stateType,
+        stateRangeStart: state.stateRangeStart,
+        stateRangeEnd: state.stateRangeEnd,
+        title: state.title,
+        type: state.type.join(','), // Join array elements with commas for query string
+        
         prologue: state.prologue,
         incipit: state.incipit,
         explicit: state.explicit,
-        title: state.title,
-        author: state.author,
+        
+        //cbss
         cbssPubRangeStart: state.cbssPubDateStart,
         cbssPubRangeEnd: state.cbssPubDateEnd,
         publisher: state.publisher,
         cbssPubPlace: state.pubPlace,
         subject: state.cbssSubject,
         keyword: state.keyword,
+        //idno types
         BHO: state.BHO,
         BHS: state.BHS,     
         CPG: state.CPG
-
     };
 
     // Filter out empty or undefined parameters
@@ -897,44 +1217,60 @@ function resetState() {
     state.size = 25;
     state.lang = '';
     state.query = '';
-    state.series = '';
+    state.sortFactor = '';
+    state.isLoading = false;
     state.totalResults = 0;
     state.currentPage = 1;
     state.letter = 'a';
     state.searchType = '';
+
+    state.series = '';
+    state.subject = '';
+    state.BHO = '';
+    state.BHS = ''; 
+    state.CPG = '';
+
     state.fullText = '';
     state.placeName = '';
     state.attestations = '';
     state.attestationRangeStart = '';
     state.attestationRangeEnd = '';
+    
     state.eventRangeStart = '';
     state.eventRangeEnd = '';
     state.stateRangeStart = '';
     state.stateRangeEnd = '';
     state.type = [];
+    
     state.gender = '';
     state.persName = '';
     state.state = '';
     state.stateType = '';
     state.birthRangeStart = '';
+    
     state.birthRangeEnd = '';
     state.deathRangeStart = '';
     state.deathRangeEnd = '';
     state.floruitRangeStart = '';
     state.floruitRangeEnd = '';
+    
     state.title = '';
     state.author = '';
     state.idno = '';
     state.prologue = '';
     state.abstract = '';
+    
     state.incipit = '';
     state.explicit = '';
     state.pubDate = '';
     state.publisher = '';
     state.pubPlace = '';
+    
     state.cbssSubject = '';
     state.keyword = '';
 }
+// Toggle Advanced Search Form
+// Function to toggle the display of the advanced search form
 document.addEventListener("DOMContentLoaded", function () {
     if (document.getElementById("toggleSearchForm")) {
         const toggleButton = document.getElementById("toggleSearchForm");
@@ -954,4 +1290,82 @@ document.addEventListener("DOMContentLoaded", function () {
     
 });
 
+// Infinite Scroll
+// Function to load more results on scroll
 
+function setupInfiniteScroll() {
+    window.addEventListener("scroll", () => {
+        console.log("Scroll event triggered");
+        console.log("search type", state.searchType);
+        if (state.isLoading || state.searchType != 'cbssSubject') return;  // Prevent excessive requests
+        console.log("Infinite Scroll set up");
+        const scrollPosition = window.innerHeight + window.scrollY;
+        const pageHeight = document.documentElement.scrollHeight;
+        console.log("Scroll Position:", scrollPosition, "Page Height:", pageHeight);
+
+        if (scrollPosition >= pageHeight - 200) { // Trigger when near bottom
+            state.currentPage++;
+            state.from = (state.currentPage - 1) * state.size;
+            console.log("Fetching next page of results...");
+            console.log("Current Page:", state.currentPage);
+            console.log("Subject:", state.subject);
+            // Ensure we are not fetching beyond the total results
+            if (state.totalResults > state.from + state.size) {
+                fetchCBSSRecordsBySubject(state.subject);
+            }
+        }
+    });
+}
+
+// Pagination
+// Update state and fetch results for a specific page
+function changePage(page) {
+    state.currentPage = page;
+    state.from = (page - 1) * state.size;
+    if(state.searchType === 'browse' || state.query === 'cbssAuthor' || state.searchType === 'letter' || state.searchType === 'cbssSubject'){
+        console.log("change page search type: " + state.searchType);
+        getPaginatedBrowse();
+    } else {
+        fetchAndRenderAdvancedSearchResults();
+    }
+}
+
+
+// Render pagination buttons
+function renderPagination(totalResults, resultsPerPage, currentPage, onPageChange) {
+    const totalPages = Math.ceil(totalResults / resultsPerPage);
+    const paginationContainer = document.getElementById('searchPagination');
+    paginationContainer.innerHTML = '';
+    const maxPageNumbers = 5; // Maximum number of page numbers to display
+
+    // Calculate the start and end page range dynamically
+    let startPage = Math.max(1, currentPage - Math.floor(maxPageNumbers / 2));
+    let endPage = Math.min(totalPages, startPage + maxPageNumbers - 1);
+
+    // Adjust the startPage if we are near the last pages and need to show exactly `maxPageNumbers`
+    if (endPage - startPage + 1 < maxPageNumbers) {
+        startPage = Math.max(1, endPage - maxPageNumbers + 1);
+    }
+
+
+    // Add page number buttons
+    for (let page = startPage; page <= endPage; page++) {
+        const pageButton = createPaginationButton(page, () => onPageChange(page));
+        if (page === state.currentPage) {
+            pageButton.classList.add('active'); // Highlight the current page
+        }
+        paginationContainer.appendChild(pageButton);
+}
+
+}
+
+// Create a pagination button
+function createPaginationButton(text, onClick) {
+    const button = document.createElement('button');
+    //btn btn-default
+    button.classList.add('btn');
+    button.classList.add('btn-default');
+    button.textContent = text;
+    button.onclick = onClick;
+    return button;
+}
