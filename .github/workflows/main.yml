@@ -57,8 +57,17 @@ jobs:
           done < changed_files.txt
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}  
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }} 
 
+      - name: Invalidate CloudFront Cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id YOUR_DISTRIBUTION_ID \
+            --paths "/*"
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }} 
+          
       # Option 2: Full redeployment
 
       # - name: Debug
