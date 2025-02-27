@@ -311,14 +311,14 @@
         <xsl:variable name="collectionTemplate">
             <xsl:choose>
                 <xsl:when test="$idno != ''">
-                    <!--<xsl:message> TEI record with an idno: <xsl:value-of select="$idno"/></xsl:message>-->
+                    <xsl:message> TEI record with an idno: <xsl:value-of select="$idno"/></xsl:message>
                     <xsl:variable name="templatePath" select="replace(concat($staticSitePath,'/siteGenerator/components/',string($collectionValues/@template),'.html'),'//','/')"/>
                     <xsl:if test="doc-available(xs:anyURI($templatePath))">
                         <xsl:sequence select="document(xs:anyURI($templatePath))"/>
                     </xsl:if>
                 </xsl:when>
                 <xsl:when test="$convert = 'false' and $outputFile != ''">
-<!--                    <xsl:message>Generate new HTML page</xsl:message>-->
+                    <xsl:message>Generate new HTML page</xsl:message>
                     <xsl:variable name="templatePath">
                         <xsl:choose>
                             <xsl:when test="$config/descendant::*:collection[@name = $outputCollection]/@template">
@@ -335,14 +335,14 @@
                     </xsl:if>
                 </xsl:when>
                 <xsl:when test="$nodes/@data-template-with != ''">
-<!--                    <xsl:message>Convert HTML from old format </xsl:message>-->
+                    <xsl:message>Convert HTML from old format </xsl:message>
                     <xsl:variable name="templatePath" select="replace(concat($staticSitePath,'/siteGenerator/components/',substring-after($nodes/@data-template-with,'templates/')),'//','/')"/>
                     <xsl:if test="doc-available(xs:anyURI($templatePath))">
                         <xsl:sequence select="document(xs:anyURI($templatePath))"/>
                     </xsl:if>
                 </xsl:when>
                 <xsl:otherwise>
-                    <!--<xsl:message>Find generic page.html template</xsl:message>-->
+                    <xsl:message>Find generic page.html template</xsl:message>
                     <xsl:variable name="templatePath" select="replace(concat($staticSitePath,'/siteGenerator/components/page.html'),'//','/')"/>
                     <xsl:if test="doc-available(xs:anyURI($templatePath))">
                         <xsl:sequence select="document(xs:anyURI($templatePath))"/>
