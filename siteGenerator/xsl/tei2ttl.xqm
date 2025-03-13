@@ -122,11 +122,12 @@ declare function local:places($node, $id, $idShort, $typeShort){
     return local:make-triple('', 'rdfs:XMLLiteral', concat('"',$note/self::*,'"')),
     :) 
 (: relations :)
-    for $relPers in $node/descendant::tei:text/descendant::tei:persName/@ref
+    let $relPersons := distinct-values($node/descendant::tei:text/descendant::tei:persName/@ref)
+    for $relPers in $relPersons
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPers)),
-    for $relPlace in $node/descendant::tei:text/descendant::tei:placeName/@ref
+    let $relPlaces := distinct-values($node/descendant::tei:text/descendant::tei:placeName/@ref)
+    for $relPlace in $relPlaces
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPlace)),
-
 (: Name varients :)
     for $nameVariant in $node/descendant::tei:place/tei:placeName 
     return local:make-triple(local:make-uri($id), 'swdt:name-variant', local:make-literal($nameVariant/descendant-or-self::text(),$nameVariant/@xml:lang,'')),
@@ -276,9 +277,11 @@ declare function local:persons($node, $id, $idShort, $typeShort){
     return local:make-triple('', 'rdfs:XMLLiteral', concat('"',$note/self::*,'"')),
     :)
 (: relations :)
-    for $relPers in $node/descendant::tei:text/descendant::tei:persName/@ref
+    let $relPersons := distinct-values($node/descendant::tei:text/descendant::tei:persName/@ref)
+    for $relPers in $relPersons
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPers)),
-    for $relPlace in $node/descendant::tei:text/descendant::tei:placeName/@ref
+    let $relPlaces := distinct-values($node/descendant::tei:text/descendant::tei:placeName/@ref)
+    for $relPlace in $relPlaces
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPlace)),
 (: Name varients :)
     for $nameVariant in $node/descendant::tei:person/tei:persName | $node/descendant::tei:personGrp/tei:persName
