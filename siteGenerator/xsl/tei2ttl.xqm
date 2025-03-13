@@ -114,6 +114,8 @@ declare function local:places($node, $id, $idShort, $typeShort){
 (: Description/abstract :)
     for $note in $node/descendant::tei:note[@type='abstract']
     return local:make-triple(local:make-uri($id), 'schema:description', local:make-literal($note/descendant-or-self::text(),$note/@xml:lang,'')),
+    for $note in $node/descendant::tei:desc[@type='abstract']
+    return local:make-triple(local:make-uri($id), 'schema:description', local:make-literal($note/descendant-or-self::text(),$note/@xml:lang,'')),
 (:WS:NOTE literal does not work
     Description/abstract as an XML literal
     for $note in $node/descendant::tei:note[@type='abstract']
