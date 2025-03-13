@@ -572,7 +572,7 @@
                                                 </a>
                                             </xsl:otherwise>
                                         </xsl:choose>
-                                        <a href="{replace($id,$base-uri,concat($staticSitePath,'data')))}"><xsl:value-of select="*:prefLabel[@xml:lang='en']"/></a>
+                                        <a href="{replace($id,$base-uri,concat($staticSitePath,'data'))}"><xsl:value-of select="*:prefLabel[@xml:lang='en']"/></a>
                                             <xsl:call-template name="narrowerTerms">
                                                 <xsl:with-param name="node" select="."/>
                                             </xsl:call-template>
@@ -676,7 +676,7 @@
                                         <xsl:for-each select="*:related">
                                             <xsl:variable name="relatedID" select="@rdf:resource"/>
                                             <xsl:for-each select="//rdf:Description[@rdf:about = $relatedID]">
-                                                <li><a href="{replace($relatedID,$base-uri,concat($staticSitePath,'data')))}"><xsl:value-of select="*:prefLabel[@xml:lang='en']"/></a></li>
+                                                <li><a href="{replace($relatedID,$base-uri,concat($staticSitePath,'data'))}"><xsl:value-of select="*:prefLabel[@xml:lang='en']"/></a></li>
                                             </xsl:for-each>    
                                         </xsl:for-each>
                                     </ul>

@@ -624,7 +624,7 @@
                 </xsl:apply-templates> 
             </ul>   
         </xsl:if>
-        <xsl:apply-templates select="t:sex | t:death | t:birth | t:floruit"/>
+        <xsl:apply-templates select="t:sex | t:gender | t:death | t:birth | t:floruit"/>
         <!-- Work in progress
         <xsl:if test="t:state">
             <xsl:for-each-group select="//t:state[not(@when) and not(@notBefore) and not(@notAfter) and not(@to) and not(@from)]" group-by="@type">
@@ -1686,7 +1686,7 @@
             </li>  
         </xsl:if>
     </xsl:template>
-    <xsl:template match="t:state | t:birth | t:death | t:floruit | t:sex | t:langKnowledge">
+    <xsl:template match="t:state | t:birth | t:death | t:floruit | t:sex | t:gender | t:langKnowledge">
        <div class="person-details">
            <h3>
                <xsl:choose>
@@ -1694,6 +1694,7 @@
                    <xsl:when test="self::t:death">Death</xsl:when>
                    <xsl:when test="self::t:floruit">Floruit</xsl:when>
                    <xsl:when test="self::t:sex">Sex</xsl:when>
+                   <xsl:when test="self::t:gender">Sex</xsl:when>
                    <xsl:when test="self::t:langKnowledge">Language Knowledge</xsl:when>
                    <xsl:when test="@role">
                        <xsl:value-of select="concat(upper-case(substring(@role,1,1)),substring(@role,2))"/>
