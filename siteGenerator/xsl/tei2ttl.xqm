@@ -126,7 +126,7 @@ declare function local:places($node, $id, $idShort, $typeShort){
     for $relPers in $relPersons
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPers)),
     let $relPlaces := distinct-values($node/descendant::tei:text/descendant::tei:placeName/@ref)
-    for $relPlace in $relPlaces
+    for $relPlace in $relPlaces[. != $id]
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPlace)),
 (: Name varients :)
     for $nameVariant in $node/descendant::tei:place/tei:placeName 
@@ -278,7 +278,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
     :)
 (: relations :)
     let $relPersons := distinct-values($node/descendant::tei:text/descendant::tei:persName/@ref)
-    for $relPers in $relPersons
+    for $relPers in $relPersons[. != $id]
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPers)),
     let $relPlaces := distinct-values($node/descendant::tei:text/descendant::tei:placeName/@ref)
     for $relPlace in $relPlaces
