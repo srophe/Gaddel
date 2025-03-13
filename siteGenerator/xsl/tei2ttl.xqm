@@ -277,9 +277,9 @@ declare function local:persons($node, $id, $idShort, $typeShort){
     :)
 (: relations :)
     for $relPers in $node/descendant::tei:text/descendant::tei:persName/@ref
-    return local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri($relPers)),
+    return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPers)),
     for $relPlace in $node/descendant::tei:text/descendant::tei:placeName/@ref
-    return local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri($relPlace)),
+    return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPlace)),
 (: Name varients :)
     for $nameVariant in $node/descendant::tei:person/tei:persName | $node/descendant::tei:personGrp/tei:persName
     return local:make-triple(local:make-uri($id), 'swdt:name-variant', local:make-literal($nameVariant/descendant-or-self::text(),$nameVariant/@xml:lang,'')),
