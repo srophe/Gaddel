@@ -256,7 +256,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
     return local:make-triple(local:make-uri($id), 'rdfs:label', local:make-literal($headword/descendant-or-self::text(),$lang,'')), 
 (: hasCitation - bibl referenes :)
     for $citation in $node/descendant::tei:bibl/tei:ptr/@target[contains(., 'syriaca.org')]
-    return local:make-triple(local:make-uri($id), 'rdfs:label', local:make-uri($citation)),
+    return local:make-triple(local:make-uri($id), 'lawd:hasCitation', local:make-uri($citation)),
 (:primaryTopicOf idno in publication statement :)
     local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.tei'))),
     local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.html'))),
