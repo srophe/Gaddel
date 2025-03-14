@@ -233,12 +233,7 @@ declare function local:places($node, $id, $idShort, $typeShort){
                local:make-triple(local:make-uri($sRef), concat('swdt:',$relRef), local:make-uri($oRef)),
                local:make-triple(local:make-uri($sRef), concat('sp:',$relRef), concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p)),
                local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p), concat('swd:',$relRef), local:make-uri($oRef)),
-               local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p), 'spr:reference-URL', local:make-uri(concat($id,'.tei'))),
-               
-               local:make-triple(local:make-uri($oRef), concat('swdt:',$relRef), local:make-uri($sRef)),
-               local:make-triple(local:make-uri($oRef), concat('sp:',$relRef), concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m2p)),
-               local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m2p), concat('swd:',$relRef), local:make-uri($sRef)),
-               local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m2p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
+               local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
                )
         )         
 (:
@@ -636,12 +631,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
                local:make-triple(local:make-uri($sRef), concat('swdt:',$relRef), local:make-uri($oRef)),
                local:make-triple(local:make-uri($sRef), concat('sp:',$relRef), concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p)),
                local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p), concat('swd:',$relRef), local:make-uri($oRef)),
-               local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p), 'spr:reference-URL', local:make-uri(concat($id,'.tei'))),
-               
-               local:make-triple(local:make-uri($oRef), concat('swdt:',$relRef), local:make-uri($sRef)),
-               local:make-triple(local:make-uri($oRef), concat('sp:',$relRef), concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m2p)),
-               local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m2p), concat('swd:',$relRef), local:make-uri($sRef)),
-               local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m2p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
+               local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
                )
         )          
 )
