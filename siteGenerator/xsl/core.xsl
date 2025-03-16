@@ -161,41 +161,18 @@
     
     <!-- Q -->
     <xsl:template match="t:quote">
-        <span class="tei-quote" dir="ltr" lang="en">
-            <xsl:choose>
+        <span class="tei-quote" dir="ltr" lang="en"><xsl:choose>
                 <xsl:when test="@xml:lang">
-                    <span dir="ltr">
-                        <xsl:text> “</xsl:text>
-                    </span>
-                    <span>
-                        <xsl:sequence select="local:attributes(.)"/>
-                        <xsl:call-template name="rend"/>
-                    </span>
-                    <span dir="ltr">
-                        <xsl:text>”  </xsl:text>
-                    </span>
+                    <span dir="ltr"><xsl:text>“</xsl:text></span><span><xsl:sequence select="local:attributes(.)"/><xsl:call-template name="rend"/></span><span dir="ltr"><xsl:text>”</xsl:text></span>
                 </xsl:when>
                 <xsl:when test="parent::*/@xml:lang">
                     <!-- Quotes need to be outside langattr for Syriac and arabic characters to render correctly.  -->
-                    <span dir="ltr">
-                        <xsl:text> “</xsl:text>
-                    </span>
-                    <span class="langattr">
-                        <xsl:sequence select="local:attributes(parent::*[@xml:lang])"/>
-                        <xsl:call-template name="rend"/>
-                    </span>
-                    <span dir="ltr">
-                        <xsl:text>”  </xsl:text>
-                    </span>
+                    <span dir="ltr"><xsl:text>“</xsl:text></span><span class="langattr"><xsl:sequence select="local:attributes(parent::*[@xml:lang])"/><xsl:call-template name="rend"/></span><span dir="ltr"><xsl:text>”</xsl:text></span>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:text> “</xsl:text>
-                    <xsl:apply-templates/>
-                    <xsl:text>” </xsl:text>
+                    <xsl:text>“</xsl:text><xsl:apply-templates/><xsl:text>”</xsl:text>
                 </xsl:otherwise>
-            </xsl:choose>
-            <xsl:sequence select="local:add-footnotes(@source,ancestor::t:*[@xml:lang][1])"/> 
-        </span>
+            </xsl:choose><xsl:sequence select="local:add-footnotes(@source,ancestor::t:*[@xml:lang][1])"/></span>
     </xsl:template>
     
     <!-- R -->
