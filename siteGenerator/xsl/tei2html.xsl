@@ -852,9 +852,9 @@
                     <em>This list is not necessarily exhaustive, and the order does not represent importance or proportion of the population. Dates do not represent starting or ending dates of a group's presence, but rather when they are attested. Instead, the list only represents groups for which Syriaca.org has source(s) and dates.</em>
                 </p>
                 <xsl:choose>
-                    <xsl:when test="doc-available(concat($app-root,'/documentation/confessions.xml'))">
+                    <xsl:when test="doc-available(concat($applicationPath,'/documentation/confessions.xml'))">
                         <xsl:call-template name="confessions">
-                            <xsl:with-param name="confessionsDoc" select="doc(concat($app-root,'/documentation/confessions.xml'))"/>
+                            <xsl:with-param name="confessionsDoc" select="document(concat($applicationPath,'/documentation/confessions.xml'))"/>
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
@@ -1662,8 +1662,28 @@
     <!-- Template to print out confession section -->
     <xsl:template match="t:state[@type='confession']">
         <!-- WS:NOTE should probably change to static site for long term use, then don't have to keep old site around. -->
+        <!--
+        <xsl:choose>
+            <xsl:when test="doc-available(concat($applicationPath,'/documentation/confessions.xml'))">
+                <xsl:message>Confessions available</xsl:message>
+                <xsl:variable name="confessions" select="document(concat($applicationPath,'/documentation/confessions.xml'))/descendant::t:body/t:list"/>
+                <xsl:variable name="id" select="substring-after(@ref,'http://syriaca.org/taxonomy/')"/>
+                <li>
+                    <xsl:value-of select="$id"/>: 
+                    <xsl:for-each select="$confessions//t:item[@xml:id = $id]/ancestor-or-self::*/t:label">
+                        <xsl:value-of select="."/>
+                    </xsl:for-each>
+                </li> 
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:message>Confessions NOT available</xsl:message>
+            </xsl:otherwise>
+        </xsl:choose>
+        -->
+        <!-- 
+            <xsl:when test="doc-available($biblfilepath)">
+            
         <xsl:if test="doc-available(concat($applicationPath,'/documentation/confessions.xml'))">
-            <!-- Get all ancesors of current confession (but only once) -->
             <xsl:variable name="confessions" select="document(concat($applicationPath,'/documentation/confessions.xml'))//t:body/t:list"/>
             <xsl:variable name="id" select="substring-after(@ref,'#')"/>
             <li>
@@ -1673,6 +1693,7 @@
                 </xsl:for-each>
             </li>  
         </xsl:if>
+        -->
     </xsl:template>
     <xsl:template match="t:state | t:birth | t:death | t:floruit | t:sex | t:gender | t:langKnowledge">
        <div class="person-details">
@@ -1785,7 +1806,7 @@
         <!-- Variable to store the value of the confessions of current place-->
         <xsl:variable name="current-confessions">
             <xsl:for-each select="//t:state[@type='confession']">
-                <xsl:variable name="id" select="substring-after(@ref,'#')"/>
+                <xsl:variable name="id" select="substring-after(@ref,'http://syriaca.org/taxonomy/')"/>
                 <!-- outputs current confessions as a space seperated list -->
                 <xsl:value-of select="concat($id,' ')"/>
             </xsl:for-each>
