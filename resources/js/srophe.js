@@ -158,5 +158,41 @@ $(document).ready(function () {
     } else {
         $('.nav-tabs li').first().addClass('active');
     }
+    
+    //Add wiki functions
+    /* 
+     * /html:div[@class = 'repository-content']
+     * app:wiki-links($wiki-data//html:div[@class='wiki-rightbar']/descendant::html:ul, $wiki-uri)
+     * $('div[data-category]').each(function() {
+     * data-template="app:wiki-menu"
+     */
+     $('div[data-template-wiki-uri]').each(function() {
+        var url = $(this).data('template-wiki-uri');
+        var current = $(this)
+        /* 
+        fetch(url, {mode: 'cors'})
+        .then(data => data.text())
+        .then(data => {
+            const parser = new DOMParser();
+            const dataEl = parser.parseFromString(data, "text/html");
+            const el = dataEl.querySelector(".wiki-rightbar > ul")
+            //$.html(".content", el.innerHTML)
+            console.log(el);
+        })*/
+        
+        $.ajax({
+            url: url,
+            data: {mode: 'cors'},
+            type: "GET",
+            referrerPolicy: 'no-referrer',
+            success: function(data) {
+              console.log(data);
+            },
+            error: function(error) {
+              console.error("Error fetching Wiki page:", error);
+            }
+          });
            
+    });
+    
 });

@@ -89,7 +89,7 @@
                     // change layout based on link ID
                     kb.options.layout = this.id
                     // open keyboard if layout is different, or time from it last closing is &amp;gt; 200 ms
-                    if (kb.last.layout !== kb.options.layout || (new Date().getTime() - kb.last.eventTime) &lt; 200) {
+                    if (kb.last.layout !== kb.options.layout || (new Date().getTime() - kb.last.eventTime) < 200) {
                         kb.reveal();
                     }
                 });
@@ -320,105 +320,121 @@
          </div>
          
          <div class="main-content-block documentation">
-            
             <h1>Syriaca.org Documentation</h1>
-            
             <div class="row">
-               
                <div class="col-md-3">
-                  
                   <div class="panel panel-default">
-                     
                      <div class="panel-heading">
-                        
                         <h3 class="panel-title">About Syriaca.org</h3>
-                        
                      </div>
-                     
                      <div class="panel-body">
-                        
-                        <div data-template="app:shared-content" data-template-path="/about-menu.html"></div>
-                        
+                        <ul>
+                           <li>
+                              <a href="/about-syriac.html">What is Syriac?</a>
+                           </li>
+                           <li>
+                              <a href="/about-srophe.html">Project Overview</a>
+                           </li>
+                           <li>
+                              <a href="/project-team.html">Project Team</a>
+                           </li>
+                           <li>
+                              <a href="/project-partners.html">Project Partners</a>
+                           </li>
+                           <li>
+                              <a href="/media-releases.html">Media Releases</a>
+                           </li>
+                           <li>
+                              <a href="http://vu.edu/syriac">Support Our Work</a>
+                           </li>
+                           <li>
+                              <a href="/contact-us.html">Contact Us</a>
+                           </li>
+                        </ul>
                      </div>
-                     
                   </div>
-                  
                </div>
-               
                <div class="col-md-3">
-                  
                   <div class="panel panel-default">
-                     
                      <div class="panel-heading">
-                        
                         <h3 class="panel-title">Editorial Documentation </h3>
-                        
                      </div>
-                     
                      <div class="panel-body">
-                        
                         <div data-template="app:wiki-menu" data-template-wiki-uri="https://github.com/srophe/syriaca-data/wiki"></div>
-                        
                      </div>
-                     
                   </div>
-                  
                </div>
-               
                <div class="col-md-3">
-                  
                   <div class="panel panel-default">
-                     
                      <div class="panel-heading">
-                        
                         <h3 class="panel-title">Editorial Definitions</h3>
-                        
                      </div>
-                     
                      <div class="panel-body">
-                        
-                        <div data-template="app:shared-content" data-template-path="/documentation/menu.html"></div>
+                        <ul>
+                           <li>
+                              <a href="/documentation/dates.html">Dates</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/faq.html">Frequently Asked Questions</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/headwords.html">Headwords</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/isostandards.html">Language and Script Identifiers</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/place-types.html">Place Types</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/relations.html">Relations</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/confessions.html">Religious Communities</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/terms.html">Technical Terminology</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/view-teiDocs.html">TEI Tag usage in Gazetteer</a>
+                           </li>
+                           <li>
+                              <a href="/api-documentation/index.html">Syriaca.org API Documentation</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/uris.html">URI Policies</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/tei-mss-tutorials.html">Using TEI to Catalog Syriac Manuscripts</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/editors.html">Contributing Editors</a>
+                           </li>
+                        </ul>
                         
                      </div>
-                     
                   </div>
                   
                </div>
-               
                <div class="col-md-3">
-                  
                   <div class="panel panel-default">
-                     
                      <div class="panel-heading">
-                        
                         <h3 class="panel-title">Technical Documentation</h3>
-                        
                      </div>
-                     
                      <div class="panel-body">
-                        
                         <div data-template="app:wiki-menu" data-template-wiki-uri="https://github.com/srophe/srophe-eXist-app/wiki"></div>
-                        
                      </div>
-                     
                   </div>
-                  
                </div>
-               
             </div>
-            
          </div>
-         
       </div>
       <footer>
-         
          <div class="container">
             <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">
                <img alt="Creative Commons License" style="border-width:0" src="/resources/images/cc.png" height="18px" />
                </a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.
             <br />Copyright Vanderbilt University, Princeton University, and the Contributor(s), 2014.
-            
          </div>
-         
       </footer>
    </body><script type="text/javascript" src="/resources/js/jquery.validate.min.js"></script><script type="text/javascript" src="/resources/js/require.min.js"></script><script type="text/javascript" src="/resources/js/srophe.js"></script><script type="text/javascript" src="/resources/js/lightslider.min.js"></script><script type="text/javascript" src="/resources/js/lightslider-functions.js"></script><script data-template="app:google-analytics"></script></html>
