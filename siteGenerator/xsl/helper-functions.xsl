@@ -479,24 +479,16 @@
                     <xsl:otherwise><span class="tei-rend-{string(@rend)}"><xsl:call-template name="ref"/></span></xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:call-template name="ref"/> 
-            </xsl:otherwise>
+            <xsl:otherwise><xsl:call-template name="ref"/></xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     <xsl:template name="ref">
         <xsl:choose>
-            <xsl:when test="parent::t:ref or parent::t:ptr or parent::*[1]/@ref">
-                <xsl:apply-templates/>
-            </xsl:when>
+            <xsl:when test="parent::t:ref or parent::t:ptr or parent::*[1]/@ref"><xsl:apply-templates/></xsl:when>
             <xsl:when test="@ref">
-                <a href="{@ref}">
-                    <xsl:apply-templates/>
-                </a>
+                <a href="{@ref}"><xsl:apply-templates/></a>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:apply-templates/>
-            </xsl:otherwise>
+            <xsl:otherwise><xsl:apply-templates/></xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>

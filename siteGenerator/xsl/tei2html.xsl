@@ -365,9 +365,7 @@
                 <li>
                     <xsl:choose>
                         <xsl:when test="@subtype='quote'">"<xsl:apply-templates/>"</xsl:when>
-                        <xsl:otherwise>
-                            <xsl:apply-templates/>
-                        </xsl:otherwise>
+                        <xsl:otherwise><xsl:apply-templates/></xsl:otherwise>
                     </xsl:choose>
                     <xsl:sequence select="local:add-footnotes(@source,.)"/>
                 </li>
@@ -562,19 +560,9 @@
             <xsl:otherwise>
                 <div class="tei-note">  
                     <xsl:choose>
-                        <xsl:when test="t:quote">
-                            <xsl:apply-templates/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <span>
-                                <xsl:sequence select="local:attributes(.)"/>
-                                <xsl:apply-templates/>
-                                <!-- Check for ending punctuation, if none, add . -->
-                                <!-- Do not have this working -->
-                            </span>
-                        </xsl:otherwise>
+                        <xsl:when test="t:quote"><xsl:apply-templates/></xsl:when>
+                        <xsl:otherwise><span><xsl:sequence select="local:attributes(.)"/><xsl:apply-templates/></span><xsl:sequence select="local:add-footnotes(@source,.)"/></xsl:otherwise>
                     </xsl:choose>
-                    <xsl:sequence select="local:add-footnotes(@source,.)"/>
                 </div>
             </xsl:otherwise>
         </xsl:choose>
