@@ -225,8 +225,9 @@
                         <xsl:when test="doc-available($biblfilepath)">
 <!--                            <xsl:message>Doc available</xsl:message>-->
                             <xsl:variable name="rec" select="document($biblfilepath)"/>
-                            <xsl:for-each select="$rec/descendant::t:biblStruct">
-                                <xsl:apply-templates mode="footnote"/>
+                            <xsl:for-each select="$rec/descendant::t:body">
+                                <xsl:apply-templates select="descendant::t:bibl[@type='formatted'][@subtype='citation']" mode="formattedCitation"/>
+                                <!-- bibl type="formatted" subtype="citation" -->
                                 <xsl:sequence select="$passThrough"/>
                                 <xsl:if test="descendant::t:idno[@type='URI']">
                                     <span class="footnote-links">
@@ -314,7 +315,18 @@
             </xsl:choose>
         </span>
     </xsl:template>
-
+    <!-- Removes final '.'  -->
+    <xsl:template match="t:bibl" mode="formattedCitation">
+        <xsl:apply-templates mode="formattedCitation"/>
+    </xsl:template>
+    <xsl:template match="text()" mode="formattedCitation">
+        <xsl:choose>
+            <xsl:when test="not(following-sibling::*)">
+                <xsl:value-of select="replace(., '\.\s*$', '')"/>        
+            </xsl:when>
+            <xsl:otherwise><xsl:value-of select="normalize-space(.)"/></xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
      Main footnote templates for bibl records. 
      ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
