@@ -49,7 +49,9 @@ declare function local:make-date($date){
     else if($date castable as xs:date) then 
         local:make-literal($date, (),'xsd:date')                        
     else if($date castable as xs:gYear) then 
-        local:make-literal($date, (),'xsd:gYear') 
+        local:make-literal($date, (),'xsd:gYear')
+    else if($date castable as xs:gMonthDay) then 
+        local:make-literal($date, (),'xsd:gMonthDay')
     else local:make-literal($date, (),())        
 };
 
@@ -177,8 +179,7 @@ declare function local:places($node, $id, $idShort, $typeShort){
     return
         (
             local:make-triple(local:make-uri($id), 'swdt:has-gps-coordinates', local:make-literal($gps/descendant::text(),'','')),
-            local:make-triple(local:make-uri($id), 'sp:has-gps-coordinates', concat('swds:coordinates','-',$idShort,'-',$p)),
-            local:make-triple(concat('swds:coordinates','-',$idShort,'-',$p), 'sps:exist-to', local:make-literal($gps/descendant::text(),'','')),
+            local:make-triple(local:make-uri($id), 'sp:has-gps-coordinates', local:make-literal($gps/descendant::text(),'','')),
             local:make-triple(concat('swds:coordinates','-',$idShort,'-',$p), 'spr:reference-URL', local:make-uri($id))
         ),
 (: Religious community has-religious-community  place/state[@type='confession']/@ref :)
