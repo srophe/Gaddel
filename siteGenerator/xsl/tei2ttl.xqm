@@ -119,6 +119,19 @@ declare function local:places($node, $id, $idShort, $typeShort){
     for $note in $node/descendant::tei:note[@type='abstract']
     return local:make-triple('', 'rdfs:XMLLiteral', concat('"',$note/self::*,'"')),
     :) 
+(: Place type :)
+    for $placeType at $p in tokenize($node/descendant::tei:place/@ana,' ')
+    let $ana := 
+        if(starts-with($placeType,'http')) then
+            local:make-uri($placeType)
+        else concat('swd:',$placeType)
+    return 
+        (
+        local:make-triple(local:make-uri($id), 'swdt:place-type', $ana),
+        local:make-triple(local:make-uri($id), 'sp:place-type', concat('swds:place-type-',$idShort, '-',$p)),
+        local:make-triple(concat('swds:place-type-',$idShort, '-',$p), 'sps:place-type', $ana),
+        local:make-triple(concat('swds:place-type-',$idShort, '-',$p), 'spr:reference-URL', local:make-uri($id))
+        ),
 (: relations :)
     for $relPers in $node/descendant::tei:text/descendant::tei:persName/@ref
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPers)),
