@@ -134,7 +134,7 @@ declare function local:places($node, $id, $idShort, $typeShort){
         local:make-triple(local:make-uri($id), 'swdt:place-type', $ana),
         local:make-triple(local:make-uri($id), 'sp:place-type', concat('swds:place-type-',$idShort, '-',$p)),
         local:make-triple(concat('swds:place-type-',$idShort, '-',$p), 'sps:place-type', $ana),
-        local:make-triple(concat('swds:place-type-',$idShort, '-',$p), 'spr:reference-URL', local:make-uri($id))
+        local:make-triple(concat('swds:place-type-',$idShort, '-',$p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
         ),
 (: relations :)
     let $relPersons := distinct-values($node/descendant::tei:text/descendant::tei:persName/@ref)
@@ -153,15 +153,15 @@ declare function local:places($node, $id, $idShort, $typeShort){
     return 
         (local:make-triple(local:make-uri($id), 'sp:name-variant', concat('swds:',$typeShort,'-',$idShort,'-',$p)),
         local:make-triple(concat('swds:',$typeShort,'-',$idShort,'-',$p), 'sps:name-variant', local:make-literal($nameVariant/descendant-or-self::text(),$nameVariant/@xml:lang,'')),
-        local:make-triple(concat('swds:',$typeShort,'-',$idShort,'-',$p), 'spr:reference-URL', local:make-uri($id))
+        local:make-triple(concat('swds:',$typeShort,'-',$idShort,'-',$p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
         ),
 (:IDNO :) 
     for $closeMatch at $p in $node/descendant::tei:text/descendant::tei:idno[@type ='URI'][not(contains(., "syriaca.org"))]
     return 
-        (local:make-triple(local:make-uri($id), 'swdt:closeMatch', local:make-literal($closeMatch,'','')),
+        (local:make-triple(local:make-uri($id), 'swdt:closeMatch', local:make-uri($closeMatch)),
         local:make-triple(local:make-uri($id), 'sp:closeMatch', concat('swds:closeMatch-',$idShort, '-',$p)),
-        local:make-triple(concat('swds:closeMatch-',$idShort, '-',$p), 'sps:closeMatch', local:make-literal($closeMatch,'','')),
-        local:make-triple(concat('swds:closeMatch-',$idShort, '-',$p), 'spr:reference-URL', local:make-uri($id))
+        local:make-triple(concat('swds:closeMatch-',$idShort, '-',$p), 'sps:closeMatch', local:make-uri($closeMatch)),
+        local:make-triple(concat('swds:closeMatch-',$idShort, '-',$p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
         ),
 (: Events state[@type='existence']:)        
     for $event at $p in $node/descendant::tei:text/descendant::tei:state[@type='existence']
@@ -172,7 +172,7 @@ declare function local:places($node, $id, $idShort, $typeShort){
                 local:make-triple(local:make-uri($id), 'swdt:exist-from', local:make-date(string($event/@from))),
                 local:make-triple(local:make-uri($id), 'sp:exist-from', concat('swds:exist-from','-',$idShort,'-',$p)),
                 local:make-triple(concat('swds:exist-from','-',$idShort,'-',$p), 'sps:exist-from', local:make-date(string($event/@from))),
-                local:make-triple(concat('swds:exist-from','-',$idShort,'-',$p), 'spr:reference-URL', local:make-uri($id)),
+                local:make-triple(concat('swds:exist-from','-',$idShort,'-',$p), 'spr:reference-URL', local:make-uri(concat($id,'.tei'))),
                 local:make-triple(local:make-uri($id), 'swdt:exist-to', local:make-date(string($event/@to))),
                 local:make-triple(local:make-uri($id), 'sp:exist-to', concat('swds:exist-to','-',$idShort,'-',$p)),
                 local:make-triple(concat('swds:exist-to','-',$idShort,'-',$p), 'sps:exist-to', local:make-date(string($event/@to))),
@@ -197,8 +197,9 @@ declare function local:places($node, $id, $idShort, $typeShort){
     for $gps at $p in $node/descendant::tei:text/descendant::tei:location[@type='gps']
     return
         (
-            local:make-triple(local:make-uri($id), 'swdt:has-gps-coordinates', local:make-literal($gps/descendant::text(),'','')),
-            local:make-triple(local:make-uri($id), 'sp:has-gps-coordinates', local:make-literal($gps/descendant::text(),'','')),
+            local:make-triple(local:make-uri($id), 'swdt:has-gps-coordinates', local:make-literal($gps/descendant::text(),'','geosparql:wktLiteral')),
+            local:make-triple(local:make-uri($id), 'sp:has-gps-coordinates', concat('swds:coordinates','-',$idShort,'-',$p)),
+            local:make-triple(local:make-uri($id), 'swd:has-gps-coordinates', local:make-literal($gps/descendant::text(),'','geosparql:wktLiteral')),
             local:make-triple(concat('swds:coordinates','-',$idShort,'-',$p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
         ),
 (: Religious community has-religious-community  place/state[@type='confession']/@ref :)
@@ -239,10 +240,10 @@ declare function local:places($node, $id, $idShort, $typeShort){
                local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$ap), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
                ), 
           for $s at $m1p in tokenize($relation/@mutual,' ')
-          let $sRef := substring-after($s,'syriaca.org/')
+          let $sRef := $s
           return   
             for $o at $m2p in tokenize($relation/@mutual,' ')[. != $s]
-            let $oRef := substring-after($o,'syrprimaryTopicOfiaca.org/')
+            let $oRef :=$o
             return 
                (
                local:make-triple(local:make-uri($sRef), concat('swdt:',$relRef), local:make-uri($oRef)),
@@ -309,9 +310,9 @@ declare function local:persons($node, $id, $idShort, $typeShort){
 (:IDNO :) 
     for $closeMatch at $p in $node/descendant::tei:text/descendant::tei:idno[@type ='URI'][not(contains(., "syriaca.org"))]
     return 
-        (local:make-triple(local:make-uri($id), 'swdt:closeMatch', local:make-literal($closeMatch,'','')),
+        (local:make-triple(local:make-uri($id), 'swdt:closeMatch', local:make-uri($closeMatch)),
         local:make-triple(local:make-uri($id), 'sp:closeMatch', concat('swds:closeMatch-',$idShort, '-',$p)),
-        local:make-triple(concat('swds:closeMatch-',$idShort, '-',$p), 'sps:closeMatch', local:make-literal($closeMatch,'','')),
+        local:make-triple(concat('swds:closeMatch-',$idShort, '-',$p), 'sps:closeMatch', local:make-uri($closeMatch)),
         local:make-triple(concat('swds:closeMatch-',$idShort, '-',$p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
         ),
 (: Floruit :)
@@ -673,6 +674,7 @@ declare function local:prefix() as xs:string{
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf:	<http://xmlns.com/foaf/0.1/> .
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix lawd:	<http://lawd.info/ontology/> .
 @prefix owl:	<http://www.w3.org/2002/07/owl#> .
 @prefix periodo:	<http://n2t.net/ark:/99152/p0v#> .
