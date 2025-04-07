@@ -113,6 +113,7 @@ function displayResults(data) {
     
     const resultsContainer = document.getElementById("search-results");
     resultsContainer.innerHTML = ''; // Clear previous results
+    clearSearchResults(); // Clear previous search results
     if(document.getElementById("toggleSearchForm")){
         const toggleButton = document.getElementById("toggleSearchForm");
         const searchFormContainer = document.getElementById("advancedSearch");
@@ -157,7 +158,7 @@ function displayResults(data) {
                 typeString = '';
             }
             const abstract = hit._source.abstract || '';
-            const abstractString = abstract ? ` ${abstract} <br/>`: '';
+            const abstractString = abstract ? `<br/>${abstract}`: '';
             const prologue = hit._source.prologue || ' ';
             const idno = hit._source.idno || ''; // Fallback if no idno
             const coordinates = hit._source.coordinates || ''; // Fallback if no idno
@@ -205,6 +206,7 @@ function displayResults(data) {
                 <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
                     <span class="tei-title title-analytic">${title}</span> ${typeString}
                 </a>
+                ${abstractString}
                 ${nameString}
                 <br/>URI: 
                 <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
@@ -508,10 +510,12 @@ function browseAlphaMenu() {
 function browseCbssAlphaMenu() {
     const urlParams = new URLSearchParams(window.location.search);
     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
-    state.searchType = urlParams.get('searchType') || 'browse'; // Retrieve searchType from the URL
+    // state.searchType = urlParams.get('searchType') || 'browse'; // Retrieve searchType from the URL
+    state.searchType = 'browse'; // Do not Retrieve searchType from the URL, set as browse
+
     state.query = urlParams.get('q') || 'cbssAuthor'; // Retrieve query from the URL
     const alphabets = {
-        en: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z',
+        en: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #',
         rus: 'А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я',
         gr: 'Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω',
         arm: 'Ա Բ Գ Դ Ե Զ Է Ը Թ Ժ Ի Լ Խ Ծ Կ Հ Ձ Ղ Ճ Մ Յ Ն Շ Ո Չ Պ Ջ Ռ Ս Վ Տ Ր Ց Ու Փ Ք Օ Ֆ',
@@ -564,8 +568,9 @@ function browseCbssAlphaMenu() {
             state.letter = letter; // Update state
             state.from = 0; // Reset pagination
             state.currentPage = 1;
+            state.searchType = 'browse'; // Set searchType to 'browse'
             const newUrlParams = new URLSearchParams({
-                searchType: 'letter',
+                searchType: 'browse',
                 q: state.query,
                 letter: state.letter, 
                 size: state.size,
@@ -1436,4 +1441,14 @@ function createPaginationButton(text, onClick) {
     button.textContent = text;
     button.onclick = onClick;
     return button;
+}
+function clearSearchResults() {
+    const resultsContainer = document.getElementById("search-results");
+    if (resultsContainer) resultsContainer.innerHTML = '';
+
+    const docResultsContainer = document.getElementById("document-search-results");
+    if (docResultsContainer) docResultsContainer.innerHTML = '';
+
+    const submenuResultsContainer = document.getElementById("common-subject-menu");
+    if (submenuResultsContainer) submenuResultsContainer.innerHTML = '';
 }
