@@ -229,163 +229,153 @@
       </nav>
       <div class="advancedSearch" style="margin-top:75px;">
          <h1 style="padding-left:1em; color:white;">Advanced Search</h1>
-         <form method="get" action="search.html" class="form-horizontal search" role="form" id="advancedSearch">
-            <div class="well well-small">
-               <div class="well well-small search-inner well-white">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <!-- Place Name-->
-                        <div class="form-group">
-                           <label for="p" class="col-sm-2 col-md-3  control-label">Place Name: </label>
-                           <div class="col-sm-10 col-md-9 ">
-                              <div class="input-group">
-                                 <input type="text" id="p" name="placeName" class="form-control keyboard ui-keyboard-input ui-widget-content ui-corner-all" aria-haspopup="true" role="textbox">
-                                 <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
-                                    &nbsp;<span class="syriaca-icon syriaca-keyboard">&nbsp; </span><span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                       <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="p">Syriac Phonetic</a></li>
-                                       <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="p">Syriac Standard</a></li>
-                                       <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="p">Arabic Mod. Standard</a></li>
-                                       <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="p">English QWERTY</a></li>
-                                    </ul></span></div>
+         <div class="container" style="margin:0;padding:0; width: 100%; background-color:white;">
+            <div class="row">
+               <div class="col-md-4">
+                  <!-- Search forms -->
+                  <form method="get" action="search.html" class="form-horizontal search" role="form" id="advancedSearch">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <!-- Place Name-->
+                                 <div class="form-group">
+                                    <label for="p" class="col-sm-2 col-md-3  control-label">Place Name: </label>
+                                    <div class="col-sm-10 col-md-9 ">
+                                       <div class="input-group">
+                                          <input type="text" id="p" name="placeName" class="form-control keyboard ui-keyboard-input ui-widget-content ui-corner-all" aria-haspopup="true" role="textbox">
+                                          <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
+                                             &nbsp;<span class="syriaca-icon syriaca-keyboard">&nbsp; </span><span class="caret"></span></button>
+                                             <ul class="dropdown-menu">
+                                                <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="p">Syriac Phonetic</a></li>
+                                                <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="p">Syriac Standard</a></li>
+                                                <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="p">Arabic Mod. Standard</a></li>
+                                                <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="p">English QWERTY</a></li>
+                                             </ul></span></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- Keyword -->
+                                 <div class="form-group">
+                                    <label for="q" class="col-sm-2 col-md-3  control-label">Keyword: </label>
+                                    <div class="col-sm-10 col-md-9 ">
+                                       <div class="input-group">
+                                          <input type="text" id="q" name="fullText" class="form-control keyboard ui-keyboard-input ui-widget-content ui-corner-all" aria-haspopup="true" role="textbox">
+                                          <div class="input-group-btn">
+                                             <span class="keyboard-menu">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
+                                                   &nbsp;<span class="syriaca-icon syriaca-keyboard">&nbsp; </span><span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                   <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="q">Syriac Phonetic</a></li>
+                                                   <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="q">Syriac Standard</a></li>
+                                                   <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="q">Arabic Mod. Standard</a></li>
+                                                   <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="q">English QWERTY</a></li>
+                                                </ul></span></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <hr><!-- Attestations -->
+                                 <div class="form-group">
+                                    <label for="a" class="col-sm-2 col-md-3  control-label">Attestations: </label>
+                                    <div class="col-sm-10 col-md-9 ">
+                                       <div class="input-group">
+                                          <input type="text" id="attestations" name="attestations" class="form-control keyboard ui-keyboard-input ui-widget-content ui-corner-all" aria-haspopup="true" role="textbox">
+                                          <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
+                                             &nbsp;<span class="syriaca-icon syriaca-keyboard">&nbsp; </span><span class="caret"></span></button>
+                                             <ul class="dropdown-menu">
+                                                <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="a">Syriac Phonetic</a></li>
+                                                <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="a">Syriac Standard</a></li>
+                                                <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="a">Arabic Mod. Standard</a></li>
+                                                <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="a">English QWERTY</a></li>
+                                             </ul></span></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="ads" class="col-sm-2 col-md-3  control-label">Dates: </label>
+                                    <div class="col-sm-10 col-md-9 form-inline"><input type="text" id="attestationRangeStart" name="attestationRangeStart" placeholder="Start Date" class="form-control">&nbsp;
+                                       <input type="text" id="attestationRangeEnd" name="attestationRangeEnd" placeholder="End Date" class="form-control">
+                                       <p class="hint" style="margin:.5em; color: grey; font-style:italic;">* Dates should be entered as YYYY or YYYY-MM-DD</p>
+                                    </div>
+                                 </div>
+                                 <hr><!-- Existence -->
+                                 <div class="form-group"><label for="existds" class="col-sm-2 col-md-3 control-label">Existence Dates: </label>
+                                    <div class="col-sm-10 col-md-9 form-inline">
+                                       <input type="text" id="stateDatesStart" name="stateDatesStart" placeholder="Start Date" class="form-control">&nbsp;
+                                       <input type="text" id="stateDatesEnd" name="stateDatesEnd" placeholder="End Date" class="form-control">
+                                       <p class="hint" style="margin:.5em; color: grey; font-style:italic;">* Dates should be entered as YYYY or YYYY-MM-DD</p>
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="existds" class="col-sm-2 col-md-3 control-label">Place Type: </label>
+                                    <div class="col-sm-10 col-md-9 form-inline">
+                                       <select name="type" id="type" class="input-medium form-control">
+                                          <option value="">- Select -</option>
+                                          <option value="building">building</option>
+                                          <option value="church">church</option>
+                                          <option value="diocese">diocese</option>
+                                          <option value="fortification">fortification</option>
+                                          <option value="island">island</option>
+                                          <option value="madrasa">madrasa</option>
+                                          <option value="monastery">monastery</option>
+                                          <option value="mosque">mosque</option>
+                                          <option value="mountain">mountain</option>
+                                          <option value="open-water">open-water</option>
+                                          <option value="parish">parish</option>
+                                          <option value="province">province</option>
+                                          <option value="quarter">quarter</option>
+                                          <option value="region">region</option>
+                                          <option value="river">river</option>
+                                          <option value="settlement">settlement</option>
+                                          <option value="state">state</option>
+                                          <option value="synagogue">synagogue</option>
+                                          <option value="temple">temple</option>
+                                          <option value="unknown">unknown</option></select>
+                                    </div>
+                                 </div>
+                                 <input type="hidden" id="series" name="series" value="The Syriac Gazetteer"/>
                               </div>
                            </div>
+                     <button type="submit" class="btn btn-info">Search</button>&nbsp;
+                     <button type="reset" class="btn">Clear</button><br class="clearfix"><br>
+                  </form>
+                  <hr/>
+                  <h3>Related Places Search</h3>
+                  <form id="related-places-form" class="form-horizontal" onsubmit="submitRelatedPlacesSearch(event)">
+                     <div class="form-group">
+                        <label for="placeInput" class="col-sm-2 control-label">Place:</label>
+                        <div class="col-sm-10">
+                           <input type="text" class="form-control" id="placeInput" placeholder="Enter Place Name or URI">
                         </div>
-                        <!-- Keyword -->
-                        <div class="form-group">
-                           <label for="q" class="col-sm-2 col-md-3  control-label">Keyword: </label>
-                           <div class="col-sm-10 col-md-9 ">
-                              <div class="input-group">
-                                 <input type="text" id="q" name="fullText" class="form-control keyboard ui-keyboard-input ui-widget-content ui-corner-all" aria-haspopup="true" role="textbox">
-                                 <div class="input-group-btn">
-                                    <span class="keyboard-menu">
-                                       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
-                                          &nbsp;<span class="syriaca-icon syriaca-keyboard">&nbsp; </span><span class="caret"></span></button>
-                                       <ul class="dropdown-menu">
-                                          <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="q">Syriac Phonetic</a></li>
-                                          <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="q">Syriac Standard</a></li>
-                                          <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="q">Arabic Mod. Standard</a></li>
-                                          <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="q">English QWERTY</a></li>
-                                       </ul></span></div>
-                              </div>
-                           </div>
-                        </div>
-                        
-                        <hr><!-- Attestations -->
-                        <div class="form-group">
-                           <label for="a" class="col-sm-2 col-md-3  control-label">Attestations: </label>
-                           <div class="col-sm-10 col-md-9 ">
-                              <div class="input-group">
-                                 <input type="text" id="attestations" name="attestations" class="form-control keyboard ui-keyboard-input ui-widget-content ui-corner-all" aria-haspopup="true" role="textbox">
-                                 <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
-                                    &nbsp;<span class="syriaca-icon syriaca-keyboard">&nbsp; </span><span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                       <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="a">Syriac Phonetic</a></li>
-                                       <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="a">Syriac Standard</a></li>
-                                       <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="a">Arabic Mod. Standard</a></li>
-                                       <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="a">English QWERTY</a></li>
-                                    </ul></span></div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label for="ads" class="col-sm-2 col-md-3  control-label">Dates: </label>
-                           <div class="col-sm-10 col-md-9 form-inline"><input type="text" id="attestationRangeStart" name="attestationRangeStart" placeholder="Start Date" class="form-control">&nbsp;
-                              <input type="text" id="attestationRangeEnd" name="attestationRangeEnd" placeholder="End Date" class="form-control">
-                              <p class="hint" style="margin:.5em; color: grey; font-style:italic;">* Dates should be entered as YYYY or YYYY-MM-DD</p>
-                           </div>
-                        </div>
-                        <hr><!-- Existence -->
-                        <div class="form-group"><label for="existds" class="col-sm-2 col-md-3 control-label">Existence Dates: </label>
-                           <div class="col-sm-10 col-md-9 form-inline">
-                              <input type="text" id="stateDatesStart" name="stateDatesStart" placeholder="Start Date" class="form-control">&nbsp;
-                              <input type="text" id="stateDatesEnd" name="stateDatesEnd" placeholder="End Date" class="form-control">
-                              <p class="hint" style="margin:.5em; color: grey; font-style:italic;">* Dates should be entered as YYYY or YYYY-MM-DD</p>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label for="existds" class="col-sm-2 col-md-3 control-label">Place Type: </label>
-                           <div class="col-sm-10 col-md-9 form-inline">
-                                 <select name="type" id="type" class="input-medium form-control">
-                                    <option value="">- Select -</option>
-                                    <option value="building">building</option>
-                                    <option value="church">church</option>
-                                    <option value="diocese">diocese</option>
-                                    <option value="fortification">fortification</option>
-                                    <option value="island">island</option>
-                                    <option value="madrasa">madrasa</option>
-                                    <option value="monastery">monastery</option>
-                                    <option value="mosque">mosque</option>
-                                    <option value="mountain">mountain</option>
-                                    <option value="open-water">open-water</option>
-                                    <option value="parish">parish</option>
-                                    <option value="province">province</option>
-                                    <option value="quarter">quarter</option>
-                                    <option value="region">region</option>
-                                    <option value="river">river</option>
-                                    <option value="settlement">settlement</option>
-                                    <option value="state">state</option>
-                                    <option value="synagogue">synagogue</option>
-                                    <option value="temple">temple</option>
-                                    <option value="unknown">unknown</option></select>
-                           </div>
-                        </div>
-
-                        <input type="hidden" id="series" name="series" value="The Syriac Gazetteer"/>
                      </div>
-                  </div>
+                     <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                           <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                     </div>
+                  </form>
                </div>
-               <div class="pull-right">
-                  <button type="submit" class="btn btn-info">Search</button>&nbsp;
-                  <button type="reset" class="btn">Clear</button></div><br class="clearfix"><br></div>
-         </form>
-         <div class="well well-small search-inner well-white" style="margin-top: 20px;">
-         <h4>Related Places Search</h4>
-      <form id="related-places-form" class="form-horizontal" onsubmit="submitRelatedPlacesSearch(event)">
-         <div class="form-group">
-            <label for="placeInput" class="col-sm-2 control-label">Place Name or URI:</label>
-            <div class="col-sm-10">
-               <input type="text" class="form-control" id="placeInput" placeholder="Enter Place Name or URI">
-            </div>
-         </div>
-         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-               <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-         </div>
-      </form>
-<div>
-   <div id="neptune-search-info"></div>
-   <div class="col-md-7 pull-right">
-      <div>
-         <ul id="neptune-search-pagination" class="pagination pull-right"></ul>
-      </div>
-   </div>
-   <div id="related-places-results" class="results"></div>
-</div>
-
-   </div>
-</div>
-      
-      <div>
-         <div class="main-content-block">
-            <button id="toggleSearchForm" class="btn btn-info" style="display: none;">Show Search</button>
-            <div class="container">
-               <div class="row alpha-pages">
-                  <div class="col-md-5">
-                     <div id="search-info"></div>
+               <div class="col-md-8">
+                  <h2>Search Results</h2>
+                  <div>
+                     <ul id="neptune-search-pagination" class="pagination pull-right"></ul>
                   </div>
-                  <div class="col-md-7" class="pull-right">
-                     <div id="pagination" class="pagination-container pull-right paging">
-                        <ul id="searchPagination" class="pagination pull-right"></ul>
-                     </div>      
-                  </div>
+                  <div id="neptune-search-info"></div>
+                  <div id="related-places-results" class="results"></div>
+                     <div class="container">
+                        <div class="row alpha-pages">
+                           <div class="col-md-5">
+                              <div id="search-info"></div>
+                           </div>
+                           <div class="col-md-7">
+                              <div id="pagination" class="pagination-container pull-right paging">
+                                 <ul id="searchPagination" class="pagination"></ul>
+                              </div>      
+                           </div>
+                        </div>
+                        <div id="search-results"></div>
+                     </div>
                </div>
-               <div id="search-results"></div>
             </div>
-         </div>
       </div>
-
       <script type="text/javascript" src="/resources/js/search.js"></script>
       <script type="text/javascript" src="/testHtml/neptune-search.js"></script>
       <script type="text/javascript">
