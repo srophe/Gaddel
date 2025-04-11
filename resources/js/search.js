@@ -165,7 +165,28 @@ function displayResults(data) {
                 names = nameArray.join(", ");
             }
             const nameString = names ? `<br/>Names: ${names}` : '';
-            const typeString = type ? ` (${type})` : '';
+            const birth = hit._source.birthDate || '';
+            const death = hit._source.deathDate || '';
+            const floruitStart = hit._source.floruitDatesStart || '';
+            const floruitEnd = hit._source.floruitDatesEnd || '';
+            
+            let dateInfo = '';
+            
+            if (birth || death || floruitStart || floruitEnd) {
+                const dates = [];
+                if (birth) dates.push(`Born: ${birth}`);
+                if (death) dates.push(`Died: ${death}`);
+                if (floruitStart || floruitEnd) {
+                    if (floruitStart && floruitEnd) {
+                        dates.push(`Floruit: ${floruitStart}–${floruitEnd}`);
+                    } else if (floruitStart) {
+                        dates.push(`Floruit from: ${floruitStart}`);
+                    } else if (floruitEnd) {
+                        dates.push(`Floruit until: ${floruitEnd}`);
+                    }
+                }
+                dateInfo = `<br/><strong>Dates:</strong> ${dates.join(', ')}`;
+            }
 
             const abstract = hit._source.abstract || '';
             const abstractString = abstract ? `<br/>${abstract}` : '';
@@ -185,6 +206,7 @@ function displayResults(data) {
                         <span class="tei-title title-analytic">${syriacTitle}</span> 
                     </a>
                     ${nameString}
+                    ${dateInfo}
                     <br/>URI: 
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
                         <span class="tei-title title-analytic">${url}</span>
@@ -196,6 +218,7 @@ function displayResults(data) {
                         <span class="tei-title title-analytic">${arabicTitle}</span> 
                     </a>
                     ${nameString}
+                    ${dateInfo}
                     <br/>URI: 
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
                         <span class="tei-title title-analytic">${url}</span>
@@ -208,6 +231,7 @@ function displayResults(data) {
                     </a>
                     ${abstractString}
                     ${nameString}
+                    ${dateInfo}
                     <br/>URI: 
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
                         <span class="tei-title title-analytic">${url}</span>
