@@ -52,8 +52,6 @@ const apiUrl = "https://50fnejdk87.execute-api.us-east-1.amazonaws.com/opensearc
 
 // Fetch results and update UI
 function fetchAndRenderAdvancedSearchResults() {
-    // if (state.isLoading) return; // Prevent duplicate requests
-    // state.isLoading = true;
 
     // Build query parameters from state
     const queryParams = new URLSearchParams(buildQueryParams());
@@ -61,6 +59,7 @@ function fetchAndRenderAdvancedSearchResults() {
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
         .then(response => response.json())
         .then(data => {
+            clearSearchResults(); // Clear previous search results
             state.totalResults = data.hits.total.value;
             displayResultsInfo(state.totalResults);
             if (state.series === 'Comprehensive Bibliography on Syriac Studies'){displayCBSSAuthorResults(data);}
@@ -83,6 +82,7 @@ function fetchAndRenderAdvancedSearchResults() {
 
 // Display search results
 function displayResults(data) {
+    clearSearchResults(); // Clear previous search results
     //Add series selector here for JoE display? 
     
     //Set displat for selected menu item
@@ -113,7 +113,6 @@ function displayResults(data) {
     
     const resultsContainer = document.getElementById("search-results");
     resultsContainer.innerHTML = ''; // Clear previous results
-    clearSearchResults(); // Clear previous search results
     if(document.getElementById("toggleSearchForm")){
         const toggleButton = document.getElementById("toggleSearchForm");
         const searchFormContainer = document.getElementById("advancedSearch");
@@ -305,13 +304,11 @@ function getPaginatedBrowse() {
 
 function displayResultsInfo(totalResults) {
     const browseInfoContainer = document.getElementById('search-info');
-    
     // Clear previous browse info and pagination
     browseInfoContainer.innerHTML = '';
 
     // Display total results count
     if (state.query != 'cbssSubject') {
-    
     browseInfoContainer.innerHTML = `
         <br/>
         <p>Total Results: ${totalResults}</p>
@@ -374,78 +371,12 @@ function initializeStateFromURL() {
     }
 }
 
-
-// function browseAlphaMenu() {
-//     const urlParams = new URLSearchParams(window.location.search);
-//     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
-
-//     // Define alphabets
-//     const alphabets = {
-//         en: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z',
-//         syr: 'ܐ ܒ ܓ ܕ ܗ ܘ ܙ ܚ ܛ ܝ ܟ ܠ ܡ ܢ ܣ ܥ ܦ ܨ ܩ ܪ ܫ ܬ',
-//         ar: 'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي'
-//     };
-
-//     // Select the appropriate alphabet for the current language
-//     const alphabet = alphabets[state.lang] || alphabets.en;
-//     // Set the default letter based on the language-- this is not yet necessary
-//     if (state.lang === 'syr') {
-//         state.letter =  'ܐ'; // Default to first Syriac letter
-//     } else if (state.lang === 'ar') {
-//         state.letter = 'ا'; // Default to first Arabic letter
-//     } else { state.letter = 'A'; } // Default to first English letter
-
-//     const menuContainer = document.getElementById('abcMenu');
-//     menuContainer.innerHTML = ''; // Clear previous menu
-
-//     // Set direction for right-to-left languages
-//     menuContainer.setAttribute('dir', ['syr', 'ar'].includes(state.lang) ? 'rtl' : 'ltr');
-
-//     alphabet.split(' ').forEach(letter => {
-//         const menuItem = document.createElement('li');
-//         menuItem.classList.add('ui-menu-item');
-//         menuItem.setAttribute('role', 'menuitem');
-
-//         const menuLink = document.createElement('a');
-//         menuLink.classList.add('ui-all');
-//         menuLink.textContent = letter;
-//         menuLink.href = `?searchType=letter&letter=${letter}&q=${encodeURIComponent(state.query)}&size=${state.size}&lang=${state.lang}`;
-
-      
-//         menuLink.addEventListener('click', (event) => {
-//             event.preventDefault(); 
-//             state.letter = letter; 
-//             state.from = 0; // Reset pagination
-//             state.currentPage = 1;
-
-//             const newUrlParams = new URLSearchParams({
-//                 searchType: 'letter',
-//                 q: state.query,
-//                 letter: state.letter, 
-//                 size: state.size,
-//                 lang: state.lang
-//             });
-
-//             window.history.pushState({}, '', `?${newUrlParams.toString()}`); // Update URL
-
-//             console.log("Updated Letter:", state.letter); 
-//             console.log("Updated URL:", window.location.href); 
-//             console.log("Series: ", state.query);
-//             console.log("Lang: ", state.lang);
-//             getBrowse(state.query, state.letter, state.lang);
-//         });
-
-//         menuItem.appendChild(menuLink);
-//         menuContainer.appendChild(menuItem);
-//     });
-// }
-
 function browseAlphaMenu() {
     const urlParams = new URLSearchParams(window.location.search);
     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
     
 
-    const engAlphabet = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z';
+    const engAlphabet = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #';
     const syrAlphabet = 'ܐ ܒ ܓ ܕ ܗ ܘ ܙ ܚ ܛ ܝ ܟ ܠ ܡ ܢ ܣ ܥ ܦ ܩ ܪ ܫ ܬ';
     const arAlphabet = 'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي';
 
@@ -631,6 +562,7 @@ function displayCBSSSubjectResults(data) {
     docResultsContainer.innerHTML = ''; // Clear previous results
     const submenuResultsContainer = document.getElementById("common-subject-menu");
     submenuResultsContainer.innerHTML = ''; // Clear previous results
+    // clearSearchResults(); // Clear previous search results
     // Ensure aggregation data is available
     console.log("Current Letter in State:", state.letter);
     const subjects = data.aggregations?.unique_subjects?.buckets || [];
