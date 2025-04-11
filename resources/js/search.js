@@ -165,10 +165,10 @@ function displayResults(data) {
                 names = nameArray.join(", ");
             }
             const nameString = names ? `<br/>Names: ${names}` : '';
-            const birth = hit._source.birthDate || '';
-            const death = hit._source.deathDate || '';
-            const floruitStart = hit._source.floruitDatesStart || '';
-            const floruitEnd = hit._source.floruitDatesEnd || '';
+            const birth = trimYear(hit._source.birthDate);
+            const death = trimYear(hit._source.deathDate);
+            const floruitStart = trimYear(hit._source.floruitDatesStart);
+            const floruitEnd = trimYear(hit._source.floruitDatesEnd);
             
             let dateInfo = '';
             
@@ -245,7 +245,11 @@ function displayResults(data) {
         resultsContainer.innerHTML = '<p>No results found.</p>';
     }
 }
-
+function trimYear(value) {
+    if (!value) return '';
+    const str = String(value);
+    return str.length > 4 ? str.slice(0, -4) : str; // Remove last 4 digits if present
+}
 // Reusable error handler
 function handleError(containerId, message) {
     const container = document.getElementById(containerId);
