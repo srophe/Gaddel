@@ -182,7 +182,7 @@ function displayResults(data) {
             if (state.lang === 'syr') {
                 resultItem.innerHTML = `
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                        <span class="tei-title title-analytic">${syriacTitle}</span> ${typeString}
+                        <span class="tei-title title-analytic">${syriacTitle}</span> 
                     </a>
                     ${nameString}
                     <br/>URI: 
@@ -193,7 +193,7 @@ function displayResults(data) {
             } else if (state.lang === 'ar') {
                 resultItem.innerHTML = `
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                        <span class="tei-title title-analytic">${arabicTitle}</span> ${typeString}
+                        <span class="tei-title title-analytic">${arabicTitle}</span> 
                     </a>
                     ${nameString}
                     <br/>URI: 
@@ -204,7 +204,7 @@ function displayResults(data) {
             } else {
                 resultItem.innerHTML = `
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                        <span class="tei-title title-analytic">${title}</span> ${typeString}
+                        <span class="tei-title title-analytic">${title}</span> 
                     </a>
                     ${abstractString}
                     ${nameString}
