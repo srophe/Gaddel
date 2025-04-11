@@ -50,24 +50,43 @@ const state = {
 // Base API URL
 const apiUrl = "https://50fnejdk87.execute-api.us-east-1.amazonaws.com/opensearch-api-test";
 
-// Fetch results and update UI
 function fetchAndRenderAdvancedSearchResults() {
-
-    // Build query parameters from state
     const queryParams = new URLSearchParams(buildQueryParams());
-    
+    const countQueryParams = new URLSearchParams(queryParams);
+    countQueryParams.set("searchType", "count");
+
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
         .then(response => response.json())
         .then(data => {
-            clearSearchResults(); // Clear previous search results
-            state.totalResults = data.hits.total.value;
-            displayResultsInfo(state.totalResults);
-            if (state.series === 'Comprehensive Bibliography on Syriac Studies'){displayCBSSAuthorResults(data);}
-            else {displayResults(data);}
+            clearSearchResults();
+
+            const defaultHitCount = data.hits?.total?.value || 0;
+
+            // If default results hit the 10k cap, get true count
+            if (defaultHitCount === 10000) {
+                fetch(`${apiUrl}?${countQueryParams.toString()}`, { method: 'GET' })
+                    .then(countResponse => countResponse.json())
+                    .then(countData => {
+                        state.totalResults = countData.count || 10000;
+                        displayResultsInfo(state.totalResults);
+                        displayResultsBasedOnSeries(data);
+                    })
+                    .catch(error => {
+                        console.warn("Count query failed, falling back to capped result count.");
+                        state.totalResults = defaultHitCount;
+                        displayResultsInfo(state.totalResults);
+                        displayResultsBasedOnSeries(data);
+                    });
+            } else {
+                // Use default count if under 10k
+                state.totalResults = defaultHitCount;
+                displayResultsInfo(state.totalResults);
+                displayResultsBasedOnSeries(data);
+            }
+
             if (state.totalResults > state.size) {
                 renderPagination(state.totalResults, state.size, state.currentPage, changePage);
             }
-            
         })
         .catch(error => {
             handleError('search-results', 'Error fetching search results.');
@@ -76,7 +95,14 @@ function fetchAndRenderAdvancedSearchResults() {
 
     state.isLoading = false;
     window.history.pushState({}, '', `?${queryParams.toString()}`);
+}
 
+function displayResultsBasedOnSeries(data) {
+    if (state.series === 'Comprehensive Bibliography on Syriac Studies') {
+        displayCBSSAuthorResults(data);
+    } else {
+        displayResults(data);
+    }
 }
 
 
@@ -189,7 +215,7 @@ function displayResults(data) {
                 </a>
                 `;
             }
-            if(state.lang === 'ar'){
+            else if(state.lang === 'ar'){
                 resultItem.innerHTML = `
                 <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
                     <span class="tei-title title-analytic">${arabicTitle}</span> ${typeString}
@@ -425,11 +451,6 @@ function browseAlphaMenu() {
                 lang: state.lang
             });
             window.history.pushState({}, '', `?${newUrlParams.toString()}`); // Update URL
-
-            console.log("Updated Letter:", state.letter); 
-            console.log("Updated URL:", window.location.href); 
-            console.log("Series: ", state.query);
-            console.log("Lang: ", state.lang);
             getBrowse(state.query); // Trigger browse function
         });
 
@@ -528,7 +549,7 @@ function getCBSSBrowse() {
     state.from = 0; // Reset for the first page
     state.letter = state.letter || 'a'; // Default letter if not already set
     state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
-    state.searchType = state.searchType || 'browse'; // Set search type to 'browse'
+    state.searchType = state.searchType || 'browse'; // Set default search type to 'browse'
     state.query = state.query || 'cbssAuthor'; // Set query to 'cbssAuthor' by default
     const queryParams = new URLSearchParams({
         searchType: state.searchType,
