@@ -1221,7 +1221,12 @@ function buildQueryParams() {
         cbssPubRangeEnd: state.cbssPubDateEnd,
         publisher: state.publisher,
         cbssPubPlace: state.pubPlace,
-        subject: state.cbssSubject,
+        subject: state.cbssSubject
+            ? state.cbssSubject
+                .split(',')
+                .map(s => s.trim().toLowerCase())
+                .join(', ')
+            : '',
         keyword: state.keyword,
         //idno types
         BHO: state.BHO,
