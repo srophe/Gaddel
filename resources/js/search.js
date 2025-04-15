@@ -515,7 +515,7 @@ function browseCbssAlphaMenu() {
     // } else if (state.lang === 'gr') {
     //     state.letter = 'Α'; // Default to first Greek letter
     // } else { state.letter = 'A'; } // Default to first English letter
-    state.letter = 'A';
+    if (state.lang === 'rus' || state.lang === 'en') {state.letter = 'A';} else {state.letter = '';}
     // Create the menu container
     const menuContainer = document.getElementById('abcMenu');
     menuContainer.innerHTML = ''; // Clear previous menu
