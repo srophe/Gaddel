@@ -154,8 +154,8 @@ function displayResults(data) {
             resultItem.classList.add("result-item");
             resultItem.style.marginBottom = "15px";
 
-            const title = hit._source.title || 'No Title';
-            const syriacTitle = hit._source.titleSyriac || 'No Syriac Title';
+            const title = hit._source.displayTitleEnglish || 'No Title';
+            const syriacTitle = hit._source.displayTitleSyriac || 'No Syriac Title';
             const arabicTitle = hit._source.titleArabic || 'No Arabic Title';
             const type = hit._source.type || '';
 
