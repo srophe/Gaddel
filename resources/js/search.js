@@ -154,10 +154,14 @@ function displayResults(data) {
             resultItem.classList.add("result-item");
             resultItem.style.marginBottom = "15px";
 
-            const title = hit._source.displayTitleEnglish || 'No Title';
-            const syriacTitle = hit._source.displayTitleSyriac || 'No Syriac Title';
+            const displayTitle = hit._source.displayTitleEnglish || '';
+            const syriacTitle = hit._source.displayTitleSyriac || '';
             const arabicTitle = hit._source.titleArabic || 'No Arabic Title';
             const type = hit._source.type || '';
+
+            const title = dsyriacTitle && syriacTitle.trim() !== ''
+              ? `${displayTitle} - ${syriacTitle}`
+              : displayTitle;
 
             let names = '';
             if (hit._source.placeName || hit._source.persName) {
