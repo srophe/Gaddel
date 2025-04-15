@@ -159,7 +159,7 @@ function displayResults(data) {
             const arabicTitle = hit._source.titleArabic || 'No Arabic Title';
             const type = hit._source.type || '';
 
-            const title = dsyriacTitle && syriacTitle.trim() !== ''
+            const title = syriacTitle && syriacTitle.trim() !== ''
               ? `${displayTitle} - ${syriacTitle}`
               : displayTitle;
 
