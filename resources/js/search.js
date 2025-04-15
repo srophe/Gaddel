@@ -158,7 +158,11 @@ function displayResults(data) {
             const syriacTitle = hit._source.displayTitleSyriac || '';
             const arabicTitle = hit._source.titleArabic || 'No Arabic Title';
             const type = hit._source.type || '';
-
+            if(hit._source.placeName){
+                var typeString = type ? ` (${type}) `: '';
+            } else {
+                typeString = '';
+            }
             const title = syriacTitle && syriacTitle.trim() !== ''
               ? `${displayTitle} - ${syriacTitle}`
               : displayTitle;
@@ -207,19 +211,19 @@ function displayResults(data) {
             if (state.lang === 'syr') {
                 resultItem.innerHTML = `
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                        <span class="tei-title title-analytic">${syriacTitle}</span> 
+                        <span class="tei-title title-analytic">${syriacTitle}</span> ${typeString}
                     </a>
                     ${nameString}
                     ${dateInfo}
                     <br/>URI: 
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                        <span class="tei-title title-analytic">${url}</span>
+                        <span class="tei-title title-analytic">${url}</span> 
                     </a>
                 `;
             } else if (state.lang === 'ar') {
                 resultItem.innerHTML = `
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                        <span class="tei-title title-analytic">${arabicTitle}</span> 
+                        <span class="tei-title title-analytic">${arabicTitle}</span> ${typeString}
                     </a>
                     ${nameString}
                     ${dateInfo}
@@ -231,7 +235,7 @@ function displayResults(data) {
             } else {
                 resultItem.innerHTML = `
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                        <span class="tei-title title-analytic">${title}</span> 
+                        <span class="tei-title title-analytic">${title}</span> ${typeString}
                     </a>
                     ${abstractString}
                     ${nameString}
