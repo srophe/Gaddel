@@ -356,6 +356,9 @@ function displayResultsInfo(totalResults) {
         <p>Total Results: ${totalResults}</p>
     `;
     }
+    if (!state.letter && state.lang !== 'en' && state.lang !== 'rus') {
+    browseInfoContainer.innerHTML += `<p>Showing all ${state.lang.toUpperCase()} entries</p>`;
+    }
     const paginationContainer = document.getElementById('searchPagination');
     paginationContainer.innerHTML = '';
     if (totalResults > state.size && state.query === 'cbssAuthor' || (totalResults > state.size && state.query != 'cbssSubject')) {
@@ -485,6 +488,7 @@ function browseCbssAlphaMenu() {
     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
     // state.searchType = urlParams.get('searchType') || 'browse'; // Retrieve searchType from the URL
     state.searchType = 'browse'; // Do not Retrieve searchType from the URL, set as browse
+    state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
 
     state.query = urlParams.get('q') || 'cbssAuthor'; // Retrieve query from the URL
     const alphabets = {
@@ -499,21 +503,19 @@ function browseCbssAlphaMenu() {
 
     // Select the appropriate alphabet for the current language
     const alphabet = alphabets[state.lang] || alphabets.en;
-    // Set the default letter based on the language-- this is not yet necessary
-    if (state.lang === 'syr') {
-        state.letter =  'ܐ'; // Default to first Syriac letter
-    } else if (state.lang === 'ar') {
-        state.letter = 'ا'; // Default to first Arabic letter
-    } else if (state.lang === 'he') {
-        state.letter = 'א'; // Default to first Hebrew letter
-    } else if (state.lang === 'arm') {
-        state.letter = 'Ա'; // Default to first Armenian letter
-    } else if (state.lang === 'gr') {
-        state.letter = 'Α'; // Default to first Greek letter
-    } else if (state.lang === 'rus') {
-        state.letter = 'А'; // Default to first Russian letter
-    } else { state.letter = 'A'; } // Default to first English letter
-
+    // Set the default letter based on the language-- this is not yet necessary -- eliminate for now
+    // if (state.lang === 'syr') {
+    //     state.letter =  'ܐ'; // Default to first Syriac letter
+    // } else if (state.lang === 'ar') {
+    //     state.letter = 'ا'; // Default to first Arabic letter
+    // } else if (state.lang === 'he') {
+    //     state.letter = 'א'; // Default to first Hebrew letter
+    // } else if (state.lang === 'arm') {
+    //     state.letter = 'Ա'; // Default to first Armenian letter
+    // } else if (state.lang === 'gr') {
+    //     state.letter = 'Α'; // Default to first Greek letter
+    // } else { state.letter = 'A'; } // Default to first English letter
+    state.letter = 'A';
     // Create the menu container
     const menuContainer = document.getElementById('abcMenu');
     menuContainer.innerHTML = ''; // Clear previous menu
@@ -545,10 +547,12 @@ function browseCbssAlphaMenu() {
             const newUrlParams = new URLSearchParams({
                 searchType: 'browse',
                 q: state.query,
-                letter: state.letter, 
                 size: state.size,
                 lang: state.lang
             });
+            if (state.letter) {
+                queryParams.set('letter', state.letter);
+            }
 
             window.history.pushState({}, '', `?${newUrlParams.toString()}`); // Update URL
 
@@ -566,21 +570,25 @@ function browseCbssAlphaMenu() {
 
 function getCBSSBrowse() {
     // Set state for CBSS browse
-    //initializeStateFromURL();
     state.from = 0; // Reset for the first page
     state.letter = state.letter || 'a'; // Default letter if not already set
     state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
     state.searchType = state.searchType || 'browse'; // Set search type to 'browse'
     state.query = state.query || 'cbssAuthor'; // Set query to 'cbssAuthor' by default
+    
+    //set query parameters for url and search
     const queryParams = new URLSearchParams({
-        searchType: state.searchType,
-        q: state.query,
-        letter: state.letter,
-        from: state.from,
-        size: state.size,
-        lang: state.lang,
-        series: state.series
+    searchType: state.searchType,
+    q: state.query,
+    from: state.from,
+    size: state.size,
+    lang: state.lang,
+    series: state.series
     });
+
+    if (state.letter) {
+        queryParams.set('letter', state.letter);
+    }
     window.history.pushState({}, '', `?${queryParams.toString()}`);
 
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
