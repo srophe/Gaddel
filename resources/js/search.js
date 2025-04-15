@@ -135,8 +135,8 @@ function displayResults(data) {
         });
     } else {
         // Optional: Hide or disable the alphabet menu if < 100 results
-        const abcMenu = document.getElementById('abcMenu');
-        if (abcMenu) abcMenu.style.display = 'none';
+        // const abcMenu = document.getElementById('abcMenu');
+        // if (abcMenu) abcMenu.style.display = 'none';
     }
 
     if (document.getElementById("toggleSearchForm")) {
