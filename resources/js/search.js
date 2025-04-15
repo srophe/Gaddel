@@ -551,7 +551,7 @@ function browseCbssAlphaMenu() {
                 lang: state.lang
             });
             if (state.letter) {
-                queryParams.set('letter', state.letter);
+                newUrlParams.set('letter', state.letter);
             }
 
             window.history.pushState({}, '', `?${newUrlParams.toString()}`); // Update URL
