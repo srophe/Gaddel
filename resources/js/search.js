@@ -1255,22 +1255,24 @@ function buildQueryParams() {
 }
 //NavBar
 document.querySelector(".navbar-form").addEventListener("submit", (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
+    event.preventDefault();
 
-    // Reset state variables to ensure a clean slate
-    resetState();
-
-    // Get form values
     const form = event.target;
     const formData = new FormData(form);
-    // Map form inputs to state variables
-    state.keyword = formData.get('q') || formData.get('fullText')||formData.get('keyword')||'';
-    state.series = formData.get('series') || ''; // 
+    const keyword = formData.get('q') || formData.get('fullText') || formData.get('keyword') || '';
+    const series = formData.get('series') || '';
+    const lang = state.lang || 'en'; // Default language if not already in state
 
-    // Call your search function
-    fetchAndRenderAdvancedSearchResults();
+    // Build URL to redirect to search.html with query parameters
+    const queryParams = new URLSearchParams({
+        keyword: keyword,
+        series: series,
+        lang: lang
+    });
+
+    // Redirect to search.html with the params
+    window.location.href = `/search.html?${queryParams.toString()}`;
 });
-
 
 // Helper function to reset the state to its default values
 function resetState() {
