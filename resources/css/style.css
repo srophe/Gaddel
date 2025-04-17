@@ -536,8 +536,18 @@ pre {
     margin-right: 1em;
     padding-right: 2em;
   }
+.header {margin-top:3em; color:white; padding-left:2em;}  
 /* Special styles for small screens */
+@media only screen and (max-width: 1500px) {
+    .header {margin-top:4em;}
+}
+@media only screen and (max-width: 991px) and (min-width: 769px){
+ /* CSS that should be displayed if width is equal to or less than 991px and larger 
+  than 768px goes here */
+  .header {margin-top:5em;}
+}
 @media screen and (max-width: 480px) {
+.header {margin-top:5em;}
 .navbar-collapse, .dropdown-menu {float:none; width:100% !important;}
 .navbar-nav li {width:100% !important; float:none;}
 .mobile-submenu {
