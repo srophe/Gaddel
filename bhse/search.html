@@ -270,148 +270,145 @@
                 </ul>
             </div>
         </nav>
-         <h1 style="padding-left:1em; color:white; margin-top:3em;">Advanced Search</h1>
-        <div>
-           <form method="get" action="search.html" class="form-horizontal search" role="form" id="advancedSearch">
-              <div class="well well-small">
-                 <div class="well well-small search-inner well-white">
-                    <div class="form-group">
-                       <label for="title" class="col-sm-2 col-md-3  control-label">Title: </label>
-                       <div class="col-sm-10 col-md-6">
-                          <div class="input-group">
-                             <input type="text" id="title" name="title" class="form-control keyboard" placeholder="English, French, Syriac"/>
-                             <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
-                                <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>                                
-                                <ul class="dropdown-menu">
-                                   <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="title">Syriac Phonetic</a></li>
-                                   <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="title">Syriac Standard</a></li>
-                                   <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="title">Arabic Mod. Standard</a></li>
-                                   <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="title">English QWERTY</a></li>
-                                </ul></span></div>
-                          </div>       
-                       </div>
+        <h1 class="header">Advanced Search</h1>
+        <div class="container" style="margin:0;padding:0; width: 100%; background-color:white;">
+            <div class="row">
+                <div class="col-md-4">
+                    <form method="get" action="search.html" class="form-horizontal search" role="form" id="advancedSearch">
+                                <div class="form-group">
+                                    <label for="title" class="col-sm-2 col-md-3  control-label">Title: </label>
+                                    <div class="col-sm-10 col-md-9">
+                                        <div class="input-group">
+                                            <input type="text" id="title" name="title" class="form-control keyboard" placeholder="English, French, Syriac"/>
+                                            <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
+                                                <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>                                
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="title">Syriac Phonetic</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="title">Syriac Standard</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="title">Arabic Mod. Standard</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="title">English QWERTY</a></li>
+                                                </ul></span></div>
+                                        </div>       
+                                    </div>
+                                </div>
+                                <div class="form-group"><label for="title" class="col-sm-2 col-md-3  control-label">Author: </label>
+                                    <div class="col-sm-10 col-md-9">
+                                        <div class="input-group">
+                                            <input type="text" id="author" name="author" class="form-control keyboard" placeholder="English, French, Syriac"/>
+                                            <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
+                                                <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="author">Syriac Phonetic</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="author">Syriac Standard</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="author">Arabic Mod. Standard</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="author">English QWERTY</a></li>
+                                                </ul>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <!-- Keyword -->
+                                <div class="form-group">
+                                    <label for="q" class="col-sm-2 col-md-3  control-label">Keyword: </label>
+                                    <div class="col-sm-10 col-md-9">
+                                        <div class="input-group">
+                                            <input type="text" id="qs" name="fullText" class="form-control keyboard" placeholder="English, French, Syriac"/>
+                                            <div class="input-group-btn">
+                                                <span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
+                                                    <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="qs">Syriac Phonetic</a></li>
+                                                        <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="qs">Syriac Standard</a></li>
+                                                        <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="qs">Arabic Mod. Standard</a></li>
+                                                        <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="qs">English QWERTY</a></li>
+                                                    </ul></span></div>    
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prologue" class="col-sm-2 col-md-3  control-label">Prologue: </label>
+                                    <div class="col-sm-10 col-md-9">
+                                        <div class="input-group">
+                                            <input type="text" id="prologue" name="prologue" class="form-control keyboard" placeholder="French, Syriac"/>
+                                            <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
+                                                <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>                                
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="prologue">Syriac Phonetic</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="prologue">Syriac Standard</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="prologue">Arabic Mod. Standard</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="prologue">English QWERTY</a></li>
+                                                </ul></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="incipit" class="col-sm-2 col-md-3  control-label">Incipit: </label>
+                                    <div class="col-sm-10 col-md-9">
+                                        <div class="input-group">
+                                            <input type="text" id="incipit" name="incipit" class="form-control keyboard" placeholder="French, Syriac"/>
+                                            <div class="input-group-btn">
+                                                <span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
+                                                    <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>                                
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="incipit">Syriac Phonetic</a></li>
+                                                        <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="incipit">Syriac Standard</a></li>
+                                                        <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="incipit">Arabic Mod. Standard</a></li>
+                                                        <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="incipit">English QWERTY</a></li>
+                                                    </ul></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="explicit" class="col-sm-2 col-md-3  control-label">Explicit: </label>
+                                    <div class="col-sm-10 col-md-9">
+                                        <div class="input-group">
+                                            <input type="text" id="explicit" name="explicit" class="form-control keyboard" placeholder="French, Syriac"/>
+                                            <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
+                                                <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>                                
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="explicit">Syriac Phonetic</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="explicit">Syriac Standard</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="explicit">Arabic Mod. Standard</a></li>
+                                                    <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="explicit">English QWERTY</a></li>
+                                                </ul></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="idno" class="col-sm-2 col-md-3  control-label">Text Id Number: </label>
+                                    <div class="col-sm-4 col-md-2 "><input type="text" id="idnoText" name="idnoText" class="form-control" placeholder="Ex: 3490"/></div>
+                                    <div class="col-sm-6 col-md-5 ">
+                                        <label class="checkbox-inline"><input type="radio" name="idnoType" value="BHO" aria-label="BHO" checked="checked"/> BHO</label>
+                                        <label class="checkbox-inline"><input type="radio" name="idnoType" value="BHS" aria-label="BHS"/> BHS</label>
+                                        <label class="checkbox-inline"><input type="radio" name="idnoType" value="CPG" aria-label="CPG"/> CPG</label>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="series" name="series" value="New Handbook of Syriac Literature"/>
+                                <button type="submit" class="btn btn-info">Search</button> 
+                                <button type="reset" class="btn">Clear</button>
+                    </form>
+                </div>
+                <div class="col-md-8">
+                    <h2>Search Results</h2>
+                    <div class="container">
+                        <div class="row alpha-pages">
+                            <div class="col-md-5">
+                                <div id="search-info"></div>
+                            </div>
+                            <div class="col-md-7">
+                                <div id="pagination" class="pagination-container pull-right paging">
+                                    <ul id="searchPagination" class="pagination pull-right"></ul>
+                                </div>      
+                            </div>
+                        </div>
+                        <div id="search-results"></div>
                     </div>
-                    <div class="form-group"><label for="title" class="col-sm-2 col-md-3  control-label">Author: </label>
-                       <div class="col-sm-10 col-md-6">
-                          <div class="input-group">
-                             <input type="text" id="author" name="author" class="form-control keyboard" placeholder="English, French, Syriac"/>
-                             <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
-                                <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                   <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="author">Syriac Phonetic</a></li>
-                                   <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="author">Syriac Standard</a></li>
-                                   <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="author">Arabic Mod. Standard</a></li>
-                                   <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="author">English QWERTY</a></li>
-                                </ul>
-                             </span>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                    <hr/>
-                     <!-- Keyword -->
-                     <div class="form-group">
-                         <label for="q" class="col-sm-2 col-md-3  control-label">Keyword: </label>
-                         <div class="col-sm-10 col-md-6">
-                             <div class="input-group">
-                                 <input type="text" id="qs" name="fullText" class="form-control keyboard" placeholder="English, French, Syriac"/>
-                                 <div class="input-group-btn">
-                                     <span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
-                                         <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>
-                                         <ul class="dropdown-menu">
-                                             <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="qs">Syriac Phonetic</a></li>
-                                             <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="qs">Syriac Standard</a></li>
-                                             <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="qs">Arabic Mod. Standard</a></li>
-                                             <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="qs">English QWERTY</a></li>
-                                         </ul></span></div>    
-                             </div>
-                         </div>
-                     </div>
-                    <div class="form-group">
-                       <label for="prologue" class="col-sm-2 col-md-3  control-label">Prologue: </label>
-                       <div class="col-sm-10 col-md-6">
-                          <div class="input-group">
-                             <input type="text" id="prologue" name="prologue" class="form-control keyboard" placeholder="French, Syriac"/>
-                             <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
-                                <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>                                
-                                <ul class="dropdown-menu">
-                                   <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="prologue">Syriac Phonetic</a></li>
-                                   <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="prologue">Syriac Standard</a></li>
-                                   <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="prologue">Arabic Mod. Standard</a></li>
-                                   <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="prologue">English QWERTY</a></li>
-                                </ul></span></div>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="form-group">
-                       <label for="incipit" class="col-sm-2 col-md-3  control-label">Incipit: </label>
-                       <div class="col-sm-10 col-md-6">
-                          <div class="input-group">
-                             <input type="text" id="incipit" name="incipit" class="form-control keyboard" placeholder="French, Syriac"/>
-                             <div class="input-group-btn">
-                                <span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
-                                <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>                                
-                                <ul class="dropdown-menu">
-                                   <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="incipit">Syriac Phonetic</a></li>
-                                   <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="incipit">Syriac Standard</a></li>
-                                   <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="incipit">Arabic Mod. Standard</a></li>
-                                   <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="incipit">English QWERTY</a></li>
-                                </ul></span></div>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="form-group">
-                       <label for="explicit" class="col-sm-2 col-md-3  control-label">Explicit: </label>
-                       <div class="col-sm-10 col-md-6">
-                          <div class="input-group">
-                             <input type="text" id="explicit" name="explicit" class="form-control keyboard" placeholder="French, Syriac"/>
-                             <div class="input-group-btn"><span class="keyboard-menu"><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">
-                                <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span></button>                                
-                                <ul class="dropdown-menu">
-                                   <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="explicit">Syriac Phonetic</a></li>
-                                   <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="explicit">Syriac Standard</a></li>
-                                   <li><a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="explicit">Arabic Mod. Standard</a></li>
-                                   <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="explicit">English QWERTY</a></li>
-                                </ul></span></div>
-                          </div>
-                       </div>
-                    </div>
-                    <hr/>
-                    <div class="form-group">
-                       <label for="idno" class="col-sm-2 col-md-3  control-label">Text Id Number: </label>
-                       <div class="col-sm-4 col-md-2 "><input type="text" id="idnoText" name="idnoText" class="form-control" placeholder="Ex: 3490"/></div>
-                       <div class="col-sm-6 col-md-5 ">
-                           <label class="checkbox-inline"><input type="radio" name="idnoType" value="BHO" aria-label="BHO" checked="checked"/> BHO</label>
-                           <label class="checkbox-inline"><input type="radio" name="idnoType" value="BHS" aria-label="BHS"/> BHS</label>
-                           <label class="checkbox-inline"><input type="radio" name="idnoType" value="CPG" aria-label="CPG"/> CPG</label>
-                       </div>
-                    </div>
-                    <input type="hidden" id="series" name="series" value="New Handbook of Syriac Literature"/>
-                 </div>   
-                 <div class="pull-right">
-                    <button type="submit" class="btn btn-info">Search</button> 
-                    <button type="reset" class="btn">Clear</button>
-                 </div>
-                  <br class="clearfix"><br/>
-              </div>  
-           </form>
+                </div>
+            </div>
         </div>
-       <div class="main-content-block">   
-         <button id="toggleSearchForm" class="btn btn-info" style="display: none;">Show Search</button>
-          <div class="container">
-             <div class="row alpha-pages">
-                <div class="col-md-5">
-                   <div id="search-info"></div>
-                </div>
-                <div class="col-md-7" class="pull-right">
-                   <div id="pagination" class="pagination-container pull-right paging">
-                      <ul id="searchPagination" class="pagination pull-right"></ul>
-                   </div>      
-                </div>
-             </div>
-             <div id="search-results"></div>
-          </div>
-       </div>
        <script type="text/javascript" src="/resources/js/search.js"></script>
        <script type="text/javascript">
          $(document).ready(function () {

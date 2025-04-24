@@ -321,9 +321,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:if test="$field != ''">
-            <string key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">
-                <xsl:value-of select="normalize-space($field)"/>
-            </string>    
+            <string key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">&lt;span lang="syr" dir="rtl"&gt;<xsl:value-of select="normalize-space($field)"/>&lt;/span&gt;</string>    
         </xsl:if>
     </xsl:template>
     <xsl:template match="*:fields[@function = 'series']">
@@ -564,7 +562,10 @@
         <xsl:if test="$doc/descendant::tei:relation[@ref='dc:subject']/tei:desc[. != '']">
             <array key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">      
                 <xsl:for-each select="$doc/descendant::tei:relation[@ref='dc:subject']/tei:desc[. != '']">
-                    <string xmlns="http://www.w3.org/2005/xpath-functions"><xsl:value-of select="normalize-space(string-join(.,' '))"/></string>
+                    <string xmlns="http://www.w3.org/2005/xpath-functions">
+                        <!--<xsl:value-of select="normalize-space(string-join(.,' '))"/>-->
+                        <xsl:apply-templates select="." mode="xmlLang"/>
+                    </string>
                 </xsl:for-each>
             </array>
         </xsl:if>
@@ -633,7 +634,10 @@
             <xsl:if test="$doc/descendant::tei:body/tei:listPerson/tei:person/tei:persName or $doc/descendant::tei:body/tei:listPerson/tei:personGrp/tei:persName">
                 <array key="{.}" xmlns="http://www.w3.org/2005/xpath-functions"> 
                     <xsl:for-each-group select="$doc/descendant::tei:body/tei:listPerson/tei:person/tei:persName[descendant-or-self::text() != ''] | $doc/descendant::tei:body/tei:listPerson/tei:personGrp/tei:persName[descendant-or-self::text() != '']" group-by=".">
-                        <string xmlns="http://www.w3.org/2005/xpath-functions"><xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/></string>
+                        <string xmlns="http://www.w3.org/2005/xpath-functions">
+                            <!--<xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/>-->
+                            <xsl:apply-templates select="." mode="xmlLang"/>
+                        </string>
                     </xsl:for-each-group>
                 </array>
             </xsl:if>
@@ -646,7 +650,10 @@
             <xsl:if test="$doc/descendant::tei:body/tei:listPlace/tei:place/tei:placeName">
             <array key="{.}" xmlns="http://www.w3.org/2005/xpath-functions"> 
                 <xsl:for-each-group select="$doc/descendant::tei:body/tei:listPlace/tei:place/tei:placeName[descendant-or-self::text() != '']" group-by=".">
-                    <string xmlns="http://www.w3.org/2005/xpath-functions"><xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/></string>
+                    <string xmlns="http://www.w3.org/2005/xpath-functions">
+                        <!--<xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/>-->
+                        <xsl:apply-templates select="." mode="xmlLang"/>
+                    </string>
                 </xsl:for-each-group>
             </array>
         </xsl:if>
@@ -657,7 +664,10 @@
         <xsl:if test="$doc/descendant::tei:body/descendant::tei:location">
             <array key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">      
                 <xsl:for-each-group select="$doc/descendant::tei:body/descendant::tei:location" group-by=".">
-                    <string xmlns="http://www.w3.org/2005/xpath-functions"><xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/></string>
+                    <string xmlns="http://www.w3.org/2005/xpath-functions">
+                        <!--<xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/>-->
+                        <xsl:apply-templates select="." mode="xmlLang"/>
+                    </string>
                 </xsl:for-each-group>
             </array>
         </xsl:if>
@@ -669,7 +679,10 @@
             <xsl:if test="$doc/descendant::tei:body/descendant::tei:event[@type != 'attestation']">
                 <array key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">      
                     <xsl:for-each select="$doc/descendant::tei:body/descendant::tei:event[@type != 'attestation']">
-                        <string xmlns="http://www.w3.org/2005/xpath-functions"><xsl:value-of select="normalize-space(string-join(.,' '))"/></string>
+                        <string xmlns="http://www.w3.org/2005/xpath-functions">
+                            <!--<xsl:value-of select="normalize-space(string-join(.,' '))"/>-->
+                            <xsl:apply-templates select="." mode="xmlLang"/>
+                        </string>
                     </xsl:for-each>
                 </array>
             </xsl:if>
@@ -682,7 +695,10 @@
             <xsl:if test="$doc/descendant::tei:body/descendant::tei:event[@type = 'attestation']">
                 <array key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">      
                     <xsl:for-each select="$doc/descendant::tei:body/descendant::tei:event[@type = 'attestation']">
-                        <string xmlns="http://www.w3.org/2005/xpath-functions"><xsl:value-of select="normalize-space(string-join(.,' '))"/></string>
+                        <string xmlns="http://www.w3.org/2005/xpath-functions">
+                            <!--<xsl:value-of select="normalize-space(string-join(.,' '))"/>-->
+                            <xsl:apply-templates select="." mode="xmlLang"/>
+                        </string>
                     </xsl:for-each>
                 </array>
             </xsl:if>
@@ -695,7 +711,10 @@
             <xsl:if test="$doc/descendant::tei:body/descendant::tei:state[@type = 'confession']">
                 <array key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">      
                     <xsl:for-each select="$doc/descendant::tei:body/descendant::tei:state[@type = 'confession']">
-                        <string xmlns="http://www.w3.org/2005/xpath-functions"><xsl:value-of select="normalize-space(string-join(.,' '))"/></string>
+                        <string xmlns="http://www.w3.org/2005/xpath-functions">
+                            <!--<xsl:value-of select="normalize-space(string-join(.,' '))"/>-->
+                            <xsl:apply-templates select="." mode="xmlLang"/>
+                        </string>
                     </xsl:for-each>
                 </array>
             </xsl:if>
@@ -810,7 +829,10 @@
         <xsl:if test="$doc/descendant::tei:body/descendant::tei:bibl/tei:note[@type='prologue']">
             <array key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">     
                 <xsl:for-each select="$doc/descendant::tei:body/descendant::tei:bibl/tei:note[@type='prologue']">
-                    <string xmlns="http://www.w3.org/2005/xpath-functions"><xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/></string>
+                    <string xmlns="http://www.w3.org/2005/xpath-functions">
+                        <!--<xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/>-->
+                        <xsl:apply-templates select="." mode="xmlLang"/>
+                    </string>
                 </xsl:for-each>
             </array>
         </xsl:if>
@@ -823,7 +845,10 @@
         <xsl:if test="$doc/descendant::tei:body/descendant::tei:bibl/tei:note[@type='incipit']">
             <array key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">     
                 <xsl:for-each select="$doc/descendant::tei:body/descendant::tei:bibl/tei:note[@type='incipit']">
-                    <string xmlns="http://www.w3.org/2005/xpath-functions"><xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/></string>
+                    <string xmlns="http://www.w3.org/2005/xpath-functions">
+                        <!--<xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/>-->
+                        <xsl:apply-templates select="." mode="xmlLang"/>
+                    </string>
                 </xsl:for-each>
             </array>
         </xsl:if>
@@ -836,7 +861,10 @@
         <xsl:if test="$doc/descendant::tei:body/descendant::tei:bibl/tei:note[@type='explicit']">
             <array key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">     
                 <xsl:for-each select="$doc/descendant::tei:body/descendant::tei:bibl/tei:note[@type='explicit']">
-                    <string xmlns="http://www.w3.org/2005/xpath-functions"><xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/></string>
+                    <string xmlns="http://www.w3.org/2005/xpath-functions">
+                        <!--<xsl:value-of select="normalize-space(string-join(descendant-or-self::text(),' '))"/>-->
+                        <xsl:apply-templates select="." mode="xmlLang"/>
+                    </string>
                 </xsl:for-each>
             </array>
         </xsl:if>
@@ -948,12 +976,14 @@
         <xsl:choose>
             <xsl:when test="$doc/descendant::*[starts-with(@xml:id,'abstract')]">
                 <string key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">
-                    <xsl:value-of select="normalize-space(string-join($doc/descendant::*[starts-with(@xml:id,'abstract')],' '))"/>
+                    <!--<xsl:value-of select="normalize-space(string-join($doc/descendant::*[starts-with(@xml:id,'abstract')],' '))"/>-->
+                    <xsl:apply-templates select="$doc/descendant::*[starts-with(@xml:id,'abstract')]" mode="xmlLang"/>
                 </string>  
             </xsl:when>
             <xsl:when test="$doc/descendant::*[@type='abstract']">
                 <string key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">
-                    <xsl:value-of select="normalize-space(string-join($doc/descendant::*[@type='abstract'],' '))"/>
+                    <!--<xsl:value-of select="normalize-space(string-join($doc/descendant::*[@type='abstract'],' '))"/>-->
+                    <xsl:apply-templates select="$doc/descendant::*[@type='abstract']" mode="xmlLang"/>
                 </string>
             </xsl:when>
         </xsl:choose>    
@@ -1231,13 +1261,7 @@
     </xsl:template>
     
     <xsl:template match="*:fields"/>
-    <!--
-    <xsl:template match="*:fields[@function = 'fullText']">
-        <xsl:param name="doc"/>
-        <xsl:apply-templates select="$doc/descendant::text()"/> 
-    </xsl:template>
-    -->
-    
+      
     <xsl:template match="t:TEI" mode="fullText">
         <xsl:value-of select="normalize-space(string-join(descendant::tei:body/descendant::text(),' '))"/>
     </xsl:template>
@@ -1245,6 +1269,16 @@
         <xsl:choose>
             <xsl:when test="descendant::t:title"><xsl:value-of select="descendant::t:title[1]"/></xsl:when>
         </xsl:choose>
+    </xsl:template>
+    <!-- Match everything, output lang tags.  -->
+    <xsl:template match="*" mode="xmlLang">
+        <xsl:choose>
+            <xsl:when test="@xml:lang = ('syr','syc','syr-Syrj')"> &lt;span lang="syr" dir="rtl"&gt;<xsl:apply-templates mode="xmlLang"/>&lt;/span&gt;</xsl:when>
+            <xsl:otherwise><xsl:text> </xsl:text><xsl:apply-templates mode="xmlLang"/><xsl:text> </xsl:text></xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="text()" mode="xmlLang">
+        <xsl:value-of select="normalize-space(string-join(.,' '))"/>
     </xsl:template>
     <!-- Output Data as json for OpenSearch  -->
     <!-- Indexes, use facet-config files -->

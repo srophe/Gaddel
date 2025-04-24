@@ -50,25 +50,43 @@ const state = {
 // Base API URL
 const apiUrl = "https://50fnejdk87.execute-api.us-east-1.amazonaws.com/opensearch-api-test";
 
-// Fetch results and update UI
 function fetchAndRenderAdvancedSearchResults() {
-    // if (state.isLoading) return; // Prevent duplicate requests
-    // state.isLoading = true;
-
-    // Build query parameters from state
     const queryParams = new URLSearchParams(buildQueryParams());
-    
+    const countQueryParams = new URLSearchParams(queryParams);
+    countQueryParams.set("searchType", "count");
+
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
         .then(response => response.json())
         .then(data => {
-            state.totalResults = data.hits.total.value;
-            displayResultsInfo(state.totalResults);
-            if (state.series === 'Comprehensive Bibliography on Syriac Studies'){displayCBSSAuthorResults(data);}
-            else {displayResults(data);}
+            clearSearchResults();
+
+            const defaultHitCount = data.hits?.total?.value || 0;
+
+            // If default results hit the 10k cap, get true count
+            if (defaultHitCount === 10000) {
+                fetch(`${apiUrl}?${countQueryParams.toString()}`, { method: 'GET' })
+                    .then(countResponse => countResponse.json())
+                    .then(countData => {
+                        state.totalResults = countData.count || 10000;
+                        displayResultsInfo(state.totalResults);
+                        displayResultsBasedOnSeries(data);
+                    })
+                    .catch(error => {
+                        console.warn("Count query failed, falling back to capped result count.");
+                        state.totalResults = defaultHitCount;
+                        displayResultsInfo(state.totalResults);
+                        displayResultsBasedOnSeries(data);
+                    });
+            } else {
+                // Use default count if under 10k
+                state.totalResults = defaultHitCount;
+                displayResultsInfo(state.totalResults);
+                displayResultsBasedOnSeries(data);
+            }
+
             if (state.totalResults > state.size) {
                 renderPagination(state.totalResults, state.size, state.currentPage, changePage);
             }
-            
         })
         .catch(error => {
             handleError('search-results', 'Error fetching search results.');
@@ -77,54 +95,56 @@ function fetchAndRenderAdvancedSearchResults() {
 
     state.isLoading = false;
     window.history.pushState({}, '', `?${queryParams.toString()}`);
+}
 
+function displayResultsBasedOnSeries(data) {
+    if (state.series === 'Comprehensive Bibliography on Syriac Studies') {
+        displayCBSSAuthorResults(data);
+    } else {
+        displayResults(data);
+    }
 }
 
 
 // Display search results
+
 function displayResults(data) {
-    //Add series selector here for JoE display? 
-    
-    //Set displat for selected menu item
-    const items = document.querySelectorAll('.ui-menu-item');
-    //On initial load add badge to first letter if no other letter is selected. 
-    // Check if any item has the 'selected' class
-    const anyItemSelected = Array.from(items).some(item => 
-      item.classList.contains('badge')
-    );
-  
-    // If no item is selected, add the class to the first one
-    if (!anyItemSelected && items.length > 0) {
-      items[0].classList.add('badge');
-    }
-    
-    //Add class badge to selected letter
-    items.forEach(item => {
-      item.addEventListener('click', () => {
-        // Remove 'selected' class from all items
-        items.forEach(el => el.classList.remove('badge'));
+    clearSearchResults(); // Clear previous results
 
-        // Add 'selected' class to the clicked item
-        item.classList.add('badge');
-      });
-      
-    });
-
-    
+    const totalResults = data.hits.total.value || 0;
     const resultsContainer = document.getElementById("search-results");
-    resultsContainer.innerHTML = ''; // Clear previous results
-    clearSearchResults(); // Clear previous search results
-    if(document.getElementById("toggleSearchForm")){
+    resultsContainer.innerHTML = '';
+
+    const shouldRestrictByLetter = totalResults >= 100;
+
+    // Show/hide the letter badge menu based on result count
+    const items = document.querySelectorAll('.ui-menu-item');
+    if (shouldRestrictByLetter) {
+        const anyItemSelected = Array.from(items).some(item =>
+            item.classList.contains('badge')
+        );
+        if (!anyItemSelected && items.length > 0) {
+            items[0].classList.add('badge');
+        }
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                items.forEach(el => el.classList.remove('badge'));
+                item.classList.add('badge');
+            });
+        });
+    } else {
+        // Optional: Hide or disable the alphabet menu if < 100 results
+        // const abcMenu = document.getElementById('abcMenu');
+        // if (abcMenu) abcMenu.style.display = 'none';
+    }
+
+    if (document.getElementById("toggleSearchForm")) {
         const toggleButton = document.getElementById("toggleSearchForm");
         const searchFormContainer = document.getElementById("advancedSearch");
-        
-        // Show the toggle button
+
         toggleButton.style.display = "inline-block";
-
-        // Hide the advanced search form
         searchFormContainer.style.display = "none";
-
-        // Update the button text
         toggleButton.textContent = "Show Search";
     }
 
@@ -132,95 +152,112 @@ function displayResults(data) {
         data.hits.hits.forEach(hit => {
             const resultItem = document.createElement("div");
             resultItem.classList.add("result-item");
-            resultItem.style.marginBottom = "15px"; // Add spacing between items
-            
-            // Extract the title, prologue, and idno fields from the response
-            const title = hit._source.title || 'No Title';
-            const syriacTitle = hit._source.titleSyriac || 'No Syriac Title';
+            resultItem.style.marginBottom = "15px";
+
+            const displayTitle = hit._source.displayTitleEnglish || '';
+            const syriacTitle = hit._source.displayTitleSyriac || '';
             const arabicTitle = hit._source.titleArabic || 'No Arabic Title';
             const type = hit._source.type || '';
             if(hit._source.placeName){
-                var placeName = hit._source.placeName || '';
-                var names = placeName.join(", ")
-                var nameString = names ? ` <br/>Names: ${names} `: '';
-            }else if(hit._source.persName){
-                var persName = hit._source.persName || '';
-                var names = persName.join(", ")
-                var nameString = names ? ` <br/>Names: ${names} `: '';
-            } else {
-                nameString = '';
-            }
-            if(hit._source.placeName){
-                var typeString = type ? ` (${type}) `: '';
-            }else if(hit._source.persName){
                 var typeString = type ? ` (${type}) `: '';
             } else {
                 typeString = '';
             }
-            const abstract = hit._source.abstract || '';
-            const abstractString = abstract ? `<br/>${abstract}`: '';
-            const prologue = hit._source.prologue || ' ';
-            const idno = hit._source.idno || ''; // Fallback if no idno
-            const coordinates = hit._source.coordinates || ''; // Fallback if no idno
-            // Construct the URL using the idno field
-            //const url = idno ? `${idno}`: '#';
+            const title = syriacTitle && syriacTitle.trim() !== ''
+              ? `${displayTitle} - ${syriacTitle}`
+              : displayTitle;
 
-             //URL if JoE
-           if (state.series === 'Prosopography to John of Ephesus’s Ecclesiastical History'){
-                var idnoString = idno.replace('\/person\/', '\/johnofephesus\/persons\/');
-                var url = idnoString ? `${idnoString}`: '#';
-            } else if(state.series === 'Gazetteer to John of Ephesus’s Ecclesiastical History'){
-                var idnoString = idno.replace('\/place\/', '\/johnofephesus\/places\/');
-                var url = idnoString ? `${idnoString}`: '#';
-            } else {
-                 var url = idno ? `${idno}`: '#';
+            let names = '';
+            if (hit._source.placeName || hit._source.persName) {
+                const nameArray = hit._source.placeName || hit._source.persName || [];
+                names = nameArray.join(", ");
             }
-           
+            const nameString = names ? `<br/>Names: ${names}` : '';
+            const birth = trimYear(hit._source.birthDate);
+            const death = trimYear(hit._source.deathDate);
+            const floruitStart = trimYear(hit._source.floruitDatesStart);
+            const floruitEnd = trimYear(hit._source.floruitDatesEnd);
             
-            // Populate the result item with the link and details
-            if(state.lang === 'syr'){
+            let dateInfo = '';
+            
+            if (birth || death || floruitStart || floruitEnd) {
+                const dates = [];
+                if (birth) dates.push(`Born: ${birth}`);
+                if (death) dates.push(`Died: ${death}`);
+                if (floruitStart || floruitEnd) {
+                    if (floruitStart && floruitEnd) {
+                        dates.push(`Floruit: ${floruitStart}–${floruitEnd}`);
+                    } else if (floruitStart) {
+                        dates.push(`Floruit from: ${floruitStart}`);
+                    } else if (floruitEnd) {
+                        dates.push(`Floruit until: ${floruitEnd}`);
+                    }
+                }
+                dateInfo = `<br/><strong>Dates:</strong> ${dates.join(', ')}`;
+            }
+
+            const abstract = hit._source.abstract || '';
+            const abstractString = abstract ? `<br/>${abstract}` : '';
+            const idno = hit._source.idno || '';
+            let url = idno || '#';
+
+            // Handle special cases
+            if (state.series === 'Prosopography to John of Ephesus’s Ecclesiastical History') {
+                url = idno.replace('/person/', '/johnofephesus/persons/');
+            } else if (state.series === 'Gazetteer to John of Ephesus’s Ecclesiastical History') {
+                url = idno.replace('/place/', '/johnofephesus/places/');
+            }
+
+            if (state.lang === 'syr') {
                 resultItem.innerHTML = `
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${syriacTitle}</span> ${typeString}
-                </a>
-                ${nameString}
-                <br/>URI: 
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${url}</span>
-                </a>
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${syriacTitle}</span> ${typeString}
+                    </a>
+                    ${nameString}
+                    ${dateInfo}
+                    <br/>URI: 
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${url}</span> 
+                    </a>
+                `;
+            } else if (state.lang === 'ar') {
+                resultItem.innerHTML = `
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${arabicTitle}</span> ${typeString}
+                    </a>
+                    ${nameString}
+                    ${dateInfo}
+                    <br/>URI: 
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${url}</span>
+                    </a>
+                `;
+            } else {
+                resultItem.innerHTML = `
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${title}</span> ${typeString}
+                    </a>
+                    ${abstractString}
+                    ${nameString}
+                    ${dateInfo}
+                    <br/>URI: 
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${url}</span>
+                    </a>
                 `;
             }
-            if(state.lang === 'ar'){
-                resultItem.innerHTML = `
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${arabicTitle}</span> ${typeString}
-                </a>
-                ${nameString}
-                <br/>URI: 
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${url}</span>
-                </a>
-                `;
-            } else (
-                resultItem.innerHTML = `
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${title}</span> ${typeString}
-                </a>
-                ${abstractString}
-                ${nameString}
-                <br/>URI: 
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${url}</span>
-                </a>
-                `);
 
             resultsContainer.appendChild(resultItem);
         });
     } else {
-    resultsContainer.innerHTML = '<p>No results found.</p>';
+        resultsContainer.innerHTML = '<p>No results found.</p>';
     }
 }
-
+function trimYear(value) {
+    if (!value) return '';
+    const str = String(value);
+    return str.length > 4 ? str.slice(0, -4) : str; // Remove last 4 digits if present
+}
 // Reusable error handler
 function handleError(containerId, message) {
     const container = document.getElementById(containerId);
@@ -269,7 +306,7 @@ function getBrowse(series) {
 
 function getPaginatedBrowse() {
     state.query = state.query || 'cbssAuthor';  
-    state.series = state.series || 'Comprehensive Bibliography on Syriac Studies'; 
+    state.series = state.series || state.query; // Set the series to the current query
     const params = {
         searchType: state.searchType,
         q: state.query, // Retain the query which is the series name in the case of browse
@@ -280,6 +317,7 @@ function getPaginatedBrowse() {
         series: state.series,
         subject: state.subject
     };
+    console.log("LANG STATE:", state.lang);
 
     // Remove empty or undefined parameters
     const filteredBrowseParams = Object.fromEntries(
@@ -288,6 +326,7 @@ function getPaginatedBrowse() {
 
     // Create URLSearchParams with filtered parameters
     const queryParams = new URLSearchParams(filteredBrowseParams);
+    window.history.pushState({}, '', `?${queryParams.toString()}`); // Update URL
 
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
         .then(response => response.json())
@@ -301,21 +340,24 @@ function getPaginatedBrowse() {
             handleError('search-results', 'Error fetching browse results.');
             console.error(error);
         });
+        window.history.pushState({}, '', `?${queryParams.toString()}`); // Update URL
+
 }
 
 function displayResultsInfo(totalResults) {
     const browseInfoContainer = document.getElementById('search-info');
-    
     // Clear previous browse info and pagination
     browseInfoContainer.innerHTML = '';
 
     // Display total results count
     if (state.query != 'cbssSubject') {
-    
     browseInfoContainer.innerHTML = `
         <br/>
         <p>Total Results: ${totalResults}</p>
     `;
+    }
+    if (!state.letter && state.lang !== 'en' && state.lang !== 'rus') {
+    browseInfoContainer.innerHTML += `<p>Showing all ${state.lang.toUpperCase()} entries</p>`;
     }
     const paginationContainer = document.getElementById('searchPagination');
     paginationContainer.innerHTML = '';
@@ -374,78 +416,12 @@ function initializeStateFromURL() {
     }
 }
 
-
-// function browseAlphaMenu() {
-//     const urlParams = new URLSearchParams(window.location.search);
-//     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
-
-//     // Define alphabets
-//     const alphabets = {
-//         en: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z',
-//         syr: 'ܐ ܒ ܓ ܕ ܗ ܘ ܙ ܚ ܛ ܝ ܟ ܠ ܡ ܢ ܣ ܥ ܦ ܨ ܩ ܪ ܫ ܬ',
-//         ar: 'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي'
-//     };
-
-//     // Select the appropriate alphabet for the current language
-//     const alphabet = alphabets[state.lang] || alphabets.en;
-//     // Set the default letter based on the language-- this is not yet necessary
-//     if (state.lang === 'syr') {
-//         state.letter =  'ܐ'; // Default to first Syriac letter
-//     } else if (state.lang === 'ar') {
-//         state.letter = 'ا'; // Default to first Arabic letter
-//     } else { state.letter = 'A'; } // Default to first English letter
-
-//     const menuContainer = document.getElementById('abcMenu');
-//     menuContainer.innerHTML = ''; // Clear previous menu
-
-//     // Set direction for right-to-left languages
-//     menuContainer.setAttribute('dir', ['syr', 'ar'].includes(state.lang) ? 'rtl' : 'ltr');
-
-//     alphabet.split(' ').forEach(letter => {
-//         const menuItem = document.createElement('li');
-//         menuItem.classList.add('ui-menu-item');
-//         menuItem.setAttribute('role', 'menuitem');
-
-//         const menuLink = document.createElement('a');
-//         menuLink.classList.add('ui-all');
-//         menuLink.textContent = letter;
-//         menuLink.href = `?searchType=letter&letter=${letter}&q=${encodeURIComponent(state.query)}&size=${state.size}&lang=${state.lang}`;
-
-      
-//         menuLink.addEventListener('click', (event) => {
-//             event.preventDefault(); 
-//             state.letter = letter; 
-//             state.from = 0; // Reset pagination
-//             state.currentPage = 1;
-
-//             const newUrlParams = new URLSearchParams({
-//                 searchType: 'letter',
-//                 q: state.query,
-//                 letter: state.letter, 
-//                 size: state.size,
-//                 lang: state.lang
-//             });
-
-//             window.history.pushState({}, '', `?${newUrlParams.toString()}`); // Update URL
-
-//             console.log("Updated Letter:", state.letter); 
-//             console.log("Updated URL:", window.location.href); 
-//             console.log("Series: ", state.query);
-//             console.log("Lang: ", state.lang);
-//             getBrowse(state.query, state.letter, state.lang);
-//         });
-
-//         menuItem.appendChild(menuLink);
-//         menuContainer.appendChild(menuItem);
-//     });
-// }
-
 function browseAlphaMenu() {
     const urlParams = new URLSearchParams(window.location.search);
     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
     
 
-    const engAlphabet = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z';
+    const engAlphabet = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #';
     const syrAlphabet = 'ܐ ܒ ܓ ܕ ܗ ܘ ܙ ܚ ܛ ܝ ܟ ܠ ܡ ܢ ܣ ܥ ܦ ܩ ܪ ܫ ܬ';
     const arAlphabet = 'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي';
 
@@ -512,6 +488,7 @@ function browseCbssAlphaMenu() {
     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
     // state.searchType = urlParams.get('searchType') || 'browse'; // Retrieve searchType from the URL
     state.searchType = 'browse'; // Do not Retrieve searchType from the URL, set as browse
+    state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
 
     state.query = urlParams.get('q') || 'cbssAuthor'; // Retrieve query from the URL
     const alphabets = {
@@ -526,21 +503,19 @@ function browseCbssAlphaMenu() {
 
     // Select the appropriate alphabet for the current language
     const alphabet = alphabets[state.lang] || alphabets.en;
-    // Set the default letter based on the language-- this is not yet necessary
-    if (state.lang === 'syr') {
-        state.letter =  'ܐ'; // Default to first Syriac letter
-    } else if (state.lang === 'ar') {
-        state.letter = 'ا'; // Default to first Arabic letter
-    } else if (state.lang === 'he') {
-        state.letter = 'א'; // Default to first Hebrew letter
-    } else if (state.lang === 'arm') {
-        state.letter = 'Ա'; // Default to first Armenian letter
-    } else if (state.lang === 'gr') {
-        state.letter = 'Α'; // Default to first Greek letter
-    } else if (state.lang === 'rus') {
-        state.letter = 'А'; // Default to first Russian letter
-    } else { state.letter = 'A'; } // Default to first English letter
-
+    // Set the default letter based on the language-- this is not yet necessary -- eliminate for now
+    // if (state.lang === 'syr') {
+    //     state.letter =  'ܐ'; // Default to first Syriac letter
+    // } else if (state.lang === 'ar') {
+    //     state.letter = 'ا'; // Default to first Arabic letter
+    // } else if (state.lang === 'he') {
+    //     state.letter = 'א'; // Default to first Hebrew letter
+    // } else if (state.lang === 'arm') {
+    //     state.letter = 'Ա'; // Default to first Armenian letter
+    // } else if (state.lang === 'gr') {
+    //     state.letter = 'Α'; // Default to first Greek letter
+    // } else { state.letter = 'A'; } // Default to first English letter
+    if (state.lang === 'rus' || state.lang === 'en') {state.letter = 'A';} else {state.letter = '';}
     // Create the menu container
     const menuContainer = document.getElementById('abcMenu');
     menuContainer.innerHTML = ''; // Clear previous menu
@@ -572,10 +547,12 @@ function browseCbssAlphaMenu() {
             const newUrlParams = new URLSearchParams({
                 searchType: 'browse',
                 q: state.query,
-                letter: state.letter, 
                 size: state.size,
                 lang: state.lang
             });
+            if (state.letter) {
+                newUrlParams.set('letter', state.letter);
+            }
 
             window.history.pushState({}, '', `?${newUrlParams.toString()}`); // Update URL
 
@@ -593,21 +570,25 @@ function browseCbssAlphaMenu() {
 
 function getCBSSBrowse() {
     // Set state for CBSS browse
-    //initializeStateFromURL();
     state.from = 0; // Reset for the first page
     state.letter = state.letter || 'a'; // Default letter if not already set
     state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
     state.searchType = state.searchType || 'browse'; // Set search type to 'browse'
     state.query = state.query || 'cbssAuthor'; // Set query to 'cbssAuthor' by default
+    
+    //set query parameters for url and search
     const queryParams = new URLSearchParams({
-        searchType: state.searchType,
-        q: state.query,
-        letter: state.letter,
-        from: state.from,
-        size: state.size,
-        lang: state.lang,
-        series: state.series
+    searchType: state.searchType,
+    q: state.query,
+    from: state.from,
+    size: state.size,
+    lang: state.lang,
+    series: state.series
     });
+
+    if (state.letter) {
+        queryParams.set('letter', state.letter);
+    }
     window.history.pushState({}, '', `?${queryParams.toString()}`);
 
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
@@ -631,6 +612,7 @@ function displayCBSSSubjectResults(data) {
     docResultsContainer.innerHTML = ''; // Clear previous results
     const submenuResultsContainer = document.getElementById("common-subject-menu");
     submenuResultsContainer.innerHTML = ''; // Clear previous results
+    // clearSearchResults(); // Clear previous search results
     // Ensure aggregation data is available
     console.log("Current Letter in State:", state.letter);
     const subjects = data.aggregations?.unique_subjects?.buckets || [];
@@ -1255,7 +1237,12 @@ function buildQueryParams() {
         cbssPubRangeEnd: state.cbssPubDateEnd,
         publisher: state.publisher,
         cbssPubPlace: state.pubPlace,
-        subject: state.cbssSubject,
+        subject: state.cbssSubject
+            ? state.cbssSubject
+                .split(',')
+                .map(s => s.trim().toLowerCase())
+                .join(', ')
+            : '',
         keyword: state.keyword,
         //idno types
         BHO: state.BHO,
@@ -1268,22 +1255,24 @@ function buildQueryParams() {
 }
 //NavBar
 document.querySelector(".navbar-form").addEventListener("submit", (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
+    event.preventDefault();
 
-    // Reset state variables to ensure a clean slate
-    resetState();
-
-    // Get form values
     const form = event.target;
     const formData = new FormData(form);
-    // Map form inputs to state variables
-    state.keyword = formData.get('q') || formData.get('fullText')||formData.get('keyword')||'';
-    state.series = formData.get('series') || ''; // 
+    const keyword = formData.get('q') || formData.get('fullText') || formData.get('keyword') || '';
+    const series = formData.get('series') || '';
+    const lang = state.lang || 'en'; // Default language if not already in state
 
-    // Call your search function
-    fetchAndRenderAdvancedSearchResults();
+    // Build URL to redirect to search.html with query parameters
+    const queryParams = new URLSearchParams({
+        keyword: keyword,
+        series: series,
+        lang: lang
+    });
+
+    // Redirect to search.html with the params
+    window.location.href = `/search.html?${queryParams.toString()}`;
 });
-
 
 // Helper function to reset the state to its default values
 function resetState() {
@@ -1395,6 +1384,7 @@ function setupInfiniteScroll() {
 function changePage(page) {
     state.currentPage = page;
     state.from = (page - 1) * state.size;
+
     if(state.searchType === 'browse' || state.query === 'cbssAuthor' || state.searchType === 'letter' || state.searchType === 'cbssSubject'){
         console.log("change page search type: " + state.searchType);
         getPaginatedBrowse();
