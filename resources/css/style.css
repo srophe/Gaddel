@@ -247,7 +247,7 @@ img{ margin:0px }
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
 }
-
+.img-credit a{color: white; }
 /* J */
 .js-wiki-sidebar-toc-toggle-chevron-button {display:none;}
 /* K */
