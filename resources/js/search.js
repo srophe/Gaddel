@@ -163,10 +163,12 @@ function displayResults(data) {
             } else {
                 typeString = '';
             }
+            const title = displayTitle;
+            /* 
             const title = syriacTitle && syriacTitle.trim() !== ''
               ? `${displayTitle} - ${syriacTitle}`
               : displayTitle;
-
+            */
             let names = '';
             if (hit._source.placeName || hit._source.persName) {
                 const nameArray = hit._source.placeName || hit._source.persName || [];
@@ -199,7 +201,9 @@ function displayResults(data) {
             const abstract = hit._source.abstract || '';
             const abstractString = abstract ? `<br/>${abstract}` : '';
             const idno = hit._source.idno || '';
-            let url = idno || '#';
+            const originURL = window.location.origin;
+            let url = idno.replace('http://syriaca.org', originURL);
+            //let url = idno || '#';
 
             // Handle special cases
             if (state.series === 'Prosopography to John of Ephesus’s Ecclesiastical History') {
