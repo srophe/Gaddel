@@ -633,11 +633,13 @@
                     const options = { year: 'numeric', month: 'long', day: 'numeric' };
                     const formattedDate = dateObj.toLocaleDateString(undefined, options);
             
-                    postElement.innerHTML = `
-                      <p style="margin-bottom: 0;"><a href="${post.link}" target="_blank">${post.title.rendered}</a></p>
-                      <small style="color: gray;">${formattedDate}</small>
-                      <br/>
-                    `;
+                     postElement.innerHTML = `
+                       <div style="margin-bottom: 1em;">
+                         <p style="margin-bottom: 0;"><a href="${post.link}" target="_blank">${post.title.rendered}</a></p>
+                         <small style="color: gray;">${formattedDate}</small>
+                       </div>
+                     `;
+
                     
                     dynamicContentDiv.appendChild(postElement);
                   });
