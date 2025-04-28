@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:srophe="https://srophe.app">
    <head>
+      <meta charset="UTF-8">
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <title data-template="app:record-title">Syriaca.org</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -609,17 +610,44 @@
                
             </div>
             
-            <div class="col-md-4">
-               
-               <div class="blog indent">
-                  
-                  <h2>Project News</h2>
-                  
-                  <div class="dynamicContent" data-url="https://blog.syriaca.org/feed/"></div>
-                  
-               </div>
-               
-            </div>
+<div class="col-md-4">
+  <div class="blog indent">
+    <h2>Project News</h2>
+    <div class="dynamicContent" data-url="https://blog.syriaca.org/wp-json/wp/v2/posts?per_page=5"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const dynamicContentDiv = document.querySelector('.dynamicContent');
+  const feedUrl = dynamicContentDiv.getAttribute('data-url');
+
+  fetch(feedUrl)
+    .then(response => response.json())
+    .then(posts => {
+      posts.forEach(post => {
+        const postElement = document.createElement('div');
+        
+        // Format the date nicely
+        const dateObj = new Date(post.date);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = dateObj.toLocaleDateString(undefined, options);
+
+        postElement.innerHTML = `
+          <p style="margin-bottom: 0;"><a href="${post.link}" target="_blank">${post.title.rendered}</a></p>
+          <small style="color: gray;">${formattedDate}</small>
+        `;
+        
+        dynamicContentDiv.appendChild(postElement);
+      });
+    })
+    .catch(error => {
+      console.error('Error loading blog posts:', error);
+      dynamicContentDiv.innerHTML = '<p>Unable to load blog posts at this time.</p>';
+    });
+});
+</script>
+
             
          </div>
          
@@ -739,4 +767,5 @@
          </div>
          
       </footer>
-   </body><script type="text/javascript" src="/resources/js/jquery.validate.min.js"></script><script type="text/javascript" src="/resources/js/require.min.js"></script><script type="text/javascript" src="/resources/js/srophe.js"></script><script type="text/javascript" src="/resources/js/lightslider.min.js"></script><script type="text/javascript" src="/resources/js/lightslider-functions.js"></script><script data-template="app:google-analytics"></script></html>
+      <script type="text/javascript" src="/resources/js/jquery.validate.min.js"></script><script type="text/javascript" src="/resources/js/require.min.js"></script><script type="text/javascript" src="/resources/js/srophe.js"></script><script type="text/javascript" src="/resources/js/lightslider.min.js"></script><script type="text/javascript" src="/resources/js/lightslider-functions.js"></script><script data-template="app:google-analytics"></script>
+   </body></html>
