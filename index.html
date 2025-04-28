@@ -610,43 +610,44 @@
                
             </div>
             
-<div class="col-md-4">
-  <div class="blog indent">
-    <h2>Project News</h2>
-    <div class="dynamicContent" data-url="https://blog.syriaca.org/wp-json/wp/v2/posts?per_page=5"></div>
-  </div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const dynamicContentDiv = document.querySelector('.dynamicContent');
-  const feedUrl = dynamicContentDiv.getAttribute('data-url');
-
-  fetch(feedUrl)
-    .then(response => response.json())
-    .then(posts => {
-      posts.forEach(post => {
-        const postElement = document.createElement('div');
-        
-        // Format the date nicely
-        const dateObj = new Date(post.date);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const formattedDate = dateObj.toLocaleDateString(undefined, options);
-
-        postElement.innerHTML = `
-          <p style="margin-bottom: 0;"><a href="${post.link}" target="_blank">${post.title.rendered}</a></p>
-          <small style="color: gray;">${formattedDate}</small>
-        `;
-        
-        dynamicContentDiv.appendChild(postElement);
-      });
-    })
-    .catch(error => {
-      console.error('Error loading blog posts:', error);
-      dynamicContentDiv.innerHTML = '<p>Unable to load blog posts at this time.</p>';
-    });
-});
-</script>
+            <div class="col-md-4">
+              <div class="blog indent">
+                <h2>Project News</h2>
+                <div class="dynamicContent" data-url="https://blog.syriaca.org/wp-json/wp/v2/posts?per_page=5"></div>
+              </div>
+            </div>
+            
+            <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              const dynamicContentDiv = document.querySelector('.dynamicContent');
+              const feedUrl = dynamicContentDiv.getAttribute('data-url');
+            
+              fetch(feedUrl)
+                .then(response => response.json())
+                .then(posts => {
+                  posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    
+                    // Format the date
+                    const dateObj = new Date(post.date);
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    const formattedDate = dateObj.toLocaleDateString(undefined, options);
+            
+                    postElement.innerHTML = `
+                      <p style="margin-bottom: 0;"><a href="${post.link}" target="_blank">${post.title.rendered}</a></p>
+                      <small style="color: gray;">${formattedDate}</small>
+                      <br/>
+                    `;
+                    
+                    dynamicContentDiv.appendChild(postElement);
+                  });
+                })
+                .catch(error => {
+                  console.error('Error loading blog posts:', error);
+                  dynamicContentDiv.innerHTML = '<p>Unable to load blog posts at this time.</p>';
+                });
+            });
+            </script>
 
             
          </div>
