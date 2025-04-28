@@ -163,9 +163,9 @@ function displayResults(data) {
             } else {
                 typeString = '';
             }
-            const title = syriacTitle && syriacTitle.trim() !== ''
-              ? `${displayTitle} - ${syriacTitle}`
-              : displayTitle;
+            // const title = syriacTitle && syriacTitle.trim() !== ''
+            //   ? `${displayTitle} - ${syriacTitle}`
+            //   : displayTitle;
 
             let names = '';
             if (hit._source.placeName || hit._source.persName) {
