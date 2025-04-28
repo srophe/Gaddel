@@ -202,7 +202,9 @@ function displayResults(data) {
             const abstract = hit._source.abstract || '';
             const abstractString = abstract ? `<br/>${abstract}` : '';
             const idno = hit._source.idno || '';
-            let url = idno || '#';
+            const originURL = window.location.origin;
+            let url = idno.replace('http://syriaca.org', originURL);
+            //let url = idno || '#';
 
             // Handle special cases
             if (state.series === 'Prosopography to John of Ephesus’s Ecclesiastical History') {
