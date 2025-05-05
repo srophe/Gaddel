@@ -215,8 +215,11 @@ function displayResults(data) {
 
             if (state.lang === 'syr') {
                 resultItem.innerHTML = `
+                    <div dir="rtl">
+                    <span class="tei-title title-analytic" xml:lang="syr" lang="syr" dir="rtl">${syriacTitle}</span>
+                    <br/>
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                        <span class="tei-title title-analytic">${syriacTitle}</span> ${typeString}
+                        <span class="tei-title title-analytic">${title}</span> ${typeString}
                     </a>
                     ${nameString}
                     ${dateInfo}
@@ -224,11 +227,15 @@ function displayResults(data) {
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
                         <span class="tei-title title-analytic">${url}</span> 
                     </a>
+                    </div>
                 `;
             } else if (state.lang === 'ar') {
                 resultItem.innerHTML = `
+                    <div dir="rtl">
+                    <span class="tei-title title-analytic" lang="ar" dir="rtl">${arabicTitle}</span>
+                    <br/>
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                        <span class="tei-title title-analytic">${arabicTitle}</span> ${typeString}
+                        <span class="tei-title title-analytic">${title}</span> ${typeString}
                     </a>
                     ${nameString}
                     ${dateInfo}
@@ -236,6 +243,7 @@ function displayResults(data) {
                     <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
                         <span class="tei-title title-analytic">${url}</span>
                     </a>
+                    </div>
                 `;
             } else {
                 resultItem.innerHTML = `
