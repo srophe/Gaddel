@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:srophe="https://srophe.app">
   
   <teiHeader>
@@ -7,7 +8,7 @@
         <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L. Schwartz</editor>
       </titleStmt>
       <editionStmt>
-        <edition n="0.9"/>
+        <edition n="1"><date>2025</date></edition>
       </editionStmt>
       <publicationStmt>
         <authority>Syriaca.org: The Syriac Reference Portal</authority>
@@ -33,59 +34,62 @@
         </p>
       </sourceDesc>
     </fileDesc>
+    <profileDesc>
+      <!--  Instructions for processing the Syriaca.org chained ODD in oXygen.
+        - First, be sure that schemaSpec/@source in this document points to "srophe.compiled.odd".
+        - Then process this ODD file into a compiled ODD using the transformation scenario "ODD to Compiled ODD".
+          - Save this as syriacaAll.compiled.odd and then delete the @start attribute from tei:schemaSpec.
+          - This compiled ODD (without a tei:schemaSpec/@start attribute) will be the starting point for the next step in the chained ODD.
+        - This compiled ODD can also be used to generate a .rng file against which you can validate a TEI document. 
+          - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
+          - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
+    </profileDesc>
   </teiHeader>
   <text>
     <body>
       
-      
+          
       <schemaSpec ident="syriacaAll" prefix="tei_" source="srophe.compiled.odd" xml:lang="en" defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML​ http://www.example.org/ns/">
         <moduleRef key="tei"/>
         <moduleRef key="certainty" include="precision"/>
-        <moduleRef key="core" include="abbr author bibl biblScope choice citedRange corr date desc editor expan foreign label listBibl measure name note orig p ptr quote reg ref resp respStmt sic title"/>
+        <moduleRef key="core" include="abbr author bibl biblScope choice citedRange date desc editor expan foreign head item list listBibl measure name note orig p ptr pubPlace quote reg ref resp respStmt rs sic title"/>
         <moduleRef key="dictionaries" include="entryFree"/>
-        <moduleRef key="header" include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno interpretation langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
+        <moduleRef key="figures" include="formula"/>
+        <moduleRef key="header" include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc extent fileDesc funder handNote idno interpretation language langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader textClass textLang titleStmt"/>
         <moduleRef key="linking" include="link"/>
         <moduleRef key="msdescription"/>
-        <moduleRef key="namesdates" include="addName birth bloc country death district event floruit forename geo listPerson listPlace listRelation location offset orgName persName person place placeName region relation roleName settlement sex state surname"/>
+        <moduleRef key="namesdates" include="addName birth bloc country death district event floruit forename geo gender lang listPerson listPlace listRelation location occupation offset orgName persName person personGrp place placeName region relation roleName settlement state surname trait"/>
         <moduleRef key="tagdocs" include="gi"/>
         <moduleRef key="textcrit"/>
         <moduleRef key="transcr"/>
         <moduleRef key="textstructure" include="back body div front TEI text"/>
-        
-        <classSpec type="atts" ident="att.global.analytic" mode="add">
-          <desc>I have needed to include this because it somehow disappeared from this
-            customization. I do not know why this was necessary.</desc>
+        <classRef key="att.global.analytic"/>
+        <classRef key="att.global.change"/>
+        <classRef key="att.global.linking"/>
+               
+                
+                
+                
+        <classSpec type="atts" ident="att.canonical" module="tei" mode="change">
           <attList>
-            <attDef ident="ana" mode="add">
-              <datatype>
-                <dataRef key="teidata.text"/>
+            <attDef ident="key" mode="delete"/>
+            <attDef ident="ref" mode="change">
+              <datatype minOccurs="1" maxOccurs="1">
+                <dataRef key="teidata.pointer"/>
               </datatype>
             </attDef>
           </attList>
         </classSpec>
         
+        
+               
         <classSpec ident="att.global" mode="change" module="tei" type="atts">
           <attList>
-            <attDef ident="srophe:tags" ns="https://srophe.app" mode="replace">
-              <desc>tags usable</desc>
-              <valList mode="replace" type="closed">
-                <valItem ident="#syriaca-headword">
-                  <desc>The name used by Syriaca.org for document titles, citation, and
-                    disambiguation. These names have been created according to the Syriaca.org
-                    guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</desc>
-                </valItem>
-                <valItem ident="#syriaca-anglicized">
-                  <desc>An anglicized version of a name created by Syriaca.org used to facilitate
-                    searching in English.</desc>
-                </valItem>
-                <valItem ident="#ektobe-headword">
-                  <desc>The name used by e-Ktobe as a standardized name form.</desc>
-                </valItem>
-              </valList>
-            </attDef>
+            <attDef ident="xml:base" mode="delete"/>
+            <attDef ident="xml:space" mode="delete"/>
             <attDef ident="xml:lang" mode="change">
-              <!-- Should this be ingested into the Taxonomy? We could we use keyword URIs instead of these. -->
-              <valList mode="replace" type="closed">
+              <valList type="closed" mode="replace">
+                <!-- Should this be ingested into the Taxonomy? We could we use keyword URIs instead of these. -->
                 <valItem ident="ar">
                   <gloss>Arabic</gloss>
                   <desc>Arabic of any variety or period</desc>
@@ -122,6 +126,10 @@
                   <gloss>German—Baumstark Romanization</gloss>
                   <desc>Names or terms Romanized into German according to the standards adopted by
                     Anton Baumstark's Geschichte der syrischen Literatur.</desc>
+                </valItem>
+                <valItem ident="fr-x-zanetti">
+                  <gloss>French—Zanetti</gloss>
+                  <desc>Names or terms Romanized into French according to the standards adopted by Ugo Zanetti.</desc>
                 </valItem>
                 <valItem ident="el">
                   <gloss>Greek—Modern</gloss>
@@ -250,89 +258,167 @@
                   <desc>Turkish</desc>
                 </valItem>
               </valList>
-              <remarks mode="add">
-                <p>All elements should have an <att>xml:lang</att> value, either inherited from an
-                  ancestor element or declared explicitly. See the <ref target="http://syriaca.org/documentation/isostandards.html">Syriaca.org
-                    documentation</ref> for more information on the usage of particular tags. Note
-                  that <att>xml:lang</att> describes the language of the content of the node. For
-                  indicating the language of a work or bibliographic resource, see the documentation
-                  about the <gi>textLang</gi> and <gi>lang</gi> elements.</p>
-              </remarks>
             </attDef>
           </attList>
         </classSpec>
-               
-
-        <elementSpec ident="sponsor" module="header" mode="change">
-          <exemplum>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <titleStmt> 
-                ... 
-                <sponsor>Syriaca.org: The Syriac Reference Portal</sponsor> 
-                ...
-              </titleStmt>
-            </egXML>
-          </exemplum>
-          <remarks mode="add">
-            <p> The TEI guidelines recommend that the <gi>titleStmt</gi> element also indicate who
-              is responsible for this TEI file. Since <gi>author</gi> is typically used for the
-              author of a print or manuscript text which was then encoded in TEI, we avoid the use
-              of the <gi>author</gi> element. Instead, we identify Syriaca.org as the sponsoring
-              institution, </p>
-          </remarks>
-        </elementSpec>
-
-        <elementSpec ident="funder" module="header" mode="change">
-          <exemplum>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <titleStmt> 
-                ... 
-                <funder>The National Endowment for the Humanities</funder>
-                <funder>The International Balzan Prize Foundation</funder> 
-                ... 
-              </titleStmt>
-            </egXML>
-          </exemplum>
-          <remarks mode="add">
-            <p> Next within the <gi>titleStmt</gi> the funding bodies are identified by use of the
-              <gi>funder</gi> element. If multiple funding bodies are relevant, then each one gets
-              a separate <gi>funder</gi> element, which are simply listed. </p>
-          </remarks>
-        </elementSpec>
         
-        <elementSpec ident="sourceDesc" module="header" mode="change">
+        
+        <classSpec type="atts" ident="att.global.change" module="tei" mode="change">
+          <constraintSpec ident="change-att-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="//@change">
+                <sch:let name="changeIDs" value="//tei:teiHeader//tei:change/@xml:id"/>
+                <sch:let name="changeIDpointers" value="for $i in $changeIDs return concat('#', $i)"/>
+                <sch:assert test="                  every $i in tokenize(., ' ')                  satisfies $i = $changeIDpointers">
+                  This @change attribute can contain one or more of the following <sch:value-of select="$changeIDpointers"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </classSpec>
+        
+        
+        <classSpec type="atts" ident="att.global.facs" module="transcr" mode="delete"/>
+        
+        
+        <classSpec type="atts" ident="att.global.linking" module="linking" mode="change">
+          <attList>
+            <attDef ident="synch" mode="delete"/>
+            <attDef ident="sameAs" mode="delete"/>
+            <attDef ident="copyOf" mode="delete"/>
+            <attDef ident="next" mode="delete"/>
+            <attDef ident="prev" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="exclude" mode="delete"/>
+            <attDef ident="select" mode="delete"/>
+          </attList>
+        </classSpec>
+        
+        
+        <classSpec type="atts" ident="att.global.rendition" module="tei" mode="change">
+          <attList>
+            <attDef ident="style" mode="delete"/>
+            <attDef ident="rendition" mode="delete"/>
+          </attList>
+        </classSpec>
+        
+        
+        <classSpec type="atts" ident="att.global.responsibility" mode="change">
+          <attList>
+            <attDef ident="cert" mode="delete"/>
+            <attDef ident="resp" mode="change">
+              <valList mode="replace" type="closed">
+                <valItem ident="http://syriaca.org">
+                  <desc>
+                    Syriaca.org has a preference for sourcing information by pointing to a <gi>bibl</gi> element by means of an 
+                    <att>xml:id</att> attribute. Sometimes, however, when information is common knowledge or has been collected 
+                    by a Syriaca.org contributor but is not attested in print, a <att>resp</att> attribute is used with a value of 'http://syriaca.org'.
+                  </desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </classSpec>
+        
+        
+        
+        <classSpec type="atts" ident="att.global.source" module="tei" mode="change">
+          <constraintSpec ident="source-att-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="//@source">
+                <sch:let name="biblIDs" value="//tei:text//tei:bibl/@xml:id"/>
+                <sch:let name="biblIDpointers" value="for $i in $biblIDs return concat('#', $i)"/>
+                <sch:assert test="                  every $i in tokenize(., ' ')                  satisfies $i = $biblIDpointers">
+                  This @source attribute can contain one or more of the following <sch:value-of select="$biblIDpointers"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </classSpec>
+        
+        
+        
+        <classSpec type="atts" ident="att.datable" module="tei" mode="change">
+          <attList>
+            <attDef ident="period" mode="delete"/>
+          </attList>
+        </classSpec>
+        
+        
+        <classSpec type="atts" ident="att.datable.iso" module="namesdates" mode="delete"/>
+        
+        
+        <classSpec type="atts" ident="att.declarable" module="tei" mode="delete"/>
+        
+        
+        <classSpec type="atts" ident="att.declaring" module="tei" mode="delete"/>
+        
+        
+        <classSpec type="atts" ident="att.editLike" module="tei" mode="delete"/>
+        
+        
+        <classSpec type="atts" ident="att.naming" module="tei" mode="change">
+          <attList>
+            <attDef ident="nymRef" mode="delete"/>
+          </attList>
+        </classSpec>
+        
+        
+        <classSpec type="atts" ident="att.personal" module="tei" mode="change">
+          <attList>
+            <attDef ident="full" mode="delete"/>
+            <attDef ident="srophe:tags" mode="replace">
+              <valList mode="change" type="closed">
+                <valItem ident="#anonymous-description">
+                  <desc>A "name variant" that is a description of an anonymous individual or group.</desc>
+                </valItem>
+                <valItem ident="#ektobe-headword">
+                  <desc>The name used by e-Ktobe as a standardized name form.</desc>
+                </valItem>
+                <valItem ident="#syriaca-headword">
+                  <desc>The name used by Syriaca.org for document titles, citation, and
+                    disambiguation. These names have been created according to the Syriaca.org
+                    guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </classSpec>
+        
+        
+        <classSpec type="atts" ident="att.pointing" module="tei" mode="change">
+          <attList>
+            <attDef ident="targetLang" mode="delete"/>
+            <attDef ident="evaluate" mode="delete"/>
+          </attList>
+        </classSpec>
+        
+        
+        <classSpec type="atts" ident="att.translatable" mode="delete"/>
+        
+        
+
+        
+        <elementSpec ident="author" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.naming" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+          </classes>
           <content>
-            <elementRef key="p" minOccurs="1" maxOccurs="1"/>
+            <elementRef key="persName"/>
           </content>
-          <constraintSpec ident="sourceDesc" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:sourceDesc/tei:p">
-                <sch:assert test=". = 'Born digital.'">
-                  The &lt;sourceDesc&gt; must contain a &lt;p&gt; element with the text node: "Born digital.". 
-                </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
         </elementSpec>
         
-        <elementSpec ident="name" module="namesdates" mode="change">
-          <constraintSpec ident="ref-on-name" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:teiHeader//tei:name/@ref">
-                <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
-                <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
-                <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $refValues">
-                  Acceptable values for the @ref attribute on a &lt;name&gt; element inside the &lt;teiHeader&gt; include: 
-                  <sch:value-of select="string-join($refValues, ' | ')"/>.
-                </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-
+        
         
         <elementSpec ident="authority" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+            <memberOf key="att.source" mode="delete"/>
+          </classes>
           <content>
             <textNode/>
           </content>
@@ -355,414 +441,183 @@
           </remarks>
         </elementSpec>
         
-        <elementSpec ident="titleStmt" module="header" mode="change">
+        
+        
+        <elementSpec ident="bibl" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.sortable" mode="delete"/>
+            <memberOf key="att.docStatus" mode="delete"/>
+          </classes>
           <content>
-            <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
-              <elementRef key="title" minOccurs="1" maxOccurs="unbounded"/>
-              <elementRef key="sponsor" minOccurs="1" maxOccurs="unbounded"/>
-              <elementRef key="funder" minOccurs="0" maxOccurs="unbounded"/>
-              <elementRef key="editor" minOccurs="1" maxOccurs="unbounded"/>
-              <elementRef key="respStmt" minOccurs="1" maxOccurs="unbounded"/>
+            <sequence preserveOrder="false">
+              <elementRef key="author" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="citedRange" minOccurs="0" maxOccurs="unbounded"/><!--Required in a citation but not inside a note or header.-->
+              <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="editor" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="ptr" minOccurs="0" maxOccurs="unbounded"/><!--Required in a citation but not inside a note.-->
+              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/> <!-- allowed in a note but not in a citation -->
             </sequence>
           </content>
-        </elementSpec>       
-              
-        
-        <elementSpec ident="seriesStmt" module="header" mode="change">
-          <!-- Clean up. For syriacaAll and move what is appropriate to places. -->
-          <constraintSpec ident="seriesStmt-content" scheme="schematron">
+          <constraintSpec ident="mssCitation" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:seriesStmt/tei:respStmt">
-                <sch:report test="preceding-sibling::tei:title[@level='s']">
-                  A &lt;respStmt&gt; element may not appear in a &lt;seriesStmt&gt; that also has a &lt;title&gt; of @type="s". 
-                </sch:report>
-              </sch:rule>
-              <sch:rule context="//tei:seriesStmt//tei:title[@level='s']">
-                <!-- Add additional values with an "or" operator if there are multiple series levels associated with a document. -->
-                <sch:assert test="matches(., 'The Syriac Gazetteer')">
-                  The text node of this &lt;title&gt; element must be "The Syriac Gazetteer". 
+              <sch:rule context="//tei:text//tei:desc//tei:bibl | //tei:text//tei:note//tei:bibl">
+                <sch:assert test="@type='MS'">
+                  Must be @type='MS'. If not a mss, use &lt;title&gt;.
+                </sch:assert>
+                <sch:assert test="tei:ptr/@target">
+                  This &lt;bibl&gt; must have a &lt;ptr&gt; element with @target attribute.
                 </sch:assert>
               </sch:rule>
-              <sch:rule context="//tei:seriesStmt//tei:title[node() = 'The Syriac Gazetteer']">
-                <!-- Add additional rules with appropriate contexts when adding additional monograph values above. -->
-                <sch:assert test="./following-sibling::tei:idno/node() = 'http://syriaca.org/geo'">
-                  A &lt;title&gt; containing "The Syriac Gazetteer" requires a following sibling &lt;idno&gt; element containing "http://syriaca.org/geo'. 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="//tei:seriesStmt/tei:title[@level='m']">
-                <sch:assert test="matches(., 'Beth Qaṭraye Gazetteer')">
-                  <!-- Add additional monograph values with an "or" operator as needed. -->
-                  The text node of this &lt;title&gt; element must be "Beth Qaṭraye Gazetteer". 
-                </sch:assert>
-                <sch:assert test="./following-sibling::tei:biblScope">
-                  A &lt;seriesStmt&gt; containing a &lt;title&gt; element @level="m" must have a &lt;biblScope&gt; element.
-                  This &lt;biblScope&gt; element is used to indicate the series (&lt;title&gt; element @level="s") of which this 
-                  'monograph' (&lt;title&gt; element @level="m") is a part.
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="//tei:seriesStmt[tei:title='Beth Qaṭraye Gazetteer']/tei:idno">
-                <!-- Add additional rules with appropriate contexts when adding additional monograph values above. -->
-                <sch:assert test="matches(., 'http://syriaca.org/bethqatraye')">
-                  The text node of this &lt;idno&gt; element must be "http://syriaca.org/bethqatraye'. 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="//tei:seriesStmt/tei:biblScope">
-                <sch:report test="preceding-sibling::tei:title[@level='s']">
-                  A &lt;biblScope&gt; element may not appear in a &lt;seriesStmt&gt; that also has a &lt;title&gt; of @type="s". 
-                </sch:report>
-                <sch:assert test="./tei:title/@level='s'">
-                  This &lt;biblScope&gt; element must contain a &lt;title&gt; element @level="s". It is used 
-                  to indicate the series (&lt;title&gt; element @level="s") of which the 'monograph' (&lt;title&gt; element @level="m") 
-                  in this &lt;seriesStmt&gt; is a part. 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="//tei:seriesStmt[tei:title='Beth Qaṭraye Gazetteer']/tei:biblScope/@n">
-                <!-- Add an additional rule with appropriate context/assert if there are multiple monographs. -->
-                <sch:assert test=". = '1'">
-                  The @n attribute must be "1" since the Beth Qaṭraye Gazetteer is volume 1 of The Syriac Gazetteer.
+              <sch:rule context="//tei:text//tei:desc//tei:bibl/tei:ptr/@target | //tei:text//tei:note//tei:bibl/tei:ptr/@target">
+                <sch:assert test="matches(., concat('http://syriaca.org/manuscript/', '\d+$'))">
+                  This @target attribute must point to a Syriaca.org manuscript URI taking the form "http://syriaca.org/manuscript/{\d+$}} where {\d+$} is a number.
                 </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
-        </elementSpec>
-        
-        
-        <elementSpec ident="profileDesc" module="header" mode="change">
-          <content>
-            <elementRef key="langUsage" minOccurs="1" maxOccurs="1"/>
-          </content>
-          <exemplum>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <profileDesc>
-                <langUsage>
-                  <p>
-                    Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
-                    <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref>
-                  </p>
-                </langUsage>
-              </profileDesc>
-            </egXML>
-          </exemplum>
-          <remarks mode="add">
-            <p>The <gi>profileDesc</gi> contains a <gi>langUsage</gi> element that contains a <gi>p</gi> element. 
-              The text of the <gi>p</gi> should read: Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
-              <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref>
-                        </p>
-          </remarks>
-        </elementSpec>
-        
-        <elementSpec ident="langUsage" module="header" mode="change">
-          <content>
-            <elementRef key="p" minOccurs="1" maxOccurs="1"/>
-          </content>
-          <exemplum>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <profileDesc>
-                <langUsage>
-                  <p>
-                    Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
-                    <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref>
-                  </p>
-                </langUsage>
-              </profileDesc>
-            </egXML>
-          </exemplum>
-          <remarks mode="add">
-            <p>The <gi>langUsage</gi> element contains a <gi>p</gi> element. 
-              The text of the <gi>p</gi> should read: Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
-              <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref>
-                        </p>
-          </remarks>
-        </elementSpec>
-        
-        <elementSpec ident="revisionDesc" module="header" mode="change">
-          <content>
-            <elementRef key="change" minOccurs="0" maxOccurs="unbounded"/>
-          </content>
+          <constraintSpec ident="titleWithExternalURL" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:bibl[tei:ptr/@target[not(contains(., 'syriaca.org'))]]">
+                <sch:assert test="tei:title/text() = tei:ptr/@target">This &lt;bibl&gt; must have a child &lt;title&gt; element that equals the value of the @target attribute on the sibling &lt;ptr&gt; element.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
           <attList>
-            <attDef ident="status" mode="replace" usage="req">
-              <valList type="closed" mode="replace">
-                <valItem ident="draft">
-                  <gloss>draft</gloss>
-                  <desc>Indicates that this document is more-or-less complete but remains in draft status.</desc>
-                </valItem>
-                <valItem ident="incomplete">
-                  <gloss>incomplete</gloss>
-                  <desc>Indicates that this document is incomplete.</desc>
-                </valItem>
-                <valItem ident="published">
-                  <gloss>published</gloss>
-                  <desc>Indicates that this document has been published.</desc>
-                </valItem>
-                <valItem ident="underReview">
-                  <gloss>under review</gloss>
-                  <desc>Indicates that this document is under review by one or more editors.</desc>
+            <attDef ident="subtype" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="xml:lang" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="resp" mode="delete"/>
+            <attDef ident="source" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+            <attDef ident="type" mode="change" usage="opt">
+              <valList mode="change" type="closed">
+                <valItem ident="MS">
+                  <desc>used for bibliographic citation of a manuscript</desc>
                 </valItem>
               </valList>
             </attDef>
           </attList>
         </elementSpec>
         
+        
+        
+        <elementSpec ident="body" module="textstructure" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+          </classes>
+        </elementSpec>
+        
+        
+        
         <elementSpec ident="change" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.pointing" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+            <memberOf key="att.docStatus" mode="delete"/>
+          </classes>
           <constraintSpec ident="who-on-change" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:revisionDesc//tei:change/@who">
-                <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
+                <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/syriaca/master/documentation/editors.xml')"/>
                 <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
                 <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $refValues">
+                <sch:assert test="every $i in . satisfies $i = $refValues">
                   Acceptable values for the @who attribute on a &lt;change&gt; element inside the &lt;revisionDesc&gt; include: 
                   <sch:value-of select="string-join($refValues, ' | ')"/>.
                 </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
-        </elementSpec>
-        
-        <elementSpec ident="text" module="textstructure" mode="change">
-          <content>
-            <elementRef key="body" minOccurs="1" maxOccurs="1"/>
-          </content>
-          <constraintSpec ident="source-within-test" scheme="schematron">
+          <constraintSpec ident="xmlID-on-change" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:text">
-                <sch:assert test="count(.//@source) ge 1">At least one descendent element of &lt;text&gt; must have a @source attribute (@source attributes point to the @xml:id on a &lt;bibl&gt; or &lt;listBibl&gt;).</sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        <elementSpec ident="title" module="core" mode="change">
-          <constraintSpec ident="lang-on-title-in-body" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:text//tei:bibl/tei:title">
-                <sch:assert test="./@xml:lang or ./contains(., 'http://') or ./contains(., 'https://')">A &lt;title&gt; element in a &lt;bibl&gt; 
-                  element within the text body must have an @xml:lang attribute unless the content of the text node is a URL 
-                  (i.e. contains "http://" or "https://").
+              <sch:rule context="//tei:change/@xml:id">
+                <sch:let name="docURIno" value="replace(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '.+?(\d+).+', '$1')"/>
+                <sch:assert test="matches(., concat('change', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'change<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
+                <sch:report test="preceding-sibling::element()[@xml:id = .]">This @xml:id is already in use.</sch:report>
               </sch:rule>
             </constraint>
           </constraintSpec>
-          <constraintSpec ident="title-in-titleStmt" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:titleStmt/tei:title">
-                <sch:assert test="matches(@level, 'a')">A &lt;title&gt; element of @level="a" is the only title allowed in
-                  the &lt;titleStmt&gt;.</sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <constraintSpec ident="title-in-seriesStmt" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:seriesStmt//tei:title">
-                <sch:assert test="matches(@level, 'm') or matches(@level, 's')">Only &lt;title&gt; elements of @level="m" or "s"
-                  are allowed in the &lt;seriesStmt&gt;.
-                </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <attList> <!-- Move to the NHSL ODD -->
-            <attDef ident="type" mode="change" usage="opt">
-              <desc>Describes the function of the title. This attribute is optional. Certain
-                non-blank values (such as "final-rubric") may cause the title to be moved to a
-                different section of the page.</desc>
-              <valList mode="change" type="semi">
-                <valItem ident="initial-rubric">
-                  <gloss>Initial Rubric</gloss>
-                  <desc>Text denoting the beginning of a work, usually derived from a manuscript
-                    exemplar. This may include a title of the work, but should be distinguished from
-                    other titles because it also includes non-title text.</desc>
-                </valItem>
-                <valItem ident="final-rubric">
-                  <gloss>Final Rubric</gloss>
-                  <desc>Text denoting the end of a work, usually derived from a manuscript exemplar.
-                    This may include a title of the work, but should be distinguished from other
-                    titles because it also includes non-title text.</desc>
-                </valItem>
-                <valItem ident="abbreviation">
-                  <gloss>Abbreviation</gloss>
-                  <desc>An abbreviation of a work's title.</desc>
-                </valItem>
-              </valList>
-            </attDef>
-            <attDef ident="level" mode="change">
-              <valList type="closed" mode="replace">
-                <valItem ident="a">
-                  <gloss>analytic</gloss>
-                  <desc> The title for each individual xml file has a <att>level</att> attribute
-                    with value "a" to distinguish it from the title of the entire project (e.g. The
-                    Syriac Gazetteer). The "a" value stands for analytic, which means that the title
-                    is part of a larger publication. </desc>
-                </valItem>
-                <valItem ident="s">
-                  <gloss>series</gloss>
-                  <desc>
-                    The series title. This applies to Syriaca.org modules such as the "Syriac Biographical Dictionary" 
-                    and the "Syriac Gazetteer."
-                  </desc>
-                </valItem>
-                <valItem ident="m">
-                  <gloss>monographic</gloss>
-                  <desc> The <att>level</att> "m" indicates that this title is monographic which TEI defines as a distinct 
-                    publication that may be part of the larger publication. Syriaca.org uses this title level to indicate
-                    a sub-module or volume of a module such as the "Saints" sub-module which is part of the larger "Syriac Biographical Dictionary."</desc>
-                </valItem>
-              </valList>
-            </attDef>
-          </attList>
-          <exemplum versionDate="2017-03-23">
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <title xml:id="name1-1" xml:lang="en" srophe:tags="#syriaca-headword">Genesis
-                (Peshitta Version)</title>
-              <title xml:id="name1-2" xml:lang="syr" srophe:tags="#syriaca-headword" source="#bib1-1">ܣܦܪܐ ܕܒܪܝܫܝܬ</title>
-              <title xml:id="name1-3" xml:lang="syr" source="#bib1-1">ܣܦܪܐ ܕܒܪܝܬܐ</title>
-              <title xml:id="name1-4" xml:lang="en" type="abbreviation" srophe:tags="#canonical" source="#bib1-9">Gen</title>
-              <title xml:id="name1-5" xml:lang="en" source="#bib1-9">Genesis</title>
-              <title xml:id="name1-6" xml:lang="syr" source="#bib1-1">ܐܣ̣ܬܝܟ ܣܦ̣ܪܐ ܗܢܐ ܩܕܡܝܐ ܕܐܘܪܝܬܐ
-                ܒܦ̈ܬܓܡܐ ܐܪ̈ܒܥܐ ܐܠܦ̈ܝܢ ܘܚܡܫ ܡ̈ܠܐ ܘܬܫܥܐ ܕܒܨ̈ܚܚܐ ܠ̅ܕ̅.</title>
-            </egXML>
-          </exemplum>
-          <exemplum>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <title level="a" xml:lang="en">Edessa — <foreign xml:lang="syr">ܐܘܪܗܝ</foreign>
-              </title>
-            </egXML>
-          </exemplum>
-          <exemplum>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <title level="m" xml:lang="en">The Syriac Gazetteer</title>
-            </egXML>
-          </exemplum>
-        </elementSpec>
-        
-        
-        <elementSpec ident="persName" module="namesdates" mode="change">
-          <constraintSpec ident="ref-on-person" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:text//tei:persName/@ref">
-                <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"/>
-                <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $personURIs">
-                  This @ref attribute is not a person URI in use in Syriaca.org data. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
-                </sch:assert>
-                <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        
-        <elementSpec ident="placeName" module="namesdates" mode="change">
-          <constraintSpec ident="ref-on-placeName" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:text//tei:placeName/@ref">
-                <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
-                <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
-                  This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
-                </sch:assert>
-                <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        
-        <elementSpec ident="district" module="namesdates" mode="change">
-          <constraintSpec ident="ref-on-district" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:text//tei:district/@ref">
-                <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
-                <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
-                  This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
-                </sch:assert>
-                <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        
-        <elementSpec ident="settlement" module="namesdates" mode="change">
-          <constraintSpec ident="ref-on-settlement" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:text//tei:settlement/@ref">
-                <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
-                <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
-                  This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
-                </sch:assert>
-                <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        
-        <elementSpec ident="region" module="namesdates" mode="change">
-          <constraintSpec ident="ref-on-region" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:text//tei:region/@ref">
-                <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
-                <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
-                  This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
-                </sch:assert>
-                <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        
-        <elementSpec ident="country" module="namesdates" mode="change">
-          <constraintSpec ident="ref-on-country" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:text//tei:country/@ref">
-                <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
-                <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
-                  This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
-                </sch:assert>
-                <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        
-        <elementSpec ident="bloc" module="namesdates" mode="change">
-          <constraintSpec ident="ref-on-bloc" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:text//tei:bloc/@ref">
-                <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
-                <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
-                  This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
-                </sch:assert>
-                <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-                       
-        <elementSpec ident="idno" module="header" mode="change">
-          <constraintSpec ident="idno-uri" scheme="schematron">
-            <constraint>
-              <sch:rule context="//tei:publicationStmt/tei:idno[@type='URI']">
-                <sch:let name="fileNo" value="replace(document-uri(/), '.*?(\d{1,5}).xml', '$1')"/>
-                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="$fileNo eq $docURIno">
-                  The number portion of the &lt;idno&gt; element must be the same as the URI number in the file name: <sch:value-of select="$fileNo"/>
-                </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-               
-        <elementSpec ident="date" module="core" mode="change">
           <attList>
+            <attDef ident="target" mode="delete"/>
+            <attDef ident="n" mode="add">
+              <datatype>
+                <dataRef key="teidata.text"/>
+              </datatype>
+            </attDef>
+            <attDef ident="xml:id" mode="add"><!-- I should be doing this with classes and only deleting here. -->
+              <datatype>
+                <dataRef key="ID"/>
+              </datatype>
+            </attDef>
+            <attDef ident="when" mode="add" usage="req">
+              <datatype>
+                <dataRef key="teidata.temporal.w3c"/>
+              </datatype>
+            </attDef>
+            <attDef ident="who" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="choice" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="orig" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="reg" minOccurs="1" maxOccurs="1"/>
+            </sequence>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="citedRange" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+          </classes>
+          <content>
+            <textNode/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="date" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.canonical" mode="delete"/>
+            <memberOf key="att.duration.iso" mode="delete"/>
+            <memberOf key="att.dimensions" mode="delete"/>
+            <memberOf key="att.ranging" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/>
+            </sequence>
+          </content>
+          <attList>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
             <attDef ident="type" mode="change" usage="rec"><!-- Move to NHSL -->
               <desc>specifies how the date is associated with the entity (work, person, etc.) to
                 which it refers</desc>
@@ -805,130 +660,1012 @@
                 Syriaca.org documentation</ref> for editorial conventions regarding dates.</p>
           </remarks>
         </elementSpec>
+                   
         
-        <elementSpec ident="note" module="core" mode="change">
-          <classes mode="change">
-            <memberOf key="att.global.rendition" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.global.linking" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.global.facs" mode="delete"/><!-- deleted -->
-            <memberOf key="att.global.change" mode="delete"/><!-- deleted -->
-            <memberOf key="att.global.responsibility" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.placement" mode="delete"/><!-- deleted -->
-            <memberOf key="att.written" mode="delete"/><!-- deleted -->
-          </classes>
-          <!--<classes mode="replace">
-            <memberOf key="att.global" mode="add"/>
-            <memberOf key="att.global.source" mode="add"/>
-            <memberOf key="att.pointing" mode="add"/>
-            <memberOf key="att.typed" mode="add"/>
-            <memberOf key="model.noteLike" mode="add"/>
-            <memberOf key="model.correspDescPart" mode="add"/>
-            <memberOf key="model.correspContextPart" mode="add"/>
-            <memberOf key="model.correspActionPart" mode="add"/>
-          </classes>-->
+        
+        
+        <elementSpec ident="desc" module="core" mode="change">
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="choice" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="measure" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="offset" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="orgName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="quote" minOccurs="0" maxOccurs="1"/>
+              <elementRef key="rs" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/>
+            </sequence>
+          </content>
+          <constraintSpec ident="lang-on-desc" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:body//tei:desc">
+                <sch:assert test="./@xml:lang">
+                  All &lt;desc&gt; elements must have an @xml:lang attribute.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="unique-desc-abstracts" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:desc[@type='abstract']">
+                <sch:let name="series" value="ancestor::tei:TEI//tei:seriesStmt/tei:idno[@type='URI']"/>
+                <sch:let name="abstractLangPairs" value="for $i in parent::element()/tei:desc[@type='abstract']/tokenize(@corresp, ' ') return concat($i, '-', @xml:lang)"/>
+                <sch:assert test="every $i in tokenize(@corresp, ' ') satisfies $i = $series">
+                  Values allowed on @corresp: <sch:value-of select="string-join($series, ';  ')"/>.
+                </sch:assert>
+                <sch:assert test="count($abstractLangPairs) eq count(distinct-values($abstractLangPairs))">
+                  A series (see individual values of @corresp) may have only one abstract per language (see @xml:lang).
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="abstract-on-each-series" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:desc[@type='abstract'][@xml:lang='en']">
+                <sch:let name="series" value="ancestor::tei:TEI//tei:seriesStmt/tei:idno[@type='URI']"/>
+                <sch:let name="corresps" value="parent::*/tei:desc[@xml:lang='en']/@corresp/tokenize(., '\s')"/>
+                <sch:assert test="every $i in $series satisfies $i = $corresps">
+                  Each series in the header must have an abstract. As such, each of the following must appear once as a value on the @corresp attribute of an abstract: <sch:value-of select="string-join($series, ';  ')"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="documentation-on-desc" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:event/tei:desc">
+                <sch:report test="@resp or @source">Documentation using @resp or @source should go on the parent &lt;event&gt; element.</sch:report>
+              </sch:rule>
+              <sch:rule context="tei:state/tei:desc">
+                <sch:report test="@resp or @source">Documentation using @resp or @source should go on the parent &lt;state&gt; element.</sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
           <attList>
             <attDef ident="subtype" mode="delete"/>
-            <attDef ident="anchored" mode="delete"/>
-            <attDef ident="targetEnd" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="type" mode="change">
+              <valList type="closed" mode="replace">
+                <valItem ident="abstract"/>
+                <valItem ident="note"/>
+              </valList>
+            </attDef>
+            <attDef ident="xml:lang" mode="change" usage="rec"/>
           </attList>
         </elementSpec>
         
+        
+        
+        <elementSpec ident="editor" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.datable" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="date" minOccurs="0" maxOccurs="1"/>
+              <elementRef key="persName" minOccurs="0" maxOccurs="1"/>
+              <textNode/>
+            </sequence>
+          </content>
+        </elementSpec>
+        
+        
+        <elementSpec ident="event" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.naming" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+            <memberOf key="att.sortable" mode="delete"/>
+            <memberOf key="att.locatable" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="desc" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="link" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="precision" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <constraintSpec ident="xmlID-on-event" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:event[@type='attestation']">
+                <sch:let name="docURIno" value="replace(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '.+?(\d+).+', '$1')"/>
+                <sch:let name="id" value="@xml:id"/>
+                <sch:assert test="matches(./@xml:id, concat('attestation', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'attestation<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
+                </sch:assert>
+                <sch:report test="preceding-sibling::element()[@xml:id = $id]">This @xml:id is already in use.</sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="documentation-on-event" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:place/tei:event">
+                <sch:report test="@resp and @source">Only one of the attributes @resp and @source may be supplied.</sch:report>
+              </sch:rule>
+              <sch:rule context="tei:place/tei:event[not(tei:quote)]">
+                <sch:assert test="@source">A @source attribute must be supplied.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="subtype" mode="delete"/>
+            <attDef ident="xml:lang" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="resp" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="foreign" module="core" mode="change">
+          <content>
+            <textNode/>
+          </content>
+          <attList>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="resp" mode="delete"/>
+            <attDef ident="source" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="funder" module="header" mode="change">
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <titleStmt> 
+                ... 
+                <funder>The National Endowment for the Humanities</funder>
+                <funder>The International Balzan Prize Foundation</funder> 
+                ... 
+              </titleStmt>
+            </egXML>
+          </exemplum>
+          <remarks mode="add">
+            <p> Next within the <gi>titleStmt</gi> the funding bodies are identified by use of the
+              <gi>funder</gi> element. If multiple funding bodies are relevant, then each one gets
+              a separate <gi>funder</gi> element, which are simply listed. </p>
+          </remarks>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="idno" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.sortable" mode="delete"/>
+            <memberOf key="att.datable" mode="delete"/>
+          </classes>
+          <content>
+            <textNode/>
+          </content>
+          <constraintSpec ident="idno-uri" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:publicationStmt/tei:idno[@type='URI']/text()">
+                <sch:let name="fileNo" value="replace(document-uri(/), '.*?(\d{1,5}).xml', '$1')"/>
+                <sch:let name="docURIno" value="replace(., '.+?(\d+).+', '$1')"/>
+                <sch:let name="id" value="@xml:id"/>
+                <sch:assert test="$fileNo = $docURIno">
+                  The number portion of the &lt;idno&gt; element must be the same as the URI number in the file name: <sch:value-of select="$fileNo"/>
+                </sch:assert>
+                <sch:report test="preceding-sibling::element()[@xml:id = $id]">This @xml:id is already in use.</sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="change-on-idno" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:idno[@type='deprecated']">
+                <sch:assert test="@change">
+                  An &lt;idno&gt; element with a @type attribute of "deprecation" must have a @change attribute.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:idno[not(@type='deprecated')]">
+                <sch:report test="@change">
+                  Only an &lt;idno&gt; element with a @type attribute of "deprecation" may have a @change attribute.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="subtype" mode="delete"/>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="xml:lang" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="resp" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+            <attDef ident="type" mode="change" usage="req">
+              <desc>The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc>
+              <valList mode="replace" type="closed">
+                <valItem ident="deprecated">
+                  <desc>For URIs that are no longer in use.</desc>
+                </valItem>
+                <valItem ident="FIEY">
+                  <desc>For identifiers from Fiey.</desc>
+                </valItem>
+                <valItem ident="PLRE">
+                  <desc>For identifiers from the Prosopography of the Later Roman Empire.</desc>
+                </valItem>
+                <valItem ident="URI">
+                  <desc>A Uniform Resource Identifier.</desc>
+                </valItem>
+                
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <!--<elementSpec ident="link" module="linking" mode="change">
+          <content>
+            <empty/>
+          </content>
+        </elementSpec>-->
+        
+        
+        <elementSpec ident="listBibl" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+            <memberOf key="att.sortable" mode="delete"/>
+            <memberOf key="att.declarable" mode="delete"/>
+          </classes>
+          <content>
+            <elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/>
+          </content>
+        </elementSpec>
+        
+        
+        
         <elementSpec ident="listRelation" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+            <memberOf key="att.sortable" mode="delete"/>
+          </classes>
           <content>
             <elementRef key="relation" minOccurs="1" maxOccurs="unbounded"/>
           </content>
         </elementSpec>
         
-        <elementSpec ident="relation" module="namesdates" mode="change">
-          <classes mode="change"><!-- all deleted -->
-            <memberOf key="att.global" mode="delete"/>
-            <memberOf key="att.global.rendition" mode="delete"/>
-            <memberOf key="att.global.linking" mode="delete"/>
-            <memberOf key="att.global.facs" mode="delete"/>
-            <memberOf key="att.global.change" mode="delete"/>
-            <memberOf key="att.global.responsibility" mode="delete"/>
-            <memberOf key="att.editLike" mode="delete"/>
-            <memberOf key="att.sortable" mode="delete"/>
-            <memberOf key="att.typed" mode="delete"/>
-            <memberOf key="att.global.source" mode="add"/>
-          </classes>
-        </elementSpec>
         
-        <elementSpec ident="bibl" module="core" mode="change">
+        
+        <elementSpec ident="name" module="namesdates" mode="change">
           <classes mode="change">
-            <memberOf key="att.global.rendition" mode="delete"/><!-- deleted -->
-            <memberOf key="att.global.linking" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.global.facs" mode="delete"/><!-- deleted -->
-            <memberOf key="att.global.change" mode="delete"/><!-- deleted -->
-            <memberOf key="att.global.responsibility" mode="delete"/>
-            <memberOf key="att.global.source" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.declarable" mode="delete"/><!-- deleted -->
-            <memberOf key="att.typed" mode="delete"/><!-- deleted -->
-            <memberOf key="att.sortable" mode="delete"/><!-- deleted -->
-            <memberOf key="att.docStatus" mode="delete"/><!-- deleted -->
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.naming" mode="delete"/>
+            <memberOf key="att.editLike" mode="delete"/>
           </classes>
-          <constraintSpec ident="xmlID-on-bibl" scheme="schematron">
+          <constraintSpec ident="ref-on-name" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:body/tei:listPlace/tei:place/tei:bibl">
-                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+$'))">
-                  The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
+              <sch:rule context="//tei:teiHeader//tei:name/@ref">
+                <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/syriaca/master/documentation/editors.xml')"/>
+                <sch:let name="eds" value="$edsDoc//tei:body//@xml:id"/>
+                <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
+                <sch:assert test="every $i in . satisfies $i = $refValues">
+                  Acceptable values for the @ref attribute on a &lt;name&gt; element inside the &lt;teiHeader&gt; include: 
+                  <sch:value-of select="string-join($refValues, ' | ')"/>.
                 </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <constraintSpec ident="mssCitation" scheme="schematron">
-            <constraint>
-              <!-- This is a temporary rule until we have URIs for mss. -->
-              <sch:rule context="//tei:text//tei:bibl" role="warning">
-                <sch:assert test="./tei:ptr">A &lt;bibl&gt; should contain a &lt;ptr&gt; 
-                indicating the URI or URL for the citation. The only exception is when 
-                when citing a manuscript in which case this &lt;bibl&gt; should have
-                @type="syriaca:Manuscript".</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
           <attList>
-            <attDef ident="type" mode="add" usage="opt">
-              <!-- This is a temporary addition until we have URIs for mss. -->
-              <valList mode="change" type="closed">
-                <valItem ident="syriaca:Manuscript">
-                  <desc>used for bibliographic citation of a manuscript</desc>
-                </valItem>
-              </valList>
-            </attDef>
+            <attDef ident="key" mode="delete"/>
+            <attDef ident="subtype" mode="delete"/>
           </attList>
-         </elementSpec>
+        </elementSpec>
         
         
-        <elementSpec ident="listBibl" module="core" mode="change">
+        
+        <elementSpec ident="note" module="core" mode="change">
           <classes mode="change">
-            <memberOf key="att.global.rendition" mode="delete"/><!-- deleted -->
-            <memberOf key="att.global.linking" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.global.facs" mode="delete"/><!-- deleted -->
-            <memberOf key="att.global.change" mode="delete"/><!-- deleted -->
-            <memberOf key="att.global.responsibility" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.global.source" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.declarable" mode="delete"/><!-- deleted -->
-            <memberOf key="att.typed" mode="delete"/><!-- deleted -->
-            <memberOf key="att.sortable" mode="delete"/><!-- deleted -->
-            <memberOf key="att.docStatus" mode="delete"/><!-- deleted -->
+            <memberOf key="att.placement" mode="delete"/>
+            <memberOf key="att.written" mode="delete"/>
+            <memberOf key="att.anchoring" mode="delete"/>
           </classes>
           <content>
-            <elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/>
+            <sequence preserveOrder="false">
+              <elementRef key="bibl" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="quote" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/> <!-- only in the tei:header -->
+              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/>
+            </sequence>
           </content>
-          <constraintSpec ident="xmlID-on-listBibl" scheme="schematron">
+          <constraintSpec ident="documentation-on-note" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:body/tei:listPlace/tei:place/tei:listBibl">
-                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+$'))">
-                  The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
+              <sch:rule context="tei:text//tei:note">
+                <sch:report test="@resp and @source">Only one of the attributes @resp and @source may be supplied.</sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="documentation-note-child-quote" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text//tei:note[not(tei:quote)]">
+                <sch:assert test="@resp or @source">One of the attributes @resp or @source must be supplied.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="unique-note-abstracts" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:note[@type='abstract']">
+                <sch:let name="series" value="ancestor::tei:TEI//tei:seriesStmt/tei:idno[@type='URI']"/>
+                <sch:let name="abstractLangPairs" value="for $i in parent::element()/tei:note[@type='abstract']/tokenize(@corresp, ' ') return concat($i, '-', @xml:lang)"/>
+                <sch:assert test="every $i in tokenize(@corresp, ' ') satisfies $i = $series">
+                  Values allowed on @corresp: <sch:value-of select="string-join($series, ';  ')"/>.
+                </sch:assert>
+                <sch:assert test="count($abstractLangPairs) eq count(distinct-values($abstractLangPairs))">
+                  A series (see individual values of @corresp) may have only one abstract per language (see @xml:lang).
                 </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <constraintSpec ident="note-abstract-on-each-series" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:note[@type='abstract'][@xml:lang='en']">
+                <sch:let name="series" value="ancestor::tei:TEI//tei:seriesStmt/tei:idno[@type='URI']"/>
+                <sch:let name="corresps" value="parent::*/tei:note[@xml:lang='en']/@corresp/tokenize(., '\s')"/>
+                <sch:assert test="every $i in $series satisfies $i = $corresps">
+                  Each series in the header must have an abstract. As such, each of the following must appear once as a value on the @corresp attribute of an abstract: <sch:value-of select="string-join($series, ';  ')"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="subtype" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="xml:id" mode="delete"/>
+          </attList>
         </elementSpec>
-               
+        
+        
+        
+        <elementSpec ident="orig" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+          </classes>
+          <content>
+            <elementRef key="date" minOccurs="1" maxOccurs="1"/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="p" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.declaring" mode="delete"/>
+            <memberOf key="att.fragmentable" mode="delete"/>
+            <memberOf key="att.written" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="gi" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="listBibl" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="note" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/>
+            </sequence>
+          </content>
+          <attList>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="resp" mode="delete"/>
+            <attDef ident="source" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="persName" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.naming" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="addName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="forename" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="roleName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="surname" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/>
+            </sequence>
+          </content>
+          <constraintSpec ident="persName-ref" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:persName/@ref">
+                <sch:assert test="matches(., concat('http://syriaca.org/person/', '\d+'))" role="error">
+                  The @ref attribute on &lt;persName&gt; must take a Syriaca.org person URI which reqires 
+                  the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:persName[ancestor::tei:desc][ancestor::tei:note]">
+                <sch:assert test="@ref">This &lt;persName&gt; requires a @ref attribute.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="key" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="placeName" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.naming" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/>
+            </sequence>
+          </content>
+          <constraintSpec ident="place-ref" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:placeName/@ref">
+                <sch:assert test="matches(., concat('http://syriaca.org/place/', '\d+'))" role="error">
+                  The @ref attribute on &lt;placeName&gt; must take a Syriaca.org place URI which reqires 
+                  the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:placeName[ancestor::tei:desc][ancestor::tei:note]">
+                <sch:assert test="@ref">This &lt;placeName&gt; requires a @ref attribute.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="role" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="precision" module="certainty" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.ranging" mode="delete"/>
+          </classes>
+          <content>
+            <empty/>
+          </content>
+          <attList>
+            <attDef ident="precision" mode="delete"/>
+            <attDef ident="stdDeviation" mode="delete"/>
+            <attDef ident="calendar" mode="delete"/>
+            <attDef ident="period" mode="delete"/>
+            <attDef ident="from" mode="delete"/>
+            <attDef ident="to" mode="delete"/>
+            <attDef ident="when-custom" mode="delete"/>
+            <attDef ident="notBefore-custom" mode="delete"/>
+            <attDef ident="notAfter-custom" mode="delete"/>
+            <attDef ident="from-custom" mode="delete"/>
+            <attDef ident="to-custom" mode="delete"/>
+            <attDef ident="datingPoint" mode="delete"/>
+            <attDef ident="datingMethod" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="profileDesc" module="header" mode="change">
+          <content>
+            <elementRef key="langUsage" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <profileDesc>
+                <langUsage>
+                  <p>
+                    Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
+                    <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref>
+                  </p>
+                </langUsage>
+              </profileDesc>
+            </egXML>
+          </exemplum>
+          <remarks mode="add">
+            <p>The <gi>profileDesc</gi> contains a <gi>langUsage</gi> element that contains a <gi>p</gi> element. 
+              The text of the <gi>p</gi> should read: Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
+              <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref>
+            </p>
+          </remarks>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="ptr" module="linking" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.internetMedia" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+            <memberOf key="att.cReferencing" mode="delete"/>
+          </classes>
+          <constraintSpec ident="target-in-ptr" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:body//tei:bibl/tei:ptr/@target" role="warning">
+                <sch:let name="error" value="."/>
+                <sch:assert test="matches(., 'http://syriaca.org/cbss/[A-Z\d]{8}')">
+                  The @target value: "<sch:value-of select="$error"/>" is not a Syriaca.org cbss URI. These URIs take the form of 
+                  "http://syriaca.org/cbss/[A-Z\d]{8}" where [A-Z\d]{8} indicates an 8-character alpha-numeric string. In circumstances 
+                  where the &lt;ptr&gt; element indicates an external web address (i.e. http://pleiades.stoa.org/places/922698), 
+                  the @target should indicate the correct URL for that resource and this warning message should be ignored.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="target" mode="change" usage="req"/>
+          </attList>
+          <remarks mode="add">
+            <p>
+              Contained within the <gi>bibl</gi> element is a <gi>ptr</gi> element whose <att>target</att> attribute has the value of a URI pointing to the bibliographic item.
+              This URI must be formatted as follows: 'http://syriaca.org/bibl/{\d+}' (where {\d+} is a number).
+            </p>
+          </remarks>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="quote" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.notated" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="bibl" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="measure" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="offset" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="orgName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/>
+            </sequence>
+          </content>
+          <attList>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="resp" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+            <attDef ident="source" mode="change" usage="req">
+              <!-- write a schematron rule in syriacaAll.odd that requires the @source value to point to an xml:id in the doc. -->
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        
+        <elementSpec ident="ref" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.cReferencing" mode="delete"/>
+            <memberOf key="att.internetMedia" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+          </classes>
+          <content>
+            <textNode/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="reg" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.editLike" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+          </classes>
+          <content>
+            <elementRef key="date" minOccurs="1" maxOccurs="1"/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="relation" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.sortable" mode="delete"/>
+          </classes>
+          <content>
+            <elementRef key="desc" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <attList>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="xml:lang" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="name" mode="delete"/>
+            <attDef ident="type" mode="change" usage="req"/>
+            <attDef ident="ref" mode="change" usage="req"/>
+            <attDef ident="mutual" mode="change">
+              <datatype minOccurs="2" maxOccurs="unbounded">
+                <dataRef key="teidata.pointer"/>
+              </datatype>
+            </attDef>
+            <attDef ident="active" mode="change">
+              <datatype minOccurs="1" maxOccurs="1">
+                <dataRef key="teidata.pointer"/>
+              </datatype>
+            </attDef>
+            <attDef ident="passive" mode="change">
+              <datatype minOccurs="1" maxOccurs="unbounded">
+                <dataRef key="teidata.pointer"/>
+              </datatype>
+            </attDef>
+            
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="revisionDesc" module="header" mode="change">
+          <content>
+            <elementRef key="change" minOccurs="0" maxOccurs="unbounded"/>
+          </content>
+          <attList>
+            <attDef ident="status" mode="replace" usage="req">
+              <valList type="closed" mode="replace">
+                <valItem ident="draft">
+                  <gloss>draft</gloss>
+                  <desc>Indicates that this document is more-or-less complete but remains in draft status.</desc>
+                </valItem>
+                <valItem ident="incomplete">
+                  <gloss>incomplete</gloss>
+                  <desc>Indicates that this document is incomplete.</desc>
+                </valItem>
+                <valItem ident="published">
+                  <gloss>published</gloss>
+                  <desc>Indicates that this document has been published.</desc>
+                </valItem>
+                <valItem ident="uncorrected-draft">
+                  <gloss>uncorrected draft</gloss>
+                  <desc>Indicates that this document is in need of editorial review by one or more editors.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="rs" module="core" mode="change">
+          <attList>
+            <attDef ident="type" mode="replace" usage="req">
+              <valList type="closed" mode="replace">
+                <valItem ident="religiousCommunity">
+                  <gloss>Religious Community</gloss>
+                  <desc>Indicates that the enclosed string points to a Religious Community</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="ref" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        
+        <elementSpec ident="seriesStmt" module="header" mode="change">
+          <content>
+            <sequence>
+              <elementRef key="title" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="editor" minOccurs="1" maxOccurs="unbounded"/>
+              <elementRef key="biblScope" minOccurs="0" maxOccurs="1"/>
+              <elementRef key="idno" minOccurs="1" maxOccurs="1"/>
+            </sequence>
+          </content>
+        </elementSpec>
+        
+        
+        
+        
+        <elementSpec ident="sourceDesc" module="header" mode="change">
+          <content>
+            <elementRef key="p" minOccurs="1" maxOccurs="1"/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="sponsor" module="header" mode="change">
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <titleStmt> 
+                ... 
+                <sponsor>Syriaca.org: The Syriac Reference Portal</sponsor> 
+                ...
+              </titleStmt>
+            </egXML>
+          </exemplum>
+          <remarks mode="add">
+            <p> The TEI guidelines recommend that the <gi>titleStmt</gi> element also indicate who
+              is responsible for this TEI file. Since <gi>author</gi> is typically used for the
+              author of a print or manuscript text which was then encoded in TEI, we avoid the use
+              of the <gi>author</gi> element. Instead, we identify Syriaca.org as the sponsoring
+              institution, </p>
+          </remarks>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="state" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.naming" mode="delete"/>
+            <memberOf key="att.dimensions" mode="delete"/>
+            <memberOf key="att.ranging" mode="delete"/>
+            <memberOf key="att.canonical" mode="add"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="desc" minOccurs="0" maxOccurs="1"/>
+              <elementRef key="precision" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <constraintSpec ident="documentation-on-state" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:state">
+                <sch:report test="@source and @resp">Only one of the attributes @resp and @source may be supplied.</sch:report>
+                <sch:assert test="@resp or @source">One of the attributes @resp or @source must be supplied.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="key" mode="delete"/>
+            <attDef ident="subtype" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="xml:lang" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="text" module="textstructure" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.declaring" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/> 
+            <memberOf key="att.written" mode="delete"/>
+          </classes>
+          <content>
+            <elementRef key="body" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <constraintSpec ident="source-within-text" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text">
+                <sch:assert test="count(.//@source) ge 1">At least one descendent element of &lt;text&gt; must have a @source attribute (@source attributes point to the @xml:id on a &lt;bibl&gt; or &lt;listBibl&gt;).</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="title" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+          </classes>
+          <constraintSpec ident="lang-on-title-in-body" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:bibl/tei:title">
+                <sch:assert test="./@xml:lang or ./contains(., 'http://') or ./contains(., 'https://')">A &lt;title&gt; element in a &lt;bibl&gt; 
+                  element within the text body must have an @xml:lang attribute unless the content of the text node is a URL 
+                  (i.e. contains "http://" or "https://").
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="title-in-titleStmt" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:titleStmt/tei:title">
+                <sch:assert test="matches(@level, 'a')">A &lt;title&gt; element of @level="a" is the only title allowed in
+                  the &lt;titleStmt&gt;.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="title-in-seriesStmt" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:seriesStmt//tei:title">
+                <sch:assert test="matches(@level, 'm') or matches(@level, 's')">Only &lt;title&gt; elements of @level="m" or "s"
+                  are allowed in the &lt;seriesStmt&gt;.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="title-in-desc-note" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:desc//tei:title/@ref | //tei:text//tei:note//tei:title/@ref">
+                <sch:assert test="matches(., concat('http://syriaca.org/work/', '\d+$'))">
+                  This @ref attribute must take the form "http://syriaca.org/work/{\d+$}} where {\d+$} is a number.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:text//tei:desc//tei:title | //tei:text//tei:note//tei:title">
+                <sch:report test="tei:ptr">
+                  A &lt;ptr&gt; element is not allowed as child of &lt;title&gt;. Instead use a @target attribute.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList> <!-- Move to the NHSL ODD -->
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="resp" mode="delete"/>
+            <attDef ident="source" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+            <attDef ident="subtype" mode="delete"/>
+            <attDef ident="type" mode="replace" usage="opt">
+              <desc>Describes the function of the title. This attribute is optional. Certain
+                non-blank values (such as "final-rubric") may cause the title to be moved to a
+                different section of the page.</desc>
+              <datatype>
+                <dataRef key="teidata.enumerated"/>
+              </datatype>
+              <valList mode="change" type="semi">
+                <valItem ident="initial-rubric">
+                  <gloss>Initial Rubric</gloss>
+                  <desc>Text denoting the beginning of a work, usually derived from a manuscript
+                    exemplar. This may include a title of the work, but should be distinguished from
+                    other titles because it also includes non-title text.</desc>
+                </valItem>
+                <valItem ident="final-rubric">
+                  <gloss>Final Rubric</gloss>
+                  <desc>Text denoting the end of a work, usually derived from a manuscript exemplar.
+                    This may include a title of the work, but should be distinguished from other
+                    titles because it also includes non-title text.</desc>
+                </valItem>
+                <valItem ident="abbreviation">
+                  <gloss>Abbreviation</gloss>
+                  <desc>An abbreviation of a work's title.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="level" mode="change">
+              <valList type="closed" mode="replace">
+                <valItem ident="a">
+                  <gloss>analytic</gloss>
+                  <desc> The title for each individual xml file has a <att>level</att> attribute
+                    with value "a" to distinguish it from the title of the entire project (e.g. The
+                    Syriac Gazetteer). The "a" value stands for analytic, which means that the title
+                    is part of a larger publication. </desc>
+                </valItem>
+                <valItem ident="j">
+                  <gloss>journal</gloss>
+                  <desc>
+                    A journal title.
+                  </desc>
+                </valItem>
+                <valItem ident="s">
+                  <gloss>series</gloss>
+                  <desc>
+                    A series title. Syriaca.org uses this for a book series. It also uses this for Syriaca.org modules such as the "Syriac Biographical Dictionary" 
+                    and the "Syriac Gazetteer."
+                  </desc>
+                </valItem>
+                <valItem ident="m">
+                  <gloss>monographic</gloss>
+                  <desc> The <att>level</att> "m" indicates that this title is monographic which TEI defines as a distinct 
+                    publication that may be part of the larger publication. Syriaca.org uses this for monograph titles. It also uses this title level to indicate
+                    a sub-module or volume of a module such as the "Saints" sub-module which is part of the larger "Syriac Biographical Dictionary."</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+          <exemplum versionDate="2017-03-23">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <title xml:id="name1-1" xml:lang="en" srophe:tags="#syriaca-headword">Genesis
+                (Peshitta Version)</title>
+              <title xml:id="name1-2" xml:lang="syr" srophe:tags="#syriaca-headword" source="#bib1-1">ܣܦܪܐ ܕܒܪܝܫܝܬ</title>
+              <title xml:id="name1-3" xml:lang="syr" source="#bib1-1">ܣܦܪܐ ܕܒܪܝܬܐ</title>
+              <title xml:id="name1-4" xml:lang="en" type="abbreviation" srophe:tags="#canonical" source="#bib1-9">Gen</title>
+              <title xml:id="name1-5" xml:lang="en" source="#bib1-9">Genesis</title>
+              <title xml:id="name1-6" xml:lang="syr" source="#bib1-1">ܐܣ̣ܬܝܟ ܣܦ̣ܪܐ ܗܢܐ ܩܕܡܝܐ ܕܐܘܪܝܬܐ
+                ܒܦ̈ܬܓܡܐ ܐܪ̈ܒܥܐ ܐܠܦ̈ܝܢ ܘܚܡܫ ܡ̈ܠܐ ܘܬܫܥܐ ܕܒܨ̈ܚܚܐ ܠ̅ܕ̅.</title>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <title level="a" xml:lang="en">Edessa — <foreign xml:lang="syr">ܐܘܪܗܝ</foreign>
+              </title>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <title level="m" xml:lang="en">The Syriac Gazetteer</title>
+            </egXML>
+          </exemplum>
+        </elementSpec>
+        
+
+        
+        
+        <elementSpec ident="titleStmt" module="header" mode="change">
+          <content>
+            <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
+              <elementRef key="title" minOccurs="1" maxOccurs="unbounded"/>
+              <elementRef key="sponsor" minOccurs="1" maxOccurs="unbounded"/>
+              <elementRef key="funder" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="editor" minOccurs="1" maxOccurs="unbounded"/>
+              <elementRef key="respStmt" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+        </elementSpec>       
+              
+        
+        
+        
       </schemaSpec>
     </body>
   </text>

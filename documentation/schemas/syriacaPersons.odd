@@ -1,0 +1,1286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:srophe="https://srophe.app">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>TEI Customization for Syriaca.org Persons Data</title>
+      </titleStmt>
+      <editionStmt>
+        <edition n="1"><date>2025</date></edition>
+      </editionStmt>
+      <publicationStmt>
+        <authority>Syriaca.org: The Syriac Reference Portal</authority>
+        <availability>
+          <licence target="http://creativecommons.org/licenses/by/3.0/">
+            <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
+            <p>The code examples contained in <gi>exemplum</gi> elements below come from 
+              Syriaca.org projects that have been distributed under a Creative Commons Attribution 
+              3.0 Unported License. Used by permission.</p>
+            <p>The comments on element and attribute use contained in <gi>remarks</gi> elements below 
+              share some text with other Syriaca.org documentation distributed under a Creative Commons 
+              Attributiion 3.0 Unported License. This documentation can be found at various links available here:
+              <ref target="http://syriaca.org/documentation/index.html">http://syriaca.org/documentation/index.html</ref>
+              Used by permission.
+            </p>
+          </licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p>This ODD provides a customization of the TEI P5 All. It is the second link in an ODD chain
+          that uses the <title ref="https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/schemas/srophe.compiled.odd">
+            TEI Customization for Syriaca.org</title> as its source. 
+        </p>
+      </sourceDesc>
+    </fileDesc>
+    <profileDesc>
+      <!-- Instructions for processing the Syriaca.org chained ODD in oXygen.
+        - First, be sure that schemaSpec/@source in this document points to "syriacaAll.compiled.odd".
+        - Then process this ODD file into a compiled ODD using the transformation scenario "ODD to Compiled ODD".
+          - Save this as syriacaPersons.compiled.odd and then delete the @start attribute from tei:schemaSpec.
+          - This compiled ODD (without a tei:schemaSpec/@start attribute) will be the starting point for the next step in the chained ODD.
+        - This compiled ODD can also be used to generate a .rng file against which you can validate a TEI document. 
+          - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
+          - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
+    </profileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <schemaSpec ident="syriacaPersons" prefix="tei_" source="syriacaAll.compiled.odd" xml:lang="en" defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML​ http://www.example.org/ns/">
+        <moduleRef key="tei"/>
+        <moduleRef key="certainty" include="precision"/>
+        <moduleRef key="core" include="author bibl biblScope choice citedRange date desc editor foreign listBibl name note orig p ptr quote reg ref resp respStmt rs title"/>
+        <moduleRef key="header" include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno interpretation langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
+        <moduleRef key="linking" include="link"/>
+        <moduleRef key="namesdates" include="addName birth death event floruit forename gender listPerson listRelation orgName persName person personGrp placeName relation roleName state surname trait"/>
+        <moduleRef key="textstructure" include="body TEI text"/>
+        <classRef key="att.global.analytic"/>
+        <classRef key="att.global.change"/>
+        
+        
+        
+        
+        <elementSpec ident="bibl" module="core" mode="change">
+          <constraintSpec ident="xmlID-on-bibl" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:person/child::tei:bibl | //tei:text//tei:personGrp/child::tei:bibl">
+                <sch:let name="docURIno" value="replace(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '.+?(\d+).+', '$1')"/>
+                <sch:let name="id" value="@xml:id"/>
+                <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                </sch:assert>
+                <sch:report test="preceding-sibling::element()[@xml:id = $id]">This @xml:id is already in use.</sch:report>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:bibl[not(parent::tei:person)][not(parent::tei:personGrp)]">
+                <sch:report test="@xml:id">This &lt;bibl&gt; cannot contain an @xml:id.</sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="biblScope" module="core" mode="change">
+          <constraintSpec ident="biblScope-in-seriesStmt" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:seriesStmt/tei:biblScope/@unit">
+                <sch:assert test=". = 'volume'">The @unit must be "volume".</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="unit" mode="change" usage="req">
+              <valList type="closed" mode="replace">
+                <valItem ident="volume"/>
+              </valList>
+            </attDef>
+            <attDef ident="n" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        
+        <elementSpec ident="birth" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.dimensions" mode="delete"/>
+            <memberOf key="att.ranging" mode="delete"/>
+            <memberOf key="att.naming" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="true" minOccurs="1">
+              <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <attList>
+            <attDef ident="type" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        <elementSpec ident="body" module="textstructure" mode="change">
+          <content>
+            <elementRef key="listPerson" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <remarks mode="replace">
+            <p>The <gi>body</gi> element of a person record must contain a <gi>listPerson</gi> element.
+            </p>
+          </remarks>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="date" module="namesdates" mode="change">
+          <constraintSpec ident="documentation-on-date" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:floruit/tei:date">
+                <sch:report test="@resp and @source">Only one of the attributes @resp and @source may be supplied.</sch:report>
+              </sch:rule>
+              <sch:rule context="tei:floruit/tei:date">
+                <sch:assert test="@resp or @source">One of the attributes @resp or @source must be supplied.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="death" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.dimensions" mode="delete"/>
+            <memberOf key="att.ranging" mode="delete"/>
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.naming" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="true">
+              <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <attList>
+            <attDef ident="type" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        <elementSpec ident="desc" module="core" mode="change">
+          <constraintSpec ident="desc-in-person-state" scheme="schematron">
+            <constraint>
+              <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
+                <sch:ns uri="http://www.tei-c.org/ns/1.0" prefix="tei"/>
+                <sch:ns uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" prefix="rdf"/>
+                <sch:ns uri="http://www.w3.org/2004/02/skos/core#" prefix="skos"/>
+                <sch:pattern>
+                  <sch:rule context="tei:person/tei:state[@type='religious-affiliation']/tei:desc">
+                    <sch:let name="stateRefPart" value="substring-after(parent::tei:state/@ref, '/taxonomy/')"/>
+                    <sch:let name="descToRefPart" value="lower-case(replace(., ' ', '-'))"/>
+                    <sch:let name="descTokens" value="tokenize(., ' ')"/>
+                    <!--Remove since it forces a plural value where singular is more appropriate
+                      <sch:assert test="$stateRefPart = $descToRefPart">
+                      The text node in the &lt;desc&gt; element must correspond to the @ref attribute on the parent &lt;state&gt; element: 
+                      <sch:value-of select="parent::tei:state/@ref"/> Use the portion of the URI following "taxonomy/" and capitalize
+                      the first letter of each word.
+                    </sch:assert>-->
+                    <sch:assert test="every $i in $descTokens satisfies ($i = ('the', 'of') or matches($i, '^[A-Z].*'))">
+                      Please capitalize the first letter of each word, except for "the" and "of".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:person//tei:state[@ref='http://syriaca.org/taxonomy/anonymous']/tei:desc">
+                    <sch:assert test="matches(., 'Anonymous')">
+                      The &lt;desc&gt; must contain "Anonymous".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:person//tei:state[@ref='http://syriaca.org/taxonomy/apostles']/tei:desc">
+                    <sch:assert test="matches(., 'Apostle')">
+                      The &lt;desc&gt; must contain "Apostle".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:person//tei:state[@ref='http://syriaca.org/taxonomy/fallen']/tei:desc">
+                    <sch:assert test="matches(., 'Fallen')">
+                      The &lt;desc&gt; must contain "Fallen".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:person//tei:state[@ref='http://syriaca.org/taxonomy/martyrs']/tei:desc">
+                    <sch:assert test="matches(., 'Martyr')">
+                      The &lt;desc&gt; must contain "Martyr".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:person//tei:state[@ref='http://syriaca.org/taxonomy/pseudonymous-authors']/tei:desc">
+                    <sch:assert test="matches(., 'Pseudonymous Author')">
+                      The &lt;desc&gt; must contain "Pseudonymous Author".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:person//tei:state[@ref='http://syriaca.org/taxonomy/saints']/tei:desc">
+                    <sch:assert test="matches(., 'Saint')">
+                      The &lt;desc&gt; must contain "Saint".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:person//tei:state[@ref='http://syriaca.org/taxonomy/authors']/tei:desc">
+                    <sch:assert test="matches(., 'Author')">
+                      The &lt;desc&gt; must contain "Author".
+                    </sch:assert>
+                  </sch:rule>
+                </sch:pattern>
+              </sch:schema>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="desc-in-personGrp-state" scheme="schematron">
+            <constraint>
+              <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
+                <sch:ns uri="http://www.tei-c.org/ns/1.0" prefix="tei"/>
+                <sch:ns uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" prefix="rdf"/>
+                <sch:ns uri="http://www.w3.org/2004/02/skos/core#" prefix="skos"/>
+                <sch:pattern>
+                  <sch:rule context="tei:personGrp/tei:state[@type='religious-affiliation']/tei:desc">
+                    <sch:let name="stateRefPart" value="substring-after(parent::tei:state/@ref, '/taxonomy/')"/>
+                    <sch:let name="descToRefPart" value="lower-case(replace(., ' ', '-'))"/>
+                    <sch:let name="descTokens" value="tokenize(., ' ')"/>
+                    <sch:assert test="$stateRefPart = $descToRefPart">
+                      The text node in the &lt;desc&gt; element must correspond to the @ref attribute on the parent &lt;state&gt; element: 
+                      <sch:value-of select="parent::tei:state/@ref"/> Use the portion of the URI following "taxonomy/" and capitalize
+                      the first letter of each word.
+                    </sch:assert>
+                    <sch:assert test="every $i in $descTokens satisfies ($i = ('the', 'of') or matches($i, '^[A-Z].*'))">
+                      Please capitalize the first letter of each word, except for "the" and "of".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:personGrp//tei:state[@ref='http://syriaca.org/taxonomy/anonymous']/tei:desc">
+                    <sch:assert test="matches(., 'Anonymi')">
+                      The &lt;desc&gt; must contain "Anonymi".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:personGrp//tei:state[@ref='http://syriaca.org/taxonomy/apostles']/tei:desc">
+                    <sch:assert test="matches(., 'Apostles')">
+                      The &lt;desc&gt; must contain "Apostles".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:personGrp//tei:state[@ref='http://syriaca.org/taxonomy/fallen']/tei:desc">
+                    <sch:assert test="matches(., 'Fallen')">
+                      The &lt;desc&gt; must contain "Fallen".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:personGrp//tei:state[@ref='http://syriaca.org/taxonomy/martyrs']/tei:desc">
+                    <sch:assert test="matches(., 'Martyrs')">
+                      The &lt;desc&gt; must contain "Martyrs".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:personGrp//tei:state[@ref='http://syriaca.org/taxonomy/pseudonymous-authors']/tei:desc">
+                    <sch:assert test="matches(., 'Pseudonymous Authors')">
+                      The &lt;desc&gt; must contain "Pseudonymous Authors".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:personGrp//tei:state[@ref='http://syriaca.org/taxonomy/saints']/tei:desc">
+                    <sch:assert test="matches(., 'Saints')">
+                      The &lt;desc&gt; must contain "Saints".
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:personGrp//tei:state[@ref='http://syriaca.org/taxonomy/authors']/tei:desc">
+                    <sch:assert test="matches(., 'Authors')">
+                      The &lt;desc&gt; must contain "Authors".
+                    </sch:assert>
+                  </sch:rule>
+                </sch:pattern>
+              </sch:schema>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="corresp" mode="delete"/>
+            <attDef ident="type" mode="change">
+              <valList type="closed" mode="change">
+                <valItem ident="note"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        <elementSpec ident="event" module="namesdates" mode="change">
+          <attList>
+            <attDef ident="type" mode="change" usage="req">
+              <valList type="semi" mode="replace">
+                <valItem ident="veneration">
+                  <desc>Used for events that indicate the veneration of a person.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+          
+        </elementSpec>
+        
+        
+        <elementSpec ident="floruit" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.responsibility" mode="delete"/>
+            <memberOf key="att.global.source" mode="delete"/>
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.dimensions" mode="delete"/>
+            <memberOf key="att.ranging" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="persName" minOccurs="0" maxOccurs="1"/>
+              <textNode/>
+            </sequence>
+          </content>
+        </elementSpec>
+        
+        
+       <elementSpec ident="gender" module="namesdates" mode="change">
+         <classes mode="change">
+           <memberOf key="att.datable" mode="delete"/>
+           <memberOf key="att.typed" mode="delete"/>
+         </classes>
+         <content>
+           <textNode/>
+         </content>
+         <constraintSpec ident="documentation-on-gender" scheme="schematron">
+           <constraint>
+             <sch:rule context="tei:text//tei:gender">
+               <sch:report test="@resp and @source">Only one of the attributes @resp and @source may be supplied.</sch:report>
+               <sch:assert test="@resp or @source">One of the attributes @resp or @source must be supplied.</sch:assert>
+             </sch:rule>
+           </constraint>
+         </constraintSpec>
+         <attList>
+           <attDef ident="xml:id" mode="delete"/>
+           <attDef ident="n" mode="delete"/>
+           <attDef ident="xml:lang" mode="delete"/>
+           <attDef ident="change" mode="delete"/>
+           <attDef ident="rend" mode="delete"/>
+           <attDef ident="corresp" mode="delete"/>
+           <attDef ident="previous" mode="delete"/>
+           <attDef ident="value" mode="delete"/>
+           <attDef ident="ana" mode="change">
+             <constraintSpec ident="gender-ana-values" scheme="schematron">
+               <constraint>
+                 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
+                   <sch:ns uri="http://www.tei-c.org/ns/1.0" prefix="tei"/>
+                   <sch:ns uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" prefix="rdf"/>
+                   <sch:ns uri="http://www.w3.org/2004/02/skos/core#" prefix="skos"/>
+                   <sch:pattern>
+                     <sch:rule context="tei:gender/@ana">
+                       <sch:let name="taxonomy"
+                         value="doc('https://raw.githubusercontent.com/srophe/syriaca-data/refs/heads/gaddel_development/data/taxonomy/taxonomy.rdf')"/>
+                       <sch:let name="genders"
+                         value="$taxonomy//rdf:Description[@rdf:about='http://syriaca.org/taxonomy/gender']/skos:narrower/@rdf:resource"/>
+                       <sch:assert test="every $i in (tokenize(., ' ')) satisfies $i = $genders"  role="warning">
+                         Availabe values for gender are <sch:value-of select="string-join($genders, '; ')"/>. If one of
+                         these does not apply, please use a descriptive term of your choosing for editors to consider for inclusion.</sch:assert>
+                     </sch:rule>
+                   </sch:pattern>
+                 </sch:schema>
+               </constraint>
+             </constraintSpec>
+           </attDef>
+         </attList>
+        </elementSpec>
+        
+        
+        <elementSpec ident="idno" module="header" mode="change">
+          <!-- see syriacaPlaces for possible developments -->
+          
+        </elementSpec>
+        
+        
+        <elementSpec ident="listPerson" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+            <memberOf key="att.declarable" mode="delete"/>
+            <memberOf key="att.sortable" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <alternate>
+                <elementRef key="person" minOccurs="1" maxOccurs="1"/>
+                <elementRef key="personGrp" minOccurs="1" maxOccurs="1"/>
+              </alternate>
+              <elementRef key="listRelation" minOccurs="0" maxOccurs="1"/>
+            </sequence>
+          </content>
+        </elementSpec>
+        
+        
+        <elementSpec ident="note" module="core" mode="change"><!-- Look further into customization -->
+          <constraintSpec ident="note-type-disambiguation" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:note[@type='disambiguation']">
+                <sch:assert test="./tei:idno">
+                  A &lt;note&gt; element of @type="disambiguation" must have an &lt;idno&gt; element pointing to an identifier in a dataset external to Syriaca.org.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:text//tei:note[@type='disambiguation']/tei:idno">
+                <sch:report test="contains(., 'syriaca.org')">
+                  This &lt;idno&gt; element cannot contain a Syriaca.org URI. It is used to disambiguate an entity with a Syriaca.org URI from an external entity. 
+                </sch:report>
+              </sch:rule>
+              <sch:rule context="//tei:body//tei:note[@type='deprecation']/@target"><!-- I carried this over from places, test -->
+                <sch:let name="nameIDs" value="//tei:person/tei:persName/@xml:id"/>
+                <sch:let name="IDvalues" value="for $i in $nameIDs return concat('#', $i)"/>
+                <sch:assert test="every $i in tokenize(., ' ') satisfies $i = $IDvalues">
+                  This @target attribute on &lt;note&gt; of @type="deprecation" can take one or more of the following value separated by a space: 
+                  <sch:value-of select="string-join($IDvalues, ' | ')"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="note-deprecation" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:person/tei:note[not(@type='deprecation')] | //tei:text//tei:personGrp/tei:note[not(@type='deprecation')]">
+                <sch:report test="@target">The @target attribute is only used with notes that are deprecating a name.</sch:report>
+              </sch:rule>
+              <sch:rule context="//tei:text//tei:person/tei:note[@type='deprecation']/@target | //tei:text//tei:personGrp/tei:note[@type='deprecation']/@target">
+                <sch:let name="nameIDs" value="//tei:text//tei:persName/@xml:id"/>
+                <sch:let name="nameIDpointers" value="for $i in $nameIDs return concat('#', $i)"/>
+                <sch:assert test="every $i in tokenize(., ' ') satisfies $i = $nameIDpointers">
+                  This @target attribute can contain one or more of the following <sch:value-of select="$nameIDpointers"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <!--<attList>
+            <attDef ident="type" mode="change" usage="req">
+              <valList type="closed" mode="replace">
+                <valItem ident="abstract">
+                  <desc>Used for the abstract of the entity.</desc>
+                </valItem>
+                <valItem ident="corrigenda">
+                  <desc>Used to correct a piece of data.</desc>
+                </valItem>
+                <valItem ident="deprecation">
+                  <desc>Used to indicate the deprecation of a piece of data.</desc>
+                </valItem>
+                <valItem ident="description">
+                  <desc>Used to describing the subject of the record.</desc>
+                </valItem>
+                <valItem ident="disambiguation">
+                  <desc>Used to disambiguate between two similar entities.</desc>
+                </valItem>
+                <valItem ident="discursive">
+                  <desc>Used to discuss some aspect of the record, often with reference to scholarly debates.</desc>
+                </valItem>
+                <valItem ident="incerta">
+                  <desc>Used to indicate that the content of a note is uncertain.</desc>
+                </valItem>
+                <valItem ident="license">
+                  <desc>Used only in the header to indicate the license under which this data is released.</desc>
+                </valItem>
+                <valItem ident="misc">
+                  <desc>Used for notes that do not fit into another category.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>-->
+        </elementSpec>
+        
+        
+        <elementSpec ident="orgName" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/>
+            </sequence>
+          </content>
+          <attList>
+            <attDef ident="key" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="xml:lang" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="resp" mode="delete"/>
+            <attDef ident="source" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="sort" mode="delete"/>
+            <attDef ident="role" mode="delete"/>
+            <attDef ident="key" mode="delete"/>
+            <attDef ident="srophe:tags" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="persName" module="namesdates" mode="change">
+          <constraintSpec ident="source-on-persName" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:person/tei:persName | //tei:text//tei:personGrp/tei:persName">
+                <sch:assert test="attribute::source or attribute::resp">
+                  This &lt;persName&gt; element must have either a @source attribute (preferred when available) or a @resp attribute.
+                </sch:assert>
+                <sch:report test="attribute::source and attribute::resp">
+                  This &lt;persName&gt; element may not have both a @source attribute (the preferred when available) and a @resp attribute.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="persName-content" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:persName">
+                <sch:assert test="string-length(.) gt 0">The &lt;persName&gt; element cannot be empty.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <!-- This works in the schematron but not when placed into the ODD and converted to RelaxNG. There is a namespace issue I will try to troubleshoot.
+            <constraintSpec ident="langHeadword" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:place/tei:placeName">
+                <sch:let name="langsOfHW" value="//tei:place/tei:placeName[@srophe:tags='#syriaca-headword']/@xml:lang"/>
+                <sch:assert test="count(./parent::tei:place/tei:placeName[@xml:lang='en' and @srophe:tags='#syriaca-headword']) = 1">
+                  There can be one and only one &lt;placeName&gt; element with the combination of @srophe:tags="#syriaca-headword" and @xml:lang="en".
+                </sch:assert>
+                <sch:assert test="count(distinct-values($langsOfHW)) = count($langsOfHW)">
+                  There cannot be more than one headword (@srophe:tags="#syriaca-headword") per &lt;placeName&gt; with the same language (@xml:lang).
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>-->
+          <constraintSpec ident="xmlID-on-persName" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:person/tei:persName | //tei:text//tei:personGrp/tei:persName">
+                <sch:let name="docURIno" value="replace(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '.+?(\d+).+', '$1')"/>
+                <sch:let name="id" value="@xml:id"/>
+                <sch:assert test="matches(./@xml:id, concat('name', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'name<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
+                </sch:assert>
+                <sch:report test="preceding-sibling::element()[@xml:id = $id]">This @xml:id is already in use.</sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="xmlLang-on-persName" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:person/tei:persName | //tei:text//tei:personGrp/tei:persName">
+                <sch:assert test="./@xml:lang">A &lt;persName&gt; element that is the direct child of &lt;person&gt; or &lt;personGrp&gt; must have an @xml:lang attribute.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="corresp-on-persName" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:person/tei:persName/@corresp | //tei:text//tei:personGrp/tei:persName/@corresp">
+                <sch:let name="nameIDs" value="//tei:text//tei:persName/@xml:id"/>
+                <sch:let name="nameIDpointers" value="for $i in $nameIDs return concat('#', $i)"/>
+                <sch:assert test="                  every $i in tokenize(., ' ')                  satisfies $i = $nameIDpointers">
+                  This @corresp attribute can contain one or more of the following <sch:value-of select="$nameIDpointers"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="xml:id" mode="change">
+              <desc>
+                The <gi>persName</gi> element requires an <att>xml:id</att> attribute whose value is the concatenation of "name", 
+                the Syriaca.org ID number of this place (i.e. the last element of the URI), a ‘-’, and the number of this name element in order.
+              </desc>
+            </attDef>
+            <attDef ident="xml:lang" mode="change">
+              <desc>
+                The language of the name should be indicated in an <att>xml:lang</att> attribute of the <gi>persName</gi> element, 
+                whose value is derived from the the <ref target="http://www.loc.gov/standards/iso639-2/php/code_list.php">ISO-639-1 or ISO-639-2 standards</ref>. 
+                In particular, "en" should be used for "English", "ar" for "Arabic", and "syr" for Syriac. Syriaca.org is not using "syc" for 
+                Syriac to avoid the judgment of what constitutes "classical." In the case of vocalized Syriac, the <att>xml:lang</att> attribute 
+                should be augmented with a script indication: either "-Syrj" to indicate West Syrian vocalization or "-Syrn" to indicate East Syrian 
+                vocalization. Thus the <att>xml:lang</att> attribute will have a value of "syr-Syrj" for vocalized Western Syriac and "syr-Syrn" 
+                for vocalized Eastern Syriac. The <att>xml:lang</att> attribute for an unvocalized Syriac name form, such as Syriaca.org’s headword 
+                form, should be simply "syr".
+              </desc>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        <elementSpec ident="person" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.sortable" mode="delete"/>
+          </classes>
+          <content>
+            <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
+              <elementRef key="persName" minOccurs="1" maxOccurs="unbounded"/>
+              <elementRef key="idno" minOccurs="1" maxOccurs="unbounded"/>
+              <elementRef key="note" minOccurs="0" maxOccurs="unbounded"/> 
+              <elementRef key="floruit" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="birth" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="death" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="gender" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="state" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="trait" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="event" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <constraintSpec ident="person-authors" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text//tei:person[contains(@ana, '#syriaca-author')]">
+                <sch:assert test="//tei:seriesStmt/tei:title = 'A Guide to Syriac Authors'">
+                  This person record must include a &lt;seriesStmt&gt; indicating that it is part of the volume "A Guide to Syriac Authors".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:person[contains(@ana, '#syriaca-author')][not(contains(@ana, '#syriaca-pseudonymous-authors'))]">
+                <sch:assert test="//tei:state[@ref='http://syriaca.org/taxonomy/authors']">
+                  This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/authors". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:person[contains(@ana, '#syriaca-pseudonymous')]">
+                <sch:assert test="//tei:seriesStmt/tei:title = 'A Guide to Syriac Authors'">
+                  This person record must include a &lt;seriesStmt&gt; indicating that it is part of the volume "A Guide to Syriac Authors".
+                </sch:assert>
+                <sch:assert test="contains(@ana, '#syriaca-author')">
+                  The @ana attribute must also contain "#syriaca-author".
+                </sch:assert>
+                
+                <sch:assert test="//tei:state/@ref='http://syriaca.org/taxonomy/pseudonymous-authors'">
+                  This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/pseudonymous-authors". 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="person-saints" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text//tei:person[contains(@ana, '#syriaca-saint')]">
+                <sch:assert test="//tei:seriesStmt/tei:title = 'Qadishe: A Guide to the Syriac Saints'">
+                  This person record must include a &lt;seriesStmt&gt; indicating that it is part of the volume "Qadishe: A Guide to the Syriac Saints".
+                </sch:assert>
+                <sch:assert test="//tei:seriesStmt/tei:title = 'Gateway to the Syriac Saints'">
+                  This person record must include a &lt;seriesStmt&gt; indicating that it is part of the series "Gateway to the Syriac Saints".
+                </sch:assert>
+                <sch:assert test="//tei:state/@ref='http://syriaca.org/taxonomy/saints'">
+                  This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/saints". 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="person-anonymi" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text//tei:person[contains(@ana, '#syriaca-anonymous')]">
+                <sch:assert test="//tei:seriesStmt/tei:title = 'Syriac Anonymi'">
+                  This person record must include a &lt;seriesStmt&gt; indicating that it is part of the volume "Syriac Anonymi".
+                </sch:assert>
+                <sch:assert test="//tei:state/@ref='http://syriaca.org/taxonomy/anonymous'">
+                  This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/anonymous". 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="person-series-agreement" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text[//tei:seriesStmt[tei:title='A Guide to Syriac Authors']]//tei:person">
+                <sch:assert test="contains(@ana, '#syriaca-author')">
+                  If a person record is part of the series "A Guide to Syriac Authors" it must have an @ana attribute with "#syriaca-author" on the &lt;person&gt; element.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text[//tei:seriesStmt[tei:title='Qadishe: A Guide to the Syriac Saints']]//tei:person">
+                <sch:assert test="contains(@ana, '#syriaca-saint')">
+                  If a person record is part of the series "Qadishe: A Guide to the Syriac Saints" it must have an @ana attribute with "#syriaca-saint" on the &lt;person&gt; element.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text[//tei:seriesStmt[tei:title='Gateway to the Syriac Saints']]//tei:person">
+                <sch:assert test="contains(@ana, '#syriaca-saint')">
+                  If a person record is part of the series "Gateway to the Syriac Saints" it must have an @ana attribute with "#syriaca-saint" on the &lt;person&gt; element.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text[//tei:seriesStmt[tei:title='Syriac Anonymi']]//tei:person">
+                <sch:assert test="contains(@ana, '#syriaca-anonymous')">
+                  If a person record is part of the series "Syriac Anonymi" it must have an @ana attribute with "#syriaca-anonymous" on the &lt;person&gt; element.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="person-abstract-req" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:person">
+                <sch:assert test="tei:note[@type='abstract']">Every person record must have at least one &lt;note&gt; @type="abstract".</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          
+          <attList>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="xml:lang" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="resp" mode="delete"/>
+            <attDef ident="source" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+            <attDef ident="role" mode="delete"/>
+            <attDef ident="sex" mode="delete"/>
+            <attDef ident="gender" mode="delete"/>
+            <attDef ident="age" mode="delete"/>
+            <attDef ident="ana" mode="change">
+              <valList type="closed" mode="replace">
+                <valItem ident="#syriaca-anonymous">
+                  <desc>Used to indentify an unnamed person or a group of persons.</desc>
+                </valItem>
+                <valItem ident="#syriaca-author">
+                  <desc>Used to identify a person as an author of a written work.</desc>
+                </valItem>
+                <valItem ident="#syriaca-pseudonymous">
+                  <desc>Used to identify a person who name is unknown but who wrote a work attributed to someone else.</desc>
+                </valItem>
+                <valItem ident="#syriaca-saint">
+                  <desc>Used to identify a person recognized as a saint in relevant source material.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+         </elementSpec>
+        
+                
+        
+        
+        <elementSpec ident="personGrp" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.sortable" mode="delete"/>
+          </classes>
+          <content>
+            <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
+              <elementRef key="persName" minOccurs="1" maxOccurs="unbounded"/>
+              <elementRef key="idno" minOccurs="1" maxOccurs="unbounded"/>
+              <elementRef key="note" minOccurs="0" maxOccurs="unbounded"/> 
+              <elementRef key="floruit" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="birth" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="death" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="gender" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="state" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="trait" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="event" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <constraintSpec ident="personGrp-authors" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text//tei:personGrp[contains(@ana, '#syriaca-author')]">
+                <sch:assert test="//tei:seriesStmt/tei:title = 'A Guide to Syriac Authors'">
+                  This person record must include a &lt;seriesStmt&gt; indicating that it is part of the volume "A Guide to Syriac Authors".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:personGrp[contains(@ana, '#syriaca-author')][not(contains(@ana, '#syriaca-pseudonymous-authors'))]">
+                <sch:assert test="//tei:state[@ref='http://syriaca.org/taxonomy/authors']">
+                  This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/authors". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:personGrp[contains(@ana, '#syriaca-pseudonymous')]">
+                <sch:assert test="//tei:seriesStmt/tei:title = 'A Guide to Syriac Authors'">
+                  This person record must include a &lt;seriesStmt&gt; indicating that it is part of the volume "A Guide to Syriac Authors".
+                </sch:assert>
+                <sch:assert test="contains(@ana, '#syriaca-author')">
+                  The @ana attribute must also contain "#syriaca-author".
+                </sch:assert>
+                <sch:assert test="//tei:state/@ref='http://syriaca.org/taxonomy/pseudonymous-authors'">
+                  This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/pseudonymous-authors". 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="personGrp-saints" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text//tei:personGrp[contains(@ana, '#syriaca-saint')]">
+                <sch:assert test="//tei:seriesStmt/tei:title = 'Qadishe: A Guide to the Syriac Saints'">
+                  This person record must include a &lt;seriesStmt&gt; indicating that it is part of the volume "Qadishe: A Guide to the Syriac Saints".
+                </sch:assert>
+                <sch:assert test="//tei:seriesStmt/tei:title = 'Gateway to the Syriac Saints'">
+                  This person record must include a &lt;seriesStmt&gt; indicating that it is part of the series "Gateway to the Syriac Saints".
+                </sch:assert>
+                <sch:assert test="//tei:state/@ref='http://syriaca.org/taxonomy/saints'">
+                  This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/saints". 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="personGrp-series-agreement" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text[//tei:seriesStmt[tei:title='A Guide to Syriac Authors']]//tei:personGrp">
+                <sch:assert test="contains(@ana, '#syriaca-author')">
+                  If a person record is part of the series "A Guide to Syriac Authors" it must have an @ana attribute with "#syriaca-author" on the &lt;personGrp&gt; element.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text[//tei:seriesStmt[tei:title='Qadishe: A Guide to the Syriac Saints']]//tei:personGrp">
+                <sch:assert test="contains(@ana, '#syriaca-saint')">
+                  If a person record is part of the series "Qadishe: A Guide to the Syriac Saints" it must have an @ana attribute with "#syriaca-saint" on the &lt;personGrp&gt; element.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text[//tei:seriesStmt[tei:title='Gateway to the Syriac Saints']]//tei:personGrp">
+                <sch:assert test="contains(@ana, '#syriaca-saint')">
+                  If a person record is part of the series "Gateway to the Syriac Saints" it must have an @ana attribute with "#syriaca-saint" on the &lt;personGrp&gt; element.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text[//tei:seriesStmt[tei:title='Syriac Anonymi']]//tei:personGrp">
+                <sch:assert test="contains(@ana, '#syriaca-anonymous')">
+                  If a person record is part of the series "Syriac Anonymi" it must have an @ana attribute with "#syriaca-anonymous" on the &lt;personGrp&gt; element.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="personGrp-abstract-req" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:personGrp">
+                <sch:assert test="tei:note[@type='abstract']">Every person record must have at least one &lt;note&gt; @type="abstract".</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="xml:lang" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="resp" mode="delete"/>
+            <attDef ident="source" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+            <attDef ident="role" mode="delete"/>
+            <attDef ident="sex" mode="delete"/>
+            <attDef ident="gender" mode="delete"/>
+            <attDef ident="age" mode="delete"/>
+            <attDef ident="size" mode="delete"/>
+            <attDef ident="ana" mode="change">
+              <valList type="closed" mode="replace">
+                <valItem ident="#syriaca-anonymous">
+                  <desc>Used to indentify an unnamed person or a group of persons.</desc>
+                </valItem>
+                <valItem ident="#syriaca-author">
+                  <desc>Used to identify a person as an author of a written work.</desc>
+                </valItem>
+                <valItem ident="#syriaca-pseudonymous">
+                  <desc>Used to identify a person who name is unknown but who wrote a work attributed to someone else.</desc>
+                </valItem>
+                <valItem ident="#syriaca-saint">
+                  <desc>Used to identify a person recognized as a saint in relevant source material.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        <elementSpec ident="placeName" module="core" mode="change">
+          <attList>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="xml:lang" mode="delete"/>
+            <attDef ident="sort" mode="delete"/>
+            <attDef ident="role" mode="delete"/>
+            <attDef ident="key" mode="delete"/>
+            <attDef ident="srophe:tags" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="ptr" module="core" mode="change">
+          
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="relation" module="namesdates" mode="change">
+          <constraintSpec ident="documentation-on-relation" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:relation">
+                <sch:report test="@source and @resp">Only one of the attributes @resp and @source may be supplied.</sch:report>
+                <sch:assert test="@resp or @source">One of the attributes @resp or @source must be supplied.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="act-pass-mutual-on-relation" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text//tei:relation/@mutual">
+                <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/syriaca/refs/heads/main/documentation/indexes/persons.xml')"/>
+                <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+                <sch:let name="docURI" value="//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/substring-before(., '/tei')"/>
+                <sch:assert test="every $i in tokenize(., ' ') satisfies $i = $personURIs">
+                  The @mutual attribute contains one or more person URIs not in use in Syriaca.org data. Note that all person URIs take the form 'http://syriaca.org/person/{\d+?}' (where {\d+?} is a number).
+                </sch:assert>
+                <sch:assert test="contains(., $docURI)">
+                  The @mutual attribute must contain the URI for this document's place: <sch:value-of select="$docURI"/>.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:relation/@active">
+                <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/syriaca/refs/heads/main/documentation/indexes/persons.xml')"/>
+                <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+                <sch:let name="docURI" value="//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/substring-before(., '/tei')"/>
+                <sch:assert test=". = $personURIs">
+                  The @active attribute a person URIs not in use in Syriaca.org data. Note that all person URIs take the form 'http://syriaca.org/person/{\d+?}' (where {\d+?} is a number).
+                </sch:assert>
+                <sch:assert test="contains(., $docURI)">
+                  The @active attribute must contain the URI for this document's place: <sch:value-of select="$docURI"/>.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:relation[@type='pseudonymity']/@passive">
+                <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/syriaca/refs/heads/main/documentation/indexes/persons.xml')"/>
+                <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+                <sch:assert test=". = $personURIs">
+                  The @passive attribute contains a person URIs not in use in Syriaca.org data. Note that all person URIs take the form 'http://syriaca.org/person/{\d+?}' (where {\d+?} is a number).
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:relation[@type='place']/@passive">
+                <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/syriaca/refs/heads/main/documentation/indexes/places.xml')"/>
+                <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
+                <sch:assert test="every $i in tokenize(., ' ') satisfies $i = $placeURIs">
+                  The @passive attribute contains one or more place URIs not in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+?}' (where {\d+?} is a number).
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:relation[@type='disambiguation']">
+                <sch:report test="count(tokenize(@mutual, '\s')) ne 2">
+                  Exactly two @mutual values required.</sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="att-combos-on-relation" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text//tei:relation[@ref='http://syriaca.org/taxonomy/not-to-be-confused-with']">
+                <sch:assert test="@type='disambiguation' and @mutual and not(@ana)">
+                  For a 'distinct entity' relationship use @type="disambiguation", and a @mutual, and not @ana.</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:relation[@ref='http://syriaca.org/taxonomy/possibly-identical']">
+                <sch:assert test="@type='disambiguation' or @type='pseudonymity' and @mutual and not(@ana)">
+                  For a 'possibly identical' relationship use either @type="disambiguation" or @type="pseudonymity", and a @mutual, and not @ana.</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:relation[@ref='http://syriaca.org/taxonomy/shares-attribution-with']">
+                <sch:assert test="@type='pseudonymity' and @mutual and not(@ana)">
+                  For a 'share-attribution-with' relationship, use @type="pseudonymity" and a @mutual attribute.</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:relation[@ref='http://syriaca.org/taxonomy/broader']">
+                <sch:assert test="@type='pseudonymity' and @active and not(@ana)">
+                  For a 'broader' relationship, use @type="pseudonymity" and @active/@passive attributes.</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:relation[@ref='http://syriaca.org/taxonomy/has-relation-to-place']">
+                <sch:assert test="@type='place' and @active">
+                  For a 'has-relation-to-place' relationship, use @type="place" and @active/@passive attributes.</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:relation[@type='disambiguation']">
+                <sch:assert test="@ref='http://syriaca.org/taxonomy/not-to-be-confused-with' or @ref='http://syriaca.org/taxonomy/possibly-identical'">
+                  With @type="disambiguation", the @ref attribute must be either "http://syriaca.org/taxonomy/not-to-be-confused-with" or "http://syriaca.org/taxonomy/possibly-identical".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:relation[not(@type='place')][@mutual]/tei:desc/tei:persName/@ref">
+                <sch:let name="mutualVals" value="tokenize(ancestor::tei:relation/@mutual, ' ')"/>
+                <sch:assert test=". = $mutualVals">
+                  Values allowed: <sch:value-of select="string-join($mutualVals, ';  ')"/>.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:text//tei:relation[@type='pseudonymity']">
+                <sch:assert test="@ref='http://syriaca.org/taxonomy/possibly-identical' or @ref='http://syriaca.org/taxonomy/shares-attribution-with' or @ref='http://syriaca.org/taxonomy/broader'">
+                  With @type="pseudonymity", the @ref attribute must be either "http://syriaca.org/taxonomy/possibly-identical", "http://syriaca.org/taxonomy/shares-attribution-with", or "http://syriaca.org/taxonomy/broader".</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="personal-relations-ref" scheme="schematron">
+            <constraint>
+              <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+                <sch:ns uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" prefix="rdf"/>
+                <sch:ns uri="http://www.w3.org/2004/02/skos/core#" prefix="skos"/>
+                <sch:pattern>
+                  <sch:rule context="tei:listRelation/tei:relation[@type='personal']">
+                    <sch:let name="taxonomy"
+                      value="doc('https://raw.githubusercontent.com/srophe/syriaca-data/refs/heads/gaddel_development/data/taxonomy/taxonomy.rdf')"/>
+                    <sch:let name="mutual"
+                      value="$taxonomy//rdf:Description[@rdf:about='http://syriaca.org/taxonomy/mutual-relations-collection']/skos:member/@rdf:resource"/>
+                    <sch:let name="directed"
+                      value="$taxonomy//rdf:Description[@rdf:about='http://syriaca.org/taxonomy/directed-relations-collection']/skos:member/@rdf:resource"/>
+                    <sch:assert test="@ref = $mutual | $directed">
+                      <sch:value-of select="@ref"/> is not a relationship in the Syriaca.org Taxonomy. 
+                    </sch:assert>
+                    <sch:report test=".[@ref = $mutual]/@active | .[@ref = $mutual]/@passive"
+                      ><sch:value-of select="@ref"/> is a relationship that requires a single @mutual attribute. The use of @active and @passive is not allowed.</sch:report>
+                    <sch:report test=".[@ref = $directed]/@mutual"
+                      ><sch:value-of select="@ref"/> is a relationship that requires a the use of @active and @passive attributes, @mutual is not allowed.</sch:report>
+                  </sch:rule>
+                  <sch:rule context="tei:listRelation/tei:relation[@type='personal']/@mutual | tei:listRelation/tei:relation[@type='personal']/@active | tei:listRelation/tei:relation[@type='personal']/@passive">
+                    <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/syriaca/master/documentation/indexes/persons.xml')"></sch:let>
+                    <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+                    <sch:let name="error" value="."/>
+                    <sch:assert test="
+                      every $i in (tokenize(., ' '))
+                      satisfies $i = $personURIs" role="warning">
+                      <sch:value-of select="$error"/> is not currently in use. 
+                      Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' 
+                      (where {\d+} is a number). 
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:listRelation/tei:relation[@type='personal']/@ana">
+                    <sch:let name="anaTokens" value="tokenize(., ' ')"/>
+                    <sch:let name="taxonomy" value="doc('https://raw.githubusercontent.com/srophe/syriaca-data/refs/heads/gaddel_development/data/taxonomy/taxonomy.rdf')"/>
+                    <sch:let name="qrURIs" value="$taxonomy//rdf:Description[@rdf:about='http://syriaca.org/taxonomy/qualifier-relationship']/skos:narrower/@rdf:resource"/>
+                    <sch:let name="errors" value="for $i in $anaTokens return $i[not(. = $qrURIs)]"/>
+                    <sch:assert test="every $i in $anaTokens satisfies $i = $qrURIs">
+                      <sch:value-of select="string-join($errors, ', ')"/>: URI(s) not among the qualifier relationships in the Taxonomy. The acceptable values are: <sch:value-of select="string-join($qrURIs, ';  ')"/>.</sch:assert>
+                  </sch:rule>
+                </sch:pattern>
+              </sch:schema>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="replace" usage="req">
+              <valList type="closed" mode="replace">
+                <valItem ident="disambiguation">
+                  <desc>Used for relationships that disambiguate between people with similar names or who have been confused in the scholarship</desc>
+                </valItem>
+                <valItem ident="pseudonymity">
+                  <desc>Used to describe relationships between persons variously identified in a situation of pseudonymous authorship</desc>
+                </valItem>
+                <valItem ident="personal">
+                  <desc>Used for person and professional relationships</desc>
+                </valItem>
+                <valItem ident="place">
+                  <desc>Used for relationships between a person and a place other than birth and death</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="subtype" mode="delete"/>
+            <attDef ident="ref" mode="replace" usage="req">
+              <datatype maxOccurs="1" minOccurs="1">
+                <dataRef key="teidata.pointer"/>
+              </datatype>
+              <valList type="semi" mode="replace">
+                <valItem ident="http://syriaca.org/taxonomy/not-to-be-confused-with">
+                  <desc>Used to distinguish between entities that have been confused in the scholarly literature or might be confused by users.</desc>
+                </valItem>
+                <valItem ident="http://syriaca.org/taxonomy/possibly-identical">
+                  <desc>Used to indicate that even though Syriaca.org has identified this person as a distinct entity, it 
+                    is possible that this entity is the same an another entity with a Syriaca.org URI.</desc>
+                </valItem>
+                <valItem ident="http://syriaca.org/taxonomy/shares-attribution-with">
+                  <desc>Used for pseudonymous authorship to indicate the relationship between the supposed author (i.e. Ephrem) and the 
+                    otherwise unknown "pseudo" author (i.e. Pseudo-Ephrem).</desc>
+                </valItem>
+                <valItem ident="http://syriaca.org/taxonomy/broader">
+                  <desc>Used for pseudonymous authorship to indicate the relationship between the unknown author of a specific work and the 
+                    scholarly composite used to refer to author of multiple texts (i.e. Pseudo-Ephrem).</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="seriesStmt" module="header" mode="change">
+          <constraintSpec ident="seriesStmt-series" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:seriesStmt//tei:title[@level='s']">
+                <sch:assert test="./node() = 'The Syriac Biographical Dictionary' or ./node() = 'Gateway to the Syriac Saints' or ./node() = 'A Guide to John of Ephesus'"> 
+                  This &lt;title&gt; element must be "The Syriac Biographical Dictionary", "Gateway to the Syriac Saints", or "A Guide to John of Ephesus". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title = 'The Syriac Biographical Dictionary']/tei:idno">
+                <sch:assert test="matches(., 'http://syriaca.org/persons')">
+                 This &lt;idno&gt; element must contain "http://syriaca.org/persons". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title = 'Gateway to the Syriac Saints']/tei:idno">
+                <sch:assert test="matches(., 'http://syriaca.org/saints')">
+                  This &lt;idno&gt; element must contain "http://syriaca.org/saints". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title = 'A Guide to John of Ephesus']/tei:idno">
+                <sch:assert test="matches(., 'http://syriaca.org/johnofephesus')">
+                  This &lt;idno&gt; element must contain "http://syriaca.org/johnofephesus". 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="seriesStmt-monograph" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:seriesStmt/tei:title[@level='m']">
+                <sch:assert test="./node() = 'Qadishe: A Guide to the Syriac Saints' or ./node() = 'A Guide to Syriac Authors' or ./node() = 'Syriac Anonymi' or ./node() = 'Prosopography to John of Ephesus’s Ecclesiastical History'">
+                  This &lt;title&gt; element must be "Qadishe: A Guide to the Syriac Saints", "A Guide to Syriac Authors", "Syriac Anonymi", or "Prosopography to John of Ephesus’s Ecclesiastical History". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='Qadishe: A Guide to the Syriac Saints']/tei:idno">
+                <sch:assert test="matches(., 'http://syriaca.org/q')">
+                  This &lt;idno&gt; element must contain "http://syriaca.org/q'. 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='Qadishe: A Guide to the Syriac Saints']">
+                <sch:assert test="tei:biblScope/@n = '1'">
+                  Requires a &lt;biblScope&gt; element with @n="1" since "Qadishe: A Guide to the Syriac Saints" is volume 1 of "The Syriac Biographical Dictionary".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='A Guide to Syriac Authors']/tei:idno">
+                <sch:assert test="matches(., 'http://syriaca.org/authors')">
+                  This &lt;idno&gt; element must contain "http://syriaca.org/authors". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='A Guide to Syriac Authors']">
+                <sch:assert test="tei:biblScope/@n = '2'">
+                  Requires a &lt;biblScope&gt; element with @n="2" since "A Guide to Syriac Authors" is volume 2 of "The Syriac Biographical Dictionary".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='Syriac Anonymi']/tei:idno">
+                <sch:assert test="matches(., 'http://syriaca.org/anonymi')">
+                  This &lt;idno&gt; element must contain "http://syriaca.org/authors". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='Syriac Anonymi']">
+                <sch:assert test="tei:biblScope/@n = '3'">
+                  Requires a &lt;biblScope&gt; element with @n="3" since "Syriac Anonymi" is volume 3 of "The Syriac Biographical Dictionary".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='Prosopography to John of Ephesus’s Ecclesiastical History']/tei:idno">
+                <sch:assert test="matches(., 'http://syriaca.org/johnofephesus/persons')">
+                  This &lt;idno&gt; element must contain "http://syriaca.org/johnofephesus/persons". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='Prosopography to John of Ephesus’s Ecclesiastical History']">
+                <sch:assert test="tei:biblScope/@n = '4'">
+                  Requires a &lt;biblScope&gt; element with @n="4" since "Prosopography to John of Ephesus’s Ecclesiastical History" is volume 4 of "The Syriac Biographical Dictionary".
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="state" module="namesdates" mode="change">
+          <constraintSpec ident="state-person-atts" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:person[tei:state/@ref='http://syriaca.org/taxonomy/authors']">
+                <sch:assert test="contains(@ana, '#syriaca-author')">Persons with a &lt;state&gt; element indicating an author require @ana="#syriaca-author".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:personGrp[tei:state/@ref='http://syriaca.org/taxonomy/authors']">
+                <sch:assert test="contains(@ana, '#syriaca-author')">Person groups with a &lt;state&gt; element indicating an author require @ana="#syriaca-author".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:person[tei:state/@ref='http://syriaca.org/taxonomy/pseudonymous-authors']">
+                <sch:assert test="contains(@ana, '#syriaca-pseudonymous')">Persons with a &lt;state&gt; element indicating a pseudonymous author require @ana="#syriaca-pseudonymous".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:personGrp[tei:state/@ref='http://syriaca.org/taxonomy/pseudonymous-authors']">
+                <sch:assert test="contains(@ana, '#syriaca-pseudoymous')">Person groups with a &lt;state&gt; element indicating a psedonymous author require @ana="#syriaca-pseudonymous".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:person[tei:state/@ref='http://syriaca.org/taxonomy/saints']">
+                <sch:assert test="contains(@ana, '#syriaca-saint')">Persons with a &lt;state&gt; element indicating a saint require @ana="#syriaca-saint".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:personGrp[tei:state/@ref='http://syriaca.org/taxonomy/saints']">
+                <sch:assert test="contains(@ana, '#syriaca-saint')">Person groups with a &lt;state&gt; element indicating a saint require @ana="#syriaca-saint".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:person[tei:state/@ref='http://syriaca.org/taxonomy/anonymous']">
+                <sch:assert test="contains(@ana, '#syriaca-anonymous')">Persons with a &lt;state&gt; element indicating anonymous require @ana="#syriaca-anonymous".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:personGrp[tei:state/@ref='http://syriaca.org/taxonomy/anonymous']">
+                <sch:assert test="contains(@ana, '#syriaca-anonymous')">Person groups with a &lt;state&gt; element indicating anonymous require @ana="#syriaca-anonymous".</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="type-ref-combinations" scheme="schematron">
+            <constraint>
+              <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+                <sch:ns uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" prefix="rdf"/>
+                <sch:ns uri="http://www.w3.org/2004/02/skos/core#" prefix="skos"/>
+                <sch:pattern>
+                  <sch:rule context="tei:state[@type='occupation']/@ref">
+                    <sch:report test="contains(., ' ')">
+                      Only one value allowed on @ref. If necessary, use a separate &lt;state&gt; element.
+                    </sch:report>
+                  </sch:rule>
+                  <sch:rule context="tei:state[@type='occupation']/@ref">
+                    <sch:let name="anaTokens" value="tokenize(., ' ')"/>
+                    <sch:let name="taxonomy" value="doc('https://raw.githubusercontent.com/srophe/syriaca-data/refs/heads/gaddel_development/data/taxonomy/taxonomy.rdf')"/>
+                    <sch:let name="occupationURIs" value="$taxonomy//rdf:Description[@rdf:about='http://syriaca.org/taxonomy/occupations-collection']/skos:member/@rdf:resource"/>
+                    <sch:let name="errors" value="for $i in $anaTokens return $i[not(. = $occupationURIs)]"/>
+                    <sch:assert test="every $i in $anaTokens satisfies $i = $occupationURIs" role="warning">
+                      <sch:value-of select="string-join($errors, ', ')"/>: URI(s) not among the occupations in the Taxonomy. If you find no appropriate concept on the following list, 
+                      please choose a keyword of your own for the editors to consider: <sch:value-of select="string-join($occupationURIs, ';  ')"/>.</sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:state[@type='socio-economic-status']/@ref">
+                    <sch:let name="anaTokens" value="tokenize(., ' ')"/>
+                    <sch:let name="taxonomy" value="doc('https://raw.githubusercontent.com/srophe/syriaca-data/refs/heads/gaddel_development/data/taxonomy/taxonomy.rdf')"/>
+                    <sch:let name="socioeconomicStatusURIs" value="$taxonomy//rdf:Description[@rdf:about='http://syriaca.org/taxonomy/socio-economic-status']/skos:narrower/@rdf:resource"/>
+                    <sch:let name="errors" value="for $i in $anaTokens return $i[not(. = $socioeconomicStatusURIs)]"/>
+                    <sch:assert test="every $i in $anaTokens satisfies $i = $socioeconomicStatusURIs" role="warning">
+                      <sch:value-of select="string-join($errors, ', ')"/>: URI(s) not among the socio-economic statuses in the Taxonomy. If you find no appropriate concept on the following list, 
+                      please choose a keyword of your own for the editors to consider: <sch:value-of select="string-join($socioeconomicStatusURIs, ';  ')"/>.</sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:state[@type='status']/@ref">
+                    <sch:let name="statuses" value="'http://syriaca.org/taxonomy/anonymous', 'http://syriaca.org/taxonomy/apostles', 'http://syriaca.org/taxonomy/fallen', 'http://syriaca.org/taxonomy/martyrs', 'http://syriaca.org/taxonomy/pseudonymous-authors', 'http://syriaca.org/taxonomy/saints', 'http://syriaca.org/taxonomy/authors'"></sch:let>
+                    <sch:assert test=". = $statuses">
+                      Allowed values: <sch:value-of select="string-join($statuses, ';  ')"/>.
+                    </sch:assert>
+                  </sch:rule>
+                  <sch:rule context="tei:state[@type='religious-affiliation']/@ref">
+                    <sch:let name="anaTokens" value="tokenize(., ' ')"/>
+                    <sch:let name="taxonomy" value="doc('https://raw.githubusercontent.com/srophe/syriaca-data/refs/heads/gaddel_development/data/taxonomy/taxonomy.rdf')"/>
+                    <sch:let name="religionURIs" value="$taxonomy//rdf:Description[@rdf:about='http://syriaca.org/taxonomy/religious-communities-collection']/skos:member/@rdf:resource"/>
+                    <sch:let name="errors" value="for $i in $anaTokens return $i[not(. = $religionURIs)]"/>
+                    <sch:assert test="every $i in $anaTokens satisfies $i = $religionURIs" role="warning">
+                      <sch:value-of select="string-join($errors, ', ')"/>: URI(s) not the religious communities in the Taxonomy. If you find no appropriate concept on the following list, 
+                      please choose a keyword of your own for the editors to consider: <sch:value-of select="string-join($religionURIs, ';  ')"/>.</sch:assert>
+                  </sch:rule>
+                </sch:pattern>
+              </sch:schema>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="replace" usage="req">
+              <valList type="closed" mode="replace">
+                <valItem ident="occupation">
+                  <desc>Used to indicate an occupation ascribed to a person.</desc>
+                </valItem>
+                <valItem ident="religious-affiliation">
+                  <desc>Used to indicate a religious affiliation ascribed to a person.</desc>
+                </valItem>
+                <valItem ident="socio-economic-status">
+                  <desc>Used to indicate a socio-economic status ascribed to a person.</desc>
+                </valItem>
+                <valItem ident="status">
+                  <desc>Used to indicate a variety of statuses Syriaca.org ascribes to persons.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="ref" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        
+        <elementSpec ident="title" module="core" mode="change">
+          
+        </elementSpec>
+        
+        
+        <elementSpec ident="trait" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.naming" mode="delete"/>
+            <memberOf key="att.dimensions" mode="delete"/>
+            <memberOf key="att.ranging" mode="delete"/>
+          </classes>
+          <content>
+            <elementRef key="desc" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <attList>
+            <attDef ident="subtype" mode="delete"/>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="xml:lang" mode="delete"/>
+            <attDef ident="ana" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="resp" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+      </schemaSpec>
+      
+    </body>
+  </text>
+</TEI>
