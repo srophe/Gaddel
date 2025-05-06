@@ -205,14 +205,9 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="desc">
-            <xsl:choose>
-                <xsl:when test="descendant::tei:desc/tei:quote">
-                    <xsl:text>"</xsl:text><xsl:value-of select="descendant::tei:desc/tei:quote"/><xsl:text>"</xsl:text>
-                </xsl:when>
-                <xsl:when test="descendant::tei:desc">
-                    <xsl:value-of select="descendant::tei:desc"/>
-                </xsl:when>
-            </xsl:choose>
+                <xsl:if test="descendant::tei:desc">
+                    <xsl:value-of select="normalize-space(string-join(descendant::tei:desc,' '))"/>
+                </xsl:if>
         </xsl:variable>
         <xsl:variable name="type">
             <xsl:choose>
