@@ -453,15 +453,16 @@
                                 <div class="main-content-block">
                                     <div class="interior-content">
                                         <xsl:call-template name="otherDataFormats">
-                                        <xsl:with-param name="node" select="t:TEI"/>
-                                        <xsl:with-param name="idno" select="$idno"/>
+                                            <xsl:with-param name="node" select="t:TEI"/>
+                                            <xsl:with-param name="idno" select="$idno"/>
                                             <xsl:with-param name="formats" select="'print,tei,rdf'"/>
                                         </xsl:call-template>
                                         <div class="row">
                                             <div class="col-md-7 col-lg-8">
-                                        <xsl:apply-templates select="$nodes/ancestor-or-self::t:TEI">
-                                            <xsl:with-param name="collection" select="$collection"/>
-                                        </xsl:apply-templates>
+                                                <xsl:apply-templates select="$nodes/ancestor-or-self::t:TEI">
+                                                    <xsl:with-param name="collection" select="$collection"/>
+                                                    <xsl:with-param name="idno" select="$idno"/>
+                                                </xsl:apply-templates>
                                             </div>
                                             <div class="col-md-5 col-lg-4 right-menu">
                                                 <!-- Make dynamic -->
