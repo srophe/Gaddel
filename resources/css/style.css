@@ -296,6 +296,7 @@ img{ margin:0px }
 .map-md #map {height:300px !important;}
 .map-sm #map {height:250px !important;}
 /* #map {height:325px !important; } */
+#map { height: 100% }
 #map .leaflet-tile-container img {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
     margin:0px;
