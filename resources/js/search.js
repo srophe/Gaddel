@@ -1285,7 +1285,7 @@ document.querySelector(".navbar-form").addEventListener("submit", (event) => {
     const currentDir = window.location.pathname.replace(/\/[^\/]*$/, '/');
     console.log("current directory: " + currentDir);
     // Redirect to search.html with the params
-    window.location.href = `/search.html?${queryParams.toString()}`;
+    window.location.href = `${currentDir}search.html?${queryParams.toString()}`;
 });
 
 // Helper function to reset the state to its default values
