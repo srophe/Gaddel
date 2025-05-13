@@ -1276,20 +1276,17 @@ document.querySelector(".navbar-form").addEventListener("submit", (event) => {
     const series = formData.get('series') || '';
     const lang = state.lang || 'en'; // Default language if not already in state
 
-    // Build query parameters
+    // Build URL to redirect to search.html with query parameters
     const queryParams = new URLSearchParams({
         keyword: keyword,
         series: series,
         lang: lang
     });
-
-    // Get the current directory path (e.g., /geo/ from /geo/index.html or /geo/something.html)
     const currentDir = window.location.pathname.replace(/\/[^\/]*$/, '/');
-
-    // Redirect to the appropriate search.html within the current directory
-    window.location.href = `${currentDir}search.html?${queryParams.toString()}`;
+    console.log("current directory: " + currentDir);
+    // Redirect to search.html with the params
+    window.location.href = `/search.html?${queryParams.toString()}`;
 });
-
 
 // Helper function to reset the state to its default values
 function resetState() {
