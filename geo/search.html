@@ -337,33 +337,9 @@
                      <button type="submit" class="btn btn-info">Search</button>&nbsp;
                      <button type="reset" class="btn">Clear</button><br class="clearfix"><br>
                   </form>
-                  <!-- Comment out Neptune search for now https://github.com/srophe/Gaddel/issues/122
-                  <hr/>
-                  <h3>Related Places Search</h3>
-                  <form id="related-places-form" class="form-horizontal" onsubmit="submitRelatedPlacesSearch(event)">
-                     <div class="form-group">
-                        <label for="placeInput" class="col-sm-2 control-label">Place:</label>
-                        <div class="col-sm-10">
-                           <input type="text" class="form-control" id="placeInput" placeholder="Enter Place Name or URI">
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                           <button type="submit" class="btn btn-primary">Search</button>
-                        </div>
-                     </div>
-                  </form>
-                  -->
                </div>
                <div class="col-md-8">
                   <h2>Search Results</h2>
-                  <!-- Comment out Neptune search for now https://github.com/srophe/Gaddel/issues/122
-                  <div>
-                     <ul id="neptune-search-pagination" class="pagination pull-right"></ul>
-                  </div>
-                  <div id="neptune-search-info"></div>
-                  -->
-                  <div id="related-places-results" class="results"></div>
                   <div class="row alpha-pages">
                      <div class="col-md-5">
                         <div id="search-info"></div>
@@ -379,7 +355,6 @@
             </div>
       </div>
       <script type="text/javascript" src="/resources/js/search.js"></script>
-      <script type="text/javascript" src="/testHtml/neptune-search.js"></script>
       <script type="text/javascript">
          $(document).ready(function () {
                runSearch();
