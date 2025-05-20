@@ -587,7 +587,7 @@ function getCBSSBrowse() {
     state.letter = state.letter || 'a'; // Default letter if not already set
     state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
     state.searchType = state.searchType || 'browse'; // Set search type to 'browse'
-    state.query = state.query || 'cbssAuthor'; // Set query to 'cbssAuthor' by default
+    state.query = state.query || 'cbssSubject'; // Set query to 'cbssAuthor' by default
     
     //set query parameters for url and search
     const queryParams = new URLSearchParams({
