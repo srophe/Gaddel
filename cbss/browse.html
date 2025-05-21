@@ -160,11 +160,12 @@
       <div id="content" class="text">
       <div class="main-content-block">
          <div class="container">
-            <h1 style="margin-top:3em;">Browse Bibliography by Author</h1>
-            <!-- searchType=letter&letter=a&q=The Syriac Gazetteer&size=25 
-            searchType=browse&q=cbssAuthor
-            -->
-            <ul class="nav nav-tabs">
+            <h1 style="margin-top:3em;">
+               <a class="cbss-heading-link" href="browse.html?searchType=browse&q=cbssSubject&letter=a&size=25">Browse Bibliography by Subject</a>
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <a class="cbss-heading-link" href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=en">Browse Bibliography by Author</a>
+            </h1>
+            <ul class="nav nav-tabs cbssAuthor-alpha-tabs" style="display: none;">
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=eng">A-Z</a></li>
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=rus">А-Я</a></li>
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=gr">Α-Ω</a></li>
@@ -172,7 +173,6 @@
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=he">א-ת</a></li>
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=syr">ܐ-ܬ</a></li>
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=ar">ا-ي</a></li>
-               <li><a href="browse.html?searchType=browse&q=cbssSubject&letter=a&size=25">Keyword</a></li>
             </ul>
             <div class="tab-content">
                <div id="english" class="tab-pane fade in active">
@@ -195,7 +195,7 @@
                      <div id="cbss-subject-search-results" style="width: 20%; padding-right: 20px; column-count: 3; column-gap: 20em;"></div>
                      <div style="display: flex;">
                          <div id="common-subject-menu" style="width: 20%; padding-right: 20px;"></div>
-                         <div id="document-search-results" style="width: 80%;"></div>
+                        <div id="document-search-results" style="width: 80%;"></div>
                      </div>
                   </div>
                </div>
@@ -203,6 +203,16 @@
             <script type="text/javascript" src="/resources/js/search.js"></script>
             <script type="text/javascript">
                   $(document).ready(function () {
+                     const urlParams = new URLSearchParams(window.location.search);
+                     const query = urlParams.get('q');
+                     if (query === 'cbssAuthor') {
+                        $('.cbssAuthor-alpha-tabs').show();
+                     }
+                     $('.cbss-heading-link').each(function () {
+                        if (this.href.includes(`q=${query}`)) {
+                           $(this).addClass('active');
+                        }
+                     });
                      browseCbssAlphaMenu();
                      getCBSSBrowse();
                   });
