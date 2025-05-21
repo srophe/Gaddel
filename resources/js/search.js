@@ -516,19 +516,19 @@ function browseCbssAlphaMenu() {
 
     // Select the appropriate alphabet for the current language
     const alphabet = alphabets[state.lang] || alphabets.en;
-    // Set the default letter based on the language-- this is not yet necessary -- eliminate for now
-    // if (state.lang === 'syr') {
-    //     state.letter =  'ܐ'; // Default to first Syriac letter
-    // } else if (state.lang === 'ar') {
-    //     state.letter = 'ا'; // Default to first Arabic letter
-    // } else if (state.lang === 'he') {
-    //     state.letter = 'א'; // Default to first Hebrew letter
-    // } else if (state.lang === 'arm') {
-    //     state.letter = 'Ա'; // Default to first Armenian letter
-    // } else if (state.lang === 'gr') {
-    //     state.letter = 'Α'; // Default to first Greek letter
-    // } else { state.letter = 'A'; } // Default to first English letter
-    if (state.lang === 'rus' || state.lang === 'en') {state.letter = 'A';} else {state.letter = '';}
+    // Set the default letter based on the language-- 
+    if (state.lang === 'syr') {
+        state.letter =  'ܐ'; // Default to first Syriac letter
+    } else if (state.lang === 'ar') {
+        state.letter = 'ا'; // Default to first Arabic letter
+    } else if (state.lang === 'he') {
+        state.letter = 'א'; // Default to first Hebrew letter
+    } else if (state.lang === 'arm') {
+        state.letter = 'Ա'; // Default to first Armenian letter
+    } else if (state.lang === 'gr') {
+        state.letter = 'Α'; // Default to first Greek letter
+    } else { state.letter = 'A'; } // Default to first English letter
+    // if (state.lang === 'rus' || state.lang === 'en') {state.letter = 'A';} else {state.letter = '';}
     // Create the menu container
     const menuContainer = document.getElementById('abcMenu');
     menuContainer.innerHTML = ''; // Clear previous menu
@@ -619,7 +619,9 @@ function getCBSSBrowse() {
 
 function displayCBSSSubjectResults(data) {
     setupInfiniteScroll(); // Initialize infinite scroll
-    const resultsContainer = document.getElementById("search-results");
+    
+    
+    const resultsContainer = document.getElementById("cbss-subject-search-results");
     resultsContainer.innerHTML = ''; // Clear previous results
     const docResultsContainer = document.getElementById("document-search-results");
     docResultsContainer.innerHTML = ''; // Clear previous results
@@ -648,14 +650,15 @@ function displayCBSSSubjectResults(data) {
     if (filteredSubjects.length > 0) {
         const list = document.createElement("div"); // Create a list to display subjects
         //list.classList.add("subject-list"); // Add a class for styling
-        list.style.display = "flex";
-        list.style.flexDirection = "column";
-        list.style.alignItems = "left"; // Center the list
-        list.style.margin = "20px auto"; // Center horizontally
-        list.style.width = "fit-content"; // Adjust width based on content
+        // list.style.display = "flex";
+        // list.style.flexDirection = "column";
+        // list.style.alignItems = "left"; // Center the list
+        // list.style.margin = "20px auto"; // Center horizontally
+        // list.style.width = "fit-content"; // Adjust width based on content
 
         filteredSubjects.forEach(subject => {
             const listItem = document.createElement("div");
+            listItem.className = "cbss-subject-item"; // <- ADD THIS LINE
             const link = document.createElement("a");
 
             link.href = "#"; // Placeholder, will be handled by the click event
@@ -681,7 +684,9 @@ function displayCBSSSubjectResults(data) {
 }
 // Function to fetch CBSS document entries by subject
 function fetchCBSSRecordsBySubject(subjectKey) {
-
+    document.querySelectorAll(".cbss-subject-item").forEach(el => el.remove());
+    const previousResultsContainer = document.getElementById("cbss-subject-search-results");
+    previousResultsContainer.innerHTML = ''; // Clear previous results
     if (state.isLoading) return; // Prevent multiple calls
     state.isLoading = true; 
     state.searchType = "cbssSubject";   
@@ -809,6 +814,7 @@ function displayCBSSDocumentResults(data, subjectKey) {
     let subjectsArray = subjectKey.split(",").map(s => s.trim());
     const previousResultsContainer = document.getElementById("search-results");
     previousResultsContainer.innerHTML = ''; // Clear previous results
+
     const resultsContainer = document.getElementById("document-search-results");
     if (state.currentPage === 0 || state.currentPage === 1) {
         resultsContainer.innerHTML = ''; // Clear previous results only on first load
@@ -1448,6 +1454,9 @@ function createPaginationButton(text, onClick) {
 }
 function clearSearchResults() {
     const resultsContainer = document.getElementById("search-results");
+    if (resultsContainer) resultsContainer.innerHTML = '';
+
+    const cbssResultsContainer = document.getElementById("cbss-subject-search-results");
     if (resultsContainer) resultsContainer.innerHTML = '';
 
     const docResultsContainer = document.getElementById("document-search-results");
