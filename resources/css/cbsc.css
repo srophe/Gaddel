@@ -76,3 +76,29 @@ h1, h2 {color:gray; padding-top: 0; padding-bottom: 0;}
     font-size:24px;
     }
 }
+/*3 columns cbss subject lists  */
+.cbss-subject-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em 2em; /* row gap, column gap */
+  padding-right: 20px;
+  width: 100%;
+}
+
+.cbss-subject-item {
+  flex: 1 1 calc(33.33% - 2em); /* 3 columns */
+  min-width: 250px;
+  box-sizing: border-box;
+}
+
+.cbss-subject-item a {
+  display: block;
+  padding: 0.5em 0;
+  
+  text-decoration: none;
+}
+
+.cbss-subject-item a:hover {
+  text-decoration: underline;
+
+}
