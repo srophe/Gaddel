@@ -527,6 +527,8 @@ function browseCbssAlphaMenu() {
         state.letter = 'Ա'; // Default to first Armenian letter
     } else if (state.lang === 'gr') {
         state.letter = 'Α'; // Default to first Greek letter
+    } else if (state.lang === 'rus') {
+        state.letter = 'А';     
     } else { state.letter = 'A'; } // Default to first English letter
     // if (state.lang === 'rus' || state.lang === 'en') {state.letter = 'A';} else {state.letter = '';}
     // Create the menu container
