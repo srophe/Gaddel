@@ -132,7 +132,7 @@ h1, h2 {color:gray; padding-top: 0; padding-bottom: 0;}
   gap: 5em; 
 }
 
-/* Stack vertically on small screens */
+/* Stack headers vertically on small screens */
 @media (max-width: 600px) {
   .cbss-heading-wrap {
     flex-direction: column;
@@ -142,5 +142,21 @@ h1, h2 {color:gray; padding-top: 0; padding-bottom: 0;}
  .cbss-heading-group {
   margin-top: 1em;
  }	
+}
+
+/*Stack cbss subject documents and related subjects menus vertically on small screens */
+@media (max-width: 768px) {
+  .cbss-document-results-container {
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+
+  #cbss-subject-menu,
+  #document-search-results {
+    width: 100%;
+    padding-right: 0;
+  }
 }
 
