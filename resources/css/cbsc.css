@@ -102,3 +102,19 @@ h1, h2 {color:gray; padding-top: 0; padding-bottom: 0;}
   text-decoration: underline;
 
 }
+.cbss-heading-link {
+  color: #7b7b7b; 
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.cbss-heading-link:hover,
+.cbss-heading-link:focus,
+.cbss-heading-link:active {
+	color: #282828;
+        text-decoration: none;
+}
+.cbss-heading-link.active {
+  color: #282828;
+  text-decoration: none;
+}
