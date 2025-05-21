@@ -113,8 +113,8 @@ h1, h2 {color:gray; padding-top: 0; padding-bottom: 0;}
 .cbss-heading-link:hover,
 .cbss-heading-link:focus,
 .cbss-heading-link:active {
-	color: #282828;
-        text-decoration: none;
+  color: #282828;
+  text-decoration: none;
 }
 .cbss-heading-link.active {
   color: #282828;
@@ -122,14 +122,14 @@ h1, h2 {color:gray; padding-top: 0; padding-bottom: 0;}
 }
 .cbss-heading-group {
   margin-top: 3em;
-  text-align: center;
+/*   text-align: center; */
 }
 
 .cbss-heading-wrap {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1em;
+/*   justify-content: center; */
+  gap: 10em; 
 }
 
 /* Stack vertically on small screens */
