@@ -372,8 +372,10 @@ function displayResultsInfo(totalResults) {
     if (!state.letter && state.lang !== 'en' && state.lang !== 'rus') {
     browseInfoContainer.innerHTML += `<p>Showing all ${state.lang.toUpperCase()} entries</p>`;
     }
-    const paginationContainer = document.getElementById('searchPagination');
-    paginationContainer.innerHTML = '';
+    const paginationContainers = document.getElementsByClassName('searchPagination');
+    Array.from(paginationContainers).forEach(container => {
+        container.innerHTML = ''; // Clear existing buttons
+    });
     if (totalResults > state.size && state.query === 'cbssAuthor' || (totalResults > state.size && state.query != 'cbssSubject')) {
         renderPagination(totalResults, state.size, state.currentPage, changePage);
     } 
@@ -968,10 +970,18 @@ function displayCBSSDocumentResults(data, subjectKey) {
         }
     }
 }
+function clearPaginationContainers() {
+    const paginationContainers = document.getElementsByClassName('searchPagination');
+    Array.from(paginationContainers).forEach(container => {
+        container.innerHTML = ''; // Clear existing buttons
+    });
+}
 function createSortDocumentResultButton(data) {
-    const container = document.getElementById('searchPagination');
-    container.innerHTML = '';
+        clearPaginationContainers();
         // Create a Sort Button
+        const container = document.getElementById('sort-button-container');
+        container.innerHTML = ''; // ✅ Prevent multiple buttons
+ 
         const sortButton = document.createElement("button");
         sortButton.textContent = "Sort by Date";
         sortButton.style.display = "block";
@@ -1419,29 +1429,29 @@ function changePage(page) {
 // Render pagination buttons
 function renderPagination(totalResults, resultsPerPage, currentPage, onPageChange) {
     const totalPages = Math.ceil(totalResults / resultsPerPage);
-    const paginationContainer = document.getElementById('searchPagination');
-    paginationContainer.innerHTML = '';
-    const maxPageNumbers = 5; // Maximum number of page numbers to display
+    const paginationContainers = document.getElementsByClassName('searchPagination'); // Select all matching elements
 
-    // Calculate the start and end page range dynamically
+    const maxPageNumbers = 5; // Max page buttons
+
     let startPage = Math.max(1, currentPage - Math.floor(maxPageNumbers / 2));
     let endPage = Math.min(totalPages, startPage + maxPageNumbers - 1);
 
-    // Adjust the startPage if we are near the last pages and need to show exactly `maxPageNumbers`
     if (endPage - startPage + 1 < maxPageNumbers) {
         startPage = Math.max(1, endPage - maxPageNumbers + 1);
     }
 
+    // Clear and populate each pagination container
+    Array.from(paginationContainers).forEach(container => {
+        container.innerHTML = ''; // Clear existing buttons
 
-    // Add page number buttons
-    for (let page = startPage; page <= endPage; page++) {
-        const pageButton = createPaginationButton(page, () => onPageChange(page));
-        if (page === state.currentPage) {
-            pageButton.classList.add('active'); // Highlight the current page
+        for (let page = startPage; page <= endPage; page++) {
+            const pageButton = createPaginationButton(page, () => onPageChange(page));
+            if (page === currentPage) {
+                pageButton.classList.add('active');
+            }
+            container.appendChild(pageButton);
         }
-        paginationContainer.appendChild(pageButton);
-}
-
+    });
 }
 
 // Create a pagination button
@@ -1454,6 +1464,7 @@ function createPaginationButton(text, onClick) {
     button.onclick = onClick;
     return button;
 }
+
 function clearSearchResults() {
     const resultsContainer = document.getElementById("search-results");
     if (resultsContainer) resultsContainer.innerHTML = '';
