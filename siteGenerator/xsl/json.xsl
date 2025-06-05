@@ -529,7 +529,7 @@
                             <string xmlns="http://www.w3.org/2005/xpath-functions">
                                 <xsl:choose>
                                     <xsl:when test="starts-with(@xml:lang,'sy')">
-                                        <xsl:value-of select="$en"/><xsl:if test="$syr != ''"> -  &lt;span lang="syr" dir="rtl"&gt;<xsl:value-of select="$lastNameFirst"/>&lt;/span&gt;</xsl:if>
+                                        &lt;span lang="syr" dir="rtl"&gt;<xsl:value-of select="$lastNameFirst"/>&lt;/span&gt;
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:value-of select="$lastNameFirst"/>
@@ -563,7 +563,7 @@
                             <string xmlns="http://www.w3.org/2005/xpath-functions">
                                 <xsl:choose>
                                     <xsl:when test="starts-with(@xml:lang,'sy')">
-                                        <xsl:value-of select="$en"/><xsl:if test="$syr != ''"> -  &lt;span lang="syr" dir="rtl"&gt;<xsl:value-of select="$lastNameFirst"/>&lt;/span&gt;</xsl:if>
+                                        &lt;span lang="syr" dir="rtl"&gt;<xsl:value-of select="$lastNameFirst"/>&lt;/span&gt;
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:value-of select="$lastNameFirst"/>
@@ -588,7 +588,7 @@
                             <string xmlns="http://www.w3.org/2005/xpath-functions">
                                 <xsl:choose>
                                     <xsl:when test="starts-with(@xml:lang,'sy')">
-                                        <xsl:value-of select="$en"/><xsl:if test="$syr != ''"> -  &lt;span lang="syr" dir="rtl"&gt;<xsl:value-of select="$lastNameFirst"/>&lt;/span&gt;</xsl:if>
+                                        &lt;span lang="syr" dir="rtl"&gt;<xsl:value-of select="$lastNameFirst"/>&lt;/span&gt;
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:value-of select="$lastNameFirst"/>
