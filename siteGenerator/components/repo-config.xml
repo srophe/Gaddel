@@ -158,6 +158,7 @@
             <fields function="BHS" xpath="tei:bibl/tei:idno[@type='BHS']">BHS</fields>
             <fields function="CPG" xpath="tei:bibl/tei:idno[@type='CPG']">CPG</fields>
             <!-- CBSS -->
+            <fields function="editor" boost="8">editor</fields>
             <fields function="subject" xpath="tei:relation[@ref='dc:subject']/tei:desc">subject</fields>
             <fields function="citation" xpath="tei:bibl[@type='formatted'][@subtype='citation']">citation</fields>
         </searchFields>

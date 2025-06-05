@@ -204,15 +204,15 @@ function displayResults(data) {
             const idno = hit._source.idno || '';
             const originURL = window.location.origin;
             let url = idno.replace('http://syriaca.org', originURL);
-            //let url = idno || '#';
+           //let url = idno || '#';
 
-            // Handle special cases
+            // Handle special cases Prosopography to John of Ephesus’s Ecclesiastical History
             if (state.series === 'Prosopography to John of Ephesus’s Ecclesiastical History') {
-                url = idno.replace('/person/', '/johnofephesus/persons/');
+                url = url.replace('/person/', '/johnofephesus/persons/');
             } else if (state.series === 'Gazetteer to John of Ephesus’s Ecclesiastical History') {
-                url = idno.replace('/place/', '/johnofephesus/places/');
+                url = url.replace('/place/', '/johnofephesus/places/');
             }
-
+ 
             if (state.lang === 'syr') {
                 resultItem.innerHTML = `
                     <div dir="rtl">
