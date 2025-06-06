@@ -283,7 +283,7 @@ function getBrowse(series) {
     state.query = series; // Retain the series in state.query
     state.series = series; // Set the series in state.series also
     state.from = 0; // Reset for the first page
-    state.letter = state.letter || 'a'; // Default to 'a' if undefined
+    state.letter = state.letter || 'A'; // Default
     state.searchType = 'letter'; 
     const params = {
         searchType: 'letter',
@@ -429,6 +429,7 @@ function initializeStateFromURL() {
     if (state.keyword) {
         fetchAndRenderAdvancedSearchResults();
     }
+
 }
 
 function browseAlphaMenu() {
@@ -476,7 +477,7 @@ function browseAlphaMenu() {
             event.preventDefault(); // Prevent page reload
             state.letter = letter; // Update state
             state.from = 0; // Reset pagination
-                        const newUrlParams = new URLSearchParams({
+            const newUrlParams = new URLSearchParams({
                 searchType: 'letter',
                 q: state.query,
                 letter: state.letter, 
@@ -1115,6 +1116,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if(document.getElementById('document-search-results') && state.searchType === 'cbssSubject' ){
         console.log("Document Search Results Div Found");
         setupInfiniteScroll();
+    }
+    if (state.searchType === browse) {
+        getBrowse();
     }
     // currently not needed: url params are used to initialize state
     // if(document.getElementById('site_search_form')){
