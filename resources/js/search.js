@@ -435,7 +435,6 @@ function browseAlphaMenu() {
     const urlParams = new URLSearchParams(window.location.search);
     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
     
-
     const engAlphabet = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #';
     const syrAlphabet = 'ܐ ܒ ܓ ܕ ܗ ܘ ܙ ܚ ܛ ܝ ܟ ܠ ܡ ܢ ܣ ܥ ܦ ܩ ܪ ܫ ܬ';
     const arAlphabet = 'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي';
@@ -448,7 +447,7 @@ function browseAlphaMenu() {
     } else if (state.lang === 'ar') {
         alphabet = arAlphabet;
         state.letter = 'ا'; // Default to first Arabic letter
-    }
+    } else {state.letter = 'A';}
 
     // Create the menu container
     const menuContainer = document.getElementById('abcMenu');
@@ -470,7 +469,7 @@ function browseAlphaMenu() {
         const menuLink = document.createElement('a');
         menuLink.classList.add('ui-all');
         menuLink.textContent = letter;
-        menuLink.href = `?searchType=letter&letter=${letter}&q=${encodeURIComponent(state.query)}&size=${state.size}&lang=${state.lang}`;
+        menuLink.href = `?searchType=letter&letter=${state.letter}&q=${encodeURIComponent(state.query)}&size=${state.size}&lang=${state.lang}`;
         
         // Attach event listener for letter selection
         menuLink.addEventListener('click', (event) => {
