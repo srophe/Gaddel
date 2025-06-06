@@ -492,6 +492,7 @@ function browseAlphaMenu() {
             console.log("Lang: ", state.lang);
             getBrowse(state.query); // Trigger browse function
         });
+        getBrowse(state.query); // Trigger browse function
 
         menuItem.appendChild(menuLink);
         menuContainer.appendChild(menuItem);
@@ -1117,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Document Search Results Div Found");
         setupInfiniteScroll();
     }
-    if (state.searchType === browse) {
+    if (state.searchType === 'browse') {
         getBrowse();
     }
     // currently not needed: url params are used to initialize state
