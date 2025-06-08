@@ -92,10 +92,20 @@ function fetchAndRenderAdvancedSearchResults() {
             handleError('search-results', 'Error fetching search results.');
             console.error(error);
         });
-
+    //Add function to update search boxes WS:Note, seems to have a caching issue?   
+    const urlParams = new URLSearchParams(window.location.search);
+    for (const [key, value] of urlParams) {
+      const field = document.getElementById(key);
+      if (field) {
+        field.value = value;
+      }
+    }
+    
     state.isLoading = false;
     window.history.pushState({}, '', `?${queryParams.toString()}`);
+    
 }
+
 
 function displayResultsBasedOnSeries(data) {
     if (state.series === 'Comprehensive Bibliography on Syriac Studies') {
@@ -266,6 +276,7 @@ function displayResults(data) {
         resultsContainer.innerHTML = '<p>No results found.</p>';
     }
 }
+  
 function trimYear(value) {
     if (!value) return '';
     const str = String(value);
