@@ -1106,6 +1106,9 @@
                 <valItem ident="@to">
                   <desc>describes the precision of the @to attribute on the parent element</desc>
                 </valItem>
+                <valItem ident="@when">
+                  <desc>describes the precision of the @when attribute on the parent element</desc>
+                </valItem>
               </valList>
             </attDef>
           </attList>
