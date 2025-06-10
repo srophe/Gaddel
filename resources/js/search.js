@@ -93,6 +93,7 @@ function fetchAndRenderAdvancedSearchResults() {
             console.error(error);
         });
     //Add function to update search boxes WS:Note, seems to have a caching issue?   
+    window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     for (const [key, value] of urlParams) {
       const field = document.getElementById(key);
@@ -100,7 +101,7 @@ function fetchAndRenderAdvancedSearchResults() {
         field.value = value;
       }
     }
-    
+    }
     state.isLoading = false;
     window.history.pushState({}, '', `?${queryParams.toString()}`);
     
