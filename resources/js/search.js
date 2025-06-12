@@ -218,9 +218,9 @@ function displayResults(data) {
            //let url = idno || '#';
 
             // Handle special cases Prosopography to John of Ephesus’s Ecclesiastical History
-            if (state.series === 'Prosopography to John of Ephesus’s Ecclesiastical History') {
+            if (state.series === 'Prosopography to John of Ephesus’s Ecclesiastical History' || state.query === 'Prosopography to John of Ephesus’s Ecclesiastical History') {
                 url = url.replace('/person/', '/johnofephesus/persons/');
-            } else if (state.series === 'Gazetteer to John of Ephesus’s Ecclesiastical History') {
+            } else if (state.series === 'Gazetteer to John of Ephesus’s Ecclesiastical History' || state.query === 'Gazetteer to John of Ephesus’s Ecclesiastical History') {
                 url = url.replace('/place/', '/johnofephesus/places/');
             }
  
@@ -504,8 +504,6 @@ function browseAlphaMenu() {
             console.log("Lang: ", state.lang);
             getBrowse(state.query); // Trigger browse function
         });
-        getBrowse(state.query); // Trigger browse function
-
         menuItem.appendChild(menuLink);
         menuContainer.appendChild(menuItem);
     });
