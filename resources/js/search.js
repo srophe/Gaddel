@@ -92,21 +92,29 @@ function fetchAndRenderAdvancedSearchResults() {
             handleError('search-results', 'Error fetching search results.');
             console.error(error);
         });
-    //Add function to update search boxes WS:Note, seems to have a caching issue?   
-    window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    for (const [key, value] of urlParams) {
-      const field = document.getElementById(key);
-      if (field) {
-        field.value = value;
-      }
-    }
-    }
+
     state.isLoading = false;
     window.history.pushState({}, '', `?${queryParams.toString()}`);
-    
-}
+    //Add function to update search boxes WS:Note, seems to have a caching issue?   
 
+    window.onload = function() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    for (const [key, value] of urlParams) {
+
+      const field = document.getElementById(key);
+
+      if (field) {
+
+        field.value = value;
+
+      }
+
+    }
+
+    }
+}
 
 function displayResultsBasedOnSeries(data) {
     if (state.series === 'Comprehensive Bibliography on Syriac Studies') {
@@ -215,15 +223,14 @@ function displayResults(data) {
             const idno = hit._source.idno || '';
             const originURL = window.location.origin;
             let url = idno.replace('http://syriaca.org', originURL);
-           //let url = idno || '#';
 
-            // Handle special cases Prosopography to John of Ephesus’s Ecclesiastical History
-            if (state.series === 'Prosopography to John of Ephesus’s Ecclesiastical History' || state.query === 'Prosopography to John of Ephesus’s Ecclesiastical History') {
+            // Handle special cases of JOE: search and browse
+            if (state.series === 'Prosopography to John of Ephesus’s Ecclesiastical History'|| state.query === 'Prosopography to John of Ephesus’s Ecclesiastical History') {
                 url = url.replace('/person/', '/johnofephesus/persons/');
             } else if (state.series === 'Gazetteer to John of Ephesus’s Ecclesiastical History' || state.query === 'Gazetteer to John of Ephesus’s Ecclesiastical History') {
                 url = url.replace('/place/', '/johnofephesus/places/');
             }
- 
+
             if (state.lang === 'syr') {
                 resultItem.innerHTML = `
                     <div dir="rtl">
@@ -277,7 +284,6 @@ function displayResults(data) {
         resultsContainer.innerHTML = '<p>No results found.</p>';
     }
 }
-  
 function trimYear(value) {
     if (!value) return '';
     const str = String(value);
@@ -294,8 +300,8 @@ function getBrowse(series) {
     //This defines a first page load browse, retains letter and series in state, lang
     state.query = series; // Retain the series in state.query
     state.series = series; // Set the series in state.series also
-    state.from = 0; // Reset for the first page
-    state.letter = state.letter || 'A'; // Default
+    state.from = state.from || 0; // Reset for the first page if not already set
+    state.letter = state.letter || 'A'; // Default 
     state.searchType = 'letter'; 
     const params = {
         searchType: 'letter',
@@ -441,13 +447,13 @@ function initializeStateFromURL() {
     if (state.keyword) {
         fetchAndRenderAdvancedSearchResults();
     }
-
 }
 
 function browseAlphaMenu() {
     const urlParams = new URLSearchParams(window.location.search);
     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
-    
+    state.letter = urlParams.get('letter') || 'A'; // Default to 'A' if no letter is set
+
     const engAlphabet = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #';
     const syrAlphabet = 'ܐ ܒ ܓ ܕ ܗ ܘ ܙ ܚ ܛ ܝ ܟ ܠ ܡ ܢ ܣ ܥ ܦ ܩ ܪ ܫ ܬ';
     const arAlphabet = 'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي';
@@ -460,7 +466,7 @@ function browseAlphaMenu() {
     } else if (state.lang === 'ar') {
         alphabet = arAlphabet;
         state.letter = 'ا'; // Default to first Arabic letter
-    } else {state.letter = 'A';}
+    } 
 
     // Create the menu container
     const menuContainer = document.getElementById('abcMenu');
@@ -482,14 +488,14 @@ function browseAlphaMenu() {
         const menuLink = document.createElement('a');
         menuLink.classList.add('ui-all');
         menuLink.textContent = letter;
-        menuLink.href = `?searchType=letter&letter=${state.letter}&q=${encodeURIComponent(state.query)}&size=${state.size}&lang=${state.lang}`;
+        menuLink.href = `?searchType=letter&letter=${letter}&q=${encodeURIComponent(state.query)}&size=${state.size}&lang=${state.lang}`;
         
         // Attach event listener for letter selection
         menuLink.addEventListener('click', (event) => {
             event.preventDefault(); // Prevent page reload
             state.letter = letter; // Update state
             state.from = 0; // Reset pagination
-            const newUrlParams = new URLSearchParams({
+                        const newUrlParams = new URLSearchParams({
                 searchType: 'letter',
                 q: state.query,
                 letter: state.letter, 
@@ -504,6 +510,7 @@ function browseAlphaMenu() {
             console.log("Lang: ", state.lang);
             getBrowse(state.query); // Trigger browse function
         });
+
         menuItem.appendChild(menuLink);
         menuContainer.appendChild(menuItem);
     });
@@ -1128,9 +1135,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("Document Search Results Div Found");
         setupInfiniteScroll();
     }
-    if (state.searchType === 'browse') {
-        getBrowse();
-    }
     // currently not needed: url params are used to initialize state
     // if(document.getElementById('site_search_form')){
     //     const searchForm = document.getElementById('site_search_form');
@@ -1142,6 +1146,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //         fetchAndRenderAdvancedSearchResults(); 
     //     });
     // }
+    // if(state.searchType === 'letter' ){
+    //     console.log("Default Dom change url");
+    //     getBrowse(state.query);
+    // }    
 
 });
 // Function set in search.html files to run search on page load
@@ -1153,7 +1161,15 @@ function runSearch() {
         fetchAndRenderAdvancedSearchResults();
     }
 }
-
+// Function set in browse.html files to get results on initial page load
+function runBrowse() {
+    // Initialize state from existing URL parameters
+    initializeStateFromURL();
+    // Fetch and render search results if URL search parameters are present
+    if(window.location.search){
+        getBrowse(state.query);
+    }
+}
 
 // Helper function to get form data and update state
 function updateStateFromForm(form) {
