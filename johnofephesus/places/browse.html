@@ -63,44 +63,7 @@
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Russian.min.js"></script>
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Arabic.min.js"></script>
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Hebrew.min.js"></script>
-      <script type="text/javascript">
-            $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip({ container: 'body' })
-
-                $('.keyboard').keyboard({
-                    openOn: null,
-                    stayOpen: false,
-                    alwaysOpen: false,
-                    autoAccept: true,
-                    usePreview: false,
-                    initialFocus: true,
-                    rtl : true,
-                    layout: 'syriac-phonetic',
-                    hidden: function(event, keyboard, el){
-                       //  keyboard.destroy();
-                     }
-                });
-
-                $('.keyboard-select').click(function () {
-                    var keyboardID = '#' + $(this).data("keyboard-id")
-                    var kb = $(keyboardID).getkeyboard();
-                    //var kb = $('#searchField').getkeyboard();
-                    // change layout based on link ID
-                    kb.options.layout = this.id
-                    // open keyboard if layout is different, or time from it last closing is &amp;gt; 200 ms
-                    if (kb.last.layout !== kb.options.layout || (new Date().getTime() - kb.last.eventTime) &lt; 200) {
-                        kb.reveal();
-                    }
-                });
-                //Change fonts
-                $('.swap-font').on('click', function(){
-                    var selectedFont = $(this).data("font-id")
-                    $('.selectableFont').not('.syr').css('font-family', selectedFont);
-                    $("*:lang(syr)").css('font-family', selectedFont)
-                });
-
-            })
-        </script>
+      <script type="text/javascript" src="/resources/js/keyboard.js"> </script>
       </head>
    <body id="body">
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -160,7 +123,7 @@
                         
                         <div class="form-group">
                            <input type="text" class="form-control keyboard" placeholder="search" name="keyword" id="keywordNav" />
-                           <input type="hidden" name="series" value="Gazetteer to John of Ephesus’s Ecclesiastical History" />
+                                                      <input type="hidden" name="series" value="Gazetteer to John of Ephesus’s Ecclesiastical History" />
                            <span class="keyboard-menu">             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">                  <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span>             </button>             
                               <ul class="dropdown-menu">                 
                                  <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="keywordNav">Syriac Phonetic</a></li>                 
@@ -170,11 +133,11 @@
                                  <li><a href="#" class="keyboard-select" id="ms-Russian" data-keyboard-id="keywordNav">Russian</a></li>                 
                                  <li><a href="#" class="keyboard-select" id="ms-Greek" data-keyboard-id="keywordNav">Greek</a></li>                 
                                  <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="keywordNav">English QWERTY</a></li>             
-                              </ul>         </span>
+                              </ul>         
+                           </span>
                            <button class="btn btn-default search-btn" id="searchbtn" type="submit" title="Search">
                               <span class="glyphicon glyphicon-search"></span>
-                              </button>                                    
-                           
+                           </button>                                    
                         </div>
                         
                      </form>
@@ -198,7 +161,7 @@
                <div class="tabbable"> 
                   <ul class="nav nav-tabs" id="nametabs">
                      <li>
-                        <a href="browse.html?searchType=letter&letter=a&q=Gazetteer to John of Ephesus’s Ecclesiastical History&size=25">English</a>
+                        <a href="browse.html?searchType=letter&letter=A&q=Gazetteer to John of Ephesus’s Ecclesiastical History&size=25">English</a>
                      </li>
                      <li>
                         <a href="browse.html?lang=syr&searchType=letter&q=Gazetteer to John of Ephesus’s Ecclesiastical History&size=25&letter=ܐ" lang="syr" dir="rtl">
@@ -233,7 +196,7 @@
                   <script type="text/javascript">
                          $(document).ready(function () {
                             browseAlphaMenu();
-                            getBrowse("Gazetteer to John of Ephesus’s Ecclesiastical History");
+                            runBrowse("Gazetteer to John of Ephesus’s Ecclesiastical History");
                          });
                      </script>
                </div>
