@@ -3,9 +3,10 @@
          xmlns:tei="http://www.tei-c.org/ns/1.0"
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2025-06-10T18:48:13Z. . 
+Schema generated from ODD source 2025-06-17T18:29:03Z. . 
 TEI Edition: P5 Version 4.9.0. Last updated on 24th January 2025, revision f73186978 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.9.0/ 
   
@@ -4308,7 +4309,7 @@ Suggested values include: 1] gloss (gloss); 2] index (index); 3] instructions (i
                       xmlns:srophe="https://srophe.app"
                       context="//tei:teiHeader//tei:editor/@ref">
                <sch:let name="edsDoc"
-                        value="doc('https://raw.githubusercontent.com/srophe/syriaca/master/documentation/editors.xml')"/>
+                        value="doc('https://raw.githubusercontent.com/srophe/gaddel/master/documentation/editors.xml')"/>
                <sch:let name="eds"
                         value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
                <sch:let name="refValues"
