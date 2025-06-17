@@ -495,7 +495,8 @@ function browseAlphaMenu() {
             event.preventDefault(); // Prevent page reload
             state.letter = letter; // Update state
             state.from = 0; // Reset pagination
-                        const newUrlParams = new URLSearchParams({
+            state.query = state.query || 'Gazetteer to John of Ephesus’s Ecclesiastical History'; // Ensure query is set, bug in JOE places browse
+            const newUrlParams = new URLSearchParams({
                 searchType: 'letter',
                 q: state.query,
                 letter: state.letter, 
@@ -1159,18 +1160,27 @@ function runSearch() {
     // Fetch and render search results if URL search parameters are present
     if(window.location.search){
         fetchAndRenderAdvancedSearchResults();
-    }
-}
-// Function set in browse.html files to get results on initial page load
-function runBrowse() {
-    // Initialize state from existing URL parameters
-    initializeStateFromURL();
-    // Fetch and render search results if URL search parameters are present
-    if(window.location.search){
-        getBrowse(state.query);
+        // Add query parameters to search boxes, if they exist
+        for (const [key, value] of urlParams) {
+            if (key === 'fullText' ) {key = 'All Fields';} // Convert fullText to full-text for input field also called keyword on some pages
+            const field = document.getElementById(key);
+              if (field) {
+                field.value = value;
+              }
+        }
     }
 }
 
+// Function set in browse.html files to get results on initial page load
+function runBrowse(series) {
+    // Initialize state from existing URL parameters
+    initializeStateFromURL();
+    state.series = series || ''; // Set series to the provided value or default to empty string
+    // Fetch and render search results if URL search parameters are present
+    if(window.location.search){
+        getBrowse(series);
+    }
+}
 // Helper function to get form data and update state
 function updateStateFromForm(form) {
     const formData = new FormData(form);
