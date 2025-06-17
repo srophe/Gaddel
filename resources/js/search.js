@@ -224,7 +224,7 @@ function displayResults(data) {
                 dateInfo = `<br/><strong>Dates:</strong> ${dates.join(', ')}`;
             }
 
-            const abstract = cleanDisplayData(hit._source.abstract || '');
+            const abstract = hit._source.abstract || '';
             const abstractString = abstract ? `<br/>${abstract}` : '';
             const idno = hit._source.idno || '';
             const originURL = window.location.origin;
