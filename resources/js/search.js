@@ -115,7 +115,13 @@ function fetchAndRenderAdvancedSearchResults() {
 
     }
 }
-
+function cleanDisplayData(entryValue) {
+  return entryValue
+    .replace(/^«+/, '')    // Remove leading «
+    .replace(/»+$/, '')    // Remove trailing »
+    .replace(/,+\s*$/, '')  // Remove trailing commas and optional whitespace
+    .trim(); // Trim leading and trailing whitespace
+}
 function displayResultsBasedOnSeries(data) {
     if (state.series === 'Comprehensive Bibliography on Syriac Studies') {
         displayCBSSAuthorResults(data);
@@ -173,7 +179,7 @@ function displayResults(data) {
             resultItem.classList.add("result-item");
             resultItem.style.marginBottom = "15px";
 
-            const displayTitle = hit._source.displayTitleEnglish || '';
+            const displayTitle = cleanDisplayData(hit._source.displayTitleEnglish || '');
             const syriacTitle = hit._source.displayTitleSyriac || '';
             const arabicTitle = hit._source.titleArabic || 'No Arabic Title';
             const type = hit._source.type || '';
@@ -218,7 +224,7 @@ function displayResults(data) {
                 dateInfo = `<br/><strong>Dates:</strong> ${dates.join(', ')}`;
             }
 
-            const abstract = hit._source.abstract || '';
+            const abstract = cleanDisplayData(hit._source.abstract || '');
             const abstractString = abstract ? `<br/>${abstract}` : '';
             const idno = hit._source.idno || '';
             const originURL = window.location.origin;
