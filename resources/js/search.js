@@ -988,7 +988,7 @@ function displayCBSSDocumentResults(data, subjectKey) {
             // Append result item to the results container
             resultsContainer.appendChild(resultItem);
         });
-        isLoading = false; // Allow more requests
+        state.isLoading = false; // Allow more requests
 
     } else {
         if (state.currentPage === 0) {
@@ -1532,7 +1532,7 @@ function clearSearchResults() {
     if (resultsContainer) resultsContainer.innerHTML = '';
 
     const cbssResultsContainer = document.getElementById("cbss-subject-search-results");
-    if (resultsContainer) resultsContainer.innerHTML = '';
+    if (cbssResultsContainer) resultsContainer.innerHTML = '';
 
     const docResultsContainer = document.getElementById("document-search-results");
     if (docResultsContainer) docResultsContainer.innerHTML = '';
