@@ -190,7 +190,7 @@ function displayResults(data) {
             let names = '';
             if (hit._source.placeName || hit._source.persName) {
                 const nameArray = hit._source.placeName || hit._source.persName || [];
-                names = nameArray.join(", ");
+                names = nameArray.map(name => name.trim()).join(", ");
             }
             const nameString = names ? `<br/>Names: ${names}` : '';
             const birth = trimYear(hit._source.birthDate);
