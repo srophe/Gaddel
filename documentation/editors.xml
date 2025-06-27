@@ -143,6 +143,12 @@
                   <surname>al-Murikhi</surname>
                </persName>
             </person>
+            <person xml:id="nandrade">
+               <persName xml:lang="en">
+                  <forename>Nathanael</forename>
+                  <surname>Andrade</surname>
+               </persName>
+            </person>
             <person xml:id="jarnwine">
                <persName xml:lang="en">
                   <forename>Justin</forename>
@@ -397,6 +403,13 @@
                   <surname>Hannah</surname>
                </persName>
             </person>
+            <person xml:id="sharvey">
+               <persName xml:lang="en">
+                  <forename>Susan</forename>
+                  <addName>Ashbrook</addName>
+                  <surname>Harvey</surname>
+               </persName>
+            </person>
             <person xml:id="kheal">
                <persName xml:lang="en">
                   <forename>Kristian</forename>
@@ -492,6 +505,18 @@
                <persName xml:lang="en">
                   <forename>K.</forename>
                   <surname>Lindtner</surname>
+               </persName>
+            </person>
+            <person xml:id="jloopstra">
+               <persName xml:lang="en">
+                  <forename>Jonathan</forename>
+                  <surname>Loopstra</surname>
+               </persName>
+            </person>
+            <person xml:id="eloosley">
+               <persName xml:lang="en">
+                  <forename>Emma</forename>
+                  <surname>Loosley</surname>
                </persName>
             </person>
             <person xml:id="amccollum">
