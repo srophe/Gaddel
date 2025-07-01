@@ -466,7 +466,7 @@ function initializeStateFromURL() {
         fetchAndRenderAdvancedSearchResults();
     }
 }
-function seriesFromPath(pathname = window.location.pathname) {
+function getSeriesFromPath(pathname = window.location.pathname) {
   if (pathname.includes('/geo')) {
     return 'The+Syriac+Gazetteer';
   } else if (pathname.includes('/cbss')) {
@@ -521,7 +521,7 @@ function browseAlphaMenu() {
         menuLink.classList.add('ui-all');
         menuLink.textContent = letter;
         letterLowerCase = letter.toLowerCase();
-        const seriesFromPath = seriesFromPath(); // Get series from the current path
+        const seriesFromPath = getSeriesFromPath(); // Get series from the current path
         menuLink.href = `?searchType=letter&letter=${letterLowerCase}&q=${encodeURIComponent(state.query)}&size=${state.size}&lang=${state.lang}`;
         
         // Attach event listener for letter selection
