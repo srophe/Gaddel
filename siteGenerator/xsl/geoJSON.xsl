@@ -17,7 +17,7 @@
     <!-- Directory places TEI -->
     <xsl:param name="placesCollectionPath" select="'/Users/wsalesky/syriaca/syriaca/syriaca-data/data/places/tei'"/>
     <!-- Sub collection of places, currently only used for  Gazetteer to John of Ephesus’s Ecclesiastical History-->
-    <xsl:param name="subCollection" select="'Gazetteer to John of Ephesus’s Ecclesiastical History'"/>
+    <xsl:param name="subCollection" select="''"/>
     
     <!-- places for runinng on placesCollectionPath for placesTEI or relatedPlace for finding realted places  relatedPlace -->
     <xsl:param name="mapType" select="''"/>
