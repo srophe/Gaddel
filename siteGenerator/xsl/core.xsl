@@ -244,7 +244,10 @@
                 <xsl:text> </xsl:text>
             </xsl:if>
         </xsl:variable>
-        <xsl:value-of select="$prefix"/><xsl:value-of select="normalize-space(normalize-unicode(., $normalization))"/><xsl:value-of select="$suffix"/>
+        <xsl:value-of select="$prefix"/>
+        <!--<xsl:value-of select="normalize-space(normalize-unicode(., $normalization))"/>-->
+        <xsl:value-of select="." disable-output-escaping="yes"/>
+        <xsl:value-of select="$suffix"/>
     </xsl:template>
     
 </xsl:stylesheet>
