@@ -296,7 +296,8 @@
                 <div class="content-block preferred-citation">
                     <h2>Preferred Citation</h2>
                     <div class="indent citation">
-                        <xsl:apply-templates select="self::*" mode="bibliography"/>.
+                        <xsl:apply-templates select="parent::t:body/t:bibl[@subtype='citation']" mode="preferredCitation"/>
+<!--                        <xsl:apply-templates select="self::*" mode="bibliography"/>.-->
                     </div>
                 </div>
                 <h3>Full Citation Information</h3>

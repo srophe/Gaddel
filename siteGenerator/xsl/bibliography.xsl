@@ -1155,7 +1155,7 @@
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
      handle bibliographic titles in the context of a footnote
      ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <xsl:template match="t:title" mode="footnote biblist allbib" priority="1">
+    <xsl:template match="t:title" mode="footnote biblist allbib preferredCitation" priority="1">
         <xsl:if test="not(contains(@xml:lang,'Latn-'))">
             <span>
                 <xsl:attribute name="class">
@@ -1408,6 +1408,14 @@
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
      emit the footnote number for a bibl
      ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    
+    <xsl:template match="t:bibl" mode="preferredCitation">
+        <xsl:apply-templates mode="preferredCitation"/>
+    </xsl:template>
+    <xsl:template match="text()" mode="preferredCitation">
+        <xsl:copy-of select="."/>
+    </xsl:template>
+   
     <xsl:template match="t:bibl" mode="footnote-ref">
         <xsl:param name="footnote-number">1</xsl:param>
         <span class="tei-footnote-ref">
