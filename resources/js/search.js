@@ -206,7 +206,7 @@ function displayResults(data) {
                 if (death) dates.push(`Died: ${death}`);
                 if (floruitStart || floruitEnd) {
                     if (floruitStart && floruitEnd) {
-                        dates.push(`Floruit: ${floruitStart}–${floruitEnd}`);
+                        dates.push(`Floruit: ${floruitStart[0]}–${floruitEnd[floruitEnd.length - 1]}`);
                     } else if (floruitStart) {
                         dates.push(`Floruit from: ${floruitStart}`);
                     } else if (floruitEnd) {
