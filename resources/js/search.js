@@ -1501,6 +1501,7 @@ function setupInfiniteScroll() {
 function changePage(page) {
     state.currentPage = page;
     state.from = (page - 1) * state.size;
+    document.getElementById('search-info')?.scrollIntoView({ behavior: 'smooth' });
 
     if(state.searchType === 'browse' || state.query === 'cbssAuthor' || state.searchType === 'letter' || state.searchType === 'cbssSubject'){
         getPaginatedBrowse();
