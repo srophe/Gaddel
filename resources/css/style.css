@@ -483,7 +483,9 @@ pre {
 
 .search-box .navbar-form {overflow:visible;}
 
-
+#search-info {
+  scroll-margin-top: 80px; /* Match header height */
+}
 
 /* T */
 .tab-content {padding-top:.25em;}
