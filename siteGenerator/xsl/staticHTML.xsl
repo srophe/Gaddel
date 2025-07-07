@@ -620,11 +620,11 @@
                             <a href="javascript:window.print();" type="button" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to send this page to the printer." >
                                 <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                             </a><xsl:text>&#160;</xsl:text>
-                            <!-- WS:NOTE needs work on the link.  -->
+                            <!-- WS:NOTE needs work on the link. 
                             <a href="{concat($dataPath,'.rdf')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the RDF-XML data for this record." >
                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> RDF/XML
                             </a><xsl:text>&#160;</xsl:text>
-                            
+                            -->
                         </div>
                         <div class="row">
                             <div class="col-md-7 col-lg-8">
@@ -764,6 +764,7 @@
             <div class="container otherFormats" xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:for-each select="tokenize($formats,',')">
                     <xsl:choose>
+                        <!--
                         <xsl:when test=". = 'geojson'">
                             <a href="{concat($dataPath,'.geojson')}" class="btn btn-default btn-xs" id="geojsonBtn" data-toggle="tooltip" title="Click to view the GeoJSON data for this record." >
                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> GeoJSON
@@ -781,26 +782,31 @@
                                 </a><xsl:text>&#160;</xsl:text>
                             </xsl:if>
                         </xsl:when>
+                        -->
                         <xsl:when test=". = 'print'">
                             <a href="javascript:window.print();" type="button" class="btn btn-default btn-xs" id="printBtn" data-toggle="tooltip" title="Click to send this page to the printer." >
                                 <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                             </a><xsl:text>&#160;</xsl:text>
                         </xsl:when>
+                        <!--
                         <xsl:when test=". = 'rdf'">
                             <a href="{concat($dataPath,'.rdf')}" class="btn btn-default btn-xs" id="rdfBtn" data-toggle="tooltip" title="Click to view the RDF-XML data for this record." >
                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> RDF/XML
                             </a><xsl:text>&#160;</xsl:text>
                         </xsl:when>
+                        -->
                         <xsl:when test=". = 'tei'">
-                            <a href="{concat($teiRec,'.xml')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the TEI XML data for this record." >
+                            <a href="{concat(tokenize($idno,'/')[last()],'.xml')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the TEI XML data for this record." >
                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> TEI/XML
                             </a><xsl:text>&#160;</xsl:text>
                         </xsl:when>
+                        <!--
                         <xsl:when test=". = 'text'">
                             <a href="{concat($dataPath,'.txt')}" class="btn btn-default btn-xs" id="txtBtn" data-toggle="tooltip" title="Click to view the plain text data for this record." >
                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Text
                             </a><xsl:text>&#160;</xsl:text>
                         </xsl:when>
+                        -->
                         <xsl:when test=". = 'citations'">
                             <xsl:variable name="zoteroGrp" select="$config/descendant::*:zotero/@group"/>
                             <xsl:if test="$zoteroGrp != ''">
