@@ -463,7 +463,7 @@ function initializeStateFromURL() {
     state.sortFactor = urlParams.get('sortFactor') || 'author';
     state.fullText = urlParams.get('fullText') || '';
     state.type = urlParams.getAll('type') || [];
-
+    console.log("editor", state.editor);
     if (state.keyword) {
         fetchAndRenderAdvancedSearchResults();
     }
@@ -1299,6 +1299,8 @@ function updateStateFromForm(form) {
     state.title = formData.get('title') || '';
     state.author = formData.get('author') || '';
     state.editor = formData.get('editor') || '';
+    console.log('editor', state.editor);
+
     if(formData.get('idnoText')){
         if(formData.get('idnoType') === 'BHO'){
             state.BHO = formData.get('idnoText') || '';
@@ -1334,6 +1336,7 @@ function buildQueryParams() {
         birthRangeEnd: state.birthRangeEnd,
         deathRangeStart: state.deathRangeStart,
         deathRangeEnd: state.deathRangeEnd,
+        editor: state.editor,
         eventRangeStart: state.eventRangeStart,
         eventRangeEnd: state.eventRangeEnd,
         floruitRangeStart: state.floruitRangeStart,
