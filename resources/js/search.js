@@ -23,6 +23,7 @@ const state = {
     cbssSubject: '',
     deathRangeStart: '',
     deathRangeEnd: '',
+    editor: '',
     eventRangeStart: '',
     eventRangeEnd: '',
     explicit: '',
@@ -445,6 +446,7 @@ function initializeStateFromURL() {
     state.floruitRangeEnd = urlParams.get('floruitRangeEnd') || '';
     state.title = urlParams.get('title') || '';
     state.author = urlParams.get('author') || '';
+    state.editor = urlParams.get('editor') || '';
     state.BHO = urlParams.get('BHO') || '';
     state.BHS = urlParams.get('BHS') || '';
     state.CPG = urlParams.get('CPG') || '';
@@ -1226,9 +1228,9 @@ function runBrowse(series) {
     initializeStateFromURL();
     state.series = series || ''; // Set series to the provided value or default to empty string
     // Fetch and render search results if URL search parameters are present
-    if(window.location.search){
-        getBrowse(series);
-    }
+    
+    getBrowse(series);
+    
 }
 
 // Helper function to get form data and update state
@@ -1296,7 +1298,7 @@ function updateStateFromForm(form) {
     state.explicit = formData.get('explicit') || '';
     state.title = formData.get('title') || '';
     state.author = formData.get('author') || '';
-
+    state.editor = formData.get('editor') || '';
     if(formData.get('idnoText')){
         if(formData.get('idnoType') === 'BHO'){
             state.BHO = formData.get('idnoText') || '';
@@ -1440,6 +1442,7 @@ function resetState() {
     
     state.title = '';
     state.author = '';
+    state.editor = '';
     state.idno = '';
     state.prologue = '';
     state.abstract = '';
