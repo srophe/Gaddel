@@ -558,7 +558,7 @@ function browseCbssAlphaMenu() {
 
     state.query = urlParams.get('q') || 'cbssSubject'; // Retrieve query from the URL
     const alphabets = {
-        en: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #',
+        en: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ʾ ʿ #',
         rus: 'А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я',
         gr: 'Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω',
         arm: 'Ա Բ Գ Դ Ե Զ Է Ը Թ Ժ Ի Լ Խ Ծ Կ Հ Ձ Ղ Ճ Մ Յ Ն Շ Ո Չ Պ Ջ Ռ Ս Վ Տ Ր Ց Ու Փ Ք Օ Ֆ',
