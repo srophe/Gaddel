@@ -501,6 +501,12 @@
                   <surname>Kozah</surname>
                </persName>
             </person>
+            <person xml:id="litang">
+               <persName xml:lang="en">
+                  <surname>Li</surname>
+                  <forename>Tang</forename>
+               </persName>
+            </person>
             <person xml:id="klindtner">
                <persName xml:lang="en">
                   <forename>K.</forename>
