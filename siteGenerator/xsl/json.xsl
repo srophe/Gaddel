@@ -358,15 +358,22 @@
         <xsl:param name="id"/>
         <xsl:choose>
             <xsl:when test="contains($id, '/place')">
-                <xsl:variable name="field">
-                    <xsl:value-of select="$doc/descendant::tei:place/@ana"/>
-                </xsl:variable>
-                <xsl:for-each select="tokenize($field,' ')">
-                    <string key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">
-                        <xsl:value-of select="tokenize(.,'/')[last()]"/>
-                    </string>
-                </xsl:for-each>
+              <!-- Collect all @type values from <place> elements inside body instead of @ana as taxonomy values are plural are require string manipulation-->
+              <xsl:variable name="types" select="$doc/descendant::tei:body//tei:place/@type"/>
+              <xsl:if test="exists($types)">
+                <array key="type" xmlns="http://www.w3.org/2005/xpath-functions">
+                  <xsl:for-each select="$types">
+                    <!-- Ensure uniqueness by filtering distinct values -->
+                    <xsl:if test="not(. = preceding-sibling::tei:place/@type)">
+                      <string xmlns="http://www.w3.org/2005/xpath-functions">
+                        <xsl:value-of select="normalize-space(.)"/>
+                      </string>
+                    </xsl:if>
+                  </xsl:for-each>
+                </array>
+              </xsl:if>
             </xsl:when>
+
             <xsl:when test="contains($id, '/person')">
                 <xsl:if test="$doc/descendant::tei:body/descendant::tei:state[@type='status']">
                     <array key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">     
