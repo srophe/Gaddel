@@ -86,7 +86,7 @@
         <div xml:id="acknowledgements">
           <head>Acknowledgements</head>
           <p>This present document reuses and adapts guidelines published as <title>TEI: Guidelines
-              for Electronic Text Encoding and Interchange</title> inthe P5 release, version 4.9.0
+              for Electronic Text Encoding and Interchange</title> in the P5 release, version 4.9.0
             as updated on 24th January 2025 (revision f73186978). The TEI guideliens are reused here
             under the terms of the Creative Commons Attribution 3.0 Unported License. An initial
             schema for the first edition of <title>The Syriac Gazetteer</title> was designed in
@@ -97,7 +97,7 @@
             of <title>The Syriac Gazetteer</title>. </p>
         </div>
         <div xml:id="phraselevel">
-          <head>General Principles</head>
+          <head>General Principles</head> <!-- WLP: Either here or in another section, I wonder if we eventually want a paragraph saying that the Gazetteer documentation assumes familiarity with Syriaca-wide principles like the use of URIs to identify conceptual entities and other syriaca-wide encoding conventions that then links to documentation pages for those principles? -->
           <p>It is essential to note that we have customized these guidelines specifically for use
             in digitally encoding geographic data related to the field of Syriac studies. Due to
             this specialized use, these guidelines do not include all possible TEI XML features
@@ -132,47 +132,85 @@
               records follows the same guidelines for all Syriaca.org publications. These guidelines
               will be published elsewhere on the Syriaca.org documentation page.</p>
           </div>
+          <div xml:id="placeRecordStructure">
+            <head>Structure of a Place Record</head>
+          </div>
           <div xml:id="listPlace">
-            <head>text/body/listPlace</head>
+            <head>Containing Element</head>
             <p>All geographic data in each <title>TSG</title> record must be contained in a tree
-              structure of the following elements TEI/text/body/listPlace. The <gi>listPlace</gi>
+              structure of the following elements <code>/TEI/text/body/listPlace</code>. The <gi>listPlace</gi>
               element must contain a <gi>place</gi> element and may contain a <gi>listRelation</gi>
               element.</p>
-          </div>
-          <div xml:id="place">
-            <head>Place</head>
-            <p>Except for information about related places, all geographic data... to be completed,
-              explain how the place element contains the identity </p>
-            <div xml:id="placeName">
-              <head>placeName</head>
-              <p>TBD</p>
+            <div xml:id="place">
+              <head>Place</head>
+              <p>Except for information about related entities, all geographic data is encoded in a <gi>place</gi> element.
+                 Each <gi>place</gi> element must have @type and @ana attributes <!-- WLP: TBD: required and allowed children elements? Also add or reference a table of the place types and their taxonomy URIs -->
+                 </p><!-- WLP: I think the conceptual bit about 'what' a place is, identity, etc. should go in an above section that gives the methodological/theoretical fundamentals of the TSG? -->
+              
+              <div xml:id="placeName">
+                <head>Place Names</head>
+                <p>Every record must have at least one <gi>placeName</gi> element, and may have any number. This element
+                contains the name variants by which the place is known. Name variants may be recorded for any language,
+                and must be tagged with the corresponding ISO language code with an @xml:lang attribute.</p> <!-- TBD: maybe reference a standard documentation section or page for Syriaca's lang code usage? -->
+                <p>Additionally, <gi>placeName</gi> elements must have a unique @xml:id attribute of the form <code>name\d+-\d+</code>. The first digits derive from the numerical portion
+                of the Syriaca URI for the place, and the latter is a sequential integer:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <placeName xml:id="name78-6" xml:lang="ar" source="#bib78-4">الرها</placeName>
+                  </egXML>
+                Finally, as seen in the preceding example, all <gi>placeName</gi> elements must indicate the source of the name form either via a @source attribute or a @resp attribute.
+                The @source attribute is used... <!-- WLP: I think we should have a general section on sourcing information, which we then refer to throughout for elements that require a source/resp (placeName, desc, etc.) -->
+                </p>
+                <div xml:id="headword">
+                  <head>Syriaca Headwords</head><!-- WLP: note that although the v2 guidelines said there must be an en headword, the schema only constrains for the existence of at least one name tagged as a headword-->
+                  <p>At least one <gi>placeName</gi> element must be tagged as a Syriaca Headword using a @srophe:tags attribute with the value of <quote>#syriaca-headword</quote>.
+                  As the headwords are used as preferred labels and for alphabetization in search/brose results, at least one English place name should be tagged as a headword.
+                  At most one headword per language may be defined.
+                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                      <placeName source="#bib78-2 #bib78-5" xml:id="name78-1" xml:lang="en" srophe:tags="#syriaca-headword">Edessa</placeName>
+                      <placeName xml:id="name78-2" xml:lang="en" source="#bib78-2 #bib78-5 #bib78-7">Urfa</placeName>
+                      <placeName resp="http://syriaca.org" xml:id="name78-3" xml:lang="syr" srophe:tags="#syriaca-headword">ܐܘܪܗܝ</placeName>
+                    </egXML>
+                  </p>
+                </div>
+              </div>
+              <div xml:id="desc">
+                <head>Descriptions</head>
+                <p>TBD</p>
+                <div xml:id="abstracs">
+                  <head>Abstracts</head>
+                </div>
+              </div>
+              <div xml:id="location">
+                <head>Locations</head>
+                <p>TBD</p>
+                <!-- WLP: add sub-sections for GPS vs. relative? -->
+              </div>
+              <div xml:id="event">
+                <head>Events</head>
+                <p>TBD</p>
+                <!-- WLP: add sub-sections for attestations and other events -->
+              </div>
+              <div xml:id="state">
+                <head>States</head>
+                <p>TBD</p>
+                <!-- WLP: add sub-sections for existence states and confession states -->
+              </div>
+              <div xml:id="note">
+                <head>note</head>
+                <p>TBD</p>
+                <!-- WLP: add sub-sections for the note types? Or are these at the syriaca-all level? We can put them here for now, and just copy in from the v2 encoding guidelines -->
+              </div>
+              <div xml:id="idno">
+                <head>idno</head>
+                <p>TBD</p>
+              </div>
+              <div xml:id="bibl">
+                <head>bibl</head>
+                <p>TBD</p>
+              </div>
             </div>
-            <div xml:id="desc">
-              <head>desc</head>
-              <p>TBD</p>
-            </div>
-            <div xml:id="location">
-              <head>location</head>
-              <p>TBD</p>
-            </div>
-            <div xml:id="event">
-              <head>event</head>
-              <p>TBD</p>
-            </div>
-            <div xml:id="state">
-              <head>state</head>
-              <p>TBD</p>
-            </div>
-            <div xml:id="note">
-              <head>note</head>
-              <p>TBD</p>
-            </div>
-            <div xml:id="idno">
-              <head>idno</head>
-              <p>TBD</p>
-            </div>
-            <div xml:id="bibl">
-              <head>bibl</head>
+            <div xml:id="listrelation">
+              <head>Related Entities</head>
               <p>TBD</p>
             </div>
           </div>
