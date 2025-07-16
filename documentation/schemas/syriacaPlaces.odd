@@ -103,101 +103,129 @@
               International license</ref>. The current document represents guidelines for the third
             edition of <title>The Syriac Gazetteer</title>. </p>
         </div>
-        <div xml:id="phraselevel">
+        <div xml:id="principles">
           <head>General Principles</head>
-          <!-- WLP: Either here or in another section, I wonder if we eventually want a paragraph saying that the Gazetteer documentation assumes familiarity with Syriaca-wide principles like the use of URIs to identify conceptual entities and other syriaca-wide encoding conventions that then links to documentation pages for those principles? -->
-          <p><title>TSG</title> is a geographical reference work published by Syriaca.org to
-            identify and describe places relevant to Syriac studies. The editors interpret “places
-            relevant to Syriac Studies” in a maximal rather than restrictive sense, thus
-              <title>TSG</title> is meant to include places named in Syriac texts (such as <ref
-              target="https://syriaca.org/place/326">Ḥarqel — ܚܪܩܠ</ref>), places interesting to
-            historians who work on Syriac texts (such as <ref target="https://syriaca.org/place/77"
-              >Dura-Europos</ref>), places where scholarship on Syriac is being produced (such as
-              <ref target="https://syriaca.org/place/593">Japan</ref>), and contemporary places
-            relevant to the modern Syriac heritage communities. There are no chronological or
-            spatial constraints on what may be included in <title>TSG</title>. At least in theory,
-            any type or size of place could be represented in the geographic database, from large
-            empires to single churches or a particular named city gate. Map coordinates are provided
-            for some places, but the database also includes places which are not located or even
-            locatable. Mythological and other ahistorical places are also included in the
-            database.</p>
-          <p>The concept of distinct place is the distinguishing criterion for each entry in
-              <title>TSG</title>. Each record in <title>TSG</title> represents a place that can be
-            disambiguated from other places. Each place is a unique conceptual entity with a mental
-            existence related to, but not reducible to, its physical manifestation. Each place is
-            assigned a unique indentifier (a URI, i.e. Uniform Resource Identifier) of the format:
-              <egXML xmlns="http://www.tei-c.org/ns/Examples"
-            >http://syriaca.org/place/{\d+}</egXML>.</p>
-          <p>When considering the TEI XML schema created for <title>TSG</title>, it is essential to
-            note that we have customized these guidelines specifically for use in digitally encoding
-            geographic data related to the field of Syriac studies. Due to this specialized use,
-            these guidelines do not include all possible TEI XML features which might be employed
-            for historical geography in general. Moreover, because the main language of
-              <title>TSG</title> is English, these guidelines assume that each file will designate
-            English as its main language.</p>
-          <p>We have followed the guidelines below with the assumption that the resulting XML files
-            for the <ref target="https://syriaca.org/geo"><title>The Syriac Gazetteer</title></ref>
-            will be displayed using the custom <title>Gaddel App</title> developed by Syriaca.org
-            and The Digital Lab at Vanderbilt University. We have also made an effort to ensure (as
-            much as possible) that our data will be easily serialized to conform to the data model
-            developed by the <ref target="https://pleiades.stoa.org/"><title>Pleiades</title></ref>
-            project, a community-built gazetteer for the field of ancient studies, and to the <ref
-              target="https://pelagios.org/"><title>Pelagios Network</title>'s</ref> implementation
-            of Linked Open Data principles.</p>
-          <p>For a more detailed discussion of the data model and architecture of Syraica.org,
-            readers are encouraged to consult the following technical publication: David A.
-            Michelson, “Using Linked Open Data to Model Cultural Heritage Information: The Research
-            Questions and Data Structures of the Syriaca.Org Knowledge Graph,” in <title>Linked Open
-              Data for the Ancient Mediterranean: Structures, Practices, Prospects</title>, edited
-            by Sarah E. Bond, Paul Dilley, and Ryan Horne, <title>ISAW Papers</title> 20 (2021),
-              <ref target="http://hdl.handle.net/2333.1/69p8d8cc"
-              >http://hdl.handle.net/2333.1/69p8d8cc</ref>. </p>
+          <div>
+            <head>Concept of Place</head>
+            <!-- WLP: Either here or in another section, I wonder if we eventually want a paragraph saying that the Gazetteer documentation assumes familiarity with Syriaca-wide principles like the use of URIs to identify conceptual entities and other syriaca-wide encoding conventions that then links to documentation pages for those principles? -->
+            <p><title>TSG</title> is a geographical reference work published by Syriaca.org to
+              identify and describe places relevant to Syriac studies. The concept of distinct place
+              is the distinguishing criterion for each entry in <title>TSG</title>. Each record in
+                <title>TSG</title> represents a single place that can be disambiguated from other
+              places. Each place is a unique conceptual entity with a mental existence related to,
+              but not reducible to, its physical manifestation. The purpose of each record (and thus
+              each XML file) is to provide information which describes the place identified with
+              that record. To assist with disambiguation, each place is assigned a unique
+              indentifier (a URI, i.e. Uniform Resource Identifier) of the following format (where
+              "{\d+}" signifies a unique string of digits):
+                <code>http://syriaca.org/place/{\d+}</code> For example, the city of <ref
+                target="https://syriaca.org/place/78">Edessa</ref> is assigned the following URI:
+                <code>http://syriaca.org/place/78</code></p>
+            <p>In terms of including places in <title>TSG</title>, the editors have interpreted the
+              scope of “places relevant to Syriac Studies” in a maximal rather than restrictive
+              sense, thus <title>TSG</title> is meant to include places named in Syriac texts (such
+              as <ref target="https://syriaca.org/place/326">Ḥarqel — ܚܪܩܠ</ref>), places of
+              interest to scholars who work on Syriac history and culture (such as <ref
+                target="https://syriaca.org/place/77">Dura-Europos</ref>), places where scholarship
+              on Syriac is being produced (such as <ref target="https://syriaca.org/place/593"
+                >Japan</ref>), and contemporary places relevant to the modern Syriac heritage
+              communities. There are no chronological or spatial constraints on what may be included
+              in <title>TSG</title>. At least in theory, any type or size of place could be
+              represented in the geographic database, from large empires to single churches or a
+              particular named city gate. Map coordinates are provided for some places, but the
+              database also includes places which are not located or even locatable. Mythological
+              and other ahistorical places are also included in the database.</p>
+
+          </div>
+          <div>
+            <head>Customization of the TEI Guidelines</head>
+            <p>When considering the TEI XML schema created for <title>TSG</title>, it is essential
+              to note that we have customized these guidelines specifically for use in digitally
+              encoding geographic data related to the field of Syriac studies. Due to this
+              specialized use, these guidelines do not include all possible TEI XML features which
+              might be employed for history or geography data in general. Moreover, because the main
+              language of <title>TSG</title> is English, these guidelines assume that each file will
+              designate English as its main language.</p>
+            <p>We have followed the guidelines below with the assumption that the resulting XML
+              files for the <ref target="https://syriaca.org/geo"><title>The Syriac
+                  Gazetteer</title></ref> will be displayed using the custom <title>Gaddel
+                App</title> developed by Syriaca.org and The Digital Lab at Vanderbilt University.
+              We have also made an effort to ensure (as much as possible) that our data will be
+              easily serialized to conform to the data model developed by the <ref
+                target="https://pleiades.stoa.org/"><title>Pleiades</title></ref> project, a
+              community-built gazetteer for the field of ancient studies, and to the <ref
+                target="https://pelagios.org/"><title>Pelagios Network</title>'s</ref>
+              implementation of Linked Open Data principles.</p>
+            <p>For a more detailed discussion of the data model and architecture of Syraica.org,
+              readers are encouraged to consult the following technical publication: David A.
+              Michelson, “Using Linked Open Data to Model Cultural Heritage Information: The
+              Research Questions and Data Structures of the Syriaca.Org Knowledge Graph,” in
+                <title>Linked Open Data for the Ancient Mediterranean: Structures, Practices,
+                Prospects</title>, edited by Sarah E. Bond, Paul Dilley, and Ryan Horne, <title>ISAW
+                Papers</title> 20 (2021), <ref target="http://hdl.handle.net/2333.1/69p8d8cc"
+                >http://hdl.handle.net/2333.1/69p8d8cc</ref>. </p>
+          </div>
         </div>
-        <div>
-          <head>Required Record Structure</head>
-          <p>This section presents, in document order, the elements and structure required in each
-            record.</p>
+        <div xml:id="recordStructure">
+          <head>Record Structure</head>
+          <p>This section presents, in document order, the elements and structure required or
+            permitted in each record.</p>
           <div xml:id="rootElement">
             <head>The TEI Root Element</head>
-            <p>The <gi>TEI</gi> root element should contain the same attribute values in every
-                <title>TSG</title> record. These are namespace declarations and a language
-              declaration. The <gi>TEI</gi> root element also must always contain the same two child
-              elements: <gi>teiHeader</gi> and <gi>text</gi>.</p>
+            <p>Every record begins with the <gi>TEI</gi> root element. This element contains the
+              same attribute values in every <title>TSG</title> record. These values are namespace
+              declarations and a language declaration. The <gi>TEI</gi> root element also must
+              always contain the same two child elements: <gi>teiHeader</gi> and <gi>text</gi>.</p>
           </div>
           <div xml:id="header">
             <head>The TEI Header</head>
             <p>The <gi>teiHeader</gi> element contains metadata about title, authorship, copyright,
               and licensing of the data in the record. The <gi>teiHeader</gi> in <title>TSG</title>
-              records follows the same guidelines for all Syriaca.org publications. These guidelines
-              will be published elsewhere on the Syriaca.org documentation page.</p>
+              records follows the universal guidelines for all Syriaca.org publications. These
+              guidelines will be published elsewhere on the Syriaca.org documentation page.</p>
           </div>
-          <div xml:id="placeRecordStructure">
-            <head>Structure of a Place Record</head>
-          </div>
-          <div xml:id="listPlace">
-            <head>Containing Element</head>
-            <p>All geographic data in each <title>TSG</title> record must be contained in a tree
-              structure of the following elements <code>/TEI/text/body/listPlace</code>. The
-                <gi>listPlace</gi> element must contain a <gi>place</gi> element and may contain a
-                <gi>listRelation</gi> element.</p>
-            <div xml:id="place">
-              <head>Place</head>
-              <p>Except for information about related entities, all geographic data is encoded in a
+          <div xml:id="placeDescription">
+            <head>Place Description</head>
+            <div xml:id="Place">
+              <head>XPath to <gi>Place</gi></head>
+              <p>The geographic data in each <title>TSG</title> record must be contained in a series
+                of nested elements with the following XPath
+                  <code>/TEI/text/body/listPlace/place</code>. Thus the structure of every document
+                will include the following: <egXML xmlns="http://www.tei-c.org/ns/Examples"><TEI>
+                    <text>
+                      <body>
+                        <listPlace>
+                          <place>...</place>
+                        </listPlace>
+                      </body>
+                    </text>
+                  </TEI></egXML></p>
+              <p>The <gi>listPlace</gi> element must contain a <gi>place</gi>
+                element and may contain a <gi>listRelation</gi> element. Except for information about related entities, all geographic data is encoded in a
                 single <gi>place</gi> element. This <gi>place</gi> element must have @type and @ana
-                attributes
+                attributes. The <gi>place</gi> element contains the following child elements, some of which are required:
+                <list>
+                  <item><gi>placeName</gi></item>
+                  <item><gi>location</gi></item>
+                  <item><gi>event</gi></item>
+                  <item><gi>state</gi></item>
+                  <item><gi>note</gi></item>
+                  <item><gi>idno</gi></item>
+                  <item><gi>bibl</gi></item>
+                </list>
+                
                 <!-- WLP: TBD: required and allowed children elements? Also add or reference a table of the place types and their taxonomy URIs -->
               </p>
-              <!-- WLP: I think the conceptual bit about 'what' a place is, identity, etc. should go in an above section that gives the methodological/theoretical fundamentals of the TSG? -->
-
               <div xml:id="placeName">
                 <head>Place Names</head>
                 <p>Place names are essential for identifying and disambiguating individual places.
                   Every record must have at least one <gi>placeName</gi> element, and may have any
-                  number. The text node of this element contains a name by which the place is known.
-                  Multiple name variants can be added; each should be in a separate
-                    <gi>placeName</gi>. Name variants may be recorded for any language and must be
-                  tagged with the corresponding ISO language code with an @xml:lang attribute. .
-                  Each record must have at least one place name in English.
+                  additional number of <gi>placeName</gi> elements. The text node of this element
+                  should contain a name by which the place is or was known. Multiple name variants
+                  can be added; each should be in a separate <gi>placeName</gi>. Name variants may
+                  be recorded for any language and must be tagged with the corresponding ISO
+                  language code with an @xml:lang attribute. Each record must have at least one
+                  place name in English or English transliteration.
                   <!--  If necessary, the author may craft a prose description as a place name.--></p>
                 <!-- TBD: maybe reference a standard documentation section or page for Syriaca's lang code usage? -->
                 <p>Additionally, <gi>placeName</gi> elements must have a unique @xml:id attribute of
@@ -232,7 +260,7 @@
               <div xml:id="desc">
                 <head>Descriptions</head>
                 <p>TBD</p>
-                <div xml:id="abstracs">
+                <div xml:id="abstracts">
                   <head>Abstracts</head>
                 </div>
               </div>
@@ -264,15 +292,14 @@
                 <head>bibl</head>
                 <p>TBD</p>
               </div>
-            </div>
-            <div xml:id="listrelation">
-              <head>Related Entities</head>
-              <p>TBD</p>
+              <div xml:id="listrelation">
+                <head>Related Entities</head>
+                <p>TBD</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
       <div xml:id="schema">
         <head><title>The Syriac Gazetteer</title> Schema Customization</head>
         <schemaSpec ident="syriacaPlaces" prefix="tei_" source="syriacaAll.compiled.odd"
