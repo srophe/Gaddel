@@ -47,8 +47,6 @@
           - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
     </profileDesc>
   </teiHeader>
-
-
   <text>
     <body>
       <opener>This version of the encoding guidelines for <ref target="https://syriaca.org/geo"
@@ -186,10 +184,11 @@
               records follows the universal guidelines for all Syriaca.org publications. These
               guidelines will be published elsewhere on the Syriaca.org documentation page.</p>
           </div>
-          <div xml:id="placeDescription">
+          <div xml:id="place">
             <head>Place Description (<gi>place</gi>)</head>
-            <div xml:id="Place">
+            <div xml:id="xpathPlace">
               <head>XPath to <gi>place</gi></head>
+              <!-- I wanted to call this "place of place" or "Location of the place element in the record" or something, can you think of a better title that doesn't get confusing due to the multiple geographic terms -->
               <p>The geographic data in each <title>TSG</title> record must be contained in a series
                 of nested elements with the following XPath
                   <code>/TEI/text/body/listPlace/place</code>. Thus the structure of every document
@@ -221,7 +220,7 @@
                 <!-- WLP: TBD: required and allowed children elements? Also add or reference a table of the place types and their taxonomy URIs -->
               </p>
             </div>
-            <div xml:id="bibl">
+            <div xml:id="worksCited">
               <head>Works Cited</head>
               <p>Bibliographic citation is an essential and required element for every entry in
                   <title>TSG</title>. Although structurally the bibliographic citations of works
@@ -250,7 +249,7 @@
                 scope of <ref target="https://syriaca.org/cbss/index.html"><title>The Comprehensive
                     Bibliography on Syriac Studies</title></ref> rather than
                 <title>TSG</title>).</p>
-              <div xml:id="citation">
+              <div xml:id="bibl">
                 <head>Creating a Citation (<gi>bibl</gi>)</head>
                 <p>Syriaca.org manages the publication information for all citations in a separate
                   reference work, <ref target="https://syriaca.org/cbss/index.html"><title>The
@@ -350,7 +349,6 @@
                   not follow standard numeric order (e.g., a reference to footnote 7 might precede
                   the reference to footnote 6) but the citations will nevertheless direct readers to
                   the correct work cited.</p>
-
               </div>
               <div xml:id="source">
                 <head>Inserting Citations (@source)</head>
@@ -382,7 +380,8 @@
                   by spaces. For example, the name "Edessa" is attested in multiple separate
                   sources, so that fact can be encoded as follows <egXML
                     xmlns="http://www.tei-c.org/ns/Examples">
-                    <placeName xml:id="name78-1" source="#bib78-1 #bib78-2 #bib78-6 #bib78-24">Edessa</placeName>
+                    <placeName xml:id="name78-1" source="#bib78-1 #bib78-2 #bib78-6 #bib78-24"
+                      >Edessa</placeName>
                   </egXML> The addition of multiple citations for the same piece of information is,
                   in general, not necessary or even recommended. When it occurs in
                     <title>TSG</title> it is often the result of the bulk importing of data. As an
@@ -478,6 +477,7 @@
             <div xml:id="idno">
               <head>idno</head>
               <p>TBD</p>
+              <!-- Shoudl this also come first, even before bibl? It is central to the concept of place -->
             </div>
             <div xml:id="listrelation">
               <head>Related Entities</head>
