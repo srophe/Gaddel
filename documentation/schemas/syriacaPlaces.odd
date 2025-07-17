@@ -74,16 +74,17 @@
         <head>The Syriac Gazetteer: TEI P5 Customization and Encoding Guidelines</head>
         <div xml:id="introduction">
           <head>Introduction</head>
-          <p>Welcome to the encoding guidelines for the third edition of <title>The Syriac
-              Gazetteer</title> (hereafter <title>TSG</title>). <title>TSG</title> is a geographical
-            reference work published by <ref target="https://syriaca.org"><title>Syriaca.org: The
-                Syriac Reference Portal</title></ref> for places relevant to Syriac studies. These
-            guidelines describe the methodology used to create <ref target="https://www.tei-c.org"
-              >TEI</ref> XML files for encoding Syriac geographic data according to the schema
-            implemented by Syriaca.org. We have chosen to use the TEI guidelines because they allow
-            a high level of detail, citation of sources, and flexibility for representing prose
-            data. We anticipate that this schema can be easily adapted for other historical
-            gazetteers and we invite comments and suggestions for improvement. </p>
+          <p>Welcome to the encoding guidelines for the third edition of <ref
+              target="https://syriaca.org/geo"><title>The Syriac Gazetteer</title></ref> (hereafter
+              <title>TSG</title>). <title>TSG</title> is a geographical reference work published by
+              <ref target="https://syriaca.org"><title>Syriaca.org: The Syriac Reference
+                Portal</title></ref> for places relevant to Syriac studies. These guidelines
+            describe the methodology used to create <ref target="https://www.tei-c.org">TEI</ref>
+            XML files for encoding Syriac geographic data according to the schema implemented by
+            Syriaca.org. We have chosen to use the TEI guidelines because they allow a high level of
+            detail, citation of sources, and flexibility for representing prose data. We anticipate
+            that this schema can be easily adapted for other historical gazetteers and we invite
+            comments and suggestions for improvement. </p>
         </div>
         <div xml:id="acknowledgements">
           <head>Acknowledgements</head>
@@ -168,30 +169,32 @@
         </div>
         <div xml:id="recordStructure">
           <head>Record Structure</head>
-          <p>This section presents, in document order, the elements and structure required or
-            permitted in each record.</p>
+          <p>This section presents the elements and structure required or permitted in each record.
+            The description here roughly follows the order in which the elements will occur in the
+            record ("document order").</p>
           <div xml:id="rootElement">
-            <head>The TEI Root Element</head>
+            <head>The TEI Root Element (<gi>TEI</gi>)</head>
             <p>Every record begins with the <gi>TEI</gi> root element. This element contains the
               same attribute values in every <title>TSG</title> record. These values are namespace
               declarations and a language declaration. The <gi>TEI</gi> root element also must
               always contain the same two child elements: <gi>teiHeader</gi> and <gi>text</gi>.</p>
           </div>
           <div xml:id="header">
-            <head>The TEI Header</head>
+            <head>The TEI Header (<gi>teiHeader</gi>)</head>
             <p>The <gi>teiHeader</gi> element contains metadata about title, authorship, copyright,
               and licensing of the data in the record. The <gi>teiHeader</gi> in <title>TSG</title>
               records follows the universal guidelines for all Syriaca.org publications. These
               guidelines will be published elsewhere on the Syriaca.org documentation page.</p>
           </div>
           <div xml:id="placeDescription">
-            <head>Place Description</head>
+            <head>Place Description (<gi>place</gi>)</head>
             <div xml:id="Place">
-              <head>XPath to <gi>Place</gi></head>
+              <head>XPath to <gi>place</gi></head>
               <p>The geographic data in each <title>TSG</title> record must be contained in a series
                 of nested elements with the following XPath
                   <code>/TEI/text/body/listPlace/place</code>. Thus the structure of every document
                 will include the following: <egXML xmlns="http://www.tei-c.org/ns/Examples"><TEI>
+                    <teiHeader/>
                     <text>
                       <body>
                         <listPlace>
@@ -200,106 +203,290 @@
                       </body>
                     </text>
                   </TEI></egXML></p>
-              <p>The <gi>listPlace</gi> element must contain a <gi>place</gi>
-                element and may contain a <gi>listRelation</gi> element. Except for information about related entities, all geographic data is encoded in a
-                single <gi>place</gi> element. This <gi>place</gi> element must have @type and @ana
-                attributes. The <gi>place</gi> element contains the following child elements, some of which are required:
-                <list>
-                  <item><gi>placeName</gi></item>
+              <p>The <gi>listPlace</gi> element must contain a <gi>place</gi> element and may
+                contain a <gi>listRelation</gi> element. Except for information about related
+                entities, all geographic data is encoded in a single <gi>place</gi> element. This
+                  <gi>place</gi> element must have @type and @ana attributes. The <gi>place</gi>
+                element can contain the following elements, some of which are required (indicated by
+                *): <list>
+                  <item><gi>placeName</gi>*</item>
+                  <item><gi>desc</gi>*</item>
                   <item><gi>location</gi></item>
                   <item><gi>event</gi></item>
                   <item><gi>state</gi></item>
                   <item><gi>note</gi></item>
-                  <item><gi>idno</gi></item>
-                  <item><gi>bibl</gi></item>
+                  <item><gi>idno</gi>*</item>
+                  <item><gi>bibl</gi>*</item>
                 </list>
-                
                 <!-- WLP: TBD: required and allowed children elements? Also add or reference a table of the place types and their taxonomy URIs -->
               </p>
-              <div xml:id="placeName">
-                <head>Place Names</head>
-                <p>Place names are essential for identifying and disambiguating individual places.
-                  Every record must have at least one <gi>placeName</gi> element, and may have any
-                  additional number of <gi>placeName</gi> elements. The text node of this element
-                  should contain a name by which the place is or was known. Multiple name variants
-                  can be added; each should be in a separate <gi>placeName</gi>. Name variants may
-                  be recorded for any language and must be tagged with the corresponding ISO
-                  language code with an @xml:lang attribute. Each record must have at least one
-                  place name in English or English transliteration.
-                  <!--  If necessary, the author may craft a prose description as a place name.--></p>
-                <!-- TBD: maybe reference a standard documentation section or page for Syriaca's lang code usage? -->
-                <p>Additionally, <gi>placeName</gi> elements must have a unique @xml:id attribute of
-                  the form <code>name\d+-\d+</code>. The first digits derive from the numerical
-                  portion of the Syriaca URI for the place, and the latter is a sequential integer:
-                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <placeName xml:id="name78-6" xml:lang="ar" source="#bib78-4">الرها</placeName>
-                  </egXML> Finally, as seen in the preceding example, all <gi>placeName</gi>
-                  elements must indicate the source of the name form either via a @source attribute
-                  or a @resp attribute. The @source attribute is used...
-                  <!-- WLP: I think we should have a general section on sourcing information, which we then refer to throughout for elements that require a source/resp (placeName, desc, etc.) -->
+            </div>
+            <div xml:id="bibl">
+              <head>Works Cited</head>
+              <p>Bibliographic citation is an essential and required element for every entry in
+                  <title>TSG</title>. Although structurally the bibliographic citations of works
+                cited are placed last in the record, it is useful to introduce citation at this
+                point in our documentation, since nearly all aspects of encoding records in
+                  <title>TSG</title> require use of citations.</p>
+              <p>The intellectual contribution and purpose of <title>TSG</title> is to compile and
+                connect data from previous scholarship on the topic of Syriac Studies. Accordingly,
+                our editorial policy assumes that our records will be primarily composed of
+                information cited from primary and secondary sources. As a reference work,
+                  <title>TSG</title> is not intended as a venue for the first publication of
+                original research. In general, our default editorial position will be to accept
+                scholarly consensus and the results of existing scholarship as published. It is not
+                within the scope of <title>TSG</title> to systematically review and correct past
+                scholarship in the field. Nevertheless, authors of <title>TSG</title> records should
+                not knowingly reproduce errors in previous scholarship. In the rare cases in which
+                they are needed, encoding conventions for marking <foreign>corrigenda</foreign> and
+                  <foreign>incerta</foreign> with regard to past scholarship are discussed
+                below.</p>
+              <p>Each <title>TSG</title> record must include a list of "Works Cited" at the end of
+                the record. This bibliographic list will be visually presented as numbered footnotes
+                on the record webpage and labelled as "Works Cited". This list is <emph>NOT</emph>
+                intended to be a general bibliography related to the place described and thus should
+                only include works actually cited in the record. (The editorial work of gathering
+                and classifying a general bibliography related to specific places falls within the
+                scope of <ref target="https://syriaca.org/cbss/index.html"><title>The Comprehensive
+                    Bibliography on Syriac Studies</title></ref> rather than
+                <title>TSG</title>).</p>
+              <div xml:id="citation">
+                <head>Creating a Citation (<gi>bibl</gi>)</head>
+                <p>Syriaca.org manages the publication information for all citations in a separate
+                  reference work, <ref target="https://syriaca.org/cbss/index.html"><title>The
+                      Comprehensive Bibliography on Syriac Studies (CBSS)</title></ref>.
+                  Accordingly, the first step in adding a citation into a record in
+                    <title>TSG</title> is to identify the corresponding entry in
+                  <title>CBSS</title>. Users can search the bibliography at <ref
+                    target="https://syriaca.org/cbss/search.html"
+                    >https://syriaca.org/cbss/search.html</ref>. Once the item to be cited is
+                  located, authors should note the URI for the bibliographic item. This URI will
+                  have the format <code>http://syriaca.org/cbss/[A-Za-z0-9]{8}$</code> (where
+                    <code>[A-Za-z0-9]{8}$</code> signifies a unique string of 8 alphabetic
+                  characters). For example, the URI for J.B. Segal, <title>Edessa, ‘The Blessed
+                    City’</title> (Oxford: Clarendon Press, 1970) is <ref
+                    target="http://syriaca.org/cbss/FQCVBMNS"
+                      ><code>http://syriaca.org/cbss/FQCVBMNS</code></ref>. If the desired
+                  bibliographic item is not found in <title>CBSS</title>, authors should request the
+                  creation of an entry in <title>CBSS</title>. </p>
+                <p>After ascertaining the <title>CBSS</title> URI, the next step is add an entry for
+                  that item in the "Works Cited" section of the place record in <title>TSG</title>.
+                  Each bibliographic item cited should be marked up as a separate <gi>bibl</gi>
+                  element. The purpose of the <gi>bibl</gi> element is to provide three linking
+                  functions: <list>
+                    <item>to the footnote number</item>
+                    <item>to the <title>CBSS</title> URI for the cited item</item>
+                    <item>to the specific page numbers or other cited range within that item</item>
+                  </list>Here is an example of a <gi>bibl</gi> record: <egXML
+                    xmlns="http://www.tei-c.org/ns/Examples">
+                    <bibl xml:id="bib78-24">
+                      <ptr target="http://syriaca.org/bibl/FQCVBMNS"/>
+                      <citedRange unit="p">82-87</citedRange>
+                    </bibl>
+                  </egXML>
                 </p>
-                <div xml:id="headword">
-                  <head>Syriaca Headwords</head>
-                  <!-- WLP: note that although the v2 guidelines said there must be an en headword, the schema only constrains for the existence of at least one name tagged as a headword-->
-                  <p>At least one <gi>placeName</gi> element must be tagged as a Syriaca Headword
-                    using a @srophe:tags attribute with the value of
-                      <quote>#syriaca-headword</quote>. As the headwords are used as preferred
-                    labels and for alphabetization in search/brose results, at least one English
-                    place name should be tagged as a headword. At most one headword per language may
-                    be defined. <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <placeName source="#bib78-2 #bib78-5" xml:id="name78-1" xml:lang="en"
-                        srophe:tags="#syriaca-headword">Edessa</placeName>
-                      <placeName xml:id="name78-2" xml:lang="en" source="#bib78-2 #bib78-5 #bib78-7"
-                        >Urfa</placeName>
-                      <placeName resp="http://syriaca.org" xml:id="name78-3" xml:lang="syr"
-                        srophe:tags="#syriaca-headword">ܐܘܪܗܝ</placeName>
-                    </egXML>
-                  </p>
-                </div>
+                <p>In this example the <gi>bibl</gi> has a unique xml:id which is required and is
+                  used to identify the citation internally in the "Works Cited" list for the place
+                  record. The attribute value for the @xml:id is in the format
+                    <code>bib{\d+}-{\d+}</code>, where the first number is derived from the
+                  Syriaca.org URI for the place (i.e. using the final unique numeric element in the
+                  URI) and the second number is a sequential integer representing the order of this
+                    <gi>bibl</gi> element in the series of <gi>bibl</gi> elements contained in this
+                  place record, beginning from 1. In this example, the twenty-fourth <gi>bibl</gi>
+                  element within the place record describing Edessa (URI <ref
+                    target="https://syriaca.org/place/78">https://syriaca.org/place/78</ref>) leads
+                  to the following xml:id value "bib78-24". The second numeric value (in this case
+                  "24") will also serve as the number for the footnote in the HTML view of the
+                  record.</p>
+                <p>Next the example above illustrates how the <gi>bibl</gi> also has a required
+                    <gi>ptr</gi> (pointer) element which provides the link externally to the
+                    <title>CBSS</title> URI, encoded as a @target attribute value. In this case the
+                  URI is <code>http://syriaca.org/bibl/FQCVBMNS</code>. An automated script will use
+                  this URI link to insert the full publication information into the HTML view of the
+                    <title>TSG</title> record.</p>
+                <p>Lastly, this example above indicates a specific page range using the optional but
+                  recommended <gi>citedRange</gi> element (and its required @unit attribute). This
+                  cited range indicates ranges specific to the citations in this place record. If a
+                  place record contains multiple citations of the same bibliographic item, the cited
+                  ranges must all be combined into a single ascending cited range (for example
+                  "82-87, 90, 95-96"). Unfortunately, it is not possible to separate out more
+                  specific citations at this time. Allowed values for @unit are "col" (for column),
+                  "entry", "fol" (for folio), "line", "map", "part", "p" (for page), "section", or
+                  "vol" (for volume). These values remain the same even if the cited range is
+                  plural. When multiple page numbers are cited, they should be entered in full and
+                  never be abbreviated (thus "556-558" not "556-8").</p>
+                <!-- Dan, is this right? -->
+                <p>All of these <gi>bibl</gi> elements should be grouped together as the final child
+                  elements within the <gi>place</gi> element, as in this example: <egXML
+                    xmlns="http://www.tei-c.org/ns/Examples">
+                    <TEI>
+                      <teiHeader/>
+                      <text>
+                        <body>
+                          <listPlace>
+                            <place>
+                              <placeName>...</placeName>
+                              <desc>...</desc>
+                              <bibl xml:id="bib78-1"/>
+                              <bibl xml:id="bib78-2"/>
+                              <bibl xml:id="bib78-3"/>
+                            </place>
+                          </listPlace>
+                        </body>
+                      </text>
+                    </TEI>
+                  </egXML> In as much as is feasible, the <gi>bibl</gi> elements should be ordered
+                  based on the order of occurance of citation in the XML file. Thus the first
+                  bibliographic item to be cited would occur as the first <gi>bibl</gi> and the
+                  second item to be cited would occur as the second <gi>bibl</gi>, etc. At times,
+                  however, this order will not be strictly maintained. For example, if the first
+                  item to be cited is also cited again later in document, it would remain as the
+                  first <gi>bibl</gi> and does not need to be repeated. Simiarly, if a later
+                  revision of the record introduces citations of new bibliographic items in the
+                  middle of the record, authors should add the new bibliographic items below the
+                  existing <gi>bibl</gi> elements rather than attempting to re-order or re-number
+                  the <gi>bibl</gi> elements according to occurence. <emph>Nota bene:</emph> In
+                  these cases, the auto-generated footnote numbering used by <title>TSG</title> will
+                  not follow standard numeric order (e.g., a reference to footnote 7 might precede
+                  the reference to footnote 6) but the citations will nevertheless direct readers to
+                  the correct work cited.</p>
+
               </div>
-              <div xml:id="desc">
-                <head>Descriptions</head>
-                <p>TBD</p>
-                <div xml:id="abstracts">
-                  <head>Abstracts</head>
-                </div>
+              <div xml:id="source">
+                <head>Inserting Citations (@source)</head>
+                <!-- what elements can take @source? -->
+                <p>Once a complete <gi>bibl</gi> element has been created, citations to that
+                  bibliographic item can be inserted throughout the place record. These citations
+                  are inserted using the @source attribute which is permitted on the following
+                  elements: . For example, the source of a place name would be indicated by a
+                  @source attribute of the <gi>placeName</gi> element, whose value is a pointer
+                  reference (marked by "#") to an xml:id of one of the <gi>bibl</gi> elements. Here
+                  is a specific example for the place of Edessa (URI <ref
+                    target="https://syriaca.org/place/78">https://syriaca.org/place/78</ref>) which
+                  has the modern name "Urfa": <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <place>
+                      <placeName source="#bib78-1">Urfa</placeName>
+                      <desc>...</desc>
+                      <bibl xml:id="bib78-1">
+                        <ptr target="http://syriaca.org/cbss/C5T777C3"/>
+                        <citedRange unit="p">138-139</citedRange>
+                      </bibl>
+                    </place>
+                  </egXML> In this example, Edessa’s modern name "Urfa" is given on the authority of
+                  an article in <ref target="http://syriaca.org/cbss/C5T777C3"
+                    ><title>GEDSH</title></ref> with the citation being made by linking the
+                    <gi>placeName</gi> and <gi>bibl</gi> by use of the xml:id "bib78-1" and the
+                  anchor <code>source="#bib78-1"</code>. </p>
+                <p>It is also possible to cite multiple sources for the same element. In these
+                  cases, the value of the @source attribute is the xml:id for each source delimited
+                  by spaces. For example, the name "Edessa" is attested in multiple separate
+                  sources, so that fact can be encoded as follows <egXML
+                    xmlns="http://www.tei-c.org/ns/Examples">
+                    <placeName xml:id="name78-1" source="#bib78-1 #bib78-2 #bib78-6 #bib78-24">Edessa</placeName>
+                  </egXML> The addition of multiple citations for the same piece of information is,
+                  in general, not necessary or even recommended. When it occurs in
+                    <title>TSG</title> it is often the result of the bulk importing of data. As an
+                  editorial practice for individual authors a single source is all that is required
+                  (and recommended) for most information. When multiple sources are listed in a
+                  single @source attribute, they should be sorted in ascending order based on the
+                  second numeric value in the xml:id, as demonstrated in the example above (1, 2, 6,
+                  24, etc.). </p>
               </div>
-              <div xml:id="location">
-                <head>Locations</head>
-                <p>TBD</p>
-                <!-- WLP: add sub-sections for GPS vs. relative? -->
+            </div>
+            <div xml:id="placeName">
+              <head>Place Names (<gi>placeName</gi>)</head>
+              <p>Place names are essential for identifying and disambiguating individual places.
+                Every record must have at least one <gi>placeName</gi> element, and may have any
+                additional number of <gi>placeName</gi> elements. The text node of this element
+                should contain a name by which the place is or was known. Multiple name variants can
+                be added; each should be in a separate <gi>placeName</gi>. Name variants may be
+                recorded for any language and must be tagged with the corresponding ISO language
+                code indicated using an @xml:lang attribute. Each record must have at least one
+                place name in English or English transliteration indicated as the <ref
+                  target="#headword">headword</ref>.
+                <!--  If necessary, the author may craft a prose description as a place name.--></p>
+              <!-- TBD: maybe reference a standard documentation section or page for Syriaca's lang code usage? -->
+              <p>Additionally, <gi>placeName</gi> elements must have a unique @xml:id attribute of
+                the form <code>name\d+-\d+</code>. The first digits derive from the numerical
+                portion of the Syriaca URI for the place, and the latter is a sequential integer:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <placeName xml:id="name78-6" xml:lang="ar" source="#bib78-4">الرها</placeName>
+                </egXML> Finally, as seen in the preceding example, all <gi>placeName</gi> elements
+                must indicate the source of the name form either via a @source attribute or a @resp
+                attribute. The @source attribute is used...
+                <!-- WLP: I think we should have a general section on sourcing information, which we then refer to throughout for elements that require a source/resp (placeName, desc, etc.) -->
+              </p>
+              <div xml:id="headword">
+                <head>Syriaca Headwords</head>
+                <!-- WLP: note that although the v2 guidelines said there must be an en headword, the schema only constrains for the existence of at least one name tagged as a headword-->
+                <p>At least one <gi>placeName</gi> element must be tagged as a Syriaca Headword
+                  using a @srophe:tags attribute with the value of <quote>#syriaca-headword</quote>.
+                  As the headwords are used as preferred labels and for alphabetization in
+                  search/brose results, at least one English place name should be tagged as a
+                  headword. At most one headword per language may be defined. <egXML
+                    xmlns="http://www.tei-c.org/ns/Examples">
+                    <placeName source="#bib78-2 #bib78-5" xml:id="name78-1" xml:lang="en"
+                      srophe:tags="#syriaca-headword">Edessa</placeName>
+                    <placeName xml:id="name78-2" xml:lang="en" source="#bib78-2 #bib78-5 #bib78-7"
+                      >Urfa</placeName>
+                    <placeName resp="http://syriaca.org" xml:id="name78-3" xml:lang="syr"
+                      srophe:tags="#syriaca-headword">ܐܘܪܗܝ</placeName>
+                  </egXML>
+                </p>
               </div>
-              <div xml:id="event">
-                <head>Events</head>
-                <p>TBD</p>
-                <!-- WLP: add sub-sections for attestations and other events -->
-              </div>
-              <div xml:id="state">
-                <head>States</head>
-                <p>TBD</p>
-                <!-- WLP: add sub-sections for existence states and confession states -->
-              </div>
-              <div xml:id="note">
-                <head>note</head>
-                <p>TBD</p>
-                <!-- WLP: add sub-sections for the note types? Or are these at the syriaca-all level? We can put them here for now, and just copy in from the v2 encoding guidelines -->
-              </div>
-              <div xml:id="idno">
-                <head>idno</head>
-                <p>TBD</p>
-              </div>
-              <div xml:id="bibl">
-                <head>bibl</head>
-                <p>TBD</p>
-              </div>
-              <div xml:id="listrelation">
-                <head>Related Entities</head>
-                <p>TBD</p>
-              </div>
+            </div>
+            <div xml:id="abstracts">
+              <head>Abstracts (<gi>desc</gi> element)</head>
+              <p>Every record must have an abstract, i.e. a short description or one to two lines of
+                prose describing the place. The purpose of the abstract is to help users of
+                  <title>TSG</title> to easily disambiguate search results and quickly identify the
+                place for which they are searching. For places which also have entries in the
+                electronic edition of <ref target="https://gedsh.bethmardutho.org/index.html"
+                    ><title>Gorgias Encyclopedic Dictionary of the Syriac Heritage
+                  (GEDSH)</title></ref>, <title>TSG</title> has reused the abstracts from
+                  <title>GEDSH</title> (this is done with permission and through verbatim quotation
+                and citation). Ideally, an abstract should be at least one sentence in legnth, but
+                in the case of some very well known places, the abstracts quoted from
+                  <title>GEDSH</title> are simply an entry number and phrase. Every record must have
+                an abstract written in English. It is also possible to add additional abstracts in
+                other languages.</p>
+              <p>The abstract is encoded in the </p>
+            </div>
+            <div xml:id="confession">
+              <head>Confession (<gi>desc</gi> element)</head>
+            </div>
+            <div xml:id="location">
+              <head>Locations</head>
+              <p>TBD</p>
+              <!-- WLP: add sub-sections for GPS vs. relative? -->
+            </div>
+            <div xml:id="event">
+              <head>Events</head>
+              <p>TBD</p>
+              <!-- WLP: add sub-sections for attestations and other events -->
+            </div>
+            <div xml:id="state">
+              <head>States</head>
+              <p>TBD</p>
+              <!-- WLP: add sub-sections for existence states and confession states -->
+            </div>
+            <div xml:id="note">
+              <head>note</head>
+              <p>TBD</p>
+              <!-- WLP: add sub-sections for the note types? Or are these at the syriaca-all level? We can put them here for now, and just copy in from the v2 encoding guidelines -->
+            </div>
+            <div xml:id="idno">
+              <head>idno</head>
+              <p>TBD</p>
+            </div>
+            <div xml:id="listrelation">
+              <head>Related Entities</head>
+              <p>TBD</p>
             </div>
           </div>
         </div>
       </div>
+
       <div xml:id="schema">
         <head><title>The Syriac Gazetteer</title> Schema Customization</head>
         <schemaSpec ident="syriacaPlaces" prefix="tei_" source="syriacaAll.compiled.odd"
