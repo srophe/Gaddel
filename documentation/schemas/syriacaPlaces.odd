@@ -158,7 +158,7 @@
             <p>For a more detailed discussion of the data model and architecture of Syraica.org,
               readers are encouraged to consult the following technical publication: David A.
               Michelson, “Using Linked Open Data to Model Cultural Heritage Information: The
-              Research Questions and Data Structures of the Syriaca.Org Knowledge Graph,” in
+              Research Questions and Data Structures of the Syriaca.org Knowledge Graph,” in
                 <title>Linked Open Data for the Ancient Mediterranean: Structures, Practices,
                 Prospects</title>, edited by Sarah E. Bond, Paul Dilley, and Ryan Horne, <title>ISAW
                 Papers</title> 20 (2021), <ref target="http://hdl.handle.net/2333.1/69p8d8cc"
@@ -174,8 +174,9 @@
             <head>The TEI Root Element (<gi>TEI</gi>)</head>
             <p>Every record begins with the <gi>TEI</gi> root element. This element contains the
               same attribute values in every <title>TSG</title> record. These values are namespace
-              declarations and a language declaration. The <gi>TEI</gi> root element also must
-              always contain the same two child elements: <gi>teiHeader</gi> and <gi>text</gi>.</p>
+              declarations and a language declaration, which must be English (<code>xml:lang="en"</code>).
+              The <gi>TEI</gi> root element also must always contain the same two child elements: 
+              <gi>teiHeader</gi> and <gi>text</gi>.</p>
           </div>
           <div xml:id="header">
             <head>The TEI Header (<gi>teiHeader</gi>)</head>
@@ -190,9 +191,10 @@
               <head>XPath to <gi>place</gi></head>
               <!-- I wanted to call this "place of place" or "Location of the place element in the record" or something, can you think of a better title that doesn't get confusing due to the multiple geographic terms -->
               <p>The geographic data in each <title>TSG</title> record must be contained in a series
-                of nested elements with the following XPath
+                of nested elements expressed by following XPath
                   <code>/TEI/text/body/listPlace/place</code>. Thus the structure of every document
-                will include the following: <egXML xmlns="http://www.tei-c.org/ns/Examples"><TEI>
+                will include the following:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples"><TEI>
                     <teiHeader/>
                     <text>
                       <body>
@@ -217,11 +219,14 @@
                   <item><gi>idno</gi>*</item>
                   <item><gi>bibl</gi>*</item>
                 </list>
-                <!-- WLP: TBD: required and allowed children elements? Also add or reference a table of the place types and their taxonomy URIs -->
+                <!-- WLP: TBD: Add or reference a table of the place types and their taxonomy URIs, perhaps a section on "place types"?-->
               </p>
             </div>
             <div xml:id="worksCited">
-              <head>Works Cited</head>
+              <head>Works Cited</head> <!-- WLP: Possibly split this up? Do we need a section on 'general principles/methodology' that talks about the importance of citation for TSG and references later sections on creating bibls and using @source attributes? 
+              we could also add to the methodology section the use of URIs, and reference the idno section?
+              then, for elements that should be sourced, each time we can say, and you should add a source, see section x and y for how to do this (with hyperlinks)
+              -->
               <p>Bibliographic citation is an essential and required element for every entry in
                   <title>TSG</title>. Although structurally the bibliographic citations of works
                 cited are placed last in the record, it is useful to introduce citation at this
@@ -318,22 +323,13 @@
                 <p>All of these <gi>bibl</gi> elements should be grouped together as the final child
                   elements within the <gi>place</gi> element, as in this example: <egXML
                     xmlns="http://www.tei-c.org/ns/Examples">
-                    <TEI>
-                      <teiHeader/>
-                      <text>
-                        <body>
-                          <listPlace>
-                            <place>
-                              <placeName>...</placeName>
-                              <desc>...</desc>
-                              <bibl xml:id="bib78-1"/>
-                              <bibl xml:id="bib78-2"/>
-                              <bibl xml:id="bib78-3"/>
-                            </place>
-                          </listPlace>
-                        </body>
-                      </text>
-                    </TEI>
+                    <place>
+                      <placeName>...</placeName>
+                      <desc>...</desc>
+                      <bibl xml:id="bib78-1"/>
+                      <bibl xml:id="bib78-2"/>
+                      <bibl xml:id="bib78-3"/>
+                    </place>
                   </egXML> In as much as is feasible, the <gi>bibl</gi> elements should be ordered
                   based on the order of occurance of citation in the XML file. Thus the first
                   bibliographic item to be cited would occur as the first <gi>bibl</gi> and the
@@ -390,6 +386,7 @@
                   single @source attribute, they should be sorted in ascending order based on the
                   second numeric value in the xml:id, as demonstrated in the example above (1, 2, 6,
                   24, etc.). </p>
+                <!-- WLP: add a paragraph about @resp -->
               </div>
             </div>
             <div xml:id="placeName">
@@ -398,7 +395,7 @@
                 Every record must have at least one <gi>placeName</gi> element, and may have any
                 additional number of <gi>placeName</gi> elements. The text node of this element
                 should contain a name by which the place is or was known. Multiple name variants can
-                be added; each should be in a separate <gi>placeName</gi>. Name variants may be
+                be added; each should be in a separate <gi>placeName</gi> element. Name variants may be
                 recorded for any language and must be tagged with the corresponding ISO language
                 code indicated using an @xml:lang attribute. Each record must have at least one
                 place name in English or English transliteration indicated as the <ref
@@ -411,9 +408,8 @@
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <placeName xml:id="name78-6" xml:lang="ar" source="#bib78-4">الرها</placeName>
                 </egXML> Finally, as seen in the preceding example, all <gi>placeName</gi> elements
-                must indicate the source of the name form either via a @source attribute or a @resp
-                attribute. The @source attribute is used...
-                <!-- WLP: I think we should have a general section on sourcing information, which we then refer to throughout for elements that require a source/resp (placeName, desc, etc.) -->
+                must indicate the source of the name form as detailed in the <ref target="#source">Inserting Citations</ref>
+                section of these Guidelines.
               </p>
               <div xml:id="headword">
                 <head>Syriaca Headwords</head>
@@ -448,9 +444,9 @@
                 in the case of some very well known places, the abstracts quoted from
                   <title>GEDSH</title> are simply an entry number and phrase. Every record must have
                 an abstract written in English. It is also possible to add additional abstracts in
-                other languages.</p>
+                other languages.</p> <!-- WLP: and that we can have abstracts for multiple sub-modules, e.g. JoE vs TSG? -->
               <p>The abstract is encoded in the </p>
-            </div>
+            </div><!-- WLP: other descriptions section? -->
             <div xml:id="confession">
               <head>Confession (<gi>desc</gi> element)</head>
             </div>
