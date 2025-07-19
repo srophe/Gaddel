@@ -560,7 +560,7 @@
                 The particular confessional community must be identified both with a human-readable label and a machine-readable
                 URI derived from <title>The Syriac Taxonomy</title>. The former is provided as the text contents of a child <gi>desc</gi> element, with
                 @xml:lang of "en". The latter must be supplied in a @ref attribute on the <gi>state</gi> element, as seen in the following example:
-                A human-readable description of the 
+                A human-readable description of the <!-- WLP, DAM: I think this sentence fragment should be deleted? -->
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <state type="confession" xml:id="confession78-1" ref="http://syriaca.org/taxonomy/syrian-orthodox" from="0451" to="1924" source="#bib78-1">
                     <desc xml:lang="en">Syrian Orthodox</desc>
@@ -706,9 +706,17 @@
             -->
             <div xml:id="note">
               <head>note</head>
-              <p>TBD</p>
               <!-- WLP: add sub-sections for the note types? Or are these at the syriaca-all level? We can put them here for now, and just copy in from the v2 encoding guidelines -->
               <!-- WLP: values allowed for place = corrigenda, deprecation, description?, disambiguation, errata, incerta, misc? ; cf. syriaca.org/documentation/schemas/syriacaPlaces.html#TEI.note -->
+              <!-- DLS: we currently have values: corrigenda, deprecation, errata, and incerta. I recommend we only include these. The prose should include a section to describe deprecation and another to describe uncertainty. -->
+              <div xml:id="uncertainty">
+                <head>uncertainty</head>
+                <p>TBD</p>
+              </div>
+              <div xml:id="deprecation">
+                <head>deprecation</head>
+                <p>TBD</p>
+              </div>
             </div>
             <div xml:id="idno">
               <head>idno</head>
