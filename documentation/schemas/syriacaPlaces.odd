@@ -265,8 +265,8 @@
                     target="https://syriaca.org/cbss/search.html"
                     >https://syriaca.org/cbss/search.html</ref>. Once the item to be cited is
                   located, authors should note the URI for the bibliographic item. This URI will
-                  have the format <code>http://syriaca.org/cbss/[A-Za-z0-9]{8}$</code> (where
-                    <code>[A-Za-z0-9]{8}$</code> signifies a unique string of 8 alphabetic
+                  have the format <code>http://syriaca.org/cbss/[A-Z0-9]{8}$</code> (where
+                    <code>[A-Z0-9]{8}$</code> signifies a unique string of 8 uppercase alphanumeric
                   characters). For example, the URI for J.B. Segal, <title>Edessa, ‘The Blessed
                     City’</title> (Oxford: Clarendon Press, 1970) is <ref
                     target="http://syriaca.org/cbss/FQCVBMNS"
