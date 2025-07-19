@@ -242,9 +242,9 @@
                 within the scope of <title>TSG</title> to systematically review and correct past
                 scholarship in the field. Nevertheless, authors of <title>TSG</title> records should
                 not knowingly reproduce errors in previous scholarship. In the rare cases in which
-                they are needed, encoding conventions for marking <foreign>corrigenda</foreign> and
-                  <foreign>incerta</foreign> with regard to past scholarship are discussed
-                below.</p>
+                they are needed, encoding conventions for marking <foreign>incerta</foreign>, <foreign>errata</foreign> and
+                  <foreign>corrigenda</foreign> with regard to past scholarship are discussed
+                below; see <ref target="#certainty">Certainty</ref>.</p>
               <p>Each <title>TSG</title> record must include a list of "Works Cited" at the end of
                 the record. This bibliographic list will be visually presented as numbered footnotes
                 on the record webpage and labelled as "Works Cited". This list is <emph>NOT</emph>
@@ -705,22 +705,44 @@
             Probably we should keep this?
             -->
             <div xml:id="note">
-              <head>note</head>
+              <head>Note (<gi>note</gi>)</head>
+              <p><title>TSG</title> employs the <gi>note</gi> element for two different purposes. First, it allows the editors of
+              a record to discuss aspects of the research on a place that have been revised by the latest scholarly concensus. In this way, 
+              <title>TSG</title> captures data that is important for the historical understanding of the place even if that data is
+              questionable or no longer deemed correct. We discuss this under the rubric of "certainty."</p>
+              <p><title>TSG</title> also uses the <gi>note</gi> element to indicate that Syriaca.org once assigned an identifier  
+              a place but that the identifier is no longer considered desirable. Rather than simply delete such an identifier,
+              <title>TSG</title> instead deprecates that identifier while maintaining a record of it for purposes of 
+                documentation and transparency.</p>
               <!-- WLP: add sub-sections for the note types? Or are these at the syriaca-all level? We can put them here for now, and just copy in from the v2 encoding guidelines -->
               <!-- WLP: values allowed for place = corrigenda, deprecation, description?, disambiguation, errata, incerta, misc? ; cf. syriaca.org/documentation/schemas/syriacaPlaces.html#TEI.note -->
               <!-- DLS: we currently have values: corrigenda, deprecation, errata, and incerta. I recommend we only include these. The prose should include a section to describe deprecation and another to describe uncertainty. -->
-              <div xml:id="uncertainty">
-                <head>uncertainty</head>
-                <p>TBD</p>
+              <div xml:id="certainty">
+                <head>Certainty</head>
+                <p><title>TSG</title> strives to encode the scholarly consensus as its default position. As such, most data 
+                  does not have a certainty rating. When data is deemed important for understanding a place and the history of 
+                  scholarship on a place even if it is no longer considered the best interpretation, that information is encoded 
+                  in the record with a certainty rating. This is done using a @type attribute of <foreign>incerta</foreign>, 
+                  <foreign>errata</foreign> or <foreign>corrigenda</foreign>.
+                </p>
+                <p>The <foreign>incerta</foreign> and <foreign>errata</foreign> values are used for notes indicating the questionable
+                nature of an assertion (<foreign>incerta</foreign>) or that the assertion is known to be false 
+                  (<foreign>errata</foreign>. This practice means that a search of the database for this information will return
+(                </p>
+                <p>
+                  <!-- W.I.P. -->
+                </p>
               </div>
               <div xml:id="deprecation">
-                <head>deprecation</head>
+                <head>Deprecation</head>
                 <p>TBD</p>
               </div>
             </div>
             <div xml:id="idno">
-              <head>idno</head>
-              <p>TBD</p>
+              <div xml:id="idno">
+                <head>Identifiers (<gi>idno</gi>)</head>
+                <p>TBD</p>
+              </div>
               <!-- Shoudl this also come first, even before bibl? It is central to the concept of place -->
             </div>
             <div xml:id="listrelation">
