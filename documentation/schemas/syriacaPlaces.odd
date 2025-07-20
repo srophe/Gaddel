@@ -706,10 +706,7 @@
             -->
             <div xml:id="note">
               <head>Note (<gi>note</gi>)</head>
-              <p><title>TSG</title> employs the <gi>note</gi> element for two different purposes. First, it allows the editors of
-              a record to discuss aspects of the research on a place that have been revised by the latest scholarly concensus. In this way, 
-              <title>TSG</title> captures data that is important for the historical understanding of the place even if that data is
-              questionable or no longer deemed correct. We discuss this under the rubric of "certainty."</p>
+              <p><title>TSG</title> employs the <gi>note</gi> element for two different purposes: (un)certainty and deprecation.  We discuss this under the rubric of "certainty."</p>
               <p><title>TSG</title> also uses the <gi>note</gi> element to indicate that Syriaca.org once assigned an identifier  
               a place but that the identifier is no longer considered desirable. Rather than simply delete such an identifier,
               <title>TSG</title> instead deprecates that identifier while maintaining a record of it for purposes of 
@@ -718,19 +715,37 @@
               <!-- WLP: values allowed for place = corrigenda, deprecation, description?, disambiguation, errata, incerta, misc? ; cf. syriaca.org/documentation/schemas/syriacaPlaces.html#TEI.note -->
               <!-- DLS: we currently have values: corrigenda, deprecation, errata, and incerta. I recommend we only include these. The prose should include a section to describe deprecation and another to describe uncertainty. -->
               <div xml:id="certainty">
-                <head>Certainty</head>
-                <p><title>TSG</title> strives to encode the scholarly consensus as its default position. As such, most data 
-                  does not have a certainty rating. When data is deemed important for understanding a place and the history of 
-                  scholarship on a place even if it is no longer considered the best interpretation, that information is encoded 
-                  in the record with a certainty rating. This is done using a @type attribute of <foreign>incerta</foreign>, 
+                <head>(Un)Certainty</head>
+                <p>The <title>TSG</title> data model allows the editors of a record to discuss aspects of the research on a 
+                  place that have been revised by the latest scholarly concensus. In this way, <title>TSG</title> can capture 
+                  data that is important for the historical understanding of the place even if that data is
+                  questionable or no longer deemed correct. This practice means that a search of the database for this information 
+                  will return the place sought but with a note indicating the nature of this information.
+                </p>
+                <p>As discussed above in the section on <ref target="#worksCited">Works Cited</ref>, <title>TSG</title> strives to 
+                  encode the scholarly consensus as its default position. As such, most data cites a source without a certainty rating. 
+                  But when data is deemed important for understanding a place and the history of scholarship on a place even if 
+                  it is no longer considered the best interpretation, that information is encoded in the record using a <gi>note</gi> 
+                  element with a certainty rating. This is done using a @type attribute of <foreign>incerta</foreign>, 
                   <foreign>errata</foreign> or <foreign>corrigenda</foreign>.
                 </p>
                 <p>The <foreign>incerta</foreign> and <foreign>errata</foreign> values are used for notes indicating the questionable
-                nature of an assertion (<foreign>incerta</foreign>) or that the assertion is known to be false 
-                  (<foreign>errata</foreign>. This practice means that a search of the database for this information will return
-(                </p>
+                  nature of an assertion (<foreign>incerta</foreign>) or that the assertion is known to be false 
+                  (<foreign>errata</foreign>). 
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="incerta" resp="http://syriaca.org">
+                      Brooks suggests the identification of Skanthin with 
+                      <placeName ref="http://syriaca.org/place/180">Scythopolis</placeName>. 
+                      This identification is uncertain.</note>
+                  </egXML>
+                </p>
                 <p>
-                  <!-- W.I.P. -->
+                  The <foreign>corrigenda</foreign> value is used for 
+                  <!-- DLS: Interesting, SPEAR uses dubia, incerta, and errata. I think that makes more sense. What is being correted in the corrigenda is an errata, right? -->
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="corrigenda" resp="http://syriaca.org">
+                      Moosa's English translation of Barsoum's description says "north" when it should be "east."</note>
+                  </egXML>
                 </p>
               </div>
               <div xml:id="deprecation">
