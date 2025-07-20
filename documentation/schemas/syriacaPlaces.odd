@@ -104,7 +104,7 @@
         </div>
         <div xml:id="principles">
           <head>General Principles</head>
-          <div>
+          <div xml:id="concept">
             <head>Concept of Place</head>
             <!-- WLP: Either here or in another section, I wonder if we eventually want a paragraph saying that the Gazetteer documentation assumes familiarity with Syriaca-wide principles like the use of URIs to identify conceptual entities and other syriaca-wide encoding conventions that then links to documentation pages for those principles? -->
             <p><title>TSG</title> is a geographical reference work published by Syriaca.org to
@@ -114,12 +114,16 @@
               places. Each place is a unique conceptual entity with a mental existence related to,
               but not reducible to, its physical manifestation. The purpose of each record (and thus
               each XML file) is to provide information which describes the place identified with
-              that record. To assist with disambiguation, each place is assigned a unique
+              that record.</p> 
+              <p>To assist with disambiguation, each place is assigned a unique
               indentifier (a URI, i.e. Uniform Resource Identifier) of the following format (where
               "{\d+}" signifies a unique string of digits):
                 <code>http://syriaca.org/place/{\d+}</code> For example, the city of <ref
                 target="https://syriaca.org/place/78">Edessa</ref> is assigned the following URI:
-                <code>http://syriaca.org/place/78</code></p>
+                <code>http://syriaca.org/place/78</code>. The TEI Guidelines provide the <gi>idno</gi>
+              element declaring a URI but require it to appear toward the end of a <gi>place</gi>. 
+              For a discussion of how <title>TSG</title> uses the <gi>idno</gi> element, see the section on
+                <ref target="#idno">Identifiers (<gi>indo</gi>)</ref> below.</p>
             <p>In terms of including places in <title>TSG</title>, the editors have interpreted the
               scope of “places relevant to Syriac Studies” in a maximal rather than restrictive
               sense, thus <title>TSG</title> is meant to include places named in Syriac texts (such
@@ -136,7 +140,7 @@
               and other ahistorical places are also included in the database.</p>
 
           </div>
-          <div>
+          <div xml:id="TEIcustomization">
             <head>Customization of the TEI Guidelines</head>
             <p>When considering the TEI XML schema created for <title>TSG</title>, it is essential
               to note that we have customized these guidelines specifically for use in digitally
@@ -208,16 +212,17 @@
                 contain a <gi>listRelation</gi> element. Except for information about related
                 entities, all geographic data is encoded in a single <gi>place</gi> element. This
                   <gi>place</gi> element must have @type and @ana attributes. The <gi>place</gi>
-                element can contain the following elements, some of which are required (indicated by
-                *): <list>
-                  <item><gi>placeName</gi>*</item>
-                  <item><gi>desc</gi>*</item>
-                  <item><gi>location</gi></item>
-                  <item><gi>event</gi></item>
-                  <item><gi>state</gi></item>
-                  <item><gi>note</gi></item>
-                  <item><gi>idno</gi>*</item>
-                  <item><gi>bibl</gi>*</item>
+                element can contain the following elements in this order, some of which are required (indicated by
+                *): 
+                <list>
+                  <item><gi>placeName</gi>* (see <ref target="#placeName">Place Names</ref>)</item>
+                  <item><gi>desc</gi>* (see <ref target="#abstracts">Abstracts</ref>)</item>
+                  <item><gi>location</gi> (see <ref target="#location">Locations</ref>)</item>
+                  <item><gi>event</gi> (see <ref target="#eventTypes">Event Types</ref>)</item>
+                  <item><gi>state</gi> (see <ref target="#statusTypes">Status Types</ref>)</item>
+                  <item><gi>note</gi> (see <ref target="#note">Notes</ref>)</item>
+                  <item><gi>idno</gi>* (see <ref target="#idno">Identifiers</ref>)</item>
+                  <item><gi>bibl</gi>* (see <ref target="#bibl">Creating a Citation</ref>)</item>
                 </list>
                 <!-- WLP: TBD: Add or reference a table of the place types and their taxonomy URIs, perhaps a section on "place types"?-->
               </p>
@@ -550,29 +555,6 @@
                 </p>
               </div>
             </div>
-            <div xml:id="confession">
-              <head>Confession (<gi>state</gi>)</head>
-              <p>Some places, such as churches or monasteries, have declared religious identities. Other places, such as cities, may be home to representatives of multiple different religions. Still other places, such as rivers or mountains, have no particular confessional identity in themselves, although they may be venerated particularly by adherents to one or more religions.</p><!-- WLP: copied from v2 guidelines, unedited -->
-              <p>The presence of a confessional community in a place, or otherwise connected with a place, is recorded in a <gi>state</gi> element with
-                @type of "confession".  Multiple confessions for a particular place, or even disjoint durations of the same confession, are indicated by multiple <gi>state</gi> elements.
-                Confession assertions must be identifed with an @xml:id whose value follows the pattern <code>confession\d+-\d+</code>,
-                where the first sequence of digits is the numerical portion of the place URI, and the latter is a sequential integer to uniquely identify the <gi>state</gi> element.
-                The particular confessional community must be identified both with a human-readable label and a machine-readable
-                URI derived from <title>The Syriac Taxonomy</title>. The former is provided as the text contents of a child <gi>desc</gi> element, with
-                @xml:lang of "en". The latter must be supplied in a @ref attribute on the <gi>state</gi> element, as seen in the following example:
-                A human-readable description of the <!-- WLP, DAM: I think this sentence fragment should be deleted? -->
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <state type="confession" xml:id="confession78-1" ref="http://syriaca.org/taxonomy/syrian-orthodox" from="0451" to="1924" source="#bib78-1">
-                    <desc xml:lang="en">Syrian Orthodox</desc>
-                  </state>
-                </egXML> <!-- WLP: list or link to the allowed confession values? or indicate above that the taxonomy URI must be a value from a collection or broader? -->
-                The above example also demonstrates that confession states should be sourced according to the guidelines on <ref target="#source">Inserting Citations</ref>.
-                As well, confessions may optionally include attributes to express temporal constraints on the assertion of the presence of a confessional community in a place.
-                In the preceding example, the @from and @to attributes indicate that Syrian Orthodox communities were present at Edessa between 451 and 1924 CE. 
-                Temporal durations may be expressed with @from, @to, @notBefore, or @notAfter attributes. In all cases, the attribute value must be a valid ISO date of the format
-                <code>YYYY-MM-DD</code> (with month or day optional). BCE dates should be expressed as a negative date, e.g. -0051.
-                </p>
-            </div>
             <div xml:id="location">
               <head>Locations (<gi>location</gi>)</head>
               <p>Location information for a place record should be encoded within one or more <gi>location</gi> elements.
@@ -582,18 +564,18 @@
               <div xml:id="gps">
                 <head>Geographic Cooridinates</head>
                 <p>Geographic locations must include a @type attribute with a value of <quote>gps</quote>. The geographic coordinates
-              should be record in a child <gi>geo</gi> element. Coordinates must be formatted as latitude then longitude, separated by a space:
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <location type="gps" source="#bib78-2">
-                    <geo>37.15 38.8</geo>
-                  </location>
-                </egXML>
-              </p>
+                  should be record in a child <gi>geo</gi> element. Coordinates must be formatted as latitude then longitude, separated by a space:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <location type="gps" source="#bib78-2">
+                      <geo>37.15 38.8</geo>
+                    </location>
+                  </egXML>
+                </p>
                 <p>When there are multiple <gi>location</gi> elements for geographic coordinates, i.e. @type of <quote>gps</quote>,
-                   a @subtype attribute must also be supplied. One of the <gi>location</gi> elements must have a @subtype attribute
-                   with <quote>preferred</quote>, and all of the others must have the value of <quote>alternate</quote>.
-                   This convention enables the Gaddel web application to know which coordinates to use when loading the map view for this
-                   place record's HTML page. See the below example:
+                  a @subtype attribute must also be supplied. One of the <gi>location</gi> elements must have a @subtype attribute
+                  with <quote>preferred</quote>, and all of the others must have the value of <quote>alternate</quote>.
+                  This convention enables the Gaddel web application to know which coordinates to use when loading the map view for this
+                  place record's HTML page. See the below example:
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
                     <location subtype="preferred" type="gps" source="#bib78-2">
                       <geo>37.15 38.8</geo>
@@ -632,133 +614,239 @@
                   vary and should follow the flow of the prose content in the <gi>desc</gi> element.</p>
               </div>
             </div>
-            <div xml:id="attestation">
-              <head>Attestations (<gi>event</gi>)</head>
-              <p>Attestations of <ref target="#placeName">place names</ref> or the presence of <ref target="#confession">confessional communities</ref> at a place that appear in historical primary sources
-                may be recorded within an <gi>event</gi> element with a @type attribue whose value must be "attestation".
-                Attestations must include an @xml:id of the pattern <code>attestation\d+-\d+</code>, where the first sequence
-                of digits is the numerical portion of the place URI and the second is a sequential integer. This identifier is used
-                to link the attestation to the names or confessions it describes. Attestations must
-                also be sourced as detailed in the guidelines on <ref target="#source">Inserting Citations</ref>. The following
-                example includes both kinds of attestations:
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <event type="attestation" xml:id="attestation78-1" notBefore="1146" notAfter="1234" source="#bib78-9">
-                    <desc xml:lang="en">
-                      Attestation of name <foreign xml:lang="syr">ܐܘܪܗܝ</foreign> in the anonymous <title ref="http://syriaca.org/work/113">Chronicle of 1234</title>.
-                    </desc>
-                    <link target="#name78-3 #attestation78-1"/>
-                  </event>
-                  <event type="attestation" xml:id="attestation78-2" when="1146" source="#bib78-9">
-                    <desc xml:lang="en">
-                      Attestation of Syrian Orthodox church in Edessa in the anonymous <title ref="http://syriaca.org/work/113">Chronicle of 1234</title>.
-                    </desc>
-                    <link target="#confession78-1 #attestation78-2"/>
-                  </event>
-                </egXML>
-                As the example shows, each attestation contains a human-readable description of the historical attestation in a <gi>desc</gi> element,
-                which must include an @xml:lang attribute. The description may contain additional markup, such as a <gi>title</gi> element for the conceptual
-                work that attests the information. The <gi>title</gi> element may include a @ref attribute with the Syriaca work URI, if applicable.
-                Additionally, the attestation must include a <gi>link</gi> element with a @target attribute containing anchors connecting the attestation's
-                @xml:id value and the @xml:id of the attested place name or confession. Finally, the attestation's <gi>event</gi> element may include @notBefore, @notAfter
-                @from, @to, or @when attributes to indicate the time period of the historical source in which the attestation is found. These attributes's values
-                must be valid ISO dates.
-              </p>
+            <div xml:id="eventTypes">
+              <head>Event Types</head>
+              <div xml:id="attestation">
+                <head>Attestations (<gi>event</gi>)</head>
+                <p>Attestations of <ref target="#placeName">place names</ref> or the presence of <ref target="#confession">confessional communities</ref> at a place that appear in historical primary sources
+                  may be recorded within an <gi>event</gi> element with a @type attribue whose value must be "attestation".
+                  Attestations must include an @xml:id of the pattern <code>attestation\d+-\d+</code>, where the first sequence
+                  of digits is the numerical portion of the place URI and the second is a sequential integer. This identifier is used
+                  to link the attestation to the names or confessions it describes. Attestations must
+                  also be sourced as detailed in the guidelines on <ref target="#source">Inserting Citations</ref>. The following
+                  example includes both kinds of attestations:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <event type="attestation" xml:id="attestation78-1" notBefore="1146" notAfter="1234" source="#bib78-9">
+                      <desc xml:lang="en">
+                        Attestation of name <foreign xml:lang="syr">ܐܘܪܗܝ</foreign> in the anonymous <title ref="http://syriaca.org/work/113">Chronicle of 1234</title>.
+                      </desc>
+                      <link target="#name78-3 #attestation78-1"/>
+                    </event>
+                    <event type="attestation" xml:id="attestation78-2" when="1146" source="#bib78-9">
+                      <desc xml:lang="en">
+                        Attestation of Syrian Orthodox church in Edessa in the anonymous <title ref="http://syriaca.org/work/113">Chronicle of 1234</title>.
+                      </desc>
+                      <link target="#confession78-1 #attestation78-2"/>
+                    </event>
+                  </egXML>
+                  As the example shows, each attestation contains a human-readable description of the historical attestation in a <gi>desc</gi> element,
+                  which must include an @xml:lang attribute. The description may contain additional markup, such as a <gi>title</gi> element for the conceptual
+                  work that attests the information. The <gi>title</gi> element may include a @ref attribute with the Syriaca work URI, if applicable.
+                  Additionally, the attestation must include a <gi>link</gi> element with a @target attribute containing anchors connecting the attestation's
+                  @xml:id value and the @xml:id of the attested place name or confession. Finally, the attestation's <gi>event</gi> element may include @notBefore, @notAfter
+                  @from, @to, or @when attributes to indicate the time period of the historical source in which the attestation is found. These attributes's values
+                  must be valid ISO dates.
+                </p>
+              </div>
+              <div xml:id="event">
+                <head>Events (<gi>event</gi>)</head>
+                <p>The <gi>event</gi> element is also used to indicate events which happened to a place, such as being founded, being destroyed, or anything else.
+                  Such uses of the <gi>event</gi> element must have @type of "other", to distinguish the use of this element from <ref target="#attestation">attestations</ref>.
+                  Examples of two possible uses for an event follow:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <event type="other" when="-0304" source="#bib78-1">
+                      <desc xml:lang="en">Renamed Edessa by Seleucus I Nicator.</desc>
+                    </event>
+                    <event type="other" when="0201" source="#bib78-1">
+                      <desc xml:lang="en">Flood of the river <placeName ref="http://syriaca.org/place/191">Daiṣan</placeName> destroyed part of city.</desc>
+                    </event>
+                  </egXML>
+                  As seen in the above example, <gi>event</gi> elements used for historical events differ from those used for attestations in only a few ways.
+                  First, they do not require an @xml:id. Second, they should not include a <gi>link</gi> element. Otherwise they are constructed in the same way,
+                  with source information following the guidelines for <ref target="#source">Inserting Citations</ref>; a child <gi>desc</gi> element containing
+                  additional markup of named entities as applicable; and attributes for dating events (@when, @from, @to, @notBefore, and @notAfter).
+                </p>
+              </div>
             </div>
-            <div xml:id="event">
-              <head>Events (<gi>event</gi>)</head>
-              <p>The <gi>event</gi> element is also used to indicate events which happened to a place, such as being founded, being destroyed, or anything else.
-                Such uses of the <gi>event</gi> element must have @type of "other", to distinguish the use of this element from <ref target="#attestation">attestations</ref>.
-                Examples of two possible uses for an event follow:
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <event type="other" when="-0304" source="#bib78-1">
-                    <desc xml:lang="en">Renamed Edessa by Seleucus I Nicator.</desc>
-                  </event>
-                  <event type="other" when="0201" source="#bib78-1">
-                    <desc xml:lang="en">Flood of the river <placeName ref="http://syriaca.org/place/191">Daiṣan</placeName> destroyed part of city.</desc>
-                  </event>
-                </egXML>
-                As seen in the above example, <gi>event</gi> elements used for historical events differ from those used for attestations in only a few ways.
-                First, they do not require an @xml:id. Second, they should not include a <gi>link</gi> element. Otherwise they are constructed in the same way,
-                with source information following the guidelines for <ref target="#source">Inserting Citations</ref>; a child <gi>desc</gi> element containing
-                additional markup of named entities as applicable; and attributes for dating events (@when, @from, @to, @notBefore, and @notAfter).
+            <div xml:id="statusTypes">
+              <head>Status Types</head>
+              <p>
+                The TEI Guidelines uses the <gi>state</gi> element to encode data on the status of places. <title>TSG</title> uses the 
+                <gi>state</gi> element to encode two types of status: religious confessions and existence.
               </p>
-            </div>
-            <div xml:id="existence">
-              <head>Existence (<gi>state</gi>)</head>
-              <p>Assertions of the existence of a place, and the duration of that existence, are made using a <gi>state</gi> element
-                with a @type of "existence". These elements require source information following the guidlines for <ref target="#source">Inserting Citations</ref>.
-                At the most basic level, this element asserts that a place has existed, or continues exist. Example:
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <state resp="http://syriaca.org" type="existence"/>
-                </egXML>
-                The duration of a place's existence can be qualified using the temporal attributes @from, @to <!-- WLP: A question here. In v2 we had to use a child precision element to map to/from to notBefore and notAfter since TEI didn't allow, but I think it's valid in our schema based on some testing? We do have precision elements, but is this a legacy thing that we don't want to recommend for new data?-->
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <state resp="http://syriaca.org" type="existence" from="0306" to="2013">
-                    <precision match="@from" notAfter="0306"/>
-                    <precision match="@to" notBefore="2013"/>
-                  </state>
-                </egXML>
-              </p>
+              <div xml:id="confession">
+                <head>Confessions (<gi>state</gi>)</head>
+                <p>Some places, such as churches or monasteries, have declared religious identities. Other places, such as cities, may be home to representatives of multiple different religions. Still other places, such as rivers or mountains, have no particular confessional identity in themselves, although they may be venerated particularly by adherents to one or more religions.</p><!-- WLP: copied from v2 guidelines, unedited -->
+                <p>The presence of a confessional community in a place, or otherwise connected with a place, is recorded in a <gi>state</gi> element with
+                  @type of "confession".  Multiple confessions for a particular place, or even disjoint durations of the same confession, are indicated by multiple <gi>state</gi> elements.
+                  Confession assertions must be identifed with an @xml:id whose value follows the pattern <code>confession\d+-\d+</code>,
+                  where the first sequence of digits is the numerical portion of the place URI, and the latter is a sequential integer to uniquely identify the <gi>state</gi> element.
+                  The particular confessional community must be identified both with a human-readable label and a machine-readable
+                  URI derived from <title>The Syriac Taxonomy</title>. The former is provided as the text contents of a child <gi>desc</gi> element, with
+                  @xml:lang of "en". The latter must be supplied in a @ref attribute on the <gi>state</gi> element, as seen in the following example:
+                  A human-readable description of the <!-- WLP, DAM: I think this sentence fragment should be deleted? -->
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <state type="confession" xml:id="confession78-1" ref="http://syriaca.org/taxonomy/syrian-orthodox" from="0451" to="1924" source="#bib78-1">
+                      <desc xml:lang="en">Syrian Orthodox</desc>
+                    </state>
+                  </egXML> <!-- WLP: list or link to the allowed confession values? or indicate above that the taxonomy URI must be a value from a collection or broader? -->
+                  The above example also demonstrates that confession states should be sourced according to the guidelines on <ref target="#source">Inserting Citations</ref>.
+                  As well, confessions may optionally include attributes to express temporal constraints on the assertion of the presence of a confessional community in a place.
+                  In the preceding example, the @from and @to attributes indicate that Syrian Orthodox communities were present at Edessa between 451 and 1924 CE. 
+                  Temporal durations may be expressed with @from, @to, @notBefore, or @notAfter attributes. In all cases, the attribute value must be a valid ISO date of the format
+                  <code>YYYY-MM-DD</code> (with month or day optional). BCE dates should be expressed as a negative date, e.g. -0051.
+                </p>
+              </div>
+              <div xml:id="existence">
+                <head>Existence (<gi>state</gi>)</head>
+                <p>Assertions of the existence of a place, and the duration of that existence, are made using a <gi>state</gi> element
+                  with a @type of "existence". These elements require source information following the guidlines for <ref target="#source">Inserting Citations</ref>.
+                  At the most basic level, this element asserts that a place has existed, or continues exist. Example:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <state resp="http://syriaca.org" type="existence"/>
+                  </egXML>
+                  The duration of a place's existence can be qualified using the temporal attributes @from, @to <!-- WLP: A question here. In v2 we had to use a child precision element to map to/from to notBefore and notAfter since TEI didn't allow, but I think it's valid in our schema based on some testing? We do have precision elements, but is this a legacy thing that we don't want to recommend for new data?-->
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <state resp="http://syriaca.org" type="existence" from="0306" to="2013">
+                      <precision match="@from" notAfter="0306"/>
+                      <precision match="@to" notBefore="2013"/>
+                    </state>
+                  </egXML>
+                </p>
+              </div>
             </div>
             <!-- WLP: from v2 guidelines there's this note:
             Note: This use of the <precision> element was added to the TEI guidelines by the TEI consortium at the request of Syriaca.org for the specific use cases described above. Additional documentation can be found (as of 2018) at TEI Feature Request [#519](https://sourceforge.net/p/tei/feature-requests/519/) and [The TEI-L discussion list](https://listserv.brown.edu/archives/cgi-bin/wa?A2=tei-l;fc2bf4f.1307).
             Probably we should keep this?
             -->
             <div xml:id="note">
-              <head>Note (<gi>note</gi>)</head>
-              <p><title>TSG</title> employs the <gi>note</gi> element for two different purposes: (un)certainty and deprecation.  We discuss this under the rubric of "certainty."</p>
-              <p><title>TSG</title> also uses the <gi>note</gi> element to indicate that Syriaca.org once assigned an identifier  
-              a place but that the identifier is no longer considered desirable. Rather than simply delete such an identifier,
-              <title>TSG</title> instead deprecates that identifier while maintaining a record of it for purposes of 
-                documentation and transparency.</p>
+              <head>Notes (<gi>note</gi>)</head>
+              <p><title>TSG</title> employs the <gi>note</gi> element for two different purposes: deprecation of a name variant and the 
+                encoding of information that is uncertain or incorrect. 
+              </p>
+              <p>All <gi>note</gi> elements must have an @xml:lang attribute indicating the language of the note. In most cases this will be "en"
+              for English but other languages can be indicated as needed.</p>
+              
               <!-- WLP: add sub-sections for the note types? Or are these at the syriaca-all level? We can put them here for now, and just copy in from the v2 encoding guidelines -->
               <!-- WLP: values allowed for place = corrigenda, deprecation, description?, disambiguation, errata, incerta, misc? ; cf. syriaca.org/documentation/schemas/syriacaPlaces.html#TEI.note -->
-              <!-- DLS: we currently have values: corrigenda, deprecation, errata, and incerta. I recommend we only include these. The prose should include a section to describe deprecation and another to describe uncertainty. -->
-              <div xml:id="certainty">
-                <head>(Un)Certainty</head>
-                <p>The <title>TSG</title> data model allows the editors of a record to discuss aspects of the research on a 
-                  place that have been revised by the latest scholarly concensus. In this way, <title>TSG</title> can capture 
-                  data that is important for the historical understanding of the place even if that data is
-                  questionable or no longer deemed correct. This practice means that a search of the database for this information 
-                  will return the place sought but with a note indicating the nature of this information.
-                </p>
-                <p>As discussed above in the section on <ref target="#worksCited">Works Cited</ref>, <title>TSG</title> strives to 
-                  encode the scholarly consensus as its default position. As such, most data cites a source without a certainty rating. 
-                  But when data is deemed important for understanding a place and the history of scholarship on a place even if 
-                  it is no longer considered the best interpretation, that information is encoded in the record using a <gi>note</gi> 
-                  element with a certainty rating. This is done using a @type attribute of <foreign>incerta</foreign>, 
-                  <foreign>errata</foreign> or <foreign>corrigenda</foreign>.
-                </p>
-                <p>The <foreign>incerta</foreign> and <foreign>errata</foreign> values are used for notes indicating the questionable
-                  nature of an assertion (<foreign>incerta</foreign>) or that the assertion is known to be false 
-                  (<foreign>errata</foreign>). 
-                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <note xml:lang="en" type="incerta" resp="http://syriaca.org">
-                      Brooks suggests the identification of Skanthin with 
-                      <placeName ref="http://syriaca.org/place/180">Scythopolis</placeName>. 
-                      This identification is uncertain.</note>
-                  </egXML>
+              
+              
+              <div xml:id="deprecation">
+                <head>Deprecation</head>
+                <p>Certain names in our database are patently erroneous (e.g. <foreign xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܒܘܢ</foreign> for 
+                  "Mount Qāsiyūn" [place/518] instead of <foreign xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign>, based on mis-reading 
+                  an Arabic letter ba for ya). We need to preserve these names in our data for historical reasons, 
+                  so that the right place can come up as a search result even if someone searches on the basis of the 
+                  erroneous print resource or now deprecated name, but we do not want to assert implicitly or explicitly 
+                  that this is an "acceptable alternate" form of the name. In order to mark the <gi>placeName</gi> element 
+                  as erroneous, we create a <gi>note</gi> element with a @type="deprecation". The content of the 
+                  <gi>note</gi> is then a detailed description why this name is considered problematic. In order to 
+                  link the <gi>note</gi> to the appropriate <gi>placeName</gi>, an @target attribute whose value is 
+                  the @xml:id values for the deprecated <gi>placeName</gi> is included in the <gi>note</gi> separated 
+                  by whitespace if there are links to multiple names for the same reason in the note. TEI Guidelines 
+                  do not allow <gi>note</gi> elements before <gi>desc</gi>, <gi>location</gi>, <gi>event</gi>, or 
+                  <gi>state</gi> elements, so the <gi>note</gi> indicating the deprecation should occur immediately 
+                  before the <gi>idno</gi> section.
                 </p>
                 <p>
-                  The <foreign>corrigenda</foreign> value is used for 
-                  <!-- DLS: Interesting, SPEAR uses dubia, incerta, and errata. I think that makes more sense. What is being correted in the corrigenda is an errata, right? -->
+                  Such names are visually marked in the html display of the place record, taken out of the list of names 
+                  and instead listed in the Deprecations section at the bottom of the record, to warn users that these 
+                  forms are problematic.
+                </p>
+                <p>Code Sample:
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <note xml:lang="en" type="corrigenda" resp="http://syriaca.org">
-                      Moosa's English translation of Barsoum's description says "north" when it should be "east."</note>
+                    <placeName xml:id="name496-3" xml:lang="syr-Syrj" source="#bib496-1">ܦܰܢܺܝܗ</placeName>
+                    ...
+                    <note target="#name496-3" xml:lang="en" type="deprecation" resp="http://syriaca.org">
+                      Dolabani or his printer dropped off the first consonant of the name.
+                    </note>
                   </egXML>
                 </p>
               </div>
-              <div xml:id="deprecation">
-                <head>Deprecation</head>
-                <p>TBD</p>
+              <div xml:id="certainty">
+                <head>(Un)Certainty</head>
+                <!-- DLS: we currently have values: corrigenda, deprecation, errata, and incerta. I recommend we only include these. The prose should include a section to describe deprecation and another to describe uncertainty. -->
+                <p>As with the inclusion of deprecated it is sometimes necessary to report in a place record information 
+                  which is either known to be incorrect or which is contested. In these cases it is good to signal this 
+                  information with a <gi>note</gi> element before the <gi>idno</gi> element(s). The content of the 
+                  <gi>note</gi> is the description of the problematic assertion, using as non-combative a formulation 
+                  as possible and avoiding naming living scholars who might be offended. The <gi>note</gi> can have 
+                  @type="incerta" if it is reporting scholarly uncertainty or disagreement about an assertion, 
+                  or @type="corrigenda" for typographical errors or other equally mechanistic problems which can be easily 
+                  fixed. The @type="errata" should only be used for <gi>note</gi> elements if there is a clear and 
+                  undisputed error whose solution is not obvious.
+                </p>
+                <p>Consider the examples below, drawn from different places:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="incerta" resp="http://syriaca.org">
+                      GEDSH article identifies its river as the <placeName ref="http://syriaca.org/place/43">Balikh</placeName>, 
+                      but the identification is contested.
+                    </note>
+                  </egXML>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="corrigenda">
+                      In Dolabani's translation of Barsoum's description <quote xml:lang="syr-Syrj">ܒܓܰܪܓܪܰ</quote> 
+                      should read <quote xml:lang="syr-Syrj">ܒܓܰܪܓܰܪ</quote>.
+                    </note>
+                  </egXML>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="corrigenda" resp="http://syriaca.org">
+                      GEDSH Map II displays the location too far to the south, east of 
+                      <placeName ref="http://syriaca.org/place/91">Ḥama</placeName> rather than west of 
+                      <placeName ref="http://syriaca.org/place/18">Aleppo</placeName>.
+                    </note>
+                  </egXML>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="corrigenda" resp="http://syriaca.org">
+                      Moosa's English translation of Barsoum's description was incorrectly published under the headword 
+                      "Samosata," while his description under the headword "Arsamosata" in fact describes the 
+                      village <placeName ref="http://syriaca.org/place/442">Kaʿbiya</placeName>.
+                    </note>
+                  </egXML>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="errata" resp="http://syriaca.org">
+                      Barsoum's description erroneously merges the information for this location with that of the 
+                      other <placeName ref="http://syriaca.org/place/571">Mor Bosus</placeName>, which is located 
+                      between Apamea and Ḥomṣ.
+                    </note>
+                  </egXML>
+                </p>
               </div>
             </div>
             <div xml:id="idno">
-              <div xml:id="idno">
-                <head>Identifiers (<gi>idno</gi>)</head>
-                <p>TBD</p>
-              </div>
-              <!-- Shoudl this also come first, even before bibl? It is central to the concept of place -->
+              <head>Identifiers (<gi>idno</gi>)</head>
+              <p>
+                <!-- I (DLS) replaced a note below with this one. It asked about moving this section up because of the centrality
+                  of the URI to the concept of a place. Instead I added there a reference to this section and included here a reference to that
+                  section. If this is not sufficient and someone finds it preferable to move this up, we can do that. -->
+                As discussed above in the section on the <ref target="#concept">Concept of a Place</ref>, a URIs are an important part of delineating
+                a place. Each place record needs one or more <gi>idno</gi> elements to indicate the URIs which refer to this place. 
+                Each <gi>idno</gi> element will have a @type attribute with value "URI", and the first should encapsulate 
+                the Syriaca.org URI for the place: http://syriaca.org/place/{\d+}. Other <gi>idno</gi> elements with @type="URI" 
+                will encapsulate any Pleiades URI for this place as well as any Wikipedia URL(s) which refer to this place. In 
+                particular, if the same place is the topic of separate Wikipedia articles divided by time period, both or all 
+                such articles will have their URIs listed here. If desired, a link to a DBpedia resource URI can be encapsulated 
+                within an <gi>idno</gi> element of @type="URI", but care should be exercised only to link to the DBpedia resource 
+                URI when the place is the subject of only one Wikipedia article, and when the type of place described by that 
+                article is the same as the type of place in our database (it is very common for Wikipedia articles to be about 
+                a modern country rather than a historical region, for example, or for village Wikipedia articles found in modern 
+                Turkey to be about "a district" rather than about the village itself). If there is any doubt that the DBpedia 
+                resource URI and the Syriaca.org URI are speaking of an identical place in all contexts, it is better to omit 
+                the DBpedia URI.
+              </p>
+              <p>
+                The URIs of Edessa (one from Syriaca.org, one from Pleiades, and two different Wikipedia articles) can be represented 
+                as follows:
+                <!-- The original documentation lists 5 including CBSC. That is still in 78.xml but should be deprecated. I will leave it out
+                  here because it is no longer relevant from the perspective of encoding records going forward.-->
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <idno type="URI">http://syriaca.org/place/78</idno>
+                  <idno type="URI">http://pleiades.stoa.org/places/658457</idno>
+                  <idno type="URI">http://syriaca.org/johnofephesus/places/78</idno>
+                  <idno type="URI">http://en.wikipedia.org/wiki/Edessa</idno>
+                  <idno type="URI">http://en.wikipedia.org/wiki/Şanlıurfa</idno>
+                </egXML>
+              </p>
             </div>
             <div xml:id="listrelation">
               <head>Related Entities</head>
