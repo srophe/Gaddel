@@ -362,9 +362,9 @@
               <p>The <gi>listPlace</gi> element must contain a <gi>place</gi> element and may
                 contain a <gi>listRelation</gi> element. Except for information about related
                 entities, all geographic data is encoded in a single <gi>place</gi> element. This
-                  <gi>place</gi> element must have <att>type</att> and <att>ana</att> attributes. The <gi>place</gi>
-                element can contain the following elements in this order, some of which are optional
-                (indicated by *): <list>
+                  <gi>place</gi> element must have <att>type</att> and <att>ana</att> attributes.
+                The <gi>place</gi> element can contain the following elements in this order, some of
+                which are optional (indicated by *): <list>
                   <item><gi>placeName</gi> (see <ref target="#placeName">Place Names</ref>)</item>
                   <item><gi>desc</gi> (see <ref target="#abstracts">Abstracts</ref>)</item>
                   <item><gi>location</gi>* (see <ref target="#location">Locations</ref>)</item>
@@ -388,34 +388,35 @@
               <div xml:id="attribution">
                 <head>Sources and Attribution of Intellectual Credit</head>
                 <p>When encoding child elements nested within <gi>place</gi>, <title>TSG</title>
-                  records are required to cite their sources using either the <att>source</att> or <att>resp</att>
-                  attributes. These attributes can be placed on any of these elements:
-                    <gi>placeName</gi>, <gi>desc</gi>, <gi>location</gi>, <gi>event</gi>,
+                  records are required to cite their sources using either the <att>source</att> or
+                    <att>resp</att> attributes. These attributes can be placed on any of these
+                  elements: <gi>placeName</gi>, <gi>desc</gi>, <gi>location</gi>, <gi>event</gi>,
                     <gi>state</gi>, <gi>note</gi>, and <gi>idno</gi>.</p>
                 <p>Whenever possible, the editorial policy of <title>TSG</title> is to prefer a
                   citation to a bibliographic reference found in the "Works Cited" section of the
-                  record. This citation should be made using <att>source</att> as described below in <ref
-                    target="#source">Inserting Bibliographic Citations (<att>source</att>)</ref>. In rare
-                  cases, editors of <title>TSG</title> may provide attribution information not
-                  sourced to a primary or secondary source using the <att>resp</att> attribute as described
-                  below; see <ref target="resp">Asserting Information without a Source
-                  (<att>resp</att>)</ref>. The use of <att>source</att> and <att>resp</att> are mutually exclusive. Editors should
-                  use <att>resp</att> only when it is not possible to use <att>source</att>.</p>
+                  record. This citation should be made using <att>source</att> as described below in
+                    <ref target="#source">Inserting Bibliographic Citations
+                    (<att>source</att>)</ref>. In rare cases, editors of <title>TSG</title> may
+                  provide attribution information not sourced to a primary or secondary source using
+                  the <att>resp</att> attribute as described below; see <ref target="resp">Asserting
+                    Information without a Source (<att>resp</att>)</ref>. The use of
+                    <att>source</att> and <att>resp</att> are mutually exclusive. Editors should use
+                    <att>resp</att> only when it is not possible to use <att>source</att>.</p>
                 <div xml:id="source">
                   <head>Inserting Bibliographic Citations (<att>source</att>)</head>
-                  <p>Use of the <att>source</att> attribute is a method for pointing to a bibliographic item
-                    found in the "Works Cited" section of the XML document. Before using <att>source</att>,
-                    editors must first encode an entry for the bibliographic item using the
-                      <gi>bibl</gi> element and a assign it an xml:id as described in the
-                    documentation section <ref target="#bibl">Creating a Citation in the "Works
-                      Cited" (<gi>bibl</gi>)</ref>.</p>
+                  <p>Use of the <att>source</att> attribute is a method for pointing to a
+                    bibliographic item found in the "Works Cited" section of the XML document.
+                    Before using <att>source</att>, editors must first encode an entry for the
+                    bibliographic item using the <gi>bibl</gi> element and a assign it an xml:id as
+                    described in the documentation section <ref target="#bibl">Creating a Citation
+                      in the "Works Cited" (<gi>bibl</gi>)</ref>.</p>
                   <p>Once a <gi>bibl</gi> element for the item has been created, citations to that
                     same bibliographic item can be inserted (and repeated) almost anywhere in the
-                    place record. These citations are inserted using the <att>source</att> attribute which is
-                    permitted on the following elements: <!-- Need list! DAM -->. For example, the
-                    source of a place name would be indicated by a <att>source</att> attribute of the
-                      <gi>placeName</gi> element. Here is a specific example for the place of Edessa
-                    (URI <ref target="https://syriaca.org/place/78"
+                    place record. These citations are inserted using the <att>source</att> attribute
+                    which is permitted on the following elements: <!-- Need list! DAM -->. For
+                    example, the source of a place name would be indicated by a <att>source</att>
+                    attribute of the <gi>placeName</gi> element. Here is a specific example for the
+                    place of Edessa (URI <ref target="https://syriaca.org/place/78"
                       >https://syriaca.org/place/78</ref>) which has the modern name "Urfa": <egXML
                       xmlns="http://www.tei-c.org/ns/Examples">
                       <place>
@@ -433,9 +434,9 @@
                     as an anchor in a <att>source</att> attribute on the <gi>placrName</gi> element:
                       <code>source="#bib78-1"</code>.</p>
                   <p>It is also possible to cite multiple sources for the same element. In these
-                    cases, the value of the <att>source</att> attribute is the xml:id for each source
-                    delimited by spaces. For example, the name "Edessa" is attested in multiple
-                    separate sources, so that fact can be encoded as follows <egXML
+                    cases, the value of the <att>source</att> attribute is the xml:id for each
+                    source delimited by spaces. For example, the name "Edessa" is attested in
+                    multiple separate sources, so that fact can be encoded as follows <egXML
                       xmlns="http://www.tei-c.org/ns/Examples">
                       <placeName xml:id="name78-1" source="#bib78-1 #bib78-2 #bib78-6 #bib78-23"
                         >Edessa</placeName>
@@ -444,26 +445,27 @@
                       <title>TSG</title> it is often the result of the bulk importing of data. As an
                     editorial practice for individual authors, a single source is all that is
                     required (and recommended) for most information. When multiple sources are
-                    listed in a single <att>source</att> attribute, they should be sorted in ascending order
-                    based on the second numeric value in the xml:id, as demonstrated in the example
-                    above (-1, -2, -6, -23, etc.). </p>
+                    listed in a single <att>source</att> attribute, they should be sorted in
+                    ascending order based on the second numeric value in the xml:id, as demonstrated
+                    in the example above (-1, -2, -6, -23, etc.). </p>
                 </div>
                 <div xml:id="resp">
                   <head>Asserting Information without a Source (<att>resp</att>)</head>
                   <p>In rare cases, editors of <title>TSG</title> supply information not sourced to
                     a primary or secondary source. To ensure that even this information is
-                    attributable to a source, elements otherwise lacking a <att>source</att> attribute should
-                    receive a <att>resp</att> attribute with the value "http://syriaca.org" to indicate that
-                    the editors of the <title>TSG</title> are responsible for the inclusion of the
-                    information: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    attributable to a source, elements otherwise lacking a <att>source</att>
+                    attribute should receive a <att>resp</att> attribute with the value
+                    "http://syriaca.org" to indicate that the editors of the <title>TSG</title> are
+                    responsible for the inclusion of the information: <egXML
+                      xmlns="http://www.tei-c.org/ns/Examples">
                       <desc type="abstract" xml:lang="en" resp="http://syriaca.org">A city of
                           <placeName ref="http://syriaca.org/place/124">Mesopotamia</placeName>, the
                         capital of the ancient kingdom of <placeName
                           ref="http://syriaca.org/place/145">Osrhoene</placeName>, modern
                         Urfa.</desc>
                     </egXML> In the preceding example, a concise description of Edessa was composed
-                    by a contributor to the place record, indicated by the use of the <att>resp</att>
-                    attribute in place of a <att>source</att> attribute. </p>
+                    by a contributor to the place record, indicated by the use of the
+                      <att>resp</att> attribute in place of a <att>source</att> attribute. </p>
                 </div>
               </div>
               <div xml:id="syriacaURIs">
@@ -498,9 +500,10 @@
                   <p>When a <title>TSG</title> record refers to a person who has a Syriaca.org URI,
                     the personal name should tagged using the element <gi>persName</gi>. Exceptions
                     to this rule are made only when a personal name occurs as part of a title of a
-                    work (e.g. <title>The Homilies of John Chrysostom</title>) or as part of a place name
-                    (e.g. The Convent of Mar Isaac). In these cases the prose is marked as a title
-                    or place name instead and the personal name does not need to be tagged.</p>
+                    work (e.g. <title>The Homilies of John Chrysostom</title>) or as part of a place
+                    name (e.g. The Convent of Mar Isaac). In these cases the prose is marked as a
+                    title or place name instead and the personal name does not need to be
+                    tagged.</p>
                   <p>If possible all <gi>persName</gi> elements within the elements listed above
                     should include an <att>ref</att> attribute which points to a Syriaca.org person
                     URI published in the <ref target="https://syriaca.org/persons/index.html"
@@ -512,789 +515,606 @@
                       <persName ref="http://syriaca.org/person/13">Ephraim</persName>
                     </egXML>
                   </p>
-                  <div xml:id="placenames">
-                    <head>Place Names within <gi>desc</gi>, <gi>location</gi>, <gi>event</gi>,
-                        <gi>state</gi>, and <gi>note</gi></head>
-                    <p><emph>Nota Bene</emph>: The element <gi>placeName</gi> is used in two ways in
-                        <title>TSG</title>. This present section refers only to the secondary use of
-                        <gi>placeName</gi> in marking up prose descriptions in <title>TSG</title>
-                      with URIs. The primary use of the same element <gi>placeName</gi> is to
-                      collate place name variants related to a <title>TSG</title> entry. For the
-                      name variant use case of <gi>placeName</gi> please see the section below: <ref
-                        target="#placeName">Place Names (<gi>placeName</gi>)</ref>.</p>
-                    <p>When descriptive prose in a <title>TSG</title> record refers to a place that has a Syriaca.org URI, the place name should tagged using the element
-                        <gi>placeName</gi> and linked to a URI. Exceptions to this rule are made only when a personal
-                      name occurs as part of a title of a work (e.g. <title>The Chronicle of
-                        Edessa</title>) or as part of a personal name (e.g. Jacob of Edessa). In
-                      these cases the prose is marked as a title or personal name instead and the
-                      geographic epithet does not need to be tagged.</p>
-                    <p>All <gi>placeName</gi> elements are required
-                      to have a <att>ref</att> attribute which points to a Syriaca.org place URI
-                      published in <ref target="https://syriaca.org/geo/index.html"><title>The
-                          Syriac Gazetteer</title></ref>. A URI is a Uniform Resource Identifier
-                      which is a unique identifying number for each place. For example the URI <ref
-                        target="http://syriaca.org/place/78">http://syriaca.org/place/78</ref>
-                      identifies the city of Edessa in these examples: <egXML
-                        xmlns="http://www.tei-c.org/ns/Examples">
-                        <origPlace>
-                          <placeName ref="http://syriaca.org/place/78">Edessa</placeName>
-                        </origPlace>
-                      </egXML>
-                      <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <p>On <locus from="258a">fol. 258 a</locus>, after the doxology, we read the
-                          following note, giving the date and stating that the volume was written at
-                            <placeName ref="http://syriaca.org/place/78">Edessa</placeName>, at the
-                          expense of the deacon <persName>Thomas of Zěmārtā Castra</persName>.</p>
-                      </egXML>
-                    </p>
-                    <p>Our policy is to report the place names in exactly the same prose given by
-                      Wright. In a future update of <title>SMBL</title>, we may also provide a
-                      uniform name where the spelling or name used by Wright is no longer commonly
-                      used in scholarship. </p>
-                    <p>Divergences from Consolidated Schema:</p>
-                    <p>Because Syriaca.org already provides an integrated authority file for places
-                      using Syriaca.org URIs, we do not use the <att>key</att> attribute required by
-                      the Consolidated Schema nor do we include the nested information in
-                        <gi>origPlace</gi> such as <gi>country</gi>, <gi>region</gi> and
-                        <gi>settlement</gi>. These relationships can be found separately in <ref
-                        target="https://syriaca.org/geo/index.html"><title>The Syriac
-                          Gazetteer</title></ref>.</p>
-                    <!-- <p>In sections relating to manuscript contents, physical description and
-                            provenance, placenames should be tagged using the <gi>placeName</gi>.
-                            For indexing to function correctly this MUST be linked to the places
-                            authority file using the <att>key</att> attribute. <egXML
-                                xmlns="http://www.tei-c.org/ns/Examples">
-                                <placeName key="place_1234">Bologna</placeName>
-                            </egXML>
-                            <specList>
-                                <specDesc key="placeName" atts="key"/>
-                            </specList>
-                        </p>
-                        <p>In the <gi>origPlace</gi> element, placenames should be tagged using (as
-                            appropriate) <gi>country</gi>, <gi>region</gi> and <gi>settlement</gi>.
-                            Again, for indexing to function correctly these MUST be linked to the
-                            places authority file using the <att>key</att> attribute. See under <ref
-                                target="#origPlace">origPlace</ref>.</p>
-                        <p>To accommodate geodata in legacy data, or for use by other systems,
-                                <gi>geo</gi> elements are permitted. But they are not displayed in
-                            catalogue web sites. For example, from the International Dunhuang
-                            Project:</p>
-                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                            <origPlace>DHMG.(Dunhuang Mogao) DHMG.17. <geo n="min"
-                                    >94.80388888888889198 40.03638888888888658</geo>
-                                <geo n="max">95.9375 40.04833333333333201</geo>
-                            </origPlace>
-                        </egXML>
-                        <p>In other cataloguing projects geodata should be given in the places
-                            authority file.</p> -->
-                  </div>
+                </div>
+                <div xml:id="placenames">
+                  <head>Place Names within <gi>desc</gi>, <gi>location</gi>, <gi>event</gi>,
+                      <gi>state</gi>, and <gi>note</gi></head>
+                  <p><emph>Nota Bene</emph>: The element <gi>placeName</gi> is used in two ways in
+                      <title>TSG</title>. This present section refers only to the secondary use of
+                      <gi>placeName</gi> in marking up prose descriptions in <title>TSG</title> with
+                    URIs. The primary use of the same element <gi>placeName</gi> is to collate place
+                    name variants related to a <title>TSG</title> entry. For the name variant use
+                    case of <gi>placeName</gi> please see the section below: <ref
+                      target="#placeName">Place Names (<gi>placeName</gi>)</ref>.</p>
+                  <p>When descriptive prose in a <title>TSG</title> record refers to a place that
+                    has a Syriaca.org URI, the place name should tagged using the element
+                      <gi>placeName</gi> and linked to a URI. Exceptions to this rule are made only
+                    when a personal name occurs as part of a title of a work (e.g. <title>The
+                      Chronicle of Edessa</title>) or as part of a personal name (e.g. Jacob of
+                    Edessa). In these cases the prose is marked as a title or personal name instead
+                    and the geographic epithet does not need to be tagged.</p>
+                  <p>All <gi>placeName</gi> elements are required to have a <att>ref</att> attribute
+                    which points to a Syriaca.org place URI. For example the URI <ref
+                      target="http://syriaca.org/place/78">http://syriaca.org/place/78</ref>
+                    identifies the city of Edessa in this example: <egXML
+                      xmlns="http://www.tei-c.org/ns/Examples">
+                      <!-- need example -->
+                    </egXML>
+                  </p>
                   <div xml:id="worktitles">
                     <head>References to Literary Works</head>
-                    <p>As a general rule references to titles of literary works have been tagged in
-                      one of two methods. <list>
-                        <item>When the title is identifying the intellectual contents of a
-                          manuscript item, it is encoded with <gi>title</gi> as a child of
-                            <gi>msItem</gi>. When encoding with the <gi>title</gi> element, the
-                          language of the prose in the <gi>title</gi> text node must also be
-                          indicated with attribute <att>xml:lang</att>. Rules for encoding titles as
-                          part of manuscript items are discussed in greater detail <ref
-                            target="#whatIsMsItem">below</ref>.</item>
-                        <item>When a reference to a literary work is made elsewhere in the XML
-                          document it is encoded with <gi>ref</gi> as a child of
-                          <gi>note</gi>.</item>
-                      </list></p>
-                    <p>At present the state of authority control for titles of Syriac works is
-                      incomplete, so we have not required references to URIs for works in
-                        <title>SMBL</title>. When possible we have included URIs published in <ref
-                        target="https://syriaca.org/nhsl/index.html"><title>The New Handbook of
-                          Syriac Literature </title></ref>. A URI is a Uniform Resource Identifier
-                      which is a unique identifying number for each literary work (as a conceptual
-                      entity). References to URIs for literary works, (using either <gi>title</gi>
-                      or <gi>ref</gi>) are marked up in an attribute value. For <gi>title</gi> the
-                      URI is placed in a <att>ref</att> attribute. For the element <gi>ref</gi> the
-                      URI is placed in a <att>target</att> attribute. For example the URI <ref
-                        target="https://syriaca.org/work/1">http://syriaca.org/work/1</ref>
-                      identifies the book of Genesis in the Peshitta Version in this <gi>title</gi>:
-                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <msItem xml:id="a1" n="1" defective="true">
-                          <locus from="1a"/>
-                          <title xml:lang="en" ref="http://syriaca.org/work/1">The book of Genesis,
-                            according to the Peshitta version.</title>
-                          <rubric xml:lang="syr"><locus from="2b" to="2b"/>ܒܪܝܬܐ ܣ̣ܦܪܐ ܩܕܡܝܐ
-                            ܕܐܘܪܝܬܐ</rubric>
-                        </msItem>
-                      </egXML> In this example, a <gi>note</gi> refers to an unspecified version of
-                      the book of 2 Maccabees using the URI <ref
-                        target="http://syriaca.org/work/9578">https://syriaca.org/work/9578</ref>:
-                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <note>See <ref target="http://syriaca.org/work/9578">2 Maccabees, ch. i. 18,
-                            seqq.</ref></note>
-                      </egXML> In this example, a <gi>note</gi> refers to a work, the Constitutiones
-                      Apostolorum, for which there is no Syriaca.org URI. In this case no
-                        <att>target</att> is used, but the instead a <att>type</att> attribute value
-                      of "work" must be applied (to distiguish from other uses of <gi>ref</gi> in
-                      the XML document. <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <note>These are extracts from <ref type="work">the eighth book of the
-                            Constitutiones Apostolorum</ref>; see <bibl>Labbe, t. i., coll. 153,
-                            seqq.</bibl>.</note>
-                      </egXML>
-                    </p>
-                    <p>Our policy is to report the references to works in exactly the same prose
-                      given by Wright. In a future update of <title>SMBL</title>, we may also
-                      provide a uniform name where the form used by Wright is no longer commonly
-                      used in scholarship. </p>
-                    <p>Divergences from Consolidated Schema:</p>
-                    <p>Because Syriaca.org already provides an integrated URI authority file for
-                      works using Syriaca.org URIs, we do not use the <att>key</att> attribute
-                      recommended by the Consolidated Schema.</p>
+                    <!-- This section needs writing from examples -->
                   </div>
-                  <div xml:id="bibliographiccitations">
-                    <head>Bibliographic Citations</head>
-                    <p>Citations of printed biblographic items (books, articles, etc.) have been
-                      tagged with the <gi>bibl</gi> element. These citations can be found in two places:<list>
-                        <item>They may be grouped in a bibliography located in the
-                            <gi>additional</gi> section of each entry. Guidelines for this
-                          bibliography (including examples of child elements nested in
-                          <gi>bibl</gi>) are given <ref target="#bibliography">below</ref>.</item>
-                        <item> Citations have also been marked up with <gi>bibl</gi> throughout the
-                          manuscript description occuring as child elements of <gi>msItem</gi>,
-                            <gi>note</gi>, or other descriptive elements. For this second form of
-                          citation, we have generally refrained from adding additional markup inside
-                          the <gi>bibl</gi> element except for linking to URIs.</item>
-                      </list></p>
-                    <p>In both cases, the bibliographic citation may be linked with a URI by using a
+                  <div xml:id="bibliographicURIs">
+                    <head>Bibliographic URIs</head>
+                    <p><emph>Nota Bene</emph>: The element <gi>bibl</gi> is used in two ways in
+                        <title>TSG</title>. This present section refers only to the secondary use of
+                        <gi>bibl</gi> in marking up prose descriptions in <title>TSG</title> with
+                      URIs. The primary use of the same element <gi>bibl</gi> is to create the
+                      individual entries for the "Works Cited" section for a <title>TSG</title>
+                      recird. For the name variant use case of <gi>placeName</gi> please see the
+                      section below: <ref target="#bibl">Creating a Citation in the "Works Cited"
+                          (<gi>bibl</gi>)</ref>.</p>
+                    <p>When the title ofsecondary biblographic items (books, articles, etc.) are
+                      mentioned, they can be tagged with the <gi>bibl</gi> element. The
+                      bibliographic item may be linked with a <title>CBSS</title> URI by using a
                       child element <gi>ref</gi> with the URI is placed in a <att>target</att>
-                      attribute on <gi>ref</gi>. At present the state of authority control for
-                      Syriac bibliography is incomplete. Accordingly, we have only encoded URIs for
-                      bibliographic citations when available. Currently we rely on two sources of
-                      URIs. Some citations are linked with uris of the format
-                        <q>http://syriaca.org/bibl/8</q> from Syriaca.org. Others are marked with
-                      URIs from The Comprehensive Bibliography on Syriac Studies of the format
-                        <q>https://www.zotero.org/groups/4861694/a_comprehensive_bibliography_on_syriac_studies/items/WMADLJWW/library</q>.
-                      In a future development, all of these citation URIs will be merged to a format
-                      of <q>http://syriaca.org/cbss/WMADLJWW</q>.</p>
-                    <p>This modified example from <ref target="https://bl.syriac.uk/ms/28"
-                        >https://bl.syriac.uk/ms/28</ref> illustrates the use of the second type of
-                      citation: <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <note>See<bibl>Assemani, Bibl. Or., t. ii., p. 335 <ref
-                              target="https://www.zotero.org/groups/4861694/a_comprehensive_bibliography_on_syriac_studies/items/WMADLJWW/library"
-                            /></bibl>.</note>
-                      </egXML>
-                    </p>
-                    <p>Our policy is to report the references to bibliography in exactly the same
-                      prose given by Wright. In a future update of <title>SMBL</title>, we may also
-                      provide a uniform citation where the form used by Wright is no longer commonly
-                      used in scholarship. </p>
-                  </div>
-                  <div xml:id="refsToMSS">
-                    <head>Cross-References to Other Manuscripts</head>
-                    <p>Cross-references in the description to other manuscripts should be enclosed
-                      in <gi>bibl</gi> tags with <att>type</att> of value <val>MS</val>. When
-                      possible the cross-reference may also be linked linked with a child
-                        <gi>ptr</gi> element with <att>target</att> attribute pointing to the URI
-                      for the other manuscript.</p>
-                    <p>At present the state of authority control for Syriac manuscripts is
-                      incomplete. Accordingly, we have only encoded URIs in the case of
-                      cross-reference to manuscripts within <title>SMBL</title>. This example from
-                      manuscript Add. 14,533 <ref target="https://bl.syriac.uk/ms/260"
-                        >https://bl.syriac.uk/ms/260</ref> shows how <title>SMBL</title> URIs are
-                      encoded to show a relationship between Add. 14,533 and two other manuscripts
-                      (Add. 12,155 and Add. 14,532): <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <note>In part identical with the contents of <bibl type="MS">Add. 12,155<ptr
-                              target="https://bl.syriac.uk/ms/30"/>
-                          </bibl> and <bibl type="MS">Add. 14,532<ptr
-                              target="https://bl.syriac.uk/ms/259"/></bibl>.</note>
-                      </egXML> When a manuscript reference refers either to a folio locus or to an
-                      entry number in Wright's catalogue, then a <gi>citedRange</gi> element should
-                      be added inside the <gi>bibl</gi>. <egXML
-                        xmlns="http://www.tei-c.org/ns/Examples">
-                        <note>See <bibl>Add. 14,728<ptr target="https://bl.syriac.uk/ms/628"/>,
-                              <citedRange unit="fol">fol. 239 a</citedRange>
-                          </bibl>.</note>
-                      </egXML>
-                      <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <note>See <bibl>Add. 14,575<ptr target="https://bl.syriac.uk/ms/311"/>,
-                              <citedRange unit="entry">no. 5</citedRange>
-                          </bibl>.</note></egXML>
-                    </p>
-                    <p>For references to manuscripts outside of <title>SMBL</title> we do not
-                      include a URI as illustrated in this modifed example from <ref
-                        target="https://bl.syriac.uk/ms/739">https://bl.syriac.uk/ms/739</ref>
-                      <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                        <note type="footnote" xml:lang="en">See the similar heading in the <bibl
-                            type="MS">Bodleian manuscript, Hunt. 109</bibl>.</note>
-                      </egXML>
-                    </p>
-                    <p>Our policy is to report the references to manuscripts in exactly the same
-                      prose given by Wright. In a future update of <title>SMBL</title>, we may also
-                      provide a uniform shelfmark where the form used by Wright is no longer
-                      commonly used in scholarship. </p>
-                    <p>Divergences from Consolidated Schema:</p>
-                    <p><title>SMBL</title> has used <gi>citedRange</gi> which is not mentioned in
-                      the Consolidated Schema guidelines but is conformant with the TEI
-                      guidelines.</p>
-                    <!-- The <att>subtype</att> may be used to indicate if the manuscript is held
-                        by the same institution that holds the manuscript being catalogued
-                        (value <val>interal</val>) or by another institution (value
-                        <val>external)</val>. In the former case, the shelfmark should not
-                        include the location or institution name; in the latter case, location
-                        and institution should be included. -->
+                      attribute on <gi>ref</gi>.</p>
+                    <!-- Need example -->
                   </div>
                 </div>
               </div>
-              <div xml:id="placeName">
-                <head>Place Names (<gi>placeName</gi>)</head>
-                <p>Place names are essential for identifying and disambiguating individual places.
-                  Every record must have at least one <gi>placeName</gi> element, and may have any
-                  additional number of <gi>placeName</gi> elements. The text node of this element
-                  should contain a name by which the place is or was known. Multiple name variants
-                  can be added; each should be in a separate <gi>placeName</gi> element. Name
-                  variants may be recorded for any language and must be tagged with the
-                  corresponding ISO language code indicated using an <att>xml:lang</att> attribute. Each
-                  record must have at least one place name in English or English transliteration
-                  indicated as the <ref target="#headword">headword</ref>.
-                  <!--  If necessary, the author may craft a prose description as a place name.--></p>
-                <!-- TBD: maybe reference a standard documentation section or page for Syriaca's lang code usage? -->
-                <p>Additionally, <gi>placeName</gi> elements must have a unique <att>xml:id</att> attribute of
-                  the form <code>name\d+-\d+</code>. The first digits derive from the numerical
-                  portion of the Syriaca URI for the place, and the latter is a sequential integer:
+            </div>
+            <div xml:id="placeName">
+              <head>Place Names (<gi>placeName</gi>)</head>
+              <p>Place names are essential for identifying and disambiguating individual places.
+                Every record must have at least one <gi>placeName</gi> element, and may have any
+                additional number of <gi>placeName</gi> elements. The text node of this element
+                should contain a name by which the place is or was known. Multiple name variants can
+                be added; each should be in a separate <gi>placeName</gi> element. Name variants may
+                be recorded for any language and must be tagged with the corresponding ISO language
+                code indicated using an <att>xml:lang</att> attribute. Each record must have at
+                least one place name in English or English transliteration indicated as the <ref
+                  target="#headword">headword</ref>.
+                <!--  If necessary, the author may craft a prose description as a place name.--></p>
+              <!-- TBD: maybe reference a standard documentation section or page for Syriaca's lang code usage? -->
+              <p>Additionally, <gi>placeName</gi> elements must have a unique <att>xml:id</att>
+                attribute of the form <code>name\d+-\d+</code>. The first digits derive from the
+                numerical portion of the Syriaca URI for the place, and the latter is a sequential
+                integer: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <placeName xml:id="name78-6" xml:lang="ar" source="#bib78-4">الرها</placeName>
+                </egXML> Finally, as seen in the preceding example, all <gi>placeName</gi> elements
+                must indicate the source of the name form as detailed in the <ref target="#source"
+                  >Inserting Citations</ref> section of these Guidelines. </p>
+              <div xml:id="headword">
+                <head>Syriaca Headwords</head>
+                <!-- WLP: note that although the v2 guidelines said there must be an en headword, the schema only constrains for the existence of at least one name tagged as a headword-->
+                <p>At least one <gi>placeName</gi> element must be tagged as a Syriaca Headword
+                  using a <att>srophe:tags</att> attribute with the value of
+                    <quote>#syriaca-headword</quote>. As the headwords are used as preferred labels
+                  and for alphabetization in search/brose results, at least one English place name
+                  should be tagged as a headword. At most one headword per language may be defined.
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <placeName xml:id="name78-6" xml:lang="ar" source="#bib78-4">الرها</placeName>
-                  </egXML> Finally, as seen in the preceding example, all <gi>placeName</gi>
-                  elements must indicate the source of the name form as detailed in the <ref
-                    target="#source">Inserting Citations</ref> section of these Guidelines. </p>
-                <div xml:id="headword">
-                  <head>Syriaca Headwords</head>
-                  <!-- WLP: note that although the v2 guidelines said there must be an en headword, the schema only constrains for the existence of at least one name tagged as a headword-->
-                  <p>At least one <gi>placeName</gi> element must be tagged as a Syriaca Headword
-                    using a <att>srophe:tags</att> attribute with the value of
-                      <quote>#syriaca-headword</quote>. As the headwords are used as preferred
-                    labels and for alphabetization in search/brose results, at least one English
-                    place name should be tagged as a headword. At most one headword per language may
-                    be defined. <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <placeName source="#bib78-2 #bib78-5" xml:id="name78-1" xml:lang="en"
-                        srophe:tags="#syriaca-headword">Edessa</placeName>
-                      <placeName xml:id="name78-2" xml:lang="en" source="#bib78-2 #bib78-5 #bib78-7"
-                        >Urfa</placeName>
-                      <placeName resp="http://syriaca.org" xml:id="name78-3" xml:lang="syr"
-                        srophe:tags="#syriaca-headword">ܐܘܪܗܝ</placeName>
-                    </egXML>
-                  </p>
-                </div>
+                    <placeName source="#bib78-2 #bib78-5" xml:id="name78-1" xml:lang="en"
+                      srophe:tags="#syriaca-headword">Edessa</placeName>
+                    <placeName xml:id="name78-2" xml:lang="en" source="#bib78-2 #bib78-5 #bib78-7"
+                      >Urfa</placeName>
+                    <placeName resp="http://syriaca.org" xml:id="name78-3" xml:lang="syr"
+                      srophe:tags="#syriaca-headword">ܐܘܪܗܝ</placeName>
+                  </egXML>
+                </p>
               </div>
-              <div xml:id="abstracts">
-                <head>Abstracts (<gi>desc</gi>)</head>
-                <p>Every record must have an abstract, i.e. a short description or one to two lines
-                  of prose describing the place. The purpose of the abstract is to help users of
-                    <title>TSG</title> to easily disambiguate search results and quickly identify
-                  the place for which they are searching. For places which also have entries in the
-                  electronic edition of <ref target="https://gedsh.bethmardutho.org/index.html"
-                      ><title>Gorgias Encyclopedic Dictionary of the Syriac Heritage
-                    (GEDSH)</title></ref>, <title>TSG</title> has reused the abstracts from
-                    <title>GEDSH</title> (this is done with permission and through verbatim
-                  quotation and citation). Ideally, an abstract should be at least one sentence in
-                  legnth, but in the case of some very well known places, the abstracts quoted from
-                    <title>GEDSH</title> are simply an entry number and phrase. Every record must
-                  have an abstract written in English. It is also possible to add additional
-                  abstracts in other languages. Additionally, individual sub-volumes of
-                    <title>TSG</title> may have their own, distinct abstracts.</p>
-                <p>The abstract is encoded in a <gi>desc</gi> element with a <att>type</att> attribute whose
-                  value is "abstract": <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <desc type="abstract" xml:lang="en" resp="http://syriaca.org"
-                      corresp="http://syriaca.org/geo http://syriaca.org/johnofephesus http://syriaca.org/johnofephesus/places"
-                      > A city of <placeName ref="http://syriaca.org/place/124"
-                        >Mesopotamia</placeName>, the capital of the ancient kingdom of <placeName
-                        ref="http://syriaca.org/place/145">Osrhoene</placeName>, modern Urfa.
+            </div>
+            <div xml:id="abstracts">
+              <head>Abstracts (<gi>desc</gi>)</head>
+              <p>Every record must have an abstract, i.e. a short description or one to two lines of
+                prose describing the place. The purpose of the abstract is to help users of
+                  <title>TSG</title> to easily disambiguate search results and quickly identify the
+                place for which they are searching. For places which also have entries in the
+                electronic edition of <ref target="https://gedsh.bethmardutho.org/index.html"
+                    ><title>Gorgias Encyclopedic Dictionary of the Syriac Heritage
+                  (GEDSH)</title></ref>, <title>TSG</title> has reused the abstracts from
+                  <title>GEDSH</title> (this is done with permission and through verbatim quotation
+                and citation). Ideally, an abstract should be at least one sentence in legnth, but
+                in the case of some very well known places, the abstracts quoted from
+                  <title>GEDSH</title> are simply an entry number and phrase. Every record must have
+                an abstract written in English. It is also possible to add additional abstracts in
+                other languages. Additionally, individual sub-volumes of <title>TSG</title> may have
+                their own, distinct abstracts.</p>
+              <p>The abstract is encoded in a <gi>desc</gi> element with a <att>type</att> attribute
+                whose value is "abstract": <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <desc type="abstract" xml:lang="en" resp="http://syriaca.org"
+                    corresp="http://syriaca.org/geo http://syriaca.org/johnofephesus http://syriaca.org/johnofephesus/places"
+                    > A city of <placeName ref="http://syriaca.org/place/124"
+                      >Mesopotamia</placeName>, the capital of the ancient kingdom of <placeName
+                      ref="http://syriaca.org/place/145">Osrhoene</placeName>, modern Urfa. </desc>
+                </egXML> The above example also illustrates the required <att>xml:lang</att>
+                attribute with an ISO language code
+                <!--WLP: another place to link to Syriaca's lang documentation --> used to indicate
+                the abstract's language. </p>
+              <p>Abstracts must also have a <att>corresp</att> attribute that contains one or more
+                space-separated URIs that correspond to the <gi>idno</gi> element in the
+                  <gi>seriesStmt</gi> elements. These URIs identify <title>TSG</title> and its
+                sub-volumes, such as the <title>Gazetteer to John of Ephesus’s Ecclesiastical
+                  History</title>. If there are multiple abstracts, only one can reference a given
+                series URI, and every series URI must be referenced by one of the abstracts. In the
+                following example, the URIs of three <gi>seriesStmt</gi> elements are referenced by
+                two abstracts: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <TEI>
+                    <teiHeader>
+                      <fileDesc> ... <seriesStmt>
+                          <title level="s" xml:lang="en">The Syriac Gazetteer</title> ... <idno
+                            type="URI">http://syriaca.org/geo</idno>
+                        </seriesStmt>
+                        <seriesStmt>
+                          <title level="s" xml:lang="en">A Guide to John of Ephesus</title> ...
+                            <idno type="URI">http://syriaca.org/johnofephesus</idno>
+                        </seriesStmt>
+                        <seriesStmt>
+                          <title level="m" xml:lang="en">Gazetteer to John of Ephesus’s
+                            Ecclesiastical History</title> ... <idno type="URI"
+                            >http://syriaca.org/johnofephesus/places</idno>
+                        </seriesStmt>
+                      </fileDesc>
+                    </teiHeader>
+                    <text>
+                      <body>
+                        <listPlace>
+                          <place> ... <desc type="abstract" xml:lang="en" resp="http://syriaca.org"
+                              corresp="http://syriaca.org/johnofephesus http://syriaca.org/johnofephesus/places"
+                              > A city of <placeName ref="http://syriaca.org/place/124"
+                                >Mesopotamia</placeName>, the capital of the ancient kingdom of
+                                <placeName ref="http://syriaca.org/place/145">Osrhoene</placeName>,
+                              modern Urfa.</desc>
+                            <desc xml:lang="en" corresp="http://syriaca.org/geo">
+                              <quote source="#bib78-5">a famous city, five day journey eastward from
+                                  <placeName ref="http://syriaca.org/place/18">Aleppo</placeName>,
+                                now called Urfa.</quote>
+                            </desc> ... </place>
+                        </listPlace>
+                      </body>
+                    </text>
+                  </TEI>
+                </egXML>
+              </p>
+              <p>Abstracts that derive from primary or secondary sources should include a citation
+                of their source. In addition to the general guidelines on <ref target="#source"
+                  >Inserting Citations</ref>, abstracts should use the following conventions. If the
+                abstract's content is paraphrased from one or more sources, a <att>source</att>
+                attribute should be added directly to the <gi>desc</gi> element: <egXML
+                  xmlns="http://www.tei-c.org/ns/Examples">
+                  <desc type="abstract" xml:lang="en" source="#bib55-3"
+                    corresp="http://syriaca.org/geo http://syriaca.org/johnofephesus http://syriaca.org/johnofephesus/places"
+                    > An Anatolian coastal region north of Antioch. </desc>
+                </egXML> If the abstract is, instead, a direct and exact quote from a source, the
+                  <gi>desc</gi> element should include a child <gi>quote</gi> element that contains
+                the <att>source</att> attribute and text contents of the abstract: <egXML
+                  xmlns="http://www.tei-c.org/ns/Examples">
+                  <desc type="abstract" xml:lang="en" corresp="http://syriaca.org/geo">
+                    <quote source="#bib78-5"> A famous city, five day journey eastward from
+                        <placeName ref="http://syriaca.org/place/18">Aleppo</placeName>, now called
+                      Urfa. </quote>
+                  </desc>
+                </egXML>
+              </p>
+              <p>The preceding examples have shown that <gi>desc</gi> elements allow several child
+                elements useful for marking up entities that may appear in the abstract's contents.
+                The most common are the <gi>placeName</gi> and <gi>persName</gi> elements, used to
+                mark place or personal names, respectively. Both of these elements can take a
+                  <att>ref</att> attribute with a Syriaca place or person URI, as in the above
+                example of <egXML xmlns="http://www.tei-c.org/ns/Examples"><placeName
+                    ref="http://syriaca.org/place/18">Aleppo</placeName></egXML>.</p>
+              <div xml:id="otherDescs">
+                <head>Other Descriptions (<gi>desc</gi>)</head>
+                <p>As noted above, only one abstract per language and volume of <title>TSG</title>
+                  is permitted. Additional concise descriptions may be included. These descriptions
+                  follow the same encoding guidelines as abstracts, except they should not include
+                  the <att>type</att> or <att>corresp</att> attributes: <egXML
+                    xmlns="http://www.tei-c.org/ns/Examples">
+                    <desc xml:lang="syr-Syrj">
+                      <quote source="#bib78-3">ܡܕܺܝܢܬܐ ܗܳܝ ܛܒܝܒܬܳܐ ܠܡܰܕܢܚܳܐ ܕܚܳܠܳܒ ܚܰܡܫܳܐ ܝܰܘܡ̈ܝܢ
+                        ܘܡܶܫܬܰܡܗܐ ܝܰܘܡܳܢ ܐܘܪܦܰܗ̈</quote>
                     </desc>
-                  </egXML> The above example also illustrates the required <att>xml:lang</att> attribute with
-                  an ISO language code
-                  <!--WLP: another place to link to Syriaca's lang documentation --> used to
-                  indicate the abstract's language. </p>
-                <p>Abstracts must also have a <att>corresp</att> attribute that contains one or more
-                  space-separated URIs that correspond to the <gi>idno</gi> element in the
-                    <gi>seriesStmt</gi> elements. These URIs identify <title>TSG</title> and its
-                  sub-volumes, such as the <title>Gazetteer to John of Ephesus’s Ecclesiastical
-                    History</title>. If there are multiple abstracts, only one can reference a given
-                  series URI, and every series URI must be referenced by one of the abstracts. In
-                  the following example, the URIs of three <gi>seriesStmt</gi> elements are
-                  referenced by two abstracts: <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <TEI>
-                      <teiHeader>
-                        <fileDesc> ... <seriesStmt>
-                            <title level="s" xml:lang="en">The Syriac Gazetteer</title> ... <idno
-                              type="URI">http://syriaca.org/geo</idno>
-                          </seriesStmt>
-                          <seriesStmt>
-                            <title level="s" xml:lang="en">A Guide to John of Ephesus</title> ...
-                              <idno type="URI">http://syriaca.org/johnofephesus</idno>
-                          </seriesStmt>
-                          <seriesStmt>
-                            <title level="m" xml:lang="en">Gazetteer to John of Ephesus’s
-                              Ecclesiastical History</title> ... <idno type="URI"
-                              >http://syriaca.org/johnofephesus/places</idno>
-                          </seriesStmt>
-                        </fileDesc>
-                      </teiHeader>
-                      <text>
-                        <body>
-                          <listPlace>
-                            <place> ... <desc type="abstract" xml:lang="en"
-                                resp="http://syriaca.org"
-                                corresp="http://syriaca.org/johnofephesus http://syriaca.org/johnofephesus/places"
-                                > A city of <placeName ref="http://syriaca.org/place/124"
-                                  >Mesopotamia</placeName>, the capital of the ancient kingdom of
-                                  <placeName ref="http://syriaca.org/place/145"
-                                >Osrhoene</placeName>, modern Urfa.</desc>
-                              <desc xml:lang="en" corresp="http://syriaca.org/geo">
-                                <quote source="#bib78-5">a famous city, five day journey eastward
-                                  from <placeName ref="http://syriaca.org/place/18"
-                                    >Aleppo</placeName>, now called Urfa.</quote>
-                              </desc> ... </place>
-                          </listPlace>
-                        </body>
-                      </text>
-                    </TEI>
                   </egXML>
                 </p>
-                <p>Abstracts that derive from primary or secondary sources should include a citation
-                  of their source. In addition to the general guidelines on <ref target="#source"
-                    >Inserting Citations</ref>, abstracts should use the following conventions. If
-                  the abstract's content is paraphrased from one or more sources, a <att>source</att>
-                  attribute should be added directly to the <gi>desc</gi> element: <egXML
-                    xmlns="http://www.tei-c.org/ns/Examples">
-                    <desc type="abstract" xml:lang="en" source="#bib55-3"
-                      corresp="http://syriaca.org/geo http://syriaca.org/johnofephesus http://syriaca.org/johnofephesus/places"
-                      > An Anatolian coastal region north of Antioch. </desc>
-                  </egXML> If the abstract is, instead, a direct and exact quote from a source, the
-                    <gi>desc</gi> element should include a child <gi>quote</gi> element that
-                  contains the <att>source</att> attribute and text contents of the abstract: <egXML
-                    xmlns="http://www.tei-c.org/ns/Examples">
-                    <desc type="abstract" xml:lang="en" corresp="http://syriaca.org/geo">
-                      <quote source="#bib78-5"> A famous city, five day journey eastward from
-                          <placeName ref="http://syriaca.org/place/18">Aleppo</placeName>, now
-                        called Urfa. </quote>
-                    </desc>
+              </div>
+            </div>
+            <div xml:id="location">
+              <head>Locations (<gi>location</gi>)</head>
+              <p>Location information for a place record should be encoded within one or more
+                  <gi>location</gi> elements. Each <gi>location</gi> element should be sourced as
+                described in the guidelines on <ref target="#source">Inserting Citations</ref>.
+                  <title>TSG</title> permits two kinds of location information, geographic
+                coordinates and relative locations. Locations based on geographic coordinates should
+                precede relative locations.</p>
+              <div xml:id="gps">
+                <head>Geographic Cooridinates</head>
+                <p>Geographic locations must include a <att>type</att> attribute with a value of
+                    <quote>gps</quote>. The geographic coordinates should be record in a child
+                    <gi>geo</gi> element. Coordinates must be formatted as latitude then longitude,
+                  separated by a space: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <location type="gps" source="#bib78-2">
+                      <geo>37.15 38.8</geo>
+                    </location>
                   </egXML>
                 </p>
-                <p>The preceding examples have shown that <gi>desc</gi> elements allow several child
-                  elements useful for marking up entities that may appear in the abstract's
-                  contents. The most common are the <gi>placeName</gi> and <gi>persName</gi>
-                  elements, used to mark place or personal names, respectively. Both of these
-                  elements can take a <att>ref</att> attribute with a Syriaca place or person URI, as in the
-                  above example of <egXML xmlns="http://www.tei-c.org/ns/Examples"><placeName
-                      ref="http://syriaca.org/place/18">Aleppo</placeName></egXML>.</p>
-                <div xml:id="otherDescs">
-                  <head>Other Descriptions (<gi>desc</gi>)</head>
-                  <p>As noted above, only one abstract per language and volume of <title>TSG</title>
-                    is permitted. Additional concise descriptions may be included. These
-                    descriptions follow the same encoding guidelines as abstracts, except they
-                    should not include the <att>type</att> or <att>corresp</att> attributes: <egXML
-                      xmlns="http://www.tei-c.org/ns/Examples">
-                      <desc xml:lang="syr-Syrj">
-                        <quote source="#bib78-3">ܡܕܺܝܢܬܐ ܗܳܝ ܛܒܝܒܬܳܐ ܠܡܰܕܢܚܳܐ ܕܚܳܠܳܒ ܚܰܡܫܳܐ ܝܰܘܡ̈ܝܢ
-                          ܘܡܶܫܬܰܡܗܐ ܝܰܘܡܳܢ ܐܘܪܦܰܗ̈</quote>
+                <p>When there are multiple <gi>location</gi> elements for geographic coordinates,
+                  i.e. <att>type</att> of <quote>gps</quote>, a <att>subtype</att> attribute must
+                  also be supplied. One of the <gi>location</gi> elements must have a
+                    <att>subtype</att> attribute with <quote>preferred</quote>, and all of the
+                  others must have the value of <quote>alternate</quote>. This convention enables
+                  the Gaddel web application to know which coordinates to use when loading the map
+                  view for this place record's HTML page. See the below example: <egXML
+                    xmlns="http://www.tei-c.org/ns/Examples">
+                    <location subtype="preferred" type="gps" source="#bib78-2">
+                      <geo>37.15 38.8</geo>
+                    </location>
+                    <location subtype="alternate" type="gps" source="#bib78-15">
+                      <geo>37.1453862000 38.7838840000</geo>
+                    </location>
+                  </egXML>
+                </p>
+              </div>
+              <div xml:id="relativeLocations">
+                <head>Relative Locations</head>
+                <p>Some primary or secondary source descriptions locate a place relative to another
+                  location. Such situations may be encoded within a <gi>location</gi> with a
+                    <att>type</att> attribute whose value is <quote>relative</quote>. An example of
+                  a relative location follows: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <location type="relative">
+                      <desc xml:lang="en">
+                        <quote source="#bib78-5">
+                          <measure unit="days-journey" quantity="5">five day journey</measure>
+                          <offset>eastward from</offset>
+                          <placeName ref="http://syriaca.org/place/18">Aleppo</placeName>
+                        </quote>
                       </desc>
-                    </egXML>
-                  </p>
-                </div>
+                    </location>
+                  </egXML> The <gi>location</gi> should contain a <gi>desc</gi> element with
+                  language tagging using an <att>xml:id</att> attribute. If the location statement
+                  is a direct quote from a source, a <gi>quote</gi> element should be used,
+                  otherwise sourcing information may be provided directly on the <gi>desc</gi>
+                  element. The components of the relative location can be marked up using several
+                  elements. A <gi>measure</gi> element, with <att>unit</att> and <att>quantity</att>
+                  attributes, are used to tag the expression of the distance between the place
+                  record and its relative location. The <att>unit</att> attribute's value is not
+                  constrained and should correspond to the element's text contents, converted to
+                  lowercase with whitespace replaced by hyphen (-) characters. A directional
+                  indication, or other modifier (e.g., 'near', overlooking') may be encoded as an
+                    <gi>offset</gi> element. Finally, the name of the place from which the relative
+                  location is measured should be encoded as a <gi>placeName</gi> element with a
+                    <att>ref</att> attribute containing its Syriaca URI, if applicable. Note that
+                  the order of these elements can vary and should follow the flow of the prose
+                  content in the <gi>desc</gi> element.</p>
               </div>
-              <div xml:id="location">
-                <head>Locations (<gi>location</gi>)</head>
-                <p>Location information for a place record should be encoded within one or more
-                    <gi>location</gi> elements. Each <gi>location</gi> element should be sourced as
-                  described in the guidelines on <ref target="#source">Inserting Citations</ref>.
-                    <title>TSG</title> permits two kinds of location information, geographic
-                  coordinates and relative locations. Locations based on geographic coordinates
-                  should precede relative locations.</p>
-                <div xml:id="gps">
-                  <head>Geographic Cooridinates</head>
-                  <p>Geographic locations must include a <att>type</att> attribute with a value of
-                      <quote>gps</quote>. The geographic coordinates should be record in a child
-                      <gi>geo</gi> element. Coordinates must be formatted as latitude then
-                    longitude, separated by a space: <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <location type="gps" source="#bib78-2">
-                        <geo>37.15 38.8</geo>
-                      </location>
-                    </egXML>
-                  </p>
-                  <p>When there are multiple <gi>location</gi> elements for geographic coordinates,
-                    i.e. <att>type</att> of <quote>gps</quote>, a <att>subtype</att> attribute must also be supplied.
-                    One of the <gi>location</gi> elements must have a <att>subtype</att> attribute with
-                      <quote>preferred</quote>, and all of the others must have the value of
-                      <quote>alternate</quote>. This convention enables the Gaddel web application
-                    to know which coordinates to use when loading the map view for this place
-                    record's HTML page. See the below example: <egXML
-                      xmlns="http://www.tei-c.org/ns/Examples">
-                      <location subtype="preferred" type="gps" source="#bib78-2">
-                        <geo>37.15 38.8</geo>
-                      </location>
-                      <location subtype="alternate" type="gps" source="#bib78-15">
-                        <geo>37.1453862000 38.7838840000</geo>
-                      </location>
-                    </egXML>
-                  </p>
-                </div>
-                <div xml:id="relativeLocations">
-                  <head>Relative Locations</head>
-                  <p>Some primary or secondary source descriptions locate a place relative to
-                    another location. Such situations may be encoded within a <gi>location</gi> with
-                    a <att>type</att> attribute whose value is <quote>relative</quote>. An example of a
-                    relative location follows: <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <location type="relative">
-                        <desc xml:lang="en">
-                          <quote source="#bib78-5">
-                            <measure unit="days-journey" quantity="5">five day journey</measure>
-                            <offset>eastward from</offset>
-                            <placeName ref="http://syriaca.org/place/18">Aleppo</placeName>
-                          </quote>
-                        </desc>
-                      </location>
-                    </egXML> The <gi>location</gi> should contain a <gi>desc</gi> element with
-                    language tagging using an <att>xml:id</att> attribute. If the location statement is a
-                    direct quote from a source, a <gi>quote</gi> element should be used, otherwise
-                    sourcing information may be provided directly on the <gi>desc</gi> element. The
-                    components of the relative location can be marked up using several elements. A
-                      <gi>measure</gi> element, with <att>unit</att> and <att>quantity</att> attributes, are used to tag
-                    the expression of the distance between the place record and its relative
-                    location. The <att>unit</att> attribute's value is not constrained and should correspond
-                    to the element's text contents, converted to lowercase with whitespace replaced
-                    by hyphen (-) characters. A directional indication, or other modifier (e.g.,
-                    'near', overlooking') may be encoded as an <gi>offset</gi> element. Finally, the
-                    name of the place from which the relative location is measured should be encoded
-                    as a <gi>placeName</gi> element with a <att>ref</att> attribute containing its Syriaca
-                    URI, if applicable. Note that the order of these elements can vary and should
-                    follow the flow of the prose content in the <gi>desc</gi> element.</p>
-                </div>
-              </div>
-              <div xml:id="eventTypes">
-                <head>Event Types</head>
-                <div xml:id="attestation">
-                  <head>Attestations (<gi>event</gi>)</head>
-                  <p>Attestations of <ref target="#placeName">place names</ref> or the presence of
-                      <ref target="#confession">confessional communities</ref> at a place that
-                    appear in historical primary sources may be recorded within an <gi>event</gi>
-                    element with a <att>type</att> attribue whose value must be "attestation". Attestations
-                    must include an <att>xml:id</att> of the pattern <code>attestation\d+-\d+</code>, where
-                    the first sequence of digits is the numerical portion of the place URI and the
-                    second is a sequential integer. This identifier is used to link the attestation
-                    to the names or confessions it describes. Attestations must also be sourced as
-                    detailed in the guidelines on <ref target="#source">Inserting Citations</ref>.
-                    The following example includes both kinds of attestations: <egXML
-                      xmlns="http://www.tei-c.org/ns/Examples">
-                      <event type="attestation" xml:id="attestation78-1" notBefore="1146"
-                        notAfter="1234" source="#bib78-9">
-                        <desc xml:lang="en"> Attestation of name <foreign xml:lang="syr"
-                            >ܐܘܪܗܝ</foreign> in the anonymous <title
-                            ref="http://syriaca.org/work/113">Chronicle of 1234</title>. </desc>
-                        <link target="#name78-3 #attestation78-1"/>
-                      </event>
-                      <event type="attestation" xml:id="attestation78-2" when="1146"
-                        source="#bib78-9">
-                        <desc xml:lang="en"> Attestation of Syrian Orthodox church in Edessa in the
-                          anonymous <title ref="http://syriaca.org/work/113">Chronicle of
-                            1234</title>. </desc>
-                        <link target="#confession78-1 #attestation78-2"/>
-                      </event>
-                    </egXML> As the example shows, each attestation contains a human-readable
-                    description of the historical attestation in a <gi>desc</gi> element, which must
-                    include an <att>xml:lang</att> attribute. The description may contain additional markup,
-                    such as a <gi>title</gi> element for the conceptual work that attests the
-                    information. The <gi>title</gi> element may include a <att>ref</att> attribute with the
-                    Syriaca work URI, if applicable. Additionally, the attestation must include a
-                      <gi>link</gi> element with a <att>target</att> attribute containing anchors connecting
-                    the attestation's <att>xml:id</att> value and the <att>xml:id</att> of the attested place name or
-                    confession. Finally, the attestation's <gi>event</gi> element may include
-                    @notBefore, @notAfter @from, @to, or @when attributes to indicate the time
-                    period of the historical source in which the attestation is found. These
-                    attributes's values must be valid ISO dates. </p>
-                </div>
-                <div xml:id="event">
-                  <head>Events (<gi>event</gi>)</head>
-                  <p>The <gi>event</gi> element is also used to indicate events which happened to a
-                    place, such as being founded, being destroyed, or anything else. Such uses of
-                    the <gi>event</gi> element must have <att>type</att> of "other", to distinguish the use of
-                    this element from <ref target="#attestation">attestations</ref>. Examples of two
-                    possible uses for an event follow: <egXML
-                      xmlns="http://www.tei-c.org/ns/Examples">
-                      <event type="other" when="-0304" source="#bib78-1">
-                        <desc xml:lang="en">Renamed Edessa by Seleucus I Nicator.</desc>
-                      </event>
-                      <event type="other" when="0201" source="#bib78-1">
-                        <desc xml:lang="en">Flood of the river <placeName
-                            ref="http://syriaca.org/place/191">Daiṣan</placeName> destroyed part of
-                          city.</desc>
-                      </event>
-                    </egXML> As seen in the above example, <gi>event</gi> elements used for
-                    historical events differ from those used for attestations in only a few ways.
-                    First, they do not require an <att>xml:id</att>. Second, they should not include a
-                      <gi>link</gi> element. Otherwise they are constructed in the same way, with
-                    source information following the guidelines for <ref target="#source">Inserting
-                      Citations</ref>; a child <gi>desc</gi> element containing additional markup of
-                    named entities as applicable; and attributes for dating events (@when, @from,
-                    @to, @notBefore, and @notAfter). </p>
-                </div>
-              </div>
-              <div xml:id="statusTypes">
-                <head>Status Types</head>
-                <p> The TEI Guidelines uses the <gi>state</gi> element to encode data on the status
-                  of places. <title>TSG</title> uses the <gi>state</gi> element to encode two types
-                  of status: religious confessions and existence. </p>
-                <div xml:id="confession">
-                  <head>Confessions (<gi>state</gi>)</head>
-                  <p>Some places, such as churches or monasteries, have declared religious
-                    identities. Other places, such as cities, may be home to representatives of
-                    multiple different religions. Still other places, such as rivers or mountains,
-                    have no particular confessional identity in themselves, although they may be
-                    venerated particularly by adherents to one or more religions.</p>
-                  <!-- WLP: copied from v2 guidelines, unedited -->
-                  <p>The presence of a confessional community in a place, or otherwise connected
-                    with a place, is recorded in a <gi>state</gi> element with <att>type</att> of
-                    "confession". Multiple confessions for a particular place, or even disjoint
-                    durations of the same confession, are indicated by multiple <gi>state</gi>
-                    elements. Confession assertions must be identifed with an <att>xml:id</att> whose value
-                    follows the pattern <code>confession\d+-\d+</code>, where the first sequence of
-                    digits is the numerical portion of the place URI, and the latter is a sequential
-                    integer to uniquely identify the <gi>state</gi> element. The particular
-                    confessional community must be identified both with a human-readable label and a
-                    machine-readable URI derived from <title>The Syriac Taxonomy</title>. The former
-                    is provided as the text contents of a child <gi>desc</gi> element, with
-                    <att>xml:lang</att> of "en". The latter must be supplied in a <att>ref</att> attribute on the
-                      <gi>state</gi> element, as seen in the following example: A human-readable
-                    description of the <!-- WLP, DAM: I think this sentence fragment should be deleted? -->
+            </div>
+            <div xml:id="eventTypes">
+              <head>Event Types</head>
+              <div xml:id="attestation">
+                <head>Attestations (<gi>event</gi>)</head>
+                <p>Attestations of <ref target="#placeName">place names</ref> or the presence of
+                    <ref target="#confession">confessional communities</ref> at a place that appear
+                  in historical primary sources may be recorded within an <gi>event</gi> element
+                  with a <att>type</att> attribue whose value must be "attestation". Attestations
+                  must include an <att>xml:id</att> of the pattern <code>attestation\d+-\d+</code>,
+                  where the first sequence of digits is the numerical portion of the place URI and
+                  the second is a sequential integer. This identifier is used to link the
+                  attestation to the names or confessions it describes. Attestations must also be
+                  sourced as detailed in the guidelines on <ref target="#source">Inserting
+                    Citations</ref>. The following example includes both kinds of attestations:
                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <state type="confession" xml:id="confession78-1"
-                        ref="http://syriaca.org/taxonomy/syrian-orthodox" from="0451" to="1924"
-                        source="#bib78-1">
-                        <desc xml:lang="en">Syrian Orthodox</desc>
-                      </state>
-                    </egXML>
-                    <!-- WLP: list or link to the allowed confession values? or indicate above that the taxonomy URI must be a value from a collection or broader? -->
-                    The above example also demonstrates that confession states should be sourced
-                    according to the guidelines on <ref target="#source">Inserting Citations</ref>.
-                    As well, confessions may optionally include attributes to express temporal
-                    constraints on the assertion of the presence of a confessional community in a
-                    place. In the preceding example, the @from and @to attributes indicate that
-                    Syrian Orthodox communities were present at Edessa between 451 and 1924 CE.
-                    Temporal durations may be expressed with @from, @to, @notBefore, or @notAfter
-                    attributes. In all cases, the attribute value must be a valid ISO date of the
-                    format <code>YYYY-MM-DD</code> (with month or day optional). BCE dates should be
-                    expressed as a negative date, e.g. -0051. </p>
-                </div>
-                <div xml:id="existence">
-                  <head>Existence (<gi>state</gi>)</head>
-                  <p>Assertions of the existence of a place, and the duration of that existence, are
-                    made using a <gi>state</gi> element with a <att>type</att> of "existence". These elements
-                    require source information following the guidlines for <ref target="#source"
-                      >Inserting Citations</ref>. At the most basic level, this element asserts that
-                    a place has existed, or continues exist. Example: <egXML
-                      xmlns="http://www.tei-c.org/ns/Examples">
-                      <state resp="http://syriaca.org" type="existence"/>
-                    </egXML> The duration of a place's existence can be qualified using the temporal
-                    attributes @from, @to <!-- WLP: A question here. In v2 we had to use a child precision element to map to/from to notBefore and notAfter since TEI didn't allow, but I think it's valid in our schema based on some testing? We do have precision elements, but is this a legacy thing that we don't want to recommend for new data?-->
-                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <state resp="http://syriaca.org" type="existence" from="0306" to="2013">
-                        <precision match="@from" notAfter="0306"/>
-                        <precision match="@to" notBefore="2013"/>
-                      </state>
-                    </egXML>
-                  </p>
-                </div>
+                    <event type="attestation" xml:id="attestation78-1" notBefore="1146"
+                      notAfter="1234" source="#bib78-9">
+                      <desc xml:lang="en"> Attestation of name <foreign xml:lang="syr"
+                          >ܐܘܪܗܝ</foreign> in the anonymous <title ref="http://syriaca.org/work/113"
+                          >Chronicle of 1234</title>. </desc>
+                      <link target="#name78-3 #attestation78-1"/>
+                    </event>
+                    <event type="attestation" xml:id="attestation78-2" when="1146" source="#bib78-9">
+                      <desc xml:lang="en"> Attestation of Syrian Orthodox church in Edessa in the
+                        anonymous <title ref="http://syriaca.org/work/113">Chronicle of
+                        1234</title>. </desc>
+                      <link target="#confession78-1 #attestation78-2"/>
+                    </event>
+                  </egXML> As the example shows, each attestation contains a human-readable
+                  description of the historical attestation in a <gi>desc</gi> element, which must
+                  include an <att>xml:lang</att> attribute. The description may contain additional
+                  markup, such as a <gi>title</gi> element for the conceptual work that attests the
+                  information. The <gi>title</gi> element may include a <att>ref</att> attribute
+                  with the Syriaca work URI, if applicable. Additionally, the attestation must
+                  include a <gi>link</gi> element with a <att>target</att> attribute containing
+                  anchors connecting the attestation's <att>xml:id</att> value and the
+                    <att>xml:id</att> of the attested place name or confession. Finally, the
+                  attestation's <gi>event</gi> element may include @notBefore, @notAfter @from, @to,
+                  or @when attributes to indicate the time period of the historical source in which
+                  the attestation is found. These attributes's values must be valid ISO dates. </p>
               </div>
-              <!-- WLP: from v2 guidelines there's this note:
+              <div xml:id="event">
+                <head>Events (<gi>event</gi>)</head>
+                <p>The <gi>event</gi> element is also used to indicate events which happened to a
+                  place, such as being founded, being destroyed, or anything else. Such uses of the
+                    <gi>event</gi> element must have <att>type</att> of "other", to distinguish the
+                  use of this element from <ref target="#attestation">attestations</ref>. Examples
+                  of two possible uses for an event follow: <egXML
+                    xmlns="http://www.tei-c.org/ns/Examples">
+                    <event type="other" when="-0304" source="#bib78-1">
+                      <desc xml:lang="en">Renamed Edessa by Seleucus I Nicator.</desc>
+                    </event>
+                    <event type="other" when="0201" source="#bib78-1">
+                      <desc xml:lang="en">Flood of the river <placeName
+                          ref="http://syriaca.org/place/191">Daiṣan</placeName> destroyed part of
+                        city.</desc>
+                    </event>
+                  </egXML> As seen in the above example, <gi>event</gi> elements used for historical
+                  events differ from those used for attestations in only a few ways. First, they do
+                  not require an <att>xml:id</att>. Second, they should not include a <gi>link</gi>
+                  element. Otherwise they are constructed in the same way, with source information
+                  following the guidelines for <ref target="#source">Inserting Citations</ref>; a
+                  child <gi>desc</gi> element containing additional markup of named entities as
+                  applicable; and attributes for dating events (@when, @from, @to, @notBefore, and
+                  @notAfter). </p>
+              </div>
+            </div>
+            <div xml:id="statusTypes">
+              <head>Status Types</head>
+              <p> The TEI Guidelines uses the <gi>state</gi> element to encode data on the status of
+                places. <title>TSG</title> uses the <gi>state</gi> element to encode two types of
+                status: religious confessions and existence. </p>
+              <div xml:id="confession">
+                <head>Confessions (<gi>state</gi>)</head>
+                <p>Some places, such as churches or monasteries, have declared religious identities.
+                  Other places, such as cities, may be home to representatives of multiple different
+                  religions. Still other places, such as rivers or mountains, have no particular
+                  confessional identity in themselves, although they may be venerated particularly
+                  by adherents to one or more religions.</p>
+                <!-- WLP: copied from v2 guidelines, unedited -->
+                <p>The presence of a confessional community in a place, or otherwise connected with
+                  a place, is recorded in a <gi>state</gi> element with <att>type</att> of
+                  "confession". Multiple confessions for a particular place, or even disjoint
+                  durations of the same confession, are indicated by multiple <gi>state</gi>
+                  elements. Confession assertions must be identifed with an <att>xml:id</att> whose
+                  value follows the pattern <code>confession\d+-\d+</code>, where the first sequence
+                  of digits is the numerical portion of the place URI, and the latter is a
+                  sequential integer to uniquely identify the <gi>state</gi> element. The particular
+                  confessional community must be identified both with a human-readable label and a
+                  machine-readable URI derived from <title>The Syriac Taxonomy</title>. The former
+                  is provided as the text contents of a child <gi>desc</gi> element, with
+                    <att>xml:lang</att> of "en". The latter must be supplied in a <att>ref</att>
+                  attribute on the <gi>state</gi> element, as seen in the following example: A
+                  human-readable description of the <!-- WLP, DAM: I think this sentence fragment should be deleted? -->
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <state type="confession" xml:id="confession78-1"
+                      ref="http://syriaca.org/taxonomy/syrian-orthodox" from="0451" to="1924"
+                      source="#bib78-1">
+                      <desc xml:lang="en">Syrian Orthodox</desc>
+                    </state>
+                  </egXML>
+                  <!-- WLP: list or link to the allowed confession values? or indicate above that the taxonomy URI must be a value from a collection or broader? -->
+                  The above example also demonstrates that confession states should be sourced
+                  according to the guidelines on <ref target="#source">Inserting Citations</ref>. As
+                  well, confessions may optionally include attributes to express temporal
+                  constraints on the assertion of the presence of a confessional community in a
+                  place. In the preceding example, the @from and @to attributes indicate that Syrian
+                  Orthodox communities were present at Edessa between 451 and 1924 CE. Temporal
+                  durations may be expressed with @from, @to, @notBefore, or @notAfter attributes.
+                  In all cases, the attribute value must be a valid ISO date of the format
+                    <code>YYYY-MM-DD</code> (with month or day optional). BCE dates should be
+                  expressed as a negative date, e.g. -0051. </p>
+              </div>
+              <div xml:id="existence">
+                <head>Existence (<gi>state</gi>)</head>
+                <p>Assertions of the existence of a place, and the duration of that existence, are
+                  made using a <gi>state</gi> element with a <att>type</att> of "existence". These
+                  elements require source information following the guidlines for <ref
+                    target="#source">Inserting Citations</ref>. At the most basic level, this
+                  element asserts that a place has existed, or continues exist. Example: <egXML
+                    xmlns="http://www.tei-c.org/ns/Examples">
+                    <state resp="http://syriaca.org" type="existence"/>
+                  </egXML> The duration of a place's existence can be qualified using the temporal
+                  attributes @from, @to <!-- WLP: A question here. In v2 we had to use a child precision element to map to/from to notBefore and notAfter since TEI didn't allow, but I think it's valid in our schema based on some testing? We do have precision elements, but is this a legacy thing that we don't want to recommend for new data?-->
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <state resp="http://syriaca.org" type="existence" from="0306" to="2013">
+                      <precision match="@from" notAfter="0306"/>
+                      <precision match="@to" notBefore="2013"/>
+                    </state>
+                  </egXML>
+                </p>
+              </div>
+            </div>
+            <!-- WLP: from v2 guidelines there's this note:
             Note: This use of the <precision> element was added to the TEI guidelines by the TEI consortium at the request of Syriaca.org for the specific use cases described above. Additional documentation can be found (as of 2018) at TEI Feature Request [#519](https://sourceforge.net/p/tei/feature-requests/519/) and [The TEI-L discussion list](https://listserv.brown.edu/archives/cgi-bin/wa?A2=tei-l;fc2bf4f.1307).
             Probably we should keep this?
             -->
-              <div xml:id="note">
-                <head>Notes (<gi>note</gi>)</head>
-                <p><title>TSG</title> employs the <gi>note</gi> element for two different purposes:
-                  deprecation of a name variant and the encoding of information that is uncertain or
-                  incorrect. </p>
-                <p>All <gi>note</gi> elements must have an <att>xml:lang</att> attribute indicating the
-                  language of the note. In most cases this will be "en" for English but other
-                  languages can be indicated as needed.</p>
+            <div xml:id="note">
+              <head>Notes (<gi>note</gi>)</head>
+              <p><title>TSG</title> employs the <gi>note</gi> element for two different purposes:
+                deprecation of a name variant and the encoding of information that is uncertain or
+                incorrect. </p>
+              <p>All <gi>note</gi> elements must have an <att>xml:lang</att> attribute indicating
+                the language of the note. In most cases this will be "en" for English but other
+                languages can be indicated as needed.</p>
 
-                <!-- WLP: add sub-sections for the note types? Or are these at the syriaca-all level? We can put them here for now, and just copy in from the v2 encoding guidelines -->
-                <!-- WLP: values allowed for place = corrigenda, deprecation, description?, disambiguation, errata, incerta, misc? ; cf. syriaca.org/documentation/schemas/syriacaPlaces.html#TEI.note -->
+              <!-- WLP: add sub-sections for the note types? Or are these at the syriaca-all level? We can put them here for now, and just copy in from the v2 encoding guidelines -->
+              <!-- WLP: values allowed for place = corrigenda, deprecation, description?, disambiguation, errata, incerta, misc? ; cf. syriaca.org/documentation/schemas/syriacaPlaces.html#TEI.note -->
 
 
-                <div xml:id="deprecation">
-                  <head>Deprecation</head>
-                  <p>Certain names in our database are patently erroneous (e.g. <foreign
-                      xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܒܘܢ</foreign> for "Mount Qāsiyūn" [place/518]
-                    instead of <foreign xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign>, based on
-                    mis-reading an Arabic letter ba for ya). We need to preserve these names in our
-                    data for historical reasons, so that the right place can come up as a search
-                    result even if someone searches on the basis of the erroneous print resource or
-                    now deprecated name, but we do not want to assert implicitly or explicitly that
-                    this is an "acceptable alternate" form of the name. In order to mark the
-                      <gi>placeName</gi> element as erroneous, we create a <gi>note</gi> element
-                    with a <att>type</att>="deprecation". The content of the <gi>note</gi> is then a detailed
-                    description why this name is considered problematic. In order to link the
-                      <gi>note</gi> to the appropriate <gi>placeName</gi>, an <att>target</att> attribute
-                    whose value is the <att>xml:id</att> values for the deprecated <gi>placeName</gi> is
-                    included in the <gi>note</gi> separated by whitespace if there are links to
-                    multiple names for the same reason in the note. TEI Guidelines do not allow
-                      <gi>note</gi> elements before <gi>desc</gi>, <gi>location</gi>,
+              <div xml:id="deprecation">
+                <head>Deprecation</head>
+                <p>Certain names in our database are patently erroneous (e.g. <foreign
+                    xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܒܘܢ</foreign> for "Mount Qāsiyūn" [place/518] instead
+                  of <foreign xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign>, based on mis-reading an
+                  Arabic letter ba for ya). We need to preserve these names in our data for
+                  historical reasons, so that the right place can come up as a search result even if
+                  someone searches on the basis of the erroneous print resource or now deprecated
+                  name, but we do not want to assert implicitly or explicitly that this is an
+                  "acceptable alternate" form of the name. In order to mark the <gi>placeName</gi>
+                  element as erroneous, we create a <gi>note</gi> element with a
+                  <att>type</att>="deprecation". The content of the <gi>note</gi> is then a detailed
+                  description why this name is considered problematic. In order to link the
+                    <gi>note</gi> to the appropriate <gi>placeName</gi>, an <att>target</att>
+                  attribute whose value is the <att>xml:id</att> values for the deprecated
+                    <gi>placeName</gi> is included in the <gi>note</gi> separated by whitespace if
+                  there are links to multiple names for the same reason in the note. TEI Guidelines
+                  do not allow <gi>note</gi> elements before <gi>desc</gi>, <gi>location</gi>,
                     <gi>event</gi>, or <gi>state</gi> elements, so the <gi>note</gi> indicating the
-                    deprecation should occur immediately before the <gi>idno</gi> section. </p>
-                  <p> Such names are visually marked in the html display of the place record, taken
-                    out of the list of names and instead listed in the Deprecations section at the
-                    bottom of the record, to warn users that these forms are problematic. </p>
-                  <p>Code Sample: <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <placeName xml:id="name496-3" xml:lang="syr-Syrj" source="#bib496-1"
-                        >ܦܰܢܺܝܗ</placeName> ... <note target="#name496-3" xml:lang="en"
-                        type="deprecation" resp="http://syriaca.org"> Dolabani or his printer
-                        dropped off the first consonant of the name. </note>
-                    </egXML>
-                  </p>
-                </div>
-                <div xml:id="certainty">
-                  <head>(Un)Certainty</head>
-                  <!-- DLS: we currently have values: corrigenda, deprecation, errata, and incerta. I recommend we only include these. The prose should include a section to describe deprecation and another to describe uncertainty. -->
-                  <p>As with the inclusion of deprecated it is sometimes necessary to report in a
-                    place record information which is either known to be incorrect or which is
-                    contested. In these cases it is good to signal this information with a
-                      <gi>note</gi> element before the <gi>idno</gi> element(s). The content of the
-                      <gi>note</gi> is the description of the problematic assertion, using as
-                    non-combative a formulation as possible and avoiding naming living scholars who
-                    might be offended. The <gi>note</gi> can have <att>type</att>="incerta" if it is reporting
-                    scholarly uncertainty or disagreement about an assertion, or <att>type</att>="corrigenda"
-                    for typographical errors or other equally mechanistic problems which can be
-                    easily fixed. The <att>type</att>="errata" should only be used for <gi>note</gi> elements
-                    if there is a clear and undisputed error whose solution is not obvious. </p>
-                  <p>Consider the examples below, drawn from different places: <egXML
-                      xmlns="http://www.tei-c.org/ns/Examples">
-                      <note xml:lang="en" type="incerta" resp="http://syriaca.org"> GEDSH article
-                        identifies its river as the <placeName ref="http://syriaca.org/place/43"
-                          >Balikh</placeName>, but the identification is contested. </note>
-                    </egXML>
-                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <note xml:lang="en" type="corrigenda"> In Dolabani's translation of Barsoum's
-                        description <quote xml:lang="syr-Syrj">ܒܓܰܪܓܪܰ</quote> should read <quote
-                          xml:lang="syr-Syrj">ܒܓܰܪܓܰܪ</quote>. </note>
-                    </egXML>
-                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <note xml:lang="en" type="corrigenda" resp="http://syriaca.org"> GEDSH Map II
-                        displays the location too far to the south, east of <placeName
-                          ref="http://syriaca.org/place/91">Ḥama</placeName> rather than west of
-                          <placeName ref="http://syriaca.org/place/18">Aleppo</placeName>. </note>
-                    </egXML>
-                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <note xml:lang="en" type="corrigenda" resp="http://syriaca.org"> Moosa's
-                        English translation of Barsoum's description was incorrectly published under
-                        the headword "Samosata," while his description under the headword
-                        "Arsamosata" in fact describes the village <placeName
-                          ref="http://syriaca.org/place/442">Kaʿbiya</placeName>. </note>
-                    </egXML>
-                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                      <note xml:lang="en" type="errata" resp="http://syriaca.org"> Barsoum's
-                        description erroneously merges the information for this location with that
-                        of the other <placeName ref="http://syriaca.org/place/571">Mor
-                          Bosus</placeName>, which is located between Apamea and Ḥomṣ. </note>
-                    </egXML>
-                  </p>
-                </div>
+                  deprecation should occur immediately before the <gi>idno</gi> section. </p>
+                <p> Such names are visually marked in the html display of the place record, taken
+                  out of the list of names and instead listed in the Deprecations section at the
+                  bottom of the record, to warn users that these forms are problematic. </p>
+                <p>Code Sample: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <placeName xml:id="name496-3" xml:lang="syr-Syrj" source="#bib496-1"
+                      >ܦܰܢܺܝܗ</placeName> ... <note target="#name496-3" xml:lang="en"
+                      type="deprecation" resp="http://syriaca.org"> Dolabani or his printer dropped
+                      off the first consonant of the name. </note>
+                  </egXML>
+                </p>
               </div>
-              <div xml:id="idno">
-                <head>Identifiers (<gi>idno</gi>)</head>
-                <p>
-                  <!-- I (DLS) replaced a note below with this one. It asked about moving this section up because of the centrality
+              <div xml:id="certainty">
+                <head>(Un)Certainty</head>
+                <!-- DLS: we currently have values: corrigenda, deprecation, errata, and incerta. I recommend we only include these. The prose should include a section to describe deprecation and another to describe uncertainty. -->
+                <p>As with the inclusion of deprecated it is sometimes necessary to report in a
+                  place record information which is either known to be incorrect or which is
+                  contested. In these cases it is good to signal this information with a
+                    <gi>note</gi> element before the <gi>idno</gi> element(s). The content of the
+                    <gi>note</gi> is the description of the problematic assertion, using as
+                  non-combative a formulation as possible and avoiding naming living scholars who
+                  might be offended. The <gi>note</gi> can have <att>type</att>="incerta" if it is
+                  reporting scholarly uncertainty or disagreement about an assertion, or
+                    <att>type</att>="corrigenda" for typographical errors or other equally
+                  mechanistic problems which can be easily fixed. The <att>type</att>="errata"
+                  should only be used for <gi>note</gi> elements if there is a clear and undisputed
+                  error whose solution is not obvious. </p>
+                <p>Consider the examples below, drawn from different places: <egXML
+                    xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="incerta" resp="http://syriaca.org"> GEDSH article
+                      identifies its river as the <placeName ref="http://syriaca.org/place/43"
+                        >Balikh</placeName>, but the identification is contested. </note>
+                  </egXML>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="corrigenda"> In Dolabani's translation of Barsoum's
+                      description <quote xml:lang="syr-Syrj">ܒܓܰܪܓܪܰ</quote> should read <quote
+                        xml:lang="syr-Syrj">ܒܓܰܪܓܰܪ</quote>. </note>
+                  </egXML>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="corrigenda" resp="http://syriaca.org"> GEDSH Map II
+                      displays the location too far to the south, east of <placeName
+                        ref="http://syriaca.org/place/91">Ḥama</placeName> rather than west of
+                        <placeName ref="http://syriaca.org/place/18">Aleppo</placeName>. </note>
+                  </egXML>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="corrigenda" resp="http://syriaca.org"> Moosa's English
+                      translation of Barsoum's description was incorrectly published under the
+                      headword "Samosata," while his description under the headword "Arsamosata" in
+                      fact describes the village <placeName ref="http://syriaca.org/place/442"
+                        >Kaʿbiya</placeName>. </note>
+                  </egXML>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <note xml:lang="en" type="errata" resp="http://syriaca.org"> Barsoum's
+                      description erroneously merges the information for this location with that of
+                      the other <placeName ref="http://syriaca.org/place/571">Mor Bosus</placeName>,
+                      which is located between Apamea and Ḥomṣ. </note>
+                  </egXML>
+                </p>
+              </div>
+            </div>
+            <div xml:id="idno">
+              <head>Identifiers (<gi>idno</gi>)</head>
+              <p>
+                <!-- I (DLS) replaced a note below with this one. It asked about moving this section up because of the centrality
                   of the URI to the concept of a place. Instead I added there a reference to this section and included here a reference to that
                   section. If this is not sufficient and someone finds it preferable to move this up, we can do that. -->
-                  As discussed above in the section on the <ref target="#concept">Concept of a
-                    Place</ref>, a URIs are an important part of delineating a place. Each place
-                  record needs one or more <gi>idno</gi> elements to indicate the URIs which refer
-                  to this place. Each <gi>idno</gi> element will have a <att>type</att> attribute with value
-                  "URI", and the first should encapsulate the Syriaca.org URI for the place:
-                  http://syriaca.org/place/{\d+}. Other <gi>idno</gi> elements with <att>type</att>="URI" will
-                  encapsulate any Pleiades URI for this place as well as any Wikipedia URL(s) which
-                  refer to this place. In particular, if the same place is the topic of separate
-                  Wikipedia articles divided by time period, both or all such articles will have
-                  their URIs listed here. If desired, a link to a DBpedia resource URI can be
-                  encapsulated within an <gi>idno</gi> element of <att>type</att>="URI", but care should be
-                  exercised only to link to the DBpedia resource URI when the place is the subject
-                  of only one Wikipedia article, and when the type of place described by that
-                  article is the same as the type of place in our database (it is very common for
-                  Wikipedia articles to be about a modern country rather than a historical region,
-                  for example, or for village Wikipedia articles found in modern Turkey to be about
-                  "a district" rather than about the village itself). If there is any doubt that the
-                  DBpedia resource URI and the Syriaca.org URI are speaking of an identical place in
-                  all contexts, it is better to omit the DBpedia URI. </p>
-                <p> The URIs of Edessa (one from Syriaca.org, one from Pleiades, and two different
-                  Wikipedia articles) can be represented as follows: <!-- The original documentation lists 5 including CBSC. That is still in 78.xml but should be deprecated. I will leave it out
+                As discussed above in the section on the <ref target="#concept">Concept of a
+                  Place</ref>, a URIs are an important part of delineating a place. Each place
+                record needs one or more <gi>idno</gi> elements to indicate the URIs which refer to
+                this place. Each <gi>idno</gi> element will have a <att>type</att> attribute with
+                value "URI", and the first should encapsulate the Syriaca.org URI for the place:
+                http://syriaca.org/place/{\d+}. Other <gi>idno</gi> elements with
+                <att>type</att>="URI" will encapsulate any Pleiades URI for this place as well as
+                any Wikipedia URL(s) which refer to this place. In particular, if the same place is
+                the topic of separate Wikipedia articles divided by time period, both or all such
+                articles will have their URIs listed here. If desired, a link to a DBpedia resource
+                URI can be encapsulated within an <gi>idno</gi> element of <att>type</att>="URI",
+                but care should be exercised only to link to the DBpedia resource URI when the place
+                is the subject of only one Wikipedia article, and when the type of place described
+                by that article is the same as the type of place in our database (it is very common
+                for Wikipedia articles to be about a modern country rather than a historical region,
+                for example, or for village Wikipedia articles found in modern Turkey to be about "a
+                district" rather than about the village itself). If there is any doubt that the
+                DBpedia resource URI and the Syriaca.org URI are speaking of an identical place in
+                all contexts, it is better to omit the DBpedia URI. </p>
+              <p> The URIs of Edessa (one from Syriaca.org, one from Pleiades, and two different
+                Wikipedia articles) can be represented as follows: <!-- The original documentation lists 5 including CBSC. That is still in 78.xml but should be deprecated. I will leave it out
                   here because it is no longer relevant from the perspective of encoding records going forward.-->
-                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <idno type="URI">http://syriaca.org/place/78</idno>
-                    <idno type="URI">http://pleiades.stoa.org/places/658457</idno>
-                    <idno type="URI">http://syriaca.org/johnofephesus/places/78</idno>
-                    <idno type="URI">http://en.wikipedia.org/wiki/Edessa</idno>
-                    <idno type="URI">http://en.wikipedia.org/wiki/Şanlıurfa</idno>
-                  </egXML>
-                </p>
-              </div>
-              <div xml:id="bibl">
-                <head>Creating a Citation in the "Works Cited" (<gi>bibl</gi>)</head>
-                <p>Syriaca.org manages the publication information for all citations in a separate
-                  reference work, <ref target="https://syriaca.org/cbss/index.html"><title>The
-                      Comprehensive Bibliography on Syriac Studies (CBSS)</title></ref>.
-                  Accordingly, the first step in adding a citation into a record in
-                    <title>TSG</title> is to identify the corresponding entry in
-                  <title>CBSS</title>. Users can search the bibliography at <ref
-                    target="https://syriaca.org/cbss/search.html"
-                    >https://syriaca.org/cbss/search.html</ref>. Once the item to be cited is
-                  located, authors should note the URI for the bibliographic item. This URI will
-                  have the format <code>http://syriaca.org/cbss/[A-Z0-9]{8}$</code> (where
-                    <code>[A-Z0-9]{8}$</code> signifies a unique string of 8 uppercase alphanumeric
-                  characters). For example, the URI for J.B. Segal, <title>Edessa, ‘The Blessed
-                    City’</title> (Oxford: Clarendon Press, 1970) is <ref
-                    target="http://syriaca.org/cbss/FQCVBMNS"
-                      ><code>http://syriaca.org/cbss/FQCVBMNS</code></ref>. If the desired
-                  bibliographic item is not found in <title>CBSS</title>, authors should request the
-                  creation of an entry in <title>CBSS</title>. </p>
-                <p>After ascertaining the <title>CBSS</title> URI, the next step is add an entry for
-                  that item in the "Works Cited" section of the place record in <title>TSG</title>.
-                  Each bibliographic item cited should be marked up as a separate <gi>bibl</gi>
-                  element. The purpose of the <gi>bibl</gi> element is to provide three linking
-                  functions: <list>
-                    <item>to the footnote number</item>
-                    <item>to the <title>CBSS</title> URI for the cited item</item>
-                    <item>to the specific page numbers or other cited range within that item</item>
-                  </list>Here is an example of a <gi>bibl</gi> record: <egXML
-                    xmlns="http://www.tei-c.org/ns/Examples">
-                    <bibl xml:id="bib78-24">
-                      <ptr target="http://syriaca.org/bibl/FQCVBMNS"/>
-                      <citedRange unit="p">82-87</citedRange>
-                    </bibl>
-                  </egXML>
-                </p>
-                <p>In this example the <gi>bibl</gi> has a unique xml:id which is required and is
-                  used to identify the citation internally in the "Works Cited" list for the place
-                  record. The attribute value for the <att>xml:id</att> is in the format
-                    <code>bib{\d+}-{\d+}</code>, where the first number is derived from the
-                  Syriaca.org URI for the place (i.e. using the final unique numeric element in the
-                  URI) and the second number is a sequential integer representing the order of this
-                    <gi>bibl</gi> element in the series of <gi>bibl</gi> elements contained in this
-                  place record, beginning from 1. In this example, the twenty-fourth <gi>bibl</gi>
-                  element within the place record describing Edessa (URI <ref
-                    target="https://syriaca.org/place/78">https://syriaca.org/place/78</ref>) leads
-                  to the following xml:id value "bib78-24". The second numeric value (in this case
-                  "24") will also serve as the number for the footnote in the HTML view of the
-                  record.</p>
-                <p>Next the example above illustrates how the <gi>bibl</gi> also has a required
-                    <gi>ptr</gi> (pointer) element which provides the link externally to the
-                    <title>CBSS</title> URI, encoded as a <att>target</att> attribute value. In this case the
-                  URI is <code>http://syriaca.org/bibl/FQCVBMNS</code>. An automated script will use
-                  this URI link to insert the full publication information into the HTML view of the
-                    <title>TSG</title> record.</p>
-                <p>Lastly, this example above indicates a specific page range using the optional but
-                  recommended <gi>citedRange</gi> element (and its required <att>unit</att> attribute). This
-                  cited range indicates ranges specific to the citations in this place record. If a
-                  place record contains multiple citations of the same bibliographic item, the cited
-                  ranges must all be combined into a single ascending cited range (for example
-                  "82-87, 90, 95-96"). Unfortunately, it is not possible to separate out more
-                  specific citations at this time.</p>
-                <p>Allowed values for <att>unit</att> are:
-                  <!-- Dan is it possible to call this table from below?
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <idno type="URI">http://syriaca.org/place/78</idno>
+                  <idno type="URI">http://pleiades.stoa.org/places/658457</idno>
+                  <idno type="URI">http://syriaca.org/johnofephesus/places/78</idno>
+                  <idno type="URI">http://en.wikipedia.org/wiki/Edessa</idno>
+                  <idno type="URI">http://en.wikipedia.org/wiki/Şanlıurfa</idno>
+                </egXML>
+              </p>
+            </div>
+            <div xml:id="bibl">
+              <head>Creating a Citation in the "Works Cited" (<gi>bibl</gi>)</head>
+              <p>Syriaca.org manages the publication information for all citations in a separate
+                reference work, <ref target="https://syriaca.org/cbss/index.html"><title>The
+                    Comprehensive Bibliography on Syriac Studies (CBSS)</title></ref>. Accordingly,
+                the first step in adding a citation into a record in <title>TSG</title> is to
+                identify the corresponding entry in <title>CBSS</title>. Users can search the
+                bibliography at <ref target="https://syriaca.org/cbss/search.html"
+                  >https://syriaca.org/cbss/search.html</ref>. Once the item to be cited is located,
+                authors should note the URI for the bibliographic item. This URI will have the
+                format <code>http://syriaca.org/cbss/[A-Z0-9]{8}$</code> (where
+                  <code>[A-Z0-9]{8}$</code> signifies a unique string of 8 uppercase alphanumeric
+                characters). For example, the URI for J.B. Segal, <title>Edessa, ‘The Blessed
+                  City’</title> (Oxford: Clarendon Press, 1970) is <ref
+                  target="http://syriaca.org/cbss/FQCVBMNS"
+                    ><code>http://syriaca.org/cbss/FQCVBMNS</code></ref>. If the desired
+                bibliographic item is not found in <title>CBSS</title>, authors should request the
+                creation of an entry in <title>CBSS</title>. </p>
+              <p>After ascertaining the <title>CBSS</title> URI, the next step is add an entry for
+                that item in the "Works Cited" section of the place record in <title>TSG</title>.
+                Each bibliographic item cited should be marked up as a separate <gi>bibl</gi>
+                element. The purpose of the <gi>bibl</gi> element is to provide three linking
+                functions: <list>
+                  <item>to the footnote number</item>
+                  <item>to the <title>CBSS</title> URI for the cited item</item>
+                  <item>to the specific page numbers or other cited range within that item</item>
+                </list>Here is an example of a <gi>bibl</gi> record: <egXML
+                  xmlns="http://www.tei-c.org/ns/Examples">
+                  <bibl xml:id="bib78-24">
+                    <ptr target="http://syriaca.org/bibl/FQCVBMNS"/>
+                    <citedRange unit="p">82-87</citedRange>
+                  </bibl>
+                </egXML>
+              </p>
+              <p>In this example the <gi>bibl</gi> has a unique xml:id which is required and is used
+                to identify the citation internally in the "Works Cited" list for the place record.
+                The attribute value for the <att>xml:id</att> is in the format
+                  <code>bib{\d+}-{\d+}</code>, where the first number is derived from the
+                Syriaca.org URI for the place (i.e. using the final unique numeric element in the
+                URI) and the second number is a sequential integer representing the order of this
+                  <gi>bibl</gi> element in the series of <gi>bibl</gi> elements contained in this
+                place record, beginning from 1. In this example, the twenty-fourth <gi>bibl</gi>
+                element within the place record describing Edessa (URI <ref
+                  target="https://syriaca.org/place/78">https://syriaca.org/place/78</ref>) leads to
+                the following xml:id value "bib78-24". The second numeric value (in this case "24")
+                will also serve as the number for the footnote in the HTML view of the record.</p>
+              <p>Next the example above illustrates how the <gi>bibl</gi> also has a required
+                  <gi>ptr</gi> (pointer) element which provides the link externally to the
+                  <title>CBSS</title> URI, encoded as a <att>target</att> attribute value. In this
+                case the URI is <code>http://syriaca.org/bibl/FQCVBMNS</code>. An automated script
+                will use this URI link to insert the full publication information into the HTML view
+                of the <title>TSG</title> record.</p>
+              <p>Lastly, this example above indicates a specific page range using the optional but
+                recommended <gi>citedRange</gi> element (and its required <att>unit</att>
+                attribute). This cited range indicates ranges specific to the citations in this
+                place record. If a place record contains multiple citations of the same
+                bibliographic item, the cited ranges must all be combined into a single ascending
+                cited range (for example "82-87, 90, 95-96"). Unfortunately, it is not possible to
+                separate out more specific citations at this time.</p>
+              <p>Allowed values for <att>unit</att> are:
+                <!-- Dan is it possible to call this table from below?
 book
               the element identifies a book, typically a numbered portion of an ancient work
               chapter
@@ -1323,52 +1143,51 @@ book
               the element identifies a URL where information is located
               vol
               the element identifies a volume of a multi-volume work --> These
-                  values remain the same even if the cited range is plural. When multiple page
-                  numbers are cited, they should be entered in full and never be abbreviated (thus
-                  "556-558" not "556-8").</p>
-                <!-- Dan, is this right? -->
-                <p>All of these <gi>bibl</gi> elements should be grouped together as the final child
-                  elements within the <gi>place</gi> element, as in this example: <egXML
-                    xmlns="http://www.tei-c.org/ns/Examples">
-                    <place>
-                      <placeName>...</placeName>
-                      <desc>...</desc>
-                      <bibl xml:id="bib78-1">
-                        <ptr target="http://syriaca.org/cbss/C5T777C3"/>
-                        <citedRange unit="p">138-139</citedRange>
-                      </bibl>
-                      <bibl xml:id="bib78-2">
-                        <ptr target="http://syriaca.org/cbss/P8KQJ7AE"/>
-                        <citedRange unit="map">Map I B1, II B1, III</citedRange>
-                      </bibl>
-                      <bibl xml:id="bib78-3">
-                        <ptr target="http://syriaca.org/cbss/SGBVKKGH"/>
-                        <citedRange unit="p">556-558</citedRange>
-                      </bibl>
-                    </place>
-                  </egXML> Each <gi>bibl</gi> element in this "Works Cited" section should be unique
-                  in that no two <gi>bibl</gi> elements should point to the same Syriaca.org
-                    <title>CBSS</title> URI.</p>
-                <p>In as much as is feasible, the <gi>bibl</gi> elements should be ordered based on
-                  the order of occurance of citation in the XML file. Thus the first bibliographic
-                  item to be cited would occur as the first <gi>bibl</gi> and the second item to be
-                  cited would occur as the second <gi>bibl</gi>, etc. At times, however, this order
-                  will not be strictly maintained. For example, if the first item to be cited is
-                  also cited again later in document, it would remain as the first <gi>bibl</gi> and
-                  does not need to be repeated. Simiarly, if a later revision of the record
-                  introduces citations of new bibliographic items in the middle of the record,
-                  authors should add the new bibliographic items below the existing <gi>bibl</gi>
-                  elements rather than attempting to re-order or re-number the <gi>bibl</gi>
-                  elements according to occurence. <emph>Nota bene:</emph> In these cases, the
-                  auto-generated footnote numbering used on the webpages for <title>TSG</title>
-                  entries will not follow standard numeric order (e.g., a reference to footnote 7
-                  might precede the reference to footnote 6) but the citation numbers will
-                  nevertheless direct readers to the correct work cited.</p>
-              </div>
-              <div xml:id="listrelation">
-                <head>Related Entities</head>
-                <p>TBD</p>
-              </div>
+                values remain the same even if the cited range is plural. When multiple page numbers
+                are cited, they should be entered in full and never be abbreviated (thus "556-558"
+                not "556-8").</p>
+              <!-- Dan, is this right? -->
+              <p>All of these <gi>bibl</gi> elements should be grouped together as the final child
+                elements within the <gi>place</gi> element, as in this example: <egXML
+                  xmlns="http://www.tei-c.org/ns/Examples">
+                  <place>
+                    <placeName>...</placeName>
+                    <desc>...</desc>
+                    <bibl xml:id="bib78-1">
+                      <ptr target="http://syriaca.org/cbss/C5T777C3"/>
+                      <citedRange unit="p">138-139</citedRange>
+                    </bibl>
+                    <bibl xml:id="bib78-2">
+                      <ptr target="http://syriaca.org/cbss/P8KQJ7AE"/>
+                      <citedRange unit="map">Map I B1, II B1, III</citedRange>
+                    </bibl>
+                    <bibl xml:id="bib78-3">
+                      <ptr target="http://syriaca.org/cbss/SGBVKKGH"/>
+                      <citedRange unit="p">556-558</citedRange>
+                    </bibl>
+                  </place>
+                </egXML> Each <gi>bibl</gi> element in this "Works Cited" section should be unique
+                in that no two <gi>bibl</gi> elements should point to the same Syriaca.org
+                  <title>CBSS</title> URI.</p>
+              <p>In as much as is feasible, the <gi>bibl</gi> elements should be ordered based on
+                the order of occurance of citation in the XML file. Thus the first bibliographic
+                item to be cited would occur as the first <gi>bibl</gi> and the second item to be
+                cited would occur as the second <gi>bibl</gi>, etc. At times, however, this order
+                will not be strictly maintained. For example, if the first item to be cited is also
+                cited again later in document, it would remain as the first <gi>bibl</gi> and does
+                not need to be repeated. Simiarly, if a later revision of the record introduces
+                citations of new bibliographic items in the middle of the record, authors should add
+                the new bibliographic items below the existing <gi>bibl</gi> elements rather than
+                attempting to re-order or re-number the <gi>bibl</gi> elements according to
+                occurence. <emph>Nota bene:</emph> In these cases, the auto-generated footnote
+                numbering used on the webpages for <title>TSG</title> entries will not follow
+                standard numeric order (e.g., a reference to footnote 7 might precede the reference
+                to footnote 6) but the citation numbers will nevertheless direct readers to the
+                correct work cited.</p>
+            </div>
+            <div xml:id="listrelation">
+              <head>Related Entities</head>
+              <p>TBD</p>
             </div>
           </div>
         </div>
