@@ -201,7 +201,7 @@
                   existence was only in the cultural imaginary.</p> -->
           </div>
           <div xml:id="placeConcept">
-            <head>Concept of Place</head>
+            <head>The Concept of Place in <title>TSG</title></head>
             <p><title>TSG</title> is a geographical reference work published by Syriaca.org to
               identify and describe places relevant to Syriac studies. The concept of distinct place
               is the distinguishing criterion for each entry in <title>TSG</title>. Each record in
@@ -211,7 +211,7 @@
               each XML file) is to provide information which describes the place identified with
               that record.</p>
             <div xml:id="assigningURIs">
-              <head>Assigning URIs (Uniform Resource Identifiers)</head>
+              <head>Assigning Place URIs (Uniform Resource Identifiers)</head>
               <p>Each place in <title>TSG</title> is assigned a unique indentifier. Because place
                 names can be overlapping, ambiguous, or homonymous, this unique indentifier is the
                 essential element of every TSG record. Both users and the database itself rely on
@@ -257,7 +257,7 @@
             </div>
           </div>
           <div xml:id="bibliographicCitation">
-            <head>Bibliographic Citation</head>
+            <head>Bibliographic Citation Requirement</head>
             <!-- WLP: Possibly split this up? Do we need a section on 'general principles/methodology' that talks about the importance of citation for TSG and references later sections on creating bibls and using @source attributes? 
               we could also add to the methodology section the use of URIs, and reference the idno section?
               then, for elements that should be sourced, each time we can say, and you should add a source, see section x and y for how to do this (with hyperlinks)
@@ -278,7 +278,7 @@
               and <foreign>corrigenda</foreign> with regard to past scholarship are discussed below;
               see <ref target="#certainty">Certainty</ref>.</p>
             <div xml:id="purposeWorksCited">
-              <head>Purpose of "Works Cited"</head>
+              <head>Function of "Works Cited"</head>
               <p>Each <title>TSG</title> record must include a list of "Works Cited" at the end of
                 the record. This bibliographic list will be visually presented as numbered footnotes
                 on the record webpage and labelled as "Works Cited". This list is <emph>NOT</emph>
@@ -323,10 +323,9 @@
           </div>
         </div>
             <div xml:id="conventions">
-              <head>Encoding Conventions Used Across Multiple Elements</head>
-              <p>The child elements nested within <gi>place</gi> share a number of encoding
-                conventions which are described here for convenience. In general these conventions
-                apply to these elements: <gi>placeName</gi>, <gi>desc</gi>, <gi>location</gi>,
+              <head>Syriaca.org Encoding Conventions (Apply to Multiple Elements)</head>
+              <p>This section describes a number of encoding conventions which can be employed with a number of differnt elements. In general these conventions
+              are used with the following elements: <gi>placeName</gi>, <gi>desc</gi>, <gi>location</gi>,
                   <gi>event</gi>, <gi>state</gi>, <gi>note</gi>, and <gi>idno</gi>.</p>
               <div xml:id="attribution">
                 <head>Sources and Attribution of Intellectual Credit</head>
@@ -393,6 +392,13 @@
                     ascending order based on the second numeric value in the xml:id, as demonstrated
                     in the example above (-1, -2, -6, -23, etc.). </p>
                 </div>
+                <div xml:id="quote">
+                  <head>Indicating Direct Quotation</head>
+                  <p>Need prose <egXML
+                      xmlns="http://www.tei-c.org/ns/Examples">
+                      Need example
+                    </egXML></p>
+                </div>
                 <div xml:id="resp">
                   <head>Asserting Information without a Source (<att>resp</att>)</head>
                   <p>In rare cases, editors of <title>TSG</title> supply information not sourced to
@@ -413,7 +419,7 @@
                 </div>
               </div>
               <div xml:id="syriacaURIs">
-                <head>Indentification of Persons, Places, Works, and Bibliography with Syriaca.org
+                <head>Identification of Persons, Places, Works, and Bibliography with Syriaca.org
                   URIs</head>
                 <p>As discussed above in the section <ref target="#syriacaDataModel">The Seven Core
                     Entities ofthe Syriaca.org Data Model</ref>, one of the distinctive features of
@@ -484,7 +490,7 @@
                       xmlns="http://www.tei-c.org/ns/Examples">
                       <!-- need example  -->
                     </egXML>
-                  </p>
+                  </p></div>
                   <div xml:id="worktitles">
                     <head>References to Literary Works</head>
                     <!-- This section needs writing from examples -->
@@ -510,7 +516,6 @@
                   </div>
                 </div>
               </div>
-            </div>
         <div xml:id="recordStructure">
           <head>Record Structure</head>
           <p>This section presents the TEI XML elements and structures required or permitted in each
