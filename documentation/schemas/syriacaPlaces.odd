@@ -322,64 +322,6 @@
                 >http://hdl.handle.net/2333.1/69p8d8cc</ref>. </p>
           </div>
         </div>
-        <div xml:id="recordStructure">
-          <head>Record Structure</head>
-          <p>This section presents the TEI XML elements and structures required or permitted in each
-            record. For the most part, the description here follows the order in which the elements
-            will occur in the record ("document order").</p>
-          <div xml:id="rootElement">
-            <head>The TEI Root Element (<gi>TEI</gi>)</head>
-            <p>Every record begins with the <gi>TEI</gi> root element. This element contains the
-              same attribute values in every <title>TSG</title> record. These values will be
-              document elsewhere on the Syriaca.org documentation page. The <gi>TEI</gi> root
-              element must always contain the same two child elements: <gi>teiHeader</gi> and
-              <gi>text</gi>. As noted above, the main language of <title>TSG</title> is English, 
-              so the <gi>TEI</gi> root element must include an <att>xml:lang</att> attribute with a value of <q>en</q>.</p>
-          </div>
-          <div xml:id="header">
-            <head>The TEI Header (<gi>teiHeader</gi>)</head>
-            <p>The <gi>teiHeader</gi> element contains metadata about title, authorship, copyright,
-              and licensing of the data in the record. The <gi>teiHeader</gi> in <title>TSG</title>
-              records follows the universal guidelines for all Syriaca.org publications. These
-              guidelines will be documented elsewhere on the Syriaca.org documentation page.</p>
-          </div>
-          <div xml:id="place">
-            <head>Place Description (<gi>place</gi>)</head>
-            <div xml:id="xpathPlace">
-              <head>Location of the <gi>place</gi> Element in the Record</head>
-              <p>The geographic data in each <title>TSG</title> record is contained in a series of
-                nested elements expressed by following XPath
-                  <code>/TEI/text/body/listPlace/place</code>. Thus the structure of every document
-                will include the following: <egXML xmlns="http://www.tei-c.org/ns/Examples"><TEI>
-                    <teiHeader/>
-                    <text>
-                      <body>
-                        <listPlace>
-                          <place>...</place>
-                        </listPlace>
-                      </body>
-                    </text>
-                  </TEI></egXML></p>
-              <p>The <gi>listPlace</gi> element must contain a <gi>place</gi> element and may
-                contain a <gi>listRelation</gi> element. Except for information about related
-                entities, all geographic data is encoded in a single <gi>place</gi> element. This
-                  <gi>place</gi> element must have <att>type</att> and <att>ana</att> attributes.
-                The <gi>place</gi> element can contain the following elements in this order, some of
-                which are optional (indicated by *): <list><!-- WLP: I think we should use the * for required, since that is the more common convention -->
-                  <item><gi>placeName</gi> (see <ref target="#placeName">Place Names</ref>)</item>
-                  <item><gi>desc</gi> (see <ref target="#abstracts">Abstracts</ref>)</item>
-                  <item><gi>location</gi>* (see <ref target="#location">Locations</ref>)</item>
-                  <item><gi>event</gi>* (see <ref target="#eventTypes">Event Types</ref>)</item>
-                  <item><gi>state</gi>* (see <ref target="#statusTypes">Status Types</ref>)</item>
-                  <item><gi>note</gi>* (see <ref target="#note">Notes</ref>)</item>
-                  <item><gi>idno</gi> (see <ref target="#idno">Identifiers</ref>)</item>
-                  <item><gi>bibl</gi> (see <ref target="#bibl">Creating a Citation in the "Works
-                      Cited" (<gi>bibl</gi>)</ref>)</item>
-                </list>
-                <!-- WLP: TBD: Add or reference a table of the place types and their taxonomy URIs, perhaps a section on "place types"?-->
-              </p>
-            </div>
-            <!-- The sectiion below could be turned into an attributes section also with lang usage? DAM -->
             <div xml:id="conventions">
               <head>Encoding Conventions Used Across Multiple Elements</head>
               <p>The child elements nested within <gi>place</gi> share a number of encoding
@@ -569,6 +511,64 @@
                 </div>
               </div>
             </div>
+        <div xml:id="recordStructure">
+          <head>Record Structure</head>
+          <p>This section presents the TEI XML elements and structures required or permitted in each
+            record. For the most part, the description here follows the order in which the elements
+            will occur in the record ("document order").</p>
+          <div xml:id="rootElement">
+            <head>The TEI Root Element (<gi>TEI</gi>)</head>
+            <p>Every record begins with the <gi>TEI</gi> root element. This element contains the
+              same attribute values in every <title>TSG</title> record. These values will be
+              document elsewhere on the Syriaca.org documentation page. The <gi>TEI</gi> root
+              element must always contain the same two child elements: <gi>teiHeader</gi> and
+              <gi>text</gi>. As noted above, the main language of <title>TSG</title> is English, 
+              so the <gi>TEI</gi> root element must include an <att>xml:lang</att> attribute with a value of <q>en</q>.</p>
+          </div>
+          <div xml:id="header">
+            <head>The TEI Header (<gi>teiHeader</gi>)</head>
+            <p>The <gi>teiHeader</gi> element contains metadata about title, authorship, copyright,
+              and licensing of the data in the record. The <gi>teiHeader</gi> in <title>TSG</title>
+              records follows the universal guidelines for all Syriaca.org publications. These
+              guidelines will be documented elsewhere on the Syriaca.org documentation page.</p>
+          </div>
+          <div xml:id="place">
+            <head>Place Description (<gi>place</gi>)</head>
+            <div xml:id="xpathPlace">
+              <head>Location of the <gi>place</gi> Element in the Record</head>
+              <p>The geographic data in each <title>TSG</title> record is contained in a series of
+                nested elements expressed by following XPath
+                  <code>/TEI/text/body/listPlace/place</code>. Thus the structure of every document
+                will include the following: <egXML xmlns="http://www.tei-c.org/ns/Examples"><TEI>
+                    <teiHeader/>
+                    <text>
+                      <body>
+                        <listPlace>
+                          <place>...</place>
+                        </listPlace>
+                      </body>
+                    </text>
+                  </TEI></egXML></p>
+              <p>The <gi>listPlace</gi> element must contain a <gi>place</gi> element and may
+                contain a <gi>listRelation</gi> element. Except for information about related
+                entities, all geographic data is encoded in a single <gi>place</gi> element. This
+                  <gi>place</gi> element must have <att>type</att> and <att>ana</att> attributes.
+                The <gi>place</gi> element can contain the following elements in this order, some of
+                which are optional (indicated by *): <list><!-- WLP: I think we should use the * for required, since that is the more common convention -->
+                  <item><gi>placeName</gi> (see <ref target="#placeName">Place Names</ref>)</item>
+                  <item><gi>desc</gi> (see <ref target="#abstracts">Abstracts</ref>)</item>
+                  <item><gi>location</gi>* (see <ref target="#location">Locations</ref>)</item>
+                  <item><gi>event</gi>* (see <ref target="#eventTypes">Event Types</ref>)</item>
+                  <item><gi>state</gi>* (see <ref target="#statusTypes">Status Types</ref>)</item>
+                  <item><gi>note</gi>* (see <ref target="#note">Notes</ref>)</item>
+                  <item><gi>idno</gi> (see <ref target="#idno">Identifiers</ref>)</item>
+                  <item><gi>bibl</gi> (see <ref target="#bibl">Creating a Citation in the "Works
+                      Cited" (<gi>bibl</gi>)</ref>)</item>
+                </list>
+                <!-- WLP: TBD: Add or reference a table of the place types and their taxonomy URIs, perhaps a section on "place types"?-->
+              </p>
+            </div>
+            <!-- The sectiion below could be turned into an attributes section also with lang usage? DAM -->
             <div xml:id="placeName">
               <head>Place Names (<gi>placeName</gi>)</head>
               <p>Place names are essential for identifying and disambiguating individual places.
@@ -1028,7 +1028,7 @@
                   of the URI to the concept of a place. Instead I added there a reference to this section and included here a reference to that
                   section. If this is not sufficient and someone finds it preferable to move this up, we can do that. -->
                 As discussed above in the section on the <ref target="#concept">Concept of a
-                  Place</ref>, a URIs are an important part of delineating a place. Each place
+                  Place</ref>, URIs are an important part of delineating a place. Each place
                 record needs one or more <gi>idno</gi> elements to indicate the URIs which refer to
                 this place. Each <gi>idno</gi> element will have a <att>type</att> attribute with
                 value "URI", and the first should encapsulate the Syriaca.org URI for the place:
