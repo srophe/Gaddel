@@ -748,7 +748,7 @@
                 coordinates and relative locations. Locations based on geographic coordinates should
                 precede relative locations.</p>
               <div xml:id="gps">
-                <head>Geographic Cooridinates</head>
+                <head>Geographic Coordinates</head>
                 <p>Locations with geographic coordinates must include a <att>type</att> attribute
                   with a value of <quote>gps</quote>. The geographic coordinates should be recorded
                   in a child <gi>geo</gi> element. Coordinates must be formatted as latitude then
@@ -809,11 +809,11 @@
               </div>
             </div>
             <div xml:id="eventTypes">
-              <head>Event Types</head>
+              <head>Events (<gi>event</gi></head>
               <p><emph>This element is not required. A record may have any number of <gi>event</gi>
                   elements.</emph></p>
               <div xml:id="attestation">
-                <head>Attestations (<gi>event</gi>)</head>
+                <head>Attestations in Primary Sources (<gi>event</gi>)</head>
                 <p>Attestations of <ref target="#placeName">place names</ref> or the presence of
                     <ref target="#confession">confessional communities</ref> at a place that appear
                   in historical primary sources may be recorded within an <gi>event</gi> element
@@ -853,7 +853,7 @@
                   attestation is found. These attributes's values must be valid ISO dates. </p>
               </div>
               <div xml:id="event">
-                <head>Events (<gi>event</gi>)</head>
+                <head>Historical Events (<gi>event</gi>)</head>
                 <p>The <gi>event</gi> element is also used to indicate events which happened to a
                   place, such as being founded, being destroyed, or anything else. Such uses of the
                     <gi>event</gi> element must have <att>type</att> of "other", to distinguish the
@@ -879,14 +879,14 @@
               </div>
             </div>
             <div xml:id="statusTypes">
-              <head>Status Types</head>
+              <head>Historical Status (<gi>state</gi>)</head>
               <p><emph>This element is not required. A record may have any number of <gi>state</gi>
                   elements.</emph></p>
               <p> The TEI Guidelines uses the <gi>state</gi> element to encode data on the status of
                 places. <title>TSG</title> uses the <gi>state</gi> element to encode two types of
                 status: religious confessions and existence. </p>
               <div xml:id="confession">
-                <head>Confessions (<gi>state</gi>)</head>
+                <head>Confessional Presence (<gi>state</gi>)</head>
                 <p>Some places, such as churches or monasteries, have declared religious identities.
                   Other places, such as cities, may be home to representatives of multiple different
                   religions. Still other places, such as rivers or mountains, have no particular
@@ -928,7 +928,7 @@
                   e.g. -0051. </p>
               </div>
               <div xml:id="existence">
-                <head>Existence (<gi>state</gi>)</head>
+                <head>Existence and Duration (<gi>state</gi>)</head>
                 <p>Assertions of the existence of a place, and the duration of that existence, are
                   made using a <gi>state</gi> element with a <att>type</att> of "existence". These
                   elements require source information following the guidlines for <ref
@@ -952,7 +952,7 @@
             Probably we should keep this?
             -->
             <div xml:id="note">
-              <head>Notes (<gi>note</gi>)</head>
+              <head>Scholarly Annotation (<gi>note</gi>)</head>
               <p><emph>This element is not required. A record may have any number of <gi>note</gi>
                   elements.</emph></p>
               <p><title>TSG</title> employs the <gi>note</gi> element for two different purposes:
@@ -967,7 +967,7 @@
 
 
               <div xml:id="deprecation">
-                <head>Deprecation</head>
+                <head>Deprecated Names</head>
                 <p>Certain names in our database are patently erroneous (e.g. <foreign
                     xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܒܘܢ</foreign> for "Mount Qāsiyūn" [place/518] instead
                   of <foreign xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign>, based on mis-reading an
