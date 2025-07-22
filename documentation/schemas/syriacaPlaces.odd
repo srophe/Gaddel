@@ -283,9 +283,9 @@
                 specific places falls within the scope of <ref
                   target="https://syriaca.org/cbss/index.html"><title>The Comprehensive Bibliography
                     on Syriac Studies</title></ref> rather than <title>TSG</title>).</p>
-              <p>A technical discussion of how to encode bibliographic items into the "Work Cited"
-                section is given below, see <ref target="#bibl"><q>Works Cited</q>
-                  (<gi>bibl</gi>)</ref>.</p>
+              <p>A technical discussion of how to encode bibliographic items into the <q>Works
+                  Cited</q> section is given below, see <ref target="#bibl"><q>Works Cited</q>
+                    (<gi>bibl</gi>)</ref>.</p>
             </div>
           </div>
           <div xml:id="TEIcustomization">
@@ -317,11 +317,12 @@
           </div>
         </div>
         <div xml:id="conventions">
-          <head>Syriaca.org Encoding Conventions (Apply to Multiple Elements)</head>
+          <head>Syriaca.org Encoding Conventions (Applies to Multiple Elements)</head>
           <p>This section describes a number of encoding conventions which can be employed with a
-            number of differnt elements. In general these conventions are used with the following
-            elements: <gi>placeName</gi>, <gi>desc</gi>, <gi>location</gi>, <gi>event</gi>,
-              <gi>state</gi>, <gi>note</gi>, and <gi>idno</gi>.</p>
+            number of different elements. In particular these conventions are used with the
+            following elements: <gi>placeName</gi>, <gi>desc</gi>, <gi>location</gi>,
+            <gi>event</gi>, <gi>state</gi>, <gi>note</gi>, and <gi>idno</gi>.</p>
+          <!-- DLS is this accurate above? -->
           <div xml:id="attribution">
             <head>Sources and Attribution of Intellectual Credit</head>
             <p>When encoding child elements nested within <gi>place</gi>, <title>TSG</title> records
