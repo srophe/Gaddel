@@ -323,6 +323,7 @@
             following elements: <gi>placeName</gi>, <gi>desc</gi>, <gi>location</gi>,
             <gi>event</gi>, <gi>state</gi>, <gi>note</gi>, and <gi>idno</gi>.</p>
           <!-- DLS is this accurate above? DAM -->
+          <!-- WLP, we probably should add information here about language tags and about dates, what do you think? DAM -->
           <div xml:id="attribution">
             <head>Sources and Attribution of Intellectual Credit</head>
             <p>When encoding child elements nested within <gi>place</gi>, <title>TSG</title> records
@@ -641,22 +642,20 @@
               <p>This <gi>place</gi> element must have <att>type</att> and <att>ana</att>
                 attributes.</p>
               <p>The <gi>place</gi> element can contain the following elements in this order, some
-                of which are optional (indicated by *): <list>
-                  <!-- WLP: I think we should use the * for required, since that is the more common convention -->
-                  <item><gi>placeName</gi> (see <ref target="#placeName">Place Names</ref>)</item>
-                  <item><gi>desc</gi> (see <ref target="#abstracts">Abstracts</ref>)</item>
-                  <item><gi>location</gi>* (see <ref target="#location">Locations</ref>)</item>
-                  <item><gi>event</gi>* (see <ref target="#eventTypes">Event Types</ref>)</item>
-                  <item><gi>state</gi>* (see <ref target="#statusTypes">Status Types</ref>)</item>
-                  <item><gi>note</gi>* (see <ref target="#note">Notes</ref>)</item>
-                  <item><gi>idno</gi> (see <ref target="#idno">Identifiers</ref>)</item>
-                  <item><gi>bibl</gi> (see <ref target="#bibl"><q>Works Cited</q>
+                of which are required (indicated by *): <list>
+                  <item><gi>placeName</gi>* (see <ref target="#placeName">Place Names</ref>)</item>
+                  <item><gi>desc</gi>* (see <ref target="#abstracts">Abstracts</ref>)</item>
+                  <item><gi>location</gi> (see <ref target="#location">Locations</ref>)</item>
+                  <item><gi>event</gi> (see <ref target="#eventTypes">Event Types</ref>)</item>
+                  <item><gi>state</gi> (see <ref target="#statusTypes">Status Types</ref>)</item>
+                  <item><gi>note</gi> (see <ref target="#note">Notes</ref>)</item>
+                  <item><gi>idno</gi>* (see <ref target="#idno">Identifiers</ref>)</item>
+                  <item><gi>bibl</gi>* (see <ref target="#bibl"><q>Works Cited</q>
                       (<gi>bibl</gi>)</ref>)</item>
                 </list>
-                <!-- WLP: TBD: Add or reference a table of the place types and their taxonomy URIs, perhaps a section on "place types"?-->
+                <!-- WLP: TBD: Add or reference a table of the place types and their taxonomy URIs, perhaps a section on "place types" Yes, this is needed, can you do it WLP? DAM-->
               </p>
             </div>
-            <!-- The sectiion below could be turned into an attributes section also with lang usage? DAM -->
             <div xml:id="placeName">
               <head>Place Names (<gi>placeName</gi>)</head>
               <p><emph>This element is required. A record may have any number of <gi>placeName</gi>
@@ -669,9 +668,12 @@
                 be recorded for any language and must be tagged with the corresponding ISO language
                 code indicated using an <att>xml:lang</att> attribute. Each record must have at
                 least one place name in English or English transliteration indicated as the <ref
-                  target="#headword">headword</ref>.
-                <!--  If necessary, the author may craft a prose description as a place name.--></p>
-              <!-- TBD: maybe reference a standard documentation section or page for Syriaca's lang code usage? -->
+                  target="#headword">headword</ref>. If necessary, the author may craft a prose
+                description as a place name when a location does not have a more traditional name
+                (for example, <q>Villa near Sycae</q>, URI: <ref
+                  target="http://syriaca.org/place/2860"
+                  ><code>http://syriaca.org/place/2860</code></ref>, identifies a location based on
+                a prose description in a primary source.</p>
               <p>Additionally, <gi>placeName</gi> elements must have a unique <att>xml:id</att>
                 attribute of the form <code>name\d+-\d+</code>. The first digits derive from the
                 numerical portion of the Syriaca URI for the place, and the latter is a sequential
@@ -683,6 +685,7 @@
               <div xml:id="headword">
                 <head>Syriaca Headwords</head>
                 <!-- WLP: note that although the v2 guidelines said there must be an en headword, the schema only constrains for the existence of at least one name tagged as a headword-->
+                <!-- We should discuss this with DLS, DAM. -->
                 <p>At least one <gi>placeName</gi> element must be tagged as a Syriaca Headword
                   using a <att>srophe:tags</att> attribute with the value of
                     <quote>#syriaca-headword</quote>. As the headwords are used as preferred labels
@@ -887,7 +890,7 @@
               </div>
             </div>
             <div xml:id="eventTypes">
-              <head>Events (<gi>event</gi></head>
+              <head>Events (<gi>event</gi>)</head>
               <p><emph>This element is not required. A record may have any number of <gi>event</gi>
                   elements.</emph></p>
               <div xml:id="attestation">
@@ -970,7 +973,6 @@
                   religions. Still other places, such as rivers or mountains, have no particular
                   confessional identity in themselves, although they may be venerated particularly
                   by adherents to one or more religions.</p>
-                <!-- WLP: copied from v2 guidelines, unedited -->
                 <p>The presence of a confessional community in a place, or otherwise connected with
                   a place, is recorded in a <gi>state</gi> element with <att>type</att> of
                   "confession". Multiple confessions for a particular place, or even disjoint
@@ -983,16 +985,15 @@
                   machine-readable URI derived from <title>The Syriac Taxonomy</title>. The former
                   is provided as the text contents of a child <gi>desc</gi> element, with
                     <att>xml:lang</att> of "en". The latter must be supplied in a <att>ref</att>
-                  attribute on the <gi>state</gi> element, as seen in the following example: A
-                  human-readable description of the <!-- WLP, DAM: I think this sentence fragment should be deleted? -->
-                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  attribute on the <gi>state</gi> element, as seen in the following example: <egXML
+                    xmlns="http://www.tei-c.org/ns/Examples">
                     <state type="confession" xml:id="confession78-1"
                       ref="http://syriaca.org/taxonomy/syrian-orthodox" from="0451" to="1924"
                       source="#bib78-1">
                       <desc xml:lang="en">Syrian Orthodox</desc>
                     </state>
                   </egXML>
-                  <!-- WLP: list or link to the allowed confession values? or indicate above that the taxonomy URI must be a value from a collection or broader? -->
+                  <!-- WLP: list or link to the allowed confession values? or indicate above that the taxonomy URI must be a value from a collection or broader? DAM: Yes please do.-->
                   The above example also demonstrates that confession states should be sourced
                   according to the guidelines on <ref target="#source">Inserting Citations</ref>. As
                   well, confessions may optionally include attributes to express temporal
@@ -1015,7 +1016,7 @@
                     xmlns="http://www.tei-c.org/ns/Examples">
                     <state resp="http://syriaca.org" type="existence"/>
                   </egXML> The duration of a place's existence can be qualified using the temporal
-                  attributes @from, @to <!-- WLP: A question here. In v2 we had to use a child precision element to map to/from to notBefore and notAfter since TEI didn't allow, but I think it's valid in our schema based on some testing? We do have precision elements, but is this a legacy thing that we don't want to recommend for new data?-->
+                  attributes @from, @to <!-- WLP: A question here. In v2 we had to use a child precision element to map to/from to notBefore and notAfter since TEI didn't allow, but I think it's valid in our schema based on some testing? We do have precision elements, but is this a legacy thing that we don't want to recommend for new data? DAM: Did you settle this with DLS?-->
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
                     <state resp="http://syriaca.org" type="existence" from="0306" to="2013">
                       <precision match="@from" notAfter="0306"/>
@@ -1023,12 +1024,15 @@
                     </state>
                   </egXML>
                 </p>
+                <p>Technical Note: This use of the <gi>precision</gi> element was added to the TEI
+                  guidelines by the TEI consortium at the request of Syriaca.org for the specific
+                  use cases described above. Additional documentation can be found (as of 2018) at
+                    <ref target="https://sourceforge.net/p/tei/feature-requests/519/">TEI Feature
+                    Request [#519]</ref> and <ref
+                    target="https://listserv.brown.edu/archives/cgi-bin/wa?A2=tei-l;fc2bf4f.1307"
+                    >The TEI Discussion List</ref>. </p>
               </div>
             </div>
-            <!-- WLP: from v2 guidelines there's this note:
-            Note: This use of the <precision> element was added to the TEI guidelines by the TEI consortium at the request of Syriaca.org for the specific use cases described above. Additional documentation can be found (as of 2018) at TEI Feature Request [#519](https://sourceforge.net/p/tei/feature-requests/519/) and [The TEI-L discussion list](https://listserv.brown.edu/archives/cgi-bin/wa?A2=tei-l;fc2bf4f.1307).
-            Probably we should keep this?
-            -->
             <div xml:id="note">
               <head>Scholarly Annotation (<gi>note</gi>)</head>
               <p><emph>This element is not required. A record may have any number of <gi>note</gi>
@@ -1039,24 +1043,23 @@
               <p>All <gi>note</gi> elements must have an <att>xml:lang</att> attribute indicating
                 the language of the note. In most cases this will be "en" for English but other
                 languages can be indicated as needed.</p>
-
               <!-- WLP: add sub-sections for the note types? Or are these at the syriaca-all level? We can put them here for now, and just copy in from the v2 encoding guidelines -->
               <!-- WLP: values allowed for place = corrigenda, deprecation, description?, disambiguation, errata, incerta, misc? ; cf. syriaca.org/documentation/schemas/syriacaPlaces.html#TEI.note -->
-
-
               <div xml:id="deprecation">
-                <head>Deprecated Names</head>
-                <p>Certain names in our database are patently erroneous (e.g. <foreign
-                    xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܒܘܢ</foreign> for "Mount Qāsiyūn" [place/518] instead
-                  of <foreign xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign>, based on mis-reading an
-                  Arabic letter ba for ya). We need to preserve these names in our data for
-                  historical reasons, so that the right place can come up as a search result even if
-                  someone searches on the basis of the erroneous print resource or now deprecated
-                  name, but we do not want to assert implicitly or explicitly that this is an
+                <head>Deprecated Names (<gi>note</gi>)</head>
+                <p>Certain names reported in our database are patently erroneous (e.g. <foreign
+                  xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܒܘܢ</foreign> for <q>Mount Qāsiyūn</q>, URI: <ref
+                    target="http://syriaca.org/place/518"
+                    ><code>http://syriaca.org/place/518</code></ref>, instead
+                  of <foreign xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign> (in this case the error is based on the translator mis-reading an
+                  Arabic letter ba for ya). We need to preserve these erroneous names in our data for
+                  historical reasons, so that the right place can be found as a search result even if
+                  someone searches on the basis of an erroneous print resource or now deprecated
+                  name. Nevertheless, the editors do not wish to assert implicitly or explicitly that this is an
                   "acceptable alternate" form of the name. In order to mark the <gi>placeName</gi>
                   element as erroneous, we create a <gi>note</gi> element with a
-                  <att>type</att>="deprecation". The content of the <gi>note</gi> is then a detailed
-                  description why this name is considered problematic. In order to link the
+                  <att>type</att>=<q>deprecation</q>. The content of the <gi>note</gi> is then a detailed
+                  explanation of why this name is considered problematic. In order to link the
                     <gi>note</gi> to the appropriate <gi>placeName</gi>, an <att>target</att>
                   attribute whose value is the <att>xml:id</att> values for the deprecated
                     <gi>placeName</gi> is included in the <gi>note</gi> separated by whitespace if
@@ -1067,7 +1070,7 @@
                 <p> Such names are visually marked in the html display of the place record, taken
                   out of the list of names and instead listed in the Deprecations section at the
                   bottom of the record, to warn users that these forms are problematic. </p>
-                <p>Code Sample: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <p>Example: <egXML xmlns="http://www.tei-c.org/ns/Examples">
                     <placeName xml:id="name496-3" xml:lang="syr-Syrj" source="#bib496-1"
                       >ܦܰܢܺܝܗ</placeName> ... <note target="#name496-3" xml:lang="en"
                       type="deprecation" resp="http://syriaca.org"> Dolabani or his printer dropped
@@ -1075,8 +1078,8 @@
                   </egXML>
                 </p>
               </div>
-              <div xml:id="certainty">
-                <head>(Un)Certainty</head>
+              <div xml:id="disputanda">
+                <head>Disputanda (<gi>note</gi>)</head>
                 <!-- DLS: we currently have values: corrigenda, deprecation, errata, and incerta. I recommend we only include these. The prose should include a section to describe deprecation and another to describe uncertainty. -->
                 <p>As with the inclusion of deprecated it is sometimes necessary to report in a
                   place record information which is either known to be incorrect or which is
@@ -1301,6 +1304,8 @@ book
           </div>
           <div xml:id="relations">
             <head>Related Places</head>
+            <p><emph>This element is not required. A record may have any number of <gi>relation</gi>
+              elements.</emph></p>
             <p><title>TSG</title> uses the <gi>relation</gi> element (which appear inside a
                 <gi>listRelation</gi> element immediately following the <gi>place</gi> element). The
                 <gi>relation</gi> element must have a <att>type</att> attribute with one of the
