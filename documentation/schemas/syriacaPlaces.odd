@@ -393,9 +393,31 @@
               </p>
             </div>
             <div xml:id="quote">
-              <head>Indicating Direct Quotation</head>
-              <p>Need prose <egXML xmlns="http://www.tei-c.org/ns/Examples"> Need example
-                </egXML></p>
+              <head>Indicating Direct Quotations</head>
+              <p>Direct quotations are indicated in <title>TSG</title> according to two different
+                methods: transcription using <gi>placeName</gi> and quotation using
+                <gi>quote</gi>.</p>
+              <div>
+                <head>Transcribing Place Names (<gi>placeName</gi>)</head>
+                <p>Transcriptions of name variants should be collected and encoded in
+                    <gi>placeName</gi> elements as a direct child of the <gi>place</gi> element.
+                  These <gi>placeName</gi> elements must include a citation (using
+                  <att>source</att>) and their contents are be defintion interpreted to be verbatim
+                  quotations, with no further markup needed. See the discussion above concerning
+                    <ref target="#source">Inserting Bibliographic Citations
+                  (<att>source</att></ref>.</p>
+              </div>
+              <div>
+                <head>Reporting Direct Quotations (<gi>quote</gi>)</head>
+                <p>In all other instances, direct quotations should be encoded by use of the
+                    <gi>quote</gi> element. The opening and closing of the <gi>quote</gi> element
+                  should mark the start and conclusion of the quotation. There is no need to use
+                  quotation marks in addition to the <gi>quote</gi> element. Quotation marks will be
+                  auto-generated and added to the HTML view of the record. All <gi>quote</gi>
+                  elements must include a citation (using <att>source</att>) following the method
+                  described above concerning <ref target="#source">Inserting Bibliographic Citations
+                      (<att>source</att></ref>.</p>
+              </div>
             </div>
             <div xml:id="resp">
               <head>Asserting Information without a Source (<att>resp</att>)</head>
