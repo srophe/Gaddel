@@ -1048,25 +1048,26 @@
               <div xml:id="deprecation">
                 <head>Deprecated Names (<gi>note</gi>)</head>
                 <p>Certain names reported in our database are patently erroneous (e.g. <foreign
-                  xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܒܘܢ</foreign> for <q>Mount Qāsiyūn</q>, URI: <ref
+                    xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܒܘܢ</foreign> for <q>Mount Qāsiyūn</q>, URI: <ref
                     target="http://syriaca.org/place/518"
-                    ><code>http://syriaca.org/place/518</code></ref>, instead
-                  of <foreign xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign> (in this case the error is based on the translator mis-reading an
-                  Arabic letter ba for ya). We need to preserve these erroneous names in our data for
-                  historical reasons, so that the right place can be found as a search result even if
-                  someone searches on the basis of an erroneous print resource or now deprecated
-                  name. Nevertheless, the editors do not wish to assert implicitly or explicitly that this is an
-                  "acceptable alternate" form of the name. In order to mark the <gi>placeName</gi>
-                  element as erroneous, we create a <gi>note</gi> element with a
-                  <att>type</att>=<q>deprecation</q>. The content of the <gi>note</gi> is then a detailed
-                  explanation of why this name is considered problematic. In order to link the
-                    <gi>note</gi> to the appropriate <gi>placeName</gi>, an <att>target</att>
-                  attribute whose value is the <att>xml:id</att> values for the deprecated
-                    <gi>placeName</gi> is included in the <gi>note</gi> separated by whitespace if
-                  there are links to multiple names for the same reason in the note. TEI Guidelines
-                  do not allow <gi>note</gi> elements before <gi>desc</gi>, <gi>location</gi>,
-                    <gi>event</gi>, or <gi>state</gi> elements, so the <gi>note</gi> indicating the
-                  deprecation should occur immediately before the <gi>idno</gi> section. </p>
+                    ><code>http://syriaca.org/place/518</code></ref>, instead of <foreign
+                    xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign> (in this case the error is based on the
+                  translator mis-reading an Arabic letter ba for ya). We need to preserve these
+                  erroneous names in our data for historical reasons, so that the right place can be
+                  found as a search result even if someone searches on the basis of an erroneous
+                  print resource or now deprecated name. Nevertheless, the editors do not wish to
+                  assert implicitly or explicitly that this is an "acceptable alternate" form of the
+                  name. In order to mark the <gi>placeName</gi> element as erroneous, we create a
+                    <gi>note</gi> element with a <att>type</att>=<q>deprecation</q>. The content of
+                  the <gi>note</gi> is then a detailed explanation of why this name is considered
+                  problematic. In order to link the <gi>note</gi> to the appropriate
+                    <gi>placeName</gi>, an <att>target</att> attribute whose value is the
+                    <att>xml:id</att> values for the deprecated <gi>placeName</gi> is included in
+                  the <gi>note</gi> separated by whitespace if there are links to multiple names for
+                  the same reason in the note. TEI Guidelines do not allow <gi>note</gi> elements
+                  before <gi>desc</gi>, <gi>location</gi>, <gi>event</gi>, or <gi>state</gi>
+                  elements, so the <gi>note</gi> indicating the deprecation should occur immediately
+                  before the <gi>idno</gi> section. </p>
                 <p> Such names are visually marked in the html display of the place record, taken
                   out of the list of names and instead listed in the Deprecations section at the
                   bottom of the record, to warn users that these forms are problematic. </p>
@@ -1083,16 +1084,16 @@
                 <!-- DLS: we currently have values: corrigenda, deprecation, errata, and incerta. I recommend we only include these. The prose should include a section to describe deprecation and another to describe uncertainty. -->
                 <p>As with the inclusion of deprecated it is sometimes necessary to report in a
                   place record information which is either known to be incorrect or which is
-                  contested. In these cases it is good to signal this information with a
-                    <gi>note</gi> element before the <gi>idno</gi> element(s). The content of the
-                    <gi>note</gi> is the description of the problematic assertion, using as
-                  non-combative a formulation as possible and avoiding naming living scholars who
-                  might be offended. The <gi>note</gi> can have <att>type</att>="incerta" if it is
-                  reporting scholarly uncertainty or disagreement about an assertion, or
-                    <att>type</att>="corrigenda" for typographical errors or other equally
-                  mechanistic problems which can be easily fixed. The <att>type</att>="errata"
-                  should only be used for <gi>note</gi> elements if there is a clear and undisputed
-                  error whose solution is not obvious. </p>
+                  contested in the scholarly literature. In these cases, editors should signal this
+                  information with a <gi>note</gi> element before the <gi>idno</gi> element(s). The
+                  content of the <gi>note</gi> is the description of the problematic assertion,
+                  using as non-combative a formulation as possible and avoiding naming living
+                  scholars to avoid multiplying scholarly contention. The <gi>note</gi> can have
+                    <att>type</att>="incerta" if it is reporting scholarly uncertainty or
+                  disagreement about an assertion, or <att>type</att>="corrigenda" for typographical
+                  errors or other equally mechanistic problems which can be easily fixed. The
+                    <att>type</att>="errata" should only be used for <gi>note</gi> elements if there
+                  is a clear and undisputed error whose solution is not obvious. </p>
                 <p>Consider the examples below, drawn from different places: <egXML
                     xmlns="http://www.tei-c.org/ns/Examples">
                     <note xml:lang="en" type="incerta" resp="http://syriaca.org"> GEDSH article
@@ -1132,11 +1133,7 @@
                   indicating a Syriaca.org URI. Records belonging to more than one Syriaca.org
                   publication, must have an <gi>idno</gi> for each publication. A record may have
                   any number of additional <gi>idno</gi> elements.</emph></p>
-              <p>
-                <!-- I (DLS) replaced a note below with this one. It asked about moving this section up because of the centrality
-                  of the URI to the concept of a place. Instead I added there a reference to this section and included here a reference to that
-                  section. If this is not sufficient and someone finds it preferable to move this up, we can do that. -->
-                As discussed above in the section on the <ref target="#concept">Concept of a
+              <p>As discussed above in the section on the <ref target="#concept">Concept of a
                   Place</ref>, URIs are an important part of delineating a place. Each place record
                 needs one or more <gi>idno</gi> elements to indicate the URIs which refer to this
                 place. Each <gi>idno</gi> element will have a <att>type</att> attribute with value
@@ -1157,7 +1154,7 @@
                 all contexts, it is better to omit the DBpedia URI. </p>
               <p> The URIs of Edessa (one from Syriaca.org, one from Pleiades, and two different
                 Wikipedia articles) can be represented as follows: <!-- The original documentation lists 5 including CBSC. That is still in 78.xml but should be deprecated. I will leave it out
-                  here because it is no longer relevant from the perspective of encoding records going forward.-->
+                  here because it is no longer relevant from the perspective of encoding records going forward. Agreed! DAM-->
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <idno type="URI">http://syriaca.org/place/78</idno>
                   <idno type="URI">http://pleiades.stoa.org/places/658457</idno>
@@ -1229,40 +1226,73 @@
                 bibliographic item, the cited ranges must all be combined into a single ascending
                 cited range (for example "82-87, 90, 95-96"). Unfortunately, it is not possible to
                 separate out more specific citations at this time.</p>
-              <p>Allowed values for <att>unit</att> are:
-                <!-- Dan is it possible to call this table from below?
-book
-              the element identifies a book, typically a numbered portion of an ancient work
-              chapter
-              the element identifies a chapter by number, title, or both
-              col
-              the element identifies a column or column range
-              entry
-              the element identifies an entry in a collection such as an reference work
-              fig
-              the element identifies a figure, i.e. a graphic, table, etc.
-              fol
-              the element identifies a folio number or folio range
-              line
-              the element contains a line number or line range
-              map
-              the element identifies a map
-              note
-              the element identifies a footnote or endnote
-              part
-              the element contains a part of a book or collection, i.e. chapter and verse of a biblical text
-              p
-              the element contains a page number or page range
-              section
-              the element identifies a section of a text
-              URL
-              the element identifies a URL where information is located
-              vol
-              the element identifies a volume of a multi-volume work --> These
-                values remain the same even if the cited range is plural. When multiple page numbers
-                are cited, they should be entered in full and never be abbreviated (thus "556-558"
-                not "556-8").</p>
-              <!-- Dan, is this right? -->
+              <p>Allowed values for <att>unit</att> are: <table rows="14" cols="2">
+                  <head>Allowed Citation Range Unit Values</head>
+                  <row role="label">
+                    <cell role="label">Unit Value</cell>
+                    <cell role="label">Description</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">book</cell>
+                    <cell role="data">a book, typically a numbered portion of an ancient work</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">chapter</cell>
+                    <cell role="data">a chapter by number, title, or both</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">col</cell>
+                    <cell role="data">a column or column range</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">entry</cell>
+                    <cell role="data">an entry in a collection such as an reference work</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">fig</cell>
+                    <cell role="data">a figure, i.e. a graphic, table, etc.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">fol</cell>
+                    <cell role="data">a folio number or folio range</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">line</cell>
+                    <cell role="data">a line number or line range</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">map</cell>
+                    <cell role="data">a map</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">note</cell>
+                    <cell role="data">a footnote or endnote</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">part</cell>
+                    <cell role="data">a part of a book or collection, i.e. chapter and verse of a
+                      biblical text</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">p</cell>
+                    <cell role="data">a page number or page range</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">section</cell>
+                    <cell role="data">a section of a text</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">URL</cell>
+                    <cell role="data">a URL where information is located</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">vol</cell>
+                    <cell role="data">a volume of a multi-volume work</cell>
+                  </row>
+                </table> These values remain the same even if the cited range is plural. When
+                multiple page numbers are cited, they should be entered in full and never be
+                abbreviated (thus "556-558" not "556-8").</p>
+              <!-- DLS, is this right? DAM -->
               <p>All of these <gi>bibl</gi> elements should be grouped together as the final child
                 elements within the <gi>place</gi> element, as in this example: <egXML
                   xmlns="http://www.tei-c.org/ns/Examples">
@@ -1305,7 +1335,7 @@ book
           <div xml:id="relations">
             <head>Related Places</head>
             <p><emph>This element is not required. A record may have any number of <gi>relation</gi>
-              elements.</emph></p>
+                elements.</emph></p>
             <p><title>TSG</title> uses the <gi>relation</gi> element (which appear inside a
                 <gi>listRelation</gi> element immediately following the <gi>place</gi> element). The
                 <gi>relation</gi> element must have a <att>type</att> attribute with one of the
