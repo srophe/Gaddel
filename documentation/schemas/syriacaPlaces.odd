@@ -1299,11 +1299,126 @@ book
                 correct work cited.</p>
             </div>
           </div>
-          <div xml:id="listrelation">
-            <head>Related Entities</head>
-            <p><emph>This element is not required. A record may have any number of additional
-                  <gi>idno</gi> elements.</emph></p>
-            <p>TBD</p>
+          <div xml:id="relations">
+            <head>Related Places</head>
+            <p><title>TSG</title> uses the <gi>relation</gi> element (which appear inside a <gi>listRelation</gi>
+              element immediately following the <gi>place</gi> element). The <gi>relation</gi> element must have a
+              <att>type</att> attribute with one of the following values: "see-also", "disambiguation", or "contained-with".
+            </p>
+            <p>Common to all <gi>relation</gi> elements is a child <gi>desc</gi> element offering a human-readable version
+            of the relationship. See below for examples.
+            </p>
+            <div xml:id="disambiguation">
+              <head>Disambiguating Places</head>
+              <p>This relationship is when an encoder things users might be confused between the identity of two places. 
+                There are four distinct kinds of scenarios for place disambiguation: places that share a name, conceptually related places,
+                co-located places, and places easily confused for one another.
+              </p>
+              <p><title>TSG</title> uses a URI from the <title>Syriac Taxonomy</title> to indicate which of these types of disambiguation
+                is appropriate. This appears at the value of a <att>ref</att> attribute. The values are as follows:
+                <table rows="5" cols="2">
+                  <head>Disambiguation Values</head>
+                  <row role="label">
+                    <cell role="label">Disambiguation</cell>
+                    <cell role="label">Value on the <att>ref</att> Attribute</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">Places that Share a Name</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/share-a-name</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">Conceptually Related Places</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/conceptually-related</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">Co-located Places</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/co-located</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">Places Easily Confused</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/not-to-be-confused-with</cell>
+                  </row>
+                </table>
+              </p>
+              <p>For all of the disambiguation relationships, the <gi>relation</gi> element requires a <att>mutual</att> attribute.
+                A <att>mutual</att> attribute takes two place URIs.
+              </p>
+              <div xml:id="share-a-name">
+                <head>Places That Share a Name</head>
+                <p>There are many places that share a name. Syriaca.org only assigns URIs to distinct entities so when there are two
+                place records it can be assumed that the editors are confident in the existence of two places. However, it is helpful 
+                for users to to find the specific place they are looking for if they have easy access to multiple records for places
+                that share a name. 
+                </p>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <relation type="disambiguation" ref="http://syriaca.org/taxonomy/share-a-name" mutual="http://syriaca.org/place/32 http://syriaca.org/place/717" resp="http://syriaca.org">
+                    <desc xml:lang="en">This place shares a name with one or more distinct places.</desc>
+                  </relation>
+                </egXML>
+              </div>
+              <div xml:id="conceptually-related">
+                <head>Conceptually Related Places</head>
+                <p><title>TSG</title> distinguishes between place types. This can get confusing when different place types are closely 
+                  related conceptually. For example, a city gives its name to a diocese even though the diocese has a very different 
+                  geographic footprint than that city. They are two entities but closely related. Our sources can also talk about regions
+                  in rather vague ways that do not correspond entirely to the geo-political entity with which it shares a name. For this reason,
+                  we distinguish between a region and a political province. See the code example below.
+                </p>
+                <p><emph>This relationship has not yet been implemented in <title>TSG</title>.</emph></p>
+              </div>
+              <div xml:id="co-located">
+                <head>Co-located Places</head>
+                <p>This relationship is used to help distinguish between two places that can be confused based on closely sharing a location.</p>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <relation type="disambiguation" ref="http://syriaca.org/taxonomy/co-located" mutual="http://syriaca.org/place/2407 http://syriaca.org/place/791 http://syriaca.org/place/207" resp="http://syriaca.org">
+                    <desc xml:lang="en">
+                      This place shares a location with one or more distinct places that should not be confused with one another.
+                    </desc>
+                  </relation>
+                </egXML>
+              </div>
+              <div xml:id="not-to-be-confused-with">
+                <head>Places Easily Confused</head>
+                <p>This relationship is perhaps the most general. It can be used to distinguish between entities that have been confused in 
+                  the scholarly literature or might be confused by users for any reason.</p>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <relation type="disambiguation" ref="http://syriaca.org/taxonomy/not-to-be-confused-with" mutual="http://syriaca.org/place/509 http://syriaca.org/place/111" resp="http://syriaca.org">
+                    <desc type="note" xml:lang="en">
+                      Not the same conceptual place as <placeName ref="http://syriaca.org/place/111">Kashkar</placeName>.
+                    </desc>
+                  </relation>
+                </egXML>
+              </div>
+            </div>
+            <div xml:id="contained-within">
+              <head>Places Contained Within Places</head>
+              <p>This relationship is used to indicate that a place is contained within another place. It can be used for a church inside a city
+                or a city inside a province.
+              </p>
+              <p>For a containment relationship, the <gi>relation</gi> element must take an <att>active</att> and a <att>passive</att>
+              attribute instead of a <att>mutual</att> attribute. The URI for the place contained is the value of the <att>active</att>
+              attribute and the URI for the place containing it is the value of the <att>passive</att> attribute.</p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <relation type="contained-within" ref="http://syriaca.org/taxonomy/broader" active="http://syriaca.org/place/758" passive="http://syriaca.org/place/90" source="#bib758-1">
+                  <desc xml:lang="en">
+                    <placeName ref="http://syriaca.org/place/90">Hakkārī region</placeName>
+                  </desc>
+                </relation>
+              </egXML>
+            </div>
+            <div xml:id="see-also">
+              <head>See Also</head>
+              <p>This relationship is the most generic way of indicating a cross-reference within <title>TSG</title>. 
+                It can be used whenever the encoder thinks users might want to look at another record because it is somehow related but 
+                that relationship cannot accurately be described using one of the relationships discussed above. 
+              </p>
+              <p>This relationship takes a <att>mutual</att> attribute with two or more place URIs as the value.</p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <relation type="see-also" ref="http://syriaca.org/taxonomy/related" mutual="http://syriaca.org/place/2615 http://syriaca.org/place/1535 http://syriaca.org/place/182 http://syriaca.org/place/58" resp="http://syriaca.org">
+                  <desc xml:lang="en">See also one or more related places.</desc>
+                </relation>
+              </egXML>
+            </div>
           </div>
         </div>
       </div>
