@@ -1166,6 +1166,7 @@
             </div>
             <div xml:id="bibl">
               <head><q>Works Cited</q> (<gi>bibl</gi>)</head>
+              <!-- WLP, should we add some subsections here? Such as break out citedRange? DAM -->
               <p><emph>This element is required. A record must have at least one <gi>bibl</gi>
                   element documenting the existence of the place as a concept. A record may have any
                   number of additional <gi>bibl</gi> elements.</emph></p>
