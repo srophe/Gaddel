@@ -318,7 +318,7 @@
         </div>
         <div xml:id="conventions">
           <head>Syriaca.org Encoding Conventions (Applies to Multiple Elements)</head>
-          <p>This section describes a number of encoding conventions which can be employed with a
+          <p>This section describes encoding conventions which can be employed with a
             number of different elements. In particular these conventions are used with the
             following elements: <gi>placeName</gi>, <gi>desc</gi>, <gi>location</gi>,
             <gi>event</gi>, <gi>state</gi>, <gi>note</gi>, and <gi>idno</gi>.</p>
@@ -330,7 +330,9 @@
               are required to cite their sources using either the <att>source</att> or
                 <att>resp</att> attributes. These attributes can be placed on any of these elements:
                 <gi>placeName</gi>, <gi>desc</gi>, <gi>location</gi>, <gi>event</gi>,
-              <gi>state</gi>, <gi>note</gi>, and <gi>idno</gi>.</p>
+              <gi>state</gi>, <gi>note</gi>, and <gi>idno</gi>.
+              <!-- This list is incorrect and a comment asked me to make another list in th next section (xml:id="source"). The one below is correct. -->
+            </p>
             <p>Whenever possible, the editorial policy of <title>TSG</title> is that all information
               in a record should have citations to bibliographic references found in the <q>Works
                 Cited</q> section of the record. Citations should be made using <att>source</att> as
