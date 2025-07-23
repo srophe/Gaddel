@@ -1295,7 +1295,8 @@
                 </table> These values remain the same even if the cited range is plural. When
                 multiple page numbers are cited, they should be entered in full and never be
                 abbreviated (thus "556-558" not "556-8").</p>
-              <!-- DLS, is this right? DAM -->
+              <!-- DLS, is this right? DAM 
+              DAM, sorry, what's above or what's below? I think the above is correct but the schema is not constraining this. -->
               <p>All of these <gi>bibl</gi> elements should be grouped together as the final child
                 elements within the <gi>place</gi> element, as in this example: <egXML
                   xmlns="http://www.tei-c.org/ns/Examples">
