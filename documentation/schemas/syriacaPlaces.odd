@@ -320,18 +320,87 @@
           <head>Syriaca.org Encoding Conventions (Applies to Multiple Elements)</head>
           <p>This section describes encoding conventions which can be employed with a
             number of different elements. In particular these conventions are used with the
-            following elements: <gi>placeName</gi>, <gi>desc</gi>, <gi>location</gi>,
-            <gi>event</gi>, <gi>state</gi>, <gi>note</gi>, and <gi>idno</gi>.</p>
-          <!-- DLS is this accurate above? DAM -->
-          <!-- WLP, we probably should add information here about language tags and about dates, what do you think? DAM -->
+            following elements, unless otherwise specified: <gi>desc</gi>, <gi>event</gi>, <gi>location</gi>, 
+            <gi>placeName</gi>, <gi>quote</gi>, <gi>relation</gi>, and <gi>state</gi>.</p>
+          <div xml:id="languageCodes">
+            <head>Recording Language Information (<att>xml:lang</att>)</head>
+            <p>The language of an element's textual contents, such as that of a name variant,
+               should be explicitly recorded using an <att>xml:lang</att> attribute. The
+              contents of this attribute should be an <ref target="https://www.iso.org/iso-639-language-code">ISO 639 Language code</ref>.
+              Syriaca.org employs the two-character ISO 639-1 codes where possible, e.g. <q>en</q>
+              rather than <q>eng</q>. If no two-character code is available, use a three-character
+              code from ISO 639-2 or ISO639-3. For textual contents in the Syriac language, Syriaca's
+              convention is to use <q>syr</q> rather than <q>syc</q> to avoid confusion over distinguishing
+              "Classical Syriac". For more on language code usage, see <ref target="https://syriaca.org/documentation/isostandards.html">Syriaca.org Documentation: Language and Script Identifiers</ref>.
+              </p>
+              <p>Explict tagging of language codes using <att>xml:lang</att> attributes is required 
+                 on the following elements: <gi>placeName</gi>, <gi>desc</gi>, and <gi>note</gi>
+                as in the following examples:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <placeName xml:lang="syr" xml:id="name78-13" source="#bib78-14">ܡܕܝܢܬܐ</placeName>
+                <desc xml:lang="en">
+                  <quote source="#bib78-1">183. Edessa</quote>
+                </desc>
+                <note xml:lang="en" type="incerta" resp="http://syriaca.org">GEDSH article identifies its river as the Balikh, but the identification is contested.</note>
+              </egXML></p>
+            <p>Finally, in some instances a <gi>desc</gi> or <gi>note</gi> element may contain content
+              in multiple languages, such as an English description that includes a Syriac place name that
+              is transcribed, rather than transliterated. In such cases, the language of the majority of the textual
+              contents should be used as the <att>xml:lang</att> of the containing element. The portions of text in 
+              a different language should be tagged with a <gi>foreign</gi> element, indicating that its contents are
+              in a <q>foreign</q> language <emph>from the perspective of the containing element</emph>. The <gi>foreign</gi>
+              element should have its own <att>xml:lang</att> attribute whose contents are the ISO 639 langauge code
+              corresponding to the language of its contents, as seen in the following example:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <desc xml:lang="en">Attestation of name <foreign xml:lang="syr">ܐܘܿܪܫܠܹܡ</foreign> in a note in <title>Jerusalem, Saint Mark's Monastery, Ms. 181 [HMML SMMJ 00181]</title>.</desc>
+              </egXML>
+              This use of the <gi>foreign</gi> element, moreover, enables the HTML view to more precisely display
+              content with bidirectional text (i.e., a mixture of right-to-left and left-to-right writing systems).
+            </p>
+          </div>
+          <div xml:id="dates">
+            <head>Recording Date Information for Occurrences and Durations</head>
+            <p>In certain cases, contributors may wish to provide information about the
+               temporal limits of a particular piece of information about a place. For example,
+               the duration of a given settlement's existence, or the date on which a historical 
+               event occurred. Date information for these cases is provided by one or more of the
+               following attributes: <att>when</att>, <att>from</att>, <att>to</att>, <att>notBefore</att>,
+               and <att>notAfter</att>. These attributes can be used to qualify a <gi>event</gi> or <gi>state</gi>
+               element with temporal information. To record a date for an event that occurred at a particular
+               point in time, use the <att>when</att> attribute:
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <event type="other" when="0201" source="#bib78-1">
+                <desc xml:lang="en">Flood of the river <placeName ref="http://syriaca.org/place/191">Daiṣan</placeName> destroyed part of city.</desc>
+              </event>
+            </egXML>
+            Durations in time, on the other hand, must use either a <att>from</att>/<att>to</att> or
+            <att>notBefore</att>/<att>notAfter</att> attribute pair depending on the certainty of the date range.
+              The use of <att>from</att>/<att>to</att> attributes represents a date range with a high degree of certainty, 
+              whereas uncertain or approximate date ranges should  be expressed with <att>notBefore</att>/<att>notAfter</att> attributes.
+              The latter is more common for historical events, so is the preferred method.
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <event type="other" notBefore="1913" notAfter="1919" source="#bib78-1">
+                <desc xml:lang="en">Massacres of some of Armenian and Syriac Christians during World War I.</desc>
+              </event>
+            </egXML>
+            </p>
+            <p>The values of these temporal attributes must be expressed as a date following the 
+              <ref target="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601 Date and Time format</ref>,
+              that is <code>YYYY-MM-DD</code>, i.e. the year followed by month followed by day. In most cases, however, only
+              the year can or should be included, e.g. <q>1014</q>. For dates prior to the year 1000, leading zeroes must be
+              supplied to ensure a four-digit year, e.g. <q>0751</q>, <q>0010</q>, <q>0004</q>. Positive year values express
+              dates in the Common Era (CE); for earlier dates, use a negative year value: <q>-0450</q> corresponds to 450 BCE
+              (this practice corresponds to the W3C standard <ref target="https://www.w3.org/TR/xmlschema-2/#dateTime"> XML Schema Part 2: Datatypes Second Edition</ref>.</p>
+            <p>For more information on the use of dates within Syriaca.org, including guidelines for approximating date ranges
+              for imprecise or uncertain ranges, see the <ref target="https://github.com/srophe/syriaca-data/wiki/Dating-Conventions">Syriaca.org Dating Conventions</ref> document.</p>
+          </div>
           <div xml:id="attribution">
             <head>Sources and Attribution of Intellectual Credit</head>
             <p>When encoding child elements nested within <gi>place</gi>, <title>TSG</title> records
               are required to cite their sources using either the <att>source</att> or
                 <att>resp</att> attributes. These attributes can be placed on any of these elements:
-                <gi>placeName</gi>, <gi>desc</gi>, <gi>location</gi>, <gi>event</gi>,
-              <gi>state</gi>, <gi>note</gi>, and <gi>idno</gi>.
-              <!-- This list is incorrect and a comment asked me to make another list in th next section (xml:id="source"). The one below is correct. -->
+              <gi>desc</gi>, <gi>event</gi>, <gi>location</gi>, 
+              <gi>placeName</gi>, <gi>quote</gi>, <gi>relation</gi>, and <gi>state</gi>.
             </p>
             <p>Whenever possible, the editorial policy of <title>TSG</title> is that all information
               in a record should have citations to bibliographic references found in the <q>Works
@@ -405,7 +474,8 @@
                   <att>source</att>) and their contents are be defintion interpreted to be verbatim
                   quotations, with no further markup needed. See the discussion above concerning
                     <ref target="#source">Inserting Bibliographic Citations
-                  (<att>source</att></ref>.</p>
+                  (<att>source</att>)</ref>. For more on supplying name variants in <title>TSG</title>
+                  entries, see below under <ref target="#placeName">Place Names (<gi>placeName</gi>)</ref></p>
               </div>
               <div>
                 <head>Reporting Direct Quotations (<gi>quote</gi>)</head>
@@ -416,14 +486,14 @@
                   auto-generated and added to the HTML view of the record. All <gi>quote</gi>
                   elements must include a citation (using <att>source</att>) following the method
                   described above concerning <ref target="#source">Inserting Bibliographic Citations
-                      (<att>source</att></ref>.</p>
+                      (<att>source</att>)</ref>.</p>
               </div>
             </div>
             <div xml:id="resp">
               <head>Asserting Information without a Source (<att>resp</att>)</head>
               <p>In rare cases, editors of <title>TSG</title> supply information not sourced to a
                 primary or secondary source. To ensure that even this information is attributable to
-                a source, elements otherwise lacking a <att>source</att> attribute should receive a
+                a source, elements that should be sourced but are otherwise lacking a <att>source</att> attribute should receive a
                   <att>resp</att> attribute with the value <q>http://syriaca.org</q> to indicate
                 that the editors of the <title>TSG</title> are responsible for the inclusion of the
                 information: <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -668,8 +738,9 @@
                 additional number of <gi>placeName</gi> elements. The text node of this element
                 should contain a name by which the place is or was known. Multiple name variants can
                 be added; each should be in a separate <gi>placeName</gi> element. Name variants may
-                be recorded for any language and must be tagged with the corresponding ISO language
-                code indicated using an <att>xml:lang</att> attribute. Each record must have at
+                be recorded for any language, and that language should be recorded as described
+                in the <ref target="#languageCodes">Recording Language Information (<att>xml:lang</att>)</ref> section. 
+                Each record must have at
                 least one place name in English or English transliteration indicated as the <ref
                   target="#headword">headword</ref>. If necessary, the author may craft a prose
                 description as a place name when a location does not have a more traditional name
@@ -730,10 +801,9 @@
                     > A city of <placeName ref="http://syriaca.org/place/124"
                       >Mesopotamia</placeName>, the capital of the ancient kingdom of <placeName
                       ref="http://syriaca.org/place/145">Osrhoene</placeName>, modern Urfa. </desc>
-                </egXML> The above example also illustrates the required <att>xml:lang</att>
-                attribute with an ISO language code
-                <!--WLP: another place to link to Syriaca's lang documentation --> used to indicate
-                the abstract's language. </p>
+                </egXML> Abstracts may be included in languages other than English, and each abstract
+                must have its language recorded as described in the <ref target="#languageCodes">Recording Language Information (<att>xml:lang</att>)</ref>
+                section, above</p>
               <p>Abstracts must also have a <att>corresp</att> attribute that contains one or more
                 space-separated URIs that correspond to the <gi>idno</gi> element in the
                   <gi>seriesStmt</gi> elements. These URIs identify <title>TSG</title> and its
@@ -801,11 +871,8 @@
               </p>
               <p>The preceding examples have shown that <gi>desc</gi> elements allow several child
                 elements useful for marking up entities that may appear in the abstract's contents.
-                The most common are the <gi>placeName</gi> and <gi>persName</gi> elements, used to
-                mark place or personal names, respectively. Both of these elements can take a
-                  <att>ref</att> attribute with a Syriaca place or person URI, as in the above
-                example of <egXML xmlns="http://www.tei-c.org/ns/Examples"><placeName
-                    ref="http://syriaca.org/place/18">Aleppo</placeName></egXML>.</p>
+                See <ref target="#syriacaURIs">Linking Persons, Places, Works, and Bibliography to Syriaca.org URIs</ref>,
+                above, for guidelines on using these elements.</p>
               <div xml:id="additionalDescs">
                 <head>Additional Descriptions (<gi>desc</gi>)</head>
                 <p>As noted above, only one abstract per language and volume of <title>TSG</title>
@@ -863,7 +930,7 @@
                 <head>Relative Locations</head>
                 <p>Some primary or secondary source descriptions locate a place relative to another
                   location. Such situations may be encoded within a <gi>location</gi> with a
-                    <att>type</att> attribute whose value is <quote>relative</quote>. An example of
+                    <att>type</att> attribute whose value is <q>relative</q>. An example of
                   a relative location follows: <egXML xmlns="http://www.tei-c.org/ns/Examples">
                     <location type="relative">
                       <desc xml:lang="en">
@@ -923,18 +990,17 @@
                       <link target="#confession78-1 #attestation78-2"/>
                     </event>
                   </egXML> As the example shows, each attestation contains a human-readable
-                  description of the historical attestation in a <gi>desc</gi> element, which must
-                  include an <att>xml:lang</att> attribute. The description may contain additional
-                  markup, such as a <gi>title</gi> element for the conceptual work that attests the
-                  information. The <gi>title</gi> element may include a <att>ref</att> attribute
-                  with the Syriaca work URI, if applicable. Additionally, the attestation must
+                  description of the historical attestation in a <gi>desc</gi> element, whose language
+                  must be indicated as described in <ref target="#languageCodes">Recording Language Information (<att>xml:lang</att>)</ref>.
+                  The description may contain additional markup, as described in 
+                  <ref target="#syriacaURIs"><ref target="#syriacaURIs">Linking Persons, Places, Works, and Bibliography to Syriaca.org URIs</ref></ref>.
+                  Additionally, the attestation must
                   include a <gi>link</gi> element with a <att>target</att> attribute containing
                   anchors connecting the attestation's <att>xml:id</att> value and the
                     <att>xml:id</att> of the attested place name or confession. Finally, the
-                  attestation's <gi>event</gi> element may include <att>notBefore</att>,
-                    <att>notAfter</att>, <att>from</att>, <att>to</att>, or <att>when</att>
-                  attributes to indicate the time period of the historical source in which the
-                  attestation is found. These attributes's values must be valid ISO dates. </p>
+                  attestation's <gi>event</gi> element may include dating information as
+                  described in the <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>
+                  section.</p>
               </div>
               <div xml:id="event">
                 <head>Historical Events (<gi>event</gi>)</head>
@@ -958,8 +1024,8 @@
                   element. Otherwise they are constructed in the same way, with source information
                   following the guidelines for <ref target="#source">Inserting Citations</ref>; a
                   child <gi>desc</gi> element containing additional markup of named entities as
-                  applicable; and attributes for dating events (<att>notBefore</att>,
-                    <att>notAfter</att>, <att>from</att>, <att>to</att>, and <att>when</att>). </p>
+                  applicable (see <ref target="#syriacaURIs">Linking Persons, Places, Works, and Bibliography to Syriaca.org URIs</ref>);
+                  and attributes for dating events (see <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>).</p>
               </div>
             </div>
             <div xml:id="statusTypes">
@@ -1001,13 +1067,10 @@
                   according to the guidelines on <ref target="#source">Inserting Citations</ref>. As
                   well, confessions may optionally include attributes to express temporal
                   constraints on the assertion of the presence of a confessional community in a
-                  place. In the preceding example, the <att>from</att> and <att>to</att> attributes
+                  place as described in <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>.
+                  In the preceding example, the <att>from</att> and <att>to</att> attributes
                   indicate that Syrian Orthodox communities were present at Edessa between 451 and
-                  1924 CE. Temporal durations may be expressed with <att>from</att>, <att>to</att>,
-                    <att>notBefore</att>, or <att>notAfter</att> attributes. In all cases, the
-                  attribute value must be a valid ISO date of the format <code>YYYY-MM-DD</code>
-                  (with month or day optional). BCE dates should be expressed as a negative date,
-                  e.g. -0051. </p>
+                  1924 CE.</p>
               </div>
               <div xml:id="existence">
                 <head>Existence and Duration (<gi>state</gi>)</head>
@@ -1019,14 +1082,15 @@
                     xmlns="http://www.tei-c.org/ns/Examples">
                     <state resp="http://syriaca.org" type="existence"/>
                   </egXML> The duration of a place's existence can be qualified using the temporal
-                  attributes @from, @to <!-- WLP: A question here. In v2 we had to use a child precision element to map to/from to notBefore and notAfter since TEI didn't allow, but I think it's valid in our schema based on some testing? We do have precision elements, but is this a legacy thing that we don't want to recommend for new data? DAM: Did you settle this with DLS?-->
+                  attributes described in the <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>
+                  section.
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
                     <state resp="http://syriaca.org" type="existence" from="0306" to="2013">
                       <precision match="@from" notAfter="0306"/>
                       <precision match="@to" notBefore="2013"/>
                     </state>
                   </egXML>
-                </p>
+                </p><!-- To add: discussion from v2 of how to use the precision element here to qualify the beginning and end of a range-->
                 <p>Technical Note: This use of the <gi>precision</gi> element was added to the TEI
                   guidelines by the TEI consortium at the request of Syriaca.org for the specific
                   use cases described above. Additional documentation can be found (as of 2018) at
@@ -1045,9 +1109,8 @@
                 incorrect. </p>
               <p>All <gi>note</gi> elements must have an <att>xml:lang</att> attribute indicating
                 the language of the note. In most cases this will be "en" for English but other
-                languages can be indicated as needed.</p>
-              <!-- WLP: add sub-sections for the note types? Or are these at the syriaca-all level? We can put them here for now, and just copy in from the v2 encoding guidelines -->
-              <!-- WLP: values allowed for place = corrigenda, deprecation, description?, disambiguation, errata, incerta, misc? ; cf. syriaca.org/documentation/schemas/syriacaPlaces.html#TEI.note -->
+                languages can be indicated as needed.
+                (for more details, see <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>).</p>
               <div xml:id="deprecation">
                 <head>Deprecated Names (<gi>note</gi>)</head>
                 <p>Certain names reported in our database are patently erroneous (e.g. <foreign
@@ -1084,7 +1147,6 @@
               </div>
               <div xml:id="disputanda">
                 <head>Disputanda (<gi>note</gi>)</head>
-                <!-- DLS: we currently have values: corrigenda, deprecation, errata, and incerta. I recommend we only include these. The prose should include a section to describe deprecation and another to describe uncertainty. -->
                 <p>As with the inclusion of deprecated it is sometimes necessary to report in a
                   place record information which is either known to be incorrect or which is
                   contested in the scholarly literature. In these cases, editors should signal this
@@ -1145,7 +1207,7 @@
                 <att>type</att>="URI" will encapsulate any Pleiades URI for this place as well as
                 any Wikipedia URL(s) which refer to this place. In particular, if the same place is
                 the topic of separate Wikipedia articles divided by time period, both or all such
-                articles will have their URIs listed here. If desired, a link to a DBpedia resource
+                articles will have their URLs listed here. If desired, a link to a DBpedia resource
                 URI can be encapsulated within an <gi>idno</gi> element of <att>type</att>="URI",
                 but care should be exercised only to link to the DBpedia resource URI when the place
                 is the subject of only one Wikipedia article, and when the type of place described
@@ -1156,8 +1218,7 @@
                 DBpedia resource URI and the Syriaca.org URI are speaking of an identical place in
                 all contexts, it is better to omit the DBpedia URI. </p>
               <p> The URIs of Edessa (one from Syriaca.org, one from Pleiades, and two different
-                Wikipedia articles) can be represented as follows: <!-- The original documentation lists 5 including CBSC. That is still in 78.xml but should be deprecated. I will leave it out
-                  here because it is no longer relevant from the perspective of encoding records going forward. Agreed! DAM-->
+                Wikipedia articles) can be represented as follows:
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <idno type="URI">http://syriaca.org/place/78</idno>
                   <idno type="URI">http://pleiades.stoa.org/places/658457</idno>
