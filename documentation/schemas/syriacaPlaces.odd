@@ -562,7 +562,8 @@
                     ><code>http://syriaca.org/cbss/63ZKDBEH</code></ref>).</p>
             </div>
             <div xml:id="allusionsBibliographic">
-              <!-- DLS, since we don't actually implement this, what should we do? Should I change a record (http://syriaca.org/place/434) to match? Will the schema allow this usage? DAM -->
+              <!-- DLS, since we don't actually implement this, what should we do? Should I change a record (http://syriaca.org/place/434) to match? Will the schema allow this usage? DAM 
+              DAM, unfortunately we have never done this and it does not validate. We only allow a tei:title element with a @ref indicating a work URI. I would need some time to make the code you supply here validate. DLS-->
               <head>Allusions to Bibliographic Items
                 (<gi>bibl</gi>/<gi>ref</gi>/<att>target</att>)</head>
               <p>References to Bibliographic Items can appear in <gi>desc</gi>, <gi>quote</gi>, or
@@ -577,7 +578,7 @@
                   <q>Works Cited</q> use case of the <gi>bibl</gi> element please see the <ref
                   target="#bibl"><q>Works Cited</q> (<gi>bibl</gi>)</ref> section below.</p>
               <p><emph>In addition: This feature is currently not implemented in TSG.</emph></p>
-              <p>When the title ofsecondary biblographic items (books, articles, etc.) are
+              <p>When the title of secondary biblographic items (books, articles, etc.) are
                 mentioned, they can be tagged with the <gi>bibl</gi> element. The bibliographic item
                 may be linked with a <title>CBSS</title> URI by using a child <gi>ref</gi> element
                 with the URI placed in a <att>target</att> attribute of the <gi>ref</gi> element.
@@ -587,7 +588,8 @@
               <p>In the following example, a <gi>note</gi> on the settlement Ayn Dābā (<ref
                   target="http://syriaca.org/place/434"
                   ><code>http://syriaca.org/place/434</code></ref>) includes a scholarly discussion
-                of a modern translation: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                of a modern translation: 
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <note xml:lang="en" type="errata" resp="http://syriaca.org"><bibl><ref
                         target="http://syriaca.org/cbss/SGBVKKGH">Dolabani's Syriac
                         translation</ref></bibl> erroneously identifies this place with <placeName
