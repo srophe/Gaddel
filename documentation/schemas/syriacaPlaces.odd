@@ -726,7 +726,142 @@
                   <item><gi>bibl</gi>* (see <ref target="#bibl"><q>Works Cited</q>
                       (<gi>bibl</gi>)</ref>)</item>
                 </list>
-                <!-- WLP: TBD: Add or reference a table of the place types and their taxonomy URIs, perhaps a section on "place types" Yes, this is needed, can you do it WLP? DAM-->
+              </p>
+            </div>
+            <div xml:id="placeType">
+              <head>Place Type Classification (<att>type</att> and <att>ana</att>)</head>
+              <p>Each place record in <title>TSG</title> must be classified according to a taxonomy of place
+                types maintained by Syriaca.org. This taxonomy derives from a subset <ref target="https://pleiades.stoa.org/vocabularies/place-types">Pleiades Vocabulary of Place Categories</ref>
+                for use in the <title>TSG</title>. The place type should be supplied in the <att>type</att> attribute of
+                the <gi>place</gi> element. As well, a Syriaca.org Taxonomy URI corresponding to the place type should
+                be included in the <att>ana</att> attribute of the <gi>place</gi> element: 
+                <egXML xmlns="http://www.tei-c.org/ns/Examples"><place type="settlement" ana="http://syriaca.org/taxonomy/settlements">...</place>
+                </egXML>
+                The following place types, their corresponding URIs, and a brief description of their scope is provided
+                in the following table:
+                <table rows="24" cols="3">
+                  <head>Place Type Values, URIs, and Descriptions</head>
+                  <row role="label">
+                    <cell role="label">Type Value (<att>type</att>)</cell>
+                    <cell role="label">URI (<att>ana</att>)</cell>
+                    <cell role="label">Description</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">building</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/buildings</cell>
+                    <cell role="data">A construction for which there is no narrower category, such as a church or mosque. Examples of this type include palaces and named city gates.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">church</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/churches</cell>
+                    <cell role="data">A building for Christian religious services. It can be a parish church, a monastic church, a cathedral, or a small chapel used only occasionally, but not a chapel that is part of a larger church.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">composite</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/composite</cell>
+                    <cell role="data">A named place concept which merges multiple distinct place types, such as a city and a diocese. More specific types are preferred.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">designated-space</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/designated-spaces</cell>
+                    <cell role="data">An area with artificial boundaries which is not necessarily built up, such as a cemetery, town square, or polo ground.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">diocese</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/dioceses</cell>
+                    <cell role="data">An ecclesiastical province governed by a bishop, archbishop, or metropolitan.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">fortification</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/fortifications</cell>
+                    <cell role="data">A military outpost such as a fort or a castle.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">island</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/islands</cell>
+                    <cell role="data">A land-mass smaller than a continent surrounded on all sides by water.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">madrasa</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/madrasas</cell>
+                    <cell role="data">A building or space designated for instruction in the Islamic sciences.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">monastery</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/monasteries</cell>
+                    <cell role="data">A whole monastic complex, including living quarters for the monks or nuns, the church(es), and potentially a refectory, library, school, or other part.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">mosque</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/mosques</cell>
+                    <cell role="data">A building or designated space used for Muslim congregational prayers. It can be part of a larger building complex.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">mountain</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/mountains</cell>
+                    <cell role="data">An elevated physical feature, from Mt. Ararat down to a prominent hill.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">natural-feature</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/natural-features</cell>
+                    <cell role="data">A natural feature for which there is no narrower category, such as a mountain or open water. Examples of this type include forests and hot springs.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">open-water</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/open-water</cell>
+                    <cell role="data">A broad category for seas, lakes, oceans, and ponds.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">parish</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/parishes</cell>
+                    <cell role="data">An ecclesiastical region below a diocese, presided over by a priest.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">province</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/provinces</cell>
+                    <cell role="data">A political unit subject to a "state" but larger than a city. States often have multiple levels of administrative units (e.g. the late Ottoman vilayets, sanjaks, kazas, and nahiyes), all of which can be indicated as a "province."</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">quarter</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/quarters</cell>
+                    <cell role="data">A subdivision of an urban center.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">region</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/regions</cell>
+                    <cell role="data">A term indicating a geographic extent larger than a city, without a corresponding politico-administrative apparatus. The size could range from a small valley to an entire continent.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">river</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/rivers</cell>
+                    <cell role="data">A stream of water of whatever size, from the smallest creek to the Amazon. Wadis are also included, even if they are not filled with water year-round.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">settlement</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/settlements</cell>
+                    <cell role="data">Any collection of civilian residences, from the smallest village to the largest metropolis.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">state</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/states</cell>
+                    <cell role="data">A sovereign government such as an empire, kingdom, caliphate, or independent emirate.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">synagogue</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/synagogues</cell>
+                    <cell role="data">A building designated for use in Jewish worship.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">temple</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/temples</cell>
+                    <cell role="data">A building designated for use in pagan worship.</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">unknown</cell>
+                    <cell role="data">http://syriaca.org/taxonomy/unknown</cell>
+                    <cell role="data">A place whose name is known, but what sort of place it represents is unknown.</cell>
+                  </row>
+                </table>
               </p>
             </div>
             <div xml:id="placeName">
@@ -1054,7 +1189,285 @@
                   machine-readable URI derived from <title>The Syriac Taxonomy</title>. The former
                   is provided as the text contents of a child <gi>desc</gi> element, with
                     <att>xml:lang</att> of "en". The latter must be supplied in a <att>ref</att>
-                  attribute on the <gi>state</gi> element, as seen in the following example: <egXML
+                  attribute on the <gi>state</gi> element. Permitted values for URIs and labels may be found in 
+                  the following table:
+                  <table rows="68" cols="2">
+                    <head>Religious Confession URIs and Labels</head>
+                    <row role="label">
+                      <cell role="label">Syriaca Taxonomy URI (<att>ref</att>)</cell>
+                      <cell role="label">Human-readable Label (<gi>desc</gi>)</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/ancient-church-of-the-east</cell>
+                      <cell role="data">Ancient Church Of The East</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/anglicans</cell>
+                      <cell role="data">Anglicans</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/arabic-christians</cell>
+                      <cell role="data">Arabic Christians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/arabic-protestants</cell>
+                      <cell role="data">Arabic Protestants</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/armenian-catholics</cell>
+                      <cell role="data">Armenian Catholics</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/armenian-chalcedonians</cell>
+                      <cell role="data">Armenian Chalcedonians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/armenian-christians</cell>
+                      <cell role="data">Armenian Christians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/armenian-orthodox</cell>
+                      <cell role="data">Armenian Orthodox</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/armenian-protestants</cell>
+                      <cell role="data">Armenian Protestants</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/assyrian-evangelical-church</cell>
+                      <cell role="data">Assyrian Evangelical Church</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/audians</cell>
+                      <cell role="data">Audians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/bardaisanites</cell>
+                      <cell role="data">Bardaisanites</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/borborites</cell>
+                      <cell role="data">Borborites</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/buddhists</cell>
+                      <cell role="data">Buddhists</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/chaldean-catholic-church</cell>
+                      <cell role="data">Chaldean Catholic Church</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/chaldean-syrian-church</cell>
+                      <cell role="data">Chaldean Syrian Church</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/christians</cell>
+                      <cell role="data">Christians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/church-of-the-east</cell>
+                      <cell role="data">Church Of The East</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/coptic-christians</cell>
+                      <cell role="data">Coptic Christians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/east-syrian-church</cell>
+                      <cell role="data">East Syrian Church</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/ebionites</cell>
+                      <cell role="data">Ebionites</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/elchasaites</cell>
+                      <cell role="data">Elchasaites</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/ethiopic-christians</cell>
+                      <cell role="data">Ethiopic Christians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/georgian-christians</cell>
+                      <cell role="data">Georgian Christians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/gnostics</cell>
+                      <cell role="data">Gnostics</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/greek-catholics</cell>
+                      <cell role="data">Greek Catholics</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/greek-christians</cell>
+                      <cell role="data">Greek Christians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/greek-orthodox</cell>
+                      <cell role="data">Greek Orthodox</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/indian-christians</cell>
+                      <cell role="data">Indian Christians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/ismaili</cell>
+                      <cell role="data">Ismaili</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/jewish-christians</cell>
+                      <cell role="data">Jewish Christians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/jews</cell>
+                      <cell role="data">Jews</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/karaites</cell>
+                      <cell role="data">Karaites</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/khariji</cell>
+                      <cell role="data">Khariji</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/latin-christians</cell>
+                      <cell role="data">Latin Christians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/malabar-catholic-church</cell>
+                      <cell role="data">Malabar Catholic Church</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/malabar-independent-syrian-church</cell>
+                      <cell role="data">Malabar Independent Syrian Church</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/malankara-catholic-church</cell>
+                      <cell role="data">Malankara Catholic Church</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/malankara-orthodox-syrian-church</cell>
+                      <cell role="data">Malankara Orthodox Syrian Church</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/malankara-syriac-orthodox-church</cell>
+                      <cell role="data">Malankara Syriac Orthodox Church</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/mandeans</cell>
+                      <cell role="data">Mandeans</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/manichaeans</cell>
+                      <cell role="data">Manichaeans</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/mar-thoma-syrian-church</cell>
+                      <cell role="data">Mar Thoma Syrian Church</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/marcionites</cell>
+                      <cell role="data">Marcionites</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/mardites</cell>
+                      <cell role="data">Mardites</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/maronites</cell>
+                      <cell role="data">Maronites</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/melkites</cell>
+                      <cell role="data">Melkites</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/muslims</cell>
+                      <cell role="data">Muslims</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/ophites</cell>
+                      <cell role="data">Ophites</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/pagans</cell>
+                      <cell role="data">Pagans</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/quqites</cell>
+                      <cell role="data">Quqites</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/rabbanite</cell>
+                      <cell role="data">Rabbanite</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/roman-catholics</cell>
+                      <cell role="data">Roman Catholics</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/rum-orthodox</cell>
+                      <cell role="data">Rum Orthodox</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/russian-orthodox</cell>
+                      <cell role="data">Russian Orthodox</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/sadducees</cell>
+                      <cell role="data">Sadducees</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/samaritans</cell>
+                      <cell role="data">Samaritans</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/shia</cell>
+                      <cell role="data">Shia</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/sunni</cell>
+                      <cell role="data">Sunni</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/syriac-christians</cell>
+                      <cell role="data">Syriac Christians</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/syrian-catholics</cell>
+                      <cell role="data">Syrian Catholics</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/syrian-orthodox</cell>
+                      <cell role="data">Syrian Orthodox</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/twelver</cell>
+                      <cell role="data">Twelver</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/west-syrian-church</cell>
+                      <cell role="data">West Syrian Church</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/yezidis</cell>
+                      <cell role="data">Yezidis</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/zaydi</cell>
+                      <cell role="data">Zaydi</cell>
+                    </row>
+                    <row role="data">
+                      <cell role="data">http://syriaca.org/taxonomy/zoroastrians</cell>
+                      <cell role="data">Zoroastrians</cell>
+                    </row>
+                  </table>
+                </p>
+                  <p>The following is an example of a properly-encoded confession state: <egXML
                     xmlns="http://www.tei-c.org/ns/Examples">
                     <state type="confession" xml:id="confession78-1"
                       ref="http://syriaca.org/taxonomy/syrian-orthodox" from="0451" to="1924"
@@ -1062,7 +1475,6 @@
                       <desc xml:lang="en">Syrian Orthodox</desc>
                     </state>
                   </egXML>
-                  <!-- WLP: list or link to the allowed confession values? or indicate above that the taxonomy URI must be a value from a collection or broader? DAM: Yes please do.-->
                   The above example also demonstrates that confession states should be sourced
                   according to the guidelines on <ref target="#source">Inserting Citations</ref>. As
                   well, confessions may optionally include attributes to express temporal
