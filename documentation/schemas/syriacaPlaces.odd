@@ -352,8 +352,8 @@
               <p>Once a <gi>bibl</gi> element for the item has been created, citations to that same
                 bibliographic item can be inserted (and repeated) almost anywhere in the place
                 record. These citations are inserted using the <att>source</att> attribute which is
-                permitted on the following elements:
-                <!-- DLS, can you insert a list of which elements take @source here please? DAM -->.
+                permitted on the following elements: <gi>desc</gi>, <gi>event</gi>, <gi>location</gi>, 
+                <gi>placeName</gi>, <gi>quote</gi>, <gi>relation</gi>, and <gi>state</gi>.
                 For example, the source of a place name would be indicated by a <att>source</att>
                 attribute of the <gi>placeName</gi> element. Here is a specific example for the
                 place of Edessa (URI <ref target="https://syriaca.org/place/78"
