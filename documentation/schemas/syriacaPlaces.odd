@@ -564,10 +564,9 @@
                     ><code>http://syriaca.org/cbss/63ZKDBEH</code></ref>).</p>
             </div>
             <div xml:id="allusionsBibliographic">
-              <!-- DLS, since we don't actually implement this, what should we do? Should I change a record (http://syriaca.org/place/434) to match? Will the schema allow this usage? DAM 
-              DAM, unfortunately we have never done this and it does not validate. We only allow a tei:title element with a @ref indicating a work URI. I would need some time to make the code you supply here validate. DLS-->
               <head>Allusions to Bibliographic Items
-                (<gi>bibl</gi>/<gi>ref</gi>/<att>target</att>)</head>
+                (<gi>bibl</gi>/<gi>ref</gi>/<att>target</att>) -- Planned Implementation</head>
+              <p><emph>The encoding feature below has not yet been implemented but is planned for the future.</emph></p>
               <p>References to Bibliographic Items can appear in <gi>desc</gi>, <gi>quote</gi>, or
                   <gi>note</gi> elements (including when these are children of <gi>location</gi>,
                   <gi>event</gi>, <gi>state</gi>). In these cases, these items should be linked to
