@@ -393,6 +393,50 @@
               (this practice corresponds to the W3C standard <ref target="https://www.w3.org/TR/xmlschema-2/#dateTime"> XML Schema Part 2: Datatypes Second Edition</ref>.</p>
             <p>For more information on the use of dates within Syriaca.org, including guidelines for approximating date ranges
               for imprecise or uncertain ranges, see the <ref target="https://github.com/srophe/syriaca-data/wiki/Dating-Conventions">Syriaca.org Dating Conventions</ref> document.</p>
+            <div xml:id="datePrecision">
+              <head>Recording Uncertainty for Event and Status Dates (<gi>precision</gi>)</head>
+              <p>When recording date ranges for <ref target="#eventTypes">Events</ref> (<gi>event</gi>) or 
+                <ref target="#statusTypes">Historical Status</ref> (<gi>state</gi>, e.g. existence dates)
+                it may be necessary to further qualify the (un)certainty of the attributes used to record the date range. 
+                For example, the Monastery of Rabban Hormizd (URI: <ref target="http://syriaca.org/place/168">http://syriaca.org/place/168</ref>), near Alqosh, 
+                was founded some time in the mid-7th century CE and abandoned in the late 18th century (before being re-founded in 1808). 
+                Simply using <att>notBefore</att> and <att>notAfter</att> is insufficient in this case, since we cannot know 
+                if the terminus dates refer to the uncertain start range or the uncertain end range.
+                The <title>TSG</title> uses the <gi>precision</gi> element to more precisely express these date ranges. 
+                For example, the Monastery of Rabban Hormizd's existence dates (prior to its re-founding in 1808), may be expressed as follows:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <state resp="http://syriaca.org" type="existence" from="0650" to="1800">
+                    <precision match="@from" notBefore="0600" notAfter="0700"/>
+                    <precision match="@to" notBefore="1773"  notAfter="1800"/>
+                  </state>
+                </egXML>
+                In the <gi>state</gi> element, the date range is expressed using <att>from</att> and <att>to</att>
+                attributes. These attributes are each qualified using the <gi>precision</gi> elements,
+                which have a <att>match</att> attribute whose value must be one of the date attributes
+                on the parent element, and must be preceded by the <code>@</code> symbol to indicate
+                that they are attributes. The <gi>precision</gi> element then qualifies of the value
+                of the targeted attribute using <att>notBefore</att> and/or <att>notAfter</att> attributes.
+                In the above example, the founding date is qualified to be <q>sometime between 600 and 700 CE</q>
+                and the abandonment date <q>sometime between 1773 and 1800 CE</q>.</p>
+                <p>The <gi>precision</gi> element can also be used, more simply, to indicate that a date
+                  attribute expresses an uncertain, rather than precise, terminus ante, or post, quem, as
+                  in the following example:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <state resp="http://syriaca.org" type="existence" from="0525">
+                      <precision match="@from" notAfter="0525"/>
+                    </state>
+                  </egXML>
+                  Here, the <gi>precision</gi> element indicates that this places existence began no later
+                  than 525 CE, but may have begun prior to this date.
+              </p>
+              <p>Technical Note: This use of the <gi>precision</gi> element was added to the TEI
+                guidelines by the TEI consortium at the request of Syriaca.org for the specific
+                use cases described above. Additional documentation can be found (as of 2018) at
+                <ref target="https://sourceforge.net/p/tei/feature-requests/519/">TEI Feature
+                  Request [#519]</ref> and <ref
+                    target="https://listserv.brown.edu/archives/cgi-bin/wa?A2=tei-l;fc2bf4f.1307"
+                    >The TEI Discussion List</ref>. </p>
+            </div>
           </div>
           <div xml:id="attribution">
             <head>Sources and Attribution of Intellectual Credit</head>
@@ -739,6 +783,13 @@
                 </egXML>
                 The following place types, their corresponding URIs, and a brief description of their scope is provided
                 in the following table:
+                <!-- WLP:
+                Missing in the list from https://syriaca.org/documentation/place-types.html were the following that are in
+                the taxonomy's place types collection:
+                 <skos:member rdf:resource="http://syriaca.org/taxonomy/hospices"/>
+	      <skos:member rdf:resource="http://syriaca.org/taxonomy/residences"/>
+                <skos:member rdf:resource="http://syriaca.org/taxonomy/tombs"/>
+                -->
                 <table rows="24" cols="3">
                   <head>Place Type Values, URIs, and Descriptions</head>
                   <row role="label">
@@ -1160,7 +1211,8 @@
                   following the guidelines for <ref target="#source">Inserting Citations</ref>; a
                   child <gi>desc</gi> element containing additional markup of named entities as
                   applicable (see <ref target="#syriacaURIs">Linking Persons, Places, Works, and Bibliography to Syriaca.org URIs</ref>);
-                  and attributes for dating events (see <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>).</p>
+                  and attributes for dating events (see <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>, as well as 
+                  <ref target="#datePrecision">Recording Uncertainty for Event and Status Dates (<gi>precision</gi>)</ref>).</p>
               </div>
             </div>
             <div xml:id="statusTypes">
@@ -1495,21 +1547,16 @@
                     <state resp="http://syriaca.org" type="existence"/>
                   </egXML> The duration of a place's existence can be qualified using the temporal
                   attributes described in the <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>
-                  section.
+                  section; as well, the (un)certainty of a temoral qualification can be expressed as described in the 
+                  <ref target="#datePrecision">Recording Uncertainty for Event and Status Dates (<gi>precision</gi>)</ref> section.
+                  An example existence state, demonstrating the above encoding options, follows:
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
                     <state resp="http://syriaca.org" type="existence" from="0306" to="2013">
                       <precision match="@from" notAfter="0306"/>
                       <precision match="@to" notBefore="2013"/>
                     </state>
                   </egXML>
-                </p><!-- To add: discussion from v2 of how to use the precision element here to qualify the beginning and end of a range-->
-                <p>Technical Note: This use of the <gi>precision</gi> element was added to the TEI
-                  guidelines by the TEI consortium at the request of Syriaca.org for the specific
-                  use cases described above. Additional documentation can be found (as of 2018) at
-                    <ref target="https://sourceforge.net/p/tei/feature-requests/519/">TEI Feature
-                    Request [#519]</ref> and <ref
-                    target="https://listserv.brown.edu/archives/cgi-bin/wa?A2=tei-l;fc2bf4f.1307"
-                    >The TEI Discussion List</ref>. </p>
+                </p>
               </div>
             </div>
             <div xml:id="note">
@@ -1522,57 +1569,63 @@
               <p>All <gi>note</gi> elements must have an <att>xml:lang</att> attribute indicating
                 the language of the note. In most cases this will be "en" for English but other
                 languages can be indicated as needed.
-                (for more details, see <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>).</p>
+                (for more details, see <ref target="#languageCodes">Recording Language Information</ref>).
+                Notes should also be sourced, as described in <ref target="#source">Inserting Bibliographic Citations</ref>, though they will most likely
+                use a <att>resp</att> attribute as they tend to be assertions made by the contributors rather than
+                cited to a particular source (cf. <ref target="#resp">Asserting Information without a Source</ref>).</p>
               <div xml:id="deprecation">
                 <head>Deprecated Names (<gi>note</gi>)</head>
                 <p>Certain names reported in our database are patently erroneous (e.g. <foreign
                     xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܒܘܢ</foreign> for <q>Mount Qāsiyūn</q>, URI: <ref
                     target="http://syriaca.org/place/518"
                     ><code>http://syriaca.org/place/518</code></ref>, instead of <foreign
-                    xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign> (in this case the error is based on the
+                    xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign>; in this case the error is based on the
                   translator mis-reading an Arabic letter ba for ya). We need to preserve these
                   erroneous names in our data for historical reasons, so that the right place can be
                   found as a search result even if someone searches on the basis of an erroneous
                   print resource or now deprecated name. Nevertheless, the editors do not wish to
                   assert implicitly or explicitly that this is an "acceptable alternate" form of the
                   name. In order to mark the <gi>placeName</gi> element as erroneous, we create a
-                    <gi>note</gi> element with a <att>type</att>=<q>deprecation</q>. The content of
-                  the <gi>note</gi> is then a detailed explanation of why this name is considered
-                  problematic. In order to link the <gi>note</gi> to the appropriate
-                    <gi>placeName</gi>, an <att>target</att> attribute whose value is the
-                    <att>xml:id</att> values for the deprecated <gi>placeName</gi> is included in
-                  the <gi>note</gi> separated by whitespace if there are links to multiple names for
-                  the same reason in the note. TEI Guidelines do not allow <gi>note</gi> elements
-                  before <gi>desc</gi>, <gi>location</gi>, <gi>event</gi>, or <gi>state</gi>
-                  elements, so the <gi>note</gi> indicating the deprecation should occur immediately
-                  before the <gi>idno</gi> section. </p>
-                <p> Such names are visually marked in the html display of the place record, taken
-                  out of the list of names and instead listed in the Deprecations section at the
-                  bottom of the record, to warn users that these forms are problematic. </p>
+                    <gi>note</gi> element with a <att>type</att> attribute whose value must be <q>deprecation</q>. The content of
+                  the <gi>note</gi> element provides a detailed explanation of why this name is considered
+                  deprecated. In order to link the <gi>note</gi> element to the corresponding
+                    <gi>placeName</gi> element containing the deprecated name variant, an <att>target</att> attribute whose value is the
+                    <att>xml:id</att> value for the deprecated <gi>placeName</gi> element is included in
+                  the <gi>note</gi> element separated by whitespace if there are links to multiple names for
+                  the same reason in the note. To preserve the valid sequence of elements in a <title>TSG</title>
+                  record, the <gi>note</gi> element indicating the deprecation should occur immediately
+                  before the <gi>idno</gi> section.</p>
+                <p>In the HTML display of the record, deprecated names are removed from
+                  the list of names and instead listed in a Deprecations section at the
+                  bottom of the record, to warn users that these forms are retained for historical
+                  and provenance reasons, but should not be used as acceptable name variants.</p>
                 <p>Example: <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <placeName xml:id="name496-3" xml:lang="syr-Syrj" source="#bib496-1"
-                      >ܦܰܢܺܝܗ</placeName> ... <note target="#name496-3" xml:lang="en"
-                      type="deprecation" resp="http://syriaca.org"> Dolabani or his printer dropped
-                      off the first consonant of the name. </note>
+                    <place type="settlement" ana="http://syriaca.org/taxonomy/settlements">
+                      <placeName xml:id="name496-3" xml:lang="syr-Syrj" source="#bib496-1">ܦܰܢܺܝܗ</placeName>
+                      ...
+                      <note target="#name496-3" xml:lang="en" type="deprecation" resp="http://syriaca.org">
+                        Dolabani or his printer dropped off the first consonant of the name.
+                      </note>
+                    </place>
                   </egXML>
                 </p>
               </div>
               <div xml:id="disputanda">
                 <head>Disputanda (<gi>note</gi>)</head>
-                <p>As with the inclusion of deprecated it is sometimes necessary to report in a
+                <p>As with the inclusion of deprecated name variants, it is sometimes necessary to report in a
                   place record information which is either known to be incorrect or which is
                   contested in the scholarly literature. In these cases, editors should signal this
                   information with a <gi>note</gi> element before the <gi>idno</gi> element(s). The
-                  content of the <gi>note</gi> is the description of the problematic assertion,
-                  using as non-combative a formulation as possible and avoiding naming living
-                  scholars to avoid multiplying scholarly contention. The <gi>note</gi> can have
-                    <att>type</att>="incerta" if it is reporting scholarly uncertainty or
-                  disagreement about an assertion, or <att>type</att>="corrigenda" for typographical
-                  errors or other equally mechanistic problems which can be easily fixed. The
-                    <att>type</att>="errata" should only be used for <gi>note</gi> elements if there
-                  is a clear and undisputed error whose solution is not obvious. </p>
-                <p>Consider the examples below, drawn from different places: <egXML
-                    xmlns="http://www.tei-c.org/ns/Examples">
+                  content of the <gi>note</gi> element should provide a description of the incorrect or disputed assertion,
+                  using as diplomatic a formulation as possible, in particular avoiding naming living
+                  scholars to curtail multiplying scholarly contention. The <gi>note</gi> element must
+                  have a <att>type</att> attribute with one of several values. The value "incerta" 
+                  should be used to report scholarly uncertainty or disagreement about an assertion. 
+                  The value "corrigenda" should be used to report typographical errors or other equally 
+                  mechanistic problems which can be easily fixed. The value "errata" should only be used for 
+                  <gi>note</gi> elements if there is a clear and undisputed error whose solution is not obvious.</p>
+                <p>The examples below, drawn from different places, illustrate these various uses of the <gi>note</gi> element:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
                     <note xml:lang="en" type="incerta" resp="http://syriaca.org"> GEDSH article
                       identifies its river as the <placeName ref="http://syriaca.org/place/43"
                         >Balikh</placeName>, but the identification is contested. </note>
@@ -1615,8 +1668,12 @@
                 needs one or more <gi>idno</gi> elements to indicate the URIs which refer to this
                 place. Each <gi>idno</gi> element will have a <att>type</att> attribute with value
                 "URI", and the first should encapsulate the Syriaca.org URI for the place:
-                http://syriaca.org/place/{\d+}. Other <gi>idno</gi> elements with
-                <att>type</att>="URI" will encapsulate any Pleiades URI for this place as well as
+                <code>http://syriaca.org/place/{\d+}</code>. If a place record belongs to other publications
+                of Syriaca.org, it may receive a distinct URI related to those publications. For example,
+                places in the <title>Gazetteer to John of Ephesus’s Ecclesiastical History</title>, a sub-volume of
+                <title>TSG</title>, should have an additional <gi>idno</gi> element with the sub-volume's URI.
+                Other <gi>idno</gi> elements with
+                a <att>type</att> attribute of "URI" will encapsulate any Pleiades URI for this place as well as
                 any Wikipedia URL(s) which refer to this place. In particular, if the same place is
                 the topic of separate Wikipedia articles divided by time period, both or all such
                 articles will have their URLs listed here. If desired, a link to a DBpedia resource
@@ -1629,8 +1686,8 @@
                 district" rather than about the village itself). If there is any doubt that the
                 DBpedia resource URI and the Syriaca.org URI are speaking of an identical place in
                 all contexts, it is better to omit the DBpedia URI. </p>
-              <p> The URIs of Edessa (one from Syriaca.org, one from Pleiades, and two different
-                Wikipedia articles) can be represented as follows:
+              <p> The URIs of Edessa (the essential one from Syriaca.org, one from the <title>Gazetteer to John of Ephesus’s Ecclesiastical History</title>, 
+                one from Pleiades, and two different Wikipedia articles) can be represented as follows:
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <idno type="URI">http://syriaca.org/place/78</idno>
                   <idno type="URI">http://pleiades.stoa.org/places/658457</idno>
@@ -1678,21 +1735,21 @@
                   </bibl>
                 </egXML>
               </p>
-              <p>In this example the <gi>bibl</gi> has a unique xml:id which is required and is used
-                to identify the citation internally in the <q>Works Cited</q> list for the place
-                record. The attribute value for the <att>xml:id</att> is in the format
+              <p>Each <gi>bibl</gi> element must have a unique xml:id, as shown in the above example.
+                This ID used is used to identify the citation internally in the <q>Works Cited</q> list for the place
+                record. The attribute value for the <att>xml:id</att> attribute is in the format
                   <code>bib{\d+}-{\d+}</code>, where the first number is derived from the
                 Syriaca.org URI for the place (i.e. using the final unique numeric element in the
                 URI) and the second number is a sequential integer representing the order of this
                   <gi>bibl</gi> element in the series of <gi>bibl</gi> elements contained in this
-                place record, beginning from 1. In this example, the twenty-fourth <gi>bibl</gi>
+                place record, beginning from 1. In the preceding example, the twenty-fourth <gi>bibl</gi>
                 element within the place record describing Edessa (URI <ref
                   target="https://syriaca.org/place/78">https://syriaca.org/place/78</ref>) leads to
                 the following xml:id value "bib78-24". The second numeric value (in this case "24")
                 will also serve as the number for the footnote in the HTML view of the record.</p>
               <p>Next the example above illustrates how the <gi>bibl</gi> also has a required
                   <gi>ptr</gi> (pointer) element which provides the link externally to the
-                  <title>CBSS</title> URI, encoded as a <att>target</att> attribute value. In this
+                  <title>CBSS</title> URI, encoded as the value of the <att>target</att> attribute. In this
                 case the URI is <code>http://syriaca.org/bibl/FQCVBMNS</code>. An automated script
                 will use this URI link to insert the full publication information into the HTML view
                 of the <title>TSG</title> record.</p>
@@ -1700,9 +1757,29 @@
                 recommended <gi>citedRange</gi> element (and its required <att>unit</att>
                 attribute). This cited range indicates ranges specific to the citations in this
                 place record. If a place record contains multiple citations of the same
-                bibliographic item, the cited ranges must all be combined into a single ascending
-                cited range (for example "82-87, 90, 95-96"). Unfortunately, it is not possible to
-                separate out more specific citations at this time.</p>
+                bibliographic item, the cited ranges may all be combined into a single ascending
+                cited range (for example "82-87, 90, 95-96"). Alternatively, should more precision of the
+               cited range be required (such as if two name variants appear on different pages of the citation),
+               multiple <gi>bibl</gi> elements linking to the same <title>CBSS</title> URI may be included in the "Works Cited" section,
+              differing only by their <gi>citedRange</gi> element, as in the below example:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <place>
+                  <placeName source="#bib108-10" xml:id="name108-1" xml:lang="en" srophe:tags="#syriaca-headword">Karka d-Beth Slokh</placeName>
+                  <placeName source="#bib108-11" xml:id="name108-2" xml:lang="en">Kirkuk</placeName>
+                  ...
+                  <bibl xml:id="bib108-10">
+                    <ptr target="http://syriaca.org/cbss/SYM5C6P5"/>
+                    <citedRange unit="p">828</citedRange>
+                  </bibl>
+                  <bibl xml:id="bib108-11">
+                    <ptr target="http://syriaca.org/cbss/SYM5C6P5"/>
+                    <citedRange unit="p">829</citedRange>
+                  </bibl>
+                </place>
+              </egXML>
+                While the above is permitted, it is preffered where possible to limit the creation of <gi>bibl</gi>
+                elements so that only one <gi>bibl</gi> per <title>CBSS</title> URI is included in a place record.
+              </p>
               <p>Allowed values for <att>unit</att> are: <table rows="14" cols="2">
                   <head>Allowed Citation Range Unit Values</head>
                   <row role="label">
@@ -1769,8 +1846,6 @@
                 </table> These values remain the same even if the cited range is plural. When
                 multiple page numbers are cited, they should be entered in full and never be
                 abbreviated (thus "556-558" not "556-8").</p>
-              <!-- DLS, is this right? DAM 
-              DAM, sorry, what's above or what's below? I think the above is correct but the schema is not constraining this. -->
               <p>All of these <gi>bibl</gi> elements should be grouped together as the final child
                 elements within the <gi>place</gi> element, as in this example: <egXML
                   xmlns="http://www.tei-c.org/ns/Examples">
@@ -1790,9 +1865,8 @@
                       <citedRange unit="p">556-558</citedRange>
                     </bibl>
                   </place>
-                </egXML> Each <gi>bibl</gi> element in this <q>Works Cited</q> section should be
-                unique in that no two <gi>bibl</gi> elements should point to the same Syriaca.org
-                  <title>CBSS</title> URI.</p>
+                </egXML>
+              </p>
               <p>In as much as is feasible, the <gi>bibl</gi> elements should be ordered based on
                 the order of occurance of citation in the XML file. Thus the first bibliographic
                 item to be cited would occur as the first <gi>bibl</gi> and the second item to be
@@ -1814,24 +1888,47 @@
             <head>Related Places</head>
             <p><emph>This element is not required. A record may have any number of <gi>relation</gi>
                 elements.</emph></p>
-            <p><title>TSG</title> uses the <gi>relation</gi> element (which appear inside a
-                <gi>listRelation</gi> element immediately following the <gi>place</gi> element). The
+            <p><title>TSG</title> uses the <gi>relation</gi> element (which must appear inside a
+                single <gi>listRelation</gi> element immediately following the <gi>place</gi> element) to 
+                record relations between a place record and other entities in the <ref target="#dataModel">Syriaca.org Knowledge Graph</ref>. The
                 <gi>relation</gi> element must have a <att>type</att> attribute with one of the
-              following values: "see-also", "disambiguation", or "contained-with". </p>
+              following values: "disambiguation", "contained-with", or "see-also". The use cases for each of these
+              values are described below. Relations must also include <att>ref</att> attributes which take a 
+              Syriaca.org Taxonomy URI defining the relationship, valid values of which are enumerated below. 
+              The relation is expressed using either <att>active</att> and <att>passive</att> attributes, or a <att>mutual</att> attribute,
+              which contain the Syriaca entity URIs for the related entities. Directed relationships, i.e. <code>Place A -> Place B</code>, are expressed
+            using the <att>active</att>/<att>passive</att> attribute pair, while bi-direction relations, i.e., <code>Place A &lt;-&gt; Place B</code>
+            are expressed using the <att>mutual</att> attribute. The specific relationship types described below determine which attributes
+              should be used for the relationship. Finally, <gi>relation</gi> elements must be sourced as described in 
+              <ref target="#source">Inserting Bibliographic Citations</ref>, though they commonly take a <att>resp</att> attribute as 
+              described in <ref target="#resp">Asserting Information without a Source</ref>. In rare cases, they may include
+              date attributes to qualify the time span during which a relation is valid (cf. <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>).
+            </p>
             <p>Common to all <gi>relation</gi> elements is a child <gi>desc</gi> element offering a
-              human-readable version of the relationship. See below for examples. </p>
+              human-readable version of the relationship. The <gi>desc</gi> element must have an <att>xml:lang</att> attribute 
+              with the value of "en" for "English". A generic example of a relation follows, though see below for the 
+            specific combination of values to use in the various relationship cases:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <relation type="contained-within" ref="http://syriaca.org/taxonomy/broader" active="http://syriaca.org/place/78" passive="http://syriaca.org/place/145" source="#bib78-1" to="0641">
+                  <desc xml:lang="en">
+                    <placeName ref="http://syriaca.org/place/145">Osrhoene</placeName>
+                  </desc>
+                </relation>
+              </egXML>
+            </p>
             <div xml:id="disambiguation">
               <head>Disambiguating Places</head>
-              <p>This relationship is when an encoder things users might be confused between the
-                identity of two places. There are four distinct kinds of scenarios for place
+              <p>This relationship is used to explicitly declare a distinction between two
+                places, especially when users might confuse them. There are four distinct kinds of scenarios for place
                 disambiguation: places that share a name, conceptually related places, co-located
-                places, and places easily confused for one another. </p>
+                places, and places easily confused for one another. These relations must have
+               a <att>type</att> attribute value of "disambiguation".</p>
               <p><title>TSG</title> uses a URI from the <title>Syriac Taxonomy</title> to indicate
                 which of these types of disambiguation is appropriate. This appears at the value of
                 a <att>ref</att> attribute. The values are as follows: <table rows="5" cols="2">
                   <head>Disambiguation Values</head>
                   <row role="label">
-                    <cell role="label">Disambiguation</cell>
+                    <cell role="label">Reason for Disambiguation</cell>
                     <cell role="label">Value on the <att>ref</att> Attribute</cell>
                   </row>
                   <row role="data">
@@ -1853,12 +1950,12 @@
                 </table>
               </p>
               <p>For all of the disambiguation relationships, the <gi>relation</gi> element requires
-                a <att>mutual</att> attribute. A <att>mutual</att> attribute takes two place URIs. </p>
+                a <att>mutual</att> attribute. A <att>mutual</att> attribute takes two or more space-separated place URIs. </p>
               <div xml:id="share-a-name">
                 <head>Places That Share a Name</head>
                 <p>There are many places that share a name. Syriaca.org only assigns URIs to
                   distinct entities so when there are two place records it can be assumed that the
-                  editors are confident in the existence of two places. However, it is helpful for
+                  editors are confident in the existence of two distinct places. However, it is helpful for
                   users to to find the specific place they are looking for if they have easy access
                   to multiple records for places that share a name. </p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1872,13 +1969,15 @@
               </div>
               <div xml:id="conceptually-related">
                 <head>Conceptually Related Places</head>
-                <p><title>TSG</title> distinguishes between place types. This can get confusing when
+                <p><title>TSG</title> distinguishes between place types. This can cause confusion for users when
                   different place types are closely related conceptually. For example, a city gives
                   its name to a diocese even though the diocese has a very different geographic
-                  footprint than that city. They are two entities but closely related. Our sources
-                  can also talk about regions in rather vague ways that do not correspond entirely
-                  to the geo-political entity with which it shares a name. For this reason, we
-                  distinguish between a region and a political province. See the code example below. </p>
+                  footprint than that city. They are two entities but closely related. Sources
+                  can also talk about regions in ways that do not correspond entirely
+                  to the geo-political entity with which it shares a name. For this reason, <title>TSG</title>
+                  distinguishes between a region and a political province. To aid users in these cases, a disambiguation
+                  relation may be created to make explicit the distinction between conceptually related places
+                  See the code example below. </p> <!-- WLP: add an example for settlement/diocese -->
                 <p><emph>This relationship has not yet been implemented in
                     <title>TSG</title>.</emph></p>
               </div>
@@ -1891,13 +1990,14 @@
                     mutual="http://syriaca.org/place/2407 http://syriaca.org/place/791 http://syriaca.org/place/207"
                     resp="http://syriaca.org">
                     <desc xml:lang="en"> This place shares a location with one or more distinct
-                      places that should not be confused with one another. </desc>
+                      places that should not be confused with one another.</desc>
                   </relation>
                 </egXML>
               </div>
               <div xml:id="not-to-be-confused-with">
                 <head>Places Easily Confused</head>
-                <p>This relationship is perhaps the most general. It can be used to distinguish
+                <p>For other general cases requiring a disambiguation relationship, a "not-to-be-confused"
+                  relation should be asserted. This relation can be used to distinguish
                   between entities that have been confused in the scholarly literature or might be
                   confused by users for any reason.</p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1915,11 +2015,15 @@
               <head>Places Contained Within Places</head>
               <p>This relationship is used to indicate that a place is contained within another
                 place. It can be used for a church inside a city or a city inside a province. </p>
-              <p>For a containment relationship, the <gi>relation</gi> element must take an
+              <p>For a containment relationship, the <gi>relation</gi> element must have a
+                <att>type</att> attribute value of "contained-within". Moreover, these relations use an
                   <att>active</att> and a <att>passive</att> attribute instead of a
-                  <att>mutual</att> attribute. The URI for the place contained is the value of the
-                  <att>active</att> attribute and the URI for the place containing it is the value
-                of the <att>passive</att> attribute.</p>
+                  <att>mutual</att> attribute. The URI for the place contained (smaller geographic boundaries) must be the value of the
+                  <att>active</att> attribute and the URI for the place containing it (larger geographic boundaries) must be the value
+                of the <att>passive</att> attribute. Containment relationships must include a <att>ref</att>
+                attribute whose value is "http://syriaca.org/taxonomy/broader"</p>
+              <p>The following example demonstrates a relation asserting that Ishtazin (<ref target="http://syriaca.org/place/758">http://syriaca.org/place/758</ref>)
+                is contained within the Hakkārī region (<ref target="http://syriaca.org/place/90">http://syriaca.org/place/90</ref>)
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <relation type="contained-within" ref="http://syriaca.org/taxonomy/broader"
                   active="http://syriaca.org/place/758" passive="http://syriaca.org/place/90"
@@ -1929,15 +2033,19 @@
                   </desc>
                 </relation>
               </egXML>
+              </p>
             </div>
             <div xml:id="see-also">
               <head>See Also</head>
               <p>This relationship is the most generic way of indicating a cross-reference within
-                  <title>TSG</title>. It can be used whenever the encoder thinks users might want to
-                look at another record because it is somehow related but that relationship cannot
-                accurately be described using one of the relationships discussed above. </p>
-              <p>This relationship takes a <att>mutual</att> attribute with two or more place URIs
-                as the value.</p>
+                  <title>TSG</title>. It can be used to aid users in finding additional relevant place records
+                based on their interest in the record where the "see-also" relation is asserted.
+                This relation is used when two or more records are somehow related but that relationship cannot
+                accurately be described using one of the relationships discussed above.</p>
+              <p>This relationship must have a <att>type</att> attribute with the value of "see-also".
+                Moreover, it takes a <att>mutual</att> attribute with two or more place URIs
+                as the value to assert the places which are related. It must also include a 
+                <att>ref</att> attribute with a value of "http://syriaca.org/taxonomy/related".</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <relation type="see-also" ref="http://syriaca.org/taxonomy/related"
                   mutual="http://syriaca.org/place/2615 http://syriaca.org/place/1535 http://syriaca.org/place/182 http://syriaca.org/place/58"
