@@ -393,6 +393,50 @@
               (this practice corresponds to the W3C standard <ref target="https://www.w3.org/TR/xmlschema-2/#dateTime"> XML Schema Part 2: Datatypes Second Edition</ref>.</p>
             <p>For more information on the use of dates within Syriaca.org, including guidelines for approximating date ranges
               for imprecise or uncertain ranges, see the <ref target="https://github.com/srophe/syriaca-data/wiki/Dating-Conventions">Syriaca.org Dating Conventions</ref> document.</p>
+            <div xml:id="datePrecision">
+              <head>Recording Uncertainty for Event and Status Dates (<gi>precision</gi>)</head>
+              <p>When recording date ranges for <ref target="#eventTypes">Events</ref> (<gi>event</gi>) or 
+                <ref target="#statusTypes">Historical Status</ref> (<gi>state</gi>, e.g. existence dates)
+                it may be necessary to further qualify the (un)certainty of the attributes used to record the date range. 
+                For example, the Monastery of Rabban Hormizd (URI: <ref target="http://syriaca.org/place/168">http://syriaca.org/place/168</ref>), near Alqosh, 
+                was founded some time in the mid-7th century CE and abandoned in the late 18th century (before being re-founded in 1808). 
+                Simply using <att>notBefore</att> and <att>notAfter</att> is insufficient in this case, since we cannot know 
+                if the terminus dates refer to the uncertain start range or the uncertain end range.
+                The <title>TSG</title> uses the <gi>precision</gi> element to more precisely express these date ranges. 
+                For example, the Monastery of Rabban Hormizd's existence dates (prior to its re-founding in 1808), may be expressed as follows:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <state resp="http://syriaca.org" type="existence" from="0650" to="1800">
+                    <precision match="@from" notBefore="0600" notAfter="0700"/>
+                    <precision match="@to" notBefore="1773"  notAfter="1800"/>
+                  </state>
+                </egXML>
+                In the <gi>state</gi> element, the date range is expressed using <att>from</att> and <att>to</att>
+                attributes. These attributes are each qualified using the <gi>precision</gi> elements,
+                which have a <att>match</att> attribute whose value must be one of the date attributes
+                on the parent element, and must be preceded by the <code>@</code> symbol to indicate
+                that they are attributes. The <gi>precision</gi> element then qualifies of the value
+                of the targeted attribute using <att>notBefore</att> and/or <att>notAfter</att> attributes.
+                In the above example, the founding date is qualified to be <q>sometime between 600 and 700 CE</q>
+                and the abandonment date <q>sometime between 1773 and 1800 CE</q>.</p>
+                <p>The <gi>precision</gi> element can also be used, more simply, to indicate that a date
+                  attribute expresses an uncertain, rather than precise, terminus ante, or post, quem, as
+                  in the following example:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <state resp="http://syriaca.org" type="existence" from="0525">
+                      <precision match="@from" notAfter="0525"/>
+                    </state>
+                  </egXML>
+                  Here, the <gi>precision</gi> element indicates that this places existence began no later
+                  than 525 CE, but may have begun prior to this date.
+              </p>
+              <p>Technical Note: This use of the <gi>precision</gi> element was added to the TEI
+                guidelines by the TEI consortium at the request of Syriaca.org for the specific
+                use cases described above. Additional documentation can be found (as of 2018) at
+                <ref target="https://sourceforge.net/p/tei/feature-requests/519/">TEI Feature
+                  Request [#519]</ref> and <ref
+                    target="https://listserv.brown.edu/archives/cgi-bin/wa?A2=tei-l;fc2bf4f.1307"
+                    >The TEI Discussion List</ref>. </p>
+            </div>
           </div>
           <div xml:id="attribution">
             <head>Sources and Attribution of Intellectual Credit</head>
@@ -739,6 +783,13 @@
                 </egXML>
                 The following place types, their corresponding URIs, and a brief description of their scope is provided
                 in the following table:
+                <!-- WLP:
+                Missing in the list from https://syriaca.org/documentation/place-types.html were the following that are in
+                the taxonomy's place types collection:
+                 <skos:member rdf:resource="http://syriaca.org/taxonomy/hospices"/>
+	      <skos:member rdf:resource="http://syriaca.org/taxonomy/residences"/>
+                <skos:member rdf:resource="http://syriaca.org/taxonomy/tombs"/>
+                -->
                 <table rows="24" cols="3">
                   <head>Place Type Values, URIs, and Descriptions</head>
                   <row role="label">
@@ -1160,7 +1211,8 @@
                   following the guidelines for <ref target="#source">Inserting Citations</ref>; a
                   child <gi>desc</gi> element containing additional markup of named entities as
                   applicable (see <ref target="#syriacaURIs">Linking Persons, Places, Works, and Bibliography to Syriaca.org URIs</ref>);
-                  and attributes for dating events (see <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>).</p>
+                  and attributes for dating events (see <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>, as well as 
+                  <ref target="#datePrecision">Recording Uncertainty for Event and Status Dates (<gi>precision</gi>)</ref>).</p>
               </div>
             </div>
             <div xml:id="statusTypes">
@@ -1495,21 +1547,16 @@
                     <state resp="http://syriaca.org" type="existence"/>
                   </egXML> The duration of a place's existence can be qualified using the temporal
                   attributes described in the <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>
-                  section.
+                  section; as well, the (un)certainty of a temoral qualification can be expressed as described in the 
+                  <ref target="#datePrecision">Recording Uncertainty for Event and Status Dates (<gi>precision</gi>)</ref> section.
+                  An example existence state, demonstrating the above encoding options, follows:
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
                     <state resp="http://syriaca.org" type="existence" from="0306" to="2013">
                       <precision match="@from" notAfter="0306"/>
                       <precision match="@to" notBefore="2013"/>
                     </state>
                   </egXML>
-                </p><!-- To add: discussion from v2 of how to use the precision element here to qualify the beginning and end of a range-->
-                <p>Technical Note: This use of the <gi>precision</gi> element was added to the TEI
-                  guidelines by the TEI consortium at the request of Syriaca.org for the specific
-                  use cases described above. Additional documentation can be found (as of 2018) at
-                    <ref target="https://sourceforge.net/p/tei/feature-requests/519/">TEI Feature
-                    Request [#519]</ref> and <ref
-                    target="https://listserv.brown.edu/archives/cgi-bin/wa?A2=tei-l;fc2bf4f.1307"
-                    >The TEI Discussion List</ref>. </p>
+                </p>
               </div>
             </div>
             <div xml:id="note">
