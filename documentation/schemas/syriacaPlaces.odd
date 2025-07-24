@@ -1569,57 +1569,63 @@
               <p>All <gi>note</gi> elements must have an <att>xml:lang</att> attribute indicating
                 the language of the note. In most cases this will be "en" for English but other
                 languages can be indicated as needed.
-                (for more details, see <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>).</p>
+                (for more details, see <ref target="#languageCodes">Recording Language Information</ref>).
+                Notes should also be sourced, as described in <ref target="#source">Inserting Bibliographic Citations</ref>, though they will most likely
+                use a <att>resp</att> attribute as they tend to be assertions made by the contributors rather than
+                cited to a particular source (cf. <ref target="#resp">Asserting Information without a Source</ref>).</p>
               <div xml:id="deprecation">
                 <head>Deprecated Names (<gi>note</gi>)</head>
                 <p>Certain names reported in our database are patently erroneous (e.g. <foreign
                     xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܒܘܢ</foreign> for <q>Mount Qāsiyūn</q>, URI: <ref
                     target="http://syriaca.org/place/518"
                     ><code>http://syriaca.org/place/518</code></ref>, instead of <foreign
-                    xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign> (in this case the error is based on the
+                    xml:lang="syr">ܛܘܪܳܐ ܕܩܰܐܣܝܘܢ</foreign>; in this case the error is based on the
                   translator mis-reading an Arabic letter ba for ya). We need to preserve these
                   erroneous names in our data for historical reasons, so that the right place can be
                   found as a search result even if someone searches on the basis of an erroneous
                   print resource or now deprecated name. Nevertheless, the editors do not wish to
                   assert implicitly or explicitly that this is an "acceptable alternate" form of the
                   name. In order to mark the <gi>placeName</gi> element as erroneous, we create a
-                    <gi>note</gi> element with a <att>type</att>=<q>deprecation</q>. The content of
-                  the <gi>note</gi> is then a detailed explanation of why this name is considered
-                  problematic. In order to link the <gi>note</gi> to the appropriate
-                    <gi>placeName</gi>, an <att>target</att> attribute whose value is the
-                    <att>xml:id</att> values for the deprecated <gi>placeName</gi> is included in
-                  the <gi>note</gi> separated by whitespace if there are links to multiple names for
-                  the same reason in the note. TEI Guidelines do not allow <gi>note</gi> elements
-                  before <gi>desc</gi>, <gi>location</gi>, <gi>event</gi>, or <gi>state</gi>
-                  elements, so the <gi>note</gi> indicating the deprecation should occur immediately
-                  before the <gi>idno</gi> section. </p>
-                <p> Such names are visually marked in the html display of the place record, taken
-                  out of the list of names and instead listed in the Deprecations section at the
-                  bottom of the record, to warn users that these forms are problematic. </p>
+                    <gi>note</gi> element with a <att>type</att> attribute whose value must be <q>deprecation</q>. The content of
+                  the <gi>note</gi> element provides a detailed explanation of why this name is considered
+                  deprecated. In order to link the <gi>note</gi> element to the corresponding
+                    <gi>placeName</gi> element containing the deprecated name variant, an <att>target</att> attribute whose value is the
+                    <att>xml:id</att> value for the deprecated <gi>placeName</gi> element is included in
+                  the <gi>note</gi> element separated by whitespace if there are links to multiple names for
+                  the same reason in the note. To preserve the valid sequence of elements in a <title>TSG</title>
+                  record, the <gi>note</gi> element indicating the deprecation should occur immediately
+                  before the <gi>idno</gi> section.</p>
+                <p>In the HTML display of the record, deprecated names are removed from
+                  the list of names and instead listed in a Deprecations section at the
+                  bottom of the record, to warn users that these forms are retained for historical
+                  and provenance reasons, but should not be used as acceptable name variants.</p>
                 <p>Example: <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <placeName xml:id="name496-3" xml:lang="syr-Syrj" source="#bib496-1"
-                      >ܦܰܢܺܝܗ</placeName> ... <note target="#name496-3" xml:lang="en"
-                      type="deprecation" resp="http://syriaca.org"> Dolabani or his printer dropped
-                      off the first consonant of the name. </note>
+                    <place type="settlement" ana="http://syriaca.org/taxonomy/settlements">
+                      <placeName xml:id="name496-3" xml:lang="syr-Syrj" source="#bib496-1">ܦܰܢܺܝܗ</placeName>
+                      ...
+                      <note target="#name496-3" xml:lang="en" type="deprecation" resp="http://syriaca.org">
+                        Dolabani or his printer dropped off the first consonant of the name.
+                      </note>
+                    </place>
                   </egXML>
                 </p>
               </div>
               <div xml:id="disputanda">
                 <head>Disputanda (<gi>note</gi>)</head>
-                <p>As with the inclusion of deprecated it is sometimes necessary to report in a
+                <p>As with the inclusion of deprecated name variants, it is sometimes necessary to report in a
                   place record information which is either known to be incorrect or which is
                   contested in the scholarly literature. In these cases, editors should signal this
                   information with a <gi>note</gi> element before the <gi>idno</gi> element(s). The
-                  content of the <gi>note</gi> is the description of the problematic assertion,
-                  using as non-combative a formulation as possible and avoiding naming living
-                  scholars to avoid multiplying scholarly contention. The <gi>note</gi> can have
-                    <att>type</att>="incerta" if it is reporting scholarly uncertainty or
-                  disagreement about an assertion, or <att>type</att>="corrigenda" for typographical
-                  errors or other equally mechanistic problems which can be easily fixed. The
-                    <att>type</att>="errata" should only be used for <gi>note</gi> elements if there
-                  is a clear and undisputed error whose solution is not obvious. </p>
-                <p>Consider the examples below, drawn from different places: <egXML
-                    xmlns="http://www.tei-c.org/ns/Examples">
+                  content of the <gi>note</gi> element should provide a description of the incorrect or disputed assertion,
+                  using as diplomatic a formulation as possible, in particular avoiding naming living
+                  scholars to curtail multiplying scholarly contention. The <gi>note</gi> element must
+                  have a <att>type</att> attribute with one of several values. The value "incerta" 
+                  should be used to report scholarly uncertainty or disagreement about an assertion. 
+                  The value "corrigenda" should be used to report typographical errors or other equally 
+                  mechanistic problems which can be easily fixed. The value "errata" should only be used for 
+                  <gi>note</gi> elements if there is a clear and undisputed error whose solution is not obvious.</p>
+                <p>The examples below, drawn from different places, illustrate these various uses of the <gi>note</gi> element:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
                     <note xml:lang="en" type="incerta" resp="http://syriaca.org"> GEDSH article
                       identifies its river as the <placeName ref="http://syriaca.org/place/43"
                         >Balikh</placeName>, but the identification is contested. </note>
