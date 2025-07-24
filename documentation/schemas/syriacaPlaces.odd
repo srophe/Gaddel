@@ -1668,8 +1668,12 @@
                 needs one or more <gi>idno</gi> elements to indicate the URIs which refer to this
                 place. Each <gi>idno</gi> element will have a <att>type</att> attribute with value
                 "URI", and the first should encapsulate the Syriaca.org URI for the place:
-                http://syriaca.org/place/{\d+}. Other <gi>idno</gi> elements with
-                <att>type</att>="URI" will encapsulate any Pleiades URI for this place as well as
+                <code>http://syriaca.org/place/{\d+}</code>. If a place record belongs to other publications
+                of Syriaca.org, it may receive a distinct URI related to those publications. For example,
+                places in the <title>Gazetteer to John of Ephesus’s Ecclesiastical History</title>, a sub-volume of
+                <title>TSG</title>, should have an additional <gi>idno</gi> element with the sub-volume's URI.
+                Other <gi>idno</gi> elements with
+                a <att>type</att> attribute of "URI" will encapsulate any Pleiades URI for this place as well as
                 any Wikipedia URL(s) which refer to this place. In particular, if the same place is
                 the topic of separate Wikipedia articles divided by time period, both or all such
                 articles will have their URLs listed here. If desired, a link to a DBpedia resource
@@ -1682,8 +1686,8 @@
                 district" rather than about the village itself). If there is any doubt that the
                 DBpedia resource URI and the Syriaca.org URI are speaking of an identical place in
                 all contexts, it is better to omit the DBpedia URI. </p>
-              <p> The URIs of Edessa (one from Syriaca.org, one from Pleiades, and two different
-                Wikipedia articles) can be represented as follows:
+              <p> The URIs of Edessa (the essential one from Syriaca.org, one from the <title>Gazetteer to John of Ephesus’s Ecclesiastical History</title>, 
+                one from Pleiades, and two different Wikipedia articles) can be represented as follows:
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <idno type="URI">http://syriaca.org/place/78</idno>
                   <idno type="URI">http://pleiades.stoa.org/places/658457</idno>
@@ -1731,21 +1735,21 @@
                   </bibl>
                 </egXML>
               </p>
-              <p>In this example the <gi>bibl</gi> has a unique xml:id which is required and is used
-                to identify the citation internally in the <q>Works Cited</q> list for the place
-                record. The attribute value for the <att>xml:id</att> is in the format
+              <p>Each <gi>bibl</gi> element must have a unique xml:id, as shown in the above example.
+                This ID used is used to identify the citation internally in the <q>Works Cited</q> list for the place
+                record. The attribute value for the <att>xml:id</att> attribute is in the format
                   <code>bib{\d+}-{\d+}</code>, where the first number is derived from the
                 Syriaca.org URI for the place (i.e. using the final unique numeric element in the
                 URI) and the second number is a sequential integer representing the order of this
                   <gi>bibl</gi> element in the series of <gi>bibl</gi> elements contained in this
-                place record, beginning from 1. In this example, the twenty-fourth <gi>bibl</gi>
+                place record, beginning from 1. In the preceding example, the twenty-fourth <gi>bibl</gi>
                 element within the place record describing Edessa (URI <ref
                   target="https://syriaca.org/place/78">https://syriaca.org/place/78</ref>) leads to
                 the following xml:id value "bib78-24". The second numeric value (in this case "24")
                 will also serve as the number for the footnote in the HTML view of the record.</p>
               <p>Next the example above illustrates how the <gi>bibl</gi> also has a required
                   <gi>ptr</gi> (pointer) element which provides the link externally to the
-                  <title>CBSS</title> URI, encoded as a <att>target</att> attribute value. In this
+                  <title>CBSS</title> URI, encoded as the value of the <att>target</att> attribute. In this
                 case the URI is <code>http://syriaca.org/bibl/FQCVBMNS</code>. An automated script
                 will use this URI link to insert the full publication information into the HTML view
                 of the <title>TSG</title> record.</p>
@@ -1753,9 +1757,29 @@
                 recommended <gi>citedRange</gi> element (and its required <att>unit</att>
                 attribute). This cited range indicates ranges specific to the citations in this
                 place record. If a place record contains multiple citations of the same
-                bibliographic item, the cited ranges must all be combined into a single ascending
-                cited range (for example "82-87, 90, 95-96"). Unfortunately, it is not possible to
-                separate out more specific citations at this time.</p>
+                bibliographic item, the cited ranges may all be combined into a single ascending
+                cited range (for example "82-87, 90, 95-96"). Alternatively, should more precision of the
+               cited range be required (such as if two name variants appear on different pages of the citation),
+               multiple <gi>bibl</gi> elements linking to the same <title>CBSS</title> URI may be included in the "Works Cited" section,
+              differing only by their <gi>citedRange</gi> element, as in the below example:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <place>
+                  <placeName source="#bib108-10" xml:id="name108-1" xml:lang="en" srophe:tags="#syriaca-headword">Karka d-Beth Slokh</placeName>
+                  <placeName source="#bib108-11" xml:id="name108-2" xml:lang="en">Kirkuk</placeName>
+                  ...
+                  <bibl xml:id="bib108-10">
+                    <ptr target="http://syriaca.org/cbss/SYM5C6P5"/>
+                    <citedRange unit="p">828</citedRange>
+                  </bibl>
+                  <bibl xml:id="bib108-11">
+                    <ptr target="http://syriaca.org/cbss/SYM5C6P5"/>
+                    <citedRange unit="p">829</citedRange>
+                  </bibl>
+                </place>
+              </egXML>
+                While the above is permitted, it is preffered where possible to limit the creation of <gi>bibl</gi>
+                elements so that only one <gi>bibl</gi> per <title>CBSS</title> URI is included in a place record.
+              </p>
               <p>Allowed values for <att>unit</att> are: <table rows="14" cols="2">
                   <head>Allowed Citation Range Unit Values</head>
                   <row role="label">
@@ -1822,8 +1846,6 @@
                 </table> These values remain the same even if the cited range is plural. When
                 multiple page numbers are cited, they should be entered in full and never be
                 abbreviated (thus "556-558" not "556-8").</p>
-              <!-- DLS, is this right? DAM 
-              DAM, sorry, what's above or what's below? I think the above is correct but the schema is not constraining this. -->
               <p>All of these <gi>bibl</gi> elements should be grouped together as the final child
                 elements within the <gi>place</gi> element, as in this example: <egXML
                   xmlns="http://www.tei-c.org/ns/Examples">
@@ -1843,9 +1865,8 @@
                       <citedRange unit="p">556-558</citedRange>
                     </bibl>
                   </place>
-                </egXML> Each <gi>bibl</gi> element in this <q>Works Cited</q> section should be
-                unique in that no two <gi>bibl</gi> elements should point to the same Syriaca.org
-                  <title>CBSS</title> URI.</p>
+                </egXML>
+              </p>
               <p>In as much as is feasible, the <gi>bibl</gi> elements should be ordered based on
                 the order of occurance of citation in the XML file. Thus the first bibliographic
                 item to be cited would occur as the first <gi>bibl</gi> and the second item to be
@@ -1867,24 +1888,47 @@
             <head>Related Places</head>
             <p><emph>This element is not required. A record may have any number of <gi>relation</gi>
                 elements.</emph></p>
-            <p><title>TSG</title> uses the <gi>relation</gi> element (which appear inside a
-                <gi>listRelation</gi> element immediately following the <gi>place</gi> element). The
+            <p><title>TSG</title> uses the <gi>relation</gi> element (which must appear inside a
+                single <gi>listRelation</gi> element immediately following the <gi>place</gi> element) to 
+                record relations between a place record and other entities in the <ref target="#dataModel">Syriaca.org Knowledge Graph</ref>. The
                 <gi>relation</gi> element must have a <att>type</att> attribute with one of the
-              following values: "see-also", "disambiguation", or "contained-with". </p>
+              following values: "disambiguation", "contained-with", or "see-also". The use cases for each of these
+              values are described below. Relations must also include <att>ref</att> attributes which take a 
+              Syriaca.org Taxonomy URI defining the relationship, valid values of which are enumerated below. 
+              The relation is expressed using either <att>active</att> and <att>passive</att> attributes, or a <att>mutual</att> attribute,
+              which contain the Syriaca entity URIs for the related entities. Directed relationships, i.e. <code>Place A -> Place B</code>, are expressed
+            using the <att>active</att>/<att>passive</att> attribute pair, while bi-direction relations, i.e., <code>Place A &lt;-&gt; Place B</code>
+            are expressed using the <att>mutual</att> attribute. The specific relationship types described below determine which attributes
+              should be used for the relationship. Finally, <gi>relation</gi> elements must be sourced as described in 
+              <ref target="#source">Inserting Bibliographic Citations</ref>, though they commonly take a <att>resp</att> attribute as 
+              described in <ref target="#resp">Asserting Information without a Source</ref>. In rare cases, they may include
+              date attributes to qualify the time span during which a relation is valid (cf. <ref target="#dates">Recording Date Information for Occurrences and Durations</ref>).
+            </p>
             <p>Common to all <gi>relation</gi> elements is a child <gi>desc</gi> element offering a
-              human-readable version of the relationship. See below for examples. </p>
+              human-readable version of the relationship. The <gi>desc</gi> element must have an <att>xml:lang</att> attribute 
+              with the value of "en" for "English". A generic example of a relation follows, though see below for the 
+            specific combination of values to use in the various relationship cases:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <relation type="contained-within" ref="http://syriaca.org/taxonomy/broader" active="http://syriaca.org/place/78" passive="http://syriaca.org/place/145" source="#bib78-1" to="0641">
+                  <desc xml:lang="en">
+                    <placeName ref="http://syriaca.org/place/145">Osrhoene</placeName>
+                  </desc>
+                </relation>
+              </egXML>
+            </p>
             <div xml:id="disambiguation">
               <head>Disambiguating Places</head>
-              <p>This relationship is when an encoder things users might be confused between the
-                identity of two places. There are four distinct kinds of scenarios for place
+              <p>This relationship is used to explicitly declare a distinction between two
+                places, especially when users might confuse them. There are four distinct kinds of scenarios for place
                 disambiguation: places that share a name, conceptually related places, co-located
-                places, and places easily confused for one another. </p>
+                places, and places easily confused for one another. These relations must have
+               a <att>type</att> attribute value of "disambiguation".</p>
               <p><title>TSG</title> uses a URI from the <title>Syriac Taxonomy</title> to indicate
                 which of these types of disambiguation is appropriate. This appears at the value of
                 a <att>ref</att> attribute. The values are as follows: <table rows="5" cols="2">
                   <head>Disambiguation Values</head>
                   <row role="label">
-                    <cell role="label">Disambiguation</cell>
+                    <cell role="label">Reason for Disambiguation</cell>
                     <cell role="label">Value on the <att>ref</att> Attribute</cell>
                   </row>
                   <row role="data">
@@ -1906,12 +1950,12 @@
                 </table>
               </p>
               <p>For all of the disambiguation relationships, the <gi>relation</gi> element requires
-                a <att>mutual</att> attribute. A <att>mutual</att> attribute takes two place URIs. </p>
+                a <att>mutual</att> attribute. A <att>mutual</att> attribute takes two or more space-separated place URIs. </p>
               <div xml:id="share-a-name">
                 <head>Places That Share a Name</head>
                 <p>There are many places that share a name. Syriaca.org only assigns URIs to
                   distinct entities so when there are two place records it can be assumed that the
-                  editors are confident in the existence of two places. However, it is helpful for
+                  editors are confident in the existence of two distinct places. However, it is helpful for
                   users to to find the specific place they are looking for if they have easy access
                   to multiple records for places that share a name. </p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1925,13 +1969,15 @@
               </div>
               <div xml:id="conceptually-related">
                 <head>Conceptually Related Places</head>
-                <p><title>TSG</title> distinguishes between place types. This can get confusing when
+                <p><title>TSG</title> distinguishes between place types. This can cause confusion for users when
                   different place types are closely related conceptually. For example, a city gives
                   its name to a diocese even though the diocese has a very different geographic
-                  footprint than that city. They are two entities but closely related. Our sources
-                  can also talk about regions in rather vague ways that do not correspond entirely
-                  to the geo-political entity with which it shares a name. For this reason, we
-                  distinguish between a region and a political province. See the code example below. </p>
+                  footprint than that city. They are two entities but closely related. Sources
+                  can also talk about regions in ways that do not correspond entirely
+                  to the geo-political entity with which it shares a name. For this reason, <title>TSG</title>
+                  distinguishes between a region and a political province. To aid users in these cases, a disambiguation
+                  relation may be created to make explicit the distinction between conceptually related places
+                  See the code example below. </p> <!-- WLP: add an example for settlement/diocese -->
                 <p><emph>This relationship has not yet been implemented in
                     <title>TSG</title>.</emph></p>
               </div>
@@ -1944,13 +1990,14 @@
                     mutual="http://syriaca.org/place/2407 http://syriaca.org/place/791 http://syriaca.org/place/207"
                     resp="http://syriaca.org">
                     <desc xml:lang="en"> This place shares a location with one or more distinct
-                      places that should not be confused with one another. </desc>
+                      places that should not be confused with one another.</desc>
                   </relation>
                 </egXML>
               </div>
               <div xml:id="not-to-be-confused-with">
                 <head>Places Easily Confused</head>
-                <p>This relationship is perhaps the most general. It can be used to distinguish
+                <p>For other general cases requiring a disambiguation relationship, a "not-to-be-confused"
+                  relation should be asserted. This relation can be used to distinguish
                   between entities that have been confused in the scholarly literature or might be
                   confused by users for any reason.</p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1968,11 +2015,15 @@
               <head>Places Contained Within Places</head>
               <p>This relationship is used to indicate that a place is contained within another
                 place. It can be used for a church inside a city or a city inside a province. </p>
-              <p>For a containment relationship, the <gi>relation</gi> element must take an
+              <p>For a containment relationship, the <gi>relation</gi> element must have a
+                <att>type</att> attribute value of "contained-within". Moreover, these relations use an
                   <att>active</att> and a <att>passive</att> attribute instead of a
-                  <att>mutual</att> attribute. The URI for the place contained is the value of the
-                  <att>active</att> attribute and the URI for the place containing it is the value
-                of the <att>passive</att> attribute.</p>
+                  <att>mutual</att> attribute. The URI for the place contained (smaller geographic boundaries) must be the value of the
+                  <att>active</att> attribute and the URI for the place containing it (larger geographic boundaries) must be the value
+                of the <att>passive</att> attribute. Containment relationships must include a <att>ref</att>
+                attribute whose value is "http://syriaca.org/taxonomy/broader"</p>
+              <p>The following example demonstrates a relation asserting that Ishtazin (<ref target="http://syriaca.org/place/758">http://syriaca.org/place/758</ref>)
+                is contained within the Hakkārī region (<ref target="http://syriaca.org/place/90">http://syriaca.org/place/90</ref>)
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <relation type="contained-within" ref="http://syriaca.org/taxonomy/broader"
                   active="http://syriaca.org/place/758" passive="http://syriaca.org/place/90"
@@ -1982,15 +2033,19 @@
                   </desc>
                 </relation>
               </egXML>
+              </p>
             </div>
             <div xml:id="see-also">
               <head>See Also</head>
               <p>This relationship is the most generic way of indicating a cross-reference within
-                  <title>TSG</title>. It can be used whenever the encoder thinks users might want to
-                look at another record because it is somehow related but that relationship cannot
-                accurately be described using one of the relationships discussed above. </p>
-              <p>This relationship takes a <att>mutual</att> attribute with two or more place URIs
-                as the value.</p>
+                  <title>TSG</title>. It can be used to aid users in finding additional relevant place records
+                based on their interest in the record where the "see-also" relation is asserted.
+                This relation is used when two or more records are somehow related but that relationship cannot
+                accurately be described using one of the relationships discussed above.</p>
+              <p>This relationship must have a <att>type</att> attribute with the value of "see-also".
+                Moreover, it takes a <att>mutual</att> attribute with two or more place URIs
+                as the value to assert the places which are related. It must also include a 
+                <att>ref</att> attribute with a value of "http://syriaca.org/taxonomy/related".</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <relation type="see-also" ref="http://syriaca.org/taxonomy/related"
                   mutual="http://syriaca.org/place/2615 http://syriaca.org/place/1535 http://syriaca.org/place/182 http://syriaca.org/place/58"
