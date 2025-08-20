@@ -401,13 +401,19 @@ function displayResultsInfo(totalResults) {
     // Clear previous browse info and pagination
     browseInfoContainer.innerHTML = '';
 
-    // Display total results count
-    if (state.query != 'cbssSubject') {
+    // Display total results count for non-subject queries-- subject query results has bug
+    // if (state.query != 'cbssSubject') {
+    // browseInfoContainer.innerHTML = `
+    //     <br/>
+    //     <p>Total Results: ${totalResults}</p>
+    // `;
+    // }
+    
     browseInfoContainer.innerHTML = `
         <br/>
         <p>Total Results: ${totalResults}</p>
     `;
-    }
+    
     if (!state.letter && state.lang !== 'en' && state.lang !== 'rus') {
     browseInfoContainer.innerHTML += `<p>Showing all ${state.lang.toUpperCase()} entries</p>`;
     }
