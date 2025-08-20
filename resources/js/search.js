@@ -1588,3 +1588,123 @@ function updateURLFromSearchFields() {
     const newUrl = `${window.location.pathname}?${params.toString()}`;
     window.history.pushState({}, '', newUrl);
 }
+// Eras Browse CBSS subjects
+
+
+function runEraQuery(terms) {
+    const subjectString = terms.join(',');
+    console.log(`Running era group query for: ${subjectString}`);
+  // Update global state
+  state.searchType = "cbssSubject";
+  state.subject = subjectString;
+  state.cbssSubject = subjectString;
+    state.sortFactor = "author"; // Default sort for CBSS subject queries
+  state.from = 0;
+  state.currentPage = 1;
+
+  // Clear other result areas
+  clearSearchResults();
+  console.log("Cleared search results for era group query.");
+
+  const newUrl = new URL(window.location);
+  newUrl.searchParams.set("searchType", "cbssSubject");
+  newUrl.searchParams.set("sort", "author");
+  newUrl.searchParams.set("subject", subjectString);
+  window.history.pushState({}, '', newUrl);
+  console.log(`Updated URL to: ${newUrl}`);
+  console.log(`Running era query for: ${subjectString}`);
+  // Fetch results
+  fetchCBSSRecordsBySubject(subjectString)
+
+    setTimeout(() => {
+    const resultsEl = document.getElementById('search-division');
+    if (resultsEl) {
+        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    }, 500); // wait half a second; adjust if needed
+}
+
+function renderEraMenu() {
+  const container = document.getElementById('historicalEraBrowse');
+  if (!container) return;
+
+  const groupList = container.querySelector('ul:nth-of-type(1)');
+  const centuryList = container.querySelector('#eraList');
+
+  if (groupList) {
+    groupList.innerHTML = ''; // Clear default HTML
+    Object.entries(eraGroups).forEach(([label, terms]) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#';
+      a.textContent = label;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        runEraQuery(terms); // Use the first term in the group, used array for future expansion   
+      });
+      li.appendChild(a);
+      groupList.appendChild(li);
+    });
+  }
+
+  if (centuryList) {
+    centuryList.innerHTML = '';
+    specificCenturies.forEach(({ label, query }) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#';
+      a.textContent = label;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        runEraQuery([query]);
+      });
+      li.appendChild(a);
+      centuryList.appendChild(li);
+    });
+  }
+}
+
+const specificCenturies = [
+  { label: 'First Century CE (I CE or the period circa 0-100)', query: 'I CE' },
+  { label: 'Second Century CE (II CE or the period circa 100-200)', query: 'II CE' },
+  { label: 'Third Century CE (III CE or the period circa 200-300)', query: 'III CE' },
+  { label: 'Fourth Century CE (IV CE or the period circa 300-400)', query: 'IV CE' },
+  { label: 'Fifth Century CE (V CE or the period circa 400-500)', query: 'V CE' },
+  { label: 'Sixth Century CE (VI CE or the period circa 500-600)', query: 'VI CE' },
+  { label: 'Seventh Century CE (VII CE or the period circa 600-700)', query: 'VII CE' },
+  { label: 'Eighth Century CE (VIII CE or the period circa 700-800)', query: 'VIII CE' },
+  { label: 'Ninth Century CE (IX CE or the period circa 800-900)', query: 'IX CE' },
+  { label: 'Tenth Century CE (X CE or the period circa 900-1000)', query: 'X CE' },
+  { label: 'Eleventh Century CE (XI CE or the period circa 1000-1100)', query: 'XI CE' },
+  { label: 'Twelfth Century CE (XII CE or the period circa 1100-1200)', query: 'XII CE' },
+  { label: 'Thirteenth Century CE (XIII CE or the period circa 1200-1300)', query: 'XIII CE' },
+  { label: 'Fourteenth Century CE (XIV CE or the period circa 1300-1400)', query: 'XIV CE' },
+  { label: 'Fifteenth Century CE (XV CE or the period circa 1400-1500)', query: 'XV CE' },
+  { label: 'Sixteenth Century CE (XVI CE or the period circa 1500-1600)', query: 'XVI CE' },
+  { label: 'Seventeenth Century CE (XVII CE or the period circa 1600-1700)', query: 'XVII CE' },
+  { label: 'Eighteenth Century CE (XVIII CE or the period circa 1700-1800)', query: 'XVIII CE' },
+  { label: 'Nineteenth Century CE (XIX CE or the period circa 1800-1900)', query: 'XIX CE' },
+  { label: 'Twentieth Century CE (XX CE or the period circa 1900-2000)', query: 'XX CE' },
+  { label: 'Twenty First Century CE (XXI CE or the period circa 2000-present)', query: 'XXI CE' },
+];
+
+const eraList = document.getElementById('eraList');
+specificCenturies.forEach(era => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#';
+    a.textContent = era.label;
+    a.dataset.era = era.query;
+    a.addEventListener('click', (e) => {
+        e.preventDefault();
+        runEraQuery(era.query);
+    });
+    li.appendChild(a);
+    eraList.appendChild(li);
+});
+const eraGroups = {
+  'First to Third Centuries CE (circa 0–300)': ['I-III CE'],
+  'Fourth to Seventh Centuries CE (circa 300–700)': ['IV-VII CE'],
+  'Seventh to Eighteenth Centuries CE (circa 600–1800)': ['VII-XVIII CE'],
+  'Nineteenth to Twenty First Centuries CE (circa 1800–present)': ['XIX-XXI CE']
+};
