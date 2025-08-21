@@ -1619,7 +1619,7 @@ function runEraQuery(terms) {
     setTimeout(() => {
     const resultsEl = document.getElementById('search-division');
     if (resultsEl) {
-        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' , scrollMarginTop: '100px'});
     }
     }, 500); // wait half a second; adjust if needed
 }
