@@ -160,11 +160,13 @@
       <div id="content" class="text">
       <div class="main-content-block">
          <div class="container">
-            <h1 style="margin-top:3em;">
+            <h2 style="margin-top:3em;">
                <a class="cbss-heading-link" href="browse.html?searchType=browse&q=cbssSubject&letter=a&size=25">Browse Bibliography by Subject</a>
-                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     &nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="cbss-heading-link" id="browseByEraTab">Browse Bibliography by Era</a>
+                     &nbsp;&nbsp;&nbsp;&nbsp;
                <a class="cbss-heading-link" href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=en">Browse Bibliography by Author</a>
-            </h1>
+            </h2>
             <ul class="nav nav-tabs cbssAuthor-alpha-tabs" style="display: none;">
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=eng">A-Z</a></li>
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=rus">А-Я</a></li>
@@ -181,6 +183,22 @@
                         <ul class="list-inline" id="abcMenu">
                         </ul>
                      </div>
+                    <div id="historicalEraBrowse" style="display: none; margin-top: 2em; margin-left: 20em;margin-bottom: 4em;">
+                    <p>
+                        Users can browse the <em>Comprehensive Bibliography</em> topically by historical eras.
+                        <br><br>
+                        Each link below will limit the results to publications which cover the historical period(s) selected.
+                        After selecting one link below, please use the facet menu which will appear on the left to limit your search further if you desire.
+                    </p>
+
+                    <h4>Browse publications which discuss the following century ranges: </h4>
+                    <ul id="eraGroupList" style="list-style: none; padding-left: 0;"></ul>
+
+                    <h4>Browse publications which cover specific centuries:</h4>
+                    <ul id="eraList" style="list-style: none; padding-left: 0;"></ul>
+<div id="search-division" style="scroll-margin-top: 20px;"></div><br/>
+                    <p>Please note that the browse by historical eras feature is still under development and not all publications in the <em>Comprehensive Bibliography</em> have been classified by coverage of historical eras at this time.</p>
+                    </div>
                      <div class="row alpha-pages">
                         <div class="col-md-5">
                            <div id="search-info"></div>
@@ -190,10 +208,11 @@
                               <ul class="searchPagination pagination pull-right"></ul>
                            </div>      
                         </div>
-                        <div class="col-md-7 pull-right">
+                        <div class="col-md-7">
                            <div id="sort-button-container"></div>      
                         </div>
                      </div>
+                     
                      <div id="search-results"></div>
                      <div id="cbss-subject-search-results" style="width: 20%; padding-right: 20px; column-count: 3; column-gap: 20em;margin-left: 2em;"></div>
                      <div style="display: flex;">
@@ -210,21 +229,48 @@
             </div>
             <script type="text/javascript" src="/resources/js/search.js"></script>
             <script type="text/javascript">
-                  $(document).ready(function () {
-                     const urlParams = new URLSearchParams(window.location.search);
-                     const query = urlParams.get('q');
-                     if (query === 'cbssAuthor') {
-                        $('.cbssAuthor-alpha-tabs').show();
-                     }
-                     $('.cbss-heading-link').each(function () {
-                        if (this.href.includes(`q=${query}`)) {
-                           $(this).addClass('active');
-                        }
-                     });
-                     browseCbssAlphaMenu();
-                     getCBSSBrowse();
-                  });
-               </script>
+            $(document).ready(function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const query = urlParams.get('q');
+                
+                if (query === 'cbssAuthor') {
+                $('.cbssAuthor-alpha-tabs').show();
+                }
+
+                $('.cbss-heading-link').each(function () {
+                if (this.href.includes(`q=${query}`)) {
+                    $(this).addClass('active');
+                }
+                });
+
+                browseCbssAlphaMenu();
+                getCBSSBrowse();
+
+                document.getElementById('browseByEraTab').addEventListener('click', () => {
+                document.getElementById('abcMenu').style.display = 'none';
+                document.getElementById('historicalEraBrowse').style.display = 'block';
+
+                const elIds = [
+                    'document-search-results',
+                    'cbss-subject-search-results',
+                    'search-results',
+                    'common-subject-menu',
+                    'search-info',
+                    'pagination',
+                    'sort-button-container'
+                ];
+                elIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.innerHTML = '';
+                });
+                });
+
+                if (typeof renderEraMenu === 'function') {
+                renderEraMenu();
+                }
+            });
+            </script>
+
          </div>
       </div>
       </div>
