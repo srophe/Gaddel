@@ -575,6 +575,21 @@
               these cases does <emph>NOT</emph> assign a URI to the place record. For that separate
               function, see the section below: <ref target="#idno">Identifiers
               (<gi>indo</gi>)</ref>.</p>
+            <p>In all of the below cases, care should be taken with the placement of whitespace in the elements.
+               When marking a string of text as a personal name, place name, work title, or bibliographic item,
+               The opening and closing element tags must avoid leading and trailing whitespace. Whitespace must instead
+               be placed outside of the element:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <desc><desc type="abstract" xml:lang="en" resp="http://syriaca.org"
+                  corresp="http://syriaca.org/geo">A location with a monastery whose inhabitants
+                  received a letter from <persName ref="http://syriaca.org/person/51">Severus of
+                    Antioch</persName>.</desc></desc>
+              </egXML>
+              Notice, in the above example, that the space between "from " and the opening tag of the <gi>persName</gi> element,
+              the lack of space between the opening tag and "Severus", no space between "Antioch" and the closing tag. No space is
+              included following the closing tag since the sentence ends with a period; otherwise, a space would be expected before the next
+              word in the sentence.
+            </p>
             <div xml:id="allusionsPersons">
               <head>Allusions to Persons (<gi>persName</gi>/<att>ref</att>)</head>
               <p>References to persons can appear in <gi>desc</gi>, <gi>quote</gi>, or <gi>note</gi>
@@ -969,7 +984,8 @@
               <p>Every record must have an abstract, i.e. a short description or one to two lines of
                 prose describing the place. The purpose of the abstract is to help users of
                   <title>TSG</title> to easily disambiguate search results and quickly identify the
-                place for which they are searching. For places which also have entries in the
+                place for which they are searching. Abstracts should be written as complete sentences
+                with proper punctuation. For places which also have entries in the
                 electronic edition of <ref target="https://gedsh.bethmardutho.org/index.html"
                     ><title>Gorgias Encyclopedic Dictionary of the Syriac Heritage
                   (GEDSH)</title></ref>, <title>TSG</title> has reused the abstracts from
@@ -1062,7 +1078,8 @@
               <div xml:id="additionalDescs">
                 <head>Additional Descriptions (<gi>desc</gi>)</head>
                 <p>As noted above, only one abstract per language and volume of <title>TSG</title>
-                  is permitted. Additional concise descriptions may be included. These descriptions
+                  is permitted. Additional concise descriptions may be included and should be written as complete sentences
+                  with proper punctuation. These descriptions
                   follow the same encoding guidelines as abstracts, except they should not include
                   the <att>type</att> or <att>corresp</att> attributes: <egXML
                     xmlns="http://www.tei-c.org/ns/Examples">
@@ -1565,14 +1582,15 @@
                   elements.</emph></p>
               <p><title>TSG</title> employs the <gi>note</gi> element for two different purposes:
                 deprecation of a name variant and the encoding of information that is uncertain or
-                incorrect. </p>
+                incorrect.</p>
               <p>All <gi>note</gi> elements must have an <att>xml:lang</att> attribute indicating
                 the language of the note. In most cases this will be "en" for English but other
                 languages can be indicated as needed.
                 (for more details, see <ref target="#languageCodes">Recording Language Information</ref>).
                 Notes should also be sourced, as described in <ref target="#source">Inserting Bibliographic Citations</ref>, though they will most likely
                 use a <att>resp</att> attribute as they tend to be assertions made by the contributors rather than
-                cited to a particular source (cf. <ref target="#resp">Asserting Information without a Source</ref>).</p>
+                cited to a particular source (cf. <ref target="#resp">Asserting Information without a Source</ref>).
+                These scholarly annotations should be written as complete sentences with proper punctuation.</p>
               <div xml:id="deprecation">
                 <head>Deprecated Names (<gi>note</gi>)</head>
                 <p>Certain names reported in our database are patently erroneous (e.g. <foreign
