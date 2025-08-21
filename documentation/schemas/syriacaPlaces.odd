@@ -749,6 +749,75 @@
               and licensing of the data in the record. The <gi>teiHeader</gi> in <title>TSG</title>
               records follows the universal guidelines for all Syriaca.org publications. These
               guidelines will be documented elsewhere on the Syriaca.org documentation page.</p>
+            <div xml:id="contributors">
+              <head>Crediting Contributors (<gi>editor</gi> and <gi>respStmt</gi>)</head>
+              <p>Contributions to a <title>TSG</title> record should be credited to the persons
+                 responsible for the intellectual work. This is accomplished in the TEI in two ways:
+                 listing them as a record creator or contributor via a <gi>editor</gi> element and/or
+                 describing the contribution via a <gi>respStmt</gi> element.
+                 </p>
+              <p>Contributors require a unique editor ID to permit machine-readable crediting of contributions.
+                These editor URIs take the form of <code>http://syriaca.org/documentation/editors.xml#wpotter</code>, with the contributor's unique identifier
+                supplied following the "#". Editor IDs may be found in the 
+                <ref target="https://syriaca.org/documentation/editors.xml">Syriaca.org Editors document</ref> as the <att>xml:id</att> attribute value
+                at the following XPath: <code>/TEI/text/body/listPerson/person</code>.
+                New contributors should contact the Syriaca editors to be added to this document.
+                </p>
+              <p>Contributors may be credited using a <gi>editor</gi> element placed within the <gi>titleStmt</gi>
+                 found within the <gi>fileDesc</gi> within the <gi>titleStmt</gi>. The <gi>editor</gi> element
+                 must have a <att>role</att> attribute whose value should either be <q>creator</q> or <q>contributor</q>.
+                 The <gi>editor</gi> element's text node should be a standardized form of the contributor's name, suitable
+                 for publication. To permit machine-readable crediting of contributions, the <gi>editor</gi> element 
+                  must also have a <att>ref</att> attribute with the URI created for the contributor, as described above.
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
+                  <editor role="contributor" ref="http://syriaca.org/documentation/editors.xml#wpotter">William L. Potter</editor>
+                </egXML>
+                Additional new <gi>editor</gi> elements should be added after existing ones.
+              </p>
+              <p>In addition to, or at times in place of, an <gi>editor</gi> element, contributions may be specified by
+              a <gi>respStmt</gi> element. The <gi>respStmt</gi> elements follow the list of <gi>editor</gi> elements found within
+              the <gi>titleStmt</gi>. Each must include a <gi>resp</gi> element, containing a brief description of the contribution,
+              followed by one or more <gi>name</gi> elements. The <gi>name</gi> elements should contain a standard form of the
+              contributor's name, suitable for publication. As well, the <gi>name</gi> element must have a <att>ref</att> attribute
+              whose value must be the corresponding editor URI (see above).
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <respStmt>
+                  <resp>Initial Barsoum entry creation by</resp>
+                  <name ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</name>
+                </respStmt>
+              </egXML>
+                Note in the above example that there should be no leading or trailing whitespace in the <gi>resp</gi> element.
+              </p>
+              <p>Additional <gi>respStmt</gi> elements should be added as the first item in the list of <gi>respStmt</gi> elements, creating
+              a chronological ordering where the most recent contribution is listed first.</p>
+            </div>
+            <div xml:id="revisionDesc">
+              <head>Record Change Log (<gi>revisionDesc</gi> and <gi>change</gi>)</head>
+              <p>Changes made to the record should be recorded in the <gi>revisionDesc</gi> element found within the <gi>teiHeader</gi> element.
+                 Changes should be recorded in a <gi>change</gi> element. New/additional <gi>change</gi> elements should be added at the top
+                 of the list, creating a chronological ordering where the most recent change is listed first.</p>
+              <p>Each <gi>change</gi> element must have a <att>who</att> attribute wose value must be the Syriaca Editors URI for the
+                 contributor making the change (see above under <ref target="#contributors">Crediting Contributors</ref> for how to
+                 find and create these URIs). Additionally, a <att>when</att> attribute must be supplied whose value must be a valid ISO datetime. 
+                 At minimum, this datetime must include the year, month, and date of the change, but may also include the time of the change. The text node
+              of the <gi>change</gi> element must describe the change that was made. It should begin with one of the following terms:
+                <list>
+                  <item>ADDED. Used when new information is added to the record, without revisions to data already in the record</item>
+                  <item>CHANGED. Used when information already in the record was edited, whether or not additional information was added.</item>
+                  <item>CREATED. Reserved for the first change, logging when the TEI XML record was first created.</item>
+                </list>
+                Examples of each of these may be seen in the following:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <revisionDesc status="published">
+                    <change who="http://syriaca.org/documentation/editors.xml#wpotter" when="2025-07-11-05:00">ADDED: Data from <title>Syriac World</title> maps</change>
+                    <change who="http://syriaca.org/documentation/editors.xml#wpotter" when="2020-06-16-05:00">CHANGED: Fixed typos in record abstract</change>
+                    <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: latitude and longitude from Pleiades</change>
+                    <change who="http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-12-18-05:00">CREATED: place</change>
+                  </revisionDesc>
+                </egXML>
+              </p>
+            </div>
           </div>
           <div xml:id="place">
             <head>Place Description (<gi>place</gi>)</head>
