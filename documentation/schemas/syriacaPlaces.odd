@@ -1900,6 +1900,35 @@
                 standard numeric order (e.g., a reference to footnote 7 might precede the reference
                 to footnote 6) but the citation numbers will nevertheless direct readers to the
                 correct work cited.</p>
+              <div xml:id="pleiades">
+                <head>Sourcing Information from Pleiades, Wikipedia, etc.</head>
+                <p>As noted in the <ref target="#idno">Identifiers</ref> section, above, records <title>TSG</title>
+                  should link, where possible, to entries in other databases such as the <title>Pleiades Gazetteer</title>.
+                  In some case, however, these entries may themselves be the source of information contained within the 
+                <title>TSG</title> record. A common case is the inclusion of geographic coordinates from <title>Pleaides</title>.
+                The <gi>bibl</gi> elements for these cases should follow the below structure.</p>
+                <p>To facilitate sourcing this information, there is a bibliographic entry in <title>CBSS</title> for the full
+                  Pleiades dataset: <ref target="http://syriaca.org/cbss/NAA6P8IX">http://syriaca.org/cbss/NAA6P8IX</ref>.
+                  This URI should be used in the <att>target</att> attribute of the
+                <gi>ptr</gi> element. The <gi>citedRange</gi> element should contain as its text node the URI of the entry in
+                <title>Pleiades</title>, and its <att>unit</att> attribute should be <q>entry</q>. Additionally, the <gi>citedRange</gi>
+                element must have a <att>target</att> attribute whose value is the <title>Pleiades</title> URI.</p>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <bibl xml:id="bib100-6">
+                    <ptr target="http://syriaca.org/cbss/NAA6P8IX"/>
+                    <citedRange unit="entry" target="http://pleiades.stoa.org/places/874530">http://pleiades.stoa.org/places/874530</citedRange>
+                  </bibl>
+                </egXML>
+                <p>A similar pattern may be used for other datasets, such as <title>Wikipedia</title>
+                  (<ref target="http://syriaca.org/cbss/RNEJVB6D">http://syriaca.org/cbss/RNEJVB6D</ref>), which will have their own <title>CBSS</title> URIs:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <bibl xml:id="bib100-12">
+                      <ptr target="http://syriaca.org/cbss/RNEJVB6D"/>
+                      <citedRange unit="entry" target="http://en.wikipedia.org/wiki/Mount_Izla">http://en.wikipedia.org/wiki/Mount_Izla</citedRange>
+                    </bibl>
+                  </egXML>
+                </p>
+              </div>
             </div>
           </div>
           <div xml:id="relations">
