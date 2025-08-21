@@ -368,7 +368,7 @@ function getPaginatedBrowse() {
         size: state.size,
         lang: state.lang,
         series: state.series,
-        subject: state.subject
+        subject: state.cbssSubject
     };
 
     // Remove empty or undefined parameters
@@ -620,7 +620,7 @@ function browseCbssAlphaMenu() {
             state.searchType = 'browse'; // Set searchType to 'browse'
             const newUrlParams = new URLSearchParams({
                 searchType: 'browse',
-                q: state.query,
+                q: state.query || 'cbssSubject', // Default to 'cbssSubject' if query is not set
                 size: state.size,
                 lang: state.lang
             });
@@ -641,26 +641,22 @@ function browseCbssAlphaMenu() {
 
 
 function getCBSSBrowse() {
-    // Set state for CBSS browse
-    state.from = 0; // Reset for the first page
-    state.letter = state.letter || 'a'; // Default letter if not already set
-    state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
-    state.searchType = state.searchType || 'browse'; // Set search type to 'browse'
-    state.query = state.query || 'cbssSubject'; // Set query to 'cbssAuthor' by default
-    
-    //set query parameters for url and search
-    const queryParams = new URLSearchParams({
-    searchType: state.searchType,
-    q: state.query,
-    from: state.from,
-    size: state.size,
-    lang: state.lang,
-    series: state.series
-    });
+    const urlParams = new URLSearchParams(window.location.search);
 
-    if (state.letter) {
-        queryParams.set('letter', state.letter);
+    // Only apply defaults if no search parameters are in the URL
+    if (!urlParams.has('searchType')) {
+        state.from = 0; // Reset for the first page
+        state.letter = state.letter || 'A'; // Default letter if not already set
+        state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
+        state.searchType = state.searchType || 'browse'; // Set search type to 'browse'
+        state.query = state.query || 'cbssSubject'; // Set query to 'cbssSubject' by default
+    } else {
+        initializeStateFromURL();
     }
+
+    // Set query parameters for url and search
+    const queryParams = new URLSearchParams(buildQueryParams());
+
     window.history.pushState({}, '', `?${queryParams.toString()}`);
 
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
@@ -668,17 +664,27 @@ function getCBSSBrowse() {
         .then(data => {
             state.totalResults = data.hits.total.value;
             displayResultsInfo(state.totalResults); 
-            if(state.query === 'cbssAuthor' ){ displayCBSSAuthorResults(data); }
-            if(state.query === 'cbssSubject' ){ displayCBSSSubjectResults(data); }   })
+            if (state.query === 'cbssAuthor') { displayCBSSAuthorResults(data); }
+            if (state.query === 'cbssSubject' && state.searchType === 'browse' ) { displayCBSSSubjectResults(data); }
+            if (state.searchType === 'cbssSubject') {
+            // Display the results
+            console.log("displayCBSSDocumentResults", data, state.cbssSubject);
+            displayCBSSDocumentResults(data, state.cbssSubject);
+            fetchCbssRelatedSubjects();
+            
+            //Change this for infinite scrolling?
+            createSortDocumentResultButton(data);            }
+        })
         .catch(error => {
             handleError('search-results', 'Error fetching CBSS browse results.');
             console.error(error);
         });
+
+    updateURLFromState();
 }
 
 function displayCBSSSubjectResults(data) {
     setupInfiniteScroll(); // Initialize infinite scroll
-    
     
     const resultsContainer = document.getElementById("cbss-subject-search-results");
     resultsContainer.innerHTML = ''; // Clear previous results
@@ -726,8 +732,10 @@ function displayCBSSSubjectResults(data) {
             link.addEventListener("click", (event) => {
                 event.preventDefault(); // Prevent default anchor behavior
                 state.subject = subject.key;
-
+                state.cbssSubject = subject.key; // Store the selected subject in state
+                state.letter = '';
                 fetchCBSSRecordsBySubject(subject.key); // Fetch records for the clicked subject
+                updateURLFromState(); // Update URL based on the current state
             });
 
             listItem.appendChild(link);
@@ -749,10 +757,11 @@ function fetchCBSSRecordsBySubject(subjectKey) {
     state.searchType = "cbssSubject";   
     //Not sure if this is necessary  
     state.subject = subjectKey;
+    state.cbssSubject = subjectKey; // Store the selected subject in state
     // Build query parameters
     const queryParams = new URLSearchParams({
         searchType: "cbssSubject",        
-        subject: state.subject, 
+        subject: state.cbssSubject, 
         size: state.size, 
         from: state.from,
         sort: state.sortFactor
@@ -783,13 +792,16 @@ function fetchCBSSRecordsBySubject(subjectKey) {
             handleError('search-results', 'Error fetching CBSS records.');
             state.isLoading = false;
         });
+        
+    updateURLFromState(); // Update URL based on the current state
 
 }
+// These queries should not be reflected in the URL
 function fetchCbssRelatedSubjects() {
         // Build related subject query parameters //don't need to do this for every subject search
         const queryParamsRelSubject = new URLSearchParams({
             searchType: "cbssRelSubject",        
-            subject: state.subject
+            subject: state.cbssSubject
         });  
     
         fetch(`${apiUrl}?${queryParamsRelSubject.toString()}`, { method: 'GET' })  
@@ -802,7 +814,7 @@ function fetchCbssRelatedSubjects() {
             .then(data => {
                 // state.totalResults = data.hits.total.value;
                 // Display the results
-                displayCBSSSubjectsinCommonResults(data, state.subject);
+                displayCBSSSubjectsinCommonResults(data, state.cbssSubject);
             })
             .catch(error => {
                 console.error('Error fetching CBSS related subject records:', error);
@@ -810,11 +822,12 @@ function fetchCbssRelatedSubjects() {
     
             });  
 }
+// Function to display related subjects in common: not reflected in URL
 function displayCBSSSubjectsinCommonResults(data, selectedSubject) {
     const menuContainer = document.getElementById("common-subject-menu"); // Fix incorrect ID
     menuContainer.innerHTML = ""; // Clear existing menu
     
-
+    console.log("function: displayCBSSSubjectsinCommonResults", data, selectedSubject);
     if (!data.aggregations || !data.aggregations.unique_subjects) {
         console.error("No subjects found in aggregation.");
         menuContainer.innerHTML = `<p>No related subjects found.</p>`;
@@ -866,6 +879,7 @@ function displayCBSSSubjectsinCommonResults(data, selectedSubject) {
 // Function to display CBSS document results
 function displayCBSSDocumentResults(data, subjectKey) {
     // Split subjects if there are multiple
+    console.log("within displayCBSSDocumentResults function", data, subjectKey);
     let subjectsArray = subjectKey.split(",").map(s => s.trim());
     const previousResultsContainer = document.getElementById("search-results");
     previousResultsContainer.innerHTML = ''; // Clear previous results
@@ -918,11 +932,11 @@ function displayCBSSDocumentResults(data, subjectKey) {
                 subjectsArray = subjectsArray.filter(s => s !== subject);
 
                 // Update state & trigger new search
-                state.subject = subjectsArray.join(", ");
+                state.cbssSubject = subjectsArray.join(", ");
                 if (subjectsArray.length > 0) {
                     state.currentPage = 1;
                     state.from = 0;
-                    fetchCBSSRecordsBySubject(state.subject);
+                    fetchCBSSRecordsBySubject(state.cbssSubject);
                 } else {
                     resultsContainer.innerHTML = "<p>No subjects selected.</p>";
                 }
@@ -1047,8 +1061,8 @@ function createSortDocumentResultButton(data) {
             state.from = 0;
             state.currentPage = 1;
             state.sortFactor = "date";
-            fetchCBSSRecordsBySubject(state.subject);
-            // displayCBSSDocumentResults(data, state.subject);
+            fetchCBSSRecordsBySubject(state.cbssSubject);
+            // displayCBSSDocumentResults(data, state.cbssSubject);
         });
     
         container.appendChild(sortButton);
@@ -1237,6 +1251,7 @@ function runBrowse(series) {
     
     getBrowse(series);
     
+    
 }
 
 // Helper function to get form data and update state
@@ -1372,7 +1387,7 @@ function buildQueryParams() {
         subject: state.cbssSubject
             ? state.cbssSubject
                 .split(',')
-                .map(s => s.trim().toLowerCase())
+                .map(s => s.trim())
                 .join(', ')
             : '',
         keyword: state.keyword,
@@ -1463,6 +1478,8 @@ function resetState() {
     state.pubPlace = '';
     
     state.cbssSubject = '';
+    state.allCbssSubjects= '';
+
     state.keyword = '';
 }
 // Toggle Advanced Search Form
@@ -1502,8 +1519,8 @@ function setupInfiniteScroll() {
             state.from = (state.currentPage - 1) * state.size;
  
             // Ensure we are not fetching beyond the total results
-            if (state.totalResults > state.from + state.size) {
-                fetchCBSSRecordsBySubject(state.subject);
+            if (state.totalResults > state.from) {
+                fetchCBSSRecordsBySubject(state.cbssSubject);
             }
         }
     });
@@ -1567,7 +1584,7 @@ function clearSearchResults() {
     if (resultsContainer) resultsContainer.innerHTML = '';
 
     const cbssResultsContainer = document.getElementById("cbss-subject-search-results");
-    if (cbssResultsContainer) resultsContainer.innerHTML = '';
+    if (cbssResultsContainer) cbssResultsContainer.innerHTML = '';
 
     const docResultsContainer = document.getElementById("document-search-results");
     if (docResultsContainer) docResultsContainer.innerHTML = '';
@@ -1588,6 +1605,21 @@ function updateURLFromSearchFields() {
     const newUrl = `${window.location.pathname}?${params.toString()}`;
     window.history.pushState({}, '', newUrl);
 }
+function updateURLFromState() {
+    const queryParams = new URLSearchParams(buildQueryParams());
+    const newUrl = `${window.location.pathname}?${queryParams.toString()}`;
+    window.history.pushState({}, '', newUrl);
+}
+function populateFieldsFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    for (const [key, value] of urlParams) {
+        const field = document.getElementById(key) || document.querySelector(`input[name="${key}"]`) || document.querySelector(`select[name="${key}"]`);
+        if (field) {
+            field.value = value;
+        }
+    }
+}
+
 // Eras Browse CBSS subjects
 
 
@@ -1619,9 +1651,12 @@ function runEraQuery(terms) {
     setTimeout(() => {
     const resultsEl = document.getElementById('search-division');
     if (resultsEl) {
-        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' , scrollMarginTop: '100px'});
+        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     }, 500); // wait half a second; adjust if needed
+
+    updateURLFromState(); // Update URL with new search parameters
+    console.log(`Updated URL with new search parameters: ${newUrl}`);
 }
 
 function renderEraMenu() {
