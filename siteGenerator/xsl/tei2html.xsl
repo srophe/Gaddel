@@ -479,6 +479,27 @@
                 <xsl:text>) </xsl:text>
                 <xsl:sequence select="local:add-footnotes(@source,.)"/>
             </xsl:when>
+            <!-- Filter abstracts -->
+            <xsl:when test="@type = 'abstract'">
+                <xsl:choose>
+                    <xsl:when test="$collection-title = 'The Syriac Biographical Dictionary' and @coresp[contains(.,'http://syriaca.org/persons')]"/>
+                    <xsl:when test="$collection-title = 'The Syriac Gazetteer' and @coresp[contains(.,'http://syriaca.org/geo')]"/>
+                    <xsl:when test="$collection-title = 'Prosopography to John of Ephesus’s Ecclesiastical History' and @coresp[contains(.,'http://syriaca.org/johnofephesus/persons')]"/>
+                    <xsl:when test="$collection-title = 'Gazetteer to John of Ephesus’s Ecclesiastical History' and @coresp[contains(.,'http://syriaca.org/johnofephesus/places')]"/>
+                    <xsl:when test="$collection = 'sbd' and @coresp[contains(.,'http://syriaca.org/johnofephesus/persons')]"/>
+                    <xsl:when test="$collection = 'places' and @coresp[contains(.,'http://syriaca.org/geo')]"/>
+                    <xsl:when test="$collection = 'johnofephesusPersons' and @coresp[contains(.,'http://syriaca.org/johnofephesus/persons')]"/>
+                    <xsl:when test="$collection = 'johnofephesusPlaces' and @coresp[contains(.,'http://syriaca.org/johnofephesus/places')]"/>
+                    <xsl:otherwise>
+                        <div class="tei-note">
+                            <xsl:choose>
+                                <xsl:when test="t:quote"><xsl:apply-templates/></xsl:when>
+                                <xsl:otherwise><span><xsl:sequence select="local:attributes(.)"/><xsl:apply-templates/></span><xsl:sequence select="local:add-footnotes(@source,.)"/></xsl:otherwise>
+                            </xsl:choose>
+                        </div>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
             <!-- Adds definition list for depreciated names -->
             <xsl:when test="@type='deprecation'">
                 <div class="tei-note">
@@ -577,9 +598,9 @@
     <!-- P -->
     <!-- Main page modules for syriaca.org display -->
     <xsl:template match="t:person | t:personGrp">
-        <xsl:if test="t:desc[@type='abstract'] | t:desc[starts-with(@xml:id, 'abstract-en')] | t:note[@type='abstract']">
+        <xsl:if test="t:note[@type='abstract'] | t:note[starts-with(@xml:id, 'abstract-en')]">
             <xsl:choose>
-                <xsl:when test="$collection = 'johnofephesusPersons'">
+                <xsl:when test="$collection = 'johnofephesusPersons' or $collection-title = 'Prosopography to John of Ephesus’s Ecclesiastical History'">
                     <xsl:if test="t:note[@type='abstract'][contains(@corresp,'http://syriaca.org/johnofephesus/persons')]">
                         <div class="tei-desc text abstract">
                             <xsl:apply-templates select="t:note[@type='abstract'][contains(@corresp,'http://syriaca.org/johnofephesus/persons')]"/>
@@ -636,6 +657,7 @@
             </xsl:for-each-group>
         </xsl:if>
         -->
+        <!--
         <xsl:if test="not(empty(t:desc[not(starts-with(@xml:id,'abstract'))][1])) or not(empty(t:note[@type='description'][1]))">
             <h3>Descriptions</h3>
             <xsl:for-each-group select="t:desc[not(starts-with(@xml:id,'abstract'))] | t:note[@type='description']" group-by="if (contains(@xml:lang, '-')=true()) then substring-before(@xml:lang, '-') else @xml:lang">
@@ -648,6 +670,7 @@
                 </xsl:for-each>
             </xsl:for-each-group>
         </xsl:if> 
+        -->
         <!-- Events -->
         <xsl:if test="t:event[not(@type='attestation')]">
             <div id="event">
@@ -680,23 +703,12 @@
             </div>
         </xsl:if>
         
-        <xsl:if test="not(empty(t:note[not(@type='description')][1]))">
-            <xsl:choose>
-                <xsl:when test="$collection = 'johnofephesusPersons'">
-                    <xsl:if test="t:note[not(@type='abstract')][not(@type='description')][contains(@corresp,'http://syriaca.org/johnofephesus/persons')]">
-                        <h3>Notes</h3>
-                        <xsl:apply-templates select="t:note[not(@type='abstract')][not(@type='description')][not(contains(@corresp,'http://syriaca.org/johnofephesus/persons'))]"/>
-                    </xsl:if>
-                </xsl:when>
-                <xsl:when test="t:note[not(@type='abstract')][contains(@corresp,'http://syriaca.org/persons')]">
-                    <h3>Notes</h3>
-                    <xsl:apply-templates select="t:note[not(@type='abstract')][not(@type='description')][not(contains(@corresp,'http://syriaca.org/persons'))]"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <h3>Notes</h3>
-                    <xsl:apply-templates select="t:note[not(@type='abstract')][not(@type='description')]"/>
-                </xsl:otherwise>
-            </xsl:choose>
+        <xsl:if test="not(empty(t:note))">
+            <h3>Notes</h3>
+            <xsl:for-each select="t:note">
+                <xsl:sort select="@type"/>
+                <xsl:apply-templates select="."/>
+            </xsl:for-each>
         </xsl:if>
         
         <div class="info-btns">  
@@ -721,7 +733,7 @@
     <xsl:template match="t:place">
         <xsl:if test="t:desc[@type='abstract'] | t:desc[starts-with(@xml:id, 'abstract-en')] | t:note[@type='abstract']">
             <xsl:choose>
-                <xsl:when test="$collection = 'johnofephesusPlace'">
+                <xsl:when test="$collection = 'johnofephesusPlace' or $collection-title = 'Gazetteer to John of Ephesus’s Ecclesiastical History'">
                     <xsl:if test="t:note[@type='abstract'][contains(@corresp,'http://syriaca.org/johnofephesus/places')]">
                         <div class="tei-desc text abstract">
                             <xsl:apply-templates select="t:note[@type='abstract'][contains(@corresp,'http://syriaca.org/johnofephesus/places')]"/>
@@ -776,6 +788,7 @@
                 </ul>
             </div>
         </xsl:if>
+        <!--
         <xsl:if test="not(empty(t:desc[not(starts-with(@xml:id,'abstract'))][1])) or not(empty(t:note[@type='description'][1]))">
             <h3>Descriptions</h3>
             <xsl:for-each-group select="t:desc[not(starts-with(@xml:id,'abstract'))] | t:note[@type='description']" group-by="if (contains(@xml:lang, '-')=true()) then substring-before(@xml:lang, '-') else @xml:lang">
@@ -788,6 +801,7 @@
                 </xsl:for-each>
             </xsl:for-each-group>
         </xsl:if> 
+        -->
         <xsl:if test="t:state[. != '']">
             <xsl:for-each-group select="//t:state[not(@when) and not(@notBefore) and not(@notAfter) and not(@to) and not(@from)]" group-by="@type">
                 <h3><xsl:value-of select="concat(upper-case(substring(current-grouping-key(),1,1)),substring(current-grouping-key(),2))"/></h3>
@@ -832,6 +846,14 @@
             </div>
         </xsl:if>
         
+        <xsl:if test="not(empty(t:note))">
+            <h3>Notes</h3>
+            <xsl:for-each select="t:note">
+                <xsl:sort select="@type"/>
+                <xsl:apply-templates select="."/>
+            </xsl:for-each>
+        </xsl:if>
+        <!--
         <xsl:if test="not(empty(t:note[not(@type='description')][1]))">
             <xsl:choose>
                 <xsl:when test="$collection = 'johnofephesusPlace'">
@@ -850,6 +872,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>
+        -->
         <!-- Confessions/Religious Communities -->
         <xsl:if test="t:state[@type='confession'][parent::t:place]">
             <div>
