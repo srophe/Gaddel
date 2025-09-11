@@ -1025,20 +1025,46 @@
         <xsl:param name="doc"/>
         <xsl:param name="id"/>
         <xsl:choose>
-            <xsl:when test="$doc/descendant::*[starts-with(@xml:id,'abstract')]">
+            <xsl:when test="$doc/descendant::*[@type='abstract'][contains(@corresp, 'http://syriaca.org/persons')]">
                 <string key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">
-                    <!--<xsl:value-of select="normalize-space(string-join($doc/descendant::*[starts-with(@xml:id,'abstract')],' '))"/>-->
-                    <xsl:apply-templates select="$doc/descendant::*[starts-with(@xml:id,'abstract')]" mode="xmlLang"/>
+                    <xsl:apply-templates select="$doc/descendant::*[@type='abstract'][contains(@corresp, 'http://syriaca.org/persons')][1]" mode="xmlLang"/>
+                </string>  
+            </xsl:when>
+            <xsl:when test="$doc/descendant::*[@type='abstract'][contains(@corresp, 'http://syriaca.org/geo')]">
+                <string key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">
+                    <xsl:apply-templates select="$doc/descendant::*[@type='abstract'][contains(@corresp, 'http://syriaca.org/geo')][1]" mode="xmlLang"/>
                 </string>  
             </xsl:when>
             <xsl:when test="$doc/descendant::*[@type='abstract']">
                 <string key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">
-                    <!--<xsl:value-of select="normalize-space(string-join($doc/descendant::*[@type='abstract'],' '))"/>-->
-                    <xsl:apply-templates select="$doc/descendant::*[@type='abstract']" mode="xmlLang"/>
-                </string>
+                    <xsl:apply-templates select="$doc/descendant::*[@type='abstract'][1]" mode="xmlLang"/>
+                </string>  
             </xsl:when>
         </xsl:choose>    
     </xsl:template>
+    <!-- Add JoE Abstract -->
+    <xsl:template match="*:fields[@function = 'joeAbstract']">
+        <xsl:param name="doc"/>
+        <xsl:param name="id"/>
+        <xsl:choose>
+            <xsl:when test="$doc/descendant::*[@type='abstract'][contains(@corresp, 'http://syriaca.org/johnofephesus/persons')]">
+                <string key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">
+                    <xsl:apply-templates select="$doc/descendant::*[@type='abstract'][contains(@corresp, 'http://syriaca.org/johnofephesus/persons')]" mode="xmlLang"/>
+                </string>  
+            </xsl:when>
+            <xsl:when test="$doc/descendant::*[@type='abstract'][contains(@corresp, 'http://syriaca.org/johnofephesus/places')]">
+                <string key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">
+                    <xsl:apply-templates select="$doc/descendant::*[@type='abstract'][contains(@corresp, 'http://syriaca.org/johnofephesus/places')]" mode="xmlLang"/>
+                </string>  
+            </xsl:when>
+            <xsl:when test="$doc/descendant::*[@type='abstract'][contains(@corresp, 'http://syriaca.org/johnofephesus')]">
+                <string key="{.}" xmlns="http://www.w3.org/2005/xpath-functions">
+                    <xsl:apply-templates select="$doc/descendant::*[@type='abstract'][contains(@corresp, 'http://syriaca.org/johnofephesus')]" mode="xmlLang"/>
+                </string>  
+            </xsl:when>
+        </xsl:choose>    
+    </xsl:template>
+    
     <!-- DATES start and end  -->
     <xsl:template match="*:fields[@function = 'cbssPubDate']">
         <xsl:param name="doc"/>
