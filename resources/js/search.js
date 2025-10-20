@@ -1724,19 +1724,21 @@ const specificCenturies = [
 ];
 
 const eraList = document.getElementById('eraList');
-specificCenturies.forEach(era => {
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    a.href = '#';
-    a.textContent = era.label;
-    a.dataset.era = era.query;
-    a.addEventListener('click', (e) => {
-        e.preventDefault();
-        runEraQuery(era.query);
+if (eraList) {
+    specificCenturies.forEach(era => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#';
+        a.textContent = era.label;
+        a.dataset.era = era.query;
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            runEraQuery(era.query);
+        });
+        li.appendChild(a);
+        eraList.appendChild(li);
     });
-    li.appendChild(a);
-    eraList.appendChild(li);
-});
+}  
 const eraGroups = {
   'First to Third Centuries CE (circa 0–300)': ['I-III CE'],
   'Fourth to Seventh Centuries CE (circa 300–700)': ['IV-VII CE'],
