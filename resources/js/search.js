@@ -1089,11 +1089,12 @@ function sortDocumentResultRequest(data, factor) {
         return titleA.toLowerCase().localeCompare(titleB.toLowerCase());
     } else if (factor === "date") {  
 
-        // Convert date strings to actual Date objects (assuming ISO or YYYY-MM-DD format)
+        // Convert date strings to actual Date objects (assuming ISO or YYYY-MM-DD format): probably not needed, sorting is done in opensearch
         const dateA = a._source.cbssPubDateStart ? new Date(a._source.cbssPubDateStart) : new Date(0);
         const dateB = b._source.cbssPubDateStart ? new Date(b._source.cbssPubDateStart) : new Date(0);
 
-        return dateA - dateB; // Sort ascending (earliest first)
+        return  dateB - dateA; // Sort descending
+
     }
     });
     return sortedHits;
