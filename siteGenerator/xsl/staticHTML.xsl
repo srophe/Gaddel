@@ -79,9 +79,9 @@
     <xsl:param name="convert" select="'true'"/>
     -->
     
-    <xsl:param name="applicationPath" select="'../../'"/>
-    <xsl:param name="staticSitePath" select="'../../'"/>
-    <xsl:param name="dataPath" select="'./data/'"/>
+    <xsl:param name="applicationPath" select="'/Users/wsalesky/syriaca/syriaca/Gaddel'"/>
+    <xsl:param name="staticSitePath" select="'/Users/wsalesky/syriaca/syriaca/Gaddel-temp'"/>
+    <xsl:param name="dataPath" select="'/Users/wsalesky/syriaca/syriaca/syriaca-data'"/>
     <!-- <xsl:param name="dataPath" select="'/Users/wsalesky/syriaca/syriaca/syriaca-data/data/'"/> -->
     
     <!-- Example: generate new index.html page for places collection -->
@@ -461,7 +461,7 @@
                                             <div class="col-md-7 col-lg-8">
                                                 <xsl:apply-templates select="$nodes/ancestor-or-self::t:TEI">
                                                     <xsl:with-param name="collection" select="$collection"/>
-                                                    <xsl:with-param name="idno" select="$idno"/>
+                                                    <xsl:with-param name="idno" select="$idno" tunnel="yes"/>
                                                 </xsl:apply-templates>
                                             </div>
                                             <div class="col-md-5 col-lg-4 right-menu">
