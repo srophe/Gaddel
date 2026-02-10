@@ -163,7 +163,7 @@
             <h2 style="margin-top:3em;">
                <a class="cbss-heading-link" href="browse.html?searchType=browse&q=cbssSubject&letter=a&size=25">Browse Bibliography by Subject</a>
                      &nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="cbss-heading-link" id="browseByEraTab">Browse Bibliography by Era</a>
+                <a class="cbss-heading-link" id="browseByEraTab" style="cursor: pointer;">Browse Bibliography by Era</a>
                      &nbsp;&nbsp;&nbsp;&nbsp;
                <a class="cbss-heading-link" href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=en">Browse Bibliography by Author</a>
             </h2>
@@ -247,6 +247,8 @@
                 getCBSSBrowse();
 
                 document.getElementById('browseByEraTab').addEventListener('click', () => {
+                $('.cbss-heading-link').removeClass('active');
+                document.getElementById('browseByEraTab').classList.add('active');
                 document.getElementById('abcMenu').style.display = 'none';
                 document.getElementById('historicalEraBrowse').style.display = 'block';
 
