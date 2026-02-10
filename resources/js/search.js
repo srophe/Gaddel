@@ -711,6 +711,8 @@ function displayCBSSSubjectResults(data) {
     displayResultsInfo(state.totalResults); 
 
     if (filteredSubjects.length > 0) {
+        resultsContainer.style.columnCount = "3";
+        resultsContainer.style.width = "";
         const list = document.createElement("div"); // Create a list to display subjects
         //list.classList.add("subject-list"); // Add a class for styling
         // list.style.display = "flex";
@@ -744,6 +746,8 @@ function displayCBSSSubjectResults(data) {
 
         resultsContainer.appendChild(list); // Add the list to the results container
     } else {
+        resultsContainer.style.columnCount = "1";
+        resultsContainer.style.width = "100%";
         resultsContainer.innerHTML = `<p>No subjects found starting with "${state.letter}".</p>`;
     }
 }
