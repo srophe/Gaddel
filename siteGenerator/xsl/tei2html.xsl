@@ -411,26 +411,26 @@
             <div id="see-also" class="see-also content-block">
                 <h3>See Also</h3>
                 <ul>
-                    <xsl:for-each select="//t:idno[contains(.,'csc.org.il')]">
+                    <xsl:for-each select="//t:idno[contains(.,'csc.org.il')][not(@subtype='deprecated')]">
                         <li>
                             <a href="{normalize-space(.)}"> "
                                 <xsl:value-of select="substring-before(substring-after(normalize-space(.),'sK='),'&amp;sT=')"/>" in the Comprehensive Bibliography on Syriac Christianity</a>
                         </li>
                     </xsl:for-each>
                     <!-- WorldCat Identities -->
-                    <xsl:for-each select="//t:idno[contains(.,'http://worldcat.org/identities')]">
+                    <xsl:for-each select="//t:idno[contains(.,'http://worldcat.org/identities')][not(@subtype='deprecated')]">
                         <li>
                             <a href="{normalize-space(.)}"> "<xsl:value-of select="substring-after(.,'http://worldcat.org/identities/')"/>" in WorldCat Identities</a>
                         </li>
                     </xsl:for-each>
                     <!-- VIAF -->
-                    <xsl:for-each select="//t:idno[contains(.,'http://viaf.org/')]">
+                    <xsl:for-each select="//t:idno[contains(.,'http://viaf.org/')][not(@subtype='deprecated')]">
                         <li>
                             <a href="{normalize-space(.)}">VIAF</a>
                         </li>
                     </xsl:for-each>
                     <!-- Pleiades links -->
-                    <xsl:for-each select="//t:idno[contains(.,'pleiades')]">
+                    <xsl:for-each select="//t:idno[contains(.,'pleiades')][not(@subtype='deprecated')]">
                         <li>
                             <a href="{normalize-space(.)}">
                                 <img src="/resources/images/circle-pi-25.png" alt="Image of the Greek letter pi in blue; small icon of the Pleiades project" title="click to view {$title} in Pleiades"/> View in Pleiades</a>
@@ -452,7 +452,7 @@
                     </xsl:for-each>
                     
                     <!-- Wikipedia links -->
-                    <xsl:for-each select="//t:idno[contains(.,'wikipedia')]">
+                    <xsl:for-each select="//t:idno[contains(.,'wikipedia')][not(@subtype='deprecated')]">
                         <xsl:variable name="get-title">
                             <xsl:value-of select="replace(tokenize(.,'/')[last()],'_',' ')"/>
                         </xsl:variable>
