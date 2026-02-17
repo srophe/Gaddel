@@ -12,7 +12,7 @@ h1 {font-size:1.75em; margin:.25em 0 .25em 0; color:#456889; font-weight:500;}
 h2 {font-size: 1.5em; margin:1em 0 .25em 0; padding-bottom:0; color:#666; font-weight:500;}
 h3 {font-size: 1.25em; margin:1em 0 .25em 0; padding-bottom:0; color:#666; font-weight:500;  padding-bottom:0;}
 h3.banner-solid {color:white;}
-h4 {font-size: 1em; margin:1em 0 .25em 0; padding-bottom:0; font-weight:bold;}
+h4 {font-size: 1em; margin:1em 0 .25em 0; padding-bottom:0; color:#666; font-weight:500;}
 h3.paging {display:block;font-weight:500; color:#666;}
 h4 {font-size: 1em; margin-top:1em;}
 .info-btns {display:block; margin:2em 0;} 
