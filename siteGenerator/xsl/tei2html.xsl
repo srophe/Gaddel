@@ -1425,11 +1425,12 @@
         </xsl:call-template>
     </xsl:template>
     <xsl:template name="h1">
-        <xsl:param name="idno"/>
+        <xsl:param name="idno" tunnel="yes"/>
         <xsl:variable name="id">
             <xsl:choose>
                 <xsl:when test="$idno"><xsl:value-of select="$idno"/></xsl:when>
-                <xsl:otherwise><xsl:value-of select="$resource-id"/></xsl:otherwise>
+                <xsl:when test="$resource-id"><xsl:value-of select="$resource-id"/></xsl:when>
+                <xsl:otherwise><xsl:value-of select="/descendant::t:publicationStmt/t:idno[@type='URI'][1]"/></xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <div class="title">
