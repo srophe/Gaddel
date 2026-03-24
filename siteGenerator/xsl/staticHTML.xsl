@@ -80,7 +80,7 @@
     -->
     
     <xsl:param name="applicationPath" select="'/Users/wsalesky/syriaca/syriaca/Gaddel'"/>
-    <xsl:param name="staticSitePath" select="'/Users/wsalesky/syriaca/syriaca/Gaddel-temp'"/>
+    <xsl:param name="staticSitePath" select="'/Users/wsalesky/syriaca/syriaca/Gaddel/'"/>
     <xsl:param name="dataPath" select="'/Users/wsalesky/syriaca/syriaca/syriaca-data'"/>
     <!-- <xsl:param name="dataPath" select="'/Users/wsalesky/syriaca/syriaca/syriaca-data/data/'"/> -->
     
