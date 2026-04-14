@@ -6,6 +6,13 @@ Gaddel transforms TEI XML scholarly data into static HTML pages, indexes them in
 
 ## Architecture
 
+![Gaddel Architecture Diagram](documentation/AWS/GaddelArchitecture.png)
+
+[View interactive diagram on Lucidchart](https://lucid.app/lucidchart/cbf912b8-370e-467f-9a69-48c9645a40e9/edit?viewport_loc=-2444%2C-668%2C4915%2C1941%2C0_0&invitationId=inv_c5c7d8a4-2a53-41bc-b1a6-e3eb5ed528a3)
+
+<details>
+<summary>View as Mermaid diagram</summary>
+
 ```mermaid
 graph TB
     subgraph GitHub["GitHub (srophe org)"]
@@ -60,6 +67,8 @@ graph TB
     APIGW -->|Linked Data queries| SPARQL
     SPARQL --> Neptune
 ```
+
+</details>
 
 ## Project Structure
 
