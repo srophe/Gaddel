@@ -1,0 +1,64 @@
+@startuml Gaddel Architecture
+
+actor "End Users" as users
+
+rectangle "GitHub" #LightGray {
+  component "Gaddel and data Repositories" as repo
+  component "GitHub\nActions" as gha
+}
+
+rectangle "TEI Data Sources" #LightBlue {
+  component "TEI XML\nRecords" as tei
+  component "RDF\nTaxonomy" as rdf
+}
+
+rectangle "Site Generator (XSLT 3.0 / XQuery)" #LightGreen {
+  component "staticHTML.xsl" as static
+  component "tei2html.xsl" as tei2html
+  component "json.xsl" as jsonxsl
+  component "createSiteIndex.xsl" as indexxsl
+  component "tei2ttl.xqm" as tei2ttl
+  component "HTML Templates\n(components/)" as templates
+  component "repo-config.xml" as config
+}
+
+rectangle "AWS Cloud" #Orange {
+  component "AWS WAF" as waf
+  component "CloudFront\nDistribution" as cf
+  component "Origin Access\nControl" as oac
+  database "S3 Bucket\nsrophe-syriaca-front-end" as s3
+  component "API Gateway" as apigw
+  database "OpenSearch\nIndex" as os
+  database "Neptune\nGraph DB" as neptune
+  component "SPARQL\nEndpoint" as sparql
+}
+
+tei -down-> static
+rdf -down-> static
+config -down-> static
+templates -down-> static
+static -down-> tei2html
+
+tei -down-> jsonxsl : Generate JSON docs
+tei -down-> indexxsl : Create index mapping
+tei -down-> tei2ttl : Generate RDF Turtle
+jsonxsl -down-> os
+indexxsl -down-> os
+tei2ttl -down-> neptune
+
+static -down-> repo
+repo -down-> gha
+gha -down-> s3 : Sync files
+gha -down-> cf : Invalidate cache
+
+users -down-> waf : HTTPS
+waf -down-> cf : Filtered traffic
+oac -down-> s3 : Authorized Access
+cf -down-> oac : Fetch via OAC
+users -down-> apigw : Search & Browse
+waf -down-> apigw : Filtered API traffic
+apigw -down-> os
+apigw -down-> sparql : Linked Data queries
+sparql -down-> neptune
+
+@enduml
