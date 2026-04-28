@@ -46,7 +46,7 @@
                <licence target="http://creativecommons.org/licenses/by/3.0/"> Distributed under a
                   Creative Commons Attribution 3.0 Unported License </licence>
             </availability>
-            <date>2025-06-18</date>
+            <date>2026-04-28</date>
          </publicationStmt>
          <sourceDesc>
             <p>Born digital.</p>
@@ -69,6 +69,7 @@
       <revisionDesc>
          <change type="reminder">Please be sure to update the publication date when changes are made
             here!</change>
+         <change when="2026-04-28" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Louis Wu</change>
          <change when="2025-06-18" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Syriac World contributors</change>
          <change when="2023-12-15" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Silvio Roggo</change>
          <change when="2023-06-02" who="http://syriaca.org/documentation/editors.xml#dschwartz">ADDED: Adam Kane, Simone Pratelli, and Aram Bar Schabo</change>
@@ -748,6 +749,12 @@
                <persName xml:lang="en">
                   <forename>David</forename>
                   <surname>Wilmshurst</surname>
+               </persName>
+            </person>
+            <person xml:id="lwu">
+               <persName xml:lang="en">
+                  <forename>Louis</forename>
+                  <surname>Wu</surname>
                </persName>
             </person>
             <person xml:id="lyarbrough">
