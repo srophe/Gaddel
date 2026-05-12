@@ -257,6 +257,18 @@
                   <gloss>Turkish</gloss>
                   <desc>Turkish</desc>
                 </valItem>
+                <valItem ident="zh">
+                  <gloss>Chinese</gloss>
+                  <desc>Chinese</desc>
+                </valItem>
+                <valItem ident="zh-hans">
+                  <gloss>Chinese (Simplified)</gloss>
+                  <desc>Chinese (Simplified)</desc>
+                </valItem>
+                <valItem ident="zh-hant">
+                  <gloss>Chinese (Traditional)</gloss>
+                  <desc>Chinese (Traditional)</desc>
+                </valItem>
               </valList>
             </attDef>
           </attList>
