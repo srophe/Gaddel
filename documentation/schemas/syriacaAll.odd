@@ -618,21 +618,6 @@
             <attDef ident="previous" mode="delete"/>
             <attDef ident="rend" mode="delete"/>
             <attDef ident="corresp" mode="delete"/>
-            <attDef ident="type" mode="change" usage="rec"><!-- Move to NHSL -->
-              <desc>specifies how the date is associated with the entity (work, person, etc.) to
-                which it refers</desc>
-              <valList mode="replace" type="closed">
-                <valItem ident="original-composition">
-                  <desc>the date a work was originally composed</desc>
-                </valItem>
-                <valItem ident="revision">
-                  <desc>the date a work was revised</desc>
-                </valItem>
-                <valItem ident="translation">
-                  <desc>the date a work was translated</desc>
-                </valItem>
-              </valList>
-            </attDef>
             <attDef ident="notBefore" mode="change">
               <remarks mode="add">
                 <p>Provides a terminus post quem. Use this when the exact date is not known. See
@@ -824,6 +809,7 @@
             <attDef ident="resp" mode="delete"/>
             <attDef ident="source" mode="delete"/>
             <attDef ident="corresp" mode="delete"/>
+            <attDef ident="xml:lang" mode="change" usage="req"/>
           </attList>
         </elementSpec>
         
@@ -1556,7 +1542,7 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
-          <attList> <!-- Move to the NHSL ODD -->
+          <attList> 
             <attDef ident="xml:id" mode="delete"/>
             <attDef ident="n" mode="delete"/>
             <attDef ident="ana" mode="delete"/>
@@ -1566,32 +1552,6 @@
             <attDef ident="source" mode="delete"/>
             <attDef ident="corresp" mode="delete"/>
             <attDef ident="subtype" mode="delete"/>
-            <attDef ident="type" mode="replace" usage="opt">
-              <desc>Describes the function of the title. This attribute is optional. Certain
-                non-blank values (such as "final-rubric") may cause the title to be moved to a
-                different section of the page.</desc>
-              <datatype>
-                <dataRef key="teidata.enumerated"/>
-              </datatype>
-              <valList mode="change" type="semi">
-                <valItem ident="initial-rubric">
-                  <gloss>Initial Rubric</gloss>
-                  <desc>Text denoting the beginning of a work, usually derived from a manuscript
-                    exemplar. This may include a title of the work, but should be distinguished from
-                    other titles because it also includes non-title text.</desc>
-                </valItem>
-                <valItem ident="final-rubric">
-                  <gloss>Final Rubric</gloss>
-                  <desc>Text denoting the end of a work, usually derived from a manuscript exemplar.
-                    This may include a title of the work, but should be distinguished from other
-                    titles because it also includes non-title text.</desc>
-                </valItem>
-                <valItem ident="abbreviation">
-                  <gloss>Abbreviation</gloss>
-                  <desc>An abbreviation of a work's title.</desc>
-                </valItem>
-              </valList>
-            </attDef>
             <attDef ident="level" mode="change">
               <valList type="closed" mode="replace">
                 <valItem ident="a">
