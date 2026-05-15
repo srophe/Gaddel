@@ -52,8 +52,7 @@
       <schemaSpec ident="syriacaAll" prefix="tei_" source="srophe.compiled.odd" xml:lang="en" defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML​ http://www.example.org/ns/">
         <moduleRef key="tei"/>
         <moduleRef key="certainty" include="precision"/>
-        <moduleRef key="core" include="abbr author bibl biblScope choice citedRange date desc editor expan foreign head item list listBibl measure name note orig p ptr pubPlace quote reg ref resp respStmt rs sic title"/>
-        <moduleRef key="dictionaries" include="entryFree"/>
+        <moduleRef key="core" include="abbr author bibl biblScope choice citedRange date desc editor expan foreign head item label list listBibl measure name note orig p ptr pubPlace quote reg ref resp respStmt rs sic title"/>
         <moduleRef key="figures" include="formula"/>
         <moduleRef key="header" include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc extent fileDesc funder handNote idno interpretation language langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader textClass textLang titleStmt"/>
         <moduleRef key="linking" include="link"/>
@@ -415,9 +414,12 @@
         
         <elementSpec ident="authority" module="header" mode="change">
           <classes mode="change">
-            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
             <memberOf key="att.canonical" mode="delete"/>
-            <memberOf key="att.source" mode="delete"/>
           </classes>
           <content>
             <textNode/>
@@ -443,10 +445,37 @@
         
         
         
+        <elementSpec ident="availability" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.declarable" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="license" minOccurs="1"/>
+              <textNode/>
+            </sequence>
+          </content>
+        </elementSpec>
+        
+        
+        
         <elementSpec ident="bibl" module="core" mode="change">
           <classes mode="change">
-            <memberOf key="att.sortable" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
+            <memberOf key="att.declarable" mode="delete"/>
             <memberOf key="att.docStatus" mode="delete"/>
+            <memberOf key="att.sortable" mode="delete"/>
+            <memberOf key="att.naming" mode="delete"/>
           </classes>
           <content>
             <sequence preserveOrder="false">
@@ -509,7 +538,12 @@
         
         <elementSpec ident="body" module="textstructure" mode="change">
           <classes mode="change">
-            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.declaring" mode="delete"/>
           </classes>
         </elementSpec>
         
@@ -517,11 +551,15 @@
         
         <elementSpec ident="change" module="header" mode="change">
           <classes mode="change">
-            <memberOf key="att.datable" mode="delete"/>
-            <memberOf key="att.global" mode="delete"/>
-            <memberOf key="att.pointing" mode="delete"/>
-            <memberOf key="att.typed" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
             <memberOf key="att.docStatus" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
           </classes>
           <constraintSpec ident="who-on-change" scheme="schematron">
             <constraint>
@@ -549,21 +587,7 @@
           </constraintSpec>
           <attList>
             <attDef ident="target" mode="delete"/>
-            <attDef ident="n" mode="add">
-              <datatype>
-                <dataRef key="teidata.text"/>
-              </datatype>
-            </attDef>
-            <attDef ident="xml:id" mode="add"><!-- I should be doing this with classes and only deleting here. -->
-              <datatype>
-                <dataRef key="ID"/>
-              </datatype>
-            </attDef>
-            <attDef ident="when" mode="add" usage="req">
-              <datatype>
-                <dataRef key="teidata.temporal.w3c"/>
-              </datatype>
-            </attDef>
+            <attDef ident="when" mode="change" usage="req"/>
             <attDef ident="who" mode="change" usage="req"/>
           </attList>
         </elementSpec>
@@ -586,10 +610,17 @@
         
         <elementSpec ident="citedRange" module="core" mode="change">
           <classes mode="change">
-            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
           </classes>
           <content>
-            <textNode/>
+            <sequence preserveOrder="false">
+              <textNode/>
+              <elementRef key="foreign"/>
+            </sequence>
           </content>
         </elementSpec>
         
@@ -597,11 +628,21 @@
         
         <elementSpec ident="date" module="core" mode="change">
           <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
             <memberOf key="att.canonical" mode="delete"/>
-            <memberOf key="att.duration.iso" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
             <memberOf key="att.dimensions" mode="delete"/>
             <memberOf key="att.ranging" mode="delete"/>
-            <memberOf key="att.typed" mode="delete"/>
+            <memberOf key="att.duration" mode="delete"/>
+            <memberOf key="att.duration.iso" mode="delete"/>
+            <memberOf key="att.duration.w3c" mode="delete"/>
+            <memberOf key="att.editLike" mode="delete"/>
+            <memberOf key="typed" mode="delete"/>
           </classes>
           <content>
             <sequence preserveOrder="false">
@@ -650,12 +691,23 @@
         
         
         <elementSpec ident="desc" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
+            <memberOf key="att.translatable" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+          </classes>
           <content>
             <sequence preserveOrder="false">
               <elementRef key="choice" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="measure" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="label" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="offset" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="orgName" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
@@ -730,6 +782,24 @@
         
         
         
+        <elementSpec ident="edition" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+          </classes>
+          <content>
+            <empty/>
+          </content>
+          <attList>
+            <attDef ident="n" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
         <elementSpec ident="editor" module="core" mode="change">
           <classes mode="change">
             <memberOf key="att.global" mode="delete"/>
@@ -797,18 +867,18 @@
         
         
         <elementSpec ident="foreign" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
+          </classes>
           <content>
             <textNode/>
           </content>
           <attList>
-            <attDef ident="xml:id" mode="delete"/>
-            <attDef ident="n" mode="delete"/>
-            <attDef ident="ana" mode="delete"/>
-            <attDef ident="change" mode="delete"/>
-            <attDef ident="previous" mode="delete"/>
-            <attDef ident="resp" mode="delete"/>
-            <attDef ident="source" mode="delete"/>
-            <attDef ident="corresp" mode="delete"/>
             <attDef ident="xml:lang" mode="change" usage="req"/>
           </attList>
         </elementSpec>
@@ -816,6 +886,21 @@
         
         
         <elementSpec ident="funder" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+          </classes>
+          <content>
+            <textNode/>
+          </content>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <titleStmt> 
@@ -837,8 +922,17 @@
         
         <elementSpec ident="idno" module="header" mode="change">
           <classes mode="change">
-            <memberOf key="att.sortable" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
             <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+            <memberOf key="att.sortable" mode="delete"/>
           </classes>
           <content>
             <textNode/>
@@ -871,26 +965,11 @@
             </constraint>
           </constraintSpec>
           <attList>
-            <attDef ident="subtype" mode="delete"/>
-            <attDef ident="xml:id" mode="delete"/>
-            <attDef ident="n" mode="delete"/>
-            <attDef ident="xml:lang" mode="delete"/>
-            <attDef ident="ana" mode="delete"/>
-            <attDef ident="previous" mode="delete"/>
-            <attDef ident="resp" mode="delete"/>
-            <attDef ident="rend" mode="delete"/>
-            <attDef ident="corresp" mode="delete"/>
             <attDef ident="type" mode="change" usage="req">
               <desc>The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc>
-              <valList mode="replace" type="closed">
+              <valList mode="change" type="closed">
                 <valItem ident="deprecated">
                   <desc>For URIs that are no longer in use.</desc>
-                </valItem>
-                <valItem ident="FIEY">
-                  <desc>For identifiers from Fiey.</desc>
-                </valItem>
-                <valItem ident="PLRE">
-                  <desc>For identifiers from the Prosopography of the Later Roman Empire.</desc>
                 </valItem>
                 <valItem ident="URI">
                   <desc>A Uniform Resource Identifier.</desc>
@@ -899,6 +978,124 @@
               </valList>
             </attDef>
           </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="interpretation" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.declarable" mode="delete"/>
+          </classes>
+          <content>
+            <elementRef key="p"/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="label" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
+            <memberOf key="att.placement" mode="delete"/>
+            <memberOf key="att.written" mode="delete"/>
+          </classes>
+          <content>
+            <textNode/>
+          </content>
+          <attList>
+            <attDef ident="type" mode="change" usage="opt">
+              <valList type="closed">
+                <valItem ident="book"/>
+                <valItem ident="collection"/>
+                <valItem ident="part"/>
+              </valList>
+            </attDef>
+            <attDef ident="subtype" mode="change" usage="opt">
+              <valList type="closed">
+                <valItem ident="order"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="langUsage" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.declarable" mode="delete"/>
+          </classes>
+          <content>
+            <elementRef key="p"/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="licence" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+          </classes>
+          <content>
+            <elementRef key="p"/>
+          </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <license target="http://creativecommons.org/licenses/by/3.0/">
+                <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
+              </license>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <license target="http://creativecommons.org/licenses/by/3.0/">
+                <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
+                <p>This entry incorporates copyrighted material from the following work(s): <listBibl>
+                    <bibl>
+                      <ptr target="#bib78-3"/>
+                    </bibl>
+                    <bibl>
+                      <ptr target="#bib78-4"/>
+                    </bibl>
+                    <bibl>
+                      <ptr target="#bib78-5"/>
+                    </bibl>
+                </listBibl>
+                  <note>used under a Creative Commons Attribution license <ref target="http://creativecommons.org/licenses/by/3.0/"/>
+                  </note>
+                </p>
+              </license>
+            </egXML>
+          </exemplum>
+          <remarks mode="add">
+            <p> The <gi>license</gi> element within the <gi>availability</gi> element is used to
+              specify the Creative Commons CC-BY license under which this record is made available.
+              Some records incorporate information from works under copyright (with permission), a
+              fact which is also indicated in the <gi>license</gi> element. </p>
+          </remarks>
         </elementSpec>
         
         
@@ -926,12 +1123,17 @@
         
         <elementSpec ident="listRelation" module="namesdates" mode="change">
           <classes mode="change">
-            <memberOf key="att.global" mode="delete"/>
-            <memberOf key="att.typed" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
             <memberOf key="att.sortable" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
           </classes>
           <content>
-            <elementRef key="relation" minOccurs="1" maxOccurs="unbounded"/>
+            <elementRef key="relation"/>
           </content>
         </elementSpec>
         
@@ -939,12 +1141,24 @@
         
         <elementSpec ident="name" module="namesdates" mode="change">
           <classes mode="change">
-            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
             <memberOf key="att.datable" mode="delete"/>
-            <memberOf key="att.naming" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
             <memberOf key="att.editLike" mode="delete"/>
+            <memberOf key="att.personal" mode="delete"/>
+            <memberOf key="att.naming" mode="delete"/>
           </classes>
-          <constraintSpec ident="ref-on-name" scheme="schematron">
+          <content>
+            <textNode/>
+          </content>
+          <constraintSpec ident="name-ref-values" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:teiHeader//tei:name/@ref">
                 <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/gaddel/master/documentation/editors.xml')"/>
@@ -957,19 +1171,22 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
-          <attList>
-            <attDef ident="key" mode="delete"/>
-            <attDef ident="subtype" mode="delete"/>
-          </attList>
         </elementSpec>
         
         
         
         <elementSpec ident="note" module="core" mode="change">
           <classes mode="change">
-            <memberOf key="att.placement" mode="delete"/>
-            <memberOf key="att.written" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
             <memberOf key="att.anchoring" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
+            <memberOf key="att.placement" mode="delete"/>
+            <memberOf key="att.pointing" mode="delete"/>
+            <memberOf key="att.written" mode="delete"/>
           </classes>
           <content>
             <sequence preserveOrder="false">
@@ -1023,15 +1240,6 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
-          <attList>
-            <attDef ident="subtype" mode="delete"/>
-            <attDef ident="n" mode="delete"/>
-            <attDef ident="ana" mode="delete"/>
-            <attDef ident="change" mode="delete"/>
-            <attDef ident="previous" mode="delete"/>
-            <attDef ident="rend" mode="delete"/>
-            <attDef ident="xml:id" mode="delete"/>
-          </attList>
         </elementSpec>
         
         
@@ -1049,6 +1257,12 @@
         
         <elementSpec ident="p" module="core" mode="change">
           <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
             <memberOf key="att.declaring" mode="delete"/>
             <memberOf key="att.fragmentable" mode="delete"/>
             <memberOf key="att.written" mode="delete"/>
@@ -1191,6 +1405,13 @@
         
         
         <elementSpec ident="profileDesc" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+          </classes>
           <content>
             <elementRef key="langUsage" minOccurs="1" maxOccurs="1"/>
           </content>
@@ -1218,10 +1439,16 @@
         
         <elementSpec ident="ptr" module="linking" mode="change">
           <classes mode="change">
-            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.cReferencing" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
+            <memberOf key="att.declaring" mode="delete"/>
             <memberOf key="att.internetMedia" mode="delete"/>
             <memberOf key="att.typed" mode="delete"/>
-            <memberOf key="att.cReferencing" mode="delete"/>
           </classes>
           <constraintSpec ident="target-in-ptr" scheme="schematron">
             <constraint>
@@ -1245,6 +1472,59 @@
               This URI must be formatted as follows: 'http://syriaca.org/bibl/{\d+}' (where {\d+} is a number).
             </p>
           </remarks>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="publicationStmt" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="true">
+              <elementRef key="authority"/>
+              <elementRef key="idno"/>
+              <elementRef key="availability"/>
+              <elementRef key="date"/>
+            </sequence>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="pubPlace" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.naming" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+          </classes>
+          <content>
+            <textNode/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="publisher" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+          </classes>
+          <content>
+            <textNode/>
+          </content>
         </elementSpec>
         
         
@@ -1286,8 +1566,14 @@
         
         <elementSpec ident="ref" module="core" mode="change">
           <classes mode="change">
-            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
             <memberOf key="att.cReferencing" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
+            <memberOf key="att.declaring" mode="delete"/>
             <memberOf key="att.internetMedia" mode="delete"/>
             <memberOf key="att.typed" mode="delete"/>
           </classes>
@@ -1313,6 +1599,16 @@
         
         <elementSpec ident="relation" module="namesdates" mode="change">
           <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+            <memberOf key="att.editLike" mode="delete"/>
             <memberOf key="att.sortable" mode="delete"/>
           </classes>
           <content>
@@ -1322,13 +1618,6 @@
             <attDef ident="xml:id" mode="delete"/>
             <attDef ident="n" mode="delete"/>
             <attDef ident="xml:lang" mode="delete"/>
-            <attDef ident="rend" mode="delete"/>
-            <attDef ident="corresp" mode="delete"/>
-            <attDef ident="change" mode="delete"/>
-            <attDef ident="previous" mode="delete"/>
-            <attDef ident="name" mode="delete"/>
-            <attDef ident="type" mode="change" usage="req"/>
-            <attDef ident="ref" mode="change" usage="req"/>
             <attDef ident="mutual" mode="change">
               <datatype minOccurs="2" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
@@ -1350,7 +1639,51 @@
         
         
         
+        <elementSpec ident="resp" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+          </classes>
+          <content>
+            <textNode/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="respStmt" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="true">
+              <elementRef key="resp"/>
+              <elementRef key="name"/>
+            </sequence>
+          </content>
+        </elementSpec>
+        
+        
+        
         <elementSpec ident="revisionDesc" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+          </classes>
           <content>
             <elementRef key="change" minOccurs="0" maxOccurs="unbounded"/>
           </content>
@@ -1398,7 +1731,14 @@
         
         
         <elementSpec ident="seriesStmt" module="header" mode="change">
-          <content>
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.declarable" mode="delete"/>
+          </classes><content>
             <sequence>
               <elementRef key="title" minOccurs="1" maxOccurs="1"/>
               <elementRef key="editor" minOccurs="1" maxOccurs="unbounded"/>
@@ -1412,6 +1752,14 @@
         
         
         <elementSpec ident="sourceDesc" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.declarable" mode="delete"/>
+          </classes>
           <content>
             <elementRef key="p" minOccurs="1" maxOccurs="1"/>
           </content>
@@ -1420,7 +1768,21 @@
         
         
         <elementSpec ident="sponsor" module="header" mode="change">
-          <exemplum>
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.canonical" mode="delete"/>
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+          </classes>
+          <content>
+            <textNode/>
+          </content><exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <titleStmt> 
                 ... 
@@ -1476,11 +1838,60 @@
         
         
         
+        <elementSpec ident="taxonomy" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.datcat" mode="delete"/>
+          </classes>
+          <content>
+            <elementRef key="category"/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="TEI" module="textstructure" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.global.responsibility" mode="delete"/>
+            <memberOf key="att.global.source" mode="delete"/>
+            <memberOf key="att.typed" mode="delete"/>
+          </classes>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="teiHeader" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.global.responsibility" mode="delete"/>
+            <memberOf key="att.global.source" mode="delete"/>
+          </classes>
+        </elementSpec>
+        
+        
+        
         <elementSpec ident="text" module="textstructure" mode="change">
           <classes mode="change">
-            <memberOf key="att.global" mode="delete"/>
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
             <memberOf key="att.declaring" mode="delete"/>
-            <memberOf key="att.typed" mode="delete"/> 
+            <memberOf key="att.typed" mode="delete"/>
             <memberOf key="att.written" mode="delete"/>
           </classes>
           <content>
@@ -1497,9 +1908,33 @@
         
         
         
+        <elementSpec ident="textLang" module="core" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+          </classes>
+          <content>
+            <empty/>
+          </content>
+        </elementSpec>
+        
+        
+        
         <elementSpec ident="title" module="core" mode="change">
           <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+            <memberOf key="att.cmc" mode="delete"/>
             <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
           </classes>
           <constraintSpec ident="lang-on-title-in-body" scheme="schematron">
             <constraint>
@@ -1543,15 +1978,6 @@
             </constraint>
           </constraintSpec>
           <attList> 
-            <attDef ident="xml:id" mode="delete"/>
-            <attDef ident="n" mode="delete"/>
-            <attDef ident="ana" mode="delete"/>
-            <attDef ident="change" mode="delete"/>
-            <attDef ident="previous" mode="delete"/>
-            <attDef ident="resp" mode="delete"/>
-            <attDef ident="source" mode="delete"/>
-            <attDef ident="corresp" mode="delete"/>
-            <attDef ident="subtype" mode="delete"/>
             <attDef ident="level" mode="change">
               <valList type="closed" mode="replace">
                 <valItem ident="a">
@@ -1612,6 +2038,13 @@
         
         
         <elementSpec ident="titleStmt" module="header" mode="change">
+          <classes mode="change">
+            <memberOf key="att.global.analytic" mode="delete"/>
+            <memberOf key="att.global.change" mode="delete"/>
+            <memberOf key="att.global.facs" mode="delete"/>
+            <memberOf key="att.global.linking" mode="delete"/>
+            <memberOf key="att.global.rendition" mode="delete"/>
+          </classes>
           <content>
             <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
               <elementRef key="title" minOccurs="1" maxOccurs="unbounded"/>

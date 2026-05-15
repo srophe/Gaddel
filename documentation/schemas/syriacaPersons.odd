@@ -103,7 +103,6 @@
         <elementSpec ident="birth" module="namesdates" mode="change">
           <classes mode="change">
             <memberOf key="att.global" mode="delete"/>
-            <memberOf key="att.datable" mode="delete"/>
             <memberOf key="att.dimensions" mode="delete"/>
             <memberOf key="att.ranging" mode="delete"/>
             <memberOf key="att.naming" mode="delete"/>
@@ -151,7 +150,6 @@
         
         <elementSpec ident="death" module="namesdates" mode="change">
           <classes mode="change">
-            <memberOf key="att.datable" mode="delete"/>
             <memberOf key="att.dimensions" mode="delete"/>
             <memberOf key="att.ranging" mode="delete"/>
             <memberOf key="att.global" mode="delete"/>
@@ -324,7 +322,6 @@
             <memberOf key="att.global.analytic" mode="delete"/>
             <memberOf key="att.global.responsibility" mode="delete"/>
             <memberOf key="att.global.source" mode="delete"/>
-            <memberOf key="att.datable" mode="delete"/>
             <memberOf key="att.datable.w3c" mode="delete"/>
             <memberOf key="att.datable.custom" mode="delete"/>
             <memberOf key="att.dimensions" mode="delete"/>
@@ -342,7 +339,6 @@
         
        <elementSpec ident="gender" module="namesdates" mode="change">
          <classes mode="change">
-           <memberOf key="att.datable" mode="delete"/>
            <memberOf key="att.typed" mode="delete"/>
          </classes>
          <content>
@@ -393,7 +389,18 @@
         
         <elementSpec ident="idno" module="header" mode="change">
           <!-- see syriacaPlaces for possible developments -->
-          
+          <attList>
+            <attDef ident="type" mode="change">
+              <valList mode="add" type="closed">
+                <valItem ident="FIEY">
+                  <desc>For identifiers from Fiey.</desc>
+                </valItem>
+                <valItem ident="PLRE">
+                  <desc>For identifiers from the Prosopography of the Later Roman Empire.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
         </elementSpec>
         
         
@@ -485,7 +492,6 @@
         
         <elementSpec ident="orgName" module="core" mode="change">
           <classes mode="change">
-            <memberOf key="att.datable" mode="delete"/>
             <memberOf key="att.typed" mode="delete"/>
           </classes>
           <content>
