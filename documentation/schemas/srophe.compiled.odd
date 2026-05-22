@@ -9369,7 +9369,60 @@ psychological significance.
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD27">2.2.6. The Notes Statement</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBICON">3.12.2.8. Notes and Statement of Language</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/DI.html#DITPNO">10.3.5.4. Notes within Entries</ref>
-  </listRef></elementSpec><elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" rend="change" module="core" xml:id="gi-author" ident="author"><gloss xml:lang="en" versionDate="2011-11-26">author</gloss><gloss xml:lang="es" versionDate="2022-02-24">autor/a</gloss><gloss versionDate="2011-11-26" xml:lang="fr">auteur</gloss><gloss versionDate="2017-06-04" xml:lang="de">Autor</gloss><desc versionDate="2011-11-26" xml:lang="en">in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority.</desc><desc versionDate="2007-12-20" xml:lang="ko">참고문헌에 작가, 단독 저자, 공동 저자의 이름을 포함한다; 서지 항목의 책임에 관한 1차적 진술.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">在書目參照中，包含一件作品的作者 (群) 姓名，無論是個人或是團體性質；這也是書目項目責任歸屬的主要陳述。</desc><desc versionDate="2023-08-30" xml:lang="ja">書誌参照において、作品の著者となる人や法人の名前を、たとえば、よく知られた書誌典拠情報機関の形式で提供されるものに合わせるなどして記述する。</desc><desc versionDate="2009-01-06" xml:lang="fr">dans une référence bibliographique contient le nom de la (des) personne(s) physique(s) ou du collectif, auteur(s) d'une oeuvre ; par exemple dans la même forme que celle utilisée par une référence bibliographique reconnue.</desc><desc versionDate="2022-02-24" xml:lang="es">en una referencia bibliográfica, contiene el nombre del autor/a/es, ya sea una persona o una institución, de una obra; por ejemplo, en la misma forma que la proporcionada por una autoridad bibliográfica reconocida.</desc><desc versionDate="2007-01-21" xml:lang="it">in un riferimento bibliografico contiene il nome dell'autore (o degli autori), personale o collettivo, di un'opera; è la dichiarazione di responsabilità primaria di ciascuna unità bibliografica.</desc><desc versionDate="2017-06-04" xml:lang="de">enthält in einer bibliografischen Referenz den oder die Namen eines Autors eines Werks (oder einer für das Werk verantwortlichen Körperschaft); zum Beispiel in der Form, wie sie eine anerkannte bibliografische Instanz anbietet.</desc><classes><memberOf key="att.global"/><memberOf key="att.datable"/><memberOf key="att.naming"/><memberOf key="model.respLike"/></classes><content><alternate minOccurs="0" maxOccurs="unbounded"><elementRef key="persName"/><textNode/></alternate></content><exemplum xml:lang="en">
+  </listRef></elementSpec><elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" module="core" xml:id="gi-noteGrp" ident="noteGrp">
+  <gloss versionDate="2022-06-09" xml:lang="en">note group</gloss>
+  <desc versionDate="2005-01-14" xml:lang="en">contains a group of notes.</desc>
+  <classes>
+    <memberOf key="att.global"/>
+    <memberOf key="att.anchoring"/>
+    <memberOf key="att.cmc"/>
+    <memberOf key="att.placement"/>
+    <memberOf key="att.pointing"/>
+    <memberOf key="att.typed"/>
+    <memberOf key="att.written"/>
+    
+    
+    
+    <memberOf key="model.noteLike"/>
+  </classes>
+  <content>
+    <sequence>
+        <elementRef key="desc" minOccurs="0" maxOccurs="unbounded"/>
+        <alternate minOccurs="1" maxOccurs="unbounded">
+          <elementRef key="note"/>
+          <elementRef key="noteGrp"/>
+        </alternate>
+    </sequence>
+  </content>
+  <exemplum versionDate="2021-01-28" xml:lang="en">
+    <p>In the following example, there are two notes in different
+    languages, each specifying the content of the annotation relating
+    to the same fragment of text:</p>
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-noteGrp-egXML-pl" source="#SERAFIN2">
+      <p>(...) tamen reuerendos dominos archiepiscopum et canonicos Leopolienses
+        necnon episcopum in duplicibus Quatuortemporibus
+        <noteGrp>
+          <note xml:lang="en">Quatuor Tempora, so called dry fast days (Wednesday, Friday, and Saturday)
+            falling on each of the quarters of the year. In the first quarter they were called Cinerum
+            (following Ash Wednesday), second Spiritus (following Pentecost), third Crucis
+            (after the Exaltation of the Holy Cross, September 14th), and Luciae
+            in the fourth (after the feast of St. Lucia, December 13th).
+          </note>
+          <note xml:lang="pl">Quatuor Tempora, tzw. Suche dni postne (środa, piątek i sobota)
+            przypadające cztery razy w roku. W pierwszym kwartale zwały się Cinerum
+            (po Popielcu), w drugim Spiritus (po Zielonych Świętach), w trzecim Crucis
+            (po święcie Podwyższenia Krzyża 14 września), w czwartym Luciae
+            (po dniu św. Łucji 13 grudnia).
+          </note>
+        </noteGrp>
+        totaliter expediui.
+      </p>
+    </egXML>
+  </exemplum>
+  <listRef>
+    <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#CONONOGR">3.9.1.1. Encoding Grouped Notes</ref>
+  </listRef>
+</elementSpec><elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" rend="change" module="core" xml:id="gi-author" ident="author"><gloss xml:lang="en" versionDate="2011-11-26">author</gloss><gloss xml:lang="es" versionDate="2022-02-24">autor/a</gloss><gloss versionDate="2011-11-26" xml:lang="fr">auteur</gloss><gloss versionDate="2017-06-04" xml:lang="de">Autor</gloss><desc versionDate="2011-11-26" xml:lang="en">in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority.</desc><desc versionDate="2007-12-20" xml:lang="ko">참고문헌에 작가, 단독 저자, 공동 저자의 이름을 포함한다; 서지 항목의 책임에 관한 1차적 진술.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">在書目參照中，包含一件作品的作者 (群) 姓名，無論是個人或是團體性質；這也是書目項目責任歸屬的主要陳述。</desc><desc versionDate="2023-08-30" xml:lang="ja">書誌参照において、作品の著者となる人や法人の名前を、たとえば、よく知られた書誌典拠情報機関の形式で提供されるものに合わせるなどして記述する。</desc><desc versionDate="2009-01-06" xml:lang="fr">dans une référence bibliographique contient le nom de la (des) personne(s) physique(s) ou du collectif, auteur(s) d'une oeuvre ; par exemple dans la même forme que celle utilisée par une référence bibliographique reconnue.</desc><desc versionDate="2022-02-24" xml:lang="es">en una referencia bibliográfica, contiene el nombre del autor/a/es, ya sea una persona o una institución, de una obra; por ejemplo, en la misma forma que la proporcionada por una autoridad bibliográfica reconocida.</desc><desc versionDate="2007-01-21" xml:lang="it">in un riferimento bibliografico contiene il nome dell'autore (o degli autori), personale o collettivo, di un'opera; è la dichiarazione di responsabilità primaria di ciascuna unità bibliografica.</desc><desc versionDate="2017-06-04" xml:lang="de">enthält in einer bibliografischen Referenz den oder die Namen eines Autors eines Werks (oder einer für das Werk verantwortlichen Körperschaft); zum Beispiel in der Form, wie sie eine anerkannte bibliografische Instanz anbietet.</desc><classes><memberOf key="att.global"/><memberOf key="att.datable"/><memberOf key="att.naming"/><memberOf key="model.respLike"/></classes><content><alternate minOccurs="0" maxOccurs="unbounded"><elementRef key="persName"/><textNode/></alternate></content><exemplum xml:lang="en">
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-author-egXML-lq" source="#COBICOR-eg-251">
       <author>British Broadcasting Corporation</author>
       <author>La Fayette, Marie Madeleine Pioche de la Vergne, comtesse de (1634–1693)</author>
@@ -10085,6 +10138,80 @@ epistemology, methodology and history of
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD21">2.2.1. The Title Statement</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD26">2.2.5. The Series Statement</ref>
   </listRef>
+</elementSpec><elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" module="core" xml:id="gi-publisher" ident="publisher">
+  <gloss xml:lang="en" versionDate="2009-01-06">publisher</gloss>
+  <gloss xml:lang="es" versionDate="2023-05-08">editorial</gloss>
+  <gloss versionDate="2009-01-06" xml:lang="fr">éditeur</gloss>
+  <gloss versionDate="2017-06-13" xml:lang="de">Verlag</gloss>
+  <desc versionDate="2005-01-14" xml:lang="en">provides the name of the organization responsible for the publication or distribution of a
+        bibliographic item.</desc>
+  <desc versionDate="2007-12-20" xml:lang="ko">서지 항목의 출판이나 배포에 책임이 있는 기구명을 제시한다.</desc>
+  <desc versionDate="2007-05-02" xml:lang="zh-TW">提供負責出版或發行書目項目的機構名稱。</desc>
+  <desc versionDate="2008-04-05" xml:lang="ja">書誌項目の出版や頒布に責任のある団体の名前を示す。</desc>
+  <desc versionDate="2009-01-06" xml:lang="fr">donne le nom de l'organisme responsable de la
+        publication ou de la distribution d'un élément de la bibliographie.</desc>
+  <desc versionDate="2007-05-04" xml:lang="es">proporciona el nombre de la organización responsable de
+        la publicación o la distribución de un elemento bibliográfico.</desc>
+  <desc versionDate="2007-01-21" xml:lang="it">fornisce il nome</desc>
+  <desc versionDate="2017-06-13" xml:lang="de">gibt den Namen der Organisation an, die für die Veröffentlichung und Verbreitung eines
+    bibliografischen Objekts verantwortlich ist.</desc>
+  <classes>
+    <memberOf key="att.global"/>
+    <memberOf key="att.canonical"/>
+    <memberOf key="model.imprintPart"/>
+    
+  </classes>
+  <content>
+    <macroRef key="macro.phraseSeq"/>
+  </content>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-publisher-egXML-bp">
+      <imprint>
+        <pubPlace>Oxford</pubPlace>
+        <publisher>Clarendon Press</publisher>
+        <date>1987</date>
+      </imprint>
+    </egXML>
+  </exemplum>
+  <exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-publisher-egXML-tv">
+      <imprint>
+        <pubPlace>Paris</pubPlace>
+        <publisher>Les Éditions de Minuit</publisher>
+        <date>2001</date>
+      </imprint>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="zh-TW">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-publisher-egXML-wv">
+      <imprint>
+        <pubPlace>上海</pubPlace>
+        <publisher>上海古籍出版社</publisher>
+        <date>2008</date>
+      </imprint>
+    </egXML>
+  </exemplum>
+  <remarks versionDate="2005-01-14" xml:lang="en">
+    <p rend="dataDesc">Use the full form of the name by which a company is usually referred to,
+            rather than any abbreviation of it which may appear on a title page</p>
+  </remarks>
+  <remarks versionDate="2007-06-12" xml:lang="fr">
+    <p rend="dataDesc">Utiliser la forme développée du nom au moyen duquel l'organisme est
+            habituellement cité, plutôt qu'une abréviation, cette dernière pouvant apparaître sur
+            une page de titre.</p>
+  </remarks>
+  <remarks versionDate="2008-04-05" xml:lang="ja">
+    <p rend="dataDesc"> 会社を示す、タイトルページにある省略名ではなく、正式な名前を使う。 </p>
+  </remarks>
+  <remarks versionDate="2017-06-13" xml:lang="de">
+    <p rend="dataDesc">Außer bei der Transkription von bibliografischen Angaben, ist der vollständige Name des
+      Unternehmens gegenüber einer abgekürzten Version, wie sie etwa auf der gedruckten Titelseite zu
+      finden ist, zu bevorzugen.</p>
+  </remarks>
+  <listRef>
+    <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBICOI">3.12.2.4. Imprint, Size of a Document, and Reprint Information</ref>
+    <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD24">2.2.4. Publication, Distribution, Licensing, etc.</ref>
+  </listRef>
 </elementSpec><elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" rend="change" module="core" xml:id="gi-biblScope" ident="biblScope"><gloss versionDate="2012-12-13" xml:lang="en">scope of bibliographic reference</gloss><gloss versionDate="2007-12-20" xml:lang="ko">인용 범위</gloss><gloss versionDate="2007-05-02" xml:lang="zh-TW">書目引用範圍</gloss><gloss versionDate="2009-01-06" xml:lang="fr">extension d'une référence bibliographique</gloss><gloss versionDate="2007-05-04" xml:lang="es">extensión de una cita</gloss><gloss versionDate="2007-01-21" xml:lang="it">estensione del riferimento bibliografico</gloss><gloss versionDate="2017-06-13" xml:lang="de">Geltungsbereich einer bibliografischen Referenz</gloss><gloss versionDate="2023-09-21" xml:lang="ja">典拠参照の範囲</gloss><desc versionDate="2008-01-21" xml:lang="en">defines the scope of a bibliographic reference, for
     example as a list of page numbers, or a named subdivision of a larger work.</desc><desc versionDate="2007-12-20" xml:lang="ko">예를 들어 페이지수의 목록 또는 작품의 이름 붙은 하위 성분으로, 문헌 참조의 범위를
     정의한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">標明書目參照資訊的範圍，例如標示頁碼列表、或是某著作的分支作品名稱。</desc><desc versionDate="2023-09-21" xml:lang="ja">典拠参照の範囲を示す。例えば、ページ番号や、全体の中で名前を与えられた下位要素など。</desc><desc versionDate="2009-01-06" xml:lang="fr">définit l'extension d'une référence bibliographique,
@@ -10500,6 +10627,108 @@ epistemology, methodology and history of
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBITY">3.12.1. Methods of Encoding Bibliographic References and Lists of References</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD3">2.2.7. The Source Description</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CC.html#CCAS2">16.3.2. Declarable Elements</ref>
+  </listRef>
+</elementSpec><elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" module="core" xml:id="TEXTLANG" ident="textLang">
+  <gloss versionDate="2007-07-04" xml:lang="en">text language</gloss>
+  <gloss versionDate="2007-12-20" xml:lang="ko">텍스트 언어</gloss>
+  <gloss versionDate="2007-05-02" xml:lang="zh-TW"/>
+  <gloss versionDate="2008-04-06" xml:lang="es">lengua del texto</gloss>
+  <gloss versionDate="2007-06-12" xml:lang="fr">langues du texte</gloss>
+  <gloss versionDate="2007-11-06" xml:lang="it">lingua del testo</gloss>
+  <desc versionDate="2011-12-07" xml:lang="en" xml:id="textlang.desc">describes the languages and writing systems identified within the bibliographic work  
+  being described, rather than its description.</desc>
+  <desc versionDate="2007-12-20" xml:lang="ko">(<gi>langUsage</gi>에 기술된 기술과 반대로) 원고에서 사용된 언어와 글 체계를
+    기술한다.</desc>
+  <desc versionDate="2007-05-02" xml:lang="zh-TW">描述手稿中所使用的語言和書寫系統 (相對於其描述時使用的<gi>語言使用</gi>元素) 。</desc>
+  <desc versionDate="2008-04-05" xml:lang="ja">手書き資料中の言語や書記システムを示す。(要素<gi>langUsage</gi>にあ る情報と対位する)</desc>
+  <desc versionDate="2007-06-12" xml:lang="fr">décrit les langues et systèmes d'écriture utilisés dans
+    un manuscrit (et non dans la description du manuscrit, dont les langues et systèmes d'écriture
+    sont décrits dans l'élément <gi>langUsage</gi>).</desc>
+  <desc versionDate="2007-05-04" xml:lang="es">describe las lenguas y los sistemas de escritura usados
+    en un manuscrito (no se ha de confundir con la descripción contenida en el elemento
+      <gi>langUsage</gi>. ****</desc>
+  <desc versionDate="2007-01-21" xml:lang="it">descrive le lingue e i sistemi di scrittura usati da un
+    manoscritto (da non confondere con la descrizione contenuta nell'elemento <gi>langUsage</gi></desc>
+  <classes>
+    <memberOf key="att.global"/>
+    <memberOf key="model.biblPart"/>
+    <memberOf key="model.msItemPart"/>
+  </classes>
+  <content>
+    <macroRef key="macro.specialPara"/>
+  </content>
+  <attList>
+    <attDef ident="mainLang">
+      <gloss versionDate="2007-07-04" xml:lang="en">main language</gloss>
+      <gloss versionDate="2007-12-20" xml:lang="ko">주요 언어</gloss>
+      <gloss versionDate="2007-05-02" xml:lang="zh-TW"/>
+      <gloss versionDate="2008-04-06" xml:lang="es">lengua principal</gloss>
+      <gloss versionDate="2007-06-12" xml:lang="fr">langue principale</gloss>
+      <gloss versionDate="2007-11-06" xml:lang="it">lingua principale</gloss>
+      <desc versionDate="2011-12-05" xml:lang="en">supplies a code which identifies the chief language used in the bibliographic work.</desc>
+      <desc versionDate="2007-12-20" xml:lang="ko">원고에 사용된 주요 언어를 식별하는 부호를 제공한다.</desc>
+      <desc versionDate="2007-05-02" xml:lang="zh-TW">提供一代碼，識別手稿中使用的主要語言。</desc>
+      <desc versionDate="2008-04-05" xml:lang="ja">当該手書き資料中で主に使用される言語を特定するコードを示す。</desc>
+      <desc versionDate="2007-06-12" xml:lang="fr">contient un code identifiant la langue principale du
+        manuscrit.</desc>
+      <desc versionDate="2007-05-04" xml:lang="es">proporciona un código que identifica la lengua
+        principal utilizada en el manuscrito.</desc>
+      <desc versionDate="2007-01-21" xml:lang="it">assegna un codice che identifica la lingua principale
+        utilizzata nel manoscritto</desc>
+      <datatype><dataRef key="teidata.language"/></datatype>
+    </attDef>
+    <attDef ident="otherLangs">
+      <gloss versionDate="2007-07-04" xml:lang="en">other languages</gloss>
+      <gloss versionDate="2007-12-20" xml:lang="ko">다른 언어</gloss>
+      <gloss versionDate="2007-05-02" xml:lang="zh-TW"/>
+      <gloss versionDate="2008-04-06" xml:lang="es">otras lenguas</gloss>
+      <gloss versionDate="2007-06-12" xml:lang="fr">autres langues</gloss>
+      <gloss versionDate="2007-11-06" xml:lang="it">altre lingue</gloss>
+      <desc versionDate="2011-12-05" xml:lang="en">one or more codes identifying any other languages used in the bibliographic work.</desc>
+      <desc versionDate="2007-12-20" xml:lang="ko">원고에 사용된 다른 언어를 식별하는 하나 이상의 부호</desc>
+      <desc versionDate="2007-05-02" xml:lang="zh-TW">一個或多個代碼識別手稿中使用的任何其他語言。</desc>
+      <desc versionDate="2008-04-05" xml:lang="ja">当該手書き資料中で使用されている他の言語を特定する、ひとつ以上の コード。</desc>
+      <desc versionDate="2007-06-12" xml:lang="fr">contient un ou plusieurs codes identifiant toute
+        autre langue utilisée dans le manuscrit.</desc>
+      <desc versionDate="2007-05-04" xml:lang="es">uno o más códigos que identifican otras eventuales
+        lenguas utilizadas en el manuscrito.</desc>
+      <desc versionDate="2007-01-21" xml:lang="it">uno o più codici che identificano eventuali altre
+        lingue utilizzate nel manoscritto</desc>
+      <datatype minOccurs="0" maxOccurs="unbounded"><dataRef key="teidata.language"/></datatype>
+    </attDef>
+  </attList>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="TEXTLANG-egXML-rt">
+      <textLang mainLang="en" otherLangs="la"> Predominantly in English with Latin
+      glosses</textLang>
+    </egXML>
+  </exemplum>
+  <exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="TEXTLANG-egXML-zi">
+      <textLang mainLang="en" otherLangs="la"> En français essentiellement, avec des gloses en
+          latin.</textLang>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="zh-TW">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="TEXTLANG-egXML-nu">
+      <textLang mainLang="en" otherLangs="la"> 主要為英文，摻以拉丁字彙。</textLang>
+    </egXML>
+  </exemplum>
+  <remarks versionDate="2013-11-20" xml:lang="en">
+    <p>This element should not be used to document the
+languages or writing systems used for the bibliographic or manuscript description itself: as for
+all other TEI elements, such information should be provided by means of the
+global <att>xml:lang</att> attribute attached to the element
+containing the description. </p>
+<p>In all cases, languages should be identified by means of a standardized
+<soCalled>language tag</soCalled> generated according to <ref target="https://tools.ietf.org/html/bcp47">BCP 47</ref>. Additional
+documentation for the language may be provided by a <gi>language</gi>
+element in the TEI header.
+</p>
+  </remarks>
+  <listRef>
+    <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBICOI">3.12.2.4. Imprint, Size of a Document, and Reprint Information</ref>
+    <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/MS.html#mslangs">11.6.6. Languages and Writing Systems</ref>
   </listRef>
 </elementSpec><elementSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" rend="change" module="certainty" xml:id="gi-precision" ident="precision"><desc versionDate="2009-06-05" xml:lang="en">indicates the numerical accuracy or precision  associated with some aspect of the text markup.</desc><classes><memberOf key="att.global"/><memberOf key="att.datable"/><memberOf key="att.ranging"/><memberOf key="att.scoping"/><memberOf key="model.certLike"/><memberOf key="model.global.meta"/></classes><content><alternate minOccurs="0" maxOccurs="unbounded"><classRef key="model.descLike"/><classRef key="model.certLike"/></alternate></content><attList><attDef ident="target" mode="delete"/><attDef ident="match" mode="change" usage="req">
               <valList type="closed">

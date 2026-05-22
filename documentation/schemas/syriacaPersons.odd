@@ -37,7 +37,7 @@
         - First, be sure that schemaSpec/@source in this document points to "syriacaAll.compiled.odd".
         - Then process this ODD file into a compiled ODD using the transformation scenario "ODD to Compiled ODD".
           - Save this as syriacaPersons.compiled.odd and then delete the @start attribute from tei:schemaSpec.
-          - This compiled ODD (without a tei:schemaSpec/@start attribute) will be the starting point for the next step in the chained ODD.
+          - This compiled ODD (without a tei:schemaSpec/@source attribute) will be the starting point for the next step in the chained ODD.
         - This compiled ODD can also be used to generate a .rng file against which you can validate a TEI document. 
           - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
           - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
@@ -60,6 +60,18 @@
         
         
         <elementSpec ident="bibl" module="core" mode="change">
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="author" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="citedRange" minOccurs="0" maxOccurs="unbounded"/><!--Required in a citation but not inside a note or header.-->
+              <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="editor" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="ptr" minOccurs="0" maxOccurs="unbounded"/><!--Required in a citation but not inside a note.-->
+              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/> <!-- allowed in a note but not in a citation -->
+            </sequence>
+          </content>
           <constraintSpec ident="xmlID-on-bibl" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:person/child::tei:bibl | //tei:text//tei:personGrp/child::tei:bibl">
@@ -75,6 +87,15 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="change" usage="opt">
+              <valList mode="change" type="closed">
+                <valItem ident="MS">
+                  <desc>used for bibliographic citation of a manuscript</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
         </elementSpec>
         
         
@@ -888,6 +909,16 @@
         
         <elementSpec ident="ptr" module="core" mode="change">
           
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="quote" module="core" mode="change">
+          <attList>
+            <attDef ident="source" mode="change" usage="req">
+              <!-- write a schematron rule in syriacaAll.odd that requires the @source value to point to an xml:id in the doc. -->
+            </attDef>
+          </attList>
         </elementSpec>
         
         
