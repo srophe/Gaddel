@@ -456,13 +456,13 @@
         <constraintSpec ident="work-idno-types" scheme="schematron">
           <constraint>
             <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
-              <sch:assert test=". = 'deprecated' | . = 'number' | . = 'URI' | . = 'URN'">
+              <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')">
                 The only acceptable values for @type on a work &lt;idno&gt; are "deprecated", "number", 
                 "URI" or "URN". 
               </sch:assert>
             </sch:rule>
             <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@type">
-              <sch:assert test=". = 'accession-number' | . = 'project-number' | . = 'shelfmark'">
+              <sch:assert test=". = ('accession-number', 'project-number', 'shelfmark')">
                 In the context of manuscripts, this @type value may only be "accession-number", 
                 "project-number", or "shelfmark". 
               </sch:assert>
@@ -472,13 +472,13 @@
         <constraintSpec ident="idno-subtypes" scheme="schematron">
           <constraint>
             <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
-              <sch:assert test=". = 'BHO' | . = 'BHS' | . = 'CPG'">
+              <sch:assert test=". = ('BHO', 'BHS', 'CPG')">
                 The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are "BHO", "BHS", 
                 or "CPG". 
               </sch:assert>
             </sch:rule>
             <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@subtype" role="warning">
-              <sch:assert test=". = 'Bekker' | . = 'BML' | . = 'Fichtner' | . = 'HMML' | . = 'Kühn' | . = 'Rosen' | . = 'Takahashi' | . = 'UCL' | . = 'BAV'">
+              <sch:assert test=". = ('Bekker', 'BML', 'Fichtner', 'HMML', 'Kühn', 'Rosen', 'Takahashi', 'UCL','BAV')">
                 In the context of manuscripts, this @subtype value may only be 
                 "Bekker", "BML" (for The Laurentian Library), "Fichtner", "HMML", "Kühn", "Rosen", "Takahashi", "UCL", or 
                 "BAV" (for the Vatican Apostolic Library). If none of these options is correct, please write in an appropriate
