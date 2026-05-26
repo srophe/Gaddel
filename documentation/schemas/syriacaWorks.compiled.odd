@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:srophe="https://srophe.app" xml:base="file:/C:/Users/daniel.schwartz/Desktop/Schemas/NHSLSchemaTesting/syriacaWorks.odd"><?TEIVERSION 2025?>
+<?xml version="1.0" encoding="utf-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:srophe="https://srophe.app" xml:base="file:/C:/Users/daniel.schwartz/Documents/GitHub/Gaddel/documentation/schemas/syriacaWorks.odd"><?TEIVERSION 2025?>
   <teiHeader><fileDesc>
       <titleStmt>
         <title>A New Handbook of Syriac Literature: Encoding Guidelines and TEI P5 Customization</title>
@@ -3442,17 +3442,61 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
     dans les glossaires, il marque le terme qui est défini.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene un concepto o enunciado asociado con un ítem en
     una lista; en un glosario marca el término que se define.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene l'etichetta associata ad una voce in una lista;
     nei glossari indica il dermine che viene definito</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-25" xml:lang="de">enthält ein Label oder eine Überschrift zur 
-    Identifikation eines Textteils, insbesondere in einer Liste oder einem Glossar.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.labelLike"/></classes><content><textNode/></content><attList><attDef ident="type" mode="change" usage="opt">
-              <valList type="closed">
+    Identifikation eines Textteils, insbesondere in einer Liste oder einem Glossar.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.labelLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="true"><textNode/><elementRef key="idno"/></sequence></content><constraintSpec ident="label-values" scheme="schematron">
+          <constraint>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
+              <sch:assert test="starts-with(., 'Bekker')">
+                This text should begin "Bekker". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
+              <sch:assert test="starts-with(., 'The Laurentian Library')">
+                This text should begin "The Laurentian Library". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
+              <sch:assert test="">
+                This text should begin "Fichtner". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']">
+              <sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')">
+                This text should begin "The Laurentian Library". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
+              <sch:assert test="starts-with(., 'Kühn')">
+                This text should begin "Kühn". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']">
+              <sch:assert test="starts-with(., 'Rosen')">
+                This text should begin "Rosen". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
+              <sch:assert test="starts-with(., 'Takahashi')">
+                This text should begin "Takahashi". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='UCL']">
+              <sch:assert test="starts-with(., 'University College London')">
+                This text should begin "University College London". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
+              <sch:assert test="starts-with(., 'Vatican Apostolic Library')">
+                This text should begin "The Vatican Apostolic Library". 
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec><attList><attDef ident="type" mode="change" rend="change" usage="opt"><valList type="closed">
                 <valItem ident="book"/>
                 <valItem ident="collection"/>
                 <valItem ident="part"/>
-              </valList>
-            </attDef><attDef ident="subtype" mode="change" usage="opt">
-              <valList type="closed">
+              </valList></attDef><attDef ident="subtype" mode="change" rend="change" usage="opt"><valList type="closed">
                 <valItem ident="order"/>
-              </valList>
-            </attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
+              </valList></attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
     <p>Labels are commonly used for the headwords in glossary
     lists; note the use of the global <att>xml:lang</att> attribute to
     set the default language of the glossary list to Middle English,
@@ -4832,7 +4876,7 @@ psychological significance.
     structurée dans laquelle les sous-composants peuvent ou non être explicitement balisés.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene una cita bibliográfica estructurada libremente,
     los componentes de la cual pueden nohaber sido etiquetados explícitamente.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene una citazione bibliografica strutturata
     liberamente i cui componeneti potrebbero o meno essere codificati esplicitamente.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-13" xml:lang="de">enthält eine lose strukturierte bibliografische Angabe, in der einzelne Komponenten explizit
-    ausgezeichnet sein können.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.biblLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="true"><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><elementRef key="author" minOccurs="0" maxOccurs="unbounded"/><elementRef key="editor" minOccurs="0" maxOccurs="unbounded"/><elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/><elementRef key="ptr" minOccurs="0" maxOccurs="unbounded"/><elementRef key="citedRange" minOccurs="0" maxOccurs="unbounded"/><elementRef key="textLang" minOccurs="0" maxOccurs="unbounded"/><elementRef key="date" minOccurs="0" maxOccurs="unbounded"/><elementRef key="noteGrp" minOccurs="0" maxOccurs="unbounded"/><elementRef key="note" minOccurs="0" maxOccurs="unbounded"/><elementRef key="listRelation" minOccurs="0" maxOccurs="unbounded"/><elementRef key="listBibl" minOccurs="0" maxOccurs="unbounded"/></sequence></content><constraintSpec ident="bibl-child-req" scheme="schematron">
+    ausgezeichnet sein können.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.biblLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="true"><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><elementRef key="author" minOccurs="0" maxOccurs="unbounded"/><elementRef key="editor" minOccurs="0" maxOccurs="unbounded"/><elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/><elementRef key="label" minOccurs="0" maxOccurs="unbounded"/><elementRef key="ptr" minOccurs="0" maxOccurs="unbounded"/><elementRef key="citedRange" minOccurs="0" maxOccurs="unbounded"/><elementRef key="biblScope" minOccurs="0" maxOccurs="unbounded"/><elementRef key="textLang" minOccurs="0" maxOccurs="unbounded"/><elementRef key="date" minOccurs="0" maxOccurs="unbounded"/><elementRef key="noteGrp" minOccurs="0" maxOccurs="unbounded"/><elementRef key="note" minOccurs="0" maxOccurs="unbounded"/><elementRef key="listRelation" minOccurs="0" maxOccurs="unbounded"/><elementRef key="listBibl" minOccurs="0" maxOccurs="unbounded"/></sequence></content><constraintSpec ident="bibl-child-req" scheme="schematron">
           <constraint>
             <sch:rule context="tei:body//tei:bibl">
               <sch:assert test="tei:title | tei:idno">
@@ -4851,6 +4895,9 @@ psychological significance.
               <sch:report test="tei:bibl">
                 Bibliography under a work &lt;bibl&gt; must be encoded in a &lt;listBibl&gt; element.
               </sch:report>
+              <sch:report test="tei:label">
+                The work &lt;bibl&gt; does not take a child &lt;label&gt; element.
+              </sch:report>
             </sch:rule>
             <sch:rule context="tei:listBibl//tei:bibl">
               <sch:report test="tei:noteGrp">
@@ -4858,6 +4905,10 @@ psychological significance.
               </sch:report>
               <sch:report test="tei:listBibl">
                 Bibliography encoded inside a &lt;listBibl&gt; cannot appear inside a &lt;listBibl&gt; element.
+              </sch:report>
+              <sch:report test="tei:idno">
+                In this context, a &lt;idno&gt; element must appear as the child of a 
+                &lt;label&gt; element.
               </sch:report>
             </sch:rule>
           </constraint>
@@ -5726,7 +5777,39 @@ element in the TEI header.
             <p>The identification of Syriaca.org as the responsible entity is accomplished by an <gi>authority</gi> element.</p>
           </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD24">2.2.4. Publication, Distribution, Licensing, etc.</ref>
-  </listRef></elementSpec><elementSpec rend="add" module="header" xml:id="gi-idno" ident="idno"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2010-04-30" xml:lang="en">identifier</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2009-01-05" xml:lang="fr">identifiant</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">식별 숫자</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">識別代碼</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-11-17" xml:lang="de">Identifikator</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">número identificativo</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">numero identificatore</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2010-04-30" xml:lang="en">supplies any form of identifier used to identify some object, such as a bibliographic item, a person, a title, an organization, etc. in a standardized way.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-02-15" xml:lang="fr">donne un identifiant standardisé qui peut être utilisé pour identifier une référence bibliographique, une personne, un titre d'ouvrage ou une organisation.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">서지 정보 항목을 식별하기 위해 사용되는 표준 또는 비표준 숫자를 제시한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">提供任何用來識別書目項目的標準或非標準編碼。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-02-15" xml:lang="ja">書誌項目、人物、タイトル、組織など、何らかのオブジェクトを標準化された方法で識別するために使用される任意の形式の識別子を提供する。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-11-17" xml:lang="de">enthält einen frei wählbaren Identifikator, der ein beliebiges Objekt, z. B. eine bibliografische Einheit, eine Person, einen Titel, eine Organisation, in standardisierter Weise identifiziert.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-02-15" xml:lang="es">proporciona un identificador estándar para un objecto; se usa parla la identificación de, por ejemplo, un elemento bibliográfico, una persona, un título o una organización.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2020-10-25" xml:lang="it">fornisce un identificatore, standard o meno, usato per identificare un oggetto, come per esempio un'unità bibliografica, una persona, un titolo, un'organizzazione, ecc.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.nameLike"/></classes><content><textNode/></content><constraintSpec ident="idno-uri" scheme="schematron">
+  </listRef></elementSpec><elementSpec rend="add" module="header" xml:id="gi-idno" ident="idno"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2010-04-30" xml:lang="en">identifier</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2009-01-05" xml:lang="fr">identifiant</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">식별 숫자</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">識別代碼</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-11-17" xml:lang="de">Identifikator</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">número identificativo</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">numero identificatore</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2010-04-30" xml:lang="en">supplies any form of identifier used to identify some object, such as a bibliographic item, a person, a title, an organization, etc. in a standardized way.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-02-15" xml:lang="fr">donne un identifiant standardisé qui peut être utilisé pour identifier une référence bibliographique, une personne, un titre d'ouvrage ou une organisation.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">서지 정보 항목을 식별하기 위해 사용되는 표준 또는 비표준 숫자를 제시한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">提供任何用來識別書目項目的標準或非標準編碼。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-02-15" xml:lang="ja">書誌項目、人物、タイトル、組織など、何らかのオブジェクトを標準化された方法で識別するために使用される任意の形式の識別子を提供する。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-11-17" xml:lang="de">enthält einen frei wählbaren Identifikator, der ein beliebiges Objekt, z. B. eine bibliografische Einheit, eine Person, einen Titel, eine Organisation, in standardisierter Weise identifiziert.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-02-15" xml:lang="es">proporciona un identificador estándar para un objecto; se usa parla la identificación de, por ejemplo, un elemento bibliográfico, una persona, un título o una organización.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2020-10-25" xml:lang="it">fornisce un identificatore, standard o meno, usato per identificare un oggetto, come per esempio un'unità bibliografica, una persona, un titolo, un'organizzazione, ecc.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.nameLike"/></classes><content><textNode/></content><constraintSpec ident="work-idno-types" scheme="schematron">
+          <constraint>
+            <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
+              <sch:assert test="'deprecated' | 'number' | 'URI' | 'URN'">
+                The only acceptable values for @type on a work &lt;idno&gt; are "deprecated", "number", 
+                "URI" or "URN". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@type">
+              <sch:assert test="'accession-number' | 'project-number' | 'shelfmark'">
+                In the context of manuscripts, this @type value may only be "accession-number", 
+                "project-number", or "shelfmark". 
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec><constraintSpec ident="idno-subtypes" scheme="schematron">
+          <constraint>
+            <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
+              <sch:assert test="'BHO' | 'BHS' | 'CPG'">
+                The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are "BHO", "BHS", 
+                or "CPG". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@subtype" role="warning">
+              <sch:assert test="'Bekker' | 'BML' | 'Fichtner' | 'HMML' | 'Kühn' | 'Rosen' | 'Takahashi' | 'UCL' | 'BAV'">
+                In the context of manuscripts, this @subtype value may only be 
+                "Bekker", "BML" (for The Laurentian Library), "Fichtner", "HMML", "Kühn", "Rosen", "Takahashi", "UCL", or 
+                "BAV" (for the Vatican Apostolic Library). If none of these options is correct, please write in an appropriate
+                value and the warning message will prompt editors to ensure that it is the correct value.
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec><constraintSpec ident="idno-uri" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:publicationStmt/tei:idno[@type='URI']/text()">
                 <sch:let name="fileNo" value="replace(document-uri(/), '.*?(\d{1,5}).xml', '$1')"/>
@@ -5753,7 +5836,7 @@ element in the TEI header.
             </constraint>
           </constraintSpec><attList><attDef ident="type" mode="change" rend="change" usage="req"><desc rend="replace">The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc><datatype xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
         <dataRef key="teidata.enumerated"/>
-      </datatype><valList type="semi"><valItem ident="accession-number"/><valItem ident="bookplate"/><valItem ident="deprecated"/><valItem ident="shelfmark"/><valItem ident="URI"/></valList></attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="und">
+      </datatype><valList type="closed"><valItem ident="accession-number"/><valItem ident="deprecated"/><valItem ident="deprecated"/><valItem ident="number"/><valItem ident="project-number"/><valItem ident="shelfmark"/><valItem ident="URI"/><valItem ident="URN"/></valList></attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="und">
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-idno-egXML-ei">
       <idno type="ISBN">978-1-906964-22-1</idno>
       <idno type="ISSN">0143-3385</idno>
@@ -5987,9 +6070,11 @@ element in the TEI header.
         </constraintSpec><constraintSpec ident="seriesStmt-monograph" scheme="schematron">
           <constraint>
             <sch:rule context="//tei:seriesStmt//tei:title[@level='m']">
-              <sch:assert test="                 ./node() = 'Bibliotheca Hagiographica Syriaca Electronica' or                 ./node() = 'A Guide to the Bible in Syriac'"> 
-                This &lt;title&gt; element must be "Bibliotheca Hagiographica Syriaca Electronica" or
-                "Guide to the Bible in Syriac". 
+              <sch:assert test="                 ./node() = 'Bibliotheca Hagiographica Syriaca Electronica' or                 ./node() = 'A Guide to the Bible in Syriac' or                 ./node() = 'Syriac Scientific and Philosophical Literature'"> 
+                This &lt;title&gt; element must be 
+                "Bibliotheca Hagiographica Syriaca Electronica" or
+                "Guide to the Bible in Syriac" or 
+                "Syriac Scientific and Philosophical Literature". 
               </sch:assert>
             </sch:rule>
             <sch:rule context="//tei:seriesStmt[tei:title = 'Bibliotheca Hagiographica Syriaca Electronica']/tei:idno">

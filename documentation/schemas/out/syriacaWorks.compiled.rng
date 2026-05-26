@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-05-22T19:39:56Z. . 
+Schema generated from ODD source 2026-05-26T22:26:34Z. . 
 TEI Edition: P5 Version 4.10.2. Last updated on 4th September 2025, revision bcfa98f42 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.10.2/ 
   
@@ -1259,7 +1259,86 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
    <define name="tei_label">
       <element name="label">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(label) contains any label or heading used to identify part of a text, typically but not exclusively in a list or glossary. [3.8. Lists]</a:documentation>
-         <text/>
+         <group>
+            <text/>
+            <ref name="tei_idno"/>
+         </group>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                  id="syriacaWorks-label-label-values-constraint-rule-33">
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
+               <sch:assert test="starts-with(., 'Bekker')">
+                This text should begin "Bekker". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
+               <sch:assert test="starts-with(., 'The Laurentian Library')">
+                This text should begin "The Laurentian Library". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
+               <sch:assert test="">
+                This text should begin "Fichtner". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']">
+               <sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')">
+                This text should begin "The Laurentian Library". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
+               <sch:assert test="starts-with(., 'Kühn')">
+                This text should begin "Kühn". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']">
+               <sch:assert test="starts-with(., 'Rosen')">
+                This text should begin "Rosen". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
+               <sch:assert test="starts-with(., 'Takahashi')">
+                This text should begin "Takahashi". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='UCL']">
+               <sch:assert test="starts-with(., 'University College London')">
+                This text should begin "University College London". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
+               <sch:assert test="starts-with(., 'Vatican Apostolic Library')">
+                This text should begin "The Vatican Apostolic Library". 
+              </sch:assert>
+            </sch:rule>
+         </pattern>
          <ref name="tei_att.global.attributes"/>
          <optional>
             <attribute name="type">
@@ -1292,7 +1371,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          <text/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-head-listBibl-head-values-constraint-rule-33">
+                  id="syriacaWorks-head-listBibl-head-values-constraint-rule-42">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1352,7 +1431,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-note-noteGrp-note-type-constraint-rule-38">
+                  id="syriacaWorks-note-noteGrp-note-type-constraint-rule-47">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1420,7 +1499,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-note-quotes-in-notes-constraint-rule-46">
+                  id="syriacaWorks-note-quotes-in-notes-constraint-rule-55">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1433,7 +1512,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-note-listBibl-note-type-constraint-rule-47">
+                  id="syriacaWorks-note-listBibl-note-type-constraint-rule-56">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1445,7 +1524,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-note-documentation-on-note-constraint-rule-48">
+                  id="syriacaWorks-note-documentation-on-note-constraint-rule-57">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1455,7 +1534,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-note-documentation-note-child-quote-constraint-rule-49">
+                  id="syriacaWorks-note-documentation-note-child-quote-constraint-rule-58">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1465,7 +1544,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-note-unique-note-abstracts-constraint-rule-50">
+                  id="syriacaWorks-note-unique-note-abstracts-constraint-rule-59">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1484,7 +1563,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-note-note-abstract-on-each-series-constraint-rule-51">
+                  id="syriacaWorks-note-note-abstract-on-each-series-constraint-rule-60">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1500,7 +1579,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-note-xmlLang-in-note-constraint-rule-52">
+                  id="syriacaWorks-note-xmlLang-in-note-constraint-rule-61">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1589,7 +1668,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-author-ref-on-author-constraint-rule-53">
+                  id="syriacaWorks-author-ref-on-author-constraint-rule-62">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1603,7 +1682,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-author-author-in-context-constraint-rule-54">
+                  id="syriacaWorks-author-author-in-context-constraint-rule-63">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1641,7 +1720,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-editor-role-on-editor-constraint-rule-56">
+                  id="syriacaWorks-editor-role-on-editor-constraint-rule-65">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1676,7 +1755,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-editor-date-past-editor-constraint-rule-60">
+                  id="syriacaWorks-editor-date-past-editor-constraint-rule-69">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1686,7 +1765,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-editor-ref-on-editor-constraint-rule-61">
+                  id="syriacaWorks-editor-ref-on-editor-constraint-rule-70">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1794,7 +1873,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-title-xmlLang-on-title-constraint-rule-64">
+                  id="syriacaWorks-title-xmlLang-on-title-constraint-rule-73">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1806,7 +1885,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-title-lang-on-title-in-body-constraint-rule-65">
+                  id="syriacaWorks-title-lang-on-title-in-body-constraint-rule-74">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1819,7 +1898,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-title-title-in-titleStmt-constraint-rule-66">
+                  id="syriacaWorks-title-title-in-titleStmt-constraint-rule-75">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1830,7 +1909,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-title-title-in-seriesStmt-constraint-rule-67">
+                  id="syriacaWorks-title-title-in-seriesStmt-constraint-rule-76">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -1842,7 +1921,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-title-title-in-desc-note-constraint-rule-68">
+                  id="syriacaWorks-title-title-in-desc-note-constraint-rule-77">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2007,10 +2086,16 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                <ref name="tei_idno"/>
             </zeroOrMore>
             <zeroOrMore>
+               <ref name="tei_label"/>
+            </zeroOrMore>
+            <zeroOrMore>
                <ref name="tei_ptr"/>
             </zeroOrMore>
             <zeroOrMore>
                <ref name="tei_citedRange"/>
+            </zeroOrMore>
+            <zeroOrMore>
+               <ref name="tei_biblScope"/>
             </zeroOrMore>
             <zeroOrMore>
                <ref name="tei_textLang"/>
@@ -2033,7 +2118,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-bibl-bibl-child-req-constraint-rule-70">
+                  id="syriacaWorks-bibl-bibl-child-req-constraint-rule-79">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2057,6 +2142,9 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                <sch:report test="tei:bibl">
                 Bibliography under a work &lt;bibl&gt; must be encoded in a &lt;listBibl&gt; element.
               </sch:report>
+               <sch:report test="tei:label">
+                The work &lt;bibl&gt; does not take a child &lt;label&gt; element.
+              </sch:report>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -2068,11 +2156,15 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                <sch:report test="tei:listBibl">
                 Bibliography encoded inside a &lt;listBibl&gt; cannot appear inside a &lt;listBibl&gt; element.
               </sch:report>
+               <sch:report test="tei:idno">
+                In this context, a &lt;idno&gt; element must appear as the child of a 
+                &lt;label&gt; element.
+              </sch:report>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-bibl-work-bhse-constraint-rule-73">
+                  id="syriacaWorks-bibl-work-bhse-constraint-rule-82">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2089,7 +2181,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-bibl-work-bible-constraint-rule-74">
+                  id="syriacaWorks-bibl-work-bible-constraint-rule-83">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2102,7 +2194,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-bibl-bibl-child-bibl-constraint-rule-75">
+                  id="syriacaWorks-bibl-bibl-child-bibl-constraint-rule-84">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2114,7 +2206,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-bibl-mssCitation-constraint-rule-76">
+                  id="syriacaWorks-bibl-mssCitation-constraint-rule-85">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2137,7 +2229,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-bibl-titleWithExternalURL-constraint-rule-78">
+                  id="syriacaWorks-bibl-titleWithExternalURL-constraint-rule-87">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2496,7 +2588,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          <text/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-authority-authorityText-constraint-rule-79">
+                  id="syriacaWorks-authority-authorityText-constraint-rule-88">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2516,7 +2608,54 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          <text/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-idno-idno-uri-constraint-rule-80">
+                  id="syriacaWorks-idno-work-idno-types-constraint-rule-89">
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:body/child::tei:bibl/child::tei:idno/@type">
+               <sch:assert test="'deprecated' | 'number' | 'URI' | 'URN'">
+                The only acceptable values for @type on a work &lt;idno&gt; are "deprecated", "number", 
+                "URI" or "URN". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@type">
+               <sch:assert test="'accession-number' | 'project-number' | 'shelfmark'">
+                In the context of manuscripts, this @type value may only be "accession-number", 
+                "project-number", or "shelfmark". 
+              </sch:assert>
+            </sch:rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                  id="syriacaWorks-idno-idno-subtypes-constraint-rule-91">
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
+               <sch:assert test="'BHO' | 'BHS' | 'CPG'">
+                The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are "BHO", "BHS", 
+                or "CPG". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@subtype"
+                      role="warning">
+               <sch:assert test="'Bekker' | 'BML' | 'Fichtner' | 'HMML' | 'Kühn' | 'Rosen' | 'Takahashi' | 'UCL' | 'BAV'">
+                In the context of manuscripts, this @subtype value may only be 
+                "Bekker", "BML" (for The Laurentian Library), "Fichtner", "HMML", "Kühn", "Rosen", "Takahashi", "UCL", or 
+                "BAV" (for the Vatican Apostolic Library). If none of these options is correct, please write in an appropriate
+                value and the warning message will prompt editors to ensure that it is the correct value.
+              </sch:assert>
+            </sch:rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                  id="syriacaWorks-idno-idno-uri-constraint-rule-93">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2533,7 +2672,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-idno-change-on-idno-constraint-rule-81">
+                  id="syriacaWorks-idno-change-on-idno-constraint-rule-94">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2556,22 +2695,24 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          <attribute name="type">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The <code xmlns="http://www.w3.org/1999/xhtml"
                      xmlns:rng="http://relaxng.org/ns/structure/1.0">@type</code> attribute on <code xmlns="http://www.w3.org/1999/xhtml"
-                     xmlns:rng="http://relaxng.org/ns/structure/1.0">&lt;idno&gt;</code> defines the kind of identifier contained in the text value.
-Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] shelfmark; 5] URI</a:documentation>
+                     xmlns:rng="http://relaxng.org/ns/structure/1.0">&lt;idno&gt;</code> defines the kind of identifier contained in the text value.</a:documentation>
             <choice>
                <value>accession-number</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-               <value>bookplate</value>
+               <value>deprecated</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                <value>deprecated</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>number</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>project-number</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                <value>shelfmark</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                <value>URI</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-               <data type="token">
-                  <param name="pattern">[^\p{C}\p{Z}]+</param>
-               </data>
+               <value>URN</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             </choice>
          </attribute>
          <empty/>
@@ -2625,7 +2766,7 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-seriesStmt-seriesStmt-series-constraint-rule-83">
+                  id="syriacaWorks-seriesStmt-seriesStmt-series-constraint-rule-96">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2654,14 +2795,16 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-seriesStmt-seriesStmt-monograph-constraint-rule-86">
+                  id="syriacaWorks-seriesStmt-seriesStmt-monograph-constraint-rule-99">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="//tei:seriesStmt//tei:title[@level='m']">
-               <sch:assert test="                 ./node() = 'Bibliotheca Hagiographica Syriaca Electronica' or                 ./node() = 'A Guide to the Bible in Syriac'"> 
-                This &lt;title&gt; element must be "Bibliotheca Hagiographica Syriaca Electronica" or
-                "Guide to the Bible in Syriac". 
+               <sch:assert test="                 ./node() = 'Bibliotheca Hagiographica Syriaca Electronica' or                 ./node() = 'A Guide to the Bible in Syriac' or                 ./node() = 'Syriac Scientific and Philosophical Literature'"> 
+                This &lt;title&gt; element must be 
+                "Bibliotheca Hagiographica Syriaca Electronica" or
+                "Guide to the Bible in Syriac" or 
+                "Syriac Scientific and Philosophical Literature". 
               </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
@@ -2831,7 +2974,7 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-change-who-on-change-constraint-rule-91">
+                  id="syriacaWorks-change-who-on-change-constraint-rule-104">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2850,7 +2993,7 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-change-xmlID-on-change-constraint-rule-92">
+                  id="syriacaWorks-change-xmlID-on-change-constraint-rule-105">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3031,7 +3174,7 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-persName-ref-on-persName-constraint-rule-93">
+                  id="syriacaWorks-persName-ref-on-persName-constraint-rule-106">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3052,7 +3195,7 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-persName-persName-ref-constraint-rule-95">
+                  id="syriacaWorks-persName-persName-ref-constraint-rule-108">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3095,7 +3238,7 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-placeName-place-ref-constraint-rule-97">
+                  id="syriacaWorks-placeName-place-ref-constraint-rule-110">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3140,7 +3283,7 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
          <ref name="tei_desc"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-ref-or-key-or-name-constraint-rule-99">
+                  id="syriacaWorks-relation-ref-or-key-or-name-constraint-rule-112">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3151,7 +3294,7 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-active-mutual-constraint-rule-100">
+                  id="syriacaWorks-relation-active-mutual-constraint-rule-113">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3162,7 +3305,7 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-active-passive-constraint-rule-101">
+                  id="syriacaWorks-relation-active-passive-constraint-rule-114">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3268,7 +3411,7 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
          <ref name="tei_body"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-text-source-within-text-constraint-rule-102">
+                  id="syriacaWorks-text-source-within-text-constraint-rule-115">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3355,7 +3498,7 @@ Suggested values include: 1] accession-number; 2] bookplate; 3] deprecated; 4] s
       </optional>
    </define>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="syriacaWorks-att.global.change-change-att-values-constraint-rule-103">
+            id="syriacaWorks-att.global.change-change-att-values-constraint-rule-116">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 xmlns:srophe="https://srophe.app"

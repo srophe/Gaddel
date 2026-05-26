@@ -118,8 +118,10 @@
             <elementRef key="author" minOccurs="0" maxOccurs="unbounded"/>
             <elementRef key="editor" minOccurs="0" maxOccurs="unbounded"/>
             <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
+            <elementRef key="label" minOccurs="0" maxOccurs="unbounded"/>
             <elementRef key="ptr" minOccurs="0" maxOccurs="unbounded"/>
             <elementRef key="citedRange" minOccurs="0" maxOccurs="unbounded"/>
+            <elementRef key="biblScope" minOccurs="0" maxOccurs="unbounded"/>
             <elementRef key="textLang" minOccurs="0" maxOccurs="unbounded"/>
             <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
             <elementRef key="noteGrp" minOccurs="0" maxOccurs="unbounded"/>
@@ -147,6 +149,9 @@
               <sch:report test="tei:bibl">
                 Bibliography under a work &lt;bibl&gt; must be encoded in a &lt;listBibl&gt; element.
               </sch:report>
+              <sch:report test="tei:label">
+                The work &lt;bibl&gt; does not take a child &lt;label&gt; element.
+              </sch:report>
             </sch:rule>
             <sch:rule context="tei:listBibl//tei:bibl">
               <sch:report test="tei:noteGrp">
@@ -154,6 +159,10 @@
               </sch:report>
               <sch:report test="tei:listBibl">
                 Bibliography encoded inside a &lt;listBibl&gt; cannot appear inside a &lt;listBibl&gt; element.
+              </sch:report>
+              <sch:report test="tei:idno">
+                In this context, a &lt;idno&gt; element must appear as the child of a 
+                &lt;label&gt; element.
               </sch:report>
             </sch:rule>
           </constraint>
@@ -444,15 +453,52 @@
         <content>
           <textNode/>
         </content>
+        <constraintSpec ident="work-idno-types" scheme="schematron">
+          <constraint>
+            <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
+              <sch:assert test="'deprecated' | 'number' | 'URI' | 'URN'">
+                The only acceptable values for @type on a work &lt;idno&gt; are "deprecated", "number", 
+                "URI" or "URN". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@type">
+              <sch:assert test="'accession-number' | 'project-number' | 'shelfmark'">
+                In the context of manuscripts, this @type value may only be "accession-number", 
+                "project-number", or "shelfmark". 
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec>
+        <constraintSpec ident="idno-subtypes" scheme="schematron">
+          <constraint>
+            <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
+              <sch:assert test="'BHO' | 'BHS' | 'CPG'">
+                The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are "BHO", "BHS", 
+                or "CPG". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@subtype" role="warning">
+              <sch:assert test="'Bekker' | 'BML' | 'Fichtner' | 'HMML' | 'Kühn' | 'Rosen' | 'Takahashi' | 'UCL' | 'BAV'">
+                In the context of manuscripts, this @subtype value may only be 
+                "Bekker", "BML" (for The Laurentian Library), "Fichtner", "HMML", "Kühn", "Rosen", "Takahashi", "UCL", or 
+                "BAV" (for the Vatican Apostolic Library). If none of these options is correct, please write in an appropriate
+                value and the warning message will prompt editors to ensure that it is the correct value.
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec>
         <attList>
           <attDef ident="type" mode="change" usage="req">
             <desc>The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc>
-            <valList mode="replace" type="semi">
+            <valList mode="replace" type="closed">
               <valItem ident="accession-number"/>
-              <valItem ident="bookplate"/>
               <valItem ident="deprecated"/>
+              <valItem ident="deprecated"/>
+              <valItem ident="number"/>
+              <valItem ident="project-number"/>
               <valItem ident="shelfmark"/>
               <valItem ident="URI"/>
+              <valItem ident="URN"/>
             </valList>
           </attDef>
         </attList>
@@ -466,9 +512,77 @@
       
       
       
-      <!--<elementSpec ident="label" module="core" mode="change">
-        
-      </elementSpec>-->
+      <elementSpec ident="label" module="core" mode="change">
+        <content>
+          <sequence preserveOrder="true">
+            <textNode/>
+            <elementRef key="idno"/>
+          </sequence>
+        </content>
+        <constraintSpec ident="label-values" scheme="schematron">
+          <constraint>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
+              <sch:assert test="starts-with(., 'Bekker')">
+                This text should begin "Bekker". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
+              <sch:assert test="starts-with(., 'The Laurentian Library')">
+                This text should begin "The Laurentian Library". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
+              <sch:assert test="">
+                This text should begin "Fichtner". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']">
+              <sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')">
+                This text should begin "The Laurentian Library". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
+              <sch:assert test="starts-with(., 'Kühn')">
+                This text should begin "Kühn". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']">
+              <sch:assert test="starts-with(., 'Rosen')">
+                This text should begin "Rosen". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
+              <sch:assert test="starts-with(., 'Takahashi')">
+                This text should begin "Takahashi". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='UCL']">
+              <sch:assert test="starts-with(., 'University College London')">
+                This text should begin "University College London". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
+              <sch:assert test="starts-with(., 'Vatican Apostolic Library')">
+                This text should begin "The Vatican Apostolic Library". 
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec>
+        <attList>
+          <attDef ident="type" mode="change">
+            <valList type="closed">
+              <valItem ident="order"/>
+            </valList>
+          </attDef>
+          <attDef ident="subtype" mode="change">
+            <valList type="closed">
+              <valItem ident="book"/>
+              <valItem ident="collection"/>
+              <valItem ident="part"/>
+            </valList>
+          </attDef>
+        </attList>
+      </elementSpec>
       
       
       
@@ -766,9 +880,12 @@
             <sch:rule context="//tei:seriesStmt//tei:title[@level='m']">
               <sch:assert test="
                 ./node() = 'Bibliotheca Hagiographica Syriaca Electronica' or
-                ./node() = 'A Guide to the Bible in Syriac'"> 
-                This &lt;title&gt; element must be "Bibliotheca Hagiographica Syriaca Electronica" or
-                "Guide to the Bible in Syriac". 
+                ./node() = 'A Guide to the Bible in Syriac' or
+                ./node() = 'Syriac Scientific and Philosophical Literature'"> 
+                This &lt;title&gt; element must be 
+                "Bibliotheca Hagiographica Syriaca Electronica" or
+                "Guide to the Bible in Syriac" or 
+                "Syriac Scientific and Philosophical Literature". 
               </sch:assert>
             </sch:rule>
             <sch:rule context="//tei:seriesStmt[tei:title = 'Bibliotheca Hagiographica Syriaca Electronica']/tei:idno">
