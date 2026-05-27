@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-05-26T23:39:55Z. . 
+Schema generated from ODD source 2026-05-27T17:15:25Z. . 
 TEI Edition: P5 Version 4.10.2. Last updated on 4th September 2025, revision bcfa98f42 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.10.2/ 
   
@@ -1261,7 +1261,9 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(label) contains any label or heading used to identify part of a text, typically but not exclusively in a list or glossary. [3.8. Lists]</a:documentation>
          <group>
             <text/>
-            <ref name="tei_idno"/>
+            <zeroOrMore>
+               <ref name="tei_idno"/>
+            </zeroOrMore>
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -2274,13 +2276,13 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                   <value>lawd:Edition</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>syriaca:DigitalCatalogue</value>
+                  <value>syriaca:DigitalCatalog</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                   <value>syriaca:Manuscript</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                   <value>syriaca:ModernTranslation</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>syriaca:PrintCatalogue</value>
+                  <value>syriaca:PrintCatalog</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                </choice>
             </attribute>
@@ -2645,10 +2647,10 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@subtype"
                       role="warning">
-               <sch:assert test=". = ('Bekker', 'BML', 'Fichtner', 'HMML', 'Kühn', 'Rosen', 'Takahashi', 'UCL','BAV')">
+               <sch:assert test=". = ('BAV', 'BML', 'HMML', 'Rosen', 'UCL')">
                 In the context of manuscripts, this @subtype value may only be 
-                "Bekker", "BML" (for The Laurentian Library), "Fichtner", "HMML", "Kühn", "Rosen", "Takahashi", "UCL", or 
-                "BAV" (for the Vatican Apostolic Library). If none of these options is correct, please write in an appropriate
+                "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), "HMML", "Rosen", or "UCL". 
+                If none of these options is correct, please write in an appropriate
                 value and the warning message will prompt editors to ensure that it is the correct value.
               </sch:assert>
             </sch:rule>
@@ -2699,7 +2701,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
             <choice>
                <value>accession-number</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-               <value>deprecated</value>
+               <value>catalog-number</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                <value>deprecated</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>

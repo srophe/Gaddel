@@ -218,10 +218,10 @@
               <valItem ident="lawd:Citation"/>
               <valItem ident="lawd:ConceptualWork"/>
               <valItem ident="lawd:Edition"/>
-              <valItem ident="syriaca:DigitalCatalogue"/>
+              <valItem ident="syriaca:DigitalCatalog"/>
               <valItem ident="syriaca:Manuscript"/>
               <valItem ident="syriaca:ModernTranslation"/>
-              <valItem ident="syriaca:PrintCatalogue"/>
+              <valItem ident="syriaca:PrintCatalog"/>
             </valList>
           </attDef>
           <attDef ident="ana" mode="change">
@@ -478,10 +478,10 @@
               </sch:assert>
             </sch:rule>
             <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@subtype" role="warning">
-              <sch:assert test=". = ('Bekker', 'BML', 'Fichtner', 'HMML', 'Kühn', 'Rosen', 'Takahashi', 'UCL','BAV')">
+              <sch:assert test=". = ('BAV', 'BML', 'HMML', 'Rosen', 'UCL')">
                 In the context of manuscripts, this @subtype value may only be 
-                "Bekker", "BML" (for The Laurentian Library), "Fichtner", "HMML", "Kühn", "Rosen", "Takahashi", "UCL", or 
-                "BAV" (for the Vatican Apostolic Library). If none of these options is correct, please write in an appropriate
+                "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), "HMML", "Rosen", or "UCL". 
+                If none of these options is correct, please write in an appropriate
                 value and the warning message will prompt editors to ensure that it is the correct value.
               </sch:assert>
             </sch:rule>
@@ -492,7 +492,7 @@
             <desc>The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc>
             <valList mode="replace" type="closed">
               <valItem ident="accession-number"/>
-              <valItem ident="deprecated"/>
+              <valItem ident="catalog-number"></valItem>
               <valItem ident="deprecated"/>
               <valItem ident="number"/>
               <valItem ident="project-number"/>
@@ -516,7 +516,7 @@
         <content>
           <sequence preserveOrder="true">
             <textNode/>
-            <elementRef key="idno"/>
+            <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
           </sequence>
         </content>
         <constraintSpec ident="label-values" scheme="schematron">

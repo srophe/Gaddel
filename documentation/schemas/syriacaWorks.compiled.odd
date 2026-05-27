@@ -3442,7 +3442,7 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
     dans les glossaires, il marque le terme qui est défini.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene un concepto o enunciado asociado con un ítem en
     una lista; en un glosario marca el término que se define.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene l'etichetta associata ad una voce in una lista;
     nei glossari indica il dermine che viene definito</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-25" xml:lang="de">enthält ein Label oder eine Überschrift zur 
-    Identifikation eines Textteils, insbesondere in einer Liste oder einem Glossar.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.labelLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="true"><textNode/><elementRef key="idno"/></sequence></content><constraintSpec ident="label-values" scheme="schematron">
+    Identifikation eines Textteils, insbesondere in einer Liste oder einem Glossar.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.labelLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="true"><textNode/><elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/></sequence></content><constraintSpec ident="label-values" scheme="schematron">
           <constraint>
             <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
               <sch:assert test="starts-with(., 'Bekker')">
@@ -4978,10 +4978,10 @@ psychological significance.
               <valItem ident="lawd:Citation"/>
               <valItem ident="lawd:ConceptualWork"/>
               <valItem ident="lawd:Edition"/>
-              <valItem ident="syriaca:DigitalCatalogue"/>
+              <valItem ident="syriaca:DigitalCatalog"/>
               <valItem ident="syriaca:Manuscript"/>
               <valItem ident="syriaca:ModernTranslation"/>
-              <valItem ident="syriaca:PrintCatalogue"/>
+              <valItem ident="syriaca:PrintCatalog"/>
             </valList>
           </attDef><attDef ident="ana" mode="change">
             
@@ -5801,10 +5801,10 @@ element in the TEI header.
               </sch:assert>
             </sch:rule>
             <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@subtype" role="warning">
-              <sch:assert test=". = ('Bekker', 'BML', 'Fichtner', 'HMML', 'Kühn', 'Rosen', 'Takahashi', 'UCL','BAV')">
+              <sch:assert test=". = ('BAV', 'BML', 'HMML', 'Rosen', 'UCL')">
                 In the context of manuscripts, this @subtype value may only be 
-                "Bekker", "BML" (for The Laurentian Library), "Fichtner", "HMML", "Kühn", "Rosen", "Takahashi", "UCL", or 
-                "BAV" (for the Vatican Apostolic Library). If none of these options is correct, please write in an appropriate
+                "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), "HMML", "Rosen", or "UCL". 
+                If none of these options is correct, please write in an appropriate
                 value and the warning message will prompt editors to ensure that it is the correct value.
               </sch:assert>
             </sch:rule>
@@ -5836,7 +5836,7 @@ element in the TEI header.
             </constraint>
           </constraintSpec><attList><attDef ident="type" mode="change" rend="change" usage="req"><desc rend="replace">The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc><datatype xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
         <dataRef key="teidata.enumerated"/>
-      </datatype><valList type="closed"><valItem ident="accession-number"/><valItem ident="deprecated"/><valItem ident="deprecated"/><valItem ident="number"/><valItem ident="project-number"/><valItem ident="shelfmark"/><valItem ident="URI"/><valItem ident="URN"/></valList></attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="und">
+      </datatype><valList type="closed"><valItem ident="accession-number"/><valItem ident="catalog-number"/><valItem ident="deprecated"/><valItem ident="number"/><valItem ident="project-number"/><valItem ident="shelfmark"/><valItem ident="URI"/><valItem ident="URN"/></valList></attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="und">
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-idno-egXML-ei">
       <idno type="ISBN">978-1-906964-22-1</idno>
       <idno type="ISSN">0143-3385</idno>
