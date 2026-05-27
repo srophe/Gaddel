@@ -569,12 +569,12 @@
           </constraint>
         </constraintSpec>
         <attList>
-          <attDef ident="type" mode="change">
+          <attDef ident="subtype" mode="change">
             <valList type="closed">
               <valItem ident="order"/>
             </valList>
           </attDef>
-          <attDef ident="subtype" mode="change">
+          <attDef ident="type" mode="change">
             <valList type="closed">
               <valItem ident="book"/>
               <valItem ident="collection"/>
