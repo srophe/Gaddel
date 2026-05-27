@@ -36,11 +36,11 @@
       <!-- Instructions for processing the Syriaca.org chained ODD in oXygen.
         - First, be sure that schemaSpec/@source in this document points to "syriacaAll.compiled.odd".
         - Then process this ODD file into a compiled ODD using the transformation scenario "ODD to Compiled ODD".
-          - Save this as syriacaWorks.compiled.odd and then delete the @start attribute from tei:schemaSpec.
-          - This compiled ODD (without a tei:schemaSpec/@source attribute) will be the starting point for the next step in the chained ODD.
+        - Save this as syriacaWorks.compiled.odd and then delete the @start attribute from tei:schemaSpec.
+        - This compiled ODD (without a tei:schemaSpec/@source attribute) will be the starting point for the next step in the chained ODD.
         - This compiled ODD can also be used to generate a .rng file against which you can validate a TEI document. 
-          - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
-          - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
+        - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
+        - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
     </fileDesc>
   </teiHeader>
   <text>
@@ -60,1265 +60,1265 @@
         <classRef key="att.global.analytic"/>
         <classRef key="att.global.change"/>
         <classRef key="att.global.linking"/>
-      
-      
-           
-      
-      <elementSpec ident="author" module="core" mode="change">
-        <content>
-          <sequence preserveOrder="false">
-            <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
-            <textNode/>
-          </sequence>
-        </content>
-        <constraintSpec ident="ref-on-author" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:body/child::tei:bibl/child::tei:author">
-              <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
-                The @ref attribute on &lt;persName&gt; must take a Syriaca.org person URI which reqires 
-                the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
-              </sch:assert>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <constraintSpec ident="author-in-context" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:body/child::tei:bibl/child::tei:author">
-              <sch:assert test="tei:persName and count(*) = count(tei:persName)">
-                This &lt;author&gt; element allows only one or more child &lt;persName&gt; containing the name of the author.
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl/tei:bibl/tei:author">
-              <sch:assert test="not(*) and normalize-space(.)">
-                This &lt;author&gt; element must contain only non-empty plain text.
-              </sch:assert>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-      </elementSpec>
-      
-      
-      
-      <!--<elementSpec ident="authority" module="header" mode="change">
         
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="availability" module="header" mode="change">
         
-      </elementSpec>-->
-      
-      
-      
-      <elementSpec ident="bibl" module="core" mode="change">
-        <content>
-          <sequence preserveOrder="true">
-            <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="author" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="editor" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="label" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="ptr" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="citedRange" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="biblScope" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="textLang" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="noteGrp" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="note" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="listRelation" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="listBibl" minOccurs="0" maxOccurs="unbounded"/>
-          </sequence>
-        </content>
-        <constraintSpec ident="bibl-child-req" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:body//tei:bibl">
-              <sch:assert test="tei:title | tei:idno">
-                Every &lt;bibl&gt; element must have either a child &lt;title&gt; element
-                or a child &lt;idno&gt; element.
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:body/child::tei:bibl">
-              <sch:assert test="tei:title and tei:idno and tei:listBibl">
-                Every work-level &lt;bibl&gt; element must as child elements at least &lt;title&gt;, 
-                &lt;idno&gt;, and &lt;listBibl&gt;.
-              </sch:assert>
-              <sch:report test="tei:note">
-                Notes under a work &lt;bibl&gt; must be encoded in a &lt;noteGrp&gt; element.
-              </sch:report>
-              <sch:report test="tei:bibl">
-                Bibliography under a work &lt;bibl&gt; must be encoded in a &lt;listBibl&gt; element.
-              </sch:report>
-              <sch:report test="tei:label">
-                The work &lt;bibl&gt; does not take a child &lt;label&gt; element.
-              </sch:report>
-            </sch:rule>
-            <sch:rule context="tei:listBibl//tei:bibl">
-              <sch:report test="tei:noteGrp">
-                Notes encoded inside a &lt;listBibl&gt; cannot appear inside a &lt;noteGrp&gt; element.
-              </sch:report>
-              <sch:report test="tei:listBibl">
-                Bibliography encoded inside a &lt;listBibl&gt; cannot appear inside a &lt;listBibl&gt; element.
-              </sch:report>
-              <sch:report test="tei:idno">
-                In this context, a &lt;idno&gt; element must appear as the child of a 
-                &lt;label&gt; element.
-              </sch:report>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <!-- We use @ana in persons (i.e. #syriaca-saint or #syriaca-author)and places to indicate the "monograph" level
+        
+        
+        <elementSpec ident="author" module="core" mode="change">
+          <content>
+            <sequence preserveOrder="false">
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/>
+            </sequence>
+          </content>
+          <constraintSpec ident="ref-on-author" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:author">
+                <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
+                  The @ref attribute on &lt;persName&gt; must take a Syriaca.org person URI which reqires 
+                  the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="author-in-context" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:author">
+                <sch:assert test="tei:persName and count(*) = count(tei:persName)">
+                  This &lt;author&gt; element allows only one or more child &lt;persName&gt; containing the name of the author.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl/tei:bibl/tei:author">
+                <sch:assert test="not(*) and normalize-space(.)">
+                  This &lt;author&gt; element must contain only non-empty plain text.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+        
+        
+        
+        <!--<elementSpec ident="authority" module="header" mode="change">
+          
+          </elementSpec>
+          
+          
+          
+          <elementSpec ident="availability" module="header" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <elementSpec ident="bibl" module="core" mode="change">
+          <content>
+            <sequence preserveOrder="true">
+              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="author" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="editor" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="label" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="ptr" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="citedRange" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="biblScope" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="textLang" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="noteGrp" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="note" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="listRelation" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="listBibl" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <constraintSpec ident="bibl-child-req" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body//tei:bibl">
+                <sch:assert test="tei:title | tei:idno">
+                  Every &lt;bibl&gt; element must have either a child &lt;title&gt; element
+                  or a child &lt;idno&gt; element.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body/child::tei:bibl">
+                <sch:assert test="tei:title and tei:idno and tei:listBibl">
+                  Every work-level &lt;bibl&gt; element must as child elements at least &lt;title&gt;, 
+                  &lt;idno&gt;, and &lt;listBibl&gt;.
+                </sch:assert>
+                <sch:report test="tei:note">
+                  Notes under a work &lt;bibl&gt; must be encoded in a &lt;noteGrp&gt; element.
+                </sch:report>
+                <sch:report test="tei:bibl">
+                  Bibliography under a work &lt;bibl&gt; must be encoded in a &lt;listBibl&gt; element.
+                </sch:report>
+                <sch:report test="tei:label">
+                  The work &lt;bibl&gt; does not take a child &lt;label&gt; element.
+                </sch:report>
+              </sch:rule>
+              <sch:rule context="tei:listBibl//tei:bibl">
+                <sch:report test="tei:noteGrp">
+                  Notes encoded inside a &lt;listBibl&gt; cannot appear inside a &lt;noteGrp&gt; element.
+                </sch:report>
+                <sch:report test="tei:listBibl">
+                  Bibliography encoded inside a &lt;listBibl&gt; cannot appear inside a &lt;listBibl&gt; element.
+                </sch:report>
+                <sch:report test="tei:idno">
+                  In this context, a &lt;idno&gt; element must appear as the child of a 
+                  &lt;label&gt; element.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <!-- We use @ana in persons (i.e. #syriaca-saint or #syriaca-author)and places to indicate the "monograph" level
             association for this record, with schematron rules requiring that the values match the seriesStmt 
             elements above. This is just easier for Winona to process. What values would be want? -->
-        <constraintSpec ident="work-bhse" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:text//tei:bibl[contains(@ana, '#syriaca-bhse')]">
-              <sch:assert test="//tei:seriesStmt/tei:title = 'Bibliotheca Hagiographica Syriaca Electronica'">
-                This work record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
-                "Bibliotheca Hagiographica Syriaca Electronica".
-              </sch:assert>
-              <sch:assert test="//tei:seriesStmt/tei:title = 'Gateway to the Syriac Saints'">
-                This work record must include a &lt;seriesStmt&gt; indicating that it is part of the 
-                series "Gateway to the Syriac Saints".
-              </sch:assert>
-              <!-- Will we have a comparable statement for bhse in work records?
-                <sch:assert test="//tei:state/@ref='http://syriaca.org/taxonomy/saints'">
-                This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/saints". 
-              </sch:assert>-->
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <constraintSpec ident="work-bible" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:text//tei:bibl[contains(@ana, '#syriaca-bible')]">
-              <sch:assert test="//tei:seriesStmt/tei:title = 'A Guide to the Bible in Syriac'">
-                This person record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
-                "A Guide to the Bible in Syriac".
-              </sch:assert>
-              <!-- Will we have a comparable statement for bhse in work records?
-                <sch:assert test="//tei:state/@ref='http://syriaca.org/taxonomy/saints'">
-                This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/saints". 
-              </sch:assert>-->
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <constraintSpec ident="bibl-child-bibl" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:bibl//tei:bibl">
-              <sch:report test="tei:listBibl">
-                This &lt;bibl&gt; element cannot take a child &lt;listBibl&gt;.
-              </sch:report>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <attList>
-          <attDef ident="type" mode="replace">
-            <valList type="closed">
-              <valItem ident="lawd:Edition"/>
-              <valItem ident="lawd:Citation"/>
-              <valItem ident="lawd:ConceptualWork"/>
-              <valItem ident="lawd:Edition"/>
-              <valItem ident="syriaca:DigitalCatalog"/>
-              <valItem ident="syriaca:Manuscript"/>
-              <valItem ident="syriaca:ModernTranslation"/>
-              <valItem ident="syriaca:PrintCatalog"/>
-            </valList>
-          </attDef>
-          <attDef ident="ana" mode="change">
-            <!-- Not sure we want to do this? -->
-            <valList type="closed">
-              <valItem ident="#syriaca-hagiographic"/>
-              <valItem ident="#syriaca-biblical"/>
-            </valList>
-          </attDef>
-        </attList>
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="biblScope" module="core" mode="change">
-        
-        <content>
-          <sequence preserveOrder="false">
-            <textNode/>
-            <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
-          </sequence>
-        </content>
-        <attList>
-          <attDef ident="unit" mode="change" usage="req">
-            <valList type="closed" mode="replace">
-              <valItem ident="folio"/>
-              <valItem ident="vol"/>
-            </valList>
-          </attDef>
-          <!-- Look into @n, @from, @to -->
-        </attList>
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="body" module="textstructure" mode="change">
-        <content>
-          <elementRef key="bibl" minOccurs="1" maxOccurs="1"/>
-        </content>
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="catDesc" module="header" mode="change">
-        
-        <content>
-          <sequence preserveOrder="false">
-            <textNode/>
-            <elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/>
-          </sequence>
-        </content>
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="category" module="header" mode="change">
-        
-        <content>
-          <elementRef key="catDesc" minOccurs="1"/>
-        </content>
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="change" module="header" mode="change">
-        
-        <content>
-          <sequence preserveOrder="false">
-            <textNode/>
-            <elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/>
-          </sequence>
-        </content>
-      </elementSpec>
-      
-      
-      
-      <!--<elementSpec ident="citedRange" module="core" mode="change">
-        
-        
-      </elementSpec>-->
-      
-      
-      
-      <elementSpec ident="classDecl" module="header" mode="change">
-        <content>
-          <elementRef key="taxonomy" minOccurs="1" maxOccurs="1"/>
-        </content>
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="date" module="core" mode="change">
-        <content>
-          <textNode/>
-        </content>
-        <attList>
-          <!-- Regarding @calendar and @datingMethod, see SPEAR ODD -->
-          <attDef ident="type" mode="change" usage="rec">
-            <!-- might need to revisit this -->
-            <desc>specifies how the date is associated with the work to
-              which it refers</desc>
-            <valList mode="replace" type="closed">
-              <valItem ident="original-composition">
-                <desc>the date a work was originally composed</desc>
-              </valItem>
-              <valItem ident="revision">
-                <desc>the date a work was revised</desc>
-              </valItem>
-              <valItem ident="translation">
-                <desc>the date a work was translated</desc>
-              </valItem>
-            </valList>
-          </attDef>
-        </attList>
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="desc" module="core" mode="change">
-        <content>
-          <sequence preserveOrder="false">
-            <textNode/>
-            <elementRef key="label" minOccurs="0" maxOccurs="unbounded"/>
-          </sequence>
-        </content>
-        <constraintSpec ident="noteGrp-desc-values" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:noteGrp[@type='abstract']/tei:desc">
-              <sch:assert test=". = 'Abstract'">Text node must be "Abstract".</sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:noteGrp[@type='content']/tei:desc">
-              <sch:assert test=". = 'Content'">Text node must be "Content".</sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:noteGrp[@type='disambiguation']/tei:desc">
-              <sch:assert test=". = 'Disambiguation'">Text node must be "Disambiguation".</sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:noteGrp[@type='excerpts']/tei:desc">
-              <sch:assert test=". = 'Excerpts'">Text node must be "Excerpt".</sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:noteGrp[@type='explicit']/tei:desc">
-              <sch:assert test=". = 'Explicit'">Text node must be "Explicit".</sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:noteGrp[@type='incipit']/tei:desc">
-              <sch:assert test=". = 'Incipit'">Text node must be "Incipit".</sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:noteGrp[@type='prologue']/tei:desc">
-              <sch:assert test=". = 'Prologue'">Text node must be "Prologue".</sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:noteGrp[@type='scope']/tei:desc">
-              <sch:assert test=". = 'Scope'">Text node must be "Scope".</sch:assert>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-      </elementSpec>
-      
-      
-      
-      <!--<elementSpec ident="editionStmt" module="header" mode="change">
-        
-      </elementSpec>-->
-      
-      
-      
-      <!--<elementSpec ident="editor" module="core" mode="change">
-        
-      </elementSpec>-->
-      
-      
-      
-      <!--<elementSpec ident="editorialDecl" module="header" mode="change">
-        
-      </elementSpec>-->
-      
-      
-      
-      <!--<elementSpec ident="encodingDesc" module="header" mode="change">
-        
-      </elementSpec>-->
-      
-      
-      
-      <!--<elementSpec ident="fileDesc" module="header" mode="change">
-        
-      </elementSpec>-->
-      
-      
-      
-      <!--<elementSpec ident="foreign" module="core" mode="change">
-        
-      </elementSpec>-->
-      
-      
-      
-      <!--<elementSpec ident="funder" module="header" mode="change">
-        
-      </elementSpec>-->
-        
-        
-        
-      <elementSpec ident="head" module="core" mode="change">
-        <content>
-          <textNode/>
-        </content>
-        <constraintSpec ident="listBibl-head-values" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:listBibl[@type='editions']/tei:head">
-              <sch:assert test=". = 'Editions'">Text node must be "Editions".</sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:head">
-              <sch:assert test=". = 'Manuscripts'">Text node must be "Manuscripts".</sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='modernTranslations']/tei:head">
-              <sch:assert test=". = 'Modern Translations'">Text node must be "Modern Translations".</sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='ancientVersions']/tei:head">
-              <sch:assert test=". = 'Ancient Versions'">Text node must be "Ancient Version".</sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='secondaryLiterature']/tei:head">
-              <sch:assert test=". = 'Secondary Literature'">Text node must be "Secondary Literature".</sch:assert>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="idno" module="header" mode="change">
-        <content>
-          <textNode/>
-        </content>
-        <constraintSpec ident="work-idno-types" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
-              <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')">
-                The only acceptable values for @type on a work &lt;idno&gt; are "deprecated", "number", 
-                "URI" or "URN". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
-              <sch:assert test=". = ('accession-number', 'number', 'project-number', 'shelfmark')">
-                In the context of manuscripts, this @type value may only be "accession-number", "number",
-                "project-number", or "shelfmark". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker' or @subtype='CPG' or @subtype='Fichtner']/@type">
-              <sch:assert test=". = 'number'">
-                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
-                the @type value must be "number".
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL']/@type">
-              <sch:assert test=". = 'shelfmark'">
-                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
-                the @type value must be "shelfmark".
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='HMML']/@type">
-              <sch:assert test=". = 'project-number'">
-                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
-                the @type value must be "project-number".
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Rosen']/@type">
-              <sch:assert test=". = 'catalog-number'">
-                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
-                the @type value must be "catalog-number".
-              </sch:assert>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <constraintSpec ident="idno-subtypes" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
-              <sch:assert test=". = ('BHO', 'BHS', 'CPG')">
-                The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are "BHO", "BHS", 
-                or "CPG". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype" role="warning">
-              <sch:assert test=". = ('BAV', 'BML', 'HMML', 'Rosen', 'UCL')">
-                In the context of manuscripts, this @subtype value may only be 
-                "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), "HMML", "Rosen", or "UCL". 
-                If none of these options is correct, please write in an appropriate
-                value and the warning message will prompt editors to ensure that it is the correct value.
-              </sch:assert>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <attList>
-          <attDef ident="type" mode="change" usage="req">
-            <desc>The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc>
-            <valList mode="replace" type="closed">
-              <valItem ident="accession-number"/>
-              <valItem ident="catalog-number"></valItem>
-              <valItem ident="deprecated"/>
-              <valItem ident="number"/>
-              <valItem ident="project-number"/>
-              <valItem ident="shelfmark"/>
-              <valItem ident="URI"/>
-              <valItem ident="URN"/>
-            </valList>
-          </attDef>
-        </attList>
-      </elementSpec>
-      
-      
-      
-      <!--<elementSpec ident="interpretation" module="header" mode="change">
-        
-      </elementSpec>-->
-      
-      
-      
-      <elementSpec ident="label" module="core" mode="change">
-        <content>
-          <sequence preserveOrder="true">
-            <textNode/>
-            <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
-          </sequence>
-        </content>
-        <constraintSpec ident="label-values" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
-              <sch:assert test="starts-with(., 'Bekker')">
-                This text should begin "Bekker". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
-              <sch:assert test="starts-with(., 'The Laurentian Library')">
-                This text should begin "The Laurentian Library". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
-              <sch:assert test="starts-with(., 'Fichtner')">
-                This text should begin "Fichtner". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']">
-              <sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')">
-                This text should begin "Hill Museum and Manuscript Library". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
-              <sch:assert test="starts-with(., 'Kühn')">
-                This text should begin "Kühn". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']">
-              <sch:assert test="starts-with(., 'Rosen')">
-                This text should begin "Rosen". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
-              <sch:assert test="starts-with(., 'Takahashi')">
-                This text should begin "Takahashi". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='UCL']">
-              <sch:assert test="starts-with(., 'University College London')">
-                This text should begin "University College London". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
-              <sch:assert test="starts-with(., 'Vatican Apostolic Library')">
-                This text should begin "The Vatican Apostolic Library". 
-              </sch:assert>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <attList>
-          <attDef ident="subtype" mode="change">
-            <valList type="closed">
-              <valItem ident="order"/>
-            </valList>
-          </attDef>
-          <attDef ident="type" mode="change">
-            <valList type="closed">
-              <valItem ident="book"/>
-              <valItem ident="collection"/>
-              <valItem ident="part"/>
-            </valList>
-          </attDef>
-        </attList>
-      </elementSpec>
-      
-      
-      
-      <!--<elementSpec ident="langUsage" module="header" mode="change">
-        
-      </elementSpec>-->
-      
-      
-      
-      <!--<elementSpec ident="licence" module="header" mode="change">
-        
-      </elementSpec>-->
-        
-        
-        
-      <elementSpec ident="listBibl" module="core" mode="change">
-        <content>
-          <sequence preserveOrder="true">
-            <elementRef key="head" minOccurs="1" maxOccurs="1"/>
-            <elementRef key="desc" minOccurs="1" maxOccurs="1"/>
-            <elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/>
-          </sequence>
-        </content>
-        <attList>
-          <attDef ident="type" mode="change" usage="req">
-            <valList type="closed">
-              <valItem ident="editions"/>
-              <valItem ident="manuscripts"/>
-              <valItem ident="modernTranslations"/>
-              <valItem ident="ancientVersions"/>
-              <valItem ident="secondaryLiterature"/>
-            </valList>
-          </attDef>
-        </attList>
-      </elementSpec>
-      
-      
-      
-      <!--<elementSpec ident="listRelation" module="namesdates" mode="change">
-        
-      </elementSpec>-->
-      
-      
-      
-      <!--<elementSpec ident="name" module="core" mode="change">
-        
-      </elementSpec>-->
-      
-      
-      
-      <elementSpec ident="note" module="core" mode="change">
-        <content>
-          <sequence preserveOrder="false">
-            <textNode/>
-            <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
-            <elementRef key="quote" minOccurs="0" maxOccurs="1"/>
-          </sequence>
-        </content>
-        <constraintSpec ident="noteGrp-note-type" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:body//tei:noteGrp[@type='abstract']/tei:note">
-              <sch:assert test="@type='abstract'">
-                This &lt;note&gt; must contain a @type attribute with value "abstract".
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:body//tei:noteGrp[@type='content']/tei:note">
-              <sch:assert test="@type='content'">
-                This &lt;note&gt; must contain a @type attribute with value "abstract".
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:body//tei:noteGrp[@type='disambiguation']/tei:note">
-              <sch:assert test="@type='disambiguation'">
-                This &lt;note&gt; must contain a @type attribute with value "abstract".
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:body//tei:noteGrp[@type='exerpts']/tei:note">
-              <sch:assert test="@type='exerpt'">
-                This &lt;note&gt; must contain a @type attribute with value "abstract".
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:body//tei:noteGrp[@type='explicit']/tei:note">
-              <sch:assert test="@type='explicit'">
-                This &lt;note&gt; must contain a @type attribute with value "abstract".
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:body//tei:noteGrp[@type='incipit']/tei:note">
-              <sch:assert test="@type='incipit'">
-                This &lt;note&gt; must contain a @type attribute with value "abstract".
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:body//tei:noteGrp[@type='prologue']/tei:note">
-              <sch:assert test="@type='prologue'">
-                This &lt;note&gt; must contain a @type attribute with value "abstract".
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:body//tei:noteGrp[@type='scope']/tei:note">
-              <sch:assert test="@type='scope'">
-                This &lt;note&gt; must contain a @type attribute with value "abstract".
-              </sch:assert>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <constraintSpec ident="quotes-in-notes" scheme="schematron">
-          <constraint>
-            <sch:rule context="
-              tei:body//tei:note[@type=('excerpt','explicit','incipit','prologue')]">
-              <sch:assert test="tei:quote and count(*) = count(tei:quote)">
-                When &lt;note&gt; has type excerpt, explicit, incipit, or prologue,
-                it must contain only &lt;quote&gt; elements.
-              </sch:assert>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <constraintSpec ident="listBibl-note-type" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:bibl/tei:listBibl//tei:note">
-              <sch:report test="@type">
-                This &lt;note&gt; element does not take a @type attribute.
-              </sch:report>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <attList>
-          <attDef ident="type" mode="change" usage="rec">
-            <valList mode="add" type="closed">
-              <valItem ident="abstract">
-                <desc>A note containing a brief description of the work.</desc>
-              </valItem>
-              <valItem ident="content">
-                <desc>A note containing a brief summary of the content of the work.</desc>
-              </valItem>
-              <valItem ident="disambiguation">
-                <desc>A note containing a brief discussion of how to distinguish this 
-                  work from others with which it has been or could be confused.</desc>
-              </valItem>
-              <valItem ident="exerpt">
-                <desc>A note containing an exerpt from the work.</desc>
-              </valItem>
-              <valItem ident="explicit">
-                <desc>A note containing the ending of the work.</desc>
-              </valItem>
-              <valItem ident="incipit">
-                <desc>A note containing the beginning of the work.</desc>
-              </valItem>
-              <valItem ident="prologue">
-                <desc>A note containing the prologue of the work.</desc>
-              </valItem>
-              <valItem ident="scope">
-                <desc>A note describes the works relationship to larger works 
-                  or collections containing it.</desc>
-              </valItem>
-            </valList>
-          </attDef>
-        </attList>
-      </elementSpec>
-      
-      
-      
-      
-      <elementSpec ident="noteGrp" module="core" mode="change">
-        <content>
-          <sequence preserveOrder="true">
-            <elementRef key="desc" minOccurs="1" maxOccurs="1"/>
-            <elementRef key="note" minOccurs="1" maxOccurs="unbounded"/>
-          </sequence>
-        </content>
-        <attList>
-          <attDef ident="type" mode="change" usage="req">
-            <valList type="closed">
-              <valItem ident="abstract"/>
-              <valItem ident="content"/>
-              <valItem ident="disambiguation"/>
-              <valItem ident="excerpts"/>
-              <valItem ident="explicit"/>
-              <valItem ident="incipit"/>
-              <valItem ident="prologue"/>
-              <valItem ident="scope"/>
-            </valList>
-          </attDef>
-        </attList>
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="p" module="core" mode="change">
-        
-        <content>
-          <sequence preserveOrder="false">
-            <textNode/>
-            <elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/>
-          </sequence>
-        </content>
-      </elementSpec>
-        
-        
-        
-      <elementSpec ident="persName" module="namesdates" mode="change">
-        <constraintSpec ident="ref-on-persName" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:persName[not(parent::tei:author)]">
-              <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
-                The @ref attribute on &lt;persName&gt; must take a Syriaca.org person URI which reqires 
-                the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="tei:body/child::tei:bibl/child::tei:author/tei:persName">
-              <sch:report test="@ref">This &lt;persName&gt; cannot take a @ref attribute. 
-                It should go on the parent &lt;author&gt; element.</sch:report>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-      </elementSpec>
-      
-      
-      
-      <!--<elementSpec ident="profileDesc" module="header" mode="change">
-        
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="ptr" module="core" mode="change">
-        
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="publicationStmt" module="header" mode="change">
-        
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="ref" module="core" mode="change">
-        <!-\- Not sure the @target attribute needs to be constrained. -\->
-        
-      </elementSpec>-->
-      
-      
-      
-      <elementSpec ident="relation" module="namesdates" mode="change">
-        <attList>
-          <attDef ident="name" mode="delete"/>
-          <attDef ident="ref" mode="change" usage="req"/>
-        </attList>
-      </elementSpec>
-      
-      
-      
-      <!--<elementSpec ident="resp" module="core" mode="change">
-        
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="respStmt" module="core" mode="change">
-        
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="revisionDesc" module="header" mode="change">
-        
-      </elementSpec>-->
-      
-      
-      
-      <elementSpec ident="seriesStmt" module="header" mode="change">
-        <constraintSpec ident="seriesStmt-series" scheme="schematron">
-          <constraint>
-            <sch:rule context="//tei:seriesStmt//tei:title[@level='s']">
-              <sch:assert test="
-                ./node() = 'A New Handbook of Syriac Literature' or 
-                ./node() = 'Gateway to the Syriac Saints'"> 
-                This &lt;title&gt; element must be "A New Handbook of Syriac Literature" or 
-                "Gateway to the Syriac Saints". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="//tei:seriesStmt[tei:title = 'A New Handbook of Syriac Literature']/tei:idno">
-              <sch:assert test="matches(., 'http://syriaca.org/nhsl')">
-                This &lt;idno&gt; element must contain "http://syriaca.org/nhsl". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="//tei:seriesStmt[tei:title = 'Gateway to the Syriac Saints']/tei:idno">
-              <sch:assert test="matches(., 'http://syriaca.org/saints')">
-                This &lt;idno&gt; element must contain "http://syriaca.org/saints". 
-              </sch:assert>
-            </sch:rule>
+          <constraintSpec ident="work-bhse" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text//tei:bibl[contains(@ana, '#syriaca-bhse')]">
+                <sch:assert test="//tei:seriesStmt/tei:title = 'Bibliotheca Hagiographica Syriaca Electronica'">
+                  This work record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
+                  "Bibliotheca Hagiographica Syriaca Electronica".
+                </sch:assert>
+                <sch:assert test="//tei:seriesStmt/tei:title = 'Gateway to the Syriac Saints'">
+                  This work record must include a &lt;seriesStmt&gt; indicating that it is part of the 
+                  series "Gateway to the Syriac Saints".
+                </sch:assert>
+                <!-- Will we have a comparable statement for bhse in work records?
+                  <sch:assert test="//tei:state/@ref='http://syriaca.org/taxonomy/saints'">
+                  This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/saints". 
+                  </sch:assert>-->
+              </sch:rule>
             </constraint>
-        </constraintSpec>
-        <constraintSpec ident="seriesStmt-monograph" scheme="schematron">
-          <constraint>
-            <sch:rule context="//tei:seriesStmt//tei:title[@level='m']">
-              <sch:assert test="
-                ./node() = 'Bibliotheca Hagiographica Syriaca Electronica' or
-                ./node() = 'A Guide to the Bible in Syriac' or
-                ./node() = 'Syriac Scientific and Philosophical Literature'"> 
-                This &lt;title&gt; element must be 
-                "Bibliotheca Hagiographica Syriaca Electronica" or
-                "Guide to the Bible in Syriac" or 
-                "Syriac Scientific and Philosophical Literature". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="//tei:seriesStmt[tei:title = 'Bibliotheca Hagiographica Syriaca Electronica']/tei:idno">
-              <sch:assert test="matches(., 'http://syriaca.org/bhse')">
-                This &lt;idno&gt; element must contain "http://syriaca.org/bhse". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="//tei:seriesStmt[tei:title='Bibliotheca Hagiographica Syriaca Electronica']">
-              <sch:assert test="tei:biblScope/@n = '1'">
-                Requires a &lt;biblScope&gt; element with @n="1" since "Bibliotheca Hagiographica Syriaca Electronica" is volume 1 of 
-                "A New Handbook of Syriac Literature".
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="//tei:seriesStmt[tei:title = 'A Guide to the Bible in Syriac']/tei:idno">
-              <sch:assert test="matches(., 'http://syriaca.org/bible')">
-                This &lt;idno&gt; element must contain "http://syriaca.org/bible". 
-              </sch:assert>
-            </sch:rule>
-            <sch:rule context="//tei:seriesStmt[tei:title='A Guide to the Bible in Syriac']">
-              <sch:assert test="tei:biblScope/@n = '2'">
-                Requires a &lt;biblScope&gt; element with @n="2" since "A Guide to the Bible in Syriac" is volume 2 of 
-                "A New Handbook of Syriac Literature".
-              </sch:assert>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-      </elementSpec>
-      
-      
-      
-      <!--<elementSpec ident="sourceDesc" module="header" mode="change">
+          </constraintSpec>
+          <constraintSpec ident="work-bible" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text//tei:bibl[contains(@ana, '#syriaca-bible')]">
+                <sch:assert test="//tei:seriesStmt/tei:title = 'A Guide to the Bible in Syriac'">
+                  This person record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
+                  "A Guide to the Bible in Syriac".
+                </sch:assert>
+                <!-- Will we have a comparable statement for bhse in work records?
+                  <sch:assert test="//tei:state/@ref='http://syriaca.org/taxonomy/saints'">
+                  This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/saints". 
+                  </sch:assert>-->
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="bibl-child-bibl" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:bibl//tei:bibl">
+                <sch:report test="tei:listBibl">
+                  This &lt;bibl&gt; element cannot take a child &lt;listBibl&gt;.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="replace">
+              <valList type="closed">
+                <valItem ident="lawd:Edition"/>
+                <valItem ident="lawd:Citation"/>
+                <valItem ident="lawd:ConceptualWork"/>
+                <valItem ident="lawd:Edition"/>
+                <valItem ident="syriaca:DigitalCatalog"/>
+                <valItem ident="syriaca:Manuscript"/>
+                <valItem ident="syriaca:ModernTranslation"/>
+                <valItem ident="syriaca:PrintCatalog"/>
+              </valList>
+            </attDef>
+            <attDef ident="ana" mode="change">
+              <!-- Not sure we want to do this? -->
+              <valList type="closed">
+                <valItem ident="#syriaca-hagiographic"/>
+                <valItem ident="#syriaca-biblical"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
         
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="sponsor" module="header" mode="change">
         
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="taxonomy" module="header" mode="change">
         
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="text" module="textstructure" mode="change">
+        <elementSpec ident="biblScope" module="core" mode="change">
+          
+          <content>
+            <sequence preserveOrder="false">
+              <textNode/>
+              <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <attList>
+            <attDef ident="unit" mode="change" usage="req">
+              <valList type="closed" mode="replace">
+                <valItem ident="folio"/>
+                <valItem ident="vol"/>
+              </valList>
+            </attDef>
+            <!-- Look into @n, @from, @to -->
+          </attList>
+        </elementSpec>
         
-      </elementSpec>-->
-      
-      
-      
-      <elementSpec ident="textLang" module="core" mode="change">
-        <attList>
-          <attDef ident="mainLang" mode="replace">
-            <valList type="closed" mode="replace">
-              <!-- Should this be ingested into the Taxonomy? We could we use keyword URIs instead of these. -->
-              <valItem ident="ar">
-                <gloss>Arabic</gloss>
-                <desc>Arabic of any variety or period</desc>
-              </valItem>
-              <valItem ident="ar-Syrc">
-                <gloss>Arabic—Garshuni</gloss>
-                <desc>Arabic Garshuni in unvocalized or undetermined Syriac script</desc>
-              </valItem>
-              <valItem ident="ar-Syre">
-                <gloss>Arabic—Garshuni—Estrangela</gloss>
-                <desc>Arabic Garshuni in Estrangela Syriac script</desc>
-              </valItem>
-              <valItem ident="ar-Syrj">
-                <gloss>Arabic—Garshuni—West Syriac</gloss>
-                <desc>Arabic Garshuni in vocalized West Syriac script</desc>
-              </valItem>
-              <valItem ident="ar-Syrn">
-                <gloss>Arabic—Garshuni—East Syriac</gloss>
-                <desc>Arabic Garshuni in vocalized East Syriac script</desc>
-              </valItem>
-              <valItem ident="cop">
-                <gloss>Coptic</gloss>
-                <desc>Coptic of any variety or period</desc>
-              </valItem>
-              <valItem ident="cu">
-                <gloss>Slavonic—Old Church</gloss>
-                <desc>Old Church Slavonic</desc>
-              </valItem>
-              <valItem ident="de">
-                <gloss>German</gloss>
-                <desc>German of any variety or period</desc>
-              </valItem>
-              <valItem ident="el">
-                <gloss>Greek—Modern</gloss>
-                <desc>Modern Greek after A.D. 1453</desc>
-              </valItem>
-              <valItem ident="en">
-                <gloss>English</gloss>
-                <desc>English of any variety or period</desc>
-              </valItem>
-              <valItem ident="es">
-                <gloss>Spanish</gloss>
-                <desc>Spanish</desc>
-              </valItem>
-              <valItem ident="fr">
-                <gloss>French</gloss>
-                <desc>French of any variety or period</desc>
-              </valItem>
-              <valItem ident="gez">
-                <gloss>Ge'ez</gloss>
-                <desc>Ge'ez</desc>
-              </valItem>
-              <valItem ident="grc">
-                <gloss>Greek—Ancient</gloss>
-                <desc>Ancient Greek to A.D. 1453</desc>
-              </valItem>
-              <valItem ident="hy">
-                <gloss>Armenian</gloss>
-                <desc>Classical or Modern Armenian</desc>
-              </valItem>
-              <valItem ident="it">
-                <gloss>Italian</gloss>
-                <desc>Italian</desc>
-              </valItem>
-              <valItem ident="ka">
-                <gloss>Georgian</gloss>
-                <desc>Classical or Modern Georgian</desc>
-              </valItem>
-              <valItem ident="la">
-                <gloss>Latin</gloss>
-                <desc>Latin of any variety or period</desc>
-              </valItem>
-              <valItem ident="mal">
-                <gloss>Malayalam</gloss>
-                <desc>Malayalam of any variety or period</desc>
-              </valItem>
-              <valItem ident="mal-Syrc">
-                <gloss>Malayalam—Garshuni</gloss>
-                <desc>Malayalam Garshuni in unvocalized or undetermined Syriac script</desc>
-              </valItem>
-              <valItem ident="mal-Syre">
-                <gloss>Malayalam—Garshuni—Estrangela</gloss>
-                <desc>Malayalam Garshuni in Estrangela Syriac script</desc>
-              </valItem>
-              <valItem ident="mal-Syrj">
-                <gloss>Malayalam—Garshuni—West Syriac</gloss>
-                <desc>Malayalam Garshuni in vocalized West Syriac script</desc>
-              </valItem>
-              <valItem ident="mal-Syrn">
-                <gloss>Malayalam—Garshuni—East Syriac</gloss>
-                <desc>Malayalam Garshuni in vocalized East Syriac script</desc>
-              </valItem>
-              <valItem ident="nl">
-                <gloss>Dutch</gloss>
-                <desc>Dutch</desc>
-              </valItem>
-              <valItem ident="pt">
-                <gloss>Portuguese</gloss>
-                <desc>Portuguese</desc>
-              </valItem>
-              <valItem ident="ru">
-                <gloss>Russian</gloss>
-                <desc>Russian</desc>
-              </valItem>
-              <valItem ident="syr">
-                <gloss>Syriac</gloss>
-                <desc>Syriac of any variety or period</desc>
-              </valItem>
-              <valItem ident="syr-Syre">
-                <gloss>Syriac—Estrangela script</gloss>
-                <desc>Syriac in Estrangela script</desc>
-              </valItem>
-              <valItem ident="syr-Syrj">
-                <gloss>Syriac—West</gloss>
-                <desc>Syriac in vocalized West Syriac script</desc>
-              </valItem>
-              <valItem ident="syr-Syrn">
-                <gloss>Syriac—East</gloss>
-                <desc>Syriac in vocalized East Syriac script</desc>
-              </valItem>
-              <valItem ident="syr-x-syrm">
-                <gloss>Syriac—Melkite script</gloss>
-                <desc>Syriac in Melkite script. Note: This is not an ISO code but a private use
-                  code for Melkite employed by Syriaca.org until an ISO code is created</desc>
-              </valItem>
-              <valItem ident="sog">
-                <gloss>Sogdian</gloss>
-                <desc>Sogdian</desc>
-              </valItem>
-              <valItem ident="tr">
-                <gloss>Turkish</gloss>
-                <desc>Turkish</desc>
-              </valItem>
-            </valList>
-          </attDef>
-          <attDef ident="otherLangs" mode="replace">
-            <valList type="closed" mode="replace">
-              <!-- Should this be ingested into the Taxonomy? We could we use keyword URIs instead of these. -->
-              <valItem ident="ar">
-                <gloss>Arabic</gloss>
-                <desc>Arabic of any variety or period</desc>
-              </valItem>
-              <valItem ident="ar-Syrc">
-                <gloss>Arabic—Garshuni</gloss>
-                <desc>Arabic Garshuni in unvocalized or undetermined Syriac script</desc>
-              </valItem>
-              <valItem ident="ar-Syre">
-                <gloss>Arabic—Garshuni—Estrangela</gloss>
-                <desc>Arabic Garshuni in Estrangela Syriac script</desc>
-              </valItem>
-              <valItem ident="ar-Syrj">
-                <gloss>Arabic—Garshuni—West Syriac</gloss>
-                <desc>Arabic Garshuni in vocalized West Syriac script</desc>
-              </valItem>
-              <valItem ident="ar-Syrn">
-                <gloss>Arabic—Garshuni—East Syriac</gloss>
-                <desc>Arabic Garshuni in vocalized East Syriac script</desc>
-              </valItem>
-              <valItem ident="cop">
-                <gloss>Coptic</gloss>
-                <desc>Coptic of any variety or period</desc>
-              </valItem>
-              <valItem ident="cu">
-                <gloss>Slavonic—Old Church</gloss>
-                <desc>Old Church Slavonic</desc>
-              </valItem>
-              <valItem ident="de">
-                <gloss>German</gloss>
-                <desc>German of any variety or period</desc>
-              </valItem>
-              <valItem ident="el">
-                <gloss>Greek—Modern</gloss>
-                <desc>Modern Greek after A.D. 1453</desc>
-              </valItem>
-              <valItem ident="en">
-                <gloss>English</gloss>
-                <desc>English of any variety or period</desc>
-              </valItem>
-              <valItem ident="es">
-                <gloss>Spanish</gloss>
-                <desc>Spanish</desc>
-              </valItem>
-              <valItem ident="fr">
-                <gloss>French</gloss>
-                <desc>French of any variety or period</desc>
-              </valItem>
-              <valItem ident="gez">
-                <gloss>Ge'ez</gloss>
-                <desc>Ge'ez</desc>
-              </valItem>
-              <valItem ident="grc">
-                <gloss>Greek—Ancient</gloss>
-                <desc>Ancient Greek to A.D. 1453</desc>
-              </valItem>
-              <valItem ident="hy">
-                <gloss>Armenian</gloss>
-                <desc>Classical or Modern Armenian</desc>
-              </valItem>
-              <valItem ident="it">
-                <gloss>Italian</gloss>
-                <desc>Italian</desc>
-              </valItem>
-              <valItem ident="ka">
-                <gloss>Georgian</gloss>
-                <desc>Classical or Modern Georgian</desc>
-              </valItem>
-              <valItem ident="la">
-                <gloss>Latin</gloss>
-                <desc>Latin of any variety or period</desc>
-              </valItem>
-              <valItem ident="mal">
-                <gloss>Malayalam</gloss>
-                <desc>Malayalam of any variety or period</desc>
-              </valItem>
-              <valItem ident="mal-Syrc">
-                <gloss>Malayalam—Garshuni</gloss>
-                <desc>Malayalam Garshuni in unvocalized or undetermined Syriac script</desc>
-              </valItem>
-              <valItem ident="mal-Syre">
-                <gloss>Malayalam—Garshuni—Estrangela</gloss>
-                <desc>Malayalam Garshuni in Estrangela Syriac script</desc>
-              </valItem>
-              <valItem ident="mal-Syrj">
-                <gloss>Malayalam—Garshuni—West Syriac</gloss>
-                <desc>Malayalam Garshuni in vocalized West Syriac script</desc>
-              </valItem>
-              <valItem ident="mal-Syrn">
-                <gloss>Malayalam—Garshuni—East Syriac</gloss>
-                <desc>Malayalam Garshuni in vocalized East Syriac script</desc>
-              </valItem>
-              <valItem ident="nl">
-                <gloss>Dutch</gloss>
-                <desc>Dutch</desc>
-              </valItem>
-              <valItem ident="pt">
-                <gloss>Portuguese</gloss>
-                <desc>Portuguese</desc>
-              </valItem>
-              <valItem ident="ru">
-                <gloss>Russian</gloss>
-                <desc>Russian</desc>
-              </valItem>
-              <valItem ident="syr">
-                <gloss>Syriac</gloss>
-                <desc>Syriac of any variety or period</desc>
-              </valItem>
-              <valItem ident="syr-Syre">
-                <gloss>Syriac—Estrangela script</gloss>
-                <desc>Syriac in Estrangela script</desc>
-              </valItem>
-              <valItem ident="syr-Syrj">
-                <gloss>Syriac—West</gloss>
-                <desc>Syriac in vocalized West Syriac script</desc>
-              </valItem>
-              <valItem ident="syr-Syrn">
-                <gloss>Syriac—East</gloss>
-                <desc>Syriac in vocalized East Syriac script</desc>
-              </valItem>
-              <valItem ident="syr-x-syrm">
-                <gloss>Syriac—Melkite script</gloss>
-                <desc>Syriac in Melkite script. Note: This is not an ISO code but a private use
-                  code for Melkite employed by Syriaca.org until an ISO code is created</desc>
-              </valItem>
-              <valItem ident="sog">
-                <gloss>Sogdian</gloss>
-                <desc>Sogdian</desc>
-              </valItem>
-              <valItem ident="tr">
-                <gloss>Turkish</gloss>
-                <desc>Turkish</desc>
-              </valItem>
-            </valList>
-          </attDef>
-        </attList>
-      </elementSpec>
-      
-      
-      
-      <elementSpec ident="title" module="core" mode="change">
-        <classes>
-          <memberOf key="att.global"/>
-          <memberOf key="att.personal"/>
-        </classes>
-        <content>
-          <sequence preserveOrder="false">
+        
+        
+        <elementSpec ident="body" module="textstructure" mode="change">
+          <content>
+            <elementRef key="bibl" minOccurs="1" maxOccurs="1"/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="catDesc" module="header" mode="change">
+          
+          <content>
+            <sequence preserveOrder="false">
+              <textNode/>
+              <elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="category" module="header" mode="change">
+          
+          <content>
+            <elementRef key="catDesc" minOccurs="1"/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="change" module="header" mode="change">
+          
+          <content>
+            <sequence preserveOrder="false">
+              <textNode/>
+              <elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <!--<elementSpec ident="citedRange" module="core" mode="change">
+          
+          
+          </elementSpec>-->
+        
+        
+        
+        <elementSpec ident="classDecl" module="header" mode="change">
+          <content>
+            <elementRef key="taxonomy" minOccurs="1" maxOccurs="1"/>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="date" module="core" mode="change">
+          <content>
             <textNode/>
-            <elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/>
-          </sequence>
-        </content>
-        <constraintSpec ident="xmlLang-on-title" scheme="schematron">
-          <constraint>
-            <sch:rule context="tei:body/child::tei:bibl/child::tei:title">
-              <sch:assert test="@xml:lang">
-                This &lt;title&gt; must have an @xml:lang attribute.
-              </sch:assert>
-            </sch:rule>
-          </constraint>
-        </constraintSpec>
-        <attList>
-          <attDef ident="type" mode="replace" usage="rec">
-            <desc>Describes the function of the title. This attribute is optional. Certain
-              non-blank values (such as "final-rubric") may cause the title to be moved to a
-              different section of the page.</desc>
-            <datatype>
-              <dataRef key="teidata.enumerated"/>
-            </datatype>
-            <valList mode="change" type="semi">
-              <!-- CHECK THE DESCRIPTIONS OF THE VALUES BELOW -->
-              <valItem ident="abbreviation">
-                <gloss>Abbreviation</gloss>
-                <desc>An abbreviation of a work's title.</desc>
-              </valItem>
-              <valItem ident="final-rubric">
-                <gloss>Final Rubric</gloss>
-                <desc>Text denoting the end of a work, usually derived from a manuscript exemplar.
-                  This may include a title of the work, but should be distinguished from other
-                  titles because it also includes non-title text.</desc>
-              </valItem>
-              <valItem ident="initial-rubric">
-                <gloss>Initial Rubric</gloss>
-                <desc>Text denoting the beginning of a work, usually derived from a manuscript
-                  exemplar. This may include a title of the work, but should be distinguished from
-                  other titles because it also includes non-title text.</desc>
-              </valItem>
-              <valItem ident="shelfmark">
-                <gloss>Shelfmark</gloss>
-                <desc><!-- desc needed --></desc>
-              </valItem>
-            </valList>
-          </attDef>
-          <attDef ident="srophe:tags" mode="change">
-            <valList type="closed">
-              <valItem ident="#canonical">
-                <desc>Indicates the content is canonical, i.e., widely agreed upon. Abbreviations of work titles are primarily in view.</desc>
-              </valItem>
-              <valItem ident="#syriaca-headword">
-                <desc>Used to indicate which of the various titles of a work should 
-                be the Syriaca.org headword.</desc>
-              </valItem>
-            </valList>
-          </attDef>
-        </attList>
-      </elementSpec>
-      
-      
-      
-      <!--<elementSpec ident="titleStmt" module="header" mode="change">
+          </content>
+          <attList>
+            <!-- Regarding @calendar and @datingMethod, see SPEAR ODD -->
+            <attDef ident="type" mode="change" usage="rec">
+              <!-- might need to revisit this -->
+              <desc>specifies how the date is associated with the work to
+                which it refers</desc>
+              <valList mode="replace" type="closed">
+                <valItem ident="original-composition">
+                  <desc>the date a work was originally composed</desc>
+                </valItem>
+                <valItem ident="revision">
+                  <desc>the date a work was revised</desc>
+                </valItem>
+                <valItem ident="translation">
+                  <desc>the date a work was translated</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
         
-      </elementSpec>-->
-      
+        
+        
+        <elementSpec ident="desc" module="core" mode="change">
+          <content>
+            <sequence preserveOrder="false">
+              <textNode/>
+              <elementRef key="label" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <constraintSpec ident="noteGrp-desc-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:noteGrp[@type='abstract']/tei:desc">
+                <sch:assert test=". = 'Abstract'">Text node must be "Abstract".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='content']/tei:desc">
+                <sch:assert test=". = 'Content'">Text node must be "Content".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='disambiguation']/tei:desc">
+                <sch:assert test=". = 'Disambiguation'">Text node must be "Disambiguation".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='excerpts']/tei:desc">
+                <sch:assert test=". = 'Excerpts'">Text node must be "Excerpt".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='explicit']/tei:desc">
+                <sch:assert test=". = 'Explicit'">Text node must be "Explicit".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='incipit']/tei:desc">
+                <sch:assert test=". = 'Incipit'">Text node must be "Incipit".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='prologue']/tei:desc">
+                <sch:assert test=". = 'Prologue'">Text node must be "Prologue".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='scope']/tei:desc">
+                <sch:assert test=". = 'Scope'">Text node must be "Scope".</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+        
+        
+        
+        <!--<elementSpec ident="editionStmt" module="header" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <!--<elementSpec ident="editor" module="core" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <!--<elementSpec ident="editorialDecl" module="header" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <!--<elementSpec ident="encodingDesc" module="header" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <!--<elementSpec ident="fileDesc" module="header" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <!--<elementSpec ident="foreign" module="core" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <!--<elementSpec ident="funder" module="header" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <elementSpec ident="head" module="core" mode="change">
+          <content>
+            <textNode/>
+          </content>
+          <constraintSpec ident="listBibl-head-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:listBibl[@type='editions']/tei:head">
+                <sch:assert test=". = 'Editions'">Text node must be "Editions".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:head">
+                <sch:assert test=". = 'Manuscripts'">Text node must be "Manuscripts".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='modernTranslations']/tei:head">
+                <sch:assert test=". = 'Modern Translations'">Text node must be "Modern Translations".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='ancientVersions']/tei:head">
+                <sch:assert test=". = 'Ancient Versions'">Text node must be "Ancient Version".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='secondaryLiterature']/tei:head">
+                <sch:assert test=". = 'Secondary Literature'">Text node must be "Secondary Literature".</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="idno" module="header" mode="change">
+          <content>
+            <textNode/>
+          </content>
+          <constraintSpec ident="work-idno-types" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
+                <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')">
+                  The only acceptable values for @type on a work &lt;idno&gt; are "deprecated", "number", 
+                  "URI" or "URN". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
+                <sch:assert test=". = ('accession-number', 'number', 'project-number', 'shelfmark')">
+                  In the context of manuscripts, this @type value may only be "accession-number", "number",
+                  "project-number", or "shelfmark". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker' or @subtype='CPG' or @subtype='Fichtner']/@type">
+                <sch:assert test=". = 'number'">
+                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                  the @type value must be "number".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL']/@type">
+                <sch:assert test=". = 'shelfmark'">
+                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                  the @type value must be "shelfmark".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='HMML']/@type">
+                <sch:assert test=". = 'project-number'">
+                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                  the @type value must be "project-number".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Rosen']/@type">
+                <sch:assert test=". = 'catalog-number'">
+                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                  the @type value must be "catalog-number".
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="idno-subtypes" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
+                <sch:assert test=". = ('BHO', 'BHS', 'CPG')">
+                  The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are "BHO", "BHS", 
+                  or "CPG". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype" role="warning">
+                <sch:assert test=". = ('BAV', 'BML', 'HMML', 'Rosen', 'UCL')">
+                  In the context of manuscripts, this @subtype value may only be 
+                  "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), "HMML", "Rosen", or "UCL". 
+                  If none of these options is correct, please write in an appropriate
+                  value and the warning message will prompt editors to ensure that it is the correct value.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="change" usage="req">
+              <desc>The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc>
+              <valList mode="replace" type="closed">
+                <valItem ident="accession-number"/>
+                <valItem ident="catalog-number"></valItem>
+                <valItem ident="deprecated"/>
+                <valItem ident="number"/>
+                <valItem ident="project-number"/>
+                <valItem ident="shelfmark"/>
+                <valItem ident="URI"/>
+                <valItem ident="URN"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <!--<elementSpec ident="interpretation" module="header" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <elementSpec ident="label" module="core" mode="change">
+          <content>
+            <sequence preserveOrder="true">
+              <textNode/>
+              <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <constraintSpec ident="label-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
+                <sch:assert test="starts-with(., 'Bekker')">
+                  This text should begin "Bekker". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
+                <sch:assert test="starts-with(., 'The Laurentian Library')">
+                  This text should begin "The Laurentian Library". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
+                <sch:assert test="starts-with(., 'Fichtner')">
+                  This text should begin "Fichtner". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']">
+                <sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')">
+                  This text should begin "Hill Museum and Manuscript Library". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
+                <sch:assert test="starts-with(., 'Kühn')">
+                  This text should begin "Kühn". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']">
+                <sch:assert test="starts-with(., 'Rosen')">
+                  This text should begin "Rosen". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
+                <sch:assert test="starts-with(., 'Takahashi')">
+                  This text should begin "Takahashi". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='UCL']">
+                <sch:assert test="starts-with(., 'University College London')">
+                  This text should begin "University College London". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
+                <sch:assert test="starts-with(., 'Vatican Apostolic Library')">
+                  This text should begin "The Vatican Apostolic Library". 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="subtype" mode="change">
+              <valList type="closed">
+                <valItem ident="order"/>
+              </valList>
+            </attDef>
+            <attDef ident="type" mode="change">
+              <valList type="closed">
+                <valItem ident="book"/>
+                <valItem ident="collection"/>
+                <valItem ident="part"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <!--<elementSpec ident="langUsage" module="header" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <!--<elementSpec ident="licence" module="header" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <elementSpec ident="listBibl" module="core" mode="change">
+          <content>
+            <sequence preserveOrder="true">
+              <elementRef key="head" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="desc" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <attList>
+            <attDef ident="type" mode="change" usage="req">
+              <valList type="closed">
+                <valItem ident="editions"/>
+                <valItem ident="manuscripts"/>
+                <valItem ident="modernTranslations"/>
+                <valItem ident="ancientVersions"/>
+                <valItem ident="secondaryLiterature"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <!--<elementSpec ident="listRelation" module="namesdates" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <!--<elementSpec ident="name" module="core" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <elementSpec ident="note" module="core" mode="change">
+          <content>
+            <sequence preserveOrder="false">
+              <textNode/>
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="quote" minOccurs="0" maxOccurs="1"/>
+            </sequence>
+          </content>
+          <constraintSpec ident="noteGrp-note-type" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body//tei:noteGrp[@type='abstract']/tei:note">
+                <sch:assert test="@type='abstract'">
+                  This &lt;note&gt; must contain a @type attribute with value "abstract".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body//tei:noteGrp[@type='content']/tei:note">
+                <sch:assert test="@type='content'">
+                  This &lt;note&gt; must contain a @type attribute with value "abstract".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body//tei:noteGrp[@type='disambiguation']/tei:note">
+                <sch:assert test="@type='disambiguation'">
+                  This &lt;note&gt; must contain a @type attribute with value "abstract".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body//tei:noteGrp[@type='exerpts']/tei:note">
+                <sch:assert test="@type='exerpt'">
+                  This &lt;note&gt; must contain a @type attribute with value "abstract".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body//tei:noteGrp[@type='explicit']/tei:note">
+                <sch:assert test="@type='explicit'">
+                  This &lt;note&gt; must contain a @type attribute with value "abstract".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body//tei:noteGrp[@type='incipit']/tei:note">
+                <sch:assert test="@type='incipit'">
+                  This &lt;note&gt; must contain a @type attribute with value "abstract".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body//tei:noteGrp[@type='prologue']/tei:note">
+                <sch:assert test="@type='prologue'">
+                  This &lt;note&gt; must contain a @type attribute with value "abstract".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body//tei:noteGrp[@type='scope']/tei:note">
+                <sch:assert test="@type='scope'">
+                  This &lt;note&gt; must contain a @type attribute with value "abstract".
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="quotes-in-notes" scheme="schematron">
+            <constraint>
+              <sch:rule context="
+                tei:body//tei:note[@type=('excerpt','explicit','incipit','prologue')]">
+                <sch:assert test="tei:quote and count(*) = count(tei:quote)">
+                  When &lt;note&gt; has type excerpt, explicit, incipit, or prologue,
+                  it must contain only &lt;quote&gt; elements.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="listBibl-note-type" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:bibl/tei:listBibl//tei:note">
+                <sch:report test="@type">
+                  This &lt;note&gt; element does not take a @type attribute.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="change" usage="rec">
+              <valList mode="add" type="closed">
+                <valItem ident="abstract">
+                  <desc>A note containing a brief description of the work.</desc>
+                </valItem>
+                <valItem ident="content">
+                  <desc>A note containing a brief summary of the content of the work.</desc>
+                </valItem>
+                <valItem ident="disambiguation">
+                  <desc>A note containing a brief discussion of how to distinguish this 
+                    work from others with which it has been or could be confused.</desc>
+                </valItem>
+                <valItem ident="exerpt">
+                  <desc>A note containing an exerpt from the work.</desc>
+                </valItem>
+                <valItem ident="explicit">
+                  <desc>A note containing the ending of the work.</desc>
+                </valItem>
+                <valItem ident="incipit">
+                  <desc>A note containing the beginning of the work.</desc>
+                </valItem>
+                <valItem ident="prologue">
+                  <desc>A note containing the prologue of the work.</desc>
+                </valItem>
+                <valItem ident="scope">
+                  <desc>A note describes the works relationship to larger works 
+                    or collections containing it.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        
+        <elementSpec ident="noteGrp" module="core" mode="change">
+          <content>
+            <sequence preserveOrder="true">
+              <elementRef key="desc" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="note" minOccurs="1" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <attList>
+            <attDef ident="type" mode="change" usage="req">
+              <valList type="closed">
+                <valItem ident="abstract"/>
+                <valItem ident="content"/>
+                <valItem ident="disambiguation"/>
+                <valItem ident="excerpts"/>
+                <valItem ident="explicit"/>
+                <valItem ident="incipit"/>
+                <valItem ident="prologue"/>
+                <valItem ident="scope"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="p" module="core" mode="change">
+          
+          <content>
+            <sequence preserveOrder="false">
+              <textNode/>
+              <elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="persName" module="namesdates" mode="change">
+          <constraintSpec ident="ref-on-persName" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:persName[not(parent::tei:author)]">
+                <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
+                  The @ref attribute on &lt;persName&gt; must take a Syriaca.org person URI which reqires 
+                  the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:author/tei:persName">
+                <sch:report test="@ref">This &lt;persName&gt; cannot take a @ref attribute. 
+                  It should go on the parent &lt;author&gt; element.</sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+        
+        
+        
+        <!--<elementSpec ident="profileDesc" module="header" mode="change">
+          
+          </elementSpec>
+          
+          
+          
+          <elementSpec ident="ptr" module="core" mode="change">
+          
+          </elementSpec>
+          
+          
+          
+          <elementSpec ident="publicationStmt" module="header" mode="change">
+          
+          </elementSpec>
+          
+          
+          
+          <elementSpec ident="ref" module="core" mode="change">
+          <!-\- Not sure the @target attribute needs to be constrained. -\->
+          
+          </elementSpec>-->
+        
+        
+        
+        <elementSpec ident="relation" module="namesdates" mode="change">
+          <attList>
+            <attDef ident="name" mode="delete"/>
+            <attDef ident="ref" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <!--<elementSpec ident="resp" module="core" mode="change">
+          
+          </elementSpec>
+          
+          
+          
+          <elementSpec ident="respStmt" module="core" mode="change">
+          
+          </elementSpec>
+          
+          
+          
+          <elementSpec ident="revisionDesc" module="header" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <elementSpec ident="seriesStmt" module="header" mode="change">
+          <constraintSpec ident="seriesStmt-series" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:seriesStmt//tei:title[@level='s']">
+                <sch:assert test="
+                  ./node() = 'A New Handbook of Syriac Literature' or 
+                  ./node() = 'Gateway to the Syriac Saints'"> 
+                  This &lt;title&gt; element must be "A New Handbook of Syriac Literature" or 
+                  "Gateway to the Syriac Saints". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title = 'A New Handbook of Syriac Literature']/tei:idno">
+                <sch:assert test="matches(., 'http://syriaca.org/nhsl')">
+                  This &lt;idno&gt; element must contain "http://syriaca.org/nhsl". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title = 'Gateway to the Syriac Saints']/tei:idno">
+                <sch:assert test="matches(., 'http://syriaca.org/saints')">
+                  This &lt;idno&gt; element must contain "http://syriaca.org/saints". 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="seriesStmt-monograph" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:seriesStmt//tei:title[@level='m']">
+                <sch:assert test="
+                  ./node() = 'Bibliotheca Hagiographica Syriaca Electronica' or
+                  ./node() = 'A Guide to the Bible in Syriac' or
+                  ./node() = 'Syriac Scientific and Philosophical Literature'"> 
+                  This &lt;title&gt; element must be 
+                  "Bibliotheca Hagiographica Syriaca Electronica" or
+                  "Guide to the Bible in Syriac" or 
+                  "Syriac Scientific and Philosophical Literature". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title = 'Bibliotheca Hagiographica Syriaca Electronica']/tei:idno">
+                <sch:assert test="matches(., 'http://syriaca.org/bhse')">
+                  This &lt;idno&gt; element must contain "http://syriaca.org/bhse". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='Bibliotheca Hagiographica Syriaca Electronica']">
+                <sch:assert test="tei:biblScope/@n = '1'">
+                  Requires a &lt;biblScope&gt; element with @n="1" since "Bibliotheca Hagiographica Syriaca Electronica" is volume 1 of 
+                  "A New Handbook of Syriac Literature".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title = 'A Guide to the Bible in Syriac']/tei:idno">
+                <sch:assert test="matches(., 'http://syriaca.org/bible')">
+                  This &lt;idno&gt; element must contain "http://syriaca.org/bible". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='A Guide to the Bible in Syriac']">
+                <sch:assert test="tei:biblScope/@n = '2'">
+                  Requires a &lt;biblScope&gt; element with @n="2" since "A Guide to the Bible in Syriac" is volume 2 of 
+                  "A New Handbook of Syriac Literature".
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+        
+        
+        
+        <!--<elementSpec ident="sourceDesc" module="header" mode="change">
+          
+          </elementSpec>
+          
+          
+          
+          <elementSpec ident="sponsor" module="header" mode="change">
+          
+          </elementSpec>
+          
+          
+          
+          <elementSpec ident="taxonomy" module="header" mode="change">
+          
+          </elementSpec>
+          
+          
+          
+          <elementSpec ident="text" module="textstructure" mode="change">
+          
+          </elementSpec>-->
+        
+        
+        
+        <elementSpec ident="textLang" module="core" mode="change">
+          <attList>
+            <attDef ident="mainLang" mode="replace">
+              <valList type="closed" mode="replace">
+                <!-- Should this be ingested into the Taxonomy? We could we use keyword URIs instead of these. -->
+                <valItem ident="ar">
+                  <gloss>Arabic</gloss>
+                  <desc>Arabic of any variety or period</desc>
+                </valItem>
+                <valItem ident="ar-Syrc">
+                  <gloss>Arabic—Garshuni</gloss>
+                  <desc>Arabic Garshuni in unvocalized or undetermined Syriac script</desc>
+                </valItem>
+                <valItem ident="ar-Syre">
+                  <gloss>Arabic—Garshuni—Estrangela</gloss>
+                  <desc>Arabic Garshuni in Estrangela Syriac script</desc>
+                </valItem>
+                <valItem ident="ar-Syrj">
+                  <gloss>Arabic—Garshuni—West Syriac</gloss>
+                  <desc>Arabic Garshuni in vocalized West Syriac script</desc>
+                </valItem>
+                <valItem ident="ar-Syrn">
+                  <gloss>Arabic—Garshuni—East Syriac</gloss>
+                  <desc>Arabic Garshuni in vocalized East Syriac script</desc>
+                </valItem>
+                <valItem ident="cop">
+                  <gloss>Coptic</gloss>
+                  <desc>Coptic of any variety or period</desc>
+                </valItem>
+                <valItem ident="cu">
+                  <gloss>Slavonic—Old Church</gloss>
+                  <desc>Old Church Slavonic</desc>
+                </valItem>
+                <valItem ident="de">
+                  <gloss>German</gloss>
+                  <desc>German of any variety or period</desc>
+                </valItem>
+                <valItem ident="el">
+                  <gloss>Greek—Modern</gloss>
+                  <desc>Modern Greek after A.D. 1453</desc>
+                </valItem>
+                <valItem ident="en">
+                  <gloss>English</gloss>
+                  <desc>English of any variety or period</desc>
+                </valItem>
+                <valItem ident="es">
+                  <gloss>Spanish</gloss>
+                  <desc>Spanish</desc>
+                </valItem>
+                <valItem ident="fr">
+                  <gloss>French</gloss>
+                  <desc>French of any variety or period</desc>
+                </valItem>
+                <valItem ident="gez">
+                  <gloss>Ge'ez</gloss>
+                  <desc>Ge'ez</desc>
+                </valItem>
+                <valItem ident="grc">
+                  <gloss>Greek—Ancient</gloss>
+                  <desc>Ancient Greek to A.D. 1453</desc>
+                </valItem>
+                <valItem ident="hy">
+                  <gloss>Armenian</gloss>
+                  <desc>Classical or Modern Armenian</desc>
+                </valItem>
+                <valItem ident="it">
+                  <gloss>Italian</gloss>
+                  <desc>Italian</desc>
+                </valItem>
+                <valItem ident="ka">
+                  <gloss>Georgian</gloss>
+                  <desc>Classical or Modern Georgian</desc>
+                </valItem>
+                <valItem ident="la">
+                  <gloss>Latin</gloss>
+                  <desc>Latin of any variety or period</desc>
+                </valItem>
+                <valItem ident="mal">
+                  <gloss>Malayalam</gloss>
+                  <desc>Malayalam of any variety or period</desc>
+                </valItem>
+                <valItem ident="mal-Syrc">
+                  <gloss>Malayalam—Garshuni</gloss>
+                  <desc>Malayalam Garshuni in unvocalized or undetermined Syriac script</desc>
+                </valItem>
+                <valItem ident="mal-Syre">
+                  <gloss>Malayalam—Garshuni—Estrangela</gloss>
+                  <desc>Malayalam Garshuni in Estrangela Syriac script</desc>
+                </valItem>
+                <valItem ident="mal-Syrj">
+                  <gloss>Malayalam—Garshuni—West Syriac</gloss>
+                  <desc>Malayalam Garshuni in vocalized West Syriac script</desc>
+                </valItem>
+                <valItem ident="mal-Syrn">
+                  <gloss>Malayalam—Garshuni—East Syriac</gloss>
+                  <desc>Malayalam Garshuni in vocalized East Syriac script</desc>
+                </valItem>
+                <valItem ident="nl">
+                  <gloss>Dutch</gloss>
+                  <desc>Dutch</desc>
+                </valItem>
+                <valItem ident="pt">
+                  <gloss>Portuguese</gloss>
+                  <desc>Portuguese</desc>
+                </valItem>
+                <valItem ident="ru">
+                  <gloss>Russian</gloss>
+                  <desc>Russian</desc>
+                </valItem>
+                <valItem ident="syr">
+                  <gloss>Syriac</gloss>
+                  <desc>Syriac of any variety or period</desc>
+                </valItem>
+                <valItem ident="syr-Syre">
+                  <gloss>Syriac—Estrangela script</gloss>
+                  <desc>Syriac in Estrangela script</desc>
+                </valItem>
+                <valItem ident="syr-Syrj">
+                  <gloss>Syriac—West</gloss>
+                  <desc>Syriac in vocalized West Syriac script</desc>
+                </valItem>
+                <valItem ident="syr-Syrn">
+                  <gloss>Syriac—East</gloss>
+                  <desc>Syriac in vocalized East Syriac script</desc>
+                </valItem>
+                <valItem ident="syr-x-syrm">
+                  <gloss>Syriac—Melkite script</gloss>
+                  <desc>Syriac in Melkite script. Note: This is not an ISO code but a private use
+                    code for Melkite employed by Syriaca.org until an ISO code is created</desc>
+                </valItem>
+                <valItem ident="sog">
+                  <gloss>Sogdian</gloss>
+                  <desc>Sogdian</desc>
+                </valItem>
+                <valItem ident="tr">
+                  <gloss>Turkish</gloss>
+                  <desc>Turkish</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="otherLangs" mode="replace">
+              <valList type="closed" mode="replace">
+                <!-- Should this be ingested into the Taxonomy? We could we use keyword URIs instead of these. -->
+                <valItem ident="ar">
+                  <gloss>Arabic</gloss>
+                  <desc>Arabic of any variety or period</desc>
+                </valItem>
+                <valItem ident="ar-Syrc">
+                  <gloss>Arabic—Garshuni</gloss>
+                  <desc>Arabic Garshuni in unvocalized or undetermined Syriac script</desc>
+                </valItem>
+                <valItem ident="ar-Syre">
+                  <gloss>Arabic—Garshuni—Estrangela</gloss>
+                  <desc>Arabic Garshuni in Estrangela Syriac script</desc>
+                </valItem>
+                <valItem ident="ar-Syrj">
+                  <gloss>Arabic—Garshuni—West Syriac</gloss>
+                  <desc>Arabic Garshuni in vocalized West Syriac script</desc>
+                </valItem>
+                <valItem ident="ar-Syrn">
+                  <gloss>Arabic—Garshuni—East Syriac</gloss>
+                  <desc>Arabic Garshuni in vocalized East Syriac script</desc>
+                </valItem>
+                <valItem ident="cop">
+                  <gloss>Coptic</gloss>
+                  <desc>Coptic of any variety or period</desc>
+                </valItem>
+                <valItem ident="cu">
+                  <gloss>Slavonic—Old Church</gloss>
+                  <desc>Old Church Slavonic</desc>
+                </valItem>
+                <valItem ident="de">
+                  <gloss>German</gloss>
+                  <desc>German of any variety or period</desc>
+                </valItem>
+                <valItem ident="el">
+                  <gloss>Greek—Modern</gloss>
+                  <desc>Modern Greek after A.D. 1453</desc>
+                </valItem>
+                <valItem ident="en">
+                  <gloss>English</gloss>
+                  <desc>English of any variety or period</desc>
+                </valItem>
+                <valItem ident="es">
+                  <gloss>Spanish</gloss>
+                  <desc>Spanish</desc>
+                </valItem>
+                <valItem ident="fr">
+                  <gloss>French</gloss>
+                  <desc>French of any variety or period</desc>
+                </valItem>
+                <valItem ident="gez">
+                  <gloss>Ge'ez</gloss>
+                  <desc>Ge'ez</desc>
+                </valItem>
+                <valItem ident="grc">
+                  <gloss>Greek—Ancient</gloss>
+                  <desc>Ancient Greek to A.D. 1453</desc>
+                </valItem>
+                <valItem ident="hy">
+                  <gloss>Armenian</gloss>
+                  <desc>Classical or Modern Armenian</desc>
+                </valItem>
+                <valItem ident="it">
+                  <gloss>Italian</gloss>
+                  <desc>Italian</desc>
+                </valItem>
+                <valItem ident="ka">
+                  <gloss>Georgian</gloss>
+                  <desc>Classical or Modern Georgian</desc>
+                </valItem>
+                <valItem ident="la">
+                  <gloss>Latin</gloss>
+                  <desc>Latin of any variety or period</desc>
+                </valItem>
+                <valItem ident="mal">
+                  <gloss>Malayalam</gloss>
+                  <desc>Malayalam of any variety or period</desc>
+                </valItem>
+                <valItem ident="mal-Syrc">
+                  <gloss>Malayalam—Garshuni</gloss>
+                  <desc>Malayalam Garshuni in unvocalized or undetermined Syriac script</desc>
+                </valItem>
+                <valItem ident="mal-Syre">
+                  <gloss>Malayalam—Garshuni—Estrangela</gloss>
+                  <desc>Malayalam Garshuni in Estrangela Syriac script</desc>
+                </valItem>
+                <valItem ident="mal-Syrj">
+                  <gloss>Malayalam—Garshuni—West Syriac</gloss>
+                  <desc>Malayalam Garshuni in vocalized West Syriac script</desc>
+                </valItem>
+                <valItem ident="mal-Syrn">
+                  <gloss>Malayalam—Garshuni—East Syriac</gloss>
+                  <desc>Malayalam Garshuni in vocalized East Syriac script</desc>
+                </valItem>
+                <valItem ident="nl">
+                  <gloss>Dutch</gloss>
+                  <desc>Dutch</desc>
+                </valItem>
+                <valItem ident="pt">
+                  <gloss>Portuguese</gloss>
+                  <desc>Portuguese</desc>
+                </valItem>
+                <valItem ident="ru">
+                  <gloss>Russian</gloss>
+                  <desc>Russian</desc>
+                </valItem>
+                <valItem ident="syr">
+                  <gloss>Syriac</gloss>
+                  <desc>Syriac of any variety or period</desc>
+                </valItem>
+                <valItem ident="syr-Syre">
+                  <gloss>Syriac—Estrangela script</gloss>
+                  <desc>Syriac in Estrangela script</desc>
+                </valItem>
+                <valItem ident="syr-Syrj">
+                  <gloss>Syriac—West</gloss>
+                  <desc>Syriac in vocalized West Syriac script</desc>
+                </valItem>
+                <valItem ident="syr-Syrn">
+                  <gloss>Syriac—East</gloss>
+                  <desc>Syriac in vocalized East Syriac script</desc>
+                </valItem>
+                <valItem ident="syr-x-syrm">
+                  <gloss>Syriac—Melkite script</gloss>
+                  <desc>Syriac in Melkite script. Note: This is not an ISO code but a private use
+                    code for Melkite employed by Syriaca.org until an ISO code is created</desc>
+                </valItem>
+                <valItem ident="sog">
+                  <gloss>Sogdian</gloss>
+                  <desc>Sogdian</desc>
+                </valItem>
+                <valItem ident="tr">
+                  <gloss>Turkish</gloss>
+                  <desc>Turkish</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <elementSpec ident="title" module="core" mode="change">
+          <classes>
+            <memberOf key="att.global"/>
+            <memberOf key="att.personal"/>
+          </classes>
+          <content>
+            <sequence preserveOrder="false">
+              <textNode/>
+              <elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+          </content>
+          <constraintSpec ident="xmlLang-on-title" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:title">
+                <sch:assert test="@xml:lang">
+                  This &lt;title&gt; must have an @xml:lang attribute.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="replace" usage="rec">
+              <desc>Describes the function of the title. This attribute is optional. Certain
+                non-blank values (such as "final-rubric") may cause the title to be moved to a
+                different section of the page.</desc>
+              <datatype>
+                <dataRef key="teidata.enumerated"/>
+              </datatype>
+              <valList mode="change" type="semi">
+                <!-- CHECK THE DESCRIPTIONS OF THE VALUES BELOW -->
+                <valItem ident="abbreviation">
+                  <gloss>Abbreviation</gloss>
+                  <desc>An abbreviation of a work's title.</desc>
+                </valItem>
+                <valItem ident="final-rubric">
+                  <gloss>Final Rubric</gloss>
+                  <desc>Text denoting the end of a work, usually derived from a manuscript exemplar.
+                    This may include a title of the work, but should be distinguished from other
+                    titles because it also includes non-title text.</desc>
+                </valItem>
+                <valItem ident="initial-rubric">
+                  <gloss>Initial Rubric</gloss>
+                  <desc>Text denoting the beginning of a work, usually derived from a manuscript
+                    exemplar. This may include a title of the work, but should be distinguished from
+                    other titles because it also includes non-title text.</desc>
+                </valItem>
+                <valItem ident="shelfmark">
+                  <gloss>Shelfmark</gloss>
+                  <desc><!-- desc needed --></desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="srophe:tags" mode="change">
+              <valList type="closed">
+                <valItem ident="#canonical">
+                  <desc>Indicates the content is canonical, i.e., widely agreed upon. Abbreviations of work titles are primarily in view.</desc>
+                </valItem>
+                <valItem ident="#syriaca-headword">
+                  <desc>Used to indicate which of the various titles of a work should 
+                    be the Syriaca.org headword.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        
+        
+        <!--<elementSpec ident="titleStmt" module="header" mode="change">
+          
+          </elementSpec>-->
+        
       </schemaSpec>
     </body>
   </text>
