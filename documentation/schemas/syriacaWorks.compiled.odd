@@ -45,7 +45,7 @@
       </tei:constraintDecl></tei:encodingDesc></teiHeader>
   <text>
     <body>
-      <schemaSpec ident="syriacaWorks" prefix="tei_" xml:lang="en" defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML​ http://www.example.org/ns/"><classSpec rend="add" module="tei" type="atts" xml:id="class-attr-anchoring" ident="att.anchoring">
+      <schemaSpec ident="syriacaWorks" prefix="tei_"  xml:lang="en" defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML​ http://www.example.org/ns/"><classSpec rend="add" module="tei" type="atts" xml:id="class-attr-anchoring" ident="att.anchoring">
   <gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-01-28" xml:lang="en">anchoring</gloss>
   <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-01-28" xml:lang="en">provides attributes for use on annotations, e.g. notes and groups of notes
   describing the existence and position of an anchor for annotations.</desc>
@@ -5785,10 +5785,34 @@ element in the TEI header.
                 "URI" or "URN". 
               </sch:assert>
             </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@type">
-              <sch:assert test=". = ('accession-number', 'project-number', 'shelfmark')">
-                In the context of manuscripts, this @type value may only be "accession-number", 
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
+              <sch:assert test=". = ('accession-number', 'number', 'project-number', 'shelfmark')">
+                In the context of manuscripts, this @type value may only be "accession-number", "number",
                 "project-number", or "shelfmark". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker' or @subtype='CPG' or @subtype='Fichtner']/@type">
+              <sch:assert test=". = 'number'">
+                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                the @type value must be "number".
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL']/@type">
+              <sch:assert test=". = 'shelfmark'">
+                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                the @type value must be "shelfmark".
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='HMML']/@type">
+              <sch:assert test=". = 'project-number'">
+                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                the @type value must be "project-number".
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Rosen']/@type">
+              <sch:assert test=". = 'catalog-number'">
+                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                the @type value must be "catalog-number".
               </sch:assert>
             </sch:rule>
           </constraint>
@@ -5800,7 +5824,7 @@ element in the TEI header.
                 or "CPG". 
               </sch:assert>
             </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@subtype" role="warning">
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype" role="warning">
               <sch:assert test=". = ('BAV', 'BML', 'HMML', 'Rosen', 'UCL')">
                 In the context of manuscripts, this @subtype value may only be 
                 "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), "HMML", "Rosen", or "UCL". 

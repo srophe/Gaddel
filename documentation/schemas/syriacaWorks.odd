@@ -461,10 +461,34 @@
                 "URI" or "URN". 
               </sch:assert>
             </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@type">
-              <sch:assert test=". = ('accession-number', 'project-number', 'shelfmark')">
-                In the context of manuscripts, this @type value may only be "accession-number", 
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
+              <sch:assert test=". = ('accession-number', 'number', 'project-number', 'shelfmark')">
+                In the context of manuscripts, this @type value may only be "accession-number", "number",
                 "project-number", or "shelfmark". 
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker' or @subtype='CPG' or @subtype='Fichtner']/@type">
+              <sch:assert test=". = 'number'">
+                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                the @type value must be "number".
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL']/@type">
+              <sch:assert test=". = 'shelfmark'">
+                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                the @type value must be "shelfmark".
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='HMML']/@type">
+              <sch:assert test=". = 'project-number'">
+                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                the @type value must be "project-number".
+              </sch:assert>
+            </sch:rule>
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Rosen']/@type">
+              <sch:assert test=". = 'catalog-number'">
+                When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                the @type value must be "catalog-number".
               </sch:assert>
             </sch:rule>
           </constraint>
@@ -477,7 +501,7 @@
                 or "CPG". 
               </sch:assert>
             </sch:rule>
-            <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label/idno/@subtype" role="warning">
+            <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype" role="warning">
               <sch:assert test=". = ('BAV', 'BML', 'HMML', 'Rosen', 'UCL')">
                 In the context of manuscripts, this @subtype value may only be 
                 "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), "HMML", "Rosen", or "UCL". 
