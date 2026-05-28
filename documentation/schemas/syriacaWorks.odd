@@ -606,7 +606,7 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
-          <attList>
+          <!--<attList>
             <attDef ident="subtype" mode="change">
               <valList type="closed">
                 <valItem ident="book"/>
@@ -619,7 +619,7 @@
                 <valItem ident="order"/>
               </valList>
             </attDef>
-          </attList>
+          </attList>-->
         </elementSpec>
         
         

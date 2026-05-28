@@ -6194,13 +6194,13 @@ Measures</ref>
     dans les glossaires, il marque le terme qui est défini.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene un concepto o enunciado asociado con un ítem en
     una lista; en un glosario marca el término que se define.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene l'etichetta associata ad una voce in una lista;
     nei glossari indica il dermine che viene definito</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-25" xml:lang="de">enthält ein Label oder eine Überschrift zur 
-    Identifikation eines Textteils, insbesondere in einer Liste oder einem Glossar.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.labelLike"/></classes><content><textNode/></content><attList><attDef ident="type" mode="change" usage="opt">
+    Identifikation eines Textteils, insbesondere in einer Liste oder einem Glossar.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.labelLike"/></classes><content><textNode/></content><attList><attDef ident="subtype" mode="change">
               <valList type="closed">
                 <valItem ident="book"/>
                 <valItem ident="collection"/>
                 <valItem ident="part"/>
               </valList>
-            </attDef><attDef ident="subtype" mode="change" usage="opt">
+            </attDef><attDef ident="type" mode="change">
               <valList type="closed">
                 <valItem ident="order"/>
               </valList>

@@ -942,14 +942,14 @@
             <textNode/>
           </content>
           <attList>
-            <attDef ident="type" mode="change" usage="opt">
+            <attDef ident="subtype" mode="change">
               <valList type="closed">
                 <valItem ident="book"/>
                 <valItem ident="collection"/>
                 <valItem ident="part"/>
               </valList>
             </attDef>
-            <attDef ident="subtype" mode="change" usage="opt">
+            <attDef ident="type" mode="change">
               <valList type="closed">
                 <valItem ident="order"/>
               </valList>

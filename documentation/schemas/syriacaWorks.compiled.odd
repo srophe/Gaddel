@@ -3492,13 +3492,17 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
                 </sch:assert>
               </sch:rule>
             </constraint>
-          </constraintSpec><attList><attDef ident="type" mode="change" rend="change" usage="opt"><valList type="closed">
+          </constraintSpec><attList><attDef ident="subtype" mode="change">
+              <valList type="closed">
                 <valItem ident="book"/>
                 <valItem ident="collection"/>
                 <valItem ident="part"/>
-              </valList></attDef><attDef ident="subtype" mode="change" rend="change" usage="opt"><valList type="closed">
+              </valList>
+            </attDef><attDef ident="type" mode="change">
+              <valList type="closed">
                 <valItem ident="order"/>
-              </valList></attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
+              </valList>
+            </attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
     <p>Labels are commonly used for the headwords in glossary
     lists; note the use of the global <att>xml:lang</att> attribute to
     set the default language of the glossary list to Middle English,
