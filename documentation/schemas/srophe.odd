@@ -957,8 +957,8 @@
           </classes>
           <content>
             <sequence preserveOrder="false">
-              <elementRef key="interpretation"/>
-              <elementRef key="p"/>
+              <elementRef key="interpretation" maxOccurs="unbounded"/>
+              <elementRef key="p" maxOccurs="unbounded"/>
             </sequence>
           </content>
           <exemplum>

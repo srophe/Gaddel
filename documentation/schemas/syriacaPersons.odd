@@ -419,6 +419,9 @@
                 <valItem ident="PLRE">
                   <desc>For identifiers from the Prosopography of the Later Roman Empire.</desc>
                 </valItem>
+                <valItem ident="URI">
+                  <desc>For the Syriaca.org URI for the parent element entity.</desc>
+                </valItem>
               </valList>
             </attDef>
           </attList>

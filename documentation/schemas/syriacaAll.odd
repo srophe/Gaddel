@@ -1493,7 +1493,6 @@
             <memberOf key="att.global.change" mode="delete"/>
             <memberOf key="att.datable" mode="delete"/>
             <memberOf key="att.datable.custom" mode="delete"/>
-            <memberOf key="att.datable.w3c" mode="delete"/>
             <memberOf key="att.sortable" mode="delete"/>
           </classes>
           <content>
@@ -1532,7 +1531,10 @@
             <memberOf key="att.datable.custom" mode="delete"/>
           </classes>
           <content>
-            <textNode/>
+            <sequence preserveOrder="false">
+              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/>
+            </sequence>
           </content>
         </elementSpec>
         
