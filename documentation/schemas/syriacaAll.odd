@@ -989,7 +989,7 @@
             <memberOf key="att.datable.w3c" mode="delete"/>
           </classes>
           <content>
-            <elementRef key="p"/>
+            <elementRef key="p" maxOccurs="unbounded"/>
           </content>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
