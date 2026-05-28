@@ -36,11 +36,11 @@
       <!-- Instructions for processing the Syriaca.org chained ODD in oXygen.
         - First, be sure that schemaSpec/@source in this document points to "syriacaAll.compiled.odd".
         - Then process this ODD file into a compiled ODD using the transformation scenario "ODD to Compiled ODD".
-          - Save this as syriacaPersons.compiled.odd and then delete the @start attribute from tei:schemaSpec.
-          - This compiled ODD (without a tei:schemaSpec/@source attribute) will be the starting point for the next step in the chained ODD.
+        - Save this as syriacaPersons.compiled.odd and then delete the @start attribute from tei:schemaSpec.
+        - This compiled ODD (without a tei:schemaSpec/@source attribute) will be the starting point for the next step in the chained ODD.
         - This compiled ODD can also be used to generate a .rng file against which you can validate a TEI document. 
-          - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
-          - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
+        - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
+        - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
     </profileDesc>
   </teiHeader>
   <text>
@@ -207,7 +207,7 @@
                       The text node in the &lt;desc&gt; element must correspond to the @ref attribute on the parent &lt;state&gt; element: 
                       <sch:value-of select="parent::tei:state/@ref"/> Use the portion of the URI following "taxonomy/" and capitalize
                       the first letter of each word.
-                    </sch:assert>-->
+                      </sch:assert>-->
                     <sch:assert test="every $i in $descTokens satisfies ($i = ('the', 'of') or matches($i, '^[A-Z].*'))">
                       Please capitalize the first letter of each word, except for "the" and "of".
                     </sch:assert>
@@ -358,53 +358,53 @@
         </elementSpec>
         
         
-       <elementSpec ident="gender" module="namesdates" mode="change">
-         <classes mode="change">
-           <memberOf key="att.typed" mode="delete"/>
-         </classes>
-         <content>
-           <textNode/>
-         </content>
-         <constraintSpec ident="documentation-on-gender" scheme="schematron">
-           <constraint>
-             <sch:rule context="tei:text//tei:gender">
-               <sch:report test="@resp and @source">Only one of the attributes @resp and @source may be supplied.</sch:report>
-               <sch:assert test="@resp or @source">One of the attributes @resp or @source must be supplied.</sch:assert>
-             </sch:rule>
-           </constraint>
-         </constraintSpec>
-         <attList>
-           <attDef ident="xml:id" mode="delete"/>
-           <attDef ident="n" mode="delete"/>
-           <attDef ident="xml:lang" mode="delete"/>
-           <attDef ident="change" mode="delete"/>
-           <attDef ident="rend" mode="delete"/>
-           <attDef ident="corresp" mode="delete"/>
-           <attDef ident="previous" mode="delete"/>
-           <attDef ident="value" mode="delete"/>
-           <attDef ident="ana" mode="change">
-             <constraintSpec ident="gender-ana-values" scheme="schematron">
-               <constraint>
-                 <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
-                   <sch:ns uri="http://www.tei-c.org/ns/1.0" prefix="tei"/>
-                   <sch:ns uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" prefix="rdf"/>
-                   <sch:ns uri="http://www.w3.org/2004/02/skos/core#" prefix="skos"/>
-                   <sch:pattern>
-                     <sch:rule context="tei:gender/@ana">
-                       <sch:let name="taxonomy"
-                         value="doc('https://raw.githubusercontent.com/srophe/syriaca-data/refs/heads/gaddel_development/data/taxonomy/taxonomy.rdf')"/>
-                       <sch:let name="genders"
-                         value="$taxonomy//rdf:Description[@rdf:about='http://syriaca.org/taxonomy/gender']/skos:narrower/@rdf:resource"/>
-                       <sch:assert test="every $i in (tokenize(., ' ')) satisfies $i = $genders"  role="warning">
-                         Availabe values for gender are <sch:value-of select="string-join($genders, '; ')"/>. If one of
-                         these does not apply, please use a descriptive term of your choosing for editors to consider for inclusion.</sch:assert>
-                     </sch:rule>
-                   </sch:pattern>
-                 </sch:schema>
-               </constraint>
-             </constraintSpec>
-           </attDef>
-         </attList>
+        <elementSpec ident="gender" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.typed" mode="delete"/>
+          </classes>
+          <content>
+            <textNode/>
+          </content>
+          <constraintSpec ident="documentation-on-gender" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:text//tei:gender">
+                <sch:report test="@resp and @source">Only one of the attributes @resp and @source may be supplied.</sch:report>
+                <sch:assert test="@resp or @source">One of the attributes @resp or @source must be supplied.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="xml:id" mode="delete"/>
+            <attDef ident="n" mode="delete"/>
+            <attDef ident="xml:lang" mode="delete"/>
+            <attDef ident="change" mode="delete"/>
+            <attDef ident="rend" mode="delete"/>
+            <attDef ident="corresp" mode="delete"/>
+            <attDef ident="previous" mode="delete"/>
+            <attDef ident="value" mode="delete"/>
+            <attDef ident="ana" mode="change">
+              <constraintSpec ident="gender-ana-values" scheme="schematron">
+                <constraint>
+                  <sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
+                    <sch:ns uri="http://www.tei-c.org/ns/1.0" prefix="tei"/>
+                    <sch:ns uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" prefix="rdf"/>
+                    <sch:ns uri="http://www.w3.org/2004/02/skos/core#" prefix="skos"/>
+                    <sch:pattern>
+                      <sch:rule context="tei:gender/@ana">
+                        <sch:let name="taxonomy"
+                          value="doc('https://raw.githubusercontent.com/srophe/syriaca-data/refs/heads/gaddel_development/data/taxonomy/taxonomy.rdf')"/>
+                        <sch:let name="genders"
+                          value="$taxonomy//rdf:Description[@rdf:about='http://syriaca.org/taxonomy/gender']/skos:narrower/@rdf:resource"/>
+                        <sch:assert test="every $i in (tokenize(., ' ')) satisfies $i = $genders"  role="warning">
+                          Availabe values for gender are <sch:value-of select="string-join($genders, '; ')"/>. If one of
+                          these does not apply, please use a descriptive term of your choosing for editors to consider for inclusion.</sch:assert>
+                      </sch:rule>
+                    </sch:pattern>
+                  </sch:schema>
+                </constraint>
+              </constraintSpec>
+            </attDef>
+          </attList>
         </elementSpec>
         
         
@@ -565,17 +565,17 @@
           <!-- This works in the schematron but not when placed into the ODD and converted to RelaxNG. There is a namespace issue I will try to troubleshoot.
             <constraintSpec ident="langHeadword" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:place/tei:placeName">
-                <sch:let name="langsOfHW" value="//tei:place/tei:placeName[@srophe:tags='#syriaca-headword']/@xml:lang"/>
-                <sch:assert test="count(./parent::tei:place/tei:placeName[@xml:lang='en' and @srophe:tags='#syriaca-headword']) = 1">
-                  There can be one and only one &lt;placeName&gt; element with the combination of @srophe:tags="#syriaca-headword" and @xml:lang="en".
-                </sch:assert>
-                <sch:assert test="count(distinct-values($langsOfHW)) = count($langsOfHW)">
-                  There cannot be more than one headword (@srophe:tags="#syriaca-headword") per &lt;placeName&gt; with the same language (@xml:lang).
-                </sch:assert>
-              </sch:rule>
+            <sch:rule context="//tei:place/tei:placeName">
+            <sch:let name="langsOfHW" value="//tei:place/tei:placeName[@srophe:tags='#syriaca-headword']/@xml:lang"/>
+            <sch:assert test="count(./parent::tei:place/tei:placeName[@xml:lang='en' and @srophe:tags='#syriaca-headword']) = 1">
+            There can be one and only one &lt;placeName&gt; element with the combination of @srophe:tags="#syriaca-headword" and @xml:lang="en".
+            </sch:assert>
+            <sch:assert test="count(distinct-values($langsOfHW)) = count($langsOfHW)">
+            There cannot be more than one headword (@srophe:tags="#syriaca-headword") per &lt;placeName&gt; with the same language (@xml:lang).
+            </sch:assert>
+            </sch:rule>
             </constraint>
-          </constraintSpec>-->
+            </constraintSpec>-->
           <constraintSpec ident="xmlID-on-persName" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:person/tei:persName | //tei:text//tei:personGrp/tei:persName">
@@ -764,9 +764,9 @@
               </valList>
             </attDef>
           </attList>
-         </elementSpec>
+        </elementSpec>
         
-                
+        
         
         
         <elementSpec ident="personGrp" module="namesdates" mode="change">
@@ -1114,7 +1114,7 @@
               </sch:rule>
               <sch:rule context="//tei:seriesStmt[tei:title = 'The Syriac Biographical Dictionary']/tei:idno">
                 <sch:assert test="matches(., 'http://syriaca.org/persons')">
-                 This &lt;idno&gt; element must contain "http://syriaca.org/persons". 
+                  This &lt;idno&gt; element must contain "http://syriaca.org/persons". 
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:seriesStmt[tei:title = 'Gateway to the Syriac Saints']/tei:idno">

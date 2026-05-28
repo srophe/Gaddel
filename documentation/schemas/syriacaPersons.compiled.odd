@@ -40,11 +40,11 @@
       <!-- Instructions for processing the Syriaca.org chained ODD in oXygen.
         - First, be sure that schemaSpec/@source in this document points to "syriacaAll.compiled.odd".
         - Then process this ODD file into a compiled ODD using the transformation scenario "ODD to Compiled ODD".
-          - Save this as syriacaPersons.compiled.odd and then delete the @start attribute from tei:schemaSpec.
-          - This compiled ODD (without a tei:schemaSpec/@start attribute) will be the starting point for the next step in the chained ODD.
+        - Save this as syriacaPersons.compiled.odd and then delete the @start attribute from tei:schemaSpec.
+        - This compiled ODD (without a tei:schemaSpec/@source attribute) will be the starting point for the next step in the chained ODD.
         - This compiled ODD can also be used to generate a .rng file against which you can validate a TEI document. 
-          - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
-          - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
+        - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
+        - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
     </profileDesc></teiHeader>
   <text>
     <body>
@@ -709,112 +709,6 @@ associated with a dated element, at the time indicated.</desc>
         <name>Janelle Jenstad</name>
       </respStmt>
     </egXML>
-  </exemplum></classSpec><classSpec rend="add" predeclare="true" xml:id="GBLSRC" module="tei" type="atts" ident="att.global.source"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-08-22" xml:lang="en">provides attributes used by elements to point to an external source.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2019-09-18" xml:lang="ja">外部ソースを参照する要素によって用いられる属性を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2025-02-06" xml:lang="de">stellt Attribute bereit, anhand derer die Elemente auf eine externe Quelle verweisen.</desc><classes/><constraintSpec ident="source-att-values" scheme="schematron">
-            <constraint>
-              <sch:rule context="//@source">
-                <sch:let name="biblIDs" value="//tei:text//tei:bibl/@xml:id"/>
-                <sch:let name="biblIDpointers" value="for $i in $biblIDs return concat('#', $i)"/>
-                <sch:assert test="                  every $i in tokenize(., ' ')                  satisfies $i = $biblIDpointers">
-                  This @source attribute can contain one or more of the following <sch:value-of select="$biblIDpointers"/>.
-                </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" scheme="schematron" ident="only_1_ODD_source" xml:lang="en">
-        <constraint>
-          <sch:rule context="tei:*[@source]">
-            <sch:let name="srcs" value="tokenize( normalize-space(@source),' ')"/>
-            <sch:report test="(   self::tei:classRef                                 | self::tei:dataRef                                 | self::tei:elementRef                                 | self::tei:macroRef                                 | self::tei:moduleRef                                 | self::tei:schemaSpec )                                   and                                   $srcs[2]">
-              When used on a schema description element (like
-              <sch:value-of select="name(.)"/>), the @source attribute
-              should have only 1 value. (This one has <sch:value-of select="count($srcs)"/>.)
-            </sch:report>
-          </sch:rule>
-        </constraint>
-      </constraintSpec><attList><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" ident="source" usage="opt">
-      <desc versionDate="2010-05-09" xml:lang="en">specifies the source from which some aspect of this element is drawn.</desc>
-      <desc versionDate="2019-09-18" xml:lang="ja">この要素の何らかの側面を示すソースを指定する。</desc>
-      <desc versionDate="2025-02-06" xml:lang="de">gibt die Quelle an, aus der ein Bestandteil dieses Elements stammt.</desc>
-      <datatype maxOccurs="unbounded">
-        <dataRef key="teidata.pointer"/>
-      </datatype>
-      <constraintSpec scheme="schematron" ident="only_1_ODD_source" xml:lang="en">
-        <constraint>
-          <sch:rule context="tei:*[@source]">
-            <sch:let name="srcs" value="tokenize( normalize-space(@source),' ')"/>
-            <sch:report test="(   self::tei:classRef                                 | self::tei:dataRef                                 | self::tei:elementRef                                 | self::tei:macroRef                                 | self::tei:moduleRef                                 | self::tei:schemaSpec )                                   and                                   $srcs[2]">
-              When used on a schema description element (like
-              <sch:value-of select="name(.)"/>), the @source attribute
-              should have only 1 value. (This one has <sch:value-of select="count($srcs)"/>.)
-            </sch:report>
-          </sch:rule>
-        </constraint>
-      </constraintSpec>
-      <remarks versionDate="2017-06-06" xml:lang="en">
-        <p>The <att>source</att> attribute points to an external
-        source. When used on an element describing a schema component
-        (<gi>classRef</gi>, <gi>dataRef</gi>, <gi>elementRef</gi>,
-        <gi>macroRef</gi>, <gi>moduleRef</gi>, or
-        
-        <gi>schemaSpec</gi>), it identifies the source from which
-        declarations for the components should be obtained.</p>
-        <p>On other elements it provides a pointer to the
-        bibliographical source from which a quotation or citation is
-        drawn.</p>
-        <p>In either case, the location may be provided using any form
-        of URI, for example an absolute URI, a relative URI, a private
-        scheme URI of the form <code>tei:x.y.z</code>, where
-        <code>x.y.z</code> indicates the version number, e.g.
-        <code>tei:4.3.2</code> for TEI P5 release 4.3.2 or (as a
-        special case) <code>tei:current</code> for whatever is the
-        latest release, or a private scheme URI that is expanded to an
-        absolute URI as documented in a <gi>prefixDef</gi>.</p>
-        <p>When used on elements describing schema components,
-        <att>source</att> should have only one value; when used on
-        other elements multiple values are permitted.</p>
-      </remarks>
-        <remarks versionDate="2022-05-09" xml:lang="ja">
-        <p><att>source</att> 属性は外部ソースを指し示す。<gi>schemaSpec</gi> 
-          や <gi>moduleRef</gi> といったスキーマの構成要素を記述する要素で用いられた場合は、
-          その定義しようとしているオブジェクトの構成要素の宣言が得られるソースを特定する。
-          その他の要素では、引用の出典となる書誌ソースへのポインタを提供する。いずれの場合も、
-          場所は何らかの URI、例えば絶対 URI や相対 URI、<gi>prefixDef</gi> 
-          に定められた方法で絶対 URI に展開できる私用形式の URI で与えることができる。
-          複数の場所が指定された場合、デフォルトでは要求されたソースがそれらのリソースの組み合わせによって得られるものと想定される。</p>
-        </remarks>
-    </attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-tz" source="#SOURCE-eg-01">
-      <p> As Willard McCarty (<bibl xml:id="mcc_2012">2012, p.2</bibl>) tells us, <quote source="#mcc_2012">‘Collaboration’ is a problematic and should be a contested
-          term.</quote>
-        
-      </p>
-    </egXML>
-  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-te">
-      <p>
-        
-        <quote source="#chicago_15_ed">Grammatical theories are in flux, and the more we learn, the
-          less we seem to know.</quote>
-        
-      </p>
-      
-      <bibl xml:id="chicago_15_ed"><title level="m">The Chicago Manual of Style</title>,
-          <edition>15th edition</edition>. <pubPlace>Chicago</pubPlace>: <publisher>University of
-          Chicago Press</publisher> (<date>2003</date>), <biblScope unit="page">p.147</biblScope>.
-      </bibl>
-    </egXML>
-  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-fx" source="#UND">
-      <elementRef key="p" source="tei:2.0.1"/>
-    </egXML>
-    <p>Include in the schema an element named <gi>p</gi> available from the TEI P5 2.0.1
-      release.</p>
-  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-rt" source="#UND">
-      <schemaSpec ident="myODD" source="mycompiledODD.xml">
-        
-      </schemaSpec>
-    </egXML>
-    <p>Create a schema using components taken from the file <ident>mycompiledODD.xml</ident>.</p>
   </exemplum></classSpec><classSpec rend="add" module="tei" type="atts" xml:id="class-attr-pointing" ident="att.pointing"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-01-15" xml:lang="en">provides a set of attributes used by all elements which point
   to other elements by means of one or more URI references.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">하나 이상의 URI 참조를 통해서 다른 요소를 가리키는 모든 요소에 의해 사용된 속성 집합을 정의한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">定義一組與其他元素相連結的所有元素皆使用的屬性，連結是使用ㄧ個或多個統一資源識別符 (URI) 參照。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2024-08-08" xml:lang="ja">すべての、一つ以上のURIを参照することで別の要素を指示する要素で使用できる属性のセットを示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-02-15" xml:lang="fr">fournit un ensemble d'attributs utilisés par tous les éléments qui pointent vers d'autres éléments au moyen d'une ou de plusieurs références URI.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">define un conjunto de atributos usados por todos los elementos que señalan a otros elementos a través de uno o más URI.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">definisce un insieme di attributi usati da tutti gli elementi che puntano ad altri elementi tramite uno o più URI</desc><classes/><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" ident="targetLang" scheme="schematron" xml:lang="en">
         <constraint>
@@ -2353,6 +2247,40 @@ integer value used as a count.</desc>
       seule la représentation de dateTime sera employée.
     </p>
   </remarks>
+</dataSpec><dataSpec rend="add" module="tei" ident="teidata.truthValue">
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-10-22" xml:lang="en">defines the range of attribute values used to express a truth
+value.</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">진리값을 표현하는 속성 값 범위를 정의한다.</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">定義的屬性值範圍表示一個可能未知的真實值</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-04-05" xml:lang="ja">真偽値を示す属性値の範囲を定義する。</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-06-12" xml:lang="fr">définit la gamme des
+  valeurs d'attributs exprimant la vérité d'une proposition.</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">define la gama de valores de atributos usados para expresar un valor cierto.</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">definisce la gamma di valori di attributi usati per esprimere un valore di verità</desc>
+  <content xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+      <dataRef name="boolean"/>
+   </content>
+  <remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2013-11-01" xml:lang="en">
+      <p>The possible values of this datatype are <val>1</val> or
+    <val>true</val>, or <val>0</val> or <val>false</val>.</p>
+      <p>This datatype applies only for cases where uncertainty is
+    inappropriate; if the attribute concerned may have a value other
+    than true or false, e.g. <val>unknown</val>, or
+    <val>inapplicable</val>, it should have the extended version of
+    this datatype: <ident type="datatype">teidata.xTruthValue</ident>.</p>
+  </remarks>
+  <remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="ja" versionDate="2024-09-02">
+      <p>
+        このデータ型が取り得る値は、<val>1</val>または<val>true</val>または<val>0</val>または<val>false</val>である。曖昧な値が許されない場合に使われるデータ型である。属性値が真偽値でない場合、例えば<val>unknown</val>や<val>inapplicable</val>の場合には、当該データ型の拡張版である<ident type="datatype">data.xTruthValue</ident>を使うべきである。
+    </p>
+  </remarks>
+  <remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-06-12" xml:lang="fr">
+      <p>Ce type de données ne s'applique que dans les cas où l'incertitude est 
+      inappropriée ; c’est-à-dire si l'attribut concerné peut avoir une valeur autre 
+      que vrai ou faux, par ex. <val>inconnu</val>, ou <val>inapplicable</val>, il devrait  alors y
+      avoir la version étendue de ce  type de données : teidata.xTruthValue.
+    </p>
+  </remarks>
 </dataSpec><dataSpec rend="add" module="tei" ident="teidata.language">
   <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-10-18" xml:lang="en">defines the range of attribute values used to identify a particular combination of human
     language and writing system.</desc>
@@ -2816,6 +2744,9 @@ en-tête et un texte, constitue un document TEI.</desc>
                 <valItem ident="#anonymous-description">
                   <desc>A "name variant" that is a description of an anonymous individual or group.</desc>
                 </valItem>
+                <valItem ident="#canonical">
+                  <desc>Indicates the content is canonical, i.e., widely agreed upon. Abbreviations of work titles are primarily in view.</desc>
+                </valItem>
                 <valItem ident="#ektobe-headword">
                   <desc>The name used by e-Ktobe as a standardized name form.</desc>
                 </valItem>
@@ -2906,7 +2837,113 @@ en-tête et un texte, constitue un document TEI.</desc>
     </attDef>
   </attList>
   
-</classSpec><elementSpec rend="change" module="core" xml:id="gi-p" ident="p"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">paragraph</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">문단</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">段落</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">paragraphe</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">párrafo</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">paragrafo</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">Absatz</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">marks paragraphs in prose.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">산문에서 문단을 표시한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">標記散文的段落。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">散文の段落を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">marque les paragraphes dans un texte en prose.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">marca párrafos en prosa.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">indica i paragrafi in prosa</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">markiert einen Absatz in einem Prosatext.</desc><classes><memberOf key="att.global"/><memberOf key="model.pLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="date" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="gi" minOccurs="0" maxOccurs="unbounded"/><elementRef key="listBibl" minOccurs="0" maxOccurs="unbounded"/><elementRef key="note" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="lang-on-p-in-body" scheme="schematron">
+</classSpec><classSpec rend="add" predeclare="true" xml:id="GBLSRC" module="tei" type="atts" ident="att.global.source"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-08-22" xml:lang="en">provides attributes used by elements to point to an external source.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2019-09-18" xml:lang="ja">外部ソースを参照する要素によって用いられる属性を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2025-02-06" xml:lang="de">stellt Attribute bereit, anhand derer die Elemente auf eine externe Quelle verweisen.</desc><classes/><constraintSpec ident="source-att-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="//@source">
+                <sch:let name="biblIDs" value="//tei:text//tei:bibl/@xml:id"/>
+                <sch:let name="biblIDpointers" value="for $i in $biblIDs return concat('#', $i)"/>
+                <sch:assert test="                   every $i in tokenize(., ' ')                   satisfies $i = $biblIDpointers">
+                  This @source attribute can contain one or more of the following <sch:value-of select="$biblIDpointers"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" scheme="schematron" ident="only_1_ODD_source" xml:lang="en">
+        <constraint>
+          <sch:rule context="tei:*[@source]">
+            <sch:let name="srcs" value="tokenize( normalize-space(@source),' ')"/>
+            <sch:report test="(   self::tei:classRef                                 | self::tei:dataRef                                 | self::tei:elementRef                                 | self::tei:macroRef                                 | self::tei:moduleRef                                 | self::tei:schemaSpec )                                   and                                   $srcs[2]">
+              When used on a schema description element (like
+              <sch:value-of select="name(.)"/>), the @source attribute
+              should have only 1 value. (This one has <sch:value-of select="count($srcs)"/>.)
+            </sch:report>
+          </sch:rule>
+        </constraint>
+      </constraintSpec><attList><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" ident="source" usage="opt">
+      <desc versionDate="2010-05-09" xml:lang="en">specifies the source from which some aspect of this element is drawn.</desc>
+      <desc versionDate="2019-09-18" xml:lang="ja">この要素の何らかの側面を示すソースを指定する。</desc>
+      <desc versionDate="2025-02-06" xml:lang="de">gibt die Quelle an, aus der ein Bestandteil dieses Elements stammt.</desc>
+      <datatype maxOccurs="unbounded">
+        <dataRef key="teidata.pointer"/>
+      </datatype>
+      <constraintSpec scheme="schematron" ident="only_1_ODD_source" xml:lang="en">
+        <constraint>
+          <sch:rule context="tei:*[@source]">
+            <sch:let name="srcs" value="tokenize( normalize-space(@source),' ')"/>
+            <sch:report test="(   self::tei:classRef                                 | self::tei:dataRef                                 | self::tei:elementRef                                 | self::tei:macroRef                                 | self::tei:moduleRef                                 | self::tei:schemaSpec )                                   and                                   $srcs[2]">
+              When used on a schema description element (like
+              <sch:value-of select="name(.)"/>), the @source attribute
+              should have only 1 value. (This one has <sch:value-of select="count($srcs)"/>.)
+            </sch:report>
+          </sch:rule>
+        </constraint>
+      </constraintSpec>
+      <remarks versionDate="2017-06-06" xml:lang="en">
+        <p>The <att>source</att> attribute points to an external
+        source. When used on an element describing a schema component
+        (<gi>classRef</gi>, <gi>dataRef</gi>, <gi>elementRef</gi>,
+        <gi>macroRef</gi>, <gi>moduleRef</gi>, or
+        
+        <gi>schemaSpec</gi>), it identifies the source from which
+        declarations for the components should be obtained.</p>
+        <p>On other elements it provides a pointer to the
+        bibliographical source from which a quotation or citation is
+        drawn.</p>
+        <p>In either case, the location may be provided using any form
+        of URI, for example an absolute URI, a relative URI, a private
+        scheme URI of the form <code>tei:x.y.z</code>, where
+        <code>x.y.z</code> indicates the version number, e.g.
+        <code>tei:4.3.2</code> for TEI P5 release 4.3.2 or (as a
+        special case) <code>tei:current</code> for whatever is the
+        latest release, or a private scheme URI that is expanded to an
+        absolute URI as documented in a <gi>prefixDef</gi>.</p>
+        <p>When used on elements describing schema components,
+        <att>source</att> should have only one value; when used on
+        other elements multiple values are permitted.</p>
+      </remarks>
+        <remarks versionDate="2022-05-09" xml:lang="ja">
+        <p><att>source</att> 属性は外部ソースを指し示す。<gi>schemaSpec</gi> 
+          や <gi>moduleRef</gi> といったスキーマの構成要素を記述する要素で用いられた場合は、
+          その定義しようとしているオブジェクトの構成要素の宣言が得られるソースを特定する。
+          その他の要素では、引用の出典となる書誌ソースへのポインタを提供する。いずれの場合も、
+          場所は何らかの URI、例えば絶対 URI や相対 URI、<gi>prefixDef</gi> 
+          に定められた方法で絶対 URI に展開できる私用形式の URI で与えることができる。
+          複数の場所が指定された場合、デフォルトでは要求されたソースがそれらのリソースの組み合わせによって得られるものと想定される。</p>
+        </remarks>
+    </attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-tz" source="#SOURCE-eg-01">
+      <p> As Willard McCarty (<bibl xml:id="mcc_2012">2012, p.2</bibl>) tells us, <quote source="#mcc_2012">‘Collaboration’ is a problematic and should be a contested
+          term.</quote>
+        
+      </p>
+    </egXML>
+  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-te">
+      <p>
+        
+        <quote source="#chicago_15_ed">Grammatical theories are in flux, and the more we learn, the
+          less we seem to know.</quote>
+        
+      </p>
+      
+      <bibl xml:id="chicago_15_ed"><title level="m">The Chicago Manual of Style</title>,
+          <edition>15th edition</edition>. <pubPlace>Chicago</pubPlace>: <publisher>University of
+          Chicago Press</publisher> (<date>2003</date>), <biblScope unit="page">p.147</biblScope>.
+      </bibl>
+    </egXML>
+  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-fx" source="#UND">
+      <elementRef key="p" source="tei:2.0.1"/>
+    </egXML>
+    <p>Include in the schema an element named <gi>p</gi> available from the TEI P5 2.0.1
+      release.</p>
+  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-rt" source="#UND">
+      <schemaSpec ident="myODD" source="mycompiledODD.xml">
+        
+      </schemaSpec>
+    </egXML>
+    <p>Create a schema using components taken from the file <ident>mycompiledODD.xml</ident>.</p>
+  </exemplum></classSpec><elementSpec rend="change" module="core" xml:id="gi-p" ident="p"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">paragraph</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">문단</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">段落</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">paragraphe</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">párrafo</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">paragrafo</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">Absatz</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">marks paragraphs in prose.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">산문에서 문단을 표시한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">標記散文的段落。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">散文の段落を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">marque les paragraphes dans un texte en prose.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">marca párrafos en prosa.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">indica i paragrafi in prosa</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">markiert einen Absatz in einem Prosatext.</desc><classes><memberOf key="att.global"/><memberOf key="model.pLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="date" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="gi" minOccurs="0" maxOccurs="unbounded"/><elementRef key="listBibl" minOccurs="0" maxOccurs="unbounded"/><elementRef key="note" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="lang-on-p-in-body" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:p">
                 <sch:assert test="./@xml:lang">A &lt;p&gt; element in the text body must have an @xml:lang attribute.</sch:assert>
@@ -3012,9 +3049,9 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
       Sprachregister oder Varietäten gehören, auszuzeichnen.</p>
   </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COHQHF">3.3.2.1. Foreign Words or Expressions</ref>
-  </listRef></elementSpec><elementSpec rend="add" module="core" xml:id="gi-quote" ident="quote"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">quotation</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">인용</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">引文</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">citation</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">cita</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">citazione</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains a phrase or passage attributed by the narrator or author to some agency external to the text.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko"> 해설자 또는 저자에 의해, 텍스트의 외부 주체에 의해 생성된 것이라 밝혀진 구 또는 단락을 포함한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">包含敘述者或作者引用自文本以外來源的字 (句) 詞或段落。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">語り手や著者が、当該テキスト外にあるものに向けた、一節を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">contient une expression ou un passage que le narrateur ou l'auteur attribue à une origine extérieure au texte.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene una frase o pasaje atribuido por el narrador o autor a un agente externo al texto.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene una frase o un brano attribuito dall'autore o dal narratore a soggetti esterni al testo</desc><classes><memberOf key="att.global"/><memberOf key="att.cmc"/><memberOf key="att.typed"/><memberOf key="model.quoteLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="bibl" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="measure" minOccurs="0" maxOccurs="unbounded"/><elementRef key="offset" minOccurs="0" maxOccurs="unbounded"/><elementRef key="orgName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><attList><attDef ident="xml:id" mode="delete"/><attDef ident="n" mode="delete"/><attDef ident="ana" mode="delete"/><attDef ident="change" mode="delete"/><attDef ident="previous" mode="delete"/><attDef ident="resp" mode="delete"/><attDef ident="rend" mode="delete"/><attDef ident="corresp" mode="delete"/><attDef ident="source" mode="change" usage="req">
+  </listRef></elementSpec><elementSpec rend="add" module="core" xml:id="gi-quote" ident="quote"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">quotation</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">인용</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">引文</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">citation</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">cita</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">citazione</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains a phrase or passage attributed by the narrator or author to some agency external to the text.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko"> 해설자 또는 저자에 의해, 텍스트의 외부 주체에 의해 생성된 것이라 밝혀진 구 또는 단락을 포함한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">包含敘述者或作者引用自文本以外來源的字 (句) 詞或段落。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">語り手や著者が、当該テキスト外にあるものに向けた、一節を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">contient une expression ou un passage que le narrateur ou l'auteur attribue à une origine extérieure au texte.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene una frase o pasaje atribuido por el narrador o autor a un agente externo al texto.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene una frase o un brano attribuito dall'autore o dal narratore a soggetti esterni al testo</desc><classes><memberOf key="att.global"/><memberOf key="att.cmc"/><memberOf key="att.typed"/><memberOf key="model.quoteLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="bibl" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="measure" minOccurs="0" maxOccurs="unbounded"/><elementRef key="offset" minOccurs="0" maxOccurs="unbounded"/><elementRef key="orgName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><attList><attDef ident="source" mode="change" usage="req">
               
-            </attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
+            </attDef><attDef ident="xml:id" mode="delete"/><attDef ident="n" mode="delete"/><attDef ident="ana" mode="delete"/><attDef ident="change" mode="delete"/><attDef ident="previous" mode="delete"/><attDef ident="resp" mode="delete"/><attDef ident="rend" mode="delete"/><attDef ident="corresp" mode="delete"/></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-quote-egXML-am" source="#COHQQ-eg-29">Lexicography has shown little sign of being affected by the
       work of followers of J.R. Firth, probably best summarized in his
       slogan, <quote>You shall know a word by the company it
@@ -3195,7 +3232,9 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
                 <sch:let name="series" value="ancestor::tei:TEI//tei:seriesStmt/tei:idno[@type='URI']"/>
                 <sch:let name="corresps" value="parent::*/tei:desc[@xml:lang='en']/@corresp/tokenize(., '\s')"/>
                 <sch:assert test="every $i in $series satisfies $i = $corresps">
-                  Each series in the header must have an abstract. As such, each of the following must appear once as a value on the @corresp attribute of an abstract: <sch:value-of select="string-join($series, ';  ')"/>.
+                  Each abstract must be associated with a series. As such, each of the following 
+                  must appear once as a value on the @corresp attribute of an abstract: 
+                  <sch:value-of select="string-join($series, ';  ')"/>.
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -3493,7 +3532,7 @@ Normalization</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COEDREG">3.5.2. Regularization and
 Normalization</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/TC.html#TC">13. Critical Apparatus</ref>
-  </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-name" ident="name"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">name, proper noun</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">이름, 고유명사</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">名稱，特定名稱</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">nom, nom propre</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">nombre, nombre propio</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">nome, nome proprio</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">Name, Eigenname</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains a proper noun or noun phrase.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">고유명사 또는 명사구를 포함한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">包含一個特定名稱 或名詞詞組。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">固有名詞。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">contient un nom propre ou un syntagme nominal.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene un nombre propio o un sintagma nominal</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene un nome proprio o un sintagma nominale.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">enthält einen Eigennamen in Form eines Nomens oder einer Nominalphrase.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.nameLike.agent"/></classes><content><textNode/></content><constraintSpec ident="name-ref-values" scheme="schematron">
+  </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-name" ident="name"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">name, proper noun</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">이름, 고유명사</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">名稱，特定名稱</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">nom, nom propre</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">nombre, nombre propio</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">nome, nome proprio</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">Name, Eigenname</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains a proper noun or noun phrase.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">고유명사 또는 명사구를 포함한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">包含一個特定名稱 或名詞詞組。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">固有名詞。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">contient un nom propre ou un syntagme nominal.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene un nombre propio o un sintagma nominal</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene un nome proprio o un sintagma nominale.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">enthält einen Eigennamen in Form eines Nomens oder einer Nominalphrase.</desc><classes><memberOf key="att.canonical"/><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.nameLike.agent"/></classes><content><textNode/></content><constraintSpec ident="name-ref-values" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:teiHeader//tei:name/@ref">
                 <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/gaddel/master/documentation/editors.xml')"/>
@@ -3604,7 +3643,7 @@ Normalization</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDDATE">14.4. Dates</ref>
   </listRef></elementSpec><elementSpec rend="add" module="core" xml:id="gi-ptr" ident="ptr"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-07-04" xml:lang="en">pointer</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">포인터</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW"/><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-06" xml:lang="es">puntero</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">pointeur</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-11-06" xml:lang="it">puntatore</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2006-01-11" xml:lang="en">defines a pointer to another location.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">다른 위치로의 포인터를 정의한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">標明一個與其他位置相連結的指標。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">他の場所を示すポインターを定義する。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">définit un pointeur vers un autre emplacement.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">define un señalizador a otra localización.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">definisce un puntatore ad un'altra posizione.</desc><classes><memberOf key="att.global"/><memberOf key="att.pointing"/><memberOf key="model.ptrLike"/></classes><content><empty xmlns:rng="http://relaxng.org/ns/structure/1.0"/></content><constraintSpec ident="target-in-ptr" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:body//tei:bibl/tei:ptr/@target" role="warning">
+              <sch:rule context="//tei:body[not(child::tei:bibl)]//tei:bibl/tei:ptr/@target" role="warning">
                 <sch:let name="error" value="."/>
                 <sch:assert test="matches(., 'http://syriaca.org/cbss/[A-Z\d]{8}')">
                   The @target value: "<sch:value-of select="$error"/>" is not a Syriaca.org cbss URI. These URIs take the form of 
@@ -3668,7 +3707,7 @@ Normalization</ref>
   </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COXR">3.7. Simple Links and Cross-References</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/SA.html#SAPT">17.1. Links</ref>
-  </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-note" ident="note"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-25" xml:lang="en">note</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-25" xml:lang="de">Anmerkung</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains a note or annotation.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">contient une note ou une annotation.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene una nota o aclaración</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">包含附註或註釋。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene una nota o un'annotazione</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2006-10-28" xml:lang="ja">注釈・コメント。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-25" xml:lang="de">enthält eine Anmerkung oder Annotation.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.noteLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="bibl" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="quote" minOccurs="0" maxOccurs="unbounded"/><elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><constraintSpec ident="note-type-disambiguation" scheme="schematron">
+  </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-note" ident="note"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-25" xml:lang="en">note</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-25" xml:lang="de">Anmerkung</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains a note or annotation.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">contient une note ou une annotation.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene una nota o aclaración</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">包含附註或註釋。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene una nota o un'annotazione</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2006-10-28" xml:lang="ja">注釈・コメント。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-25" xml:lang="de">enthält eine Anmerkung oder Annotation.</desc><classes><memberOf key="att.global"/><memberOf key="att.pointing"/><memberOf key="att.typed"/><memberOf key="model.noteLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="bibl" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="quote" minOccurs="0" maxOccurs="unbounded"/><elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><constraintSpec ident="note-type-disambiguation" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:note[@type='disambiguation']">
                 <sch:assert test="./tei:idno">
@@ -3870,7 +3909,7 @@ psychological significance.
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD27">2.2.6. The Notes Statement</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBICON">3.12.2.8. Notes and Statement of Language</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/DI.html#DITPNO">10.3.5.4. Notes within Entries</ref>
-  </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-author" ident="author"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en" versionDate="2011-11-26">author</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="es" versionDate="2022-02-24">autor/a</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2011-11-26" xml:lang="fr">auteur</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">Autor</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2011-11-26" xml:lang="en">in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">참고문헌에 작가, 단독 저자, 공동 저자의 이름을 포함한다; 서지 항목의 책임에 관한 1차적 진술.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">在書目參照中，包含一件作品的作者 (群) 姓名，無論是個人或是團體性質；這也是書目項目責任歸屬的主要陳述。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2023-08-30" xml:lang="ja">書誌参照において、作品の著者となる人や法人の名前を、たとえば、よく知られた書誌典拠情報機関の形式で提供されるものに合わせるなどして記述する。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">dans une référence bibliographique contient le nom de la (des) personne(s) physique(s) ou du collectif, auteur(s) d'une oeuvre ; par exemple dans la même forme que celle utilisée par une référence bibliographique reconnue.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2022-02-24" xml:lang="es">en una referencia bibliográfica, contiene el nombre del autor/a/es, ya sea una persona o una institución, de una obra; por ejemplo, en la misma forma que la proporcionada por una autoridad bibliográfica reconocida.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">in un riferimento bibliografico contiene il nome dell'autore (o degli autori), personale o collettivo, di un'opera; è la dichiarazione di responsabilità primaria di ciascuna unità bibliografica.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">enthält in einer bibliografischen Referenz den oder die Namen eines Autors eines Werks (oder einer für das Werk verantwortlichen Körperschaft); zum Beispiel in der Form, wie sie eine anerkannte bibliografische Instanz anbietet.</desc><classes/><content><elementRef key="persName"/></content><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
+  </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-author" ident="author"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en" versionDate="2011-11-26">author</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="es" versionDate="2022-02-24">autor/a</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2011-11-26" xml:lang="fr">auteur</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">Autor</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2011-11-26" xml:lang="en">in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">참고문헌에 작가, 단독 저자, 공동 저자의 이름을 포함한다; 서지 항목의 책임에 관한 1차적 진술.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">在書目參照中，包含一件作品的作者 (群) 姓名，無論是個人或是團體性質；這也是書目項目責任歸屬的主要陳述。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2023-08-30" xml:lang="ja">書誌参照において、作品の著者となる人や法人の名前を、たとえば、よく知られた書誌典拠情報機関の形式で提供されるものに合わせるなどして記述する。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">dans une référence bibliographique contient le nom de la (des) personne(s) physique(s) ou du collectif, auteur(s) d'une oeuvre ; par exemple dans la même forme que celle utilisée par une référence bibliographique reconnue.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2022-02-24" xml:lang="es">en una referencia bibliográfica, contiene el nombre del autor/a/es, ya sea una persona o una institución, de una obra; por ejemplo, en la misma forma que la proporcionada por una autoridad bibliográfica reconocida.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">in un riferimento bibliografico contiene il nome dell'autore (o degli autori), personale o collettivo, di un'opera; è la dichiarazione di responsabilità primaria di ciascuna unità bibliografica.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">enthält in einer bibliografischen Referenz den oder die Namen eines Autors eines Werks (oder einer für das Werk verantwortlichen Körperschaft); zum Beispiel in der Form, wie sie eine anerkannte bibliografische Instanz anbietet.</desc><classes><memberOf key="att.global"/><memberOf key="att.datable"/><memberOf key="att.naming"/></classes><content><elementRef key="persName"/></content><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-author-egXML-lq" source="#COBICOR-eg-251">
       <author>British Broadcasting Corporation</author>
       <author>La Fayette, Marie Madeleine Pioche de la Vergne, comtesse de (1634–1693)</author>
@@ -3906,7 +3945,7 @@ psychological significance.
   </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-editor" ident="editor"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2012-12-27" xml:lang="en">contains a secondary statement of responsibility for a bibliographic item, for example the name of an individual, institution or organization, (or of several such) acting as editor, compiler, translator, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">서지 항목의 책임에 관한 2차적 진술, 예를 들어, 편집, 번역 등의 작업을 한 편집, 개인, 기관,
     또는 기구의 이름</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">書目項目的次要責任歸屬，例如扮演編輯、編譯、翻譯等角色的個人、機構或組織 (或其他類似者) 的名稱。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">書誌情報における、第二位の責任者を示す。個人、団体、組織、編集者、編 纂者、翻訳者の名前など。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">mention de responsabilité secondaire pour un item
     bibliographique, par exemple le nom d'une personne, d'une institution ou d'un organisme (ou de
-    plusieurs d'entre eux) comme éditeur scientifique, compilateur, traducteur, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">declaración secundaria de responsabilidad para un ítem bibliográfico, por ejemplo un nombre particular, o institucional (o cualquier otro) que ha actuado como editor, compilador, traductor, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">è la dichiarazione di responsabilità secondaria di ciascuna unità bibliografica, ad esempio il nome di un individuo, di un'istituzione o organizzazione che agisce come curatore, compilatore, traduttore, ecc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">beinhaltet zusätzliche Angaben zur Verantwortlichkeit für ein bibliografisches Objekt, z. B. den Namen einer Person, Institution oder Organisation (oder mehreren davon), welche als Herausgeber, Kompilator, Übersetzer etc. fungiert.</desc><classes><memberOf key="att.naming"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="date" minOccurs="0" maxOccurs="1"/><elementRef key="persName" minOccurs="0" maxOccurs="1"/><textNode/></sequence></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="role-on-editor" scheme="schematron">
+    plusieurs d'entre eux) comme éditeur scientifique, compilateur, traducteur, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">declaración secundaria de responsabilidad para un ítem bibliográfico, por ejemplo un nombre particular, o institucional (o cualquier otro) que ha actuado como editor, compilador, traductor, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">è la dichiarazione di responsabilità secondaria di ciascuna unità bibliografica, ad esempio il nome di un individuo, di un'istituzione o organizzazione che agisce come curatore, compilatore, traduttore, ecc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">beinhaltet zusätzliche Angaben zur Verantwortlichkeit für ein bibliografisches Objekt, z. B. den Namen einer Person, Institution oder Organisation (oder mehreren davon), welche als Herausgeber, Kompilator, Übersetzer etc. fungiert.</desc><classes><memberOf key="att.global.source"/><memberOf key="att.naming"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="date" minOccurs="0" maxOccurs="1"/><elementRef key="persName" minOccurs="0" maxOccurs="1"/><textNode/></sequence></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="role-on-editor" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:teiHeader//tei:editor">
                 <sch:assert test="./@role">A @role attribute is required on the &lt;editor&gt;
@@ -3952,7 +3991,7 @@ psychological significance.
                   element inside &lt;body&gt;.</sch:report>
               </sch:rule>
             </constraint>
-          </constraintSpec><attList><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="ref" mode="change">
+          </constraintSpec><attList><attDef ident="source" mode="change" usage="opt"/><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="ref" mode="change">
               <desc>Should contain the URI of a Syriaca.org editor from <ref target="http://syriaca.org/documentation/editors">this list</ref>.</desc>
             </attDef><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="role" mode="change">
               <desc>Specifies the connection of the editor to the work, selected from
@@ -4500,7 +4539,7 @@ psychological significance.
         <p>出版事項の一部を構成しない情報を提供するため、この要素を<gi>imprint</gi>の子ではなく、兄弟として提供するほうが望ましい。</p>
   </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBICOB">3.12.2.5. Scopes and Ranges in Bibliographic Citations</ref>
-  </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-citedRange" ident="citedRange"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2012-12-13" xml:lang="en">cited range</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2024-02-28" xml:lang="ja">引用範囲</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2012-12-13" xml:lang="en">defines the range of cited content, often represented by pages or other units.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2024-02-28" xml:lang="ja">しばしばページやその他の単位で表される、引用の範囲を定める。</desc><classes><memberOf key="att.global"/><memberOf key="att.citing"/><memberOf key="att.pointing"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><textNode/><elementRef key="foreign"/></sequence></content><attList><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="unit" mode="change" usage="req" module="att.citing">
+  </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-citedRange" ident="citedRange"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2012-12-13" xml:lang="en">cited range</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2024-02-28" xml:lang="ja">引用範囲</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2012-12-13" xml:lang="en">defines the range of cited content, often represented by pages or other units.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2024-02-28" xml:lang="ja">しばしばページやその他の単位で表される、引用の範囲を定める。</desc><classes><memberOf key="att.global"/><memberOf key="att.citing"/><memberOf key="att.pointing"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><textNode/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/></sequence></content><attList><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="unit" mode="change" usage="req" module="att.citing">
               <datatype>
                 <dataRef key="teidata.enumerated"/>
               </datatype>
@@ -4614,7 +4653,7 @@ psychological significance.
         <sch:param name="tde" value="tei:bibl"/>
       </sch:pattern>
     </constraint>
-  </constraintSpec><attList><attDef ident="subtype" mode="delete"/><attDef ident="n" mode="delete"/><attDef ident="xml:lang" mode="delete"/><attDef ident="ana" mode="delete"/><attDef ident="change" mode="delete"/><attDef ident="previous" mode="delete"/><attDef ident="resp" mode="delete"/><attDef ident="source" mode="delete"/><attDef ident="rend" mode="delete"/><attDef ident="corresp" mode="delete"/><attDef ident="type" mode="change" usage="opt">
+  </constraintSpec><attList><attDef ident="type" mode="change" usage="opt">
               <valList mode="change" type="closed">
                 <valItem ident="MS">
                   <desc>used for bibliographic citation of a manuscript</desc>
@@ -4682,7 +4721,7 @@ psychological significance.
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBITY">3.12.1. Methods of Encoding Bibliographic References and Lists of References</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD3">2.2.7. The Source Description</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CC.html#CCAS2">16.3.2. Declarable Elements</ref>
-  </listRef></elementSpec><elementSpec rend="add" module="core" xml:id="gi-listBibl" ident="listBibl"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">citation list</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">인용 목록</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">書目列表</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">liste de références bibliographiques</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">lista de cita</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">lista di citazioni</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-13" xml:lang="de">Liste bibliografischer Angaben</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains a list of bibliographic citations of any kind.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">여러 종류의 서지 인용 목록을 포함한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">包含任何種類的書目資料列表。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">書誌項目引用のリストを示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">contient une liste de références bibliographiques de toute nature.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene una lista de citas bibliográficas de cualquier tipo.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene una lista di citazioni bibliografiche di qualsiasi natura.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-13" xml:lang="de">enthält eine Liste von bibliografischen Angaben jeglicher Art.</desc><classes><memberOf key="att.cmc"/><memberOf key="model.biblLike"/></classes><content><elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="listBibl-is-declarable" scheme="schematron" xml:lang="en">
+  </listRef></elementSpec><elementSpec rend="add" module="core" xml:id="gi-listBibl" ident="listBibl"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">citation list</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">인용 목록</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">書目列表</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">liste de références bibliographiques</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">lista de cita</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">lista di citazioni</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-13" xml:lang="de">Liste bibliografischer Angaben</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains a list of bibliographic citations of any kind.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">여러 종류의 서지 인용 목록을 포함한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">包含任何種類的書目資料列表。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">書誌項目引用のリストを示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">contient une liste de références bibliographiques de toute nature.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene una lista de citas bibliográficas de cualquier tipo.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene una lista di citazioni bibliografiche di qualsiasi natura.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-13" xml:lang="de">enthält eine Liste von bibliografischen Angaben jeglicher Art.</desc><classes><memberOf key="att.global"/><memberOf key="att.cmc"/><memberOf key="att.typed"/><memberOf key="model.biblLike"/></classes><content><elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="listBibl-is-declarable" scheme="schematron" xml:lang="en">
     <constraint>
       <sch:pattern is-a="declarable">
         <sch:param name="tde" value="tei:listBibl"/>
@@ -5183,7 +5222,7 @@ creation of an electronic text.</desc><desc xmlns:rng="http://relaxng.org/ns/str
             </constraint>
           </constraintSpec><attList><attDef ident="type" mode="change" rend="change" usage="req"><desc rend="replace">The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc><datatype xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
         <dataRef key="teidata.enumerated"/>
-      </datatype><valList type="closed" mode="change"><valItem ident="FIEY">
+      </datatype><valList type="closed"><valItem ident="FIEY">
                   <desc>For identifiers from Fiey.</desc>
                 </valItem><valItem ident="PLRE">
                   <desc>For identifiers from the Prosopography of the Later Roman Empire.</desc>
@@ -5238,7 +5277,7 @@ creation of an electronic text.</desc><desc xmlns:rng="http://relaxng.org/ns/str
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD24">2.2.4. Publication, Distribution, Licensing, etc.</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD26">2.2.5. The Series Statement</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBICOI">3.12.2.4. Imprint, Size of a Document, and Reprint Information</ref>
-  </listRef></elementSpec><elementSpec rend="add" module="header" xml:id="gi-availability" ident="availability"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-06-12" xml:lang="en">availability</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-06-12" xml:lang="fr">disponibilité</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2022-06-01" xml:lang="it">disponibilità</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-11-17" xml:lang="de">Verfügbarkeit</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2011-11-17" xml:lang="en">supplies information about the availability of a text, for example any restrictions on its use or distribution, its copyright status, any licence applying to it, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2009-01-05" xml:lang="fr">renseigne sur la disponibilité du texte, par exemple sur toutes restrictions quant à son usage ou sa diffusion, son copyright, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">텍스트 이용에 관한 정보를 제시한다. 예를 들어 사용 또는 배포의 제한, 저작권 상태 등.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">提供關於文件可利用性的資訊，例如使用或發行上的任何限制、版權狀態等。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2023-08-30" xml:lang="ja">テキストの利用許可に関する情報を示す。例えば、その使用や頒布の制限、著作権の状態、適用されるライセンス等。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-11-17" xml:lang="de">liefert Informationen zur Verfügbarkeit eines Textes, zum Beispiel Einschränkungen bezüglich des Gebrauchs oder der Weitergabe, Lizensierungen usw.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">proporciona información sobre la disponibilidad de un texto, por ejemplo cualquier restricción en cuanto a su uso o distribución, su copyright, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">fornisce informazioni sulla disponibilità di un testo, per esempio su qualsiasi restrizione che si applica alla sua utilizzazione o distribuzione, il suo statuto in merito al copyright, etc.</desc><classes><memberOf key="att.global"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="license" minOccurs="1"/><textNode/></sequence></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" ident="availability-is-declarable" scheme="schematron" xml:lang="en">
+  </listRef></elementSpec><elementSpec rend="add" module="header" xml:id="gi-availability" ident="availability"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-06-12" xml:lang="en">availability</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-06-12" xml:lang="fr">disponibilité</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2022-06-01" xml:lang="it">disponibilità</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-11-17" xml:lang="de">Verfügbarkeit</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2011-11-17" xml:lang="en">supplies information about the availability of a text, for example any restrictions on its use or distribution, its copyright status, any licence applying to it, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2009-01-05" xml:lang="fr">renseigne sur la disponibilité du texte, par exemple sur toutes restrictions quant à son usage ou sa diffusion, son copyright, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">텍스트 이용에 관한 정보를 제시한다. 예를 들어 사용 또는 배포의 제한, 저작권 상태 등.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">提供關於文件可利用性的資訊，例如使用或發行上的任何限制、版權狀態等。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2023-08-30" xml:lang="ja">テキストの利用許可に関する情報を示す。例えば、その使用や頒布の制限、著作権の状態、適用されるライセンス等。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-11-17" xml:lang="de">liefert Informationen zur Verfügbarkeit eines Textes, zum Beispiel Einschränkungen bezüglich des Gebrauchs oder der Weitergabe, Lizensierungen usw.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">proporciona información sobre la disponibilidad de un texto, por ejemplo cualquier restricción en cuanto a su uso o distribución, su copyright, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">fornisce informazioni sulla disponibilità di un testo, per esempio su qualsiasi restrizione che si applica alla sua utilizzazione o distribuzione, il suo statuto in merito al copyright, etc.</desc><classes><memberOf key="att.global"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="licence" minOccurs="1"/><textNode/></sequence></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" ident="availability-is-declarable" scheme="schematron" xml:lang="en">
     <constraint>
       <sch:pattern is-a="declarable">
         <sch:param name="tde" value="tei:availability"/>
@@ -5408,7 +5447,7 @@ creation of an electronic text.</desc><desc xmlns:rng="http://relaxng.org/ns/str
               </sch:rule>
               <sch:rule context="//tei:seriesStmt[tei:title = 'The Syriac Biographical Dictionary']/tei:idno">
                 <sch:assert test="matches(., 'http://syriaca.org/persons')">
-                 This &lt;idno&gt; element must contain "http://syriaca.org/persons". 
+                  This &lt;idno&gt; element must contain "http://syriaca.org/persons". 
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:seriesStmt[tei:title = 'Gateway to the Syriac Saints']/tei:idno">
@@ -5813,7 +5852,7 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
   implícitamente, mediante una cita bibliográfica, o explícitamente, mediante una taxonomía
   estructurada.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">definisce una tipologia o
   in modo implicito, usando una citazione bibliograficha, o in modo esplicito attraverso una
-  tassonomia strutturata.</desc><classes><memberOf key="att.global"/></classes><content><elementRef key="category"/></content><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+  tassonomia strutturata.</desc><classes><memberOf key="att.global"/></classes><content><elementRef key="category" minOccurs="1" maxOccurs="unbounded"/></content><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <classDecl>
                 <taxonomy>
@@ -5993,7 +6032,7 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
                 <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/gaddel/master/documentation/editors.xml')"/>
                 <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
                 <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
-                <sch:assert test="every $i in . satisfies $i = $refValues">
+                <sch:assert test="every $i in tokenize(., ' ') satisfies $i = $refValues">
                   Acceptable values for the @who attribute on a &lt;change&gt; element inside the &lt;revisionDesc&gt; include: 
                   <sch:value-of select="string-join($refValues, ' | ')"/>.
                 </sch:assert>
@@ -6823,32 +6862,32 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
   </exemplum><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPERSEpc">14.3.2.1. Personal Characteristics</ref>
   </listRef></elementSpec><elementSpec rend="add" module="namesdates" xml:id="gi-gender" ident="gender"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2022-05-03" xml:lang="en">gender</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2022-05-17" xml:lang="en">specifies the gender identity of a person, persona, or character.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2022-05-03" xml:lang="es">especifica la identidad de género de una persona.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2022-05-03" xml:lang="it">specifica l'identità di genere di una persona.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2022-09-21" xml:lang="ja">人、ペルソナ、あるいはキャラクターのジェンダーを示す。</desc><classes><memberOf key="att.global"/><memberOf key="att.datable"/></classes><content><textNode/></content><constraintSpec ident="documentation-on-gender" scheme="schematron">
-           <constraint>
-             <sch:rule context="tei:text//tei:gender">
-               <sch:report test="@resp and @source">Only one of the attributes @resp and @source may be supplied.</sch:report>
-               <sch:assert test="@resp or @source">One of the attributes @resp or @source must be supplied.</sch:assert>
-             </sch:rule>
-           </constraint>
-         </constraintSpec><attList><attDef ident="xml:id" mode="delete"/><attDef ident="n" mode="delete"/><attDef ident="xml:lang" mode="delete"/><attDef ident="change" mode="delete"/><attDef ident="rend" mode="delete"/><attDef ident="corresp" mode="delete"/><attDef ident="previous" mode="delete"/><attDef ident="ana" mode="change">
-             <constraintSpec ident="gender-ana-values" scheme="schematron">
-               <constraint>
-                 <sch:schema queryBinding="xslt2">
-                   <sch:ns uri="http://www.tei-c.org/ns/1.0" prefix="tei"/>
-                   <sch:ns uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" prefix="rdf"/>
-                   <sch:ns uri="http://www.w3.org/2004/02/skos/core#" prefix="skos"/>
-                   <sch:pattern>
-                     <sch:rule context="tei:gender/@ana">
-                       <sch:let name="taxonomy" value="doc('https://raw.githubusercontent.com/srophe/syriaca-data/refs/heads/gaddel_development/data/taxonomy/taxonomy.rdf')"/>
-                       <sch:let name="genders" value="$taxonomy//rdf:Description[@rdf:about='http://syriaca.org/taxonomy/gender']/skos:narrower/@rdf:resource"/>
-                       <sch:assert test="every $i in (tokenize(., ' ')) satisfies $i = $genders" role="warning">
-                         Availabe values for gender are <sch:value-of select="string-join($genders, '; ')"/>. If one of
-                         these does not apply, please use a descriptive term of your choosing for editors to consider for inclusion.</sch:assert>
-                     </sch:rule>
-                   </sch:pattern>
-                 </sch:schema>
-               </constraint>
-             </constraintSpec>
-           </attDef><attDef ident="value" mode="delete"/></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
+            <constraint>
+              <sch:rule context="tei:text//tei:gender">
+                <sch:report test="@resp and @source">Only one of the attributes @resp and @source may be supplied.</sch:report>
+                <sch:assert test="@resp or @source">One of the attributes @resp or @source must be supplied.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><attList><attDef ident="xml:id" mode="delete"/><attDef ident="n" mode="delete"/><attDef ident="xml:lang" mode="delete"/><attDef ident="change" mode="delete"/><attDef ident="rend" mode="delete"/><attDef ident="corresp" mode="delete"/><attDef ident="previous" mode="delete"/><attDef ident="ana" mode="change">
+              <constraintSpec ident="gender-ana-values" scheme="schematron">
+                <constraint>
+                  <sch:schema queryBinding="xslt2">
+                    <sch:ns uri="http://www.tei-c.org/ns/1.0" prefix="tei"/>
+                    <sch:ns uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#" prefix="rdf"/>
+                    <sch:ns uri="http://www.w3.org/2004/02/skos/core#" prefix="skos"/>
+                    <sch:pattern>
+                      <sch:rule context="tei:gender/@ana">
+                        <sch:let name="taxonomy" value="doc('https://raw.githubusercontent.com/srophe/syriaca-data/refs/heads/gaddel_development/data/taxonomy/taxonomy.rdf')"/>
+                        <sch:let name="genders" value="$taxonomy//rdf:Description[@rdf:about='http://syriaca.org/taxonomy/gender']/skos:narrower/@rdf:resource"/>
+                        <sch:assert test="every $i in (tokenize(., ' ')) satisfies $i = $genders" role="warning">
+                          Availabe values for gender are <sch:value-of select="string-join($genders, '; ')"/>. If one of
+                          these does not apply, please use a descriptive term of your choosing for editors to consider for inclusion.</sch:assert>
+                      </sch:rule>
+                    </sch:pattern>
+                  </sch:schema>
+                </constraint>
+              </constraintSpec>
+            </attDef><attDef ident="value" mode="delete"/></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-gender-egXML-tt" source="#NONE">
       <gender value="W">woman</gender>
     </egXML>
@@ -6929,7 +6968,7 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
     식별되는 관련성에 관한 정보를 제공한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">描述一項語言互動中參與者之間的關係或社交關聯。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-04-05" xml:lang="ja">人、場所、組織間の関係に関する情報を、散文またはリンクによる形式的表 現で示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-11-06" xml:lang="it">fornisce informazioni relative alle relazioni
     identificate tra persone, luoghi e organizzazioni, a livello informale discorsivo o sotto forma
     di legami formalmente espressi</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">describe las relaciones o los lazos sociales entre los
-    participantes de una interacción verbal.</desc><classes><memberOf key="att.global"/><memberOf key="model.listLike"/></classes><content><elementRef key="relation"/></content><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
+    participantes de una interacción verbal.</desc><classes><memberOf key="att.global"/><memberOf key="model.listLike"/></classes><content><elementRef key="relation" minOccurs="1" maxOccurs="unbounded"/></content><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-listRelation-egXML-ln" source="#UND">
       <listPerson>
         <person xml:id="pp1">
@@ -7506,7 +7545,7 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
                 <dataRef key="teidata.pointer"/>
               </datatype></attDef><attDef ident="mutual" usage="opt"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2005-07-24" xml:lang="en">supplies a list of participants amongst all of whom the relationship holds equally.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-04-06" xml:lang="es">proporciona una lista de participantes entre los cuales se establece una idéntica relación</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2009-03-19" xml:lang="fr">fournit une liste de participants entre lesquels la relation est réciproque.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-11-06" xml:lang="it">fornisce una lista di partecipanti tra i quali c'è una relazione paritaria</desc><datatype minOccurs="2" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
-              </datatype></attDef></attList><attDef ident="xml:id" mode="delete"/><attDef ident="n" mode="delete"/><attDef ident="xml:lang" mode="delete"/><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" ident="name">
+              </datatype></attDef></attList><attDef ident="n" mode="delete"/><attDef ident="xml:lang" mode="delete"/><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" ident="name">
       <desc versionDate="2005-10-27" xml:lang="en">supplies a name for the kind of relationship of which this is an instance.</desc>
       <desc versionDate="2007-12-20" xml:lang="ko">이것이 실례인 관련성 종류에 대한 이름을 제공한다.</desc>
       <desc versionDate="2007-05-02" xml:lang="zh-TW">提供該關係的確切名稱。</desc>
