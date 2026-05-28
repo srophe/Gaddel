@@ -132,15 +132,25 @@
           </content>
           <constraintSpec ident="bibl-child-req" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:body//tei:bibl">
-                <sch:assert test="tei:title | tei:idno">
-                  Every &lt;bibl&gt; element must have either a child &lt;title&gt; element
-                  or a child &lt;idno&gt; element.
+              <sch:rule context="tei:body//tei:listBibl[@type='manuscripts']/tei:bibl">
+                <sch:assert test="tei:label">
+                  <!-- Add the requirement of a ptr once we have those mss records in place. -->
+                  A manuscript &lt;bibl&gt; element must have a child &lt;label&gt; element.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body//tei:listBibl[@type='ancientVersions']/tei:bibl">
+                <sch:assert test="tei:label or tei:ptr">
+                  A manuscript &lt;bibl&gt; element must have a child &lt;label&gt; element.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body//tei:listBibl[not(@type='manuscripts' or @type='ancientVersion')]/tei:bibl">
+                <sch:assert test="tei:ptr">
+                  A manuscript &lt;bibl&gt; element must have a child &lt;ptr&gt; element.
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:body/child::tei:bibl">
                 <sch:assert test="tei:title and tei:idno and tei:listBibl">
-                  Every work-level &lt;bibl&gt; element must as child elements at least &lt;title&gt;, 
+                  Every work-level &lt;bibl&gt; element must have as child elements at least &lt;title&gt;, 
                   &lt;idno&gt;, and &lt;listBibl&gt;.
                 </sch:assert>
                 <sch:report test="tei:note">
@@ -218,6 +228,7 @@
                 <valItem ident="lawd:Citation"/>
                 <valItem ident="lawd:ConceptualWork"/>
                 <valItem ident="lawd:Edition"/>
+                <valItem ident="syriaca:AncientVersion"/>
                 <valItem ident="syriaca:DigitalCatalog"/>
                 <valItem ident="syriaca:Manuscript"/>
                 <valItem ident="syriaca:ModernTranslation"/>
