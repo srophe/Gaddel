@@ -1494,6 +1494,7 @@
             <memberOf key="att.datable" mode="delete"/>
             <memberOf key="att.datable.custom" mode="delete"/>
             <memberOf key="att.sortable" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="add"/>
           </classes>
           <content>
             <elementRef key="desc" minOccurs="1" maxOccurs="1"/>
