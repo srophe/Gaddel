@@ -140,7 +140,7 @@
               </sch:rule>
               <sch:rule context="tei:body//tei:listBibl[@type='ancientVersions']/tei:bibl">
                 <sch:assert test="tei:label or tei:ptr">
-                  A manuscript &lt;bibl&gt; element must have a child &lt;label&gt; element.
+                  An ancient versions &lt;bibl&gt; element must have a child &lt;label&gt; element.
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:body//tei:listBibl[not(@type='manuscripts' or @type='ancientVersion')]/tei:bibl">
