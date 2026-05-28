@@ -73,6 +73,7 @@
         <classRef key="att.global.analytic"/>
         <classRef key="att.global.change"/>
         <classRef key="att.global.linking"/>
+        <classRef key="att.global.source"/>
                
                 
                 
@@ -335,7 +336,9 @@
               <sch:rule context="//@source">
                 <sch:let name="biblIDs" value="//tei:text//tei:bibl/@xml:id"/>
                 <sch:let name="biblIDpointers" value="for $i in $biblIDs return concat('#', $i)"/>
-                <sch:assert test="                  every $i in tokenize(., ' ')                  satisfies $i = $biblIDpointers">
+                <sch:assert test="
+                  every $i in tokenize(., ' ')
+                  satisfies $i = $biblIDpointers">
                   This @source attribute can contain one or more of the following <sch:value-of select="$biblIDpointers"/>.
                 </sch:assert>
               </sch:rule>
@@ -751,6 +754,7 @@
           <classes mode="change">
             <memberOf key="att.global" mode="delete"/>
             <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.global.source" mode="add"/>
           </classes>
           <content>
             <sequence preserveOrder="false">
@@ -759,6 +763,9 @@
               <textNode/>
             </sequence>
           </content>
+          <attList>
+            <attDef ident="source" mode="change" usage="opt"/>
+          </attList>
         </elementSpec>
         
         

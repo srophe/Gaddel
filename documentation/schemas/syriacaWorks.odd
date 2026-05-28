@@ -397,12 +397,12 @@
         
         
         
-        <elementSpec ident="editor" module="core" mode="change">
+        <!--<elementSpec ident="editor" module="core" mode="change">
           <classes>
             <memberOf key="att.global.source" mode="add"/>
           </classes>
           
-        </elementSpec>
+        </elementSpec>-->
         
         
         

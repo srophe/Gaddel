@@ -873,112 +873,6 @@ associated with a dated element, at the time indicated.</desc>
         <name>Janelle Jenstad</name>
       </respStmt>
     </egXML>
-  </exemplum></classSpec><classSpec rend="add" predeclare="true" xml:id="GBLSRC" module="tei" type="atts" ident="att.global.source"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-08-22" xml:lang="en">provides attributes used by elements to point to an external source.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2019-09-18" xml:lang="ja">外部ソースを参照する要素によって用いられる属性を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2025-02-06" xml:lang="de">stellt Attribute bereit, anhand derer die Elemente auf eine externe Quelle verweisen.</desc><classes/><constraintSpec ident="source-att-values" scheme="schematron">
-            <constraint>
-              <sch:rule context="//@source">
-                <sch:let name="biblIDs" value="//tei:text//tei:bibl/@xml:id"/>
-                <sch:let name="biblIDpointers" value="for $i in $biblIDs return concat('#', $i)"/>
-                <sch:assert test="                  every $i in tokenize(., ' ')                  satisfies $i = $biblIDpointers">
-                  This @source attribute can contain one or more of the following <sch:value-of select="$biblIDpointers"/>.
-                </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" scheme="schematron" ident="only_1_ODD_source" xml:lang="en">
-        <constraint>
-          <sch:rule context="tei:*[@source]">
-            <sch:let name="srcs" value="tokenize( normalize-space(@source),' ')"/>
-            <sch:report test="(   self::tei:classRef                                 | self::tei:dataRef                                 | self::tei:elementRef                                 | self::tei:macroRef                                 | self::tei:moduleRef                                 | self::tei:schemaSpec )                                   and                                   $srcs[2]">
-              When used on a schema description element (like
-              <sch:value-of select="name(.)"/>), the @source attribute
-              should have only 1 value. (This one has <sch:value-of select="count($srcs)"/>.)
-            </sch:report>
-          </sch:rule>
-        </constraint>
-      </constraintSpec><attList><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" ident="source" usage="opt">
-      <desc versionDate="2010-05-09" xml:lang="en">specifies the source from which some aspect of this element is drawn.</desc>
-      <desc versionDate="2019-09-18" xml:lang="ja">この要素の何らかの側面を示すソースを指定する。</desc>
-      <desc versionDate="2025-02-06" xml:lang="de">gibt die Quelle an, aus der ein Bestandteil dieses Elements stammt.</desc>
-      <datatype maxOccurs="unbounded">
-        <dataRef key="teidata.pointer"/>
-      </datatype>
-      <constraintSpec scheme="schematron" ident="only_1_ODD_source" xml:lang="en">
-        <constraint>
-          <sch:rule context="tei:*[@source]">
-            <sch:let name="srcs" value="tokenize( normalize-space(@source),' ')"/>
-            <sch:report test="(   self::tei:classRef                                 | self::tei:dataRef                                 | self::tei:elementRef                                 | self::tei:macroRef                                 | self::tei:moduleRef                                 | self::tei:schemaSpec )                                   and                                   $srcs[2]">
-              When used on a schema description element (like
-              <sch:value-of select="name(.)"/>), the @source attribute
-              should have only 1 value. (This one has <sch:value-of select="count($srcs)"/>.)
-            </sch:report>
-          </sch:rule>
-        </constraint>
-      </constraintSpec>
-      <remarks versionDate="2017-06-06" xml:lang="en">
-        <p>The <att>source</att> attribute points to an external
-        source. When used on an element describing a schema component
-        (<gi>classRef</gi>, <gi>dataRef</gi>, <gi>elementRef</gi>,
-        <gi>macroRef</gi>, <gi>moduleRef</gi>, or
-        
-        <gi>schemaSpec</gi>), it identifies the source from which
-        declarations for the components should be obtained.</p>
-        <p>On other elements it provides a pointer to the
-        bibliographical source from which a quotation or citation is
-        drawn.</p>
-        <p>In either case, the location may be provided using any form
-        of URI, for example an absolute URI, a relative URI, a private
-        scheme URI of the form <code>tei:x.y.z</code>, where
-        <code>x.y.z</code> indicates the version number, e.g.
-        <code>tei:4.3.2</code> for TEI P5 release 4.3.2 or (as a
-        special case) <code>tei:current</code> for whatever is the
-        latest release, or a private scheme URI that is expanded to an
-        absolute URI as documented in a <gi>prefixDef</gi>.</p>
-        <p>When used on elements describing schema components,
-        <att>source</att> should have only one value; when used on
-        other elements multiple values are permitted.</p>
-      </remarks>
-        <remarks versionDate="2022-05-09" xml:lang="ja">
-        <p><att>source</att> 属性は外部ソースを指し示す。<gi>schemaSpec</gi> 
-          や <gi>moduleRef</gi> といったスキーマの構成要素を記述する要素で用いられた場合は、
-          その定義しようとしているオブジェクトの構成要素の宣言が得られるソースを特定する。
-          その他の要素では、引用の出典となる書誌ソースへのポインタを提供する。いずれの場合も、
-          場所は何らかの URI、例えば絶対 URI や相対 URI、<gi>prefixDef</gi> 
-          に定められた方法で絶対 URI に展開できる私用形式の URI で与えることができる。
-          複数の場所が指定された場合、デフォルトでは要求されたソースがそれらのリソースの組み合わせによって得られるものと想定される。</p>
-        </remarks>
-    </attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-tz" source="#SOURCE-eg-01">
-      <p> As Willard McCarty (<bibl xml:id="mcc_2012">2012, p.2</bibl>) tells us, <quote source="#mcc_2012">‘Collaboration’ is a problematic and should be a contested
-          term.</quote>
-        
-      </p>
-    </egXML>
-  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-te">
-      <p>
-        
-        <quote source="#chicago_15_ed">Grammatical theories are in flux, and the more we learn, the
-          less we seem to know.</quote>
-        
-      </p>
-      
-      <bibl xml:id="chicago_15_ed"><title level="m">The Chicago Manual of Style</title>,
-          <edition>15th edition</edition>. <pubPlace>Chicago</pubPlace>: <publisher>University of
-          Chicago Press</publisher> (<date>2003</date>), <biblScope unit="page">p.147</biblScope>.
-      </bibl>
-    </egXML>
-  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-fx" source="#UND">
-      <elementRef key="p" source="tei:2.0.1"/>
-    </egXML>
-    <p>Include in the schema an element named <gi>p</gi> available from the TEI P5 2.0.1
-      release.</p>
-  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-rt" source="#UND">
-      <schemaSpec ident="myODD" source="mycompiledODD.xml">
-        
-      </schemaSpec>
-    </egXML>
-    <p>Create a schema using components taken from the file <ident>mycompiledODD.xml</ident>.</p>
   </exemplum></classSpec><classSpec rend="add" module="tei" type="atts" xml:id="MEASUREMENT" ident="att.measurement">
   <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2006-01-05" xml:lang="en">provides attributes to represent a regularized or normalized measurement.</desc>
   <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">정상화 또는 규격화된 측정 방식을 표상하는 속성을 제시한다.</desc>
@@ -6917,7 +6811,7 @@ psychological significance.
   </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-editor" ident="editor"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2012-12-27" xml:lang="en">contains a secondary statement of responsibility for a bibliographic item, for example the name of an individual, institution or organization, (or of several such) acting as editor, compiler, translator, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">서지 항목의 책임에 관한 2차적 진술, 예를 들어, 편집, 번역 등의 작업을 한 편집, 개인, 기관,
     또는 기구의 이름</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">書目項目的次要責任歸屬，例如扮演編輯、編譯、翻譯等角色的個人、機構或組織 (或其他類似者) 的名稱。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">書誌情報における、第二位の責任者を示す。個人、団体、組織、編集者、編 纂者、翻訳者の名前など。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">mention de responsabilité secondaire pour un item
     bibliographique, par exemple le nom d'une personne, d'une institution ou d'un organisme (ou de
-    plusieurs d'entre eux) comme éditeur scientifique, compilateur, traducteur, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">declaración secundaria de responsabilidad para un ítem bibliográfico, por ejemplo un nombre particular, o institucional (o cualquier otro) que ha actuado como editor, compilador, traductor, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">è la dichiarazione di responsabilità secondaria di ciascuna unità bibliografica, ad esempio il nome di un individuo, di un'istituzione o organizzazione che agisce come curatore, compilatore, traduttore, ecc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">beinhaltet zusätzliche Angaben zur Verantwortlichkeit für ein bibliografisches Objekt, z. B. den Namen einer Person, Institution oder Organisation (oder mehreren davon), welche als Herausgeber, Kompilator, Übersetzer etc. fungiert.</desc><classes><memberOf key="att.naming"/><memberOf key="model.respLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="date" minOccurs="0" maxOccurs="1"/><elementRef key="persName" minOccurs="0" maxOccurs="1"/><textNode/></sequence></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="role-on-editor" scheme="schematron">
+    plusieurs d'entre eux) comme éditeur scientifique, compilateur, traducteur, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">declaración secundaria de responsabilidad para un ítem bibliográfico, por ejemplo un nombre particular, o institucional (o cualquier otro) que ha actuado como editor, compilador, traductor, etc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">è la dichiarazione di responsabilità secondaria di ciascuna unità bibliografica, ad esempio il nome di un individuo, di un'istituzione o organizzazione che agisce come curatore, compilatore, traduttore, ecc.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">beinhaltet zusätzliche Angaben zur Verantwortlichkeit für ein bibliografisches Objekt, z. B. den Namen einer Person, Institution oder Organisation (oder mehreren davon), welche als Herausgeber, Kompilator, Übersetzer etc. fungiert.</desc><classes><memberOf key="att.global.source"/><memberOf key="att.naming"/><memberOf key="model.respLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="date" minOccurs="0" maxOccurs="1"/><elementRef key="persName" minOccurs="0" maxOccurs="1"/><textNode/></sequence></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="role-on-editor" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:teiHeader//tei:editor">
                 <sch:assert test="./@role">A @role attribute is required on the &lt;editor&gt;
@@ -6963,7 +6857,7 @@ psychological significance.
                   element inside &lt;body&gt;.</sch:report>
               </sch:rule>
             </constraint>
-          </constraintSpec><attList><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="ref" mode="change">
+          </constraintSpec><attList><attDef ident="source" mode="change" usage="opt"/><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="ref" mode="change">
               <desc>Should contain the URI of a Syriaca.org editor from <ref target="http://syriaca.org/documentation/editors">this list</ref>.</desc>
             </attDef><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="role" mode="change">
               <desc>Specifies the connection of the editor to the work, selected from
@@ -15606,7 +15500,113 @@ associated.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi
            between them.</p>
       </exemplum>
       
-    </attDef></attList></classSpec><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="ST" xml:id="DSTTEI2" ident="tei" type="core"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="CMC" ident="cmc"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" n="CO" xml:id="DCO" ident="core"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" n="CE" xml:id="DCE" ident="certainty"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" n="FT" xml:id="DFTFF" ident="figures"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="HD" xml:id="DHD" ident="header"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="SA" xml:id="DSA" ident="linking"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="MS" xml:id="DMSD2" ident="msdescription"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="ND" xml:id="DND" ident="namesdates"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="TD" xml:id="DTDDTD" ident="tagdocs"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" n="DS" xml:id="DDS" ident="textstructure"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" n="AI" xml:id="DAI" ident="analysis"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="PH" xml:id="DPH" ident="transcr"/></schemaSpec>
+    </attDef></attList></classSpec><classSpec rend="add" predeclare="true" xml:id="GBLSRC" module="tei" type="atts" ident="att.global.source"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-08-22" xml:lang="en">provides attributes used by elements to point to an external source.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2019-09-18" xml:lang="ja">外部ソースを参照する要素によって用いられる属性を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2025-02-06" xml:lang="de">stellt Attribute bereit, anhand derer die Elemente auf eine externe Quelle verweisen.</desc><classes/><constraintSpec ident="source-att-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="//@source">
+                <sch:let name="biblIDs" value="//tei:text//tei:bibl/@xml:id"/>
+                <sch:let name="biblIDpointers" value="for $i in $biblIDs return concat('#', $i)"/>
+                <sch:assert test="                   every $i in tokenize(., ' ')                   satisfies $i = $biblIDpointers">
+                  This @source attribute can contain one or more of the following <sch:value-of select="$biblIDpointers"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" scheme="schematron" ident="only_1_ODD_source" xml:lang="en">
+        <constraint>
+          <sch:rule context="tei:*[@source]">
+            <sch:let name="srcs" value="tokenize( normalize-space(@source),' ')"/>
+            <sch:report test="(   self::tei:classRef                                 | self::tei:dataRef                                 | self::tei:elementRef                                 | self::tei:macroRef                                 | self::tei:moduleRef                                 | self::tei:schemaSpec )                                   and                                   $srcs[2]">
+              When used on a schema description element (like
+              <sch:value-of select="name(.)"/>), the @source attribute
+              should have only 1 value. (This one has <sch:value-of select="count($srcs)"/>.)
+            </sch:report>
+          </sch:rule>
+        </constraint>
+      </constraintSpec><attList><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" ident="source" usage="opt">
+      <desc versionDate="2010-05-09" xml:lang="en">specifies the source from which some aspect of this element is drawn.</desc>
+      <desc versionDate="2019-09-18" xml:lang="ja">この要素の何らかの側面を示すソースを指定する。</desc>
+      <desc versionDate="2025-02-06" xml:lang="de">gibt die Quelle an, aus der ein Bestandteil dieses Elements stammt.</desc>
+      <datatype maxOccurs="unbounded">
+        <dataRef key="teidata.pointer"/>
+      </datatype>
+      <constraintSpec scheme="schematron" ident="only_1_ODD_source" xml:lang="en">
+        <constraint>
+          <sch:rule context="tei:*[@source]">
+            <sch:let name="srcs" value="tokenize( normalize-space(@source),' ')"/>
+            <sch:report test="(   self::tei:classRef                                 | self::tei:dataRef                                 | self::tei:elementRef                                 | self::tei:macroRef                                 | self::tei:moduleRef                                 | self::tei:schemaSpec )                                   and                                   $srcs[2]">
+              When used on a schema description element (like
+              <sch:value-of select="name(.)"/>), the @source attribute
+              should have only 1 value. (This one has <sch:value-of select="count($srcs)"/>.)
+            </sch:report>
+          </sch:rule>
+        </constraint>
+      </constraintSpec>
+      <remarks versionDate="2017-06-06" xml:lang="en">
+        <p>The <att>source</att> attribute points to an external
+        source. When used on an element describing a schema component
+        (<gi>classRef</gi>, <gi>dataRef</gi>, <gi>elementRef</gi>,
+        <gi>macroRef</gi>, <gi>moduleRef</gi>, or
+        
+        <gi>schemaSpec</gi>), it identifies the source from which
+        declarations for the components should be obtained.</p>
+        <p>On other elements it provides a pointer to the
+        bibliographical source from which a quotation or citation is
+        drawn.</p>
+        <p>In either case, the location may be provided using any form
+        of URI, for example an absolute URI, a relative URI, a private
+        scheme URI of the form <code>tei:x.y.z</code>, where
+        <code>x.y.z</code> indicates the version number, e.g.
+        <code>tei:4.3.2</code> for TEI P5 release 4.3.2 or (as a
+        special case) <code>tei:current</code> for whatever is the
+        latest release, or a private scheme URI that is expanded to an
+        absolute URI as documented in a <gi>prefixDef</gi>.</p>
+        <p>When used on elements describing schema components,
+        <att>source</att> should have only one value; when used on
+        other elements multiple values are permitted.</p>
+      </remarks>
+        <remarks versionDate="2022-05-09" xml:lang="ja">
+        <p><att>source</att> 属性は外部ソースを指し示す。<gi>schemaSpec</gi> 
+          や <gi>moduleRef</gi> といったスキーマの構成要素を記述する要素で用いられた場合は、
+          その定義しようとしているオブジェクトの構成要素の宣言が得られるソースを特定する。
+          その他の要素では、引用の出典となる書誌ソースへのポインタを提供する。いずれの場合も、
+          場所は何らかの URI、例えば絶対 URI や相対 URI、<gi>prefixDef</gi> 
+          に定められた方法で絶対 URI に展開できる私用形式の URI で与えることができる。
+          複数の場所が指定された場合、デフォルトでは要求されたソースがそれらのリソースの組み合わせによって得られるものと想定される。</p>
+        </remarks>
+    </attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-tz" source="#SOURCE-eg-01">
+      <p> As Willard McCarty (<bibl xml:id="mcc_2012">2012, p.2</bibl>) tells us, <quote source="#mcc_2012">‘Collaboration’ is a problematic and should be a contested
+          term.</quote>
+        
+      </p>
+    </egXML>
+  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-te">
+      <p>
+        
+        <quote source="#chicago_15_ed">Grammatical theories are in flux, and the more we learn, the
+          less we seem to know.</quote>
+        
+      </p>
+      
+      <bibl xml:id="chicago_15_ed"><title level="m">The Chicago Manual of Style</title>,
+          <edition>15th edition</edition>. <pubPlace>Chicago</pubPlace>: <publisher>University of
+          Chicago Press</publisher> (<date>2003</date>), <biblScope unit="page">p.147</biblScope>.
+      </bibl>
+    </egXML>
+  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-fx" source="#UND">
+      <elementRef key="p" source="tei:2.0.1"/>
+    </egXML>
+    <p>Include in the schema an element named <gi>p</gi> available from the TEI P5 2.0.1
+      release.</p>
+  </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="GBLSRC-egXML-rt" source="#UND">
+      <schemaSpec ident="myODD" source="mycompiledODD.xml">
+        
+      </schemaSpec>
+    </egXML>
+    <p>Create a schema using components taken from the file <ident>mycompiledODD.xml</ident>.</p>
+  </exemplum></classSpec><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="ST" xml:id="DSTTEI2" ident="tei" type="core"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="CMC" ident="cmc"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" n="CO" xml:id="DCO" ident="core"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" n="CE" xml:id="DCE" ident="certainty"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" n="FT" xml:id="DFTFF" ident="figures"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="HD" xml:id="DHD" ident="header"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="SA" xml:id="DSA" ident="linking"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="MS" xml:id="DMSD2" ident="msdescription"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="ND" xml:id="DND" ident="namesdates"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="TD" xml:id="DTDDTD" ident="tagdocs"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" n="DS" xml:id="DDS" ident="textstructure"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" n="AI" xml:id="DAI" ident="analysis"/><moduleSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" n="PH" xml:id="DPH" ident="transcr"/></schemaSpec>
     </body>
   </text>
 </TEI>
