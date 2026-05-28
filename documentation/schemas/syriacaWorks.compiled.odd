@@ -4958,7 +4958,7 @@ psychological significance.
             </constraint>
           </constraintSpec><constraintSpec ident="mssCitation" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:text//tei:desc//tei:bibl or //tei:text//tei:note//tei:bibl">
+              <sch:rule context="//tei:text//tei:desc//tei:bibl | //tei:text//tei:note//tei:bibl">
                 <sch:assert test="@type='MS'">
                   Must be @type='MS'. If not a mss, use &lt;title&gt;.
                 </sch:assert>
@@ -4966,7 +4966,7 @@ psychological significance.
                   This &lt;bibl&gt; must have a &lt;ptr&gt; element with @target attribute.
                 </sch:assert>
               </sch:rule>
-              <sch:rule context="//tei:text//tei:desc//tei:bibl/tei:ptr/@target or //tei:text//tei:note//tei:bibl/tei:ptr/@target">
+              <sch:rule context="//tei:text//tei:desc//tei:bibl/tei:ptr/@target | //tei:text//tei:note//tei:bibl/tei:ptr/@target">
                 <sch:assert test="matches(., concat('http://syriaca.org/manuscript/', '\d+$'))">
                   This @target attribute must point to a Syriaca.org manuscript URI taking the form "http://syriaca.org/manuscript/{\d+$}} where {\d+$} is a number.
                 </sch:assert>
