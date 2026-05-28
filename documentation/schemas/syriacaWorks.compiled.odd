@@ -3148,8 +3148,8 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
               <sch:rule context="tei:noteGrp[@type='abstract']/tei:desc">
                 <sch:assert test=". = 'Abstract'">Text node must be "Abstract".</sch:assert>
               </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='content']/tei:desc">
-                <sch:assert test=". = 'Content'">Text node must be "Content".</sch:assert>
+              <sch:rule context="tei:noteGrp[@type='contents']/tei:desc">
+                <sch:assert test=". = 'Contents'">Text node must be "Contents".</sch:assert>
               </sch:rule>
               <sch:rule context="tei:noteGrp[@type='disambiguation']/tei:desc">
                 <sch:assert test=". = 'Disambiguation'">Text node must be "Disambiguation".</sch:assert>
@@ -4184,7 +4184,7 @@ psychological significance.
   </listRef></elementSpec><elementSpec rend="add" module="core" xml:id="gi-noteGrp" ident="noteGrp"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2022-06-09" xml:lang="en">note group</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains a group of notes.</desc><classes><memberOf key="att.global"/><memberOf key="att.anchoring"/><memberOf key="att.cmc"/><memberOf key="att.placement"/><memberOf key="att.pointing"/><memberOf key="att.typed"/><memberOf key="att.written"/><memberOf key="model.noteLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="true"><elementRef key="desc" minOccurs="1" maxOccurs="1"/><elementRef key="note" minOccurs="1" maxOccurs="unbounded"/></sequence></content><attList><attDef ident="type" mode="change" usage="req">
               <valList type="closed">
                 <valItem ident="abstract"/>
-                <valItem ident="content"/>
+                <valItem ident="contents"/>
                 <valItem ident="disambiguation"/>
                 <valItem ident="excerpts"/>
                 <valItem ident="explicit"/>

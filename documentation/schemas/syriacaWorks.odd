@@ -364,8 +364,8 @@
               <sch:rule context="tei:noteGrp[@type='abstract']/tei:desc">
                 <sch:assert test=". = 'Abstract'">Text node must be "Abstract".</sch:assert>
               </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='content']/tei:desc">
-                <sch:assert test=". = 'Content'">Text node must be "Content".</sch:assert>
+              <sch:rule context="tei:noteGrp[@type='contents']/tei:desc">
+                <sch:assert test=". = 'Contents'">Text node must be "Contents".</sch:assert>
               </sch:rule>
               <sch:rule context="tei:noteGrp[@type='disambiguation']/tei:desc">
                 <sch:assert test=". = 'Disambiguation'">Text node must be "Disambiguation".</sch:assert>
@@ -790,7 +790,7 @@
             <attDef ident="type" mode="change" usage="req">
               <valList type="closed">
                 <valItem ident="abstract"/>
-                <valItem ident="content"/>
+                <valItem ident="contents"/>
                 <valItem ident="disambiguation"/>
                 <valItem ident="excerpts"/>
                 <valItem ident="explicit"/>
