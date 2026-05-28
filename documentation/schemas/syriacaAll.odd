@@ -1351,7 +1351,7 @@
           </classes>
           <constraintSpec ident="target-in-ptr" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:body[not(child::bibl)]//tei:bibl/tei:ptr/@target" role="warning">
+              <sch:rule context="//tei:body[not(child::tei:bibl)]//tei:bibl/tei:ptr/@target" role="warning">
                 <sch:let name="error" value="."/>
                 <sch:assert test="matches(., 'http://syriaca.org/cbss/[A-Z\d]{8}')">
                   The @target value: "<sch:value-of select="$error"/>" is not a Syriaca.org cbss URI. These URIs take the form of 

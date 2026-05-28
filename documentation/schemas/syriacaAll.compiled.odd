@@ -4855,7 +4855,9 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
                 <sch:let name="series" value="ancestor::tei:TEI//tei:seriesStmt/tei:idno[@type='URI']"/>
                 <sch:let name="corresps" value="parent::*/tei:desc[@xml:lang='en']/@corresp/tokenize(., '\s')"/>
                 <sch:assert test="every $i in $series satisfies $i = $corresps">
-                  Each series in the header must have an abstract. As such, each of the following must appear once as a value on the @corresp attribute of an abstract: <sch:value-of select="string-join($series, ';  ')"/>.
+                  Each abstract must be associated with a series. As such, each of the following 
+                  must appear once as a value on the @corresp attribute of an abstract: 
+                  <sch:value-of select="string-join($series, ';  ')"/>.
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -5718,7 +5720,7 @@ Measures</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#CONAAB">3.6.5. Abbreviations and Their Expansions</ref>
   </listRef></elementSpec><elementSpec rend="add" module="core" xml:id="gi-ptr" ident="ptr"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-07-04" xml:lang="en">pointer</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">포인터</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW"/><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-06" xml:lang="es">puntero</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">pointeur</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-11-06" xml:lang="it">puntatore</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2006-01-11" xml:lang="en">defines a pointer to another location.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">다른 위치로의 포인터를 정의한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">標明一個與其他位置相連結的指標。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">他の場所を示すポインターを定義する。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">définit un pointeur vers un autre emplacement.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">define un señalizador a otra localización.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">definisce un puntatore ad un'altra posizione.</desc><classes><memberOf key="att.global"/><memberOf key="att.pointing"/><memberOf key="model.ptrLike"/></classes><content><empty xmlns:rng="http://relaxng.org/ns/structure/1.0"/></content><constraintSpec ident="target-in-ptr" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:body[not(child::bibl)]//tei:bibl/tei:ptr/@target" role="warning">
+              <sch:rule context="//tei:body[not(child::tei:bibl)]//tei:bibl/tei:ptr/@target" role="warning">
                 <sch:let name="error" value="."/>
                 <sch:assert test="matches(., 'http://syriaca.org/cbss/[A-Z\d]{8}')">
                   The @target value: "<sch:value-of select="$error"/>" is not a Syriaca.org cbss URI. These URIs take the form of 
@@ -7637,7 +7639,7 @@ psychological significance.
     liberamente i cui componeneti potrebbero o meno essere codificati esplicitamente.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-13" xml:lang="de">enthält eine lose strukturierte bibliografische Angabe, in der einzelne Komponenten explizit
     ausgezeichnet sein können.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.biblLike"/><memberOf key="model.biblPart"/></classes><content><alternate minOccurs="0" maxOccurs="unbounded"><textNode xmlns:rng="http://relaxng.org/ns/structure/1.0"/><classRef xmlns:rng="http://relaxng.org/ns/structure/1.0" key="model.gLike"/><classRef xmlns:rng="http://relaxng.org/ns/structure/1.0" key="model.highlighted"/><classRef xmlns:rng="http://relaxng.org/ns/structure/1.0" key="model.pPart.data"/><classRef xmlns:rng="http://relaxng.org/ns/structure/1.0" key="model.pPart.edit"/><classRef xmlns:rng="http://relaxng.org/ns/structure/1.0" key="model.segLike"/><classRef xmlns:rng="http://relaxng.org/ns/structure/1.0" key="model.ptrLike"/><classRef xmlns:rng="http://relaxng.org/ns/structure/1.0" key="model.biblPart"/><classRef xmlns:rng="http://relaxng.org/ns/structure/1.0" key="model.global"/></alternate></content><constraintSpec ident="mssCitation" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:text//tei:desc//tei:bibl | //tei:text//tei:note//tei:bibl">
+              <sch:rule context="//tei:text//tei:desc//tei:bibl or //tei:text//tei:note//tei:bibl">
                 <sch:assert test="@type='MS'">
                   Must be @type='MS'. If not a mss, use &lt;title&gt;.
                 </sch:assert>
@@ -7645,7 +7647,7 @@ psychological significance.
                   This &lt;bibl&gt; must have a &lt;ptr&gt; element with @target attribute.
                 </sch:assert>
               </sch:rule>
-              <sch:rule context="//tei:text//tei:desc//tei:bibl/tei:ptr/@target | //tei:text//tei:note//tei:bibl/tei:ptr/@target">
+              <sch:rule context="//tei:text//tei:desc//tei:bibl/tei:ptr/@target or //tei:text//tei:note//tei:bibl/tei:ptr/@target">
                 <sch:assert test="matches(., concat('http://syriaca.org/manuscript/', '\d+$'))">
                   This @target attribute must point to a Syriaca.org manuscript URI taking the form "http://syriaca.org/manuscript/{\d+$}} where {\d+$} is a number.
                 </sch:assert>

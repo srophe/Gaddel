@@ -130,7 +130,7 @@
               <elementRef key="listBibl" minOccurs="0" maxOccurs="unbounded"/>
             </sequence>
           </content>
-          <constraintSpec ident="bibl-child-req" scheme="schematron">
+          <constraintSpec ident="bibl-in-context" scheme="schematron">
             <constraint>
               <sch:rule context="tei:body//tei:listBibl[@type='manuscripts']/tei:bibl">
                 <sch:assert test="tei:label">
@@ -397,9 +397,12 @@
         
         
         
-        <!--<elementSpec ident="editor" module="core" mode="change">
+        <elementSpec ident="editor" module="core" mode="change">
+          <classes>
+            <memberOf key="att.global.source" mode="add"/>
+          </classes>
           
-          </elementSpec>-->
+        </elementSpec>
         
         
         
@@ -606,14 +609,14 @@
           <attList>
             <attDef ident="subtype" mode="change">
               <valList type="closed">
-                <valItem ident="order"/>
+                <valItem ident="book"/>
+                <valItem ident="collection"/>
+                <valItem ident="part"/>
               </valList>
             </attDef>
             <attDef ident="type" mode="change">
               <valList type="closed">
-                <valItem ident="book"/>
-                <valItem ident="collection"/>
-                <valItem ident="part"/>
+                <valItem ident="order"/>
               </valList>
             </attDef>
           </attList>
