@@ -379,8 +379,8 @@
               <sch:rule context="tei:noteGrp[@type='incipit']/tei:desc">
                 <sch:assert test=". = 'Incipit'">Text node must be "Incipit".</sch:assert>
               </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='prologue']/tei:desc">
-                <sch:assert test=". = 'Prologue'">Text node must be "Prologue".</sch:assert>
+              <sch:rule context="tei:noteGrp[@type='prolog']/tei:desc">
+                <sch:assert test=". = 'Prolog'">Text node must be "Prolog".</sch:assert>
               </sch:rule>
               <sch:rule context="tei:noteGrp[@type='scope']/tei:desc">
                 <sch:assert test=". = 'Scope'">Text node must be "Scope".</sch:assert>
@@ -713,8 +713,8 @@
                   This &lt;note&gt; must contain a @type attribute with value "abstract".
                 </sch:assert>
               </sch:rule>
-              <sch:rule context="tei:body//tei:noteGrp[@type='prologue']/tei:note">
-                <sch:assert test="@type='prologue'">
+              <sch:rule context="tei:body//tei:noteGrp[@type='prolog']/tei:note">
+                <sch:assert test="@type='prolog'">
                   This &lt;note&gt; must contain a @type attribute with value "abstract".
                 </sch:assert>
               </sch:rule>
@@ -728,9 +728,9 @@
           <constraintSpec ident="quotes-in-notes" scheme="schematron">
             <constraint>
               <sch:rule context="
-                tei:body//tei:note[@type=('excerpt','explicit','incipit','prologue')]">
+                tei:body//tei:note[@type=('excerpt','explicit','incipit','prolog')]">
                 <sch:assert test="tei:quote and count(*) = count(tei:quote)">
-                  When &lt;note&gt; has type excerpt, explicit, incipit, or prologue,
+                  When &lt;note&gt; has type excerpt, explicit, incipit, or prolog,
                   it must contain only &lt;quote&gt; elements.
                 </sch:assert>
               </sch:rule>
@@ -767,8 +767,8 @@
                 <valItem ident="incipit">
                   <desc>A note containing the beginning of the work.</desc>
                 </valItem>
-                <valItem ident="prologue">
-                  <desc>A note containing the prologue of the work.</desc>
+                <valItem ident="prolog">
+                  <desc>A note containing the prolog of the work.</desc>
                 </valItem>
                 <valItem ident="scope">
                   <desc>A note describes the works relationship to larger works 
@@ -798,7 +798,7 @@
                 <valItem ident="excerpts"/>
                 <valItem ident="explicit"/>
                 <valItem ident="incipit"/>
-                <valItem ident="prologue"/>
+                <valItem ident="prolog"/>
                 <valItem ident="scope"/>
               </valList>
             </attDef>
