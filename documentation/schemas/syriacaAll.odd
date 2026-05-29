@@ -74,6 +74,7 @@
         <classRef key="att.global.change"/>
         <classRef key="att.global.linking"/>
         <classRef key="att.global.source"/>
+        <classRef key="att.typed"/>
                
                 
                 
@@ -649,7 +650,6 @@
             <memberOf key="att.global.change" mode="delete"/>
             <memberOf key="att.cmc" mode="delete"/>
             <memberOf key="att.translatable" mode="delete"/>
-            <memberOf key="att.typed" mode="delete"/>
           </classes>
           <content>
             <sequence preserveOrder="false">
@@ -722,8 +722,8 @@
             <attDef ident="previous" mode="delete"/>
             <attDef ident="rend" mode="delete"/>
             <attDef ident="xml:id" mode="delete"/>
-            <attDef ident="type" mode="change">
-              <valList type="closed" mode="replace">
+            <attDef ident="type" mode="replace">
+              <valList type="closed">
                 <valItem ident="abstract"/>
                 <valItem ident="note"/>
               </valList>
