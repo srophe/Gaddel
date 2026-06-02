@@ -650,10 +650,15 @@
                   This &lt;listBibl&gt; requires a &lt;desc&gt;.
                 </sch:assert>
               </sch:rule>
+              <sch:rule context="tei:body//tei:listBibl">
+                <sch:assert test="@type">
+                  This &lt;listBibl&gt; requires a @type attribute.
+                </sch:assert>
+              </sch:rule>
             </constraint>
           </constraintSpec>
           <attList>
-            <attDef ident="type" mode="change" usage="req">
+            <attDef ident="type" mode="change" usage="rec">
               <valList type="closed">
                 <valItem ident="editions"/>
                 <valItem ident="manuscripts"/>
