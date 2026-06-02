@@ -65,12 +65,6 @@
         
         
         <elementSpec ident="author" module="core" mode="change">
-          <content>
-            <sequence preserveOrder="false">
-              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
-              <textNode/>
-            </sequence>
-          </content>
           <constraintSpec ident="ref-on-author" scheme="schematron">
             <constraint>
               <sch:rule context="tei:body/child::tei:bibl/child::tei:author">

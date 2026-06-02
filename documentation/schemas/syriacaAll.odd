@@ -415,7 +415,10 @@
         
         <elementSpec ident="author" module="core" mode="change">
           <content>
-            <elementRef key="persName"/>
+            <sequence preserveOrder="false">
+              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <textNode/>
+            </sequence>
           </content>
         </elementSpec>
         
