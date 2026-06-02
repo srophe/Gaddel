@@ -5,7 +5,7 @@
     <sch:pattern>
         
         
-        
+        <!-- This standalone Schematron file is preferable to Schematron embedded in ODD because it allows XPath 2.0 -->
         
         <sch:rule context="tei:body/tei:listPerson/tei:person">
             
@@ -22,7 +22,51 @@
                 ]
                 ) &lt;= 1
                 ">
-                Only one persName with srophe:tags '#syriaca-headword' is allowed per base xml:lang.
+                Only one &gt;persName&lt; with @srophe:tags '#syriaca-headword' is allowed per base xml:lang.
+            </sch:assert>
+            
+        </sch:rule>
+        
+        
+        
+        <sch:rule context="tei:body/tei:listPlace/tei:place">
+            
+            <sch:assert test="
+                every $lang in distinct-values(
+                for $l in tei:placeName/@xml:lang
+                return substring-before(concat($l, '-'), '-')
+                )
+                satisfies count(
+                tei:placeName[
+                substring-before(concat(@xml:lang, '-'), '-') = $lang
+                and
+                contains(concat(' ', @srophe:tags, ' '), ' #syriaca-headword ')
+                ]
+                ) &lt;= 1
+                ">
+                Only one &lt;placeName&gt; with @srophe:tags '#syriaca-headword' is allowed per base xml:lang.
+            </sch:assert>
+            
+        </sch:rule>
+        
+        
+        
+        <sch:rule context="tei:body/tei:bibl">
+            
+            <sch:assert test="
+                every $lang in distinct-values(
+                for $l in tei:title/@xml:lang
+                return substring-before(concat($l, '-'), '-')
+                )
+                satisfies count(
+                tei:title[
+                substring-before(concat(@xml:lang, '-'), '-') = $lang
+                and
+                contains(concat(' ', @srophe:tags, ' '), ' #syriaca-headword ')
+                ]
+                ) &lt;= 1
+                ">
+                Only one &gt;persName&lt; with @srophe:tags '#syriaca-headword' is allowed per base xml:lang.
             </sch:assert>
             
         </sch:rule>
