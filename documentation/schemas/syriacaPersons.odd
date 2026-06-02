@@ -567,6 +567,8 @@
           </constraintSpec>
           <constraintSpec ident="langHeadword" scheme="schematron">
             <constraint>
+              <sch:ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
+              <sch:ns prefix="srophe" uri="https://srophe.app"/>
               <sch:rule context="tei:person">
                 <sch:assert test="
                   not(

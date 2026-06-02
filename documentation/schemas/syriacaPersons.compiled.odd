@@ -6326,6 +6326,8 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
             </constraint>
           </constraintSpec><constraintSpec ident="langHeadword" scheme="schematron">
             <constraint>
+              <sch:ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
+              <sch:ns prefix="srophe" uri="https://srophe.app"/>
               <sch:rule context="tei:person">
                 <sch:assert test="                   not(                   tei:persName[                   contains(concat(' ', @srophe:tags, ' '), ' #syriaca-headword ')                   ][                   preceding-sibling::tei:persName[                   contains(concat(' ', @srophe:tags, ' '), ' #syriaca-headword ')                   and                   substring-before(concat(@xml:lang, '-'), '-') =                   substring-before(concat(current()/@xml:lang, '-'), '-')                   ]                   ]                   )                   ">
                   Only one persName with srophe:tags '#syriaca-headword' is allowed per base xml:lang (i.e., treating 'en', 'en-US', 'en-x-...' as the same).
