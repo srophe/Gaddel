@@ -6327,8 +6327,8 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
           </constraintSpec><constraintSpec ident="langHeadword" scheme="schematron">
             <constraint>
               <sch:rule context="tei:person">
-                <sch:assert test="                   every $lang in distinct-values(                   for $l in tei:persName/@xml:lang                   return                   if (contains($l, '-')) then substring-before($l, '-') else string($l)                   )                   satisfies count(                   tei:persName[                   (if (contains(@xml:lang, '-'))                   then substring-before(@xml:lang, '-')                   else string(@xml:lang)                   ) = $lang                   and                   some $t in tokenize(@srophe:tags, '\s+')                   satisfies $t = '#syriaca-headword'                   ]                   ) &lt;= 1                   ">
-                  Only one persName with srophe:tags '#syriaca-headword' is allowed per base xml:lang (before any '-') within a person.
+                <sch:assert test="                   not(                   tei:persName[                   contains(concat(' ', @srophe:tags, ' '), ' #syriaca-headword ')                   ][                   preceding-sibling::tei:persName[                   contains(concat(' ', @srophe:tags, ' '), ' #syriaca-headword ')                   and                   substring-before(concat(@xml:lang, '-'), '-') =                   substring-before(concat(current()/@xml:lang, '-'), '-')                   ]                   ]                   )                   ">
+                  Only one persName with srophe:tags '#syriaca-headword' is allowed per base xml:lang (i.e., treating 'en', 'en-US', 'en-x-...' as the same).
                 </sch:assert>
               </sch:rule>
             </constraint>
