@@ -798,97 +798,6 @@ associated with a dated element, at the time indicated.</desc>
     <p>なお、<att>target</att> 属性の値には XPath 式を含む XPointer 表現が入りうる（<ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/SA.html#SATS">17.2.4. TEI XPointer Schemes</ref> を参照）。</p></remarks>
   
   
-</classSpec><classSpec rend="add" module="tei" xml:id="TYPED" type="atts" ident="att.typed" predeclare="true">
-  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-10-02" xml:lang="en">provides attributes that can be used to classify or subclassify elements in any way.</desc>
-  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">요소의 분류 또는 하위분류에서 사용될 수 있는 속성을 제공한다.</desc>
-  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">提供可依任何方法將元素分類或次要分類的一般屬性。</desc>
-  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-04-05" xml:lang="ja">要素を分類するための属性を示す。</desc>
-  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2009-05-29" xml:lang="fr">fournit des attributs qui peuvent être
-      utilisés pour classer ou interclasser des éléments de n'importe quelle façon.</desc>
-  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">proporciona atributos genéricos utilizables para cualquier clasificación o subclasificación de elementos.</desc>
-  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">assegna degli attributi generici utilizzabili per qualsiasi classificazione e sottoclassificazione di elementi</desc>
-  <constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" scheme="schematron" ident="subtypeTyped" xml:lang="en">
-    <constraint>
-      <sch:rule context="tei:*[@subtype]">
-        <sch:assert test="@type">The <sch:name/> element should not be categorized in detail with @subtype unless also categorized in general with @type</sch:assert>
-      </sch:rule>
-    </constraint>
-  </constraintSpec>
-  <attList xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <attDef ident="type" usage="opt">
-      
-      <desc versionDate="2005-10-10" xml:lang="en">characterizes the element in some sense, using any convenient
- classification scheme or typology.</desc>
-      <desc versionDate="2007-12-20" xml:lang="ko">다양한 분류 스키마 또는 유형을 사용해서 요소의 특성을 기술한다.</desc>
-      <desc versionDate="2007-05-02" xml:lang="zh-TW">用合適的分類標準或類型來描述該元素。</desc>
-      <desc versionDate="2008-04-05" xml:lang="ja">当該要素の分類を示す。</desc>
-      <desc versionDate="2009-05-29" xml:lang="fr">caractérise l'élément en utilisant n'importe quel système ou typologie de classification approprié.</desc>
-      <desc versionDate="2007-05-04" xml:lang="es">caracteriza el elemento utilizando una clasificación o tipología funcional.</desc>
-      <desc versionDate="2007-01-21" xml:lang="it">caratterizza l'elemento utilizzando una classificazione o tipologia funzionale</desc>
-      <datatype><dataRef key="teidata.enumerated"/></datatype>
-      <exemplum xml:lang="en">
-        <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="TYPED-egXML-vd" source="#NZETC01" xml:lang="en">
-          <div type="verse">
-            <head>Night in Tarras</head>
-            <lg type="stanza">
-              <l>At evening tramping on the hot white road</l>
-              <l>…</l>
-            </lg>
-            <lg type="stanza">
-              <l>A wind sprang up from nowhere as the sky</l>
-              <l>…</l>
-            </lg>
-          </div>
-        </egXML>
-      </exemplum>
-      <remarks versionDate="2012-04-21" xml:lang="en">
-        <p>The <att>type</att> attribute is present on a number of
-	elements, not all of which are members of <ident type="class">att.typed</ident>, usually because these elements
-	restrict the possible values for the attribute in a specific way.</p>
-      </remarks>
-    </attDef>
-    <attDef ident="subtype" usage="opt">
-      <gloss versionDate="2009-05-29" xml:lang="en">subtype</gloss>
-      <gloss versionDate="2009-05-29" xml:lang="fr">sous-type</gloss>
-      <desc versionDate="2005-10-10" xml:lang="en">provides a sub-categorization of the element, if needed.</desc>
-      <desc versionDate="2007-12-20" xml:lang="ko">필요하다면 요소의 하위범주를 제시한다.</desc>
-      <desc versionDate="2007-05-02" xml:lang="zh-TW">若有需要，提供該元素的次要分類</desc>
-      <desc versionDate="2008-04-05" xml:lang="ja">必要であれば、当該要素の下位分類を示す。</desc>
-      <desc versionDate="2007-06-12" xml:lang="fr">fournit une sous-catégorisation de l'élément, si
-          c'est nécessaire.</desc>
-      <desc versionDate="2007-05-04" xml:lang="es">proporciona, si es necesario, una subcategorización del elemento.</desc>
-      <desc versionDate="2007-01-21" xml:lang="it">stabilisce, se necessario, una sottocategorizzazione dell'elemento</desc>
-      <datatype><dataRef key="teidata.enumerated"/></datatype>
-      <remarks versionDate="2013-01-13" xml:lang="en">
-        <p>The <att>subtype</att> attribute may be used to provide any
-sub-classification for the element additional to that provided by its
-<att>type</att> attribute.</p>
-      </remarks>
-      <remarks versionDate="2007-06-12" xml:lang="fr">
-        <p>L'attribut <att>subtype</att> peut être employé pour fournir une
-                        sous-classification pour cet élément, en plus de celle fournie par son
-                        propre attribut <att>type</att>.</p>
-      </remarks>
-      <remarks versionDate="2008-04-06" xml:lang="es">
-        <p>El atributo <att>subtype</att> (subtipo) se puede utilizar para proporcionar cualquier subclasificación para el elemento, adicional a ésa proporcionada por su
-<att>type</att> (tipo) de atributo.</p>
-      </remarks>
-      <remarks versionDate="2008-04-05" xml:lang="ja">
-        <p>
-	属性<att>subtype</att>は、属性<att>type</att>に加えて、当該要
-    素の下位分類を示すために使われる。
-    </p>
-      </remarks>
-    </attDef>
-  </attList>
-  <remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2012-04-21" xml:lang="en">
-    <p>When appropriate, values from an established typology should be
-    used. Alternatively a typology may be defined in the associated
-    TEI header. If values are to be taken from a project-specific
-    list, this should be defined using the <gi>valList</gi> element in
-    the project-specific schema description, as described in <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/USE.html#MDMDAL">24.3.1.3. Modification of Attribute and Attribute Value Lists</ref> .</p>
-  </remarks>
-  
 </classSpec><classSpec rend="change" module="tei" type="atts" xml:id="DATABLE" ident="att.datable"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-06-12" xml:lang="en">provides attributes for normalization of elements
     that contain dates, times, or datable events.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">날짜, 시간 또는 날짜 명기 사건을 포함하는 요소의 규격화에 대한 속성을 제공한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">提供用於元素規格化的屬性， 這些元素包含日期明確的事件。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-04-05" xml:lang="ja">日付や時間または時間事象を含む要素の正規化手法を示す属性を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-06-12" xml:lang="fr">fournit des attributs pour la normalisation
     d'éléments qui contiennent des mentions d'événements datés ou susceptibles de l'être</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">atributos para registrar expresiones temporales
@@ -2943,7 +2852,98 @@ en-tête et un texte, constitue un document TEI.</desc>
       </schemaSpec>
     </egXML>
     <p>Create a schema using components taken from the file <ident>mycompiledODD.xml</ident>.</p>
-  </exemplum></classSpec><elementSpec rend="change" module="core" xml:id="gi-p" ident="p"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">paragraph</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">문단</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">段落</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">paragraphe</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">párrafo</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">paragrafo</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">Absatz</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">marks paragraphs in prose.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">산문에서 문단을 표시한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">標記散文的段落。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">散文の段落を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">marque les paragraphes dans un texte en prose.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">marca párrafos en prosa.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">indica i paragrafi in prosa</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">markiert einen Absatz in einem Prosatext.</desc><classes><memberOf key="att.global"/><memberOf key="model.pLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="date" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="gi" minOccurs="0" maxOccurs="unbounded"/><elementRef key="listBibl" minOccurs="0" maxOccurs="unbounded"/><elementRef key="note" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="lang-on-p-in-body" scheme="schematron">
+  </exemplum></classSpec><classSpec rend="add" module="tei" xml:id="TYPED" type="atts" ident="att.typed" predeclare="true">
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-10-02" xml:lang="en">provides attributes that can be used to classify or subclassify elements in any way.</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">요소의 분류 또는 하위분류에서 사용될 수 있는 속성을 제공한다.</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">提供可依任何方法將元素分類或次要分類的一般屬性。</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-04-05" xml:lang="ja">要素を分類するための属性を示す。</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2009-05-29" xml:lang="fr">fournit des attributs qui peuvent être
+      utilisés pour classer ou interclasser des éléments de n'importe quelle façon.</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">proporciona atributos genéricos utilizables para cualquier clasificación o subclasificación de elementos.</desc>
+  <desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">assegna degli attributi generici utilizzabili per qualsiasi classificazione e sottoclassificazione di elementi</desc>
+  <constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" scheme="schematron" ident="subtypeTyped" xml:lang="en">
+    <constraint>
+      <sch:rule context="tei:*[@subtype]">
+        <sch:assert test="@type">The <sch:name/> element should not be categorized in detail with @subtype unless also categorized in general with @type</sch:assert>
+      </sch:rule>
+    </constraint>
+  </constraintSpec>
+  <attList xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <attDef ident="type" usage="opt">
+      
+      <desc versionDate="2005-10-10" xml:lang="en">characterizes the element in some sense, using any convenient
+ classification scheme or typology.</desc>
+      <desc versionDate="2007-12-20" xml:lang="ko">다양한 분류 스키마 또는 유형을 사용해서 요소의 특성을 기술한다.</desc>
+      <desc versionDate="2007-05-02" xml:lang="zh-TW">用合適的分類標準或類型來描述該元素。</desc>
+      <desc versionDate="2008-04-05" xml:lang="ja">当該要素の分類を示す。</desc>
+      <desc versionDate="2009-05-29" xml:lang="fr">caractérise l'élément en utilisant n'importe quel système ou typologie de classification approprié.</desc>
+      <desc versionDate="2007-05-04" xml:lang="es">caracteriza el elemento utilizando una clasificación o tipología funcional.</desc>
+      <desc versionDate="2007-01-21" xml:lang="it">caratterizza l'elemento utilizzando una classificazione o tipologia funzionale</desc>
+      <datatype><dataRef key="teidata.enumerated"/></datatype>
+      <exemplum xml:lang="en">
+        <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="TYPED-egXML-vd" source="#NZETC01" xml:lang="en">
+          <div type="verse">
+            <head>Night in Tarras</head>
+            <lg type="stanza">
+              <l>At evening tramping on the hot white road</l>
+              <l>…</l>
+            </lg>
+            <lg type="stanza">
+              <l>A wind sprang up from nowhere as the sky</l>
+              <l>…</l>
+            </lg>
+          </div>
+        </egXML>
+      </exemplum>
+      <remarks versionDate="2012-04-21" xml:lang="en">
+        <p>The <att>type</att> attribute is present on a number of
+	elements, not all of which are members of <ident type="class">att.typed</ident>, usually because these elements
+	restrict the possible values for the attribute in a specific way.</p>
+      </remarks>
+    </attDef>
+    <attDef ident="subtype" usage="opt">
+      <gloss versionDate="2009-05-29" xml:lang="en">subtype</gloss>
+      <gloss versionDate="2009-05-29" xml:lang="fr">sous-type</gloss>
+      <desc versionDate="2005-10-10" xml:lang="en">provides a sub-categorization of the element, if needed.</desc>
+      <desc versionDate="2007-12-20" xml:lang="ko">필요하다면 요소의 하위범주를 제시한다.</desc>
+      <desc versionDate="2007-05-02" xml:lang="zh-TW">若有需要，提供該元素的次要分類</desc>
+      <desc versionDate="2008-04-05" xml:lang="ja">必要であれば、当該要素の下位分類を示す。</desc>
+      <desc versionDate="2007-06-12" xml:lang="fr">fournit une sous-catégorisation de l'élément, si
+          c'est nécessaire.</desc>
+      <desc versionDate="2007-05-04" xml:lang="es">proporciona, si es necesario, una subcategorización del elemento.</desc>
+      <desc versionDate="2007-01-21" xml:lang="it">stabilisce, se necessario, una sottocategorizzazione dell'elemento</desc>
+      <datatype><dataRef key="teidata.enumerated"/></datatype>
+      <remarks versionDate="2013-01-13" xml:lang="en">
+        <p>The <att>subtype</att> attribute may be used to provide any
+sub-classification for the element additional to that provided by its
+<att>type</att> attribute.</p>
+      </remarks>
+      <remarks versionDate="2007-06-12" xml:lang="fr">
+        <p>L'attribut <att>subtype</att> peut être employé pour fournir une
+                        sous-classification pour cet élément, en plus de celle fournie par son
+                        propre attribut <att>type</att>.</p>
+      </remarks>
+      <remarks versionDate="2008-04-06" xml:lang="es">
+        <p>El atributo <att>subtype</att> (subtipo) se puede utilizar para proporcionar cualquier subclasificación para el elemento, adicional a ésa proporcionada por su
+<att>type</att> (tipo) de atributo.</p>
+      </remarks>
+      <remarks versionDate="2008-04-05" xml:lang="ja">
+        <p>
+	属性<att>subtype</att>は、属性<att>type</att>に加えて、当該要
+    素の下位分類を示すために使われる。
+    </p>
+      </remarks>
+    </attDef>
+  </attList>
+  <remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2012-04-21" xml:lang="en">
+    <p>When appropriate, values from an established typology should be
+    used. Alternatively a typology may be defined in the associated
+    TEI header. If values are to be taken from a project-specific
+    list, this should be defined using the <gi>valList</gi> element in
+    the project-specific schema description, as described in <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/USE.html#MDMDAL">24.3.1.3. Modification of Attribute and Attribute Value Lists</ref> .</p>
+  </remarks>
+  
+</classSpec><elementSpec rend="change" module="core" xml:id="gi-p" ident="p"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">paragraph</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">문단</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">段落</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">paragraphe</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">párrafo</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">paragrafo</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">Absatz</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">marks paragraphs in prose.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">산문에서 문단을 표시한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">標記散文的段落。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">散文の段落を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">marque les paragraphes dans un texte en prose.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">marca párrafos en prosa.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">indica i paragrafi in prosa</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-24" xml:lang="de">markiert einen Absatz in einem Prosatext.</desc><classes><memberOf key="att.global"/><memberOf key="model.pLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="date" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="gi" minOccurs="0" maxOccurs="unbounded"/><elementRef key="listBibl" minOccurs="0" maxOccurs="unbounded"/><elementRef key="note" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="ref" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="lang-on-p-in-body" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:p">
                 <sch:assert test="./@xml:lang">A &lt;p&gt; element in the text body must have an @xml:lang attribute.</sch:assert>
@@ -3093,7 +3093,7 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
     dell'applicazione di un elemento, attributo, o valore di attributo.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">enthält eine kurze
   Beschreibung des Objekts, das von seinem übergeordneten Element
   annotiert wird, üblicherweise einem Dokumentationselement oder einer
-  Einheit.</desc><classes><memberOf key="att.global"/><memberOf key="model.descLike"/><memberOf key="model.labelLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="choice" minOccurs="0" maxOccurs="unbounded"/><elementRef key="date" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="measure" minOccurs="0" maxOccurs="unbounded"/><elementRef key="label" minOccurs="0" maxOccurs="unbounded"/><elementRef key="offset" minOccurs="0" maxOccurs="unbounded"/><elementRef key="orgName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="quote" minOccurs="0" maxOccurs="1"/><elementRef key="rs" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><constraintSpec ident="desc-in-person-state" scheme="schematron">
+  Einheit.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.descLike"/><memberOf key="model.labelLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="choice" minOccurs="0" maxOccurs="unbounded"/><elementRef key="date" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="measure" minOccurs="0" maxOccurs="unbounded"/><elementRef key="label" minOccurs="0" maxOccurs="unbounded"/><elementRef key="offset" minOccurs="0" maxOccurs="unbounded"/><elementRef key="orgName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="quote" minOccurs="0" maxOccurs="1"/><elementRef key="rs" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><constraintSpec ident="desc-in-person-state" scheme="schematron">
             <constraint>
               <sch:schema queryBinding="xslt2">
                 <sch:ns uri="http://www.tei-c.org/ns/1.0" prefix="tei"/>
@@ -3262,17 +3262,7 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
         type="deprecationInfo"&gt;.</sch:assert>
       </sch:rule>
     </constraint>
-  </constraintSpec><attList><attDef ident="corresp" mode="delete"/><attDef ident="subtype" mode="delete"/><attDef ident="n" mode="delete"/><attDef ident="ana" mode="delete"/><attDef ident="change" mode="delete"/><attDef ident="previous" mode="delete"/><attDef ident="rend" mode="delete"/><attDef ident="xml:id" mode="delete"/><attDef ident="xml:lang" mode="change" usage="rec"/><attDef ident="type" mode="change" rend="change"><valList type="closed" mode="change"><valItem ident="abstract"/><valItem ident="note"/></valList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
-        <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-desc-egXML-ue">
-           <dataSpec module="tei" ident="teidata.point" validUntil="2050-02-25">
-            <desc type="deprecationInfo" versionDate="2018-09-14" xml:lang="en">Several standards bodies, including NIST in the USA,
-            strongly recommend against ending the representation of a number
-            with a decimal point. So instead of <q>3.</q> use either <q>3</q>
-            or <q>3.0</q>.</desc>
-            <!-- ... -->
-         </dataSpec>
-        </egXML>
-      </exemplum></attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2021-03-15" xml:lang="en">
+  </constraintSpec><attList><attDef ident="corresp" mode="delete"/><attDef ident="type" mode="replace" rend="replace"><valList type="closed" mode="change"><valItem ident="abstract"/><valItem ident="note"/></valList></attDef><attDef ident="subtype" mode="delete"/><attDef ident="n" mode="delete"/><attDef ident="ana" mode="delete"/><attDef ident="change" mode="delete"/><attDef ident="previous" mode="delete"/><attDef ident="rend" mode="delete"/><attDef ident="xml:id" mode="delete"/><attDef ident="xml:lang" mode="change" usage="rec"/></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2021-03-15" xml:lang="en">
     <p>Example of a <gi>desc</gi> element inside a documentation element.</p>
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-desc-egXML-zo" source="#SELF">
       <dataSpec module="tei" ident="teidata.point">
@@ -3909,7 +3899,7 @@ psychological significance.
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD27">2.2.6. The Notes Statement</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBICON">3.12.2.8. Notes and Statement of Language</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/DI.html#DITPNO">10.3.5.4. Notes within Entries</ref>
-  </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-author" ident="author"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en" versionDate="2011-11-26">author</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="es" versionDate="2022-02-24">autor/a</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2011-11-26" xml:lang="fr">auteur</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">Autor</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2011-11-26" xml:lang="en">in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">참고문헌에 작가, 단독 저자, 공동 저자의 이름을 포함한다; 서지 항목의 책임에 관한 1차적 진술.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">在書目參照中，包含一件作品的作者 (群) 姓名，無論是個人或是團體性質；這也是書目項目責任歸屬的主要陳述。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2023-08-30" xml:lang="ja">書誌参照において、作品の著者となる人や法人の名前を、たとえば、よく知られた書誌典拠情報機関の形式で提供されるものに合わせるなどして記述する。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">dans une référence bibliographique contient le nom de la (des) personne(s) physique(s) ou du collectif, auteur(s) d'une oeuvre ; par exemple dans la même forme que celle utilisée par une référence bibliographique reconnue.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2022-02-24" xml:lang="es">en una referencia bibliográfica, contiene el nombre del autor/a/es, ya sea una persona o una institución, de una obra; por ejemplo, en la misma forma que la proporcionada por una autoridad bibliográfica reconocida.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">in un riferimento bibliografico contiene il nome dell'autore (o degli autori), personale o collettivo, di un'opera; è la dichiarazione di responsabilità primaria di ciascuna unità bibliografica.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">enthält in einer bibliografischen Referenz den oder die Namen eines Autors eines Werks (oder einer für das Werk verantwortlichen Körperschaft); zum Beispiel in der Form, wie sie eine anerkannte bibliografische Instanz anbietet.</desc><classes><memberOf key="att.global"/><memberOf key="att.datable"/><memberOf key="att.naming"/></classes><content><elementRef key="persName"/></content><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
+  </listRef></elementSpec><elementSpec rend="change" module="core" xml:id="gi-author" ident="author"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en" versionDate="2011-11-26">author</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="es" versionDate="2022-02-24">autor/a</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2011-11-26" xml:lang="fr">auteur</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">Autor</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2011-11-26" xml:lang="en">in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">참고문헌에 작가, 단독 저자, 공동 저자의 이름을 포함한다; 서지 항목의 책임에 관한 1차적 진술.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">在書目參照中，包含一件作品的作者 (群) 姓名，無論是個人或是團體性質；這也是書目項目責任歸屬的主要陳述。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2023-08-30" xml:lang="ja">書誌参照において、作品の著者となる人や法人の名前を、たとえば、よく知られた書誌典拠情報機関の形式で提供されるものに合わせるなどして記述する。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">dans une référence bibliographique contient le nom de la (des) personne(s) physique(s) ou du collectif, auteur(s) d'une oeuvre ; par exemple dans la même forme que celle utilisée par une référence bibliographique reconnue.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2022-02-24" xml:lang="es">en una referencia bibliográfica, contiene el nombre del autor/a/es, ya sea una persona o una institución, de una obra; por ejemplo, en la misma forma que la proporcionada por una autoridad bibliográfica reconocida.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">in un riferimento bibliografico contiene il nome dell'autore (o degli autori), personale o collettivo, di un'opera; è la dichiarazione di responsabilità primaria di ciascuna unità bibliografica.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">enthält in einer bibliografischen Referenz den oder die Namen eines Autors eines Werks (oder einer für das Werk verantwortlichen Körperschaft); zum Beispiel in der Form, wie sie eine anerkannte bibliografische Instanz anbietet.</desc><classes><memberOf key="att.global"/><memberOf key="att.datable"/><memberOf key="att.naming"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-author-egXML-lq" source="#COBICOR-eg-251">
       <author>British Broadcasting Corporation</author>
       <author>La Fayette, Marie Madeleine Pioche de la Vergne, comtesse de (1634–1693)</author>
@@ -6332,6 +6322,14 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
             <constraint>
               <sch:rule context="//tei:persName">
                 <sch:assert test="string-length(.) gt 0">The &lt;persName&gt; element cannot be empty.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><constraintSpec ident="langHeadword" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:person">
+                <sch:assert test="                   every $lang in distinct-values(                   for $l in tei:persName/@xml:lang                   return                   if (contains($l, '-')) then substring-before($l, '-') else string($l)                   )                   satisfies count(                   tei:persName[                   (if (contains(@xml:lang, '-'))                   then substring-before(@xml:lang, '-')                   else string(@xml:lang)                   ) = $lang                   and                   some $t in tokenize(@srophe:tags, '\s+')                   satisfies $t = '#syriaca-headword'                   ]                   ) &lt;= 1                   ">
+                  Only one persName with srophe:tags '#syriaca-headword' is allowed per base xml:lang (before any '-') within a person.
+                </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec><constraintSpec ident="xmlID-on-persName" scheme="schematron">

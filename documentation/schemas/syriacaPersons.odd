@@ -565,20 +565,32 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
-          <!-- This works in the schematron but not when placed into the ODD and converted to RelaxNG. There is a namespace issue I will try to troubleshoot.
-            <constraintSpec ident="langHeadword" scheme="schematron">
+          <constraintSpec ident="langHeadword" scheme="schematron">
             <constraint>
-            <sch:rule context="//tei:place/tei:placeName">
-            <sch:let name="langsOfHW" value="//tei:place/tei:placeName[@srophe:tags='#syriaca-headword']/@xml:lang"/>
-            <sch:assert test="count(./parent::tei:place/tei:placeName[@xml:lang='en' and @srophe:tags='#syriaca-headword']) = 1">
-            There can be one and only one &lt;placeName&gt; element with the combination of @srophe:tags="#syriaca-headword" and @xml:lang="en".
-            </sch:assert>
-            <sch:assert test="count(distinct-values($langsOfHW)) = count($langsOfHW)">
-            There cannot be more than one headword (@srophe:tags="#syriaca-headword") per &lt;placeName&gt; with the same language (@xml:lang).
-            </sch:assert>
-            </sch:rule>
+              <sch:rule context="tei:person">
+                <sch:assert test="
+                  every $lang in distinct-values(
+                  for $l in tei:persName/@xml:lang
+                  return
+                  if (contains($l, '-')) then substring-before($l, '-') else string($l)
+                  )
+                  satisfies count(
+                  tei:persName[
+                  (if (contains(@xml:lang, '-'))
+                  then substring-before(@xml:lang, '-')
+                  else string(@xml:lang)
+                  ) = $lang
+                  and
+                  some $t in tokenize(@srophe:tags, '\s+')
+                  satisfies $t = '#syriaca-headword'
+                  ]
+                  ) &lt;= 1
+                  ">
+                  Only one persName with srophe:tags '#syriaca-headword' is allowed per base xml:lang (before any '-') within a person.
+                </sch:assert>
+              </sch:rule>
             </constraint>
-            </constraintSpec>-->
+          </constraintSpec>
           <constraintSpec ident="xmlID-on-persName" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:person/tei:persName | //tei:text//tei:personGrp/tei:persName">
