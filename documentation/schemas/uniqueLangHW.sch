@@ -5,11 +5,35 @@
     <sch:pattern>
         
         
-        <sch:rule context="//tei:text//tei:place/tei:placeName[contains(@srophe:tags, 'syriaca-headword')]">
+        
+        
+        <sch:rule context="tei:body/tei:listPerson/tei:person">
+            
+            <sch:assert test="
+                every $lang in distinct-values(
+                for $l in tei:persName/@xml:lang
+                return substring-before(concat($l, '-'), '-')
+                )
+                satisfies count(
+                tei:persName[
+                substring-before(concat(@xml:lang, '-'), '-') = $lang
+                and
+                contains(concat(' ', @srophe:tags, ' '), ' #syriaca-headword ')
+                ]
+                ) &lt;= 1
+                ">
+                Only one persName with srophe:tags '#syriaca-headword' is allowed per base xml:lang.
+            </sch:assert>
+            
+        </sch:rule>
+        
+        
+        
+        <!--<sch:rule context="//tei:text//tei:place/tei:placeName[contains(@srophe:tags, 'syriaca-headword')]">
             <sch:report test=".[contains(@xml:lang, 'en')]/following-sibling::tei:placeName[contains(@xml:lang, 'en')][contains(@srophe:tags, '#syriaca-headword')]">
                 There must be one and only one &lt;placeName&gt; element with the combination of @srophe:tags="#syriaca-headword" and @xml:lang="en".
             </sch:report>
-        </sch:rule>
+        </sch:rule>-->
         
         <!--<sch:rule context="//tei:text//tei:place/tei:placeName[@srophe:tags='#syriaca-headword']">
             <sch:let name="langsOfHW" value="//tei:place/tei:placeName[contains(@srophe:tags, '#syriaca-headword')]/@xml:lang"/>
@@ -18,11 +42,11 @@
             </sch:assert>
         </sch:rule>-->
         
-        <sch:rule context="//tei:text//tei:person/tei:persName[contains(@srophe:tags, 'syriaca-headword')]">
+        <!--<sch:rule context="//tei:text//tei:person/tei:persName[contains(@srophe:tags, 'syriaca-headword')]">
             <sch:report test=".[contains(@xml:lang, 'en')]/following-sibling::tei:persName[contains(@xml:lang, 'en')][contains(@srophe:tags, '#syriaca-headword')]">
                 There must be one and only one &lt;persName&gt; element with the combination of @srophe:tags="#syriaca-headword" and @xml:lang="en".
             </sch:report>
-        </sch:rule>
+        </sch:rule>-->
         
         <!--<sch:rule context="//tei:text//tei:person/tei:persName[@srophe:tags='#syriaca-headword']">
             <sch:let name="langsOfHW" value="//tei:person/tei:persName[contains(@srophe:tags, '#syriaca-headword')]/@xml:lang"/>
