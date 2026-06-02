@@ -4066,6 +4066,8 @@ entre les Romains.</label>
                   <desc>A note containing the ending of the work.</desc>
                 </valItem><valItem ident="incipit">
                   <desc>A note containing the beginning of the work.</desc>
+                </valItem><valItem ident="licence">
+                  <desc>A note containing the licence. Used only in the TEI header.</desc>
                 </valItem><valItem ident="prolog">
                   <desc>A note containing the prolog of the work.</desc>
                 </valItem><valItem ident="scope">
