@@ -66,6 +66,7 @@
               <elementRef key="citedRange" minOccurs="0" maxOccurs="unbounded"/><!--Required in a citation but not inside a note or header.-->
               <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="editor" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="note" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="ptr" minOccurs="0" maxOccurs="unbounded"/><!--Required in a citation but not inside a note.-->
               <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
