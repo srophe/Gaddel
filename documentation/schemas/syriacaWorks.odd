@@ -224,6 +224,7 @@
                 <valItem ident="lawd:Edition"/>
                 <valItem ident="syriaca:AncientVersion"/>
                 <valItem ident="syriaca:DigitalCatalog"/>
+                <valItem ident="syriaca:LiteraryTradition"/>
                 <valItem ident="syriaca:Manuscript"/>
                 <valItem ident="syriaca:ModernTranslation"/>
                 <valItem ident="syriaca:PrintCatalog"/>
