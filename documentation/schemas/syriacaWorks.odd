@@ -254,7 +254,7 @@
           <attList>
             <attDef ident="unit" mode="change" usage="req">
               <valList type="closed" mode="replace">
-                <valItem ident="folio"/>
+                <valItem ident="fol"/>
                 <valItem ident="vol"/>
               </valList>
             </attDef>
