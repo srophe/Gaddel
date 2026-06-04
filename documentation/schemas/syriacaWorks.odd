@@ -385,6 +385,9 @@
               <sch:rule context="tei:noteGrp[@type='scope']/tei:desc">
                 <sch:assert test=". = 'Scope'">Text node must be "Scope".</sch:assert>
               </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='versions']/tei:desc">
+                <sch:assert test=". = 'Versions'">Text node must be "Versions".</sch:assert>
+              </sch:rule>
             </constraint>
           </constraintSpec>
         </elementSpec>
@@ -786,6 +789,11 @@
                   This &lt;note&gt; must contain a @type attribute with value "abstract".
                 </sch:assert>
               </sch:rule>
+              <sch:rule context="tei:body//tei:noteGrp[@type='versions']/tei:note">
+                <sch:assert test="@type='version'">
+                  This &lt;note&gt; must contain a @type attribute with value "abstract".
+                </sch:assert>
+              </sch:rule>
             </constraint>
           </constraintSpec>
           <constraintSpec ident="quotes-in-notes" scheme="schematron">
@@ -837,8 +845,11 @@
                   <desc>A note containing the prolog of the work.</desc>
                 </valItem>
                 <valItem ident="scope">
-                  <desc>A note describes the works relationship to larger works 
+                  <desc>A note describing the works relationship to larger works 
                     or collections containing it.</desc>
+                </valItem>
+                <valItem ident="version">
+                  <desc>A note containing a brief summary of the versions of the work.</desc>
                 </valItem>
               </valList>
             </attDef>
@@ -866,6 +877,7 @@
                 <valItem ident="incipit"/>
                 <valItem ident="prolog"/>
                 <valItem ident="scope"/>
+                <valItem ident="versions"/>
               </valList>
             </attDef>
           </attList>

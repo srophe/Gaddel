@@ -3169,6 +3169,9 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
               <sch:rule context="tei:noteGrp[@type='scope']/tei:desc">
                 <sch:assert test=". = 'Scope'">Text node must be "Scope".</sch:assert>
               </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='versions']/tei:desc">
+                <sch:assert test=". = 'Versions'">Text node must be "Versions".</sch:assert>
+              </sch:rule>
             </constraint>
           </constraintSpec><constraintSpec ident="lang-on-desc" scheme="schematron">
             <constraint>
@@ -3992,6 +3995,11 @@ entre les Romains.</label>
                   This &lt;note&gt; must contain a @type attribute with value "abstract".
                 </sch:assert>
               </sch:rule>
+              <sch:rule context="tei:body//tei:noteGrp[@type='versions']/tei:note">
+                <sch:assert test="@type='version'">
+                  This &lt;note&gt; must contain a @type attribute with value "abstract".
+                </sch:assert>
+              </sch:rule>
             </constraint>
           </constraintSpec><constraintSpec ident="quotes-in-notes" scheme="schematron">
             <constraint>
@@ -4071,8 +4079,10 @@ entre les Romains.</label>
                 </valItem><valItem ident="prolog">
                   <desc>A note containing the prolog of the work.</desc>
                 </valItem><valItem ident="scope">
-                  <desc>A note describes the works relationship to larger works 
+                  <desc>A note describing the works relationship to larger works 
                     or collections containing it.</desc>
+                </valItem><valItem ident="version">
+                  <desc>A note containing a brief summary of the versions of the work.</desc>
                 </valItem></valList></attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
     <p>In the following example, the translator has supplied a footnote
       containing an explanation of the term translated as "painterly":</p>
@@ -4194,6 +4204,7 @@ psychological significance.
                 <valItem ident="incipit"/>
                 <valItem ident="prolog"/>
                 <valItem ident="scope"/>
+                <valItem ident="versions"/>
               </valList>
             </attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2021-01-28" xml:lang="en">
     <p>In the following example, there are two notes in different
