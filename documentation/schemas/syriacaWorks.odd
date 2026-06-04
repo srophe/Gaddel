@@ -176,12 +176,11 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
-          <!-- We use @ana in persons (i.e. #syriaca-saint or #syriaca-author)and places to indicate the "monograph" level
-            association for this record, with schematron rules requiring that the values match the seriesStmt 
-            elements above. This is just easier for Winona to process. What values would be want? -->
+          <!-- For the following constraintSpec elements, we need a reciprocal rule that requires the
+          correct @ana attribute when each seriesStmt is present.-->
           <constraintSpec ident="work-bhse" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:text//tei:bibl[contains(@ana, '#syriaca-bhse')]">
+              <sch:rule context="tei:body/child::tei:bibl[contains(@ana, '#syriaca-hagiographic')]">
                 <sch:assert test="//tei:seriesStmt/tei:title = 'Bibliotheca Hagiographica Syriaca Electronica'">
                   This work record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
                   "Bibliotheca Hagiographica Syriaca Electronica".
@@ -190,24 +189,26 @@
                   This work record must include a &lt;seriesStmt&gt; indicating that it is part of the 
                   series "Gateway to the Syriac Saints".
                 </sch:assert>
-                <!-- Will we have a comparable statement for bhse in work records?
-                  <sch:assert test="//tei:state/@ref='http://syriaca.org/taxonomy/saints'">
-                  This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/saints". 
-                  </sch:assert>-->
               </sch:rule>
             </constraint>
           </constraintSpec>
           <constraintSpec ident="work-bible" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:text//tei:bibl[contains(@ana, '#syriaca-bible')]">
+              <sch:rule context="tei:body/child::tei:bibl[contains(@ana, '#syriaca-bible')]">
                 <sch:assert test="//tei:seriesStmt/tei:title = 'A Guide to the Bible in Syriac'">
-                  This person record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
+                  This work record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
                   "A Guide to the Bible in Syriac".
                 </sch:assert>
-                <!-- Will we have a comparable statement for bhse in work records?
-                  <sch:assert test="//tei:state/@ref='http://syriaca.org/taxonomy/saints'">
-                  This element must contain a child &lt;state&gt; with @ref="http://syriaca.org/taxonomy/saints". 
-                  </sch:assert>-->
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="work-science" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body/child::tei:bibl[contains(@ana, '#syriaca-scientific')]">
+                <sch:assert test="//tei:seriesStmt/tei:title = 'Syriac Scientific and Philosophical Literature'">
+                  This work record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
+                  "Syriac Scientific and Philosophical Literature".
+                </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -238,8 +239,9 @@
             <attDef ident="ana" mode="change">
               <!-- Not sure we want to do this? -->
               <valList type="closed">
-                <valItem ident="#syriaca-hagiographic"/>
                 <valItem ident="#syriaca-biblical"/>
+                <valItem ident="#syriaca-hagiographic"/>
+                <valItem ident="#syriaca-scientific"/>
               </valList>
             </attDef>
           </attList>
