@@ -127,16 +127,25 @@
                   <!-- Add the requirement of a ptr once we have those mss records in place. -->
                   A manuscript &lt;bibl&gt; element must have a child &lt;label&gt; element.
                 </sch:assert>
+                <sch:report test="@ana">
+                  The @ana attribute is not allowed here.
+                </sch:report>
               </sch:rule>
               <sch:rule context="tei:body//tei:listBibl[@type='ancientVersions']/tei:bibl">
                 <sch:assert test="tei:label or tei:ptr">
                   An ancient versions &lt;bibl&gt; element must have a child &lt;label&gt; element.
                 </sch:assert>
+                <sch:report test="@ana">
+                  The @ana attribute is not allowed here.
+                </sch:report>
               </sch:rule>
               <sch:rule context="tei:body//tei:listBibl[not(@type='manuscripts' or @type='ancientVersion')]/tei:bibl">
                 <sch:assert test="tei:ptr">
                   A manuscript &lt;bibl&gt; element must have a child &lt;ptr&gt; element.
                 </sch:assert>
+                <sch:report test="@ana">
+                  The @ana attribute is not allowed here.
+                </sch:report>
               </sch:rule>
               <sch:rule context="tei:body/child::tei:bibl">
                 <sch:assert test="tei:title and tei:idno and tei:listBibl">
@@ -483,7 +492,7 @@
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
-                <sch:assert test=". = ('accession-number', 'number', 'project-number', 'shelfmark')">
+                <sch:assert test=". = ('accession-number', 'catalog-number', 'number', 'project-number', 'shelfmark', 'URL')">
                   In the context of manuscripts, this @type value may only be "accession-number", "number",
                   "project-number", or "shelfmark". 
                 </sch:assert>
@@ -517,9 +526,9 @@
           <constraintSpec ident="idno-subtypes" scheme="schematron">
             <constraint>
               <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
-                <sch:assert test=". = ('BHO', 'BHS', 'CPG')">
-                  The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are "BHO", "BHS", 
-                  or "CPG". 
+                <sch:assert test=". = ('Bekker', 'BHO', 'BHS', 'CPG', 'Fichtner', 'Kühn', 'Takahashi')">
+                  The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are 
+                  "Bekker", "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi". 
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype" role="warning">
@@ -537,13 +546,40 @@
               <desc>The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc>
               <valList mode="replace" type="closed">
                 <valItem ident="accession-number"/>
-                <valItem ident="catalog-number"></valItem>
+                <valItem ident="catalog-number"/>
                 <valItem ident="deprecated"/>
                 <valItem ident="number"/>
                 <valItem ident="project-number"/>
                 <valItem ident="shelfmark"/>
                 <valItem ident="URI"/>
+                <valItem ident="URL"/>
                 <valItem ident="URN"/>
+              </valList>
+            </attDef>
+            <attDef ident="subtype" mode="change" usage="opt">
+              <valList mode="replace" type="semi">
+                <valItem ident="BAV"/>
+                <valItem ident="Bekker"/>
+                <valItem ident="Berlin"/>
+                <valItem ident="BHS"/>
+                <valItem ident="BHO"/>
+                <valItem ident="BL"/>
+                <valItem ident="BML"/>
+                <valItem ident="BNF"/>
+                <valItem ident="Cambridge"/>
+                <valItem ident="CPG"/>
+                <valItem ident="Crawford"/>
+                <valItem ident="Fichtner"/>
+                <valItem ident="Haddad-Isaac"/>
+                <valItem ident="Harris"/>
+                <valItem ident="Kühn"/>
+                <valItem ident="Leiden"/>
+                <valItem ident="Mingana"/>
+                <valItem ident="Rosen"/>
+                <valItem ident="Takashi"/>
+                <valItem ident="Sachau"/>
+                <valItem ident="SOAH"/>
+                <valItem ident="Sinai"/>
               </valList>
             </attDef>
           </attList>
@@ -894,7 +930,15 @@
         <elementSpec ident="relation" module="namesdates" mode="change">
           <attList>
             <attDef ident="name" mode="delete"/>
-            <attDef ident="ref" mode="change" usage="req"/>
+            <attDef ident="ref" mode="change" usage="req">
+              <valList type="closed">
+                <valItem ident="dcterms:isPartOf"/>
+                <valItem ident="dcterms:source"/>
+                <valItem ident="skos:broader"/>
+                <valItem ident="syriaca:commemorates"/>
+                <valItem ident="syriaca:different-from"/>
+              </valList>
+            </attDef>
           </attList>
         </elementSpec>
         

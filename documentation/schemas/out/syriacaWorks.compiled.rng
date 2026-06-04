@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-06-04T18:54:14Z. . 
+Schema generated from ODD source 2026-06-04T21:51:01Z. . 
 TEI Edition: P5 Version 4.10.2. Last updated on 4th September 2025, revision bcfa98f42 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.10.2/ 
   
@@ -2205,6 +2205,9 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                   
                   A manuscript &lt;bibl&gt; element must have a child &lt;label&gt; element.
                 </sch:assert>
+               <sch:report test="@ana">
+                  The @ana attribute is not allowed here.
+                </sch:report>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -2213,6 +2216,9 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                <sch:assert test="tei:label or tei:ptr">
                   An ancient versions &lt;bibl&gt; element must have a child &lt;label&gt; element.
                 </sch:assert>
+               <sch:report test="@ana">
+                  The @ana attribute is not allowed here.
+                </sch:report>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -2221,6 +2227,9 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                <sch:assert test="tei:ptr">
                   A manuscript &lt;bibl&gt; element must have a child &lt;ptr&gt; element.
                 </sch:assert>
+               <sch:report test="@ana">
+                  The @ana attribute is not allowed here.
+                </sch:report>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -2754,7 +2763,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
-               <sch:assert test=". = ('accession-number', 'number', 'project-number', 'shelfmark')">
+               <sch:assert test=". = ('accession-number', 'catalog-number', 'number', 'project-number', 'shelfmark', 'URL')">
                   In the context of manuscripts, this @type value may only be "accession-number", "number",
                   "project-number", or "shelfmark". 
                 </sch:assert>
@@ -2803,9 +2812,9 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
-               <sch:assert test=". = ('BHO', 'BHS', 'CPG')">
-                  The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are "BHO", "BHS", 
-                  or "CPG". 
+               <sch:assert test=". = ('Bekker', 'BHO', 'BHS', 'CPG', 'Fichtner', 'Kühn', 'Takahashi')">
+                  The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are 
+                  "Bekker", "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi". 
                 </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
@@ -2859,7 +2868,6 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
             </sch:rule>
          </pattern>
          <ref name="tei_att.global.attributes"/>
-         <ref name="tei_att.typed.attribute.subtype"/>
          <attribute name="type">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The <code xmlns="http://www.w3.org/1999/xhtml"
                      xmlns:rng="http://relaxng.org/ns/structure/1.0">@type</code> attribute on <code xmlns="http://www.w3.org/1999/xhtml"
@@ -2879,10 +2887,67 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                <value>URI</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>URL</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                <value>URN</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             </choice>
          </attribute>
+         <optional>
+            <attribute name="subtype">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(subtype) provides a sub-categorization of the element, if needed.
+Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7] BML; 8] BNF; 9] Cambridge; 10] CPG; 11] Crawford; 12] Fichtner; 13] Haddad-Isaac; 14] Harris; 15] Kühn; 16] Leiden; 17] Mingana; 18] Rosen; 19] Takashi; 20] Sachau; 21] SOAH; 22] Sinai</a:documentation>
+               <choice>
+                  <value>BAV</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Bekker</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Berlin</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>BHS</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>BHO</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>BL</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>BML</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>BNF</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Cambridge</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>CPG</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Crawford</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Fichtner</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Haddad-Isaac</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Harris</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Kühn</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Leiden</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Mingana</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Rosen</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Takashi</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Sachau</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>SOAH</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>Sinai</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <data type="token">
+                     <param name="pattern">[^\p{C}\p{Z}]+</param>
+                  </data>
+               </choice>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -3492,9 +3557,18 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          <ref name="tei_att.typed.attributes"/>
          <attribute name="ref">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(reference) provides an explicit means of locating a full definition or identity for the entity being named by means of one or more URIs.</a:documentation>
-            <data type="anyURI">
-               <param name="pattern">\S+</param>
-            </data>
+            <choice>
+               <value>dcterms:isPartOf</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>dcterms:source</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>skos:broader</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>syriaca:commemorates</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>syriaca:different-from</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+            </choice>
          </attribute>
          <optional>
             <attribute name="passive">

@@ -4896,16 +4896,25 @@ psychological significance.
                   
                   A manuscript &lt;bibl&gt; element must have a child &lt;label&gt; element.
                 </sch:assert>
+                <sch:report test="@ana">
+                  The @ana attribute is not allowed here.
+                </sch:report>
               </sch:rule>
               <sch:rule context="tei:body//tei:listBibl[@type='ancientVersions']/tei:bibl">
                 <sch:assert test="tei:label or tei:ptr">
                   An ancient versions &lt;bibl&gt; element must have a child &lt;label&gt; element.
                 </sch:assert>
+                <sch:report test="@ana">
+                  The @ana attribute is not allowed here.
+                </sch:report>
               </sch:rule>
               <sch:rule context="tei:body//tei:listBibl[not(@type='manuscripts' or @type='ancientVersion')]/tei:bibl">
                 <sch:assert test="tei:ptr">
                   A manuscript &lt;bibl&gt; element must have a child &lt;ptr&gt; element.
                 </sch:assert>
+                <sch:report test="@ana">
+                  The @ana attribute is not allowed here.
+                </sch:report>
               </sch:rule>
               <sch:rule context="tei:body/child::tei:bibl">
                 <sch:assert test="tei:title and tei:idno and tei:listBibl">
@@ -5829,7 +5838,7 @@ element in the TEI header.
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
-                <sch:assert test=". = ('accession-number', 'number', 'project-number', 'shelfmark')">
+                <sch:assert test=". = ('accession-number', 'catalog-number', 'number', 'project-number', 'shelfmark', 'URL')">
                   In the context of manuscripts, this @type value may only be "accession-number", "number",
                   "project-number", or "shelfmark". 
                 </sch:assert>
@@ -5862,9 +5871,9 @@ element in the TEI header.
           </constraintSpec><constraintSpec ident="idno-subtypes" scheme="schematron">
             <constraint>
               <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
-                <sch:assert test=". = ('BHO', 'BHS', 'CPG')">
-                  The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are "BHO", "BHS", 
-                  or "CPG". 
+                <sch:assert test=". = ('Bekker', 'BHO', 'BHS', 'CPG', 'Fichtner', 'Kühn', 'Takahashi')">
+                  The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are 
+                  "Bekker", "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi". 
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype" role="warning">
@@ -5901,9 +5910,34 @@ element in the TEI header.
                 </sch:report>
               </sch:rule>
             </constraint>
-          </constraintSpec><attList><attDef ident="type" mode="change" rend="change" usage="req"><desc rend="replace">The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc><datatype xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+          </constraintSpec><attList><attDef ident="subtype" mode="change" usage="opt">
+              <valList mode="replace" type="semi">
+                <valItem ident="BAV"/>
+                <valItem ident="Bekker"/>
+                <valItem ident="Berlin"/>
+                <valItem ident="BHS"/>
+                <valItem ident="BHO"/>
+                <valItem ident="BL"/>
+                <valItem ident="BML"/>
+                <valItem ident="BNF"/>
+                <valItem ident="Cambridge"/>
+                <valItem ident="CPG"/>
+                <valItem ident="Crawford"/>
+                <valItem ident="Fichtner"/>
+                <valItem ident="Haddad-Isaac"/>
+                <valItem ident="Harris"/>
+                <valItem ident="Kühn"/>
+                <valItem ident="Leiden"/>
+                <valItem ident="Mingana"/>
+                <valItem ident="Rosen"/>
+                <valItem ident="Takashi"/>
+                <valItem ident="Sachau"/>
+                <valItem ident="SOAH"/>
+                <valItem ident="Sinai"/>
+              </valList>
+            </attDef><attDef ident="type" mode="change" rend="change" usage="req"><desc rend="replace">The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc><datatype xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
         <dataRef key="teidata.enumerated"/>
-      </datatype><valList type="closed"><valItem ident="accession-number"/><valItem ident="catalog-number"/><valItem ident="deprecated"/><valItem ident="number"/><valItem ident="project-number"/><valItem ident="shelfmark"/><valItem ident="URI"/><valItem ident="URN"/></valList></attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="und">
+      </datatype><valList type="closed"><valItem ident="accession-number"/><valItem ident="catalog-number"/><valItem ident="deprecated"/><valItem ident="number"/><valItem ident="project-number"/><valItem ident="shelfmark"/><valItem ident="URI"/><valItem ident="URL"/><valItem ident="URN"/></valList></attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="und">
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-idno-egXML-ei">
       <idno type="ISBN">978-1-906964-22-1</idno>
       <idno type="ISSN">0143-3385</idno>
@@ -7092,7 +7126,15 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
         <sch:report test="@passive and not(@active)">the attribute @passive may be supplied only if the attribute @active is supplied</sch:report>
       </sch:rule>
     </constraint>
-  </constraintSpec><attList><attDef ident="ref" mode="change" usage="req"/><attList org="choice"><attDef ident="active"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2005-07-24" xml:lang="en">identifies the <soCalled>active</soCalled> participants in a non-mutual relationship, or all the participants in a mutual one.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-04-06" xml:lang="es">identifica los participantes activos en una relación no-mutua, o todos los participantes de una mutua.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-03-30" xml:lang="fr">identifie les participants actifs dans une relation à sens unique, ou tous les participants dans une relation réciproque.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-11-06" xml:lang="it">identifica i partecipanti attivi in una relazione di non reciprocità, oppure tutti i partecipanti in una relazione di reciprocità</desc><datatype minOccurs="1" maxOccurs="1">
+  </constraintSpec><attList><attDef ident="ref" mode="change" usage="req">
+              <valList type="closed">
+                <valItem ident="dcterms:isPartOf"/>
+                <valItem ident="dcterms:source"/>
+                <valItem ident="skos:broader"/>
+                <valItem ident="syriaca:commemorates"/>
+                <valItem ident="syriaca:different-from"/>
+              </valList>
+            </attDef><attList org="choice"><attDef ident="active"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2005-07-24" xml:lang="en">identifies the <soCalled>active</soCalled> participants in a non-mutual relationship, or all the participants in a mutual one.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-04-06" xml:lang="es">identifica los participantes activos en una relación no-mutua, o todos los participantes de una mutua.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-03-30" xml:lang="fr">identifie les participants actifs dans une relation à sens unique, ou tous les participants dans une relation réciproque.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-11-06" xml:lang="it">identifica i partecipanti attivi in una relazione di non reciprocità, oppure tutti i partecipanti in una relazione di reciprocità</desc><datatype minOccurs="1" maxOccurs="1">
                 <dataRef key="teidata.pointer"/>
               </datatype></attDef><attDef ident="mutual" usage="opt"><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2005-07-24" xml:lang="en">supplies a list of participants amongst all of whom the relationship holds equally.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-04-06" xml:lang="es">proporciona una lista de participantes entre los cuales se establece una idéntica relación</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2009-03-19" xml:lang="fr">fournit une liste de participants entre lesquels la relation est réciproque.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-11-06" xml:lang="it">fornisce una lista di partecipanti tra i quali c'è una relazione paritaria</desc><datatype minOccurs="2" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
