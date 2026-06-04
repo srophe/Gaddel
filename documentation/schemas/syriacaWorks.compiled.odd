@@ -3151,6 +3151,9 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
               <sch:rule context="tei:noteGrp[@type='contents']/tei:desc">
                 <sch:assert test=". = 'Contents'">Text node must be "Contents".</sch:assert>
               </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='excerpts']/tei:desc">
+                <sch:assert test=". = 'Excerpts'">Text node must be "Excerpts".</sch:assert>
+              </sch:rule>
               <sch:rule context="tei:noteGrp[@type='disambiguation']/tei:desc">
                 <sch:assert test=". = 'Disambiguation'">Text node must be "Disambiguation".</sch:assert>
               </sch:rule>
@@ -4068,7 +4071,7 @@ entre les Romains.</label>
                 </valItem><valItem ident="disambiguation">
                   <desc>A note containing a brief discussion of how to distinguish this 
                     work from others with which it has been or could be confused.</desc>
-                </valItem><valItem ident="exerpt">
+                </valItem><valItem ident="excerpt">
                   <desc>A note containing an exerpt from the work.</desc>
                 </valItem><valItem ident="explicit">
                   <desc>A note containing the ending of the work.</desc>
