@@ -3173,7 +3173,7 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
                 <sch:assert test=". = 'Scope'">Text node must be "Scope".</sch:assert>
               </sch:rule>
               <sch:rule context="tei:noteGrp[@type='versions']/tei:desc">
-                <sch:assert test=". = 'Versions'">Text node must be "Versions".</sch:assert>
+                <sch:assert test=". = 'Ancient Versions'">Text node must be "Versions".</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec><constraintSpec ident="lang-on-desc" scheme="schematron">
