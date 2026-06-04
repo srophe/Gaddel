@@ -416,7 +416,8 @@
         <elementSpec ident="author" module="core" mode="change">
           <content>
             <sequence preserveOrder="false">
-              <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="persName" minOccurs="0" maxOccurs="1"/>
+              <elementRef key="foreign" minOccurs="0" maxOccurs="1"/>
               <textNode/>
             </sequence>
           </content>
@@ -763,6 +764,7 @@
             <sequence preserveOrder="false">
               <elementRef key="date" minOccurs="0" maxOccurs="1"/>
               <elementRef key="persName" minOccurs="0" maxOccurs="1"/>
+              <elementRef key="foreign" minOccurs="0" maxOccurs="1"/>
               <textNode/>
             </sequence>
           </content>

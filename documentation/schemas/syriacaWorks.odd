@@ -78,14 +78,10 @@
           <constraintSpec ident="author-in-context" scheme="schematron">
             <constraint>
               <sch:rule context="tei:body/child::tei:bibl/child::tei:author">
-                <sch:assert test="tei:persName and count(*) = count(tei:persName)">
-                  This &lt;author&gt; element allows only one or more child &lt;persName&gt; containing the name of the author.
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl/tei:bibl/tei:author">
-                <sch:assert test="not(*) and normalize-space(.)">
-                  This &lt;author&gt; element must contain only non-empty plain text.
-                </sch:assert>
+                <sch:report test="tei:persName">
+                  This &lt;author&gt; element allows only a text node with an English name 
+                  or a &lt;foreign&gt; element with a non-English name.
+                </sch:report>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -392,12 +388,28 @@
         
         
         
-        <!--<elementSpec ident="editor" module="core" mode="change">
-          <classes>
-            <memberOf key="att.global.source" mode="add"/>
-          </classes>
-          
-        </elementSpec>-->
+        <elementSpec ident="editor" module="core" mode="change">
+          <constraintSpec ident="ref-on-editor" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:editor">
+                <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
+                  The @ref attribute on &lt;persName&gt; must take a Syriaca.org person URI which reqires 
+                  the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="editor-in-context" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:editor">
+                <sch:report test="tei:persName">
+                  This &lt;author&gt; element allows only a text node with an English name 
+                  or a &lt;foreign&gt; element with a non-English name.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
         
         
         

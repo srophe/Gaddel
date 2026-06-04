@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-06-02T16:11:53Z. . 
+Schema generated from ODD source 2026-06-04T18:08:58Z. . 
 TEI Edition: P5 Version 4.10.2. Last updated on 4th September 2025, revision bcfa98f42 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.10.2/ 
   
@@ -3919,9 +3919,12 @@ Suggested values include: 1] gloss (gloss); 2] index (index); 3] instructions (i
       <element name="author">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(author) in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority. [3.12.2.2. Titles, Authors, and Editors 2.2.1. The Title Statement]</a:documentation>
          <interleave>
-            <zeroOrMore>
+            <optional>
                <ref name="tei_persName"/>
-            </zeroOrMore>
+            </optional>
+            <optional>
+               <ref name="tei_foreign"/>
+            </optional>
             <text/>
          </interleave>
          <ref name="tei_att.global.attributes"/>
@@ -3939,6 +3942,9 @@ Suggested values include: 1] gloss (gloss); 2] index (index); 3] instructions (i
             </optional>
             <optional>
                <ref name="tei_persName"/>
+            </optional>
+            <optional>
+               <ref name="tei_foreign"/>
             </optional>
             <text/>
          </interleave>
