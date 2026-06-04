@@ -2194,6 +2194,19 @@
 
 
 
+          <elementSpec ident="author" module="core" mode="change">
+            <constraintSpec ident="exclude-ref-on-author" scheme="schematron">
+              <constraint>
+                <sch:rule context="//tei:body//tei:author">
+                  <sch:report test="./@ref">A @ref attribute is not allowed on the &lt;editor&gt;
+                    element inside &lt;body&gt;.</sch:report>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+          </elementSpec>
+          
+          
+          
           <elementSpec ident="bibl" module="core" mode="change">
             <content>
               <sequence preserveOrder="false">
@@ -2331,6 +2344,19 @@
                     </sch:rule>
                   </sch:pattern>
                 </sch:schema>
+              </constraint>
+            </constraintSpec>
+          </elementSpec>
+          
+          
+          
+          <elementSpec ident="editor" module="core" mode="change">
+            <constraintSpec ident="exclude-ref-on-editor" scheme="schematron">
+              <constraint>
+                <sch:rule context="//tei:body//tei:editor">
+                  <sch:report test="./@ref">A @ref attribute is not allowed on the &lt;editor&gt;
+                    element inside &lt;body&gt;.</sch:report>
+                </sch:rule>
               </constraint>
             </constraintSpec>
           </elementSpec>

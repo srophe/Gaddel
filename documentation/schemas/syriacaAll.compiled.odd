@@ -6756,10 +6756,6 @@ psychological significance.
                 <sch:assert test="every $i in . satisfies $i = $refValues"> Acceptable values for the @ref attribute on an &lt;editor&gt; element inside the
                   &lt;teiHeader&gt; include: <sch:value-of select="string-join($refValues, ' | ')"/>. </sch:assert>
               </sch:rule>
-              <sch:rule context="//tei:body//tei:editor">
-                <sch:report test="./@ref">A @ref attribute is not allowed on the &lt;editor&gt;
-                  element inside &lt;body&gt;.</sch:report>
-              </sch:rule>
             </constraint>
           </constraintSpec><attList><attDef ident="source" mode="change" usage="opt"/><attDef xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="ref" mode="change">
               <desc>Should contain the URI of a Syriaca.org editor from <ref target="http://syriaca.org/documentation/editors">this list</ref>.</desc>
@@ -6877,7 +6873,7 @@ psychological significance.
             </egXML>
           </exemplum><remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
             <p> The <gi>editor</gi> element is used in three places in the Srophé App. In the
-                <gi>teiHeader</gi> the editors of the document appear inside the <gi>titleStmt</gi>
+              <gi>teiHeader</gi> the editors of the document appear inside the <gi>titleStmt</gi>
               element while inside the <gi>seriesStmt</gi> the editors responsible for a series that
               the document might be a part of are listed. In the text of files, the <gi>editor</gi>
               element is used inside of <gi>bibl</gi> elements to indicated editors of works sited.
@@ -6905,7 +6901,7 @@ psychological significance.
                   <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
                   <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A.
                     Carlson</name>
-                </respStmt>
+              </respStmt>
                 <respStmt>
                   <resp>Wilmshurst index information entry by</resp>
                   <name ref="http://syriaca.org/documentation/editors.xml#adavis">Anthony
@@ -6917,7 +6913,7 @@ psychological significance.
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <respStmt>
                 <resp>These names were received as a dataset from E-Ktobe : manuscrits syriaques
-                    (<ref target="http://syriac.msscatalog.org/">http://syriac.msscatalog.org/</ref>). Née sur l’initiative d'André Binggeli
+                  (<ref target="http://syriac.msscatalog.org/">http://syriac.msscatalog.org/</ref>). Née sur l’initiative d'André Binggeli
                   (IRHT-CNRS), Françoise Briquel-Chatonnet (Orient et Méditerranée-CNRS), Muriel
                   Debié (EPHE) et Alain Desreumaux (Orient et Méditerranée-CNRS) dans le cadre du
                   programme SYRAB de l'ANR (Agence Nationale de la Recherche), la base e-ktobe est
@@ -6934,15 +6930,15 @@ psychological significance.
           </exemplum><remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
             <p> Both the editors and other parties who are responsible for the creation of this TEI
               place record are then identified individually in <gi>respStmt</gi> elements
-                (<gi>resp</gi> stands for "responsibility"). The schema requires the record have at
+              (<gi>resp</gi> stands for "responsibility"). The schema requires the record have at
               least one <gi>respStmt</gi> which would describe the contribution of the
-                <gi>editor</gi> with the <att>role</att>="creator". Most records will have multiple
-                <gi>respStmt</gi> elements, especially in cases where there were contributions made
+              <gi>editor</gi> with the <att>role</att>="creator". Most records will have multiple
+              <gi>respStmt</gi> elements, especially in cases where there were contributions made
               by persons who do not fall into the available @role values. The contents of the
-                <gi>respStmt</gi> element are the description of the responsibility wrapped in a
-                <gi>resp</gi> element followed by the name of the responsible party contained in a
-                <gi>name</gi> element or the name of the responsible organization in an
-                <gi>orgName</gi> element. The <gi>name</gi> element should take a <att>ref</att>
+              <gi>respStmt</gi> element are the description of the responsibility wrapped in a
+              <gi>resp</gi> element followed by the name of the responsible party contained in a
+              <gi>name</gi> element or the name of the responsible organization in an
+              <gi>orgName</gi> element. The <gi>name</gi> element should take a <att>ref</att>
               attribute which points to the <att>xml:id</att> of the editor within the "editors.xml"
               document. Additional participants in the creation of the file, for example by entering
               Syriac or Arabic text, can be given additional <gi>respStmt</gi> entries.</p>
@@ -7901,8 +7897,8 @@ element in the TEI header.
   </exemplum><remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" mode="add">
             <p> Every <gi>teiHeader</gi> element contains a <gi>fileDesc</gi> element (information
               about the creation of a file), an <gi>encodingDesc</gi> element (editorial rules), a
-                <gi>profileDesc</gi> element (non-bibliographic aspects of a text), and a
-                <gi>revisionDesc</gi> element (history of revisions). </p>
+              <gi>profileDesc</gi> element (non-bibliographic aspects of a text), and a
+              <gi>revisionDesc</gi> element (history of revisions). </p>
           </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD11">2.1.1. The TEI Header and Its Components</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CC.html#CCDEF">16.1. Varieties of Composite Text</ref>
@@ -7940,7 +7936,7 @@ element in the TEI header.
     </egXML>
   </exemplum><remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" mode="add">
             <p> Each <gi>fileDesc</gi> element contains (in order) a <gi>titleStmt</gi>, an
-                <gi>editionStmt</gi>, a <gi>publicationStmt</gi>, an optional <gi>seriesStmt</gi>,
+              <gi>editionStmt</gi>, a <gi>publicationStmt</gi>, an optional <gi>seriesStmt</gi>,
               and a <gi>sourceDesc</gi>. </p>
           </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD2">2.2. The File Description</ref>
@@ -8136,8 +8132,8 @@ material</measure>
             <p>The <gi>publicationStmt</gi> is where we identify Syriaca.org as the entity
               responsible for publishing this information, indicate the date of the most recent
               edit, and identify the use license (Creative Commons CC-BY). The
-                <gi>publicationStmt</gi> contains requires (in order) the following
-                <gi>authority</gi>, <gi>idno</gi>, <gi>availability</gi>, and <gi>date</gi>. </p>
+              <gi>publicationStmt</gi> contains requires (in order) the following
+              <gi>authority</gi>, <gi>idno</gi>, <gi>availability</gi>, and <gi>date</gi>. </p>
           </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD24">2.2.4. Publication, Distribution, Licensing, etc.</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD2">2.2. The File Description</ref>
@@ -8554,7 +8550,7 @@ source or sources from which it was derived.</desc><desc xmlns:rng="http://relax
                     editors of such print maps provided the digital coordinate data used to prepare
                     the print maps. Specifically, coordinates which are attributed to <title>The
                       Gorgias Encyclopedic Dictionary of the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) or to
-                      <title>The Syriac World</title> (<ref target="http://syriaca.org/bibl/PUTG99V4">http://syriaca.org/bibl/PUTG99V4</ref>) were extracted from the KML files
+                    <title>The Syriac World</title> (<ref target="http://syriaca.org/bibl/PUTG99V4">http://syriaca.org/bibl/PUTG99V4</ref>) were extracted from the KML files
                     used to create the print maps for those volumes. Because only the print maps
                     were published, the citation for these coordinates refers to the print source.
                     The editors of the <title>The Syriac Gazetteer</title> are grateful to the
@@ -8623,13 +8619,13 @@ source or sources from which it was derived.</desc><desc xmlns:rng="http://relax
                   <p>The editors have silently normalized data from other sources in some cases. The
                     primary instances are listed below.</p>
                   <p>The capitalization of names from <title>The Gorgias Encyclopedic Dictionary of
-                    the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) was normalized silently (i.e. names in
+                      the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) was normalized silently (i.e. names in
                     ALL-CAPS were replaced by Proper-noun capitalization).</p>
                   <p>The unchanging parts of alternate names from the editions and translations of
                     Barsoum, <title>The Scattered Pearls: A History of Syriac Literature and
                       Sciences</title> (<ref target="http://syriaca.org/bibl/2">http://syriaca.org/bibl/2</ref>, <ref target="http://syriaca.org/bibl/3">http://syriaca.org/bibl/3</ref>, or <ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) have been supplied silently.</p>
                   <p>Names from the English translation of Barsoum, <title>The Scattered Pearls: A
-                    History of Syriac Literature and Sciences</title> (<ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) were
+                      History of Syriac Literature and Sciences</title> (<ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) were
                     silently transformed into sentence word order rather than the headword
                     alphabetization used by Barsoum. Commas were silently removed.</p>
                 </editorialDecl>
@@ -8641,7 +8637,7 @@ source or sources from which it was derived.</desc><desc xmlns:rng="http://relax
               aspects of the process of encoding the text. Even data are "born digital," they
               nevertheless have certain editorial decisions regarding how they have used data
               derived from print resources, and certain tags available for use in our
-                <att>srophe:tags</att> attribute. Those sorts of details are encoded here.</p>
+              <att>srophe:tags</att> attribute. Those sorts of details are encoded here.</p>
           </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD5">2.3. The Encoding Description</ref>
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD11">2.1.1. The TEI Header and Its Components</ref>
@@ -8677,7 +8673,7 @@ during the encoding of a text.</desc><desc xmlns:rng="http://relaxng.org/ns/stru
               An <gi>editorialDecl</gi> cannot directly contain prose, so a prose description of
               each editorial decision should be wrapped in a <gi>p</gi> element. References to
               particular bibliographic entries can have their Syriaca.org URIs wrapped in an
-                <gi>idno</gi> for specificity. The first <gi>p</gi> element should contain a pointer
+              <gi>idno</gi> for specificity. The first <gi>p</gi> element should contain a pointer
               to the Syriaca.org documentation.</p>
           </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD53">2.3.3. The Editorial Practices Declaration</ref>
@@ -9168,12 +9164,12 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
           </exemplum><remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" mode="add">
             <p>The <gi>change</gi> element takes attributes <att>when</att> and <att>who</att> which
               indicate the date of the change and the person who made the change. The value of
-                <att>when</att> is a date in "yyyy-mm-dd" format, whereas <att>who</att> will have
+              <att>when</att> is a date in "yyyy-mm-dd" format, whereas <att>who</att> will have
               the value of an <att>xml:id</att> attribute from
               "http://syriaca.org/documentation/editors.xml" - the list of editors. An optional
-                <att>n</att> attribute whose value is a version number can indicate that this change
+              <att>n</att> attribute whose value is a version number can indicate that this change
               advanced the version number (given in the <gi>editionStmt</gi> within the
-                <gi>fileDesc</gi> element). The contents of the <gi>change</gi> element describe the
+              <gi>fileDesc</gi> element). The contents of the <gi>change</gi> element describe the
               revision that was made.</p>
           </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD6">2.6. The Revision Description</ref>

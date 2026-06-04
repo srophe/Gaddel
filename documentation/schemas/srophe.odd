@@ -33,11 +33,11 @@
     <profileDesc>
       <!-- Instructions for processing the Syriaca.org chained ODD in oXygen.
         - Begin by processing this ODD file into a compiled ODD using the transformation scenario "ODD to Compiled ODD".
-          - Save this as srophe.compiled.odd and then delete the @start attribute from tei:schemaSpec.
-          - This compiled ODD (without a tei:schemaSpec/@start attribute) will be the starting point for the next step in the chained ODD.
+        - Save this as srophe.compiled.odd and then delete the @start attribute from tei:schemaSpec.
+        - This compiled ODD (without a tei:schemaSpec/@start attribute) will be the starting point for the next step in the chained ODD.
         - This compiled ODD can also be used to generate a .rng file against which you can validate a TEI document. 
-          - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
-          - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
+        - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
+        - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
     </profileDesc>
   </teiHeader>
   <text>
@@ -63,7 +63,7 @@
           roleName settlement state surname trait"/>
         <moduleRef key="tagdocs" include="gi"/>
         <!--<moduleRef key="textcrit"/>
-        <moduleRef key="transcr"/>-->
+          <moduleRef key="transcr"/>-->
         <moduleRef key="textstructure" include="back body div front TEI text"/>
         <classRef key="att.global.analytic"/>
         <classRef key="att.global.change"/>
@@ -115,11 +115,11 @@
           <remarks mode="add">
             <p> Every <gi>teiHeader</gi> element contains a <gi>fileDesc</gi> element (information
               about the creation of a file), an <gi>encodingDesc</gi> element (editorial rules), a
-                <gi>profileDesc</gi> element (non-bibliographic aspects of a text), and a
-                <gi>revisionDesc</gi> element (history of revisions). </p>
+              <gi>profileDesc</gi> element (non-bibliographic aspects of a text), and a
+              <gi>revisionDesc</gi> element (history of revisions). </p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="fileDesc" module="header" mode="change">
           <classes mode="change">
             <memberOf key="att.global.analytic" mode="delete"/>
@@ -139,11 +139,11 @@
           </content>
           <remarks mode="add">
             <p> Each <gi>fileDesc</gi> element contains (in order) a <gi>titleStmt</gi>, an
-                <gi>editionStmt</gi>, a <gi>publicationStmt</gi>, an optional <gi>seriesStmt</gi>,
+              <gi>editionStmt</gi>, a <gi>publicationStmt</gi>, an optional <gi>seriesStmt</gi>,
               and a <gi>sourceDesc</gi>. </p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="titleStmt" module="header" mode="change">
           <content>
             <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
@@ -183,7 +183,7 @@
               optional <gi>respStmt</gi> elements. </p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="classDecl" module="header" mode="change">
           <classes mode="change">
             <memberOf key="att.global.analytic" mode="delete"/>
@@ -212,7 +212,7 @@
               with "syriaca-headword", for example. </p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="taxonomy" module="header" mode="change">
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -234,7 +234,7 @@
               with "syriaca-headword", for example. </p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="category" module="header" mode="change">
           <classes mode="change">
             <memberOf key="att.global.analytic" mode="delete"/>
@@ -263,7 +263,7 @@
               brief prose description of the category’s purpose.</p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="catDesc" module="header" mode="change">
           <classes mode="change">
             <memberOf key="att.global.analytic" mode="delete"/>
@@ -291,7 +291,7 @@
               purpose.</p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="revisionDesc" module="header" mode="change">
           <content>
             <elementRef key="change" minOccurs="0" maxOccurs="unbounded"/>
@@ -341,7 +341,7 @@
               “underReview”. Each revision contains a <gi>change</gi> element. </p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="change" module="header" mode="change">
           <attList>
             <attDef ident="when" mode="change" usage="req"/>
@@ -366,16 +366,16 @@
           <remarks mode="add">
             <p>The <gi>change</gi> element takes attributes <att>when</att> and <att>who</att> which
               indicate the date of the change and the person who made the change. The value of
-                <att>when</att> is a date in "yyyy-mm-dd" format, whereas <att>who</att> will have
+              <att>when</att> is a date in "yyyy-mm-dd" format, whereas <att>who</att> will have
               the value of an <att>xml:id</att> attribute from
               "http://syriaca.org/documentation/editors.xml" - the list of editors. An optional
-                <att>n</att> attribute whose value is a version number can indicate that this change
+              <att>n</att> attribute whose value is a version number can indicate that this change
               advanced the version number (given in the <gi>editionStmt</gi> within the
-                <gi>fileDesc</gi> element). The contents of the <gi>change</gi> element describe the
+              <gi>fileDesc</gi> element). The contents of the <gi>change</gi> element describe the
               revision that was made.</p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="respStmt" module="header" mode="change">
           <content>
             <sequence preserveOrder="true">
@@ -392,7 +392,7 @@
                   <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
                   <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A.
                     Carlson</name>
-                </respStmt>
+              </respStmt>
                 <respStmt>
                   <resp>Wilmshurst index information entry by</resp>
                   <name ref="http://syriaca.org/documentation/editors.xml#adavis">Anthony
@@ -405,7 +405,7 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <respStmt>
                 <resp>These names were received as a dataset from E-Ktobe : manuscrits syriaques
-                    (<ref target="http://syriac.msscatalog.org/">http://syriac.msscatalog.org/</ref>). Née sur l’initiative d'André Binggeli
+                  (<ref target="http://syriac.msscatalog.org/">http://syriac.msscatalog.org/</ref>). Née sur l’initiative d'André Binggeli
                   (IRHT-CNRS), Françoise Briquel-Chatonnet (Orient et Méditerranée-CNRS), Muriel
                   Debié (EPHE) et Alain Desreumaux (Orient et Méditerranée-CNRS) dans le cadre du
                   programme SYRAB de l'ANR (Agence Nationale de la Recherche), la base e-ktobe est
@@ -423,21 +423,21 @@
           <remarks mode="add">
             <p> Both the editors and other parties who are responsible for the creation of this TEI
               place record are then identified individually in <gi>respStmt</gi> elements
-                (<gi>resp</gi> stands for "responsibility"). The schema requires the record have at
+              (<gi>resp</gi> stands for "responsibility"). The schema requires the record have at
               least one <gi>respStmt</gi> which would describe the contribution of the
-                <gi>editor</gi> with the <att>role</att>="creator". Most records will have multiple
-                <gi>respStmt</gi> elements, especially in cases where there were contributions made
+              <gi>editor</gi> with the <att>role</att>="creator". Most records will have multiple
+              <gi>respStmt</gi> elements, especially in cases where there were contributions made
               by persons who do not fall into the available @role values. The contents of the
-                <gi>respStmt</gi> element are the description of the responsibility wrapped in a
-                <gi>resp</gi> element followed by the name of the responsible party contained in a
-                <gi>name</gi> element or the name of the responsible organization in an
-                <gi>orgName</gi> element. The <gi>name</gi> element should take a <att>ref</att>
+              <gi>respStmt</gi> element are the description of the responsibility wrapped in a
+              <gi>resp</gi> element followed by the name of the responsible party contained in a
+              <gi>name</gi> element or the name of the responsible organization in an
+              <gi>orgName</gi> element. The <gi>name</gi> element should take a <att>ref</att>
               attribute which points to the <att>xml:id</att> of the editor within the "editors.xml"
               document. Additional participants in the creation of the file, for example by entering
               Syriac or Arabic text, can be given additional <gi>respStmt</gi> entries.</p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="editor" module="core" mode="change">
           <classes mode="change">
             <memberOf key="att.global.analytic" mode="delete"/>
@@ -498,10 +498,6 @@
                 <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
                 <sch:assert test="every $i in . satisfies $i = $refValues"> Acceptable values for the @ref attribute on an &lt;editor&gt; element inside the
                   &lt;teiHeader&gt; include: <sch:value-of select="string-join($refValues, ' | ')"/>. </sch:assert>
-              </sch:rule>
-              <sch:rule context="//tei:body//tei:editor">
-                <sch:report test="./@ref">A @ref attribute is not allowed on the &lt;editor&gt;
-                  element inside &lt;body&gt;.</sch:report>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -630,14 +626,14 @@
           </exemplum>
           <remarks mode="add">
             <p> The <gi>editor</gi> element is used in three places in the Srophé App. In the
-                <gi>teiHeader</gi> the editors of the document appear inside the <gi>titleStmt</gi>
+              <gi>teiHeader</gi> the editors of the document appear inside the <gi>titleStmt</gi>
               element while inside the <gi>seriesStmt</gi> the editors responsible for a series that
               the document might be a part of are listed. In the text of files, the <gi>editor</gi>
               element is used inside of <gi>bibl</gi> elements to indicated editors of works sited.
             </p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="name" module="namesdates" mode="change">
           <constraintSpec ident="ref-on-name" scheme="schematron">
             <constraint>
@@ -648,7 +644,7 @@
             </constraint>
           </constraintSpec>
         </elementSpec>
-
+        
         <elementSpec ident="editionStmt" module="header" mode="change">
           <classes mode="change">
             <memberOf key="att.global.analytic" mode="delete"/>
@@ -674,7 +670,7 @@
               or by a minor version (i.e. to "1.1"). </p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="publicationStmt" module="header" mode="change">
           <content>
             <sequence preserveOrder="true">
@@ -702,14 +698,14 @@
             <p>The <gi>publicationStmt</gi> is where we identify Syriaca.org as the entity
               responsible for publishing this information, indicate the date of the most recent
               edit, and identify the use license (Creative Commons CC-BY). The
-                <gi>publicationStmt</gi> contains requires (in order) the following
-                <gi>authority</gi>, <gi>idno</gi>, <gi>availability</gi>, and <gi>date</gi>. </p>
+              <gi>publicationStmt</gi> contains requires (in order) the following
+              <gi>authority</gi>, <gi>idno</gi>, <gi>availability</gi>, and <gi>date</gi>. </p>
           </remarks>
         </elementSpec>
-
-
         
-
+        
+        
+        
         <elementSpec ident="seriesStmt" module="header" mode="change">
           <content>
             <sequence minOccurs="0" maxOccurs="unbounded">
@@ -721,7 +717,7 @@
             </sequence>
           </content>
         </elementSpec>
-
+        
         <elementSpec ident="biblScope" module="core" mode="change">
           <classes mode="change">
             <memberOf key="att.global.analytic" mode="delete"/>
@@ -738,7 +734,7 @@
             </sequence>
           </content>
         </elementSpec>
-
+        
         <elementSpec ident="sourceDesc" module="header" mode="change">
           <content>
             <alternate>
@@ -810,7 +806,7 @@
               digital," should be used. For text encoding projects</p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="encodingDesc" module="header" mode="change">
           <classes mode="change">
             <memberOf key="att.global.analytic" mode="delete"/>
@@ -853,7 +849,7 @@
                     editors of such print maps provided the digital coordinate data used to prepare
                     the print maps. Specifically, coordinates which are attributed to <title>The
                       Gorgias Encyclopedic Dictionary of the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) or to
-                      <title>The Syriac World</title> (<ref target="http://syriaca.org/bibl/PUTG99V4">http://syriaca.org/bibl/PUTG99V4</ref>) were extracted from the KML files
+                    <title>The Syriac World</title> (<ref target="http://syriaca.org/bibl/PUTG99V4">http://syriaca.org/bibl/PUTG99V4</ref>) were extracted from the KML files
                     used to create the print maps for those volumes. Because only the print maps
                     were published, the citation for these coordinates refers to the print source.
                     The editors of the <title>The Syriac Gazetteer</title> are grateful to the
@@ -923,13 +919,13 @@
                   <p>The editors have silently normalized data from other sources in some cases. The
                     primary instances are listed below.</p>
                   <p>The capitalization of names from <title>The Gorgias Encyclopedic Dictionary of
-                    the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) was normalized silently (i.e. names in
+                      the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) was normalized silently (i.e. names in
                     ALL-CAPS were replaced by Proper-noun capitalization).</p>
                   <p>The unchanging parts of alternate names from the editions and translations of
                     Barsoum, <title>The Scattered Pearls: A History of Syriac Literature and
                       Sciences</title> (<ref target="http://syriaca.org/bibl/2">http://syriaca.org/bibl/2</ref>, <ref target="http://syriaca.org/bibl/3">http://syriaca.org/bibl/3</ref>, or <ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) have been supplied silently.</p>
                   <p>Names from the English translation of Barsoum, <title>The Scattered Pearls: A
-                    History of Syriac Literature and Sciences</title> (<ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) were
+                      History of Syriac Literature and Sciences</title> (<ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) were
                     silently transformed into sentence word order rather than the headword
                     alphabetization used by Barsoum. Commas were silently removed.</p>
                 </editorialDecl>
@@ -942,10 +938,10 @@
               aspects of the process of encoding the text. Even data are "born digital," they
               nevertheless have certain editorial decisions regarding how they have used data
               derived from print resources, and certain tags available for use in our
-                <att>srophe:tags</att> attribute. Those sorts of details are encoded here.</p>
+              <att>srophe:tags</att> attribute. Those sorts of details are encoded here.</p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="editorialDecl" module="header" mode="change">
           <classes mode="change">
             <memberOf key="att.global.analytic" mode="delete"/>
@@ -987,11 +983,11 @@
               An <gi>editorialDecl</gi> cannot directly contain prose, so a prose description of
               each editorial decision should be wrapped in a <gi>p</gi> element. References to
               particular bibliographic entries can have their Syriaca.org URIs wrapped in an
-                <gi>idno</gi> for specificity. The first <gi>p</gi> element should contain a pointer
+              <gi>idno</gi> for specificity. The first <gi>p</gi> element should contain a pointer
               to the Syriaca.org documentation.</p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="text" module="textstructure" mode="change">
           <classes mode="change">
             <memberOf key="att.global" mode="delete"/>
@@ -1033,8 +1029,8 @@
             </p>
           </remarks>
         </elementSpec>
-
-
+        
+        
         <elementSpec ident="note" module="core" mode="change">
           <constraintSpec ident="xmlLang-in-note" scheme="schematron">
             <constraint>
@@ -1093,7 +1089,7 @@
             </p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="link" module="linking" mode="change">
           <classes mode="change">
             <memberOf key="att.global" mode="delete"/>
@@ -1191,7 +1187,7 @@
             </p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="author" module="core" mode="change">
           <content>
             <alternate minOccurs="0" maxOccurs="unbounded">
@@ -1203,7 +1199,7 @@
             <p> The <gi>author</gi> element may contain either a <gi>persName</gi> element or text.</p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="citedRange" module="core" mode="change">
           <attList>
             <attDef ident="unit" mode="change" usage="req" module="att.citing">
@@ -1263,7 +1259,7 @@
               It requires a <att>unit</att> attribute with one of the following values: col, entry, fol, line, map, part, p, section, and vol.</p>
           </remarks>
         </elementSpec>
-
+        
         <elementSpec ident="p" module="core" mode="change">
           <constraintSpec ident="lang-on-p-in-body" scheme="schematron">
             <constraint>
@@ -1287,7 +1283,7 @@
             </p>
           </remarks>
         </elementSpec>
-
+        
       </schemaSpec>
     </body>
   </text>

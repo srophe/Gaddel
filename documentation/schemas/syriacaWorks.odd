@@ -860,10 +860,6 @@
                   the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
                 </sch:assert>
               </sch:rule>
-              <sch:rule context="tei:body/child::tei:bibl/child::tei:author/tei:persName">
-                <sch:report test="@ref">This &lt;persName&gt; cannot take a @ref attribute. 
-                  It should go on the parent &lt;author&gt; element.</sch:report>
-              </sch:rule>
             </constraint>
           </constraintSpec>
         </elementSpec>
