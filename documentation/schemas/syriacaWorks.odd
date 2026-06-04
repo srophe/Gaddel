@@ -260,6 +260,7 @@
             <attDef ident="unit" mode="change" usage="req">
               <valList type="closed" mode="replace">
                 <valItem ident="fol"/>
+                <valItem ident="p"/>
                 <valItem ident="vol"/>
               </valList>
             </attDef>
@@ -389,7 +390,7 @@
                 <sch:assert test=". = 'Scope'">Text node must be "Scope".</sch:assert>
               </sch:rule>
               <sch:rule context="tei:noteGrp[@type='versions']/tei:desc">
-                <sch:assert test=". = 'Versions'">Text node must be "Versions".</sch:assert>
+                <sch:assert test=". = 'Ancient Versions'">Text node must be "Versions".</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
