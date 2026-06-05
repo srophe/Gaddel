@@ -4956,9 +4956,10 @@ psychological significance.
                   The required @xml:id must be 'work-<sch:value-of select="$docURIno"/>.
                 </sch:assert>
               </sch:rule>
-              <sch:rule context="tei:listBibl//tei:bibl">
+              <sch:rule context="tei:body//tei:listBibl//tei:bibl">
                 <sch:let name="docURIno" value="replace(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '.+?(\d+).+', '$1')"/>
                 <sch:let name="id" value="@xml:id"/>
+                
                 <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+$'))">
                   The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
                 </sch:assert>
