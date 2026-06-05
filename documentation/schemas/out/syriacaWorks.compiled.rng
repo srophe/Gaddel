@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-06-04T22:33:33Z. . 
+Schema generated from ODD source 2026-06-05T02:43:29Z. . 
 TEI Edition: P5 Version 4.10.2. Last updated on 4th September 2025, revision bcfa98f42 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.10.2/ 
   
@@ -2297,7 +2297,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
-                      context="tei:text//tei:bibl[contains(@ana, '#syriaca-hagiographic')]">
+                      context="tei:body/child::tei:bibl[contains(@ana, '#syriaca-hagiographic')]">
                <sch:assert test="//tei:seriesStmt/tei:title = 'Bibliotheca Hagiographica Syriaca Electronica'">
                   This work record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
                   "Bibliotheca Hagiographica Syriaca Electronica".
@@ -2307,36 +2307,72 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                   series "Gateway to the Syriac Saints".
                 </sch:assert>
             </sch:rule>
-         </pattern>
-         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-bibl-work-bible-constraint-rule-89">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
-                      context="tei:text//tei:bibl[contains(@ana, '#syriaca-bible')]">
+                      context="tei:TEI[//tei:seriesStmt/tei:title = 'Gateway to the Syriac Saints']//tei:body/child::tei:bibl">
+               <sch:assert test="contains(@ana, '#syriaca-hagiographic')">
+                  A work &lt;bibl&gt; that is part of the series "Gateway to the Syriac Saints" must have an 
+                  @ana attribute with the value "#syriaca-hagiographic".
+                </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:TEI[//tei:seriesStmt/tei:title = 'Bibliotheca Hagiographica Syriaca Electronica']//tei:body/child::tei:bibl">
+               <sch:assert test="contains(@ana, '#syriaca-hagiographic')">
+                  A work &lt;bibl&gt; that is part of the series "Bibliotheca Hagiographica Syriaca Electronica" must have an 
+                  @ana attribute with the value "#syriaca-hagiographic".
+                </sch:assert>
+            </sch:rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                  id="syriacaWorks-bibl-work-bible-constraint-rule-91">
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:body/child::tei:bibl[contains(@ana, '#syriaca-bible')]">
                <sch:assert test="//tei:seriesStmt/tei:title = 'A Guide to the Bible in Syriac'">
                   This work record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
                   "A Guide to the Bible in Syriac".
                 </sch:assert>
             </sch:rule>
-         </pattern>
-         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-bibl-work-science-constraint-rule-90">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
-                      context="tei:text//tei:bibl[contains(@ana, '#syriaca-scientific')]">
-               <sch:assert test="//tei:seriesStmt/tei:title = 'Syriac Scientific and Philosophical Literature'">
-                  This work record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
-                  "Syriac Scientific and Philosophical Literature".
+                      context="tei:TEI[//tei:seriesStmt/tei:title = 'A Guide to the Bible in Syriac']//tei:body/child::tei:bibl">
+               <sch:assert test="contains(@ana, '#syriaca-bible')">
+                  A work &lt;bibl&gt; that is part of the series "A Guide to the Bible in Syriac" must have an 
+                  @ana attribute with the value "#syriaca-bible".
                 </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-bibl-bibl-child-bibl-constraint-rule-91">
+                  id="syriacaWorks-bibl-work-science-constraint-rule-93">
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:body/child::tei:bibl[contains(@ana, '#syriaca-scientific')]">
+               <sch:assert test="//tei:seriesStmt/tei:title = 'Syriac Scientific and Philosophical Literature'">
+                  This work record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
+                  "Syriac Scientific and Philosophical Literature".
+                </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:TEI[//tei:seriesStmt/tei:title = 'Syriac Scientific and Philosophical Literature']//tei:body/child::tei:bibl">
+               <sch:assert test="contains(@ana, '#syriaca-scientific')">
+                  A work &lt;bibl&gt; that is part of the series "Syriac Scientific and Philosophical Literature" must have an 
+                  @ana attribute with the value "#syriaca-scientific".
+                </sch:assert>
+            </sch:rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                  id="syriacaWorks-bibl-bibl-child-bibl-constraint-rule-95">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2348,7 +2384,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-bibl-mssCitation-constraint-rule-92">
+                  id="syriacaWorks-bibl-mssCitation-constraint-rule-96">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2371,7 +2407,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-bibl-titleWithExternalURL-constraint-rule-94">
+                  id="syriacaWorks-bibl-titleWithExternalURL-constraint-rule-98">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2452,7 +2488,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-listBibl-listBibl-in-body-constraint-rule-95">
+                  id="syriacaWorks-listBibl-listBibl-in-body-constraint-rule-99">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2770,7 +2806,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          <text/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-authority-authorityText-constraint-rule-98">
+                  id="syriacaWorks-authority-authorityText-constraint-rule-102">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2790,7 +2826,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          <text/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-idno-work-idno-types-constraint-rule-99">
+                  id="syriacaWorks-idno-work-idno-types-constraint-rule-103">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2848,7 +2884,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-idno-idno-subtypes-constraint-rule-105">
+                  id="syriacaWorks-idno-idno-subtypes-constraint-rule-109">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2873,7 +2909,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-idno-idno-uri-constraint-rule-107">
+                  id="syriacaWorks-idno-idno-uri-constraint-rule-111">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -2890,7 +2926,7 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-idno-change-on-idno-constraint-rule-108">
+                  id="syriacaWorks-idno-change-on-idno-constraint-rule-112">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3042,7 +3078,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-seriesStmt-seriesStmt-series-constraint-rule-110">
+                  id="syriacaWorks-seriesStmt-seriesStmt-series-constraint-rule-114">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3071,7 +3107,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-seriesStmt-seriesStmt-monograph-constraint-rule-113">
+                  id="syriacaWorks-seriesStmt-seriesStmt-monograph-constraint-rule-117">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3254,7 +3290,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-change-who-on-change-constraint-rule-118">
+                  id="syriacaWorks-change-who-on-change-constraint-rule-122">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3273,7 +3309,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-change-xmlID-on-change-constraint-rule-119">
+                  id="syriacaWorks-change-xmlID-on-change-constraint-rule-123">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3454,7 +3490,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-persName-ref-on-persName-constraint-rule-120">
+                  id="syriacaWorks-persName-ref-on-persName-constraint-rule-124">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3468,7 +3504,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-persName-persName-ref-constraint-rule-121">
+                  id="syriacaWorks-persName-persName-ref-constraint-rule-125">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3511,7 +3547,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-placeName-place-ref-constraint-rule-123">
+                  id="syriacaWorks-placeName-place-ref-constraint-rule-127">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3556,7 +3592,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          <ref name="tei_desc"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-ref-or-key-or-name-constraint-rule-125">
+                  id="syriacaWorks-relation-ref-or-key-or-name-constraint-rule-129">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3567,7 +3603,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-active-mutual-constraint-rule-126">
+                  id="syriacaWorks-relation-active-mutual-constraint-rule-130">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3578,7 +3614,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-active-passive-constraint-rule-127">
+                  id="syriacaWorks-relation-active-passive-constraint-rule-131">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3694,7 +3730,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          <ref name="tei_body"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-text-source-within-text-constraint-rule-128">
+                  id="syriacaWorks-text-source-within-text-constraint-rule-132">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3781,7 +3817,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
       </optional>
    </define>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="syriacaWorks-att.global.change-change-att-values-constraint-rule-129">
+            id="syriacaWorks-att.global.change-change-att-values-constraint-rule-133">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 xmlns:srophe="https://srophe.app"

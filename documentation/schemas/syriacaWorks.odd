@@ -190,6 +190,18 @@
                   series "Gateway to the Syriac Saints".
                 </sch:assert>
               </sch:rule>
+              <sch:rule context="tei:TEI[//tei:seriesStmt/tei:title = 'Gateway to the Syriac Saints']//tei:body/child::tei:bibl">
+                <sch:assert test="contains(@ana, '#syriaca-hagiographic')">
+                  A work &lt;bibl&gt; that is part of the series "Gateway to the Syriac Saints" must have an 
+                  @ana attribute with the value "#syriaca-hagiographic".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:TEI[//tei:seriesStmt/tei:title = 'Bibliotheca Hagiographica Syriaca Electronica']//tei:body/child::tei:bibl">
+                <sch:assert test="contains(@ana, '#syriaca-hagiographic')">
+                  A work &lt;bibl&gt; that is part of the series "Bibliotheca Hagiographica Syriaca Electronica" must have an 
+                  @ana attribute with the value "#syriaca-hagiographic".
+                </sch:assert>
+              </sch:rule>
             </constraint>
           </constraintSpec>
           <constraintSpec ident="work-bible" scheme="schematron">
@@ -200,6 +212,12 @@
                   "A Guide to the Bible in Syriac".
                 </sch:assert>
               </sch:rule>
+              <sch:rule context="tei:TEI[//tei:seriesStmt/tei:title = 'A Guide to the Bible in Syriac']//tei:body/child::tei:bibl">
+                <sch:assert test="contains(@ana, '#syriaca-bible')">
+                  A work &lt;bibl&gt; that is part of the series "A Guide to the Bible in Syriac" must have an 
+                  @ana attribute with the value "#syriaca-bible".
+                </sch:assert>
+              </sch:rule>
             </constraint>
           </constraintSpec>
           <constraintSpec ident="work-science" scheme="schematron">
@@ -208,6 +226,12 @@
                 <sch:assert test="//tei:seriesStmt/tei:title = 'Syriac Scientific and Philosophical Literature'">
                   This work record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
                   "Syriac Scientific and Philosophical Literature".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:TEI[//tei:seriesStmt/tei:title = 'Syriac Scientific and Philosophical Literature']//tei:body/child::tei:bibl">
+                <sch:assert test="contains(@ana, '#syriaca-scientific')">
+                  A work &lt;bibl&gt; that is part of the series "Syriac Scientific and Philosophical Literature" must have an 
+                  @ana attribute with the value "#syriaca-scientific".
                 </sch:assert>
               </sch:rule>
             </constraint>
