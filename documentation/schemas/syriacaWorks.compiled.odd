@@ -4986,16 +4986,16 @@ psychological significance.
             </constraint>
           </constraintSpec><constraintSpec ident="work-bible" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:body/child::tei:bibl[contains(@ana, '#syriaca-bible')]">
+              <sch:rule context="tei:body/child::tei:bibl[contains(@ana, '#syriaca-biblical')]">
                 <sch:assert test="//tei:seriesStmt/tei:title = 'A Guide to the Bible in Syriac'">
                   This work record must include a &lt;seriesStmt&gt; indicating that it is part of the volume 
                   "A Guide to the Bible in Syriac".
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:TEI[//tei:seriesStmt/tei:title = 'A Guide to the Bible in Syriac']//tei:body/child::tei:bibl">
-                <sch:assert test="contains(@ana, '#syriaca-bible')">
+                <sch:assert test="contains(@ana, '#syriaca-biblical')">
                   A work &lt;bibl&gt; that is part of the series "A Guide to the Bible in Syriac" must have an 
-                  @ana attribute with the value "#syriaca-bible".
+                  @ana attribute with the value "#syriaca-biblical".
                 </sch:assert>
               </sch:rule>
             </constraint>
