@@ -5071,14 +5071,12 @@ psychological significance.
               <valList type="closed">
                 <valItem ident="lawd:Edition"/>
                 <valItem ident="lawd:Citation"/>
-                <valItem ident="lawd:ConceptualWork"/>
-                <valItem ident="lawd:Edition"/>
+                
                 <valItem ident="syriaca:AncientVersion"/>
-                <valItem ident="syriaca:DigitalCatalog"/>
-                <valItem ident="syriaca:LiteraryTradition"/>
+                
                 <valItem ident="syriaca:Manuscript"/>
                 <valItem ident="syriaca:ModernTranslation"/>
-                <valItem ident="syriaca:PrintCatalog"/>
+                
               </valList>
             </attDef><attDef ident="ana" mode="change">
               
