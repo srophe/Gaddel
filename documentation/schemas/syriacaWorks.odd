@@ -69,7 +69,8 @@
             <constraint>
               <sch:rule context="tei:body/child::tei:bibl/child::tei:author">
                 <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
-                  The @ref attribute on &lt;persName&gt; must take a Syriaca.org person URI which reqires 
+                  This &lt;author&gt; element must take a @ref attribute 
+                  with a Syriaca.org person URI which reqires 
                   the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
                 </sch:assert>
               </sch:rule>
@@ -471,7 +472,8 @@
             <constraint>
               <sch:rule context="tei:body/child::tei:bibl/child::tei:editor">
                 <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
-                  The @ref attribute on &lt;persName&gt; must take a Syriaca.org person URI which reqires 
+                  This &lt;editor&gt; element must take a @ref attribute 
+                  with a Syriaca.org person URI which reqires 
                   the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
                 </sch:assert>
               </sch:rule>
@@ -970,7 +972,8 @@
             <constraint>
               <sch:rule context="tei:persName[not(parent::tei:author)]">
                 <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
-                  The @ref attribute on &lt;persName&gt; must take a Syriaca.org person URI which reqires 
+                  This &lt;persName&gt; element must take a @ref attribute 
+                  with a Syriaca.org person URI which reqires 
                   the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
                 </sch:assert>
               </sch:rule>
