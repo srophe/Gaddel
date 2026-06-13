@@ -1189,6 +1189,9 @@ associated with a dated element, at the time indicated.</desc>
                 </valItem><valItem ident="grc">
                   <gloss>Greek—Ancient</gloss>
                   <desc>Ancient Greek to A.D. 1453</desc>
+                </valItem><valItem ident="he">
+                  <gloss>Hebrew</gloss>
+                  <desc>Biblical or Modern Hebrew</desc>
                 </valItem><valItem ident="hy">
                   <gloss>Armenian</gloss>
                   <desc>Classical or Modern Armenian</desc>
@@ -1219,6 +1222,9 @@ associated with a dated element, at the time indicated.</desc>
                 </valItem><valItem ident="nl">
                   <gloss>Dutch</gloss>
                   <desc>Dutch</desc>
+                </valItem><valItem ident="pl">
+                  <gloss>Polish</gloss>
+                  <desc>Polish</desc>
                 </valItem><valItem ident="pt">
                   <gloss>Portuguese</gloss>
                   <desc>Portuguese</desc>
