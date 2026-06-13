@@ -322,6 +322,7 @@
           <attList>
             <attDef ident="unit" mode="change" usage="req">
               <valList type="closed" mode="replace">
+                <valItem ident="cah"/>
                 <valItem ident="fol"/>
                 <valItem ident="p"/>
                 <valItem ident="vol"/>

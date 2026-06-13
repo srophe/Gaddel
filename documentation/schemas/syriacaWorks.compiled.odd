@@ -4786,6 +4786,7 @@ psychological significance.
     un'opera più ampia.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-13" xml:lang="de">grenzt den Geltungsbereich einer bibliografischen Referenz ein, zum Beispiel in Form von
     Seitenangaben oder benannten Unterabschnitten eines umfangreicheren Werks.</desc><classes><memberOf key="att.global"/><memberOf key="att.citing"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><textNode/><elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/></sequence></content><attList><attDef ident="unit" mode="change" usage="req">
               <valList type="closed" mode="replace">
+                <valItem ident="cah"/>
                 <valItem ident="fol"/>
                 <valItem ident="p"/>
                 <valItem ident="vol"/>
