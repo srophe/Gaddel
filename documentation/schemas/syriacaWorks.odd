@@ -811,11 +811,12 @@
           <content>
             <sequence preserveOrder="false">
               <textNode/>
+              <elementRef key="date" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
-              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="quote" minOccurs="0" maxOccurs="1"/>
               <elementRef key="ref" minOccurs="0" maxOccurs="1"/>
+              <elementRef key="title" minOccurs="0" maxOccurs="unbounded"/>
             </sequence>
           </content>
           <constraintSpec ident="noteGrp-note-type" scheme="schematron">
