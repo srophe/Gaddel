@@ -2274,6 +2274,9 @@ l'échantillon inconnue</desc>
                 </valItem><valItem ident="syr-Syrn">
                   <gloss>Syriac—East</gloss>
                   <desc>Syriac in vocalized East Syriac script</desc>
+                </valItem><valItem ident="syr-pal">
+                  <gloss>Christian Palestinian Aramaic</gloss>
+                  <desc>Palestinian Aramaic written in Syriac script</desc>
                 </valItem><valItem ident="syr-x-syrm">
                   <gloss>Syriac—Melkite script</gloss>
                   <desc>Syriac in Melkite script. Note: This is not an ISO code but a private use
