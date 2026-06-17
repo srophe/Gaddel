@@ -3,10 +3,9 @@
          xmlns:tei="http://www.tei-c.org/ns/1.0"
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          xmlns:xlink="http://www.w3.org/1999/xlink"
-         xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-06-17T16:36:12Z. . 
+Schema generated from ODD source 2026-06-17T17:29:00Z. . 
 TEI Edition: P5 Version 4.10.2. Last updated on 4th September 2025, revision bcfa98f42 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.10.2/ 
   
@@ -2005,6 +2004,10 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       context="tei:body/child::tei:bibl/child::tei:title">
                <sch:assert test="@xml:lang">
                   This &lt;title&gt; must have an @xml:lang attribute.
+                </sch:assert>
+               <sch:assert text="@source or @resp">
+                  The &lt;title&gt; element for the main work &lt;bibl&gt; must have either a 
+                  @source attribute or a @resp attribute.
                 </sch:assert>
             </sch:rule>
          </pattern>
