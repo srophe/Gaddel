@@ -4601,7 +4601,7 @@ psychological significance.
                 <sch:assert test="@xml:lang">
                   This &lt;title&gt; must have an @xml:lang attribute.
                 </sch:assert>
-                <sch:assert text="@source or @resp">
+                <sch:assert test="@source or @resp">
                   The &lt;title&gt; element for the main work &lt;bibl&gt; must have either a 
                   @source attribute or a @resp attribute.
                 </sch:assert>
