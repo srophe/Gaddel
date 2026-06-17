@@ -4945,24 +4945,25 @@ psychological significance.
                 <sch:assert test="@type='lawd:Edition'">
                   This &lt;bibl&gt; element requires a @type attribute with the value "lawd:Edition".
                 </sch:assert>
+                <sch:assert test="tei:ptr">
+                  An edition &lt;bibl&gt; element must have a child &lt;ptr&gt; element.
+                </sch:assert>
               </sch:rule>
               <sch:rule context="tei:body//tei:listBibl[@type='modernTranslations']/tei:bibl">
                 <sch:assert test="@type='syriaca:ModernTranslation'">
                   This &lt;bibl&gt; element requires a @type attribute with the value "syriaca:ModernTranslation".
+                </sch:assert>
+                <sch:assert test="tei:ptr">
+                  A modern translation &lt;bibl&gt; element must have a child &lt;ptr&gt; element.
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:body//tei:listBibl[@type='secondaryLiterature']/tei:bibl">
                 <sch:assert test="@type='lawd:Citation'">
                   This &lt;bibl&gt; element requires a @type attribute with the value "lawd:Citation".
                 </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:body//tei:listBibl[not(@type='manuscripts' or @type='ancientVersion')]/tei:bibl">
                 <sch:assert test="tei:ptr">
-                  A manuscript &lt;bibl&gt; element must have a child &lt;ptr&gt; element.
+                  A secondary literature &lt;bibl&gt; element must have a child &lt;ptr&gt; element.
                 </sch:assert>
-                <sch:report test="@ana">
-                  The @ana attribute is not allowed here.
-                </sch:report>
               </sch:rule>
               <sch:rule context="tei:body/child::tei:bibl">
                 <sch:assert test="tei:title and tei:idno and tei:listBibl">
