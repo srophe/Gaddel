@@ -7398,6 +7398,9 @@ psychological significance.
                 <valItem ident="URL">
                   <desc>the element identifies a URL where information is located</desc>
                 </valItem>
+                <valItem ident="verse">
+                  <desc>Used for verse references in sacred texts like the Bible</desc>
+                </valItem>
                 <valItem ident="vol">
                   <desc>the element identifies a volume of a multi-volume work</desc>
                 </valItem>
