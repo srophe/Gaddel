@@ -7028,8 +7028,12 @@ psychological significance.
           </constraintSpec><constraintSpec ident="title-in-desc-note" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:desc//tei:title/@ref | //tei:text//tei:note//tei:title/@ref">
-                <sch:assert test="matches(., concat('http://syriaca.org/work/', '\d+$'))">
-                  This @ref attribute must take the form "http://syriaca.org/work/{\d+$}} where {\d+$} is a number.
+                <sch:assert test="matches(., concat('http://syriaca.org/work/', '\d+$')) or matches(., concat(http://syriaca.org/cbss/', '[0-9A-Z]$'))">
+                  This @ref attribute must take either a Syriaca.org work URI or a Comprehensive Bibliography 
+                  of Syriac Studies URI. For a work URI, the form is "http://syriaca.org/work/{\d+$} where {\d+$} 
+                  is a number. For a bibliography URI, the form is "http://syriaca.org/cbss/{0-9A-Z} where {0-9A-Z} 
+                  is a string made up of numbers and capital letters. In both cases these @ref values should point to
+                  URIs for specific work or bibliography items.
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:text//tei:desc//tei:title | //tei:text//tei:note//tei:title">
