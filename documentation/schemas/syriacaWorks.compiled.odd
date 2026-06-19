@@ -4634,7 +4634,7 @@ psychological significance.
           </constraintSpec><constraintSpec ident="title-in-desc-note" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:desc//tei:title/@ref | //tei:text//tei:note//tei:title/@ref">
-                <sch:assert test="matches(., concat('http://syriaca.org/work/', '\d+$')) or matches(., concat(http://syriaca.org/cbss/', '[0-9A-Z]$'))">
+                <sch:assert test="                   matches(., '^http://syriaca\.org/work/\d+$')                   or                   matches(., '^http://syriaca\.org/cbss/[0-9A-Z]+$')                   ">
                   This @ref attribute must take either a Syriaca.org work URI or a Comprehensive Bibliography 
                   of Syriac Studies URI. For a work URI, the form is "http://syriaca.org/work/{\d+$} where {\d+$} 
                   is a number. For a bibliography URI, the form is "http://syriaca.org/cbss/{0-9A-Z} where {0-9A-Z} 
