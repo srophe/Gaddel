@@ -425,7 +425,7 @@
               <textNode/>
               <elementRef key="label" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="persName" minOccurs="0" maxOccurs="1"/>
-              <elementRef key="ptr" minOccurs="0" maxOccurs="1"/>
+              <elementRef key="title" minOccurs="0" maxOccurs="1"/>
             </sequence>
           </content>
           <constraintSpec ident="noteGrp-desc-values" scheme="schematron">
