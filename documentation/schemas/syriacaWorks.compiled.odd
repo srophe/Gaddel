@@ -4936,7 +4936,8 @@ psychological significance.
               </sch:rule>
               <sch:rule context="tei:body//tei:listBibl[@type='ancientVersions']/tei:bibl">
                 <sch:assert test="tei:label or tei:ptr">
-                  An ancient versions &lt;bibl&gt; element must have a child &lt;label&gt; element.
+                  An ancient versions &lt;bibl&gt; element must have eith a child &lt;label&gt; element
+                  or a child &lt;ptr&lt; element.
                 </sch:assert>
                 <sch:assert test="@type='syriaca:AncientVersion'">
                   This &lt;bibl&gt; element requires a @type attribute with the value "syriaca:AncientVersion".
