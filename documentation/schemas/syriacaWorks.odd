@@ -159,8 +159,10 @@
                 <sch:assert test="@type='syriaca:ModernTranslation'">
                   This &lt;bibl&gt; element requires a @type attribute with the value "syriaca:ModernTranslation".
                 </sch:assert>
-                <sch:assert test="tei:ptr">
-                  A modern translation &lt;bibl&gt; element must have a child &lt;ptr&gt; element.
+                <sch:assert test="tei:ptr or tei:label">
+                  A modern translation &lt;bibl&gt; element must have either a child &lt;ptr&gt; element or
+                  a child &lt;label&gt; element. The &lt;label&gt; element should only be used in the 
+                  rare instance where the modern translation is contained in a manuscript.
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:body//tei:listBibl[@type='secondaryLiterature']/tei:bibl">

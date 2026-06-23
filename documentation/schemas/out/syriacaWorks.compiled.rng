@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-06-23T18:28:48Z. . 
+Schema generated from ODD source 2026-06-23T19:11:38Z. . 
 TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
   
@@ -2315,8 +2315,10 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                <sch:assert test="@type='syriaca:ModernTranslation'">
                   This &lt;bibl&gt; element requires a @type attribute with the value "syriaca:ModernTranslation".
                 </sch:assert>
-               <sch:assert test="tei:ptr">
-                  A modern translation &lt;bibl&gt; element must have a child &lt;ptr&gt; element.
+               <sch:assert test="tei:ptr or tei:label">
+                  A modern translation &lt;bibl&gt; element must have either a child &lt;ptr&gt; element or
+                  a child &lt;label&gt; element. The &lt;label&gt; element should only be used in the 
+                  rare instance where the modern translation is contained in a manuscript.
                 </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
