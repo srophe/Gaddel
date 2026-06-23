@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-06-23T19:29:02Z. . 
+Schema generated from ODD source 2026-06-23T19:59:23Z. . 
 TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
   
@@ -3878,9 +3878,9 @@ Suggested values include: 1] gloss (gloss); 2] index (index); 3] instructions (i
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="//tei:body//tei:editor/@role">
-               <sch:assert test=". = 'editor' or . = 'general' or . = 'translator'"> The acceptable
+               <sch:assert test=". = 'editor' or . = 'general' or . = 'scribe' or . = 'translator'"> The acceptable
                   attribute values for @role on the &lt;editor&gt; element inside the &lt;body&gt;
-                  are: editor, general, or translator. </sch:assert>
+                  are: editor, general, scribe, or translator. </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"

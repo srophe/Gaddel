@@ -9475,9 +9475,9 @@ psychological significance.
                   past-general, or past-technical. </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:body//tei:editor/@role">
-                <sch:assert test=". = 'editor' or . = 'general' or . = 'translator'"> The acceptable
+                <sch:assert test=". = 'editor' or . = 'general' or . = 'scribe' or . = 'translator'"> The acceptable
                   attribute values for @role on the &lt;editor&gt; element inside the &lt;body&gt;
-                  are: editor, general, or translator. </sch:assert>
+                  are: editor, general, scribe, or translator. </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec><constraintSpec ident="date-past-editor" scheme="schematron">
