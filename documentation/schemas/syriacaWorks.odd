@@ -567,6 +567,12 @@
                   "URI" or "URN". 
                 </sch:assert>
               </sch:rule>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[1]">
+                <sch:let name="workURI" value="substring-before(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '/tei')"/>
+                <sch:assert test=". = $workURI">
+                  The text node of this &lt;idno&gt; element must be <sch:value-of select="$workURI"/>. 
+                </sch:assert>
+              </sch:rule>
               <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
                 <sch:assert test=". = ('accession-number', 'catalog-number', 'number', 'project-number', 'shelfmark', 'URL')">
                   In the context of manuscripts, this @type value may only be "accession-number", "number",
