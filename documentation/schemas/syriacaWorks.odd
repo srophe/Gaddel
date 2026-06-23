@@ -685,6 +685,7 @@
             <sequence preserveOrder="true">
               <textNode/>
               <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="title" minOccurs="0" maxOccurs="1"/>
             </sequence>
           </content>
           <constraintSpec ident="label-values" scheme="schematron">
