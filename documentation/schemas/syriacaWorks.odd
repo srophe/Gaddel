@@ -423,8 +423,9 @@
           <content>
             <sequence preserveOrder="false">
               <textNode/>
-              <elementRef key="label" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="label" minOccurs="0" maxOccurs="1"/>
               <elementRef key="persName" minOccurs="0" maxOccurs="1"/>
+              <elementRef key="placeName" minOccurs="0" maxOccurs="1"/>
               <elementRef key="title" minOccurs="0" maxOccurs="1"/>
             </sequence>
           </content>
@@ -1023,6 +1024,15 @@
         
         
         <elementSpec ident="relation" module="namesdates" mode="change">
+          <constraintSpec ident="passive-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body//tei:relation">
+                <sch:report test="contains(., '\s')">
+                  The @passive attribute may only take one value.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
           <attList>
             <attDef ident="name" mode="delete"/>
             <attDef ident="ref" mode="change" usage="req">
