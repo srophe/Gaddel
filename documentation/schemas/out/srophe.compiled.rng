@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-06-19T18:12:11Z. . 
+Schema generated from ODD source 2026-06-23T19:29:02Z. . 
 TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
   
@@ -3947,6 +3947,8 @@ Suggested values include: 1] gloss (gloss); 2] index (index); 3] instructions (i
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A former general editor of a module</a:documentation>
                         <value>past-technical</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A former editor responsible for the data model</a:documentation>
+                        <value>scribe</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">An editor who copied the text of a work onto a physical object</a:documentation>
                         <value>technical</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">An editor responsible for the data model</a:documentation>
                         <value>translator</value>

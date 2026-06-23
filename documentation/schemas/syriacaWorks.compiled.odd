@@ -4402,6 +4402,9 @@ psychological significance.
                 <valItem ident="past-technical">
                   <desc>A former editor responsible for the data model</desc>
                 </valItem>
+                <valItem ident="scribe">
+                  <desc>An editor who copied the text of a work onto a physical object</desc>
+                </valItem>
                 <valItem ident="technical">
                   <desc>An editor responsible for the data model</desc>
                 </valItem>
