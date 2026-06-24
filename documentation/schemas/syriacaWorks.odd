@@ -1278,53 +1278,61 @@
 
           <div xml:id="listBibl">
             <head>Bibliography Related to the Work(<gi>listBibl</gi>)</head>
-            <p>The bibliographic information related to the work is organized into sections describing editions, manuscripts, modern translations, ancient versions, and secondary sources. These classifications are derived from the IFLA LRM entities "expression", "manifestation", and "item". For example, editions and manuscripts contain particular "expressions" and "manifestations" of the work. Translations and versions are "expressions" that are different from the Syriac language expression of the work. Each of these are identified through particular bibliographic "items" for which a publication citation, manuscript shelmark, or other bibliographic information is provided. Each section is encoded as a
+            <p>The bibliographic information related to the work is organized into sections describing editions, manuscripts, modern translations, ancient versions, and secondary sources. These classifications are derived from the IFLA LRM entities "expression", "manifestation", and "item". For example, editions and manuscripts contain particular "expressions" and "manifestations" of the work. Translations and versions are "expressions" that are different from the Syriac language "expression" of the work. Each of these expressions" and "manifestations" are identified through particular bibliographic "items" for which a publication citation, manuscript shelmark, or other bibliographic information is provided. Each section is encoded as a
               separate <gi>listBibl</gi> element with a <att>type</att> attribute identifying the
-              category. These sections are Each <gi>listBibl</gi> element begins with a <gi>head</gi> element
-              providing the category label, followed by a <gi>desc</gi> element describing the scope of the bibliography, followed by the individual <gi>bibl</gi> elements for each item.</p> Users of <title>NHSL</title> should note that these bibliographic sections are not meant to be exhaustive. Because <title>NHSL</title> is published as part of the Syriaca.org linked data graph, there may be other bibliography related to each literary work which can be found through the <title>Comprehensive Bibliographty on Syriac Studies</title>.
+              category. These sections are each <gi>listBibl</gi> element begins with a <gi>head</gi> element
+              providing the category label, followed by a <gi>desc</gi> element describing the scope of the bibliography, followed by the individual <gi>bibl</gi> elements for each item. Users of <title>NHSL</title> should note that these bibliographic sections are not necessarily exhaustive. <title>NHSL</title> is published as part of the Syriaca.org linked data graph, so there may be other bibliography related to each literary work which can be found through the <title>Comprehensive Bibliographty on Syriac Studies</title>.</p>
 
             <div xml:id="editions">
               <head>Editions (<gi>listBibl type="editions"</gi>)</head>
-              <p>Consulting published editions of Syriac texts is one of the most comprehensive ways to identify a distinct literary work, especially if the published text is a critical edition with apparatus. Accordingly, at the time of composition <title>NHSL</title> entries should try to cite all printed editions of the work (including diplomatic and eclectic editions). Because of the constant publication of new scholarship, however, readers should not assume that the list of editions is complete. The <gi>listBibl type="editions"</gi> section records the  editions of
-                the work. Each edition is encoded as a <gi>bibl</gi> element with
-                <code>type="lawd:Edition"</code>. At minimum, an edition entry must include a
-                title (in the language of the edition), the editor(s) or author(s), a pointer
-                (<gi>ptr</gi>) to the edition's CBSS bibliographic URI, and one or more
+              <p>Consulting published editions of Syriac texts is one of the most comprehensive ways to identify a distinct literary work, especially if the published text is a critical edition with apparatus. Accordingly, at the time of composition <title>NHSL</title> entries should try to cite all printed editions of the work (including diplomatic and eclectic editions). Because of the constant publication of new scholarship, however, readers should not assume that the list of editions is complete in any given record (a prewritten <gi>desc</gi> element is provided with a note to this effect).</p> 
+              <p>The <gi>listBibl type="editions"</gi> section records the citations for editions of
+                the work. Each edition is encoded as a separate <gi>bibl</gi> element with
+                <code>type="lawd:Edition"</code>. Each <gi>bibl</gi> must be assigned a unique <att>xml:id<att> as documented above. Because Syriaca.org manages the publication information for all citations in a separate
+                reference work, <ref target="https://syriaca.org/cbss/index.html"><title>The
+                    Comprehensive Bibliography on Syriac Studies (CBSS)</title></ref>, it is not necessary to include the full citation in the <gi>bibl</gi> element. Instead,
+                the first step in adding a citation for an edition into a work record in <title>NSHL</title> is to
+                identify the corresponding entry in <title>CBSS</title>.</p><p>Users can search the
+                bibliography at <ref target="https://syriaca.org/cbss/search.html"
+                  >https://syriaca.org/cbss/search.html</ref>. Once the item to be cited is located,
+                editors should note the URI for the bibliographic item. This URI will have the
+                format <code>http://syriaca.org/cbss/[A-Z0-9]{8}$</code> (where
+                  <code>"[A-Z0-9]{8}$"</code> signifies a unique string of 8 uppercase alphanumeric
+                characters). For example, the URI for J.B. Segal, <title>Edessa, ‘The Blessed
+                  City’</title> (Oxford: Clarendon Press, 1970) is <ref
+                  target="http://syriaca.org/cbss/FQCVBMNS"
+                    ><code>http://syriaca.org/cbss/FQCVBMNS</code></ref>. If the desired
+                bibliographic item is not found in <title>CBSS</title>, editors should request the
+                creation of an entry in <title>CBSS</title>.</p>
+                <p>Once the editor has identified the CBSS URI, they may proceed to encoding the edition citation in <title>NSHL</title>. The <gi>bibl</gi> element must include a
+                title (<gi>title</gi>) and a pointer
+                (<gi>ptr</gi>) to the URI of the CBSS bibliographic URI, and one or more
                 <gi>citedRange</gi> elements specifying the location within the edition where
-                the text appears:</p>
+                the text appears.</p><p><emph>Nota bene</emph>: The contents of the <gi>title</gi> are for reference purposes within the XML document only. When XML file is converted for publication online, the GADDEL app will use the CBSS URI to look up the full citation in <title>CBSS</title> and insert it into the record. Special care should be taken to include the  <gi>citedRange</gi> because that information is unique and cannot be inserted based on the CBS URI.</p>
+                <p>The following information should be encoded using attribute values within the <gi>bibl</gi> or its descendants. <title>NSHL</title> records are required to cite their sources using either the <att>source</att> or
+                <att>resp</att> attributes as described above. If the information about an edition is derived from another source (such as Zanetti and Detienne, <title>Bibliotheca Hagiographica Syriaca</title>) then that other source should be cited using <att>source</att>. If the edition itself has been consulted directly by the Syriaca.org editor, then an <att>resp</att> should be used with the value <q>http://syriaca.org</q> to indicate that the editors of <title>NSHL</title> are responsible for the inclusion of the citation rather than creating a circular citation back to the edition itself (see the section above <ref target="resp">Asserting
+                Information without a Source (<att>resp</att>)</ref>).</p>
+                <p>Other information encoded as attributes includes <att>unit</att> on <gi>citedRange</gi> and <att>xml:lang</att> on <gi>title</gi> as described above.</p>
+                <p> Here is an example of an edition citation from work record<ref
+                  target="http://syriaca.org/work/567"
+                    ><code>http://syriaca.org/work/567</code></ref> :</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <listBibl type="editions">
                   <head>Editions</head>
                   <desc xml:lang="en">This is not a comprehensive list of editions related to
-                    this work. Further citations may be available through Syriac.Nexus.</desc>
-                  <bibl source="#bib567-1" n="1" xml:id="bib567-3" type="lawd:Edition">
+                    this work.</desc>
+                  <bibl source="#bib567-1" xml:id="bib567-3" type="lawd:Edition">
                     <title xml:lang="de">Des heiligen Ephraem des Syrers Hymnen auf Abraham
                       Kidunaya und Julianos Saba</title>
-                    <author>Beck, E.</author>
                     <ptr target="http://syriaca.org/cbss/YN3NJHST"/>
-                    <citedRange unit="p">Louvain, 1972, p. 3-6</citedRange>
-                    <listRelation>
-                      <relation type="mssWitnesses" ref="dcterms:source" active="bib567-3"
-                        source="#bib567-1" passive="#bib567-5">
-                        <desc xml:lang="en">
-                          <label>mss Londres, British Library, Add. 14592, f. 63v-64v</label>
-                        </desc>
-                      </relation>
-                    </listRelation>
+                    <citedRange unit="p">3-6</citedRange>
                   </bibl>
                 </listBibl>
               </egXML>
-              <p>The <gi>ptr</gi> element carries a <att>target</att> attribute pointing to the
-                URI for this edition in the <ref target="https://syriaca.org/cbss"><title>Comprehensive
-                    Bibliography on Syriac Studies</title></ref> (<title>CBSS</title>). The
-                <gi>citedRange</gi> element's <att>unit</att> attribute specifies the unit of
-                reference: <q>p</q> for page, <q>vol</q> for volume, <q>col</q> for column,
-                <q>entry</q> for a named or numbered entry.</p>
-
               <div xml:id="editionManuscriptLink">
                 <head>Linking Editions to Manuscripts</head>
                 <p>Within an edition's <gi>bibl</gi> entry, a nested <gi>listRelation</gi> may
-                  record the manuscript(s) used as the base text for that edition. This is
+                  record the manuscript(s) used as the base text(s) for that edition. This is
                   expressed using a <gi>relation</gi> with <code>type="mssWitnesses"</code> and
                   <code>ref="dcterms:source"</code>. The <att>active</att> attribute gives the
                   xml:id of the edition entry (without the <code>#</code> prefix); the
