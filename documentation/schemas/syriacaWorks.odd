@@ -2815,9 +2815,20 @@
             <sequence preserveOrder="true">
               <textNode/>
               <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="ptr" minOccurs="0" maxOccurs="1"/>
               <elementRef key="title" minOccurs="0" maxOccurs="1"/>
             </sequence>
           </content>
+          <constraintSpec ident="ptr-with-label" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:label[not(ancestor::tei:relation)]">
+                <sch:report test="tei:ptr">
+                  A &lt;ptr&gt; child of &lt;label&gt; should only be used
+                  when &lt;label&gt; is the descendant of &lt;relation&gt;.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
           <constraintSpec ident="label-values" scheme="schematron">
             <constraint>
               <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
