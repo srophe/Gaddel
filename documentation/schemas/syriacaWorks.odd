@@ -1105,19 +1105,30 @@
                 <idno type="URI">https://www.wikidata.org/wiki/Q9184</idno>
                 <idno type="URI">https://viaf.org/viaf/174582712</idno>
               </egXML>
-  </p>
+          </p>
+          <p>Less commonly, <gi>idno</gi> elements with <att>type</att> attribute values of <q>URN</q>, 
+                referring to the <ref target="https://www.rfc-editor.org/info/rfc8141/">Uniform Resource Names</ref>
+                URI scheme, may be included:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <idno type="URN">urn:cts:greekLit:tlg0086.tlg028</idno>
+                </egXML>
+              </p>
             <div xml:id="referenceNumbers">
               <head>Standard Reference Numbers</head>
-              <p>When a work is listed in a standard print reference work — such as the
-                <title>Bibliotheca Hagiographica Syriaca</title> (<title>BHS</title>) or the
-                <title>Bibliotheca Hagiographica Orientalis</title> (<title>BHO</title>) — the
-                reference number from that work should be recorded using <gi>idno</gi> with
-                <code>type="number"</code> and a <att>subtype</att> attribute identifying the
-                reference work:</p>
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <p>A work record may include additional <gi>idno</gi> elements identifying it
+                according to standard schemas or in standard reference works. These <gi>idno</gi>
+                elements must have a <att>type</att> attribute value of <q>number</q>. Their 
+                <att>subtype</att> attribute specifies the reference work or identifier schema
+                to which the refrence number belongs. The following sources are permitted:
+                <!--Add with labels from the schema -->
+              </p>
+              <p>
+                Example:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <idno type="number" subtype="BHS">347</idno>
                 <idno type="number" subtype="BHO">870</idno>
               </egXML>
+              </p>
             </div>
           </div>
 
