@@ -1330,7 +1330,7 @@
 
             <div xml:id="editions">
               <head>Editions (<gi>listBibl type="editions"</gi>)</head>
-              <p>Consulting published editions of Syriac texts is one of the most comprehensive ways to identify a distinct literary work, especially if the published text is a critical edition with apparatus. Accordingly, at the time of composition <title>NHSL</title> entries should try to cite all printed editions of the work (including diplomatic and eclectic editions). Because of the constant publication of new scholarship, however, readers should not assume that the list of editions is complete in any given record (a prewritten <gi>desc</gi> element is provided with a note to this effect).</p> 
+              <p>Published editions of Syriac texts offer some of the most comprehensive descriptions of distinct literary works, especially if the published text is a critical edition with apparatus. Accordingly, at the time of composition <title>NHSL</title> entries should try to cite all printed editions of the work (including diplomatic and eclectic editions). Because of the constant publication of new scholarship, however, readers should not assume that the list of editions is complete in any given record (a prewritten <gi>desc</gi> element is provided with a note to this effect).</p> 
               <p>The <gi>listBibl type="editions"</gi> section records the citations for editions of
                 the work. Each edition is encoded as a separate <gi>bibl</gi> element with
                 <code>type="lawd:Edition"</code>. Each <gi>bibl</gi> must be assigned a unique <att>xml:id</att> as documented above. Because Syriaca.org manages the publication information for all citations in a separate
@@ -1353,12 +1353,10 @@
                 title (<gi>title</gi>) and a pointer
                 (<gi>ptr</gi>) to the URI of the CBSS bibliographic URI, and one or more
                 <gi>citedRange</gi> elements specifying the location within the edition where
-                the text appears.</p><p><emph>Nota bene</emph>: The contents of the <gi>title</gi> are for reference purposes within the XML document only. When XML file is converted for publication online, the GADDEL app will use the CBSS URI to look up the full citation in <title>CBSS</title> and insert it into the record. Special care should be taken to include the  <gi>citedRange</gi> because that information is unique and cannot be inserted based on the CBS URI.</p>
-                <p>The following information should be encoded using attribute values within the <gi>bibl</gi> or its descendants. <title>NSHL</title> records are required to cite their sources using either the <att>source</att> or
-                <att>resp</att> attributes as described above. If the information about an edition is derived from another source (such as Zanetti and Detienne, <title>Bibliotheca Hagiographica Syriaca</title>) then that other source should be cited using <att>source</att>. If the edition itself has been consulted directly by the Syriaca.org editor, then an <att>resp</att> should be used with the value <q>http://syriaca.org</q> to indicate that the editors of <title>NSHL</title> are responsible for the inclusion of the citation rather than creating a circular citation back to the edition itself (see the section above <ref target="resp">Asserting
-                Information without a Source (<att>resp</att>)</ref>).</p>
-                <p>Other information encoded as attributes includes <att>unit</att> on <gi>citedRange</gi> and <att>xml:lang</att> on <gi>title</gi> as described above.</p>
-                <p> Here is an example of an edition citation from work record<ref
+                the text appears.</p><p><emph>Nota bene</emph>: The contents of the <gi>title</gi> are for reference purposes within the XML document only. When XML file is converted for publication online, the GADDEL app will use the CBSS URI to look up the full publication information in <title>CBSS</title> and insert it into the record. Special care should be taken to include the  <gi>citedRange</gi> because that information is unique and cannot be inserted based on the CBSS URI.</p>
+                <p>The following additional information should be encoded using attribute values within the <gi>bibl</gi> or its descendants. <title>NSHL</title> records are required to cite their sources using either the <att>source</att> or
+                <att>resp</att> attributes as described above. If the information about an edition is derived from another source (such as Zanetti and Detienne, <title>Bibliotheca Hagiographica Syriaca</title>) then that other source should be cited using <att>source</att>. If the edition itself has been consulted directly by the Syriaca.org editor, then an <att>resp</att> should be used with the value <q>http://syriaca.org</q> to indicate that the editors of <title>NSHL</title> are responsible for the inclusion of the citation. (This practice avoids creating a circular citation back to the edition itself). Other information encoded as attributes includes <att>unit</att> on <gi>citedRange</gi> and <att>xml:lang</att> on <gi>title</gi> as described above.</p>
+                <p> Here is an example of an edition citation from work record <ref
                   target="http://syriaca.org/work/567"
                     ><code>http://syriaca.org/work/567</code></ref> :</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1376,8 +1374,8 @@
               </egXML>
               <div xml:id="editionManuscriptLink">
                 <head>Linking Editions to Manuscripts <gi>relation type="mssWitnesses" ref="dcterms:source"</gi></head>
-                <p>Within an edition's <gi>bibl</gi> entry, a nested <gi>listRelation</gi> may
-                  record the manuscript(s) used as the base text(s) for that edition. This is
+                <p>As an optional note, within an edition's <gi>bibl</gi> entry, a nested <gi>listRelation</gi> may be used to
+                  record the manuscript(s) consulted as the base text(s) for that edition. This relationship is
                   expressed using a <gi>relation</gi> with <code>type="mssWitnesses"</code> and
                   <code>ref="dcterms:source"</code>. The <att>active</att> attribute refers to the
                   xml:id of the edition entry (with the
@@ -1387,7 +1385,7 @@
                 </p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <listRelation>
-                    <relation type="mssWitnesses" ref="dcterms:source" active="bib836-2"
+                    <relation type="mssWitnesses" ref="dcterms:source" active="#bib836-2"
                       source="#bib836-1" passive="#bib836-4">
                       <desc xml:lang="en">
                         <label>London, British Library <idno type="shelfmark"
