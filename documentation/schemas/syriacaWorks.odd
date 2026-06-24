@@ -1341,15 +1341,15 @@
                 </listBibl>
               </egXML>
               <div xml:id="editionManuscriptLink">
-                <head>Linking Editions to Manuscripts</head>
+                <head>Linking Editions to Manuscripts <gi>relation type="mssWitnesses" ref="dcterms:source"</gi></head>
                 <p>Within an edition's <gi>bibl</gi> entry, a nested <gi>listRelation</gi> may
                   record the manuscript(s) used as the base text(s) for that edition. This is
                   expressed using a <gi>relation</gi> with <code>type="mssWitnesses"</code> and
-                  <code>ref="dcterms:source"</code>. The <att>active</att> attribute gives the
-                  xml:id of the edition entry (without the <code>#</code> prefix); the
-                  <att>passive</att> attribute gives the xml:id of the manuscript entry (with the
-                  <code>#</code> prefix) in the manuscripts section of the same record. A
-                  <gi>desc</gi>/<gi>label</gi> provides the human-readable shelfmark:
+                  <code>ref="dcterms:source"</code>. The <att>active</att> attribute refers to the
+                  xml:id of the edition entry (with the
+                  <code>#</code> prefix); the <att>passive</att> attribute gives the xml:id of the manuscript entry (with the
+                  <code>#</code> prefix) found in the manuscripts section of the same record. A
+                  <gi>desc</gi>/<gi>label</gi> provides a human-readable shelfmark in a <gi>desc</gi> following the format described below (see <ref="#manuscripts">Manuscripts</ref>:
                 </p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <listRelation>
