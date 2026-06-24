@@ -1135,29 +1135,81 @@
           <div xml:id="textLang">
             <head>Text Language (<gi>textLang</gi>)</head>
             <p>The primary language of the work's text is recorded using a <gi>textLang</gi>
-              element with a <att>mainLang</att> attribute whose value is an ISO 639 language code.
-              For the overwhelming majority of <title>NHSL</title> works this will be <q>syr</q>
-              for Syriac. This element appears as a direct child of <gi>bibl</gi>, after the
-              identifiers:</p>
+              element with a <att>mainLang</att> attribute whose value is an <ref target="https://www.iso.org/iso-639-language-code">ISO 639 Language code</ref>.
+              See <ref target="#languageCodes">Recording Language Information (<att>xml:lang</att>)</ref>, above for more general
+              information about using these language codes.
+              For the overwhelming majority of <title>NHSL</title> records, the attribute value will be <q>syr</q>,
+              for Syriac. This is the case even for literary works originally composed in languages other than Syriac, given the 
+            linguistic scope of <title>NHSL</title>.</p>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <textLang mainLang="syr"/>
             </egXML>
-            <p>If a work is substantially bilingual or multilingual, additional languages may be
-              recorded with <att>otherLangs</att>. However, in practice most <title>NHSL</title>
-              records represent Syriac-language texts and use only <att>mainLang="syr"</att>.</p>
+            <p>Only one <gi>textLang</gi> element is allowed. If a work is substantially bilingual or multilingual,
+              additional languages may be recorded in the <att>otherLangs</att> attribute as a space-separated list 
+              of ISO 639 Language codes.</p>
           </div>
 
           <div xml:id="noteGrp">
-            <head>Incipits, Explicits, and Prologues (<gi>noteGrp</gi>)</head>
-            <p>A distinctive feature of many <title>NHSL</title> records is the inclusion of the
-              opening words (<emph>incipit</emph>), closing words (<emph>explicit</emph>), and
-              sometimes the opening of a prefatory section (<emph>prologue</emph>) of the text,
-              quoted from a specific edition or manuscript. This data supports scholars in
-              identifying and disambiguating textual witnesses. These quotations are grouped using
-              <gi>noteGrp</gi> elements, each dedicated to one type of text sample.</p>
-            <p>Each <gi>noteGrp</gi> element carries a <att>type</att> attribute indicating which
-              kind of text sample it contains. Permitted values are <q>incipit</q>, <q>explicit</q>,
-              and <q>prologue</q>:</p>
+            <!--Generic header for noteGrps -->
+            <head>Work Description, Notes, and Excerpts (<gi>noteGrp</gi>)</head>
+            <p>Each work record contains one or more <gi>noteGrp</gi> elements that help to disambiguate
+            this work from other similar works. These note groups include record abstracts; descriptive and discursive
+          notes about the work; and excerpts from the work.</p>
+          <p>The general structure of a <gi>noteGrp</gi> element is as follows. Each <gi>noteGrp</gi> element
+             must have a <att>type</att> attribute and a child <gi>desc</gi> element. The <att>type</att> attribute's value 
+             and the text node of the <gi>desc</gi> element must match those in the following table:
+            <!--list these and describe? abstract, scope, versions, content, disambiguation, prologue, incipit, excerpt, explicit -->
+
+            One or more child <gi>note</gi> elements may be included in a <gi>noteGrp</gi> element. These <gi>note</gi> elements must
+            have a <att>type</att> attribute whose value corresponds to that of its parent <gi>noteGrp</gi> element. The language
+            of the note must be recorded as described in <ref target="#languageCodes">Recording Language Information (<att>xml:lang</att>)</ref> above.
+            The contents of the <gi>note</gi> element should be sourced  as
+            described in the guidelines on <ref target="#source">Inserting Citations</ref>. If the contents are a direct quotation from the source,
+            however, a child <gi>quote</gi> element should be included, and that element sourced per the above guidelines.
+            <!-- example -->
+            </p>
+          <div xml:id="abstract">
+            <head>Abstract</head>
+            <p><emph>An English-language abstract is required. A record may have any number of
+                  additional <gi>note</gi> elements.</emph></p> 
+                  <p>Every record must have an abstract, i.e. a short description or one to two lines of
+                prose describing the literary work. The purpose of the abstract is to help users of
+                  <title>NHSL</title> to easily disambiguate search results and quickly identify the
+                work for which they are searching. Abstracts should be written as complete sentences
+                with proper punctuation. Ideally, an abstract should be at least one sentence in legnth
+                 Every record must have an abstract written in English. It is also possible to add additional abstracts in
+                other languages. Additionally, individual sub-volumes of <title>NHSL</title> may have
+                their own, distinct abstracts.
+                    <!-- Example-->
+                Abstracts may be included in languages other than English, and each abstract
+                must have its language recorded as described in the <ref target="#languageCodes">Recording Language Information (<att>xml:lang</att>)</ref>
+                section, above
+              </p>
+              <p>
+                Abstracts must also have a <att>corresp</att> attribute that contains one or more
+                space-separated URIs that correspond to the <gi>idno</gi> element in the
+                  <gi>seriesStmt</gi> elements. These URIs identify <title>NHSL</title> and its
+                sub-volumes, such as the <title>Bibliotheca Hagiographica Syriaca Electronica</title>. 
+                If there are multiple abstracts, only one can reference a given
+                series URI, and every series URI must be referenced by one of the abstracts.
+                <!--Example of a rec with multiple, distinct? -->
+              </p>
+          </div>
+          <div xml:id="note">
+            <head>Scholarly Annotation</head>
+            <p>
+              <!--
+              - scope, versions, content, disambiguation notes
+              -->
+            </p>
+          </div>
+          <div>
+            <head>Prologues, Incipits, Excerpts, and Explicits (<gi>noteGrp</gi>)</head>
+            <p>To assist users with disambiguating similar works, textual excerpts of various
+              types may be included.
+              <!--
+              TBD: stopped here
+              -->
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <noteGrp type="incipit">
                 <desc xml:lang="en">Incipit</desc>
@@ -1170,26 +1222,6 @@
                 </note>
               </noteGrp>
             </egXML>
-            <p>Within each <gi>noteGrp</gi>, the structure is as follows:</p>
-            <list>
-              <item><gi>desc</gi> — a brief English label for the group (e.g., <q>Incipit</q>,
-                <q>Explicit</q>)</item>
-              <item>one or more <gi>note</gi> elements — each providing the text in a particular
-                language. A <att>type</att> attribute matching the parent <gi>noteGrp</gi>'s type
-                must appear on each <gi>note</gi>, and an <att>xml:lang</att> attribute gives the
-                language of the quoted text.</item>
-            </list>
-            <p>Within each <gi>note</gi>, the actual quoted text is enclosed in a <gi>quote</gi>
-              element. The <gi>quote</gi> element must carry a <att>source</att> attribute pointing
-              to the bibliographic entry for the edition from which the incipit or explicit was
-              taken. When the source edition contains a modern-language translation of the incipit
-              (as is common for entries derived from the <title>BHS</title>), additional
-              <gi>note</gi>/<gi>quote</gi> pairs may record these translations in French, English,
-              or other languages.</p>
-            <p>For biblical texts (type <code>lawd:ConceptualWork</code>) the incipit is frequently
-              derived from a specific manuscript or electronic text edition, and the source citation
-              makes this provenance explicit. The following example shows the prologue and incipit
-              for the Peshitta version of Genesis:</p>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <noteGrp type="prologue">
                 <desc xml:lang="en">Prologue</desc>
@@ -1205,6 +1237,8 @@
                 </note>
               </noteGrp>
             </egXML>
+            </p>
+            </div>
           </div>
 
           <div xml:id="listRelation">
