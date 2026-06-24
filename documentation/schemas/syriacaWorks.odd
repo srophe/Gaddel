@@ -896,7 +896,7 @@
           </div>
 
           <div xml:id="biblElement">
-            <head>The Work Record (<gi>bibl</gi>)</head>
+            <head>Description of the Literary Work (<gi>bibl</gi>)</head>
             <p>The primary container for all data about a literary work is the <gi>bibl</gi>
               element. This usage adapts the TEI <gi>bibl</gi> element — normally used for
               bibliographic references — to serve as the top-level container for work descriptions.
