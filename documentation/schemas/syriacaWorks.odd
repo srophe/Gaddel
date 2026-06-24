@@ -1333,7 +1333,7 @@
               <p>Consulting published editions of Syriac texts is one of the most comprehensive ways to identify a distinct literary work, especially if the published text is a critical edition with apparatus. Accordingly, at the time of composition <title>NHSL</title> entries should try to cite all printed editions of the work (including diplomatic and eclectic editions). Because of the constant publication of new scholarship, however, readers should not assume that the list of editions is complete in any given record (a prewritten <gi>desc</gi> element is provided with a note to this effect).</p> 
               <p>The <gi>listBibl type="editions"</gi> section records the citations for editions of
                 the work. Each edition is encoded as a separate <gi>bibl</gi> element with
-                <code>type="lawd:Edition"</code>. Each <gi>bibl</gi> must be assigned a unique <att>xml:id<att> as documented above. Because Syriaca.org manages the publication information for all citations in a separate
+                <code>type="lawd:Edition"</code>. Each <gi>bibl</gi> must be assigned a unique <att>xml:id</att> as documented above. Because Syriaca.org manages the publication information for all citations in a separate
                 reference work, <ref target="https://syriaca.org/cbss/index.html"><title>The
                     Comprehensive Bibliography on Syriac Studies (CBSS)</title></ref>, it is not necessary to include the full citation in the <gi>bibl</gi> element. Instead,
                 the first step in adding a citation for an edition into a work record in <title>NSHL</title> is to
@@ -1383,7 +1383,7 @@
                   xml:id of the edition entry (with the
                   <code>#</code> prefix); the <att>passive</att> attribute gives the xml:id of the manuscript entry (with the
                   <code>#</code> prefix) found in the manuscripts section of the same record. A
-                  <gi>desc</gi>/<gi>label</gi> provides a human-readable shelfmark in a <gi>desc</gi> following the format described below (see <ref="#manuscripts">Manuscripts</ref>:
+                  <gi>desc</gi> provides a human-readable shelfmark in the following the format described below (see <ref target="#manuscripts">Manuscripts</ref>:
                 </p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <listRelation>
