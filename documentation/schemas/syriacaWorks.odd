@@ -911,8 +911,8 @@
             <list>
               <item><gi>title</gi>* — one or more work title variants (see <ref
                   target="#title">Titles</ref>)</item>
-              <item><gi>author</gi> — the work's attributed author (see <ref
-                  target="#author">Author</ref>)</item>
+              <item><gi>author</gi> or <gi>editor</gi>— the work's attributed creator(s) (see <ref
+                  target="#creator">Creators</ref>)</item>
               <item><gi>idno</gi>* — one or more identifiers, including the canonical Syriaca.org
                 URI (see <ref target="#idno">Identifiers</ref>)</item>
               <item><gi>textLang</gi> — the primary language of the work (see <ref
@@ -988,56 +988,60 @@
 
           <div xml:id="title">
             <head>Work Titles (<gi>title</gi>)</head>
-            <p>Each <title>NHSL</title> record must include one or more <gi>title</gi> elements
-              recording the name or names of the work. Titles in <title>NHSL</title> may be in
-              Syriac, English, French, Latin, Greek, or other languages, and may represent different
-              forms: headword titles for citation, titles as found in editions or manuscripts,
-              abbreviations, and editorial labels for untitled texts.</p>
-            <p>All <gi>title</gi> elements within the <gi>bibl</gi> element must carry the
-              following attributes:</p>
-            <list>
-              <item><att>xml:id</att> — a unique identifier for this title variant within the
-                document, following the pattern <code>name[workNum]-[n]</code> (e.g.
-                <code>name567-1</code>)</item>
-              <item><att>xml:lang</att> — the language of the title (required)</item>
-              <item>either <att>source</att> or <att>resp</att> — attribution of the title
-                (required; see <ref target="#sourceAttribution">Sources and Attribution</ref>)</item>
-            </list>
+            <p>Titles are essential for identifying and disambiguating individual literary works.
+              Every record must include at least one <gi>title</gi> element, and may have any additional
+              number of <gi>title</gi> elements. The text node of this element
+              should contain a title by which the literary work is or was known.
+              Name variants may be recorded for any language, and that language should be recorded as described
+              in the <ref target="#languageCodes">Recording Language Information (<att>xml:lang</att>)</ref> section. 
+              Each record must have at least one title in English or English transliteration indicated as the <ref target="#headword">headword</ref>.
+              Multiple titles attested in manuscripts or in scholarly use may be collected, each recorded in their own
+              <gi>title</gi> element.</p>
+              <p>Additionally, <gi>title</gi> elements must have a unique <att>xml:id</att>
+                attribute of the form <code>name\d+-\d+</code>. The first digits derive from the
+                numerical portion of the Syriaca URI for the literary work, and the latter is a sequential
+                integer: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <title xml:id="name1-2" xml:lang="syr" srophe:tags="#syriaca-headword" source="#bib1-1">ܣܦܪܐ ܕܒܪܝܫܝܬ</title>
+                </egXML> Finally, as seen in the preceding example, all <gi>title</gi> elements
+                must indicate the source of the name form as detailed in the <ref target="#source">Inserting Citations</ref> section of these Guidelines. </p>
 
             <div xml:id="headwordTitles">
-              <head>Headword Titles (<att>srophe:tags</att>)</head>
-              <p>Every <title>NHSL</title> record must include exactly two headword titles: one in
-                English and one in Syriac. These are the titles used for display, citation, and
-                disambiguation. They are identified by the attribute
-                <code>srophe:tags="#syriaca-headword"</code>. The Syriac headword title must be in
-                Syriac script (not transliteration):</p>
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <title xml:id="name1-1" xml:lang="en" srophe:tags="#syriaca-headword"
-                  resp="http://syriaca.org">Genesis (Peshitta version)</title>
-                <title xml:id="name1-2" xml:lang="syr" srophe:tags="#syriaca-headword"
-                  source="#bib1-1">ܣܦܪܐ ܕܒܪܝܫܝܬ</title>
-              </egXML>
+              <head>Syriaca Headwords</head>
+              <p>At least one <gi>title</gi> element must be tagged as a Syriaca Headword
+                  using a <att>srophe:tags</att> attribute with the value of
+                    <q>#syriaca-headword</q>. As the headwords are used as preferred labels
+                  and for alphabetization in search/browse results, at least one title in English or
+                  English transliteration should be tagged as a headword. At most one headword per language may be defined.
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <title xml:id="name3-1" xml:lang="en" srophe:tags="#syriaca-headword" resp="http://syriaca.org">Leviticus (Peshitta version)</title>
+                    <title xml:id="name3-2" xml:lang="syr" srophe:tags="#syriaca-headword" source="#bib3-1 #bib3-2">ܣܦܪܐ ܕܟܗ̈ܢܐ</title>
+                    <title xml:id="name3-3" xml:lang="en" source="#bib3-10 #bib3-20 #bib3-22 #bib3-24">Leviticus</title>
+                  </egXML>
+                </p>
+              <!--
+                From the Claude output, include?:
               <p>Headword titles for biblical works in <title>NHSL</title> are typically
                 constructed by appending a parenthetical qualifier (e.g., <q>(Peshitta version)</q>,
                 <q>(literary tradition)</q>) to the standard English title to ensure disambiguation.
                 For hagiographic texts, the convention is to append <q>(text)</q> to distinguish
                 the work record from a person record about the same saint.</p>
+              -->
             </div>
 
             <div xml:id="titleTypes">
               <head>Title Types (<att>type</att>)</head>
-              <p>In addition to headword titles, records may include additional title variants with
-                a <att>type</att> attribute classifying the nature of the variant:</p>
+              <p>Titles may be further classified using a <att>type</att> attribute. This practice is optional. Only the following
+                values are permitted:</p>
               <list>
-                <item><code>type="abbreviation"</code> — a standard abbreviation for the work
-                  title, such as those found in the SBL Handbook of Style. An additional
-                  <att>srophe:tags="#canonical"</att> attribute may mark the abbreviation as the
-                  canonical standard form.</item>
-                <item><code>type="supplied"</code> — a title supplied by an editor or catalogue
-                  that does not appear verbatim as a rubric in the manuscript or edition, but
-                  describes the content of the text as found in a specific witness.</item>
-                <item><code>type="final-rubric"</code> — the closing rubric as it appears at the
-                  end of the text in a particular manuscript or edition, transcribed verbatim.</item>
+                <item><q>abbreviation</q>: a standard, abbreviated form of the work's title, such as those found in the SBL Handbook of Style. A
+                  <att>srophe:tags</att> attribute with the value of <q>canonical</q> may mark abbreviations in widespread scholarly usage.
+                  The abbreviation system should be cited as described in the 
+                  <ref target="#source">Inserting Citations</ref> section of these Guidelines.</item>
+                <item><q>supplied</q>: a title supplied by an editor or cataloger, often describing the
+                  literary work in terms of its contents, rather than a title transcribed or
+                  otherwise derived from a specific manuscript witness.</item>
+                <item><q>type="final-rubric"</q>: the title as it appears in a subscription, or closing
+                  rubric, of a specific manuscript witness.</item>
               </list>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <title xml:id="name1-4" xml:lang="en" type="abbreviation"
@@ -1050,65 +1054,60 @@
             </div>
           </div>
 
-          <div xml:id="author">
-            <head>Author (<gi>author</gi>)</head>
-            <p>When a work is attributed to a known author who has a Syriaca.org person URI, that
-              attribution is recorded using an <gi>author</gi> element as a direct child of
-              <gi>bibl</gi>. The element must carry a <att>ref</att> attribute linking to the
-              Syriaca.org person URI, a <att>source</att> attribute citing the scholarly source for
-              the attribution, and an <att>xml:lang</att> attribute identifying the language of the
-              element's text content. The text of the <gi>author</gi> element provides the English
-              form of the name, followed by an em dash and the Syriac form in a <gi>foreign</gi>
-              element:</p>
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+          <div xml:id="creator">
+            <head>Creators (<gi>author</gi> and <gi>editor</gi>)</head>
+            <p>Authors and other creators (translators, compilers, etc.) are recorded using
+              <gi>author</gi> or <gi>editor</gi> elements, depending on the individual person's
+              responsibility for the creation of the literary work. In both cases, the creator
+              should have en entry in the <ref target="http://syriaca.org/persons"><title>Syriac Biographical Dictionary</title></ref>,
+              and the Syriaca.org person URI should be included as the value of the <att>ref</att>
+              attribute of the <gi>author</gi> or <gi>editor</gi> element. The contents of these
+              elements, moreover, should be the text node of the person record's <code>/TEI/titleStmt/title</code> element:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <author ref="http://syriaca.org/person/13" source="#bib567-1" xml:lang="en">
                 Ephrem — <foreign xml:lang="syr">ܐܦܪܝܡ</foreign>
               </author>
             </egXML>
-            <p>The <gi>author</gi> element must not be used when the attribution is uncertain or
-              disputed beyond the level of scholarly consensus. In such cases, the attribution may
-              be discussed in a <gi>note</gi> element instead. Works of unknown or anonymous
-              authorship simply omit the <gi>author</gi> element.</p>
-            <p>The <att>ref</att> attribute must point to a verified Syriaca.org person URI. Person
-              URIs take the form <code>http://syriaca.org/person/[n]</code>. The Syriaca.org
-              person for any given author can be found in <ref
-                target="https://syriaca.org/persons"><title>The Syriac Biographical
-                Dictionary</title></ref>.</p>
+            As seen in the above example, the <gi>author</gi> or <gi>editor</gi> element for the creator
+            should include an <att>xml:lang</att> attribute value of <q>en</q>.
+          </p>
+            <p>For creators other than authors, the <att>role</att> attribute must be used to further
+            specify the peron's contribution. Allowed values include:
+            <!-- TBD: add this list from the schema --></p>
+          <p>Attribution of creators may also be included even in cases of dubious, disputed, or pseudopigraphic
+            attribution. The <att>role</att> attribute may also be used for this purpose, in which case the
+            following values should be used:
+            <!--TBD: add this list from the schema -->
+
+            <!--Proposed convention: include a note (what type?) explaining cases of uncertain or incorrect attribution -->
+          </p>
           </div>
 
           <div xml:id="idno">
             <head>Identifiers (<gi>idno</gi>)</head>
-            <p>Each <title>NHSL</title> record must include one or more <gi>idno</gi> elements
-              recording the unique identifiers associated with the work. These elements appear as
-              direct children of the <gi>bibl</gi> element, after the titles and author.</p>
-
-            <div xml:id="syriacaWorkURI">
-              <head>The Syriaca.org Work URI</head>
-              <p>The primary identifier for every work record is its Syriaca.org URI. This must be
-                encoded as an <gi>idno</gi> element with <code>type="URI"</code> and the URI as its
-                text content. The URI format is <code>http://syriaca.org/work/[n]</code>:</p>
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <idno type="URI">http://syriaca.org/work/1</idno>
-              </egXML>
-            </div>
-
-            <div xml:id="externalIdentifiers">
-              <head>External Identifiers</head>
-              <p>When a work is listed in major external reference databases, additional
-                <gi>idno type="URI"</gi> elements may record those identifiers as URIs. Common
-                external identifiers used in <title>NHSL</title> include Wikidata, Wikipedia, and
-                VIAF. These are recorded as additional <gi>idno type="URI"</gi> elements following
-                the canonical Syriaca.org URI:</p>
+            <p><emph>This element is required. A record must have at least one <gi>idno</gi>
+                  indicating a Syriaca.org URI. Records belonging to more than one Syriaca.org
+                  publication, must have an <gi>idno</gi> for each publication. A record may have
+                  any number of additional <gi>idno</gi> elements.</emph></p>
+            <p>As discussed above in the section on the <ref target="#concept">Concept of a
+                  Work</ref>, URIs are an important part of delineating a literary work.
+                  Each <title>NHSL</title> record must include one or more <gi>idno</gi> elements
+              recording the unique identifiers associated with the work.
+            The first of these <gi>idno</gi> elements must have the <att>type</att> attribute with
+            a value of <q>URI</q>, and it must contain the Syriaca.org work URI for literary work
+          which the record describes, of the form <code>http://syriaca.org/work/{\d+}</code>. Other <gi>idno</gi>
+        elements with <att>type</att> attributes of <q>URI</q> may be included to connect the <title>NHSL</title>
+      record with related concepts in other databases, such as <ref target="https://viaf.org"><title>Virtual International Authority File</title></ref>,
+    or <ref target="https://www.wikidata.org/wiki/Wikidata:Main_Page"><title>WikiData</title></ref>.
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <idno type="URI">http://syriaca.org/work/1</idno>
                 <idno type="URI">https://en.wikipedia.org/wiki/Book_of_Genesis</idno>
                 <idno type="URI">https://www.wikidata.org/wiki/Q9184</idno>
                 <idno type="URI">https://viaf.org/viaf/174582712</idno>
               </egXML>
-            </div>
-
-            <div xml:id="numberIdentifiers">
-              <head>Reference Work Numbers (<gi>idno type="number"</gi>)</head>
+  </p>
+            <div xml:id="referenceNumbers">
+              <head>Standard Reference Numbers</head>
               <p>When a work is listed in a standard print reference work — such as the
                 <title>Bibliotheca Hagiographica Syriaca</title> (<title>BHS</title>) or the
                 <title>Bibliotheca Hagiographica Orientalis</title> (<title>BHO</title>) — the
