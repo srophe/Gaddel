@@ -9264,7 +9264,7 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
                   starting with "http".
                 </sch:assert>
                 <sch:assert test="                   not(starts-with(., '#'))                   or substring(.,2) =                   root(.)//tei:body//tei:bibl/@xml:id                   ">
-                  This @passsive attribute must point to a single @xml:id on a &lt;bibl&lt; element. Available values 
+                  This @passive attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
                   include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
                 </sch:assert>
               </sch:rule>
@@ -9275,7 +9275,7 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
                 <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
                 <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
                 <sch:report test="matches(., '\s')">
-                  The @passive attribute may only take one value.
+                  The @active attribute may only take one value.
                 </sch:report>
                 <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
                   The @active attribute must either point to an existing @xml:id in this
@@ -9283,7 +9283,7 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
                   starting with "http".
                 </sch:assert>
                 <sch:assert test="                   not(starts-with(., '#'))                   or substring(.,2) =                   root(.)//tei:body//tei:bibl/@xml:id                   ">
-                  This @active attribute must point to a single @xml:id on a &lt;bibl&lt; element. Available values 
+                  This @active attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
                   include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
                 </sch:assert>
                 
