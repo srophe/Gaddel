@@ -72,7 +72,7 @@
         <head>NHSL Encoding Guidelines</head>
         <div xml:id="introduction">
           <head>Introduction</head>
-          <>Welcome to the encoding guidelines for the second edition of <ref
+          <p>Welcome to the encoding guidelines for the second edition of <ref
               target="https://syriaca.org/nhsl"><title>A New Handbook of Syriac Literature</title></ref> (hereafter
               <title>NHSL</title>). <title>NHSL</title> a born-digital TEI-encoded reference work
                for the study of Syriac literature. The first volume, <title level="m"><ref
@@ -95,8 +95,8 @@
             comments and suggestions for improvement. </p>
         </div>
         <div xml:id="acknowledgements">
-          <head>Acknowledgements</head>
-          <p>This present document reuses and adapts from material published published by the Text
+          <head>Acknowledgements and Attributions</head>
+          <p>These guidelines reuse and adapt material published published by the Text
             Encoding Initiative Consortium as <ref
               target="https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html"><title>TEI:
                 Guidelines for Electronic Text Encoding and Interchange</title></ref> in the P5
@@ -106,34 +106,48 @@
               Unported License</ref>.</p>
           <p>The present document is also an update to previous documentation published by
             Syriaca.org. An initial schema and documentation for the first edition of <title>A New Handbook of Syriac Literature</title> was designed in 2016 by Nathan P. Gibson
-            Jeanne-Nicole Mellon Saint-Laurent, David A. Michelson, Winona Salesky, and Daniel L. Schwartz. Portions of the earlier documentation has been reused below under the terms of the <ref
+            Jeanne-Nicole Mellon Saint-Laurent, David A. Michelson, Winona Salesky, and Daniel L. Schwartz. Portions of the earlier documentation have been reused below under the terms of the <ref
               target="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0
               International license</ref>. The current document represents guidelines for the second
             edition of <title>A New Handbook of Syriac Literature</title>.</p>
-          <p>In addition, prose and examples have been reused from David A. Michelson, “Using Linked
-            Open Data to Model Cultural Heritage Information: The Research Questions and Data
-            Structures of the Syriaca.org Knowledge Graph,” in <title>Linked Open Data for the
-              Ancient Mediterranean: Structures, Practices, Prospects</title>, edited by Sarah E.
-            Bond, Paul Dilley, and Ryan Horne, <title>ISAW Papers</title> 20 (2021), <ref
-              target="http://hdl.handle.net/2333.1/69p8d8cc"
-              >http://hdl.handle.net/2333.1/69p8d8cc</ref> and from David A. Michelson, et. al.,
-            eds. <title>Syriac Manuscripts in the British Library: TEI P5 Customization and Encoding
-              Guidelines for Manuscript Description</title> (Syriaca.org: 2024), <ref
-              target="https://github.com/srophe/britishLibrary/blob/main/documentation/schema/Syriacamsdesc.html"
-              >https://github.com/srophe/britishLibrary/blob/main/documentation/schema/Syriacamsdesc.html</ref>
-            under the terms of the <ref target="https://creativecommons.org/licenses/by/4.0/"
-              >Creative Commons Attribution 4.0 International license</ref> and from Daniel L. Schwartz, et. al.,<title>The Syriac Gazetteer: Encoding Guidelines and TEI P5 Customization</title> (Syriaca.org, 2025), <ref
-              target="https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.compiled.html"
-              >https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.compiled.html</ref> under the terms of the <ref target="https://creativecommons.org/licenses/by/3.0/"
-              >Creative Commons Attribution 3.0 Unported License</ref>.
+          <p>In addition, prose and examples have been reused from the following sources:
+   <list>
+      <item>David A. Michelson, "Using Linked Open Data to Model Cultural Heritage
+         Information: The Research Questions and Data Structures of the Syriaca.org
+         Knowledge Graph," in <title>Linked Open Data for the Ancient Mediterranean:
+            Structures, Practices, Prospects</title>, edited by Sarah E. Bond, Paul
+         Dilley, and Ryan Horne, <title>ISAW Papers</title> 20 (2021), <ref
+            target="http://hdl.handle.net/2333.1/69p8d8cc"
+            >http://hdl.handle.net/2333.1/69p8d8cc</ref>,
+         under the terms of the <ref target="https://creativecommons.org/licenses/by/4.0/"
+            >Creative Commons Attribution 4.0 International license</ref>.</item>
+      <item>David A. Michelson, et. al., eds. <title>Syriac Manuscripts in the British
+            Library: TEI P5 Customization and Encoding Guidelines for Manuscript
+            Description</title> (Syriaca.org: 2024), <ref
+            target="https://github.com/srophe/britishLibrary/blob/main/documentation/schema/Syriacamsdesc.html"
+            >https://github.com/srophe/britishLibrary/blob/main/documentation/schema/Syriacamsdesc.html</ref>,
+         under the terms of the <ref target="https://creativecommons.org/licenses/by/4.0/"
+            >Creative Commons Attribution 4.0 International license</ref> (which was in
+         turn developed from guidelines published by the Bodleian Library, Oxford and
+         James Cummings as <ref target="https://github.com/msDesc/consolidated-tei-schema"
+            ><title>TEI P5 Customization and Encoding Guidelines for Manuscript
+               Description</title></ref> and licenced under CC BY 4.0).</item>
+      <item>Daniel L. Schwartz, et. al., <title>The Syriac Gazetteer: Encoding Guidelines
+            and TEI P5 Customization</title> (Syriaca.org, 2025), <ref
+            target="https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.compiled.html"
+            >https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.compiled.html</ref>,
+         under the terms of the <ref target="https://creativecommons.org/licenses/by/3.0/"
+            >Creative Commons Attribution 3.0 Unported License</ref>.</item>
+   </list>
 </p>
         </div>
         <div xml:id="principles">
           <head>General Editorial Principles</head>
           <div xml:id="syriacaDataModel">
             <head>The Seven Core Entities of the Syriaca.org Data Model</head>
-            <p><ref target="https://syriaca.org/geo"><title>The Syriac Gazetteer</title></ref>
-                (<title>TSG</title>) was conceived as part of a larger project to produce reference
+            <p><ref
+              target="https://syriaca.org/nhsl"><title>A New Handbook of Syriac Literature</title></ref>
+                (<title>NHSL</title>) was conceived as part of a larger project to produce reference
               works (authority files) for the field of Syriac studies. The Syriaca.org data model is
               designed around identifying and describing seven core conceptual entities relevant to
               historical research: <list>
@@ -169,10 +183,9 @@
               the city of Edessa where he spent much of his life is identified as <ref
                 target="http://syriaca.org/place/78">http://syriaca.org/place/78</ref>. The
               necessity of using unique strings of characters instead of traditional names arises
-              from the occurrence of homonymous entities. For example, <title>TSG</title> has
-              entries for more than 50 different churches and monasteries each with the name <q>Mar
-                Gewargis</q> (St. George). Accordingly, all Syriaca.org URIs are unique—each
-              identifying only one conceptual entity. Thus, every <q>Church of Mar Gewargis</q> is
+              from the occurrence of homonymous entities. For example, <title>NHSL</title> has
+              entries for more than 15 different hagiographic texts each with the title or subject matter of <q>The Forty Martyrs of Sebaste</q>. Accordingly, all Syriaca.org URIs are unique—each
+              identifying only one conceptual entity. Thus, every different version of the passion of the <q>The Forty Martyrs of Sebaste</q> is
               assigned a separate URI.</p>
             <p>Syriaca.org URIs are not merely random strings of text and numbers; they are HTTP
               URIs, meaning that each URI is also a URL (a Uniform Resource Locator, e.g. an HTTP
@@ -196,17 +209,17 @@
               traditions about him. Following this same logic, any historical concept can be
               described in the Syriaca.org URI model, even if its historical existence was only in
               the cultural imaginary.</p>
-            <p><title>TSG</title> is the Syriaca.org publication dedicated to describing places and
-              is responsible for assinging URIs to individual place entities in the Syriaca.org data
-              model. Descriptions of places in <title>TSG</title> can also refer to URIs for any of
-              the seven entities, thus a <title>TSG</title> record for a particular place may define
-              that place in relation to other places, as well as to persons, bibliography, etc. In
-              each instance, these relationships will be encoded in the <title>TSG</title> record as
+            <p><title>NHSL</title> is the Syriaca.org publication dedicated to describing works of literature and
+              is responsible for assinging URIs to individual texts and textual traditions in the Syriaca.org data
+              model. Descriptions of literary works in <title>NHSL</title> can also refer to URIs for any of
+              the seven entities, thus a <title>NHSL</title> record for a particular work may define
+              that text in relation to other works, as well as to persons, modern bibliography, etc. In
+              each instance, these relationships will be encoded in the <title>NSHL</title> record as
               references to Syriaca.org URIs. Taken as a whole, the entire Syriaca.org dataset of
               linked URIs forms a "knowledge graph" or a map of relationships between URIs from the
               seven core entitites. In the example of Ephrem the Syrian
-                (<code>http://syriaca.org/person/13</code>) and the city of Edessa
-                (<code>http://syriaca.org/place/78</code>) the relationship between these two
+                (<code>http://syriaca.org/person/13</code>) and his work <title>Hymns on Nisibis</title>
+                (<code>http://syriaca.org/work/8737</code>) the relationship between these two
               entities is part of the Syriaca.org knowledge graph. </p>
           </div>
           <div xml:id="placeConcept">
