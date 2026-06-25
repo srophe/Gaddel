@@ -1504,7 +1504,62 @@
                 </listBibl>
               </egXML>
             </div>
-
+            <div xml:id="ancientVersions">
+              <head>Ancient Versions (<gi>listBibl type="ancientVersions"</gi>)</head>
+              <p>Ancient versions are pre-modern translations of a Syriac work into another language, or
+                pre-modern translations of a work in another language that was subsequently translated into
+                Syriac. Examples include Greek, Latin, Armenian, Coptic, Arabic, and Ethiopic versions of
+                texts also attested in Syriac. These ancient versions are important for establishing the
+                literary history of a work, its transmission across linguistic communities, and its
+                relationships to other textual traditions. They are distinguished from modern scholarly
+                translations, which are recorded separately in <gi>listBibl type="modernTranslations"</gi>
+                (see <ref target="#modernTranslations">Modern Translations</ref>), and from critical
+                editions of the Syriac text, which are recorded in <gi>listBibl type="editions"</gi>
+                (see <ref target="#editions">Editions</ref>).</p>
+              <p>The <gi>listBibl type="ancientVersions"</gi> section records citations for ancient
+                versions of the work. Each version is encoded as a separate <gi>bibl</gi> element with
+                <code>type="lawd:Expression"</code>, reflecting the IFLA LRM and LAWD ontology concept
+                that an ancient version in a different language constitutes a distinct <emph>expression</emph>
+                of the same underlying work. Each <gi>bibl</gi> must be assigned a unique <att>xml:id</att>
+                following the pattern <code>bib[workNum]-[n]</code>.</p>
+              <p>As with editions, <title>NHSL</title> manages full publication information for ancient
+                versions through the <ref target="https://syriaca.org/cbss/index.html"><title>Comprehensive
+                    Bibliography on Syriac Studies (CBSS)</title></ref>. Editors should first locate or
+                request the entry for the relevant edition or text in <title>CBSS</title> and record its
+                URI in a <gi>ptr</gi> element. A <gi>title</gi> element should be included for reference
+                within the XML document; the Gaddel app will use the CBSS URI to retrieve and display the
+                full publication information. A <gi>textLang</gi> element with a <att>mainLang</att>
+                attribute must be included to record the language of the version. One or more
+                <gi>citedRange</gi> elements should specify the location within the cited publication where
+                the version appears.</p>
+              <p>If the information about an ancient version is derived from a secondary source (such as
+                Zanetti and Detienne, <title>Bibliotheca Hagiographica Syriaca</title>), that source should
+                be cited using <att>source</att> on the <gi>bibl</gi> element. If the editor has consulted
+                the version directly, a <att>resp</att> attribute with the value
+                <code>http://syriaca.org</code> should be used instead. Here is an example of an ancient
+                version citation:</p>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <listBibl type="ancientVersions">
+                  <head>Ancient Versions</head>
+                  <desc xml:lang="en">This is not a comprehensive list of ancient versions related to
+                    this work. Further citations may be available through Syriac.Nexus.</desc>
+                  <bibl xml:id="bib567-10" source="#bib567-1" type="lawd:Expression">
+                    <title xml:lang="la">Acta Martyrum et Sanctorum</title>
+                    <ptr target="http://syriaca.org/cbss/2J7UU3FY"/>
+                    <citedRange unit="vol">3</citedRange>
+                    <citedRange unit="p">40-55</citedRange>
+                    <textLang mainLang="la"/>
+                  </bibl>
+                </listBibl>
+              </egXML>
+              <p>When the ancient version survives in a known manuscript witness, a nested
+                <gi>listRelation</gi> element may optionally be used within the <gi>bibl</gi> to link
+                the version to the relevant manuscript entry in the <gi>listBibl type="manuscripts"</gi>
+                section of the same record. This follows the same pattern used for linking editions to
+                manuscripts (see <ref target="#editionManuscriptLink">Linking Editions to
+                  Manuscripts</ref>), using a <gi>relation</gi> element with
+                <code>type="mssWitnesses"</code> and <code>ref="dcterms:source"</code>.</p>
+            </div>
             <div xml:id="secondaryLiterature">
               <head>Secondary Literature (<gi>listBibl type="secondaryLiterature"</gi>)</head>
               <p>The <gi>listBibl type="secondaryLiterature"</gi> section serves two distinct
