@@ -112,6 +112,9 @@
             edition of <title>A New Handbook of Syriac Literature</title>.</p>
           <p>In addition, prose and examples have been reused from the following sources:
    <list>
+    <item>Nathan P. Gibson, David A. Michelson, and Daniel L. Schwartz. "From Manuscript Catalogues to a Handbook of Syriac Literature: Modeling an Infrastructure for Syriaca.org," <title>Journal of Data Mining and Digital Humanities</title>, <title>Special Issue on Computer-Aided Processing of Intertextuality in Ancient Languages</title> (2017), <ref target="http://jdmdh.episciences.org/1395">http://jdmdh.episciences.org/1395</ref>,
+         under the terms of the <ref target="https://creativecommons.org/licenses/by/4.0/"
+            >Creative Commons Attribution 4.0 International license</ref>.</item>
       <item>David A. Michelson, "Using Linked Open Data to Model Cultural Heritage
          Information: The Research Questions and Data Structures of the Syriaca.org
          Knowledge Graph," in <title>Linked Open Data for the Ancient Mediterranean:
@@ -138,6 +141,8 @@
             >https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.compiled.html</ref>,
          under the terms of the <ref target="https://creativecommons.org/licenses/by/3.0/"
             >Creative Commons Attribution 3.0 Unported License</ref>.</item>
+            <item>Pat Riva, Patrick Le Bœuf, Maja Žumer, <title>IFLA Library Reference Model: A Conceptual Model for Bibliographic Information</title> (International Federation of Library Associations and Institutions [IFLA], August 2017, as emmended and corrected through December 2021, issued July 2024), <ref target="https://repository.ifla.org/handle/20.500.14598/40.2">https://repository.ifla.org/handle/20.500.14598/40.2</ref>, under the terms of the <ref target="https://creativecommons.org/licenses/by/4.0/"
+            >Creative Commons Attribution 4.0 International license</ref>.</item>
    </list>
 </p>
         </div>
@@ -223,15 +228,15 @@
               entities is part of the Syriaca.org knowledge graph. </p>
           </div>
           <div xml:id="placeConcept">
-            <head>The Concept of Place in <title>TSG</title></head>
-            <p><title>TSG</title> is a geographical reference work (in library science terms, an
-                <q>authority file</q>) published by Syriaca.org to identify and describe places
-              relevant to Syriac studies. The concept of distinct place is the distinguishing
-              criterion for each entry in <title>TSG</title>. Each record in <title>TSG</title>
-              represents a single place that can be disambiguated from other places. Each place is a
-              unique conceptual entity with a mental existence related to, but not reducible to, its
-              physical manifestation. The purpose of each record (and thus each XML file) is to
-              provide information which describes the place identified with that record.</p>
+            <head>The Concept of a Work of Literature in <title>NHSL</title></head>
+            <p><title>NHSL</title> is a reference work published by Syriaca.org to identify and describe texts which exist in Syriac or are relevant to Syriac studies. In library science terms, <title>NHSL</title> is a
+                <q>title authority file</q>). The concept of a distinct work is the distinguishing
+              criterion for each entry in <title>NHSL</title>. Each record in <title>NHSL</title>
+              represents a unique conceptual entity, a single work that can be disambiguated from other works. The purpose of each record (and thus each XML file) is to
+              provide information which describes the work identified with that record.</p>
+              <p>We have adopted the concept of a <q>work</q> from two standards developed within the field of library since. These standards are the <q>Functional Requirements for Bibliographic Records (FRBR)</q> and the <q>International Federation of Library Associations and Institutions Library Reference Model (IFLA LRM)</q>. The IFLA LRM was issued in 2024 and was developed out of the earlier FRBR model (published in 1998). <title>NHSL</title> was developed using the FRBR standard and updated for the second edition of <title>NHSL</title> to also comply with the IFLA LRM (as published in Pat Riva, Patrick Le Bœuf, Maja Žumer, <title>IFLA Library Reference Model: A Conceptual Model for Bibliographic Information</title> [International Federation of Library Associations and Institutions, August 2017, as emmended and corrected through December 2021, issued July 2024], <ref target="https://repository.ifla.org/handle/20.500.14598/40.2">https://repository.ifla.org/handle/20.500.14598/40.2</ref>.</p>
+              <p>The IFLA LRM defines a <q>work</q> as <q>the intellectual or artistic content
+of a distinct creation</q>. For our purposes we limit <q>works</q> to <q>literary works</q> by which we mean all Syriac <q>texts</q> (e.g., creative works which take written form, as opposed to visual art). It is useful to note that <title>NHSL</title> does not intend the adjective <q>literary</q> to be a limiting qualifier based on quality. For our purposes, all registers of Syriac texts from poetry to legal documents are <q>literary works</q>. In practical terms, we define a Syriac text as any item that one might want to identify in a list of contents in a manuscript catalog. This definition encompass all textual items which might historically have been transmitted from one manuscript to another but leaves some ambiguity with regards to marginalia, colophons, or ink tests which might or might not be considered <q>works</q>. The <title>NHSL</title> model allows these items to be described as <q>literary works</q> should an editor make the case that they should be considered a such.</p>
             <div xml:id="assigningURIs">
               <head>Assigning Place URIs (Uniform Resource Identifiers)</head>
               <p>Each place in <title>TSG</title> is assigned a unique indentifier. Because place
