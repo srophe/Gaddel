@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-06-25T17:43:52Z. . 
+Schema generated from ODD source 2026-06-25T18:39:08Z. . 
 TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
   
@@ -3742,7 +3742,9 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:body//tei:relation/@passive">
-               <sch:report test="contains(., '\s')">
+               <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
+               <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
+               <sch:report test="matches(., '\s')">
                   The @passive attribute may only take one value.
                 </sch:report>
                <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
@@ -3750,52 +3752,38 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
                   document starting with "#" or point to a URI/URL outside of this document 
                   starting with "http".
                 </sch:assert>
-            </sch:rule>
-            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
-                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                      xmlns:srophe="https://srophe.app"
-                      context="tei:body//tei:relation/@passive[starts-with(., '#')]">
-               <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
-               <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
-               <sch:assert test=". = $IDPtrValues">
-                  A @ attribute pointing to an @xml:id (i.e. one that starts with "#") must 
-                  point to an @xml:id on a bibliographic item in the current document. Available values include: 
-                  <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
+               <sch:assert test="                   not(starts-with(., '#'))                   or substring(.,2) =                   root(.)//tei:body//tei:bibl/@xml:id                   ">
+                  This @passsive attribute must point to a single @xml:id on a &lt;bibl&lt; element. Available values 
+                  include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
                 </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-active-values-constraint-rule-137">
+                  id="syriacaWorks-relation-active-values-constraint-rule-136">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:body//tei:relation/@active">
-               <sch:report test="contains(., '\s')">
-                  The @active attribute may only take one value.
+               <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
+               <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
+               <sch:report test="matches(., '\s')">
+                  The @passive attribute may only take one value.
                 </sch:report>
                <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
                   The @active attribute must either point to an existing @xml:id in this
                   document starting with "#" or point to a URI/URL outside of this document 
                   starting with "http".
                 </sch:assert>
-            </sch:rule>
-            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
-                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                      xmlns:srophe="https://srophe.app"
-                      context="tei:body//tei:relation/@active[starts-with(., '#')]">
-               <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
-               <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
-               <sch:assert test=". = $IDPtrValues">
-                  An @active attribute pointing to an @xml:id (i.e. one that starts with "#") must 
-                  point to an @xml:id on a bibliographic item in the current document. Available values include: 
-                  <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
+               <sch:assert test="                   not(starts-with(., '#'))                   or substring(.,2) =                   root(.)//tei:body//tei:bibl/@xml:id                   ">
+                  This @active attribute must point to a single @xml:id on a &lt;bibl&lt; element. Available values 
+                  include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
                 </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-ref-or-key-or-name-constraint-rule-139">
+                  id="syriacaWorks-relation-ref-or-key-or-name-constraint-rule-137">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3806,7 +3794,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-active-mutual-constraint-rule-140">
+                  id="syriacaWorks-relation-active-mutual-constraint-rule-138">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3817,7 +3805,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-active-passive-constraint-rule-141">
+                  id="syriacaWorks-relation-active-passive-constraint-rule-139">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3933,7 +3921,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          <ref name="tei_body"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-text-source-within-text-constraint-rule-142">
+                  id="syriacaWorks-text-source-within-text-constraint-rule-140">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4020,7 +4008,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
       </optional>
    </define>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="syriacaWorks-att.global.change-change-att-values-constraint-rule-143">
+            id="syriacaWorks-att.global.change-change-att-values-constraint-rule-141">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 xmlns:srophe="https://srophe.app"
