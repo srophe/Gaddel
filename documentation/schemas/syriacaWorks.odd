@@ -14,6 +14,7 @@
         <authority>Syriaca.org: The Syriac Reference Portal</authority>
         <availability>
           <licence target="http://creativecommons.org/licenses/by/3.0/">
+            <!-- Should we use 4.0? -DAM -->
             <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
             <p>The code examples contained in <gi>exemplum</gi> elements below come from Syriaca.org
               projects that have been distributed under a Creative Commons Attribution 3.0 Unported
@@ -47,20 +48,20 @@
     <body>
       <head>A New Handbook of Syriac Literature: Encoding Guidelines and TEI P5 Schema Customization</head>
       <opener>
-        This version of the encoding guidelines for <ref target="https://syriaca.org/geo"
-          ><title>The Syriac Gazetteer</title></ref> were drafted in 2025 by David A. Michelson,
+        This version of the encoding guidelines for <ref target="https://syriaca.org/nhsl"
+          ><title>A New Handbook of Syriac Literature</title></ref> were drafted in 2026 by Nathan P. Gibson, Jeanne-Nicole Mellon Saint-Laurent, David A. Michelson,
         William L. Potter, and Daniel L. Schwartz. These guidelines are part of an ongoing community
-        effort to develop uniform good practice in describing geographic data using TEI XML. These
+        effort to develop uniform good practice in describing literary data using TEI XML. These
         guidelines remain under development and contributions are welcome via pull requests or
         issues submitted to the <ref
           target="https://github.com/srophe/Gaddel/tree/main/documentation/schemas">GitHub
           repository</ref> hosted by <ref target="http://syriaca.org">Syriaca.org</ref>. They are
         licensced under a <ref target="https://creativecommons.org/licenses/by/4.0/">Creative
           Commons Attribution 4.0 International license</ref>. Users may cite the guidelines in this
-        way: David A. Michelson, et. al., eds. <title>The Syriac Gazetteer: TEI P5 Customization and
-          Encoding Guidelines</title> (Syriaca.org: 2025), <ref
-            target="https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.odd"
-            >https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.odd</ref>.
+        way: David A. Michelson, et. al., eds. <title>A New Handbook of Syriac Literature: TEI P5 Customization and
+          Encoding Guidelines</title> (Syriaca.org: 2026), <ref
+            target="https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaWorks.odd"
+            >https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaWorks.odd</ref>.
         <!-- Need to update URL to production URL? -->
       </opener>
       
@@ -71,38 +72,44 @@
         <head>NHSL Encoding Guidelines</head>
         <div xml:id="introduction">
           <head>Introduction</head>
-          <p>Welcome to the encoding guidelines for the third edition of <ref
-              target="https://syriaca.org/geo"><title>The Syriac Gazetteer</title></ref> (hereafter
-              <title>TSG</title>). <title>TSG</title> is a geographical reference work published by
-              <ref target="https://syriaca.org"><title>Syriaca.org: The Syriac Reference
-                Portal</title></ref> for places relevant to Syriac studies. These guidelines
+          <>Welcome to the encoding guidelines for the second edition of <ref
+              target="https://syriaca.org/nhsl"><title>A New Handbook of Syriac Literature</title></ref> (hereafter
+              <title>NHSL</title>). <title>NHSL</title> a born-digital TEI-encoded reference work
+               for the study of Syriac literature. The first volume, <title level="m"><ref
+                     target="http://syriaca.org/bhse">Bibliotheca Hagiographica Syriaca
+                     Electronica</ref></title>, was published by <ref target="http://syriaca.org"
+                  >Syriaca.org</ref> in 2016 using a simple TEI schema to describe a single genre
+               (hagiography). Past
+               TEI-encoding practice has focused on describing specific manuscripts or creating
+               editions of works. By contrast, the <title level="s">NHSL</title> seeks to describe
+               abstract or conceptual works (including unpublished ones) and to relate them to
+               people, places, and other works, as well as to the manuscripts, editions, and
+               translations that embody them. Two key features of this encoding model include using
+                  <gi>bibl</gi> for description of works and fully leveraging <att>source</att> for
+               scholarly citations. These guidelines
             describe the methodology used to create <ref target="https://www.tei-c.org">TEI</ref>
-            XML files for encoding Syriac geographic data according to the schema implemented by
+            XML files for encoding Syriac literary data according to the schema implemented by
             Syriaca.org. We have chosen to use the TEI guidelines because they allow a high level of
             detail, citation of sources, and flexibility for representing prose data. We anticipate
-            that this schema can be easily adapted for other historical gazetteers and we invite
+            that this schema can be easily adapted for other historical corpora of texts and we invite
             comments and suggestions for improvement. </p>
         </div>
         <div xml:id="acknowledgements">
           <head>Acknowledgements</head>
           <p>This present document reuses and adapts from material published published by the Text
-            Encoding Initiative as <ref
+            Encoding Initiative Consortium as <ref
               target="https://tei-c.org/release/doc/tei-p5-doc/en/html/index.html"><title>TEI:
                 Guidelines for Electronic Text Encoding and Interchange</title></ref> in the P5
-            release, version 4.9.0 as updated on 24th January 2025 (revision f73186978). The TEI
+            release, Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e. The TEI
             guidelines are reused here under the terms of the <ref
               target="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
               Unported License</ref>.</p>
           <p>The present document is also an update to previous documentation published by
-            Syriaca.org. An initial schema and documentation for the first edition of <title>The
-              Syriac Gazetteer</title> was designed in 2012-2014 by Thomas Carlson, Tom Elliott,
-            David A. Michelson, Winona Salesky, and Daniel L. Schwartz. In 2019, David A. Michelson,
-            William L. Potter and Michelle P. Taylor prepared written documentation for the second
-            edition of <title>TESG</title>. Portions of the documentation from the first two
-            editions have been reused below under the terms of the <ref
+            Syriaca.org. An initial schema and documentation for the first edition of <title>A New Handbook of Syriac Literature</title> was designed in 2016 by Nathan P. Gibson
+            Jeanne-Nicole Mellon Saint-Laurent, David A. Michelson, Winona Salesky, and Daniel L. Schwartz. Portions of the earlier documentation has been reused below under the terms of the <ref
               target="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0
-              International license</ref>. The current document represents guidelines for the third
-            edition of <title>The Syriac Gazetteer</title>.</p>
+              International license</ref>. The current document represents guidelines for the second
+            edition of <title>A New Handbook of Syriac Literature</title>.</p>
           <p>In addition, prose and examples have been reused from David A. Michelson, “Using Linked
             Open Data to Model Cultural Heritage Information: The Research Questions and Data
             Structures of the Syriaca.org Knowledge Graph,” in <title>Linked Open Data for the
@@ -115,7 +122,11 @@
               target="https://github.com/srophe/britishLibrary/blob/main/documentation/schema/Syriacamsdesc.html"
               >https://github.com/srophe/britishLibrary/blob/main/documentation/schema/Syriacamsdesc.html</ref>
             under the terms of the <ref target="https://creativecommons.org/licenses/by/4.0/"
-              >Creative Commons Attribution 4.0 International license</ref>. </p>
+              >Creative Commons Attribution 4.0 International license</ref> and from Daniel L. Schwartz, et. al.,<title>The Syriac Gazetteer: Encoding Guidelines and TEI P5 Customization</title> (Syriaca.org, 2025), <ref
+              target="https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.compiled.html"
+              >https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.compiled.html</ref> under the terms of the <ref target="https://creativecommons.org/licenses/by/3.0/"
+              >Creative Commons Attribution 3.0 Unported License</ref>.
+</p>
         </div>
         <div xml:id="principles">
           <head>General Editorial Principles</head>
