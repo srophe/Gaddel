@@ -2747,11 +2747,11 @@
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype" role="warning">
-                <sch:assert test=". = ('BAV', 'BL', 'BML', 'BNF', 'Berlin', 'Cambridge', 'Crawford', 'Haddad-Isaac', 'Harris', 'HMML', 'Leiden', 'Mingana', 'Rosen', 'SOAH', 'Sachau', 'Sinai', 'UCL')">
+                <sch:assert test=". = ('BAV', 'BL', 'BML', 'BNF', 'Berlin', 'Cambridge', 'Crawford', 'Haddad-Isaac', 'Harris', 'HMML', 'Leiden', 'Mingana', 'Rosen', 'SOAH', 'Sachau', 'Sinai', 'UCL', 'Yale')">
                   In the context of manuscripts, this @subtype value may only be 
                   "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), 
                   "Berlin", "Cambridge", "Crawford", "Haddad-Isaac", "Harris", "HMML", 
-                  "Leiden", "Mingana", "Rosen", "SOAH", "Sachau", or "UCL". 
+                  "Leiden", "Mingana", "Rosen", "SOAH", "Sachau", "UCL", or "Yale". 
                   If none of these options is correct, please write in an appropriate
                   value and the warning message will prompt editors to ensure that it is the correct value.
                 </sch:assert>
