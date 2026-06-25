@@ -3163,10 +3163,47 @@
         <elementSpec ident="relation" module="namesdates" mode="change">
           <constraintSpec ident="passive-values" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:body//tei:relation">
+              <sch:rule context="tei:body//tei:relation/@passive">
                 <sch:report test="contains(., '\s')">
                   The @passive attribute may only take one value.
                 </sch:report>
+                <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
+                  The @passive attribute must either point to an existing @xml:id in this
+                  document starting with "#" or point to a URI/URL outside of this document 
+                  starting with "http".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body//tei:relation/@passive[starts-with(., '#')]">
+                <sch:let name="IDValues" value="tei:body//@xml:id"/>
+                <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
+                <sch:assert test=". = $IDPtrValues">
+                  A @passive attribute pointing to an @xml:id (i.e. one that starts with "#") must 
+                  point to an @xml:id is the current document. Available values include: 
+                  <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="active-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body//tei:relation/@active">
+                <sch:report test="contains(., '\s')">
+                  The @active attribute may only take one value.
+                </sch:report>
+                <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
+                  The @active attribute must either point to an existing @xml:id in this
+                  document starting with "#" or point to a URI/URL outside of this document 
+                  starting with "http".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body//tei:relation/@active[starts-with(., '#')]">
+                <sch:let name="IDValues" value="tei:body//@xml:id"/>
+                <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
+                <sch:assert test=". = $IDPtrValues">
+                  An @active attribute pointing to an @xml:id (i.e. one that starts with "#") must 
+                  point to an @xml:id is the current document. Available values include: 
+                  <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
+                </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
