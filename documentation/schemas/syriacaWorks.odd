@@ -3174,11 +3174,11 @@
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:body//tei:relation/@passive[starts-with(., '#')]">
-                <sch:let name="IDValues" value="tei:body//@xml:id"/>
+                <sch:let name="IDValues" value="//tei:body//tei:bibl/@xml:id"/>
                 <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
                 <sch:assert test=". = $IDPtrValues">
                   A @passive attribute pointing to an @xml:id (i.e. one that starts with "#") must 
-                  point to an @xml:id is the current document. Available values include: 
+                  point to an @xml:id on a bibliographic item in the current document. Available values include: 
                   <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
                 </sch:assert>
               </sch:rule>
@@ -3197,11 +3197,11 @@
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:body//tei:relation/@active[starts-with(., '#')]">
-                <sch:let name="IDValues" value="tei:body//@xml:id"/>
+                <sch:let name="IDValues" value="//tei:body//tei:bibl/@xml:id"/>
                 <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
                 <sch:assert test=". = $IDPtrValues">
                   An @active attribute pointing to an @xml:id (i.e. one that starts with "#") must 
-                  point to an @xml:id is the current document. Available values include: 
+                  point to an @xml:id on a bibliographic item in the current document. Available values include: 
                   <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
                 </sch:assert>
               </sch:rule>
