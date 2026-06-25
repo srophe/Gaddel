@@ -769,14 +769,7 @@
             <head>The TEI Root Element (<gi>TEI</gi>)</head>
             <p>Every <title>NHSL</title> record begins with the <gi>TEI</gi> root element, which
               must include the namespace declarations and an <att>xml:lang</att> attribute with the
-              value <q>en</q>, reflecting that the primary language of record data is English:
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:srophe="https://srophe.app"
-                  xml:lang="en">
-                  <teiHeader>...</teiHeader>
-                  <text>...</text>
-                </TEI>
-              </egXML>
+              value <q>en</q>, reflecting that the primary language of record data is English.
             </p>
             <p>The <gi>TEI</gi> root element must always contain exactly two child elements:
               <gi>teiHeader</gi> and <gi>text</gi>.</p>
