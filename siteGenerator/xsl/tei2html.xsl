@@ -492,18 +492,18 @@
                     <xsl:when test="$collection = 'johnofephesusPersons' and @coresp[contains(.,'http://syriaca.org/johnofephesus/persons')]"/>
                     <xsl:when test="$collection = 'johnofephesusPlaces' and @coresp[contains(.,'http://syriaca.org/johnofephesus/places')]"/>
                     <xsl:otherwise>
-                        <div class="tei-note">
+                        <span class="tei-note">
                             <xsl:choose>
                                 <xsl:when test="t:quote"><xsl:apply-templates/></xsl:when>
                                 <xsl:otherwise><span><xsl:sequence select="local:attributes(.)"/><xsl:apply-templates/></span><xsl:sequence select="local:add-footnotes(@source,.)"/></xsl:otherwise>
                             </xsl:choose>
-                        </div>
+                        </span>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
             <!-- Adds definition list for depreciated names -->
             <xsl:when test="@type='deprecation'">
-                <div class="tei-note">
+                <span class="tei-note">
                     <span>
                         <xsl:if test="../t:link[contains(@target,$xmlid)]">
                             <xsl:apply-templates select="../t:link[contains(@target,$xmlid)]"/>:
@@ -513,10 +513,10 @@
                         <!-- NOTE not working -->
                     </span>
                     <xsl:sequence select="local:add-footnotes(@source,.)"/>
-                </div>
+                </span>
             </xsl:when>
             <xsl:when test="@type='ancientVersion'">
-                <div class="tei-note">
+                <span class="tei-note">
                     <xsl:if test="descendant::t:lang/text()">
                         <span class="srp-label">
                             <xsl:value-of select="local:expand-lang(descendant::t:lang[1]/text(),'ancientVersion')"/>:
@@ -527,7 +527,7 @@
                         <xsl:apply-templates/>
                     </span>
                     <xsl:sequence select="local:add-footnotes(@source,.)"/>
-                </div>
+                </span>
             </xsl:when>
             <xsl:when test="@type='modernTranslation'">
                 <li>
@@ -544,7 +544,7 @@
                 </li>
             </xsl:when>
             <xsl:when test="@type='editions'">
-                <div class="tei-note">
+                <span class="tei-note">
                     <span>
                         <xsl:sequence select="local:attributes(.)"/>
                         <xsl:apply-templates/>
@@ -583,15 +583,15 @@
                         </xsl:if>
                     </span>
                     <xsl:sequence select="local:add-footnotes(@source,.)"/>
-                </div>
+                </span>
             </xsl:when>
             <xsl:otherwise>
-                <div class="tei-note">  
+                <span class="tei-note">  
                     <xsl:choose>
                         <xsl:when test="t:quote"><xsl:apply-templates/></xsl:when>
                         <xsl:otherwise><span><xsl:sequence select="local:attributes(.)"/><xsl:apply-templates/></span><xsl:sequence select="local:add-footnotes(@source,.)"/></xsl:otherwise>
                     </xsl:choose>
-                </div>
+                </span>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -999,27 +999,10 @@
                     </xsl:if>
                     <!-- Relationships -->
                     <!-- Needs testing and work -->
-                    <xsl:if test="t:listRelation/t:relation/t:desc[not(@ref='dcterms:isPartOF')][. != '']">
-                        <xsl:for-each-group select="t:listRelation/t:relation" group-by="@ref">
-                            <xsl:choose>
-                                <xsl:when test="current-grouping-key() = 'syriaca:commemorates'">
-                                    <div class="indent">
-                                        This work commemorates <xsl:apply-templates select="t:desc"/>
-                                    </div> 
-                                </xsl:when>
-                                <xsl:when test="current-grouping-key() = 'skos:broader'">
-                                    <div class="indent">
-                                        This work is one version within <xsl:apply-templates select="t:desc"/>
-                                    </div> 
-                                </xsl:when>
-                                <xsl:when test="current-grouping-key() = 'syriaca:different-from'">
-                                    <div class="indent">
-                                        Not the same conceptual work as <xsl:apply-templates select="t:desc"/>
-                                    </div> 
-                                </xsl:when>
-                            </xsl:choose>
-                        </xsl:for-each-group>
-                    </xsl:if>
+                    <xsl:for-each-group select="t:listRelation/t:relation" group-by="@ref">
+                        <xsl:apply-templates select="."/>    
+                    </xsl:for-each-group>
+                    
                     <xsl:for-each-group select="t:noteGrp[@type = ('incipit','exerpt','explicit')]" group-by="@type">
                         <h3><xsl:value-of select="t:desc"/></h3>
                         <xsl:apply-templates select="t:note"/>
@@ -1423,6 +1406,28 @@
     
     <!-- R -->
     <xsl:template match="t:relation">
+        <xsl:choose>
+            <xsl:when test="@ref = 'syriaca:commemorates'">
+                <div class="indent">
+                    This work commemorates <xsl:apply-templates select="t:desc"/>
+                </div> 
+            </xsl:when>
+            <xsl:when test="@ref = 'skos:broader'">
+                <div class="indent">
+                    This work is one version within <xsl:apply-templates select="t:desc"/>
+                </div> 
+            </xsl:when>
+            <xsl:when test="@ref = 'syriaca:different-from'">
+                <div class="indent">
+                    Not the same conceptual work as <xsl:apply-templates select="t:desc"/>
+                </div> 
+            </xsl:when>
+            <xsl:when test="@ref = 'dcterms:source'">
+                <div class="indent">
+                    Based on <xsl:apply-templates select="t:desc"/>
+                </div>
+            </xsl:when>
+        </xsl:choose>
         <!--
         <xsl:choose>
             <xsl:when test="ancestor::t:div[@uri]"/>
