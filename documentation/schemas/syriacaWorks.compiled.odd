@@ -560,7 +560,7 @@
                       Antioch</persName>.</desc></desc>
               </egXML>
               Notice, in the above example, that the space between "from " and the opening tag of the <gi>persName</gi> element,
-              the lack of space between the opening tag and "Severus", no space between "Antioch" and the closing tag. No space is
+              the lack of space between the opening tag and <q>Severus</q>, no space between <q>Antioch</q> and the closing tag. No space is
               included following the closing tag since the sentence ends with a period; otherwise, a space would be expected before the next
               word in the sentence.
             </p>
@@ -1215,15 +1215,16 @@
                 Genesis is part of the Pentateuch, or when a hagiographic text is a chapter within
                 a larger collection — this is expressed using <code>dcterms:isPartOf</code>. A
                 <att>type</att> attribute with the value <q>part</q> is required on the
-                <gi>relation</gi> element. A child <gi>desc</gi>/<gi>label</gi> may specify the
-                ordering of the work within the larger collection:</p>
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <relation type="part" ref="dcterms:isPartOf" active="http://syriaca.org/work/1" passive="http://syriaca.org/work/68" source="#bib1-24 #bib1-26">
-                  <desc xml:lang="en">
-                    <label type="order" subtype="book" n="1" source="#bib1-24 #bib1-26">book 1</label>
-                  </desc>
-                </relation>
-              </egXML>
+                <gi>relation</gi> element. A child <code>desc/label</code> may specify the
+                ordering of the work within the larger collection:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <relation type="part" ref="dcterms:isPartOf" active="http://syriaca.org/work/1" passive="http://syriaca.org/work/68" source="#bib1-24 #bib1-26">
+                    <desc xml:lang="en">
+                      <label type="order" subtype="book" n="1" source="#bib1-24 #bib1-26">book 1</label>
+                    </desc>
+                  </relation>
+                </egXML>
+              </p>
               <p>The <gi>label</gi> element within <gi>desc</gi> records the ordering of the work
                 within its parent. The <att>subtype</att> attribute indicates the unit of ordering
                 (e.g., <q>book</q>, <q>part</q>), and the <att>n</att> attribute gives the
@@ -1246,11 +1247,103 @@
                 </listRelation>
               </egXML>
             </div>
+            
+            <div xml:id="sourceRelation">
+              <head>Source of an Edition or Translation (<code>dcterms:source</code>)</head>
+              <p>When a bibliographic item containing an edition or a translation is encoded, it is beneficial for 
+                users to know the source of that edition or transation. <title>NHSL</title> uses a <gi>relation</gi>
+                element to indicate this.</p>
+              <div xml:id="translationSource">
+                <head>Translation Source</head>
+                <p><!-- There are some issues here. See https://github.com/srophe/syriaca-data/issues/1378 -->
+                  Below is a <gi>listBibl</gi> containing a modern translation of 
+                  <ref target="http://syriaca.org/work/9516">http://syriaca.org/work/9515</ref>, 
+                  <title>Luke (Old Syriac version)</title>.
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <listBibl type="modernTranslations">
+                      <head>Modern Translations</head>
+                      <desc xml:lang="en">This is not a comprehensive list of modern translations related to this work. Further citations may be available through <ref target="http://syriaca.org/cbss">The Comprehensive Bibliography on Syriac Studies</ref>.</desc>
+                      <bibl xml:id="bib9516-9" type="syriaca:ModernTranslation">
+                        <title xml:lang="en" level="m">Translation</title>
+                        <title xml:lang="en" level="m">Evangelion da-mepharreshe: The Curetonian Version of the Four Gospels, with the Readings of the Sinai Palimpsest and the Early Syriac Patristic Evidence</title>
+                        <ptr target="http://syriaca.org/cbss/5HTC3I5Q"/>
+                        <citedRange unit="p" from="422" to="535">422-535</citedRange>
+                        <textLang mainLang="en"/>
+                        <listRelation>
+                          <relation type="translationSource" active="http://syriaca.org/cbss/5HTC3I5Q" ref="dcterms:source" passive="http://syriaca.org/cbss/5HTC3I5Q">
+                            <desc xml:lang="en">
+                              <title ref="http://syriaca.org/cbss/5HTC3I5Q">Text</title>
+                            </desc>
+                          </relation>
+                        </listRelation>
+                      </bibl>
+                    </listBibl>
+                  </egXML>
+                  This <gi>bibl</gi> element contains a <gi>relation</gi> with <code>type="translationSource"</code> and 
+                  <code>@ref="dcterms:source"</code>. This source relationship indicates that the current bibligraphic item
+                  described in the parent <gi>bibl</gi> element:
+                  <ref target="http://syriaca.org/cbss/5HTC3I5Q">http://syriaca.org/cbss/5HTC3I5Q</ref>, has as its source
+                  <ref target="http://syriaca.org/cbss/5HTC3I5Q">http://syriaca.org/cbss/5HTC3I5Q</ref>. In other words, the same
+                  printed bibliographic item contains this translation and the edition of the Syriac text that is the
+                  source of that translation.
+                </p>
+              </div>
+              <div xml:id="editionSource">
+                <head>Edition Source</head>
+                <p>
+                  Below is a <gi>bibl</gi> containing an edition of a Syriac text in the 
+                  <ref target="https://syriaccorpus.org/index.html">Digital Syriac Corpus</ref>. This digital edition
+                  is a transcription of <title>Discourse 6</title> of Philoxenus that is based on Budge's
+                  <ref target="http://syriaca.org/cbss/JFRYYVSE">The Discourses of Philoxenus Bishop of Mabbôgh</ref>.
+                  <title>NHSL</title> uses a <gi>relation</gi> with <code>ref="dcterms:source"</code>. To describe this situation.
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                    <bibl xml:id="bib8861-1" type="lawd:Edition">
+                      <title xml:lang="en" level="m">Digital Syriac Corpus</title>
+                      <ptr target="http://syriaca.org/cbss/TJ36MCDR"/>
+                      <citedRange unit="entry" target="https://syriaccorpus.org/379">Discourse 6: On the Fear of God</citedRange>
+                      <listRelation>
+                        <relation active="http://syriaca.org/cbss/TJ36MCDR" ref="dcterms:source" passive="http://syriaca.org/cbss/JFRYYVSE">
+                          <desc xml:lang="en">
+                            <title ref="http://syriaca.org/cbss/JFRYYVSE">The Discourses of Philoxenus Bishop of Mabbôgh, A.D. 485–519, Edited from Syriac Manuscripts of the Sixth and Seventh Centuries, in the British Museum, with an English Translation</title>
+                          </desc>
+                        </relation>
+                      </listRelation>
+                    </bibl>
+                  </egXML>
+                  The <att>active</att> attribute contains the URI found in the <att>target</att> attribute of <gi>ptr</gi> element
+                  inside the current <gi>bibl</gi> element and the <att>passive</att> attribute contains the URI of the
+                  source edition.
+                </p>
+              </div>
+            </div>
+            
+            
+            <div xml:id="differentFromRelation">
+              <head>Disambiguation Relationship (<code>syriaca:different-from</code>)</head>
+              <p>In cases where one work can be confused for another work, it is helpful to indicate 
+                explicitly in the data there there is a difference between the subject of a work record and 
+                the subject of another work record. The following example comes from <ref target="http://syriaca.org/work/67">http://syriaca.org/work/67</ref>, 
+                <title>Baruch (Second Epistle of Baruch) (Peshitta version)</title>. Here the <gi>relation</gi>
+                element is used to indicate that <ref target="http://syriaca.org/work/67">http://syriaca.org/work/67</ref> 
+                is not the same as <ref target="http://syriaca.org/work/10508">http://syriaca.org/work/10508</ref>, 
+                <title>2 Baruch (Apocalypse of Baruch) (Peshitta version)</title>.
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <relation type="disambiguation" ref="syriaca:different-from" active="http://syriaca.org/work/67" passive="http://syriaca.org/work/10508">
+                    <desc xml:lang="en">
+                      <title ref="http://syriaca.org/work/10508">2 Baruch (Apocalypse of Baruch) (Peshitta version)</title>
+                    </desc>
+                  </relation>
+                </egXML>
+                In this case, the <gi>relation</gi> element has a <att>type</att> attribute indicating a <q>disambiguation</q> relationship and
+                a <att>ref</att> value of <q>syriaca:different-from</q>. The <att>active</att> attribute contains the URI of the current work record
+                and the <att>passive</att> attribute contains the value of the work that is not identical to the current work.
+              </p>
+            </div>
           </div>
           
           <div xml:id="listBibl">
             <head>Bibliography Related to the Work (<gi>listBibl</gi>)</head>
-            <p>The bibliographic information related to the work is organized into sections describing editions, manuscripts, modern translations, ancient versions, and secondary sources. These classifications are derived from the IFLA LRM entities "expression", "manifestation", and "item". For example, editions and manuscripts contain particular "expressions" and "manifestations" of the work. Translations and versions are "expressions" that are different from the Syriac language "expression" of the work. Each of these expressions" and "manifestations" are identified through particular bibliographic "items" for which a publication citation, manuscript shelmark, or other bibliographic information is provided. Each section is encoded as a
+            <p>The bibliographic information related to the work is organized into sections describing editions, manuscripts, modern translations, ancient versions, and secondary sources. These classifications are derived from the IFLA LRM entities <q>expression</q>, <q>manifestation</q>, and <q>item</q>. For example, editions and manuscripts contain particular <q>expressions</q> and <q>manifestations</q> of the work. Translations and versions are <q>expressions</q> that are different from the Syriac language <q>expression</q> of the work. Each of these expressions" and <q>manifestations</q> are identified through particular bibliographic <q>items</q> for which a publication citation, manuscript shelmark, or other bibliographic information is provided. Each section is encoded as a
               separate <gi>listBibl</gi> element with a <att>type</att> attribute identifying the
               category. These sections are each <gi>listBibl</gi> element begins with a <gi>head</gi> element
               providing the category label, followed by a <gi>desc</gi> element describing the scope of the bibliography, followed by the individual <gi>bibl</gi> elements for each item. Users of <title>NHSL</title> should note that these bibliographic sections are not necessarily exhaustive. <title>NHSL</title> is published as part of the Syriaca.org linked data graph, so there may be other bibliography related to each literary work which can be found through the <title>Comprehensive Bibliographty on Syriac Studies</title>.</p>
