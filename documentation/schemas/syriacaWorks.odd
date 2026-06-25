@@ -1350,7 +1350,7 @@
           </div>
 
           <div xml:id="listBibl">
-            <head>Bibliography Related to the Work(<gi>listBibl</gi>)</head>
+            <head>Bibliography Related to the Work (<gi>listBibl</gi>)</head>
             <p>The bibliographic information related to the work is organized into sections describing editions, manuscripts, modern translations, ancient versions, and secondary sources. These classifications are derived from the IFLA LRM entities "expression", "manifestation", and "item". For example, editions and manuscripts contain particular "expressions" and "manifestations" of the work. Translations and versions are "expressions" that are different from the Syriac language "expression" of the work. Each of these expressions" and "manifestations" are identified through particular bibliographic "items" for which a publication citation, manuscript shelmark, or other bibliographic information is provided. Each section is encoded as a
               separate <gi>listBibl</gi> element with a <att>type</att> attribute identifying the
               category. These sections are each <gi>listBibl</gi> element begins with a <gi>head</gi> element
@@ -1401,7 +1401,7 @@
                 </listBibl>
               </egXML>
               <div xml:id="editionManuscriptLink">
-                <head>Linking Editions to Manuscripts <gi>relation type="mssWitnesses" ref="dcterms:source"</gi></head>
+                <head>Linking Editions to Manuscripts (<gi>relation type="mssWitnesses" ref="dcterms:source"</gi>)</head>
                 <p>As an optional note, within an edition's <gi>bibl</gi> entry, a nested <gi>listRelation</gi> may be used to
                   record the manuscript(s) consulted as the base text(s) for that edition. This relationship is
                   expressed using a <gi>relation</gi> with <code>type="mssWitnesses"</code> and
@@ -1503,6 +1503,30 @@
                   </bibl>
                 </listBibl>
               </egXML>
+            
+              <div xml:id="translationLink">
+                <head>Linking Translations to Editions and Manuscripts (<gi>relation type="translationSource" ref="dcterms:source"</gi>)</head>
+                <p>As an optional note, within an modern translation's <gi>bibl</gi> entry, a nested <gi>listRelation</gi> may be used to
+                  record the edition(s) or manuscript(s) used as the base text(s) for that translation. This relationship is
+                  expressed using a <gi>relation</gi> with <code>type="translationSource"</code> and
+                  <code>ref="dcterms:source"</code>. The <att>active</att> attribute refers to the
+                  xml:id of the translation entry (with the
+                  <code>#</code> prefix); the <att>passive</att> attribute gives the xml:id of the edition or manuscript entry (with the
+                  <code>#</code> prefix) found in the manuscripts section of the same record. A
+                  <gi>desc</gi> provides a human-readable <gi>label</gi> or <gi>title</gi>:
+                  <!-- This use of ref is odd, do we need to put PTR inside here? -->
+                </p>
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <listRelation>
+                    <relation type="translationSource" active="#bib9501-10" ref="dcterms:source" passive="#bib9501-5">
+                <desc xml:lang="en">
+                  <title ref="http://syriaca.org/cbss/2IBLUVC7">Lives of the Eastern Saints I</title>
+                </desc>
+              </relation>
+                  </listRelation>
+                </egXML>
+              </div>
+            
             </div>
             <div xml:id="ancientVersions">
               <head>Ancient Versions (<gi>listBibl type="ancientVersions"</gi>)</head>
@@ -1511,7 +1535,7 @@
                 relationships to other textual traditions.</p>
                 <p><emph>Nota bene</emph>: Ancient versions are distinguished by chronological era from modern scholarly
                 translations, which are recorded separately in <gi>listBibl type="modernTranslations"</gi>
-                (see <ref target="#modernTranslations">Modern Translations</ref>).</>
+                (see <ref target="#modernTranslations">Modern Translations</ref>).</p>
               <p>The <gi>listBibl type="ancientVersions"</gi> section records citations for ancient
                 versions of the work. Each version is encoded as a separate <gi>bibl</gi> element with
                 <code>type="lawd:Expression"</code>, reflecting the IFLA LRM model that
@@ -1561,22 +1585,19 @@
             <div xml:id="secondaryLiterature">
               <head>Secondary Literature (<gi>listBibl type="secondaryLiterature"</gi>)</head>
               <p>The <gi>listBibl type="secondaryLiterature"</gi> section serves two distinct
-                purposes in <title>NHSL</title> records. First, it records scholarly secondary
-                literature about the work. Second — and equally important — it functions as the
-                <q>Works Cited</q> section for the entire record: all <gi>bibl</gi> entries in
-                this section may be referenced via the <att>source</att> attribute on any element
-                elsewhere in the document that requires bibliographic citation.</p>
+                purposes in <title>NHSL</title> records. First, editors may use it to list a small number of the most notable scholarly secondary
+                literature about the work. Since items in <title>CBSS</title> can also be linked within <title>CBSS</title> to <title>NHSL</title>, this section should not be used to create a comprehensive bibliography (as a reminder to readers, a prewritten <gi>desc</gi> element is provided with a note to this effect in the record). Second — and equally important — this secondary literature sections functions as place where editors may include the citation for any other bibliographic items they wish to refer to using the <att>source</att> attribute if these citations have not already been included in the editions, manuscripts, modern translations, or ancient versions sections.</p>
               <p>Each secondary literature entry is encoded as a <gi>bibl</gi> element with
                 <code>type="lawd:Citation"</code>. Each entry must have an <att>xml:id</att>
-                following the pattern <code>bib[workNum]-[n]</code>. At minimum, a secondary
-                literature entry must include a <gi>ptr</gi> pointing to the item's <title>CBSS</title>
+                following the pattern documented above. At minimum, a secondary
+                literature entry must include a <gi>title</gi> for reference, a <gi>ptr</gi> pointing to the item's <title>CBSS</title>
                 URI, and a <gi>citedRange</gi> element specifying the exact location within that
-                work where information relevant to the current record can be found:</p>
+                work to which the citation refers. Two examples are as follows:</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <listBibl type="secondaryLiterature">
                   <head>Secondary Literature</head>
                   <desc xml:lang="en">This is not a comprehensive list of secondary literature
-                    related to this work. Further citations may be available through Syriac.Nexus.</desc>
+                    related to this work.</desc>
                   <bibl type="lawd:Citation" xml:id="bib567-1">
                     <title level="m" xml:lang="la">Bibliotheca Hagiographica Syriaca</title>
                     <ptr target="http://syriaca.org/cbss/2KJEZZGS"/>
@@ -1585,7 +1606,6 @@
                   <bibl type="lawd:Citation" xml:id="bib567-2">
                     <title xml:lang="en" level="a">Theological progress and artistic regress in
                       the hymns on Abraham Kidunaya attributed to St Ephrem</title>
-                    <title level="j" xml:lang="la">Acta Patristica et Byzantina</title>
                     <ptr target="http://syriaca.org/cbss/45KYLSW7"/>
                     <citedRange from="77" to="98" unit="p">77-98</citedRange>
                   </bibl>
@@ -1594,7 +1614,7 @@
               <p>This dual role of the <gi>listBibl type="secondaryLiterature"</gi> section means
                 that it will typically include the principal reference work from which the record
                 data was derived (such as the relevant <title>BHS</title> entry, or an edition
-                catalogue), as well as any additional secondary scholarship cited elsewhere in
+                catalogue), as well as additional secondary scholarship as sources elsewhere in
                 the record. The order of entries within this section does not reflect the order
                 of citation; rather, entries are numbered sequentially according to when they
                 were added to the record.</p>
@@ -1602,7 +1622,6 @@
           </div>
         </div>
       </div>
-      
       <div xml:id="schema">
         <head>NHSL TEI P5 Schema Customization</head>
         <schemaSpec ident="syriacaWorks" prefix="tei_" source="syriacaAll.compiled.odd" xml:lang="en" defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML​ http://www.example.org/ns/">
