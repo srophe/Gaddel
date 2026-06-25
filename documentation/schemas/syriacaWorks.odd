@@ -383,6 +383,10 @@
           </div>
           <div xml:id="dates">
             <head>Recording Date Information for Occurrences and Durations</head>
+            <p>Dates for manuscripts use the standard <att>notBefore</att> and
+                <att>notAfter</att> attributes for date ranges, or <att>when</att> for exact
+                dates. Dates must be expressed in ISO 8601 format (four-digit year, with leading
+                zeroes for dates before CE 1000).</p>
             <p>In certain cases, contributors may wish to provide information about the
                temporal limits of a particular piece of information about a place. For example,
                the duration of a given settlement's existence, or the date on which a historical 
@@ -1357,7 +1361,7 @@
               <p>Published editions of Syriac texts offer some of the most comprehensive descriptions of distinct literary works, especially if the published text is a critical edition with apparatus. Accordingly, at the time of composition <title>NHSL</title> entries should try to cite all printed editions of the work (including diplomatic and eclectic editions). Because of the constant publication of new scholarship, however, readers should not assume that the list of editions is complete in any given record (a prewritten <gi>desc</gi> element is provided with a note to this effect).</p> 
               <p>The <gi>listBibl type="editions"</gi> section records the citations for editions of
                 the work. Each edition is encoded as a separate <gi>bibl</gi> element with
-                <code>type="lawd:Edition"</code>. Each <gi>bibl</gi> must be assigned a unique <att>xml:id</att> as documented above. Because Syriaca.org manages the publication information for all citations in a separate
+                <code>type="lawd:Edition"</code>. Each <gi>bibl</gi> must be assigned a unique <att>xml:id</att> as documented above. Because Syriaca.org manages the publication information for all citations of modern publications in a separate
                 reference work, <ref target="https://syriaca.org/cbss/index.html"><title>The
                     Comprehensive Bibliography on Syriac Studies (CBSS)</title></ref>, it is not necessary to include the full citation in the <gi>bibl</gi> element. Instead,
                 the first step in adding a citation for an edition into a work record in <title>NSHL</title> is to
@@ -1377,12 +1381,12 @@
                 title (<gi>title</gi>) and a pointer
                 (<gi>ptr</gi>) to the URI of the CBSS bibliographic URI, and one or more
                 <gi>citedRange</gi> elements specifying the location within the edition where
-                the text appears.</p><p><emph>Nota bene</emph>: The contents of the <gi>title</gi> are for reference purposes within the XML document only. When XML file is converted for publication online, the GADDEL app will use the CBSS URI to look up the full publication information in <title>CBSS</title> and insert it into the record. Special care should be taken to include the  <gi>citedRange</gi> because that information is unique and cannot be inserted based on the CBSS URI.</p>
+                the text appears.</p><p><emph>Nota bene</emph>: The contents of the <gi>title</gi> are for reference purposes within the XML document only. When the XML file is converted for publication online, the GADDEL app will use the CBSS URI to look up the full publication information in <title>CBSS</title> and insert it into the record. Special care should be taken to include the  <gi>citedRange</gi> because that information is unique and cannot be inserted based on the CBSS URI.</p>
                 <p>The following additional information should be encoded using attribute values within the <gi>bibl</gi> or its descendants. <title>NSHL</title> records are required to cite their sources using either the <att>source</att> or
                 <att>resp</att> attributes as described above. If the information about an edition is derived from another source (such as Zanetti and Detienne, <title>Bibliotheca Hagiographica Syriaca</title>) then that other source should be cited using <att>source</att>. If the edition itself has been consulted directly by the Syriaca.org editor, then an <att>resp</att> should be used with the value <q>http://syriaca.org</q> to indicate that the editors of <title>NSHL</title> are responsible for the inclusion of the citation. (This practice avoids creating a circular citation back to the edition itself). Other information encoded as attributes includes <att>unit</att> on <gi>citedRange</gi> and <att>xml:lang</att> on <gi>title</gi> as described above.</p>
                 <p> Here is an example of an edition citation from work record <ref
                   target="http://syriaca.org/work/567"
-                    ><code>http://syriaca.org/work/567</code></ref> :</p>
+                    ><code>http://syriaca.org/work/567</code></ref>:</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <listBibl type="editions">
                   <head>Editions</head>
@@ -1422,17 +1426,19 @@
             </div>
 
             <div xml:id="manuscripts">
-              <head>Manuscripts (<gi>listBibl type="manuscripts"</gi>)</head>
-              <p>The <gi>listBibl type="manuscripts"</gi> section records the manuscripts known to
-                contain the work. Each manuscript entry is a <gi>bibl</gi> element with
-                <code>type="syriaca:Manuscript"</code>. A manuscript entry should include one or
-                more <gi>label</gi> elements providing the human-readable identification of the
-                manuscript (library, collection, shelfmark), and may include a <gi>ptr</gi>
-                linking to the manuscript's record in the <ref
-                  target="https://syriaca.org/manuscripts"><title>Syriaca.org Manuscript
-                    Catalogue</title></ref>, a <gi>biblScope</gi> specifying the folios where the
-                work appears, and a <gi>date</gi> or <gi>date</gi> range indicating the date of
-                the manuscript:</p>
+              <head>Manuscript Witnesses (<gi>listBibl type="manuscripts"</gi>)</head>
+              <p>Manuscript witnesses are essential sources for the study of Syriac texts. If possible, <title>NHSL</title> entries should cite at least one manuscript witness as an attestation of the work. If desired, editors may list multiple manuscripts. Given the current state of cataloging of Syriac manuscripts, however, readers should not assume that the list of manuscripts is complete in any given record (a prewritten <gi>desc</gi> element is provided with a note to this effect).</p> 
+              <p>The <gi>listBibl type="manuscripts"</gi> section records the manuscript citations. Each manuscript entry is a <gi>bibl</gi> element with
+                <code>type="syriaca:Manuscript"</code>. Each <gi>bibl</gi> must be assigned a unique <att>xml:id</att> as documented above. A manuscript entry should include one or
+                more <gi>label</gi> elements providing a human-readable identification of the
+                manuscript (library, collection, shelfmark). Multiple <gi>label</gi> elements can be used if the manuscript has been known by multiple shelfmarks or names. The numeric portion of the label should be contained in a child element <gi>idno</gi>. The <gi>bibl</gi> element may also include an optional <gi>ptr</gi> element linking to manuscript records in external online catalogs. Whenever possible, the <gi>bibl</gi> element should also contain a <gi>biblScope</gi> specifying the folios where the
+                work appears and a <gi>date</gi> indicating the date of
+                the manuscript.</p>
+                <p>The following additional information should be encoded using attribute values within the <gi>bibl</gi> or its descendants. <title>NSHL</title> records are required to cite their sources using either the <att>source</att> or
+                <att>resp</att> attributes as described above. If the information about a manuscript is derived from another source (such as Zanetti and Detienne, <title>Bibliotheca Hagiographica Syriaca</title>) then that other source should be cited using <att>source</att>. If the manuscript itself has been consulted directly by the Syriaca.org editor, then an <att>resp</att> should be used with the value <q>http://syriaca.org</q> to indicate that the editors of <title>NSHL</title> are responsible for the inclusion of the citation. (This practice avoids creating a circular citation back to the manuscript itself). Other information encoded as attributes includes <att>unit</att> on <gi>biblScope</gi> and <att>xml:lang</att> on <gi>label</gi> or <gi>title</gi> as described above.</p>
+                <p> Here is an example of an edition citation from work record <ref
+                  target="http://syriaca.org/work/567"
+                    ><code>http://syriaca.org/work/567</code></ref> :
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <listBibl type="manuscripts">
                   <head>Manuscripts</head>
@@ -1451,17 +1457,12 @@
                   </bibl>
                 </listBibl>
               </egXML>
-              <p>The <gi>label</gi> element may contain an <gi>idno</gi> child for the shelfmark,
-                with a <att>type</att> of <q>shelfmark</q> and a <att>subtype</att> identifying
+              <!-- Need to add allowed values below -->
+              <p>The <gi>label</gi> element will usually contain an <gi>idno</gi> child. This <gi>idno</gi> 
+                should have a <att>type</att> (such as <q>shelfmark</q> or <q>number</q>) and may have a <att>subtype</att> identifying
                 the library (e.g., <q>BL</q> for British Library, <q>BNF</q> for Bibliothèque
-                nationale de France, <q>BAV</q> for Biblioteca Apostolica Vaticana). When a
-                manuscript has a known Syriaca.org URI, the <gi>ptr</gi> element should link to
-                it. Dates for manuscripts use the standard <att>notBefore</att> and
-                <att>notAfter</att> attributes for date ranges, or <att>when</att> for exact
-                dates. Dates must be expressed in ISO 8601 format (four-digit year, with leading
-                zeroes for dates before CE 1000).</p>
-              <p>When the work is defective in a particular manuscript witness, this may be noted
-                with a <gi>note</gi> element:
+                nationale de France, <q>BAV</q> for Biblioteca Apostolica Vaticana).</p>
+              <p>Notes about a particular manuscript witness can be provided with a <gi>note</gi> element:
               </p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <bibl type="syriaca:Manuscript" xml:id="bib1-15" source="#bib1-26 #bib1-27">
@@ -1472,25 +1473,30 @@
                   <note xml:lang="en" resp="http://syriaca.org">defective</note>
                 </bibl>
               </egXML>
+                </p>
             </div>
 
             <div xml:id="modernTranslations">
               <head>Modern Translations (<gi>listBibl type="modernTranslations"</gi>)</head>
-              <p>The <gi>listBibl type="modernTranslations"</gi> section records modern scholarly
-                translations of the work into contemporary languages. Each translation is encoded
-                as a <gi>bibl</gi> element with <code>type="syriaca:ModernTranslation"</code>.
-                The entry should include the editor(s) of the translation, a <gi>ptr</gi> to the
-                <title>CBSS</title> record for the publication, <gi>citedRange</gi> elements for
-                the location within the publication, and a <gi>textLang</gi> element with a
-                <att>mainLang</att> attribute indicating the language of the translation:</p>
+              <p>The <gi>listBibl type="modernTranslations"</gi> section records modern
+                translations of the work into contemporary languages. This section is optional, but editors are encouraged to cite modern translations if possible. As in other instances, readers should not assume that the list of translations is complete in any given record (a prewritten <gi>desc</gi> element is provided with a note to this effect). Each translation is encoded
+                as a <gi>bibl</gi> element with <code>type="syriaca:ModernTranslation"</code>. Each <gi>bibl</gi> must be assigned a unique <att>xml:id</att> as documented above. In addition, each <gi>bibl</gi> must contain a title (<gi>title</gi>) and a pointer
+                (<gi>ptr</gi>) to the URI of a CBSS bibliographic URI, and one or more
+                <gi>citedRange</gi> elements specifying the location within the publication where
+                the translation appears. In this regard, the citations of modern translations follows the same workflow and conventions as the citation of editions described above (i.e. relying upon the full citations found in <ref target="https://syriaca.org/cbss/index.html"><title>The
+                    Comprehensive Bibliography on Syriac Studies [CBSS]</title></ref>).</p>
+                    <p><emph>Nota bene</emph>: The contents of the <gi>title</gi> are for reference purposes within the XML document only. When the XML file is converted for publication online, the GADDEL app will use the CBSS URI to look up the full publication information in <title>CBSS</title> and insert it into the record. Special care should be taken to include the  <gi>citedRange</gi> because that information is unique and cannot be inserted based on the CBSS URI.</p>
+                <p>The following additional information should be encoded using attribute values within the <gi>bibl</gi> or its descendants. <title>NSHL</title> records are required to cite their sources using either the <att>source</att> or
+                <att>resp</att> attributes as described above. If the information about an modern translation is derived from another source (such as Zanetti and Detienne, <title>Bibliotheca Hagiographica Syriaca</title>) then that other source should be cited using <att>source</att>. If the translation itself has been consulted directly by the Syriaca.org editor, then an <att>resp</att> should be used with the value <q>http://syriaca.org</q> to indicate that the editors of <title>NSHL</title> are responsible for the inclusion of the citation. (This practice avoids creating a circular citation back to the translation itself). Other information encoded as attributes includes <att>unit</att> on <gi>citedRange</gi> as described above.</p>
+                <p>For modern translations and ancient versions, there is an additional element (<gi>textLang</gi>) which is used to indicate the language of the translation or version. (<emph>Nota bene</emph>: this usage is distinct from the use of <att>xml:lang</att> on <gi>title</gi> where the purpose is to indicate the language of the title. Thus in the example below from the <title>Corpus Scriptorum Christianorum Orientalium</title>, the title is in Latin but the translation itself is in German.)</p>
+                <p>Here is an example of a modern translation citation:</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <listBibl type="modernTranslations">
                   <head>Modern Translations</head>
                   <desc xml:lang="en">This is not a comprehensive list of modern translations
-                    related to this work. Further citations may be available through Syriac.Nexus.</desc>
+                    related to this work.</desc>
                   <bibl xml:id="bib567-9" source="#bib567-1" type="syriaca:ModernTranslation">
                     <title xml:lang="la">CSCO 323 Script. Syri 141</title>
-                    <editor>E. Beck</editor>
                     <ptr target="http://syriaca.org/cbss/LX56D4IQ"/>
                     <citedRange unit="p">3-7</citedRange>
                     <textLang mainLang="de"/>
