@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-06-25T17:24:54Z. . 
+Schema generated from ODD source 2026-06-25T17:43:52Z. . 
 TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
   
@@ -3755,10 +3755,10 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:body//tei:relation/@passive[starts-with(., '#')]">
-               <sch:let name="IDValues" value="//tei:body//tei:bibl/@xml:id"/>
+               <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
                <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
                <sch:assert test=". = $IDPtrValues">
-                  A @passive attribute pointing to an @xml:id (i.e. one that starts with "#") must 
+                  A @ attribute pointing to an @xml:id (i.e. one that starts with "#") must 
                   point to an @xml:id on a bibliographic item in the current document. Available values include: 
                   <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
                 </sch:assert>
@@ -3784,7 +3784,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:body//tei:relation/@active[starts-with(., '#')]">
-               <sch:let name="IDValues" value="//tei:body//tei:bibl/@xml:id"/>
+               <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
                <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
                <sch:assert test=". = $IDPtrValues">
                   An @active attribute pointing to an @xml:id (i.e. one that starts with "#") must 
