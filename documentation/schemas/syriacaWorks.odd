@@ -2812,7 +2812,7 @@
         
         <elementSpec ident="label" module="core" mode="change">
           <content>
-            <sequence preserveOrder="true">
+            <sequence preserveOrder="false">
               <textNode/>
               <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="ptr" minOccurs="0" maxOccurs="1"/>
