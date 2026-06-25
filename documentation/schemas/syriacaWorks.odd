@@ -1573,14 +1573,6 @@
                   </bibl>
                 </listBibl>
               </egXML>
-              <!-- Is the section below correct? -->
-              <p>When the ancient version survives in a known manuscript witness, a nested
-                <gi>listRelation</gi> element may optionally be used within the <gi>bibl</gi> to link
-                the version to the relevant manuscript entry in the <gi>listBibl type="manuscripts"</gi>
-                section of the same record. This follows the same pattern used for linking editions to
-                manuscripts (see <ref target="#editionManuscriptLink">Linking Editions to
-                  Manuscripts</ref>), using a <gi>relation</gi> element with
-                <code>type="mssWitnesses"</code> and <code>ref="dcterms:source"</code>.</p>
             </div>
             <div xml:id="secondaryLiterature">
               <head>Secondary Literature (<gi>listBibl type="secondaryLiterature"</gi>)</head>
