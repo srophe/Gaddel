@@ -5510,6 +5510,11 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
                   This text should begin "The Vatican Apostolic Library". 
                 </sch:assert>
               </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Yale']">
+                <sch:assert test="starts-with(., 'New Haven, Yale University, Beinecke Library')">
+                  This text should begin "New Haven, Yale University, Beinecke Library". 
+                </sch:assert>
+              </sch:rule>
             </constraint>
           </constraintSpec><attList><attDef ident="subtype" mode="change">
               <valList type="closed">
@@ -8070,6 +8075,7 @@ element in the TEI header.
                 <valItem ident="Sachau"/>
                 <valItem ident="SOAH"/>
                 <valItem ident="Sinai"/>
+                <valItem ident="Yale"/>
               </valList>
             </attDef><attDef ident="type" mode="change" rend="change" usage="req"><desc rend="replace">The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc><datatype xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
         <dataRef key="teidata.enumerated"/>

@@ -2797,6 +2797,7 @@
                 <valItem ident="Sachau"/>
                 <valItem ident="SOAH"/>
                 <valItem ident="Sinai"/>
+                <valItem ident="Yale"/>
               </valList>
             </attDef>
           </attList>
@@ -2876,22 +2877,13 @@
                   This text should begin "The Vatican Apostolic Library". 
                 </sch:assert>
               </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Yale']">
+                <sch:assert test="starts-with(., 'New Haven, Yale University, Beinecke Library')">
+                  This text should begin "New Haven, Yale University, Beinecke Library". 
+                </sch:assert>
+              </sch:rule>
             </constraint>
           </constraintSpec>
-          <!--<attList>
-            <attDef ident="subtype" mode="change">
-              <valList type="closed">
-                <valItem ident="book"/>
-                <valItem ident="collection"/>
-                <valItem ident="part"/>
-              </valList>
-            </attDef>
-            <attDef ident="type" mode="change">
-              <valList type="closed">
-                <valItem ident="order"/>
-              </valList>
-            </attDef>
-          </attList>-->
         </elementSpec>
         
         
