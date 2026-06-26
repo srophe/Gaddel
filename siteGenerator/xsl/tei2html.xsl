@@ -974,7 +974,7 @@
                     <xsl:if test="t:idno">
                         <h3>Reference Numbers</h3>
                         <xsl:for-each select="t:idno">
-                            <div class="indent">
+                            <div>
                                 <xsl:choose>
                                     <xsl:when test="@type='URI'">
                                        URI: <a href="{.}"><xsl:value-of select="."/></a>
@@ -991,7 +991,7 @@
                     </xsl:if>
                     <xsl:if test="t:date">
                         <h3>Date</h3>
-                        <div class="indent"><xsl:apply-templates select="t:date"/></div>
+                        <div><xsl:apply-templates select="t:date"/></div>
                     </xsl:if>
                     <xsl:if test="t:noteGrp[@type='abstract']/t:desc[. != '']">
                         <h3>Abstract</h3>
@@ -1011,14 +1011,15 @@
                     <!-- Check how these are processing -->
                     <xsl:for-each-group select="t:listBibl[@type !=' ']" group-by="@type">
                         <h3><xsl:value-of select="t:head"/></h3>
-                        <p><xsl:apply-templates select="t:desc"></xsl:apply-templates></p>
+                        <xsl:apply-templates select="t:desc"/>
                         <ul>
                             <xsl:for-each select="t:bibl">
                                 <li>
                                     <xsl:if test="t:textLang[@mainLang != '']">
                                         <xsl:value-of select="local:expand-lang(t:textLang/@mainLang,'')"/>: 
                                     </xsl:if>
-                                    <xsl:apply-templates></xsl:apply-templates>
+                                    <xsl:apply-templates/>
+                                    <xsl:value-of select="local:add-footnotes(@source,.)"/>
                                 </li>
                             </xsl:for-each>
                         </ul>

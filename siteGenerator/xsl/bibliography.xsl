@@ -142,6 +142,14 @@
             <xsl:call-template name="footnote"/>
         </span>
     </xsl:template>
+    <!-- Used by NHSL inline citations -->
+    <xsl:template match="t:bibl | t:listBibl" mode="listBiblNHSL">
+        <span>
+            <span id="{@xml:id}"/>
+            <xsl:text> </xsl:text>
+            <xsl:call-template name="footnote"/>
+        </span>
+    </xsl:template>
 
     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
      generate a Chicago style footnote for the matched bibl entry; if it contains a 
