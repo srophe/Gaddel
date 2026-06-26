@@ -1027,13 +1027,15 @@
                     <xsl:if test="t:noteGrp[@type != ('abstract','incipit','exerpt','explicit')]">
                         <h3>Notes</h3>
                         <xsl:for-each-group select="t:noteGrp" group-by="@type">
-                            <xsl:choose>
-                                <xsl:when test="current-grouping-key() = ('abstract','incipit','exerpt','explicit')"/>
-                                <xsl:otherwise>
-                                    <h4><xsl:value-of select="t:desc"/></h4>
-                                    <xsl:apply-templates select="t:note"/>                                    
-                                </xsl:otherwise>
-                            </xsl:choose>
+                            <div class="tei-noteGrp">
+                                <xsl:choose>
+                                    <xsl:when test="current-grouping-key() = ('abstract','incipit','exerpt','explicit')"/>
+                                    <xsl:otherwise>
+                                        <h4><xsl:value-of select="t:desc"/></h4>
+                                        <xsl:apply-templates select="t:note"/>                                    
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </div>
                         </xsl:for-each-group>
                     </xsl:if>
                 </div>
