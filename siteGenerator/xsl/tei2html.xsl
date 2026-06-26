@@ -1018,8 +1018,7 @@
                                     <xsl:if test="t:textLang[@mainLang != '']">
                                         <xsl:value-of select="local:expand-lang(t:textLang/@mainLang,'')"/>: 
                                     </xsl:if>
-                                    <xsl:apply-templates/>
-                                    <xsl:value-of select="local:add-footnotes(@source,.)"/>
+                                    <xsl:apply-templates select="self::*" mode="listBiblNHSL"/>
                                 </li>
                             </xsl:for-each>
                         </ul>
@@ -1411,24 +1410,24 @@
     <xsl:template match="t:relation">
         <xsl:choose>
             <xsl:when test="@ref = 'syriaca:commemorates'">
-                <div class="indent">
+                <span class="tei-relation">
                     This work commemorates <xsl:apply-templates select="t:desc"/>
-                </div> 
+                </span> 
             </xsl:when>
             <xsl:when test="@ref = 'skos:broader'">
-                <div class="indent">
+                <span class="tei-relation">
                     This work is one version within <xsl:apply-templates select="t:desc"/>
-                </div> 
+                </span>
             </xsl:when>
             <xsl:when test="@ref = 'syriaca:different-from'">
-                <div class="indent">
+                <span class="tei-relation">
                     Not the same conceptual work as <xsl:apply-templates select="t:desc"/>
-                </div> 
+                </span>
             </xsl:when>
             <xsl:when test="@ref = 'dcterms:source'">
-                <div class="indent">
+                <span class="tei-relation">
                     Based on <xsl:apply-templates select="t:desc"/>
-                </div>
+                </span>
             </xsl:when>
         </xsl:choose>
         <!--

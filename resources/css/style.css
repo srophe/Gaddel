@@ -522,7 +522,7 @@ pre {
 .tei-event p {display:inline-block;}
 .tei-note {display:block; margin:1em;}
 .tei-noteGrp {display:block;  margin:1em;}
-li .tei-note {display:block; margin:0 1em;}
+li .tei-note, li .tei-desc {display:inline; margin:0;}
 .tei-title {font-style: italic;}
 .tei-quote .tei-placeName {color: #6699cc; font-weight:bold;}
 /*.tei-title > .tei-title {font-style:italic;} */
