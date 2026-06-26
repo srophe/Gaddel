@@ -1829,7 +1829,7 @@
                 </a>
             </xsl:when>
             <xsl:otherwise>
-                <span>
+                <span class="tei-title">
                     <xsl:sequence select="local:attributes(.)"/>
                     <xsl:apply-templates/>
                 </span>
