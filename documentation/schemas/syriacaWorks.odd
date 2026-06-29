@@ -337,10 +337,7 @@
               consensus and the results of existing scholarship as published. It is not within the
               scope of <title>NHSL</title> to systematically review and correct past scholarship in
               the field. Nevertheless, authors of <title>NHSL</title> records should not knowingly
-              reproduce errors in previous scholarship. In the rare cases in which they are needed,
-              encoding conventions for marking <foreign>incerta</foreign>, <foreign>errata</foreign>
-              and <foreign>corrigenda</foreign> with regard to past scholarship are discussed below;
-              see <ref target="#certainty">Certainty</ref>.</p>
+              reproduce errors in previous scholarship.</p>
           </div>
           <div xml:id="TEIcustomization">
             <head>Customization of the TEI Guidelines</head>
@@ -530,7 +527,7 @@
                 target="https://syriaca.org/cbss/index.html"><title>Comprehensive Bibliography on
                   Syriac Studies</title></ref>.</p>
             <p>In <title>NHSL</title>, it is possible to link to Syriaca.org URIs within the
-              following descriptive elements: <gi>desc</gi>, <gi>quote</gi>, or <gi>note</gi>. Use
+              following descriptive elements: <gi>desc</gi>, <gi>quote</gi>, or <gi>note</gi>. <!-- DLS I need a list of these attributes please. -->Use
               of Syriaca.org URIs to identify prose allusions to persons, places, works, etc. is
               strongly encouraged whenever possible. It should be noted that the use of Syriaca.org
               URIs in these sections is for descriptive purposes (i.e. relating the subject of the
