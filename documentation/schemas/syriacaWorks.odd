@@ -1191,29 +1191,36 @@
           </div>
 
           <div xml:id="listRelation">
-            <head>Relations (<gi>listRelation</gi>)</head>
-            <p><title>NHSL</title> records can express structured relationships between a work and
-              other entities in the Syriaca.org knowledge graph. These relationships are encoded
-              using a <gi>listRelation</gi> element containing one or more <gi>relation</gi>
-              elements. The <gi>listRelation</gi> element appears as a direct child of the
-                <gi>bibl</gi> element.</p>
-            <p>Each <gi>relation</gi> element has the following required attributes:</p>
-            <list>
-              <item><att>ref</att> — the URI of the relationship predicate, drawn from a standard
-                ontology vocabulary (SKOS, Dublin Core Terms, or the Syriaca.org namespace)</item>
-              <item><att>active</att> — the URI of the subject of the relationship (in most cases,
-                the URI of the current work)</item>
-              <item><att>passive</att> — the URI of the object of the relationship</item>
-            </list>
-            <p>Optionally, a <att>source</att> attribute may supply a bibliographic citation, and a
-              child <gi>desc</gi> element may provide a human-readable description of the
-              relationship.</p>
+            <head>Related Entities (<gi>listRelation</gi>)</head>
+            <p><title>NHSL</title> uses the <gi>relation</gi> element (which must appear inside a
+                single <gi>listRelation</gi> element) to 
+                record relations between a literary work record and other entities in the <ref target="#dataModel">Syriaca.org Knowledge Graph</ref>. The
+                <gi>relation</gi> element must have a <att>ref</att> attribute with one of the
+              following values: "skos:broader", "dcterms:isPartOf", "syriaca:commemorates" or "syriaca:different-from". The use cases for each of these
+              values are described below. The relation is expressed using <att>active</att> and <att>passive</att> attributes,
+              which contain the Syriaca entity URIs for the related entities. Finally, <gi>relation</gi> elements must be sourced as described in 
+              <ref target="#source">Inserting Bibliographic Citations</ref>, though they commonly take a <att>resp</att> attribute as 
+              described in <ref target="#resp">Asserting Information without a Source</ref>.
+            </p>
+            <p>Common to all <gi>relation</gi> elements is a child <gi>desc</gi> element offering a
+              human-readable version of the relationship. The <gi>desc</gi> element must have an <att>xml:lang</att> attribute 
+              with the value of "en" for "English". A generic example of a relation follows, though see below for the 
+            specific combination of values to use in the various relationship cases:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <relation ref="skos:broader" active="http://syriaca.org/work/1" passive="http://syriaca.org/work/9628">
+                  <desc xml:lang="en">
+                    <title ref="http://syriaca.org/work/9628">Genesis (literary tradition)</title>
+                  </desc>
+                </relation>
+              </egXML>
+            </p>
 
             <div xml:id="broaderRelation">
-              <head>Work-to-Tradition Relationship (<code>skos:broader</code>)</head>
-              <p>The relationship between a specific conceptual work and its broader literary
-                tradition is expressed using <code>skos:broader</code>. The active URI is the
-                specific work; the passive URI is the literary tradition record:</p>
+              <head>Relationship between Constituent Work and Literary Tradition (<code>skos:broader</code>)</head>
+              <p>The relationship between a constituent work and its conceptually broader literary tradition
+                (cf. <ref target="#typeAttr">Literary Traditions and Constituent Works</ref>, above, for a discussion of these concepts)
+                is expressed using a <att>ref</att> attribute with the value of <q>skos:broader</q>. The active URI is the
+                conceptual work, i.e. the current record, and the passive URI is the literary tradition record:</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <listRelation>
                   <relation ref="skos:broader" active="http://syriaca.org/work/1"
@@ -1224,20 +1231,22 @@
                   </relation>
                 </listRelation>
               </egXML>
-              <p>This relation is always placed on the more specific
-                  <code>lawd:ConceptualWork</code> record (with the literary tradition as the
-                passive/broader concept), not on the <code>syriaca:LiteraryTradition</code>
-                record.</p>
+              <p>This relation should always placed on the one or more records whose top-level <gi>bibl</gi>
+                element includes a <att>type</att> attribute value of <q>lawd:ConceptualWork</q>, rather than
+                the broader literary tradition record (which has a <att>type</att> value of <q>syriaca:LiteraryTradition</q>).
+                In other words, multiple constituent work records may point to the single broader literary tradition reccord.
+              </p>
             </div>
 
             <div xml:id="partRelation">
-              <head>Part-Whole Relationships (<code>dcterms:isPartOf</code>)</head>
-              <p>When a work is part of a larger work or collection — for example, when the book of
-                Genesis is part of the Pentateuch, or when a hagiographic text is a chapter within a
-                larger collection — this is expressed using <code>dcterms:isPartOf</code>. A
-                  <att>type</att> attribute with the value <q>part</q> is required on the
-                  <gi>relation</gi> element. A child <code>desc/label</code> may specify the
-                ordering of the work within the larger collection: <egXML
+              <head>Part to Whole Relationships (<code>dcterms:isPartOf</code>)</head>
+              <p>A relationship between a work and a larger work or collection of which is part should be
+                expressed using a <gi>relation</gi> element with <att>ref</att> attribute value of <q>dcterms:isPartOf</q>.
+                The <att>active</att> attribute must take the Syriaca URI of the part work, i.e. the current record,
+                and the <att>passive</att> attribute must take the URI of the containing work.
+                A child <code>desc/label</code> may specify the
+                ordering of the work within the larger collection. In the following example,
+                Genesis is related to the Pentateuch as its first book: <egXML
                   xmlns="http://www.tei-c.org/ns/Examples">
                   <relation type="part" ref="dcterms:isPartOf" active="http://syriaca.org/work/1"
                     passive="http://syriaca.org/work/68" source="#bib1-24 #bib1-26">
@@ -1248,18 +1257,21 @@
                   </relation>
                 </egXML>
               </p>
-              <p>The <gi>label</gi> element within <gi>desc</gi> records the ordering of the work
-                within its parent. The <att>subtype</att> attribute indicates the unit of ordering
-                (e.g., <q>book</q>, <q>part</q>), and the <att>n</att> attribute gives the ordinal
-                number.</p>
+              <p>The <gi>label</gi> element within the <gi>desc</gi> element records the ordering of the work
+                within its parent. This <gi>label</gi> element must have the <att>type</att> attribute value of
+                <q>order</q>. It may also take a <att>subtype</att> attribute whose value indicates the unit of ordering
+                (e.g., <q>book</q>, <q>part</q>, etc.). An <att>n</att> attribute records the work's sequence within
+                the larger work. The <gi>label</gi> element's text node should record this information in a human-readable format.</p>
             </div>
 
             <div xml:id="commemoratesRelation">
-              <head>Hagiographic Subjects (<code>syriaca:commemorates</code>)</head>
-              <p>For hagiographic texts, the person who is commemorated (the subject saint or
-                martyr) is linked using the <code>syriaca:commemorates</code> relationship. The
-                active URI is the work; the passive URI is the Syriaca.org person URI for the
-                commemorated individual:</p>
+              <head>Commemoration of Hagiographic Subjects (<code>syriaca:commemorates</code>)</head>
+              <p>Subjects who are commemorated by hagiographic works are related via a <gi>relation</gi> element
+                with a <att>ref</att> attribute value of <q>syriaca:commemorates</q>. The
+                <att>active</att> attribute must take the Syriaca.org URI of the commemorating work, i.e. the current
+                record. The <att>passive</att> attribute's value must be the Syriaca.org person, or in rare cases place,
+                URI of the entity commemorated by the work. The child <gi>desc</gi> element should include Syriaca.org's English-language
+                headword for the commemorated entity:</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <listRelation>
                   <relation ref="syriaca:commemorates" active="http://syriaca.org/work/567"
@@ -1272,99 +1284,15 @@
               </egXML>
             </div>
 
-            <div xml:id="sourceRelation">
-              <head>Source of an Edition or Translation (<code>dcterms:source</code>)</head>
-              <p>When a bibliographic item containing an edition or a translation is encoded, it is
-                beneficial for users to know the source of that edition or transation.
-                  <title>NHSL</title> uses a <gi>relation</gi> element to indicate this.</p>
-              <div xml:id="translationSource">
-                <head>Translation Source</head>
-                <p><!-- There are some issues here. See https://github.com/srophe/syriaca-data/issues/1378 -->
-                  Below is a <gi>listBibl</gi> containing a modern translation of <ref
-                    target="http://syriaca.org/work/9516">http://syriaca.org/work/9515</ref>,
-                    <title>Luke (Old Syriac version)</title>. <egXML
-                    xmlns="http://www.tei-c.org/ns/Examples">
-                    <listBibl type="modernTranslations">
-                      <head>Modern Translations</head>
-                      <desc xml:lang="en">This is not a comprehensive list of modern translations
-                        related to this work. Further citations may be available through <ref
-                          target="http://syriaca.org/cbss">The Comprehensive Bibliography on Syriac
-                          Studies</ref>.</desc>
-                      <bibl xml:id="bib9516-9" type="syriaca:ModernTranslation">
-                        <title xml:lang="en" level="m">Translation</title>
-                        <title xml:lang="en" level="m">Evangelion da-mepharreshe: The Curetonian
-                          Version of the Four Gospels, with the Readings of the Sinai Palimpsest and
-                          the Early Syriac Patristic Evidence</title>
-                        <ptr target="http://syriaca.org/cbss/5HTC3I5Q"/>
-                        <citedRange unit="p" from="422" to="535">422-535</citedRange>
-                        <textLang mainLang="en"/>
-                        <listRelation>
-                          <relation type="translationSource"
-                            active="http://syriaca.org/cbss/5HTC3I5Q" ref="dcterms:source"
-                            passive="http://syriaca.org/cbss/5HTC3I5Q">
-                            <desc xml:lang="en">
-                              <title ref="http://syriaca.org/cbss/5HTC3I5Q">Text</title>
-                            </desc>
-                          </relation>
-                        </listRelation>
-                      </bibl>
-                    </listBibl>
-                  </egXML> This <gi>bibl</gi> element contains a <gi>relation</gi> with
-                    <code>type="translationSource"</code> and <code>@ref="dcterms:source"</code>.
-                  This source relationship indicates that the current bibligraphic item described in
-                  the parent <gi>bibl</gi> element: <ref target="http://syriaca.org/cbss/5HTC3I5Q"
-                    >http://syriaca.org/cbss/5HTC3I5Q</ref>, has as its source <ref
-                    target="http://syriaca.org/cbss/5HTC3I5Q"
-                  >http://syriaca.org/cbss/5HTC3I5Q</ref>. In other words, the same printed
-                  bibliographic item contains this translation and the edition of the Syriac text
-                  that is the source of that translation. </p>
-              </div>
-              <div xml:id="editionSource">
-                <head>Edition Source</head>
-                <p> Below is a <gi>bibl</gi> containing an edition of a Syriac text in the <ref
-                    target="https://syriaccorpus.org/index.html">Digital Syriac Corpus</ref>. This
-                  digital edition is a transcription of <title>Discourse 6</title> of Philoxenus
-                  that is based on Budge's <ref target="http://syriaca.org/cbss/JFRYYVSE">The
-                    Discourses of Philoxenus Bishop of Mabbôgh</ref>. <title>NHSL</title> uses a
-                    <gi>relation</gi> with <code>ref="dcterms:source"</code>. To describe this
-                  situation. <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                    <bibl xml:id="bib8861-1" type="lawd:Edition">
-                      <title xml:lang="en" level="m">Digital Syriac Corpus</title>
-                      <ptr target="http://syriaca.org/cbss/TJ36MCDR"/>
-                      <citedRange unit="entry" target="https://syriaccorpus.org/379">Discourse 6: On
-                        the Fear of God</citedRange>
-                      <listRelation>
-                        <relation active="http://syriaca.org/cbss/TJ36MCDR" ref="dcterms:source"
-                          passive="http://syriaca.org/cbss/JFRYYVSE">
-                          <desc xml:lang="en">
-                            <title ref="http://syriaca.org/cbss/JFRYYVSE">The Discourses of
-                              Philoxenus Bishop of Mabbôgh, A.D. 485–519, Edited from Syriac
-                              Manuscripts of the Sixth and Seventh Centuries, in the British Museum,
-                              with an English Translation</title>
-                          </desc>
-                        </relation>
-                      </listRelation>
-                    </bibl>
-                  </egXML> The <att>active</att> attribute contains the URI found in the
-                    <att>target</att> attribute of <gi>ptr</gi> element inside the current
-                    <gi>bibl</gi> element and the <att>passive</att> attribute contains the URI of
-                  the source edition. </p>
-              </div>
-            </div>
-
-
             <div xml:id="differentFromRelation">
               <head>Disambiguation Relationship (<code>syriaca:different-from</code>)</head>
-              <p>In cases where one work can be confused for another work, it is helpful to indicate
-                explicitly in the data there there is a difference between the subject of a work
-                record and the subject of another work record. The following example comes from <ref
-                  target="http://syriaca.org/work/67">http://syriaca.org/work/67</ref>,
-                  <title>Baruch (Second Epistle of Baruch) (Peshitta version)</title>. Here the
-                  <gi>relation</gi> element is used to indicate that <ref
-                  target="http://syriaca.org/work/67">http://syriaca.org/work/67</ref> is not the
-                same as <ref target="http://syriaca.org/work/10508"
-                  >http://syriaca.org/work/10508</ref>, <title>2 Baruch (Apocalypse of Baruch)
-                  (Peshitta version)</title>. <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <p>While the minting of distinct URIs implicitly asserts that two works are
+                distinct, it may be necessary in some cases to exlicitly declare a distinction between two
+                literary works, especially when users might confuse them. A <gi>relation</gi> element with
+               a <att>ref</att> attribute value of <q>syriaca:different-from</q> is used for this purpose.
+               The <att>active</att> attribute contains the URI of the current work record and the <att>passive</att>
+               attribute contains the value of the work being asserted as explicitly distinct from the current work.
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <relation type="disambiguation" ref="syriaca:different-from"
                     active="http://syriaca.org/work/67" passive="http://syriaca.org/work/10508">
                     <desc xml:lang="en">
@@ -1372,11 +1300,8 @@
                         (Peshitta version)</title>
                     </desc>
                   </relation>
-                </egXML> In this case, the <gi>relation</gi> element has a <att>type</att> attribute
-                indicating a <q>disambiguation</q> relationship and a <att>ref</att> value of
-                  <q>syriaca:different-from</q>. The <att>active</att> attribute contains the URI of
-                the current work record and the <att>passive</att> attribute contains the value of
-                the work that is not identical to the current work. </p>
+                </egXML>
+              </p>
             </div>
           </div>
 
