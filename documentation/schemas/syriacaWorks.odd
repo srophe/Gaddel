@@ -540,16 +540,13 @@
               title, or bibliographic item, The opening and closing element tags must avoid leading
               and trailing whitespace. Whitespace must instead be placed outside of the element:
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <desc><desc type="abstract" xml:lang="en" resp="http://syriaca.org"
-                    corresp="http://syriaca.org/geo">A location with a monastery whose inhabitants
-                    received a letter from <persName ref="http://syriaca.org/person/51">Severus of
-                      Antioch</persName>.</desc></desc>
-              </egXML> Notice, in the above example, that the space between "from " and the opening
+                  <note xml:lang="en" type="abstract" source="#bib928-6 #bib928-14 #bib928-15 #bib928-16">The authorship of this anti-Chalcedonian life of <persName ref="http://syriaca.org/person/680">Peter the Iberian</persName> is unknown and disputed, but widely thought to be
+                    <persName ref="http://syriaca.org/person/39">John Rufus</persName>, since the author appears to have been a close associate of Peter. 
+                    </note>
+              </egXML> Notice, in the above example, the presence of a space between "life of" and the opening
               tag of the <gi>persName</gi> element, the lack of space between the opening tag and
-                <q>Severus</q>, no space between <q>Antioch</q> and the closing tag. No space is
-              included following the closing tag since the sentence ends with a period; otherwise, a
-              space would be expected before the next word in the sentence. </p>
-           <!-- Stopped here on 6/26/26 -DAM -->
+                <q>Peter</q>, and no space between <q>Iberian</q> and the closing tag. A space is also
+              included following the closing tag since the grammar demands it. </p>
             <div xml:id="allusionsPersons">
               <head>Allusions to Persons (<gi>persName</gi>/<att>ref</att>)</head>
               <p>References to persons can appear in <gi>desc</gi>, <gi>quote</gi>, or <gi>note</gi>
