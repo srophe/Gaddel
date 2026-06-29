@@ -1412,7 +1412,7 @@
                 Studies</title>.</p>
 
             <div xml:id="editions">
-              <head>Editions (<gi>listBibl type="editions"</gi>)</head>
+              <head>Editions (<code>listBibl type="editions"</code>)</head>
               <p>Published editions of Syriac texts offer some of the most comprehensive
                 descriptions of distinct literary works, especially if the published text is a
                 critical edition with apparatus. Accordingly, at the time of composition
@@ -1421,7 +1421,7 @@
                 new scholarship, however, readers should not assume that the list of editions is
                 complete in any given record (a prewritten <gi>desc</gi> element is provided with a
                 note to this effect).</p>
-              <p>The <gi>listBibl type="editions"</gi> section records the citations for editions of
+              <p>The <code>listBibl type="editions"</code> section records the citations for editions of
                 the work. Each edition is encoded as a separate <gi>bibl</gi> element with
                   <code>type="lawd:Edition"</code>. Each <gi>bibl</gi> must be assigned a unique
                   <att>xml:id</att> as documented above. Because Syriaca.org manages the publication
@@ -1484,8 +1484,8 @@
                 </listBibl>
               </egXML>
               <div xml:id="editionManuscriptLink">
-                <head>Linking Editions to Manuscripts (<gi>relation type="mssWitnesses"
-                    ref="dcterms:source"</gi>)</head>
+                <head>Linking Editions to Manuscripts (<code>relation type="mssWitnesses"
+                    ref="dcterms:source"</code>)</head>
                 <p>As an optional note, within an edition's <gi>bibl</gi> entry, a nested
                     <gi>listRelation</gi> may be used to record the manuscript(s) consulted as the
                   base text(s) for that edition. This relationship is expressed using a
@@ -1511,14 +1511,14 @@
             </div>
 
             <div xml:id="manuscripts">
-              <head>Manuscript Witnesses (<gi>listBibl type="manuscripts"</gi>)</head>
+              <head>Manuscript Witnesses (<code>listBibl type="manuscripts"</code>)</head>
               <p>Manuscript witnesses are essential sources for the study of Syriac texts. If
                 possible, <title>NHSL</title> entries should cite at least one manuscript witness as
                 an attestation of the work. If desired, editors may list multiple manuscripts. Given
                 the current state of cataloging of Syriac manuscripts, however, readers should not
                 assume that the list of manuscripts is complete in any given record (a prewritten
                   <gi>desc</gi> element is provided with a note to this effect).</p>
-              <p>The <gi>listBibl type="manuscripts"</gi> section records the manuscript citations.
+              <p>The <code>listBibl type="manuscripts"</code> section records the manuscript citations.
                 Each manuscript entry is a <gi>bibl</gi> element with
                   <code>type="syriaca:Manuscript"</code>. Each <gi>bibl</gi> must be assigned a
                 unique <att>xml:id</att> as documented above. A manuscript entry should include one
@@ -1585,8 +1585,8 @@
             </div>
 
             <div xml:id="modernTranslations">
-              <head>Modern Translations (<gi>listBibl type="modernTranslations"</gi>)</head>
-              <p>The <gi>listBibl type="modernTranslations"</gi> section records modern translations
+              <head>Modern Translations (<code>listBibl type="modernTranslations"</code>)</head>
+              <p>The <code>listBibl type="modernTranslations"</code> section records modern translations
                 of the work into contemporary languages. This section is optional, but editors are
                 encouraged to cite modern translations if possible. As in other instances, readers
                 should not assume that the list of translations is complete in any given record (a
@@ -1603,8 +1603,8 @@
                     Bibliography on Syriac Studies [CBSS]</title></ref>). In addition, it is also
                 possible to cite the existence of an unpublished modern translation directly from a
                 manuscript rather than a print publication. In such cases, the editor should format
-                the <gi>bibl</gi> following the guidelines above for the type <gi>bibl
-                  type="syriaca:Manuscript"</gi>.</p>
+                the <gi>bibl</gi> following the guidelines above for the type <code>bibl
+                  type="syriaca:Manuscript"</code>.</p>
               <p><emph>Nota bene</emph>: When a <gi>ptr</gi> is used to refer to
                 <title>CBSS</title>, the contents of the <gi>title</gi> are for reference purposes
                 within the XML document only. When the XML file is converted for publication online,
@@ -1647,8 +1647,8 @@
               </egXML>
 
               <div xml:id="translationLink">
-                <head>Linking Translations to Editions and Manuscripts (<gi>relation
-                    type="translationSource" ref="dcterms:source"</gi>)</head>
+                <head>Linking Translations to Editions and Manuscripts (<code>relation
+                    type="translationSource" ref="dcterms:source"</code>)</head>
                 <p>As an optional note, within an modern translation's <gi>bibl</gi> entry, a nested
                     <gi>listRelation</gi> may be used to record the edition(s) or manuscript(s) used
                   as the base text(s) for that translation. This relationship is expressed using a
@@ -1676,7 +1676,7 @@
 
             </div>
             <div xml:id="ancientVersions">
-              <head>Ancient Versions (<gi>listBibl type="ancientVersions"</gi>)</head>
+              <head>Ancient Versions (<code>listBibl type="ancientVersions"</code>)</head>
               <p>This section records the existence of pre-modern versions of the work in languages
                 other than Syriac. Such versions can include pre-modern translations of a Syriac
                 work into another language (for example a work translated into Armenian from Syriac)
@@ -1692,10 +1692,10 @@
                 establishing the literary history of a work, its transmission across linguistic
                 communities, and its relationships to other textual traditions.</p>
               <p><emph>Nota bene</emph>: Ancient versions are distinguished by chronological era
-                from modern scholarly translations, which are recorded separately in <gi>listBibl
-                  type="modernTranslations"</gi> (see <ref target="#modernTranslations">Modern
+                from modern scholarly translations, which are recorded separately in <code>listBibl
+                  type="modernTranslations"</code> (see <ref target="#modernTranslations">Modern
                   Translations</ref>).</p>
-              <p>The <gi>listBibl type="ancientVersions"</gi> section records citations for ancient
+              <p>The <code>listBibl type="ancientVersions"</code> section records citations for ancient
                 versions of the work. Each version is encoded as a separate <gi>bibl</gi> element
                 with <code>type="lawd:Expression"</code>, reflecting the IFLA LRM model that that an
                 ancient version in a different language constitutes a distinct
@@ -1717,7 +1717,7 @@
                 existence of ancient versions. In addition, it is also possible to cite the
                 existence of an ancient version directly from a manuscript rather than a print
                 publication. In such cases, the editor should format the <gi>bibl</gi> following the
-                guidelines above for the type <gi>bibl type="syriaca:Manuscript"</gi>.</p>
+                guidelines above for the type <code>bibl type="syriaca:Manuscript"</code>.</p>
               <p>As in the case of modern translations, the ancient versions use the
                   <gi>textLang</gi> element as a child of <gi>bibl</gi> with a <att>mainLang</att>
                 attribute to record the language of the version. If possible, one or more
@@ -1746,8 +1746,8 @@
               </egXML>
             </div>
             <div xml:id="secondaryLiterature">
-              <head>Secondary Literature (<gi>listBibl type="secondaryLiterature"</gi>)</head>
-              <p>The <gi>listBibl type="secondaryLiterature"</gi> section serves two distinct
+              <head>Secondary Literature (<code>listBibl type="secondaryLiterature"</code>)</head>
+              <p>The <code>listBibl type="secondaryLiterature"</code> section serves two distinct
                 purposes in <title>NHSL</title> records. First, editors may use it to list a small
                 number of the most notable scholarly secondary literature about the work. Since
                 items in <title>CBSS</title> can also be linked within <title>CBSS</title> to
@@ -1783,7 +1783,7 @@
                   </bibl>
                 </listBibl>
               </egXML>
-              <p>This dual role of the <gi>listBibl type="secondaryLiterature"</gi> section means
+              <p>This dual role of the <code>listBibl type="secondaryLiterature"</code> section means
                 that it will typically include the principal reference work from which the record
                 data was derived (such as the relevant <title>BHS</title> entry, or an edition
                 catalogue), as well as additional secondary scholarship as sources elsewhere in the
