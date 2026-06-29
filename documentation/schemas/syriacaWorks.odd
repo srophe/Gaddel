@@ -197,7 +197,7 @@
               place, primary source text, bibliographic citation, keyword, manuscript, and material
               artifact relevant to the field of Syriac studies. The format of the identifier is a
               URI, a technical specification which is described in more detail below; see <ref
-                target="#assigningURIs">Assigning Place URIs (Uniform Resource Identifiers)</ref>.
+                target="#assigningURIs">Assigning Work URIs (Uniform Resource Identifiers)</ref>.
               In these authority files, each entity is an individual abstract concept identified by
               a unique URI. For example, the person known as Ephrem the Syrian is identified by the
               URI: <ref target="http://syriaca.org/person/13">http://syriaca.org/person/13</ref> and
@@ -249,14 +249,14 @@
             <head>The Concept of a Work of Literature in <title>NHSL</title></head>
             <p><title>NHSL</title> is a reference work published by Syriaca.org to identify and
               describe texts which exist in Syriac or are relevant to Syriac studies. In library
-              science terms, <title>NHSL</title> is a <q>title authority file</q>). The concept of a
+              science terms, <title>NHSL</title> is a <q>title authority file</q>. The concept of a
               distinct work is the distinguishing criterion for each entry in <title>NHSL</title>.
               Each record in <title>NHSL</title> represents a unique conceptual entity, a single
               work that can be disambiguated from other works. The purpose of each record (and thus
               each XML file) is to provide information which describes the work identified with that
               record.</p>
             <p>We have adopted the concept of a <q>work</q> from two standards developed within the
-              field of library since. These standards are the <q>Functional Requirements for
+              field of library science. These standards are the <q>Functional Requirements for
                 Bibliographic Records (FRBR)</q> and the <q>International Federation of Library
                 Associations and Institutions Library Reference Model (IFLA LRM)</q>. The IFLA LRM
               was issued in 2024 and was developed out of the earlier FRBR model (published in
@@ -267,7 +267,7 @@
               Library Associations and Institutions, August 2017, as emmended and corrected through
               December 2021, issued July 2024], <ref
                 target="https://repository.ifla.org/handle/20.500.14598/40.2"
-                >https://repository.ifla.org/handle/20.500.14598/40.2</ref>.</p>
+                >https://repository.ifla.org/handle/20.500.14598/40.2</ref>).</p>
             <p>The IFLA LRM defines a <q>work</q> as <q>the intellectual or artistic content of a
                 distinct creation</q>. For our purposes we limit <q>works</q> to <q>literary
                 works</q> by which we mean all Syriac <q>texts</q> (e.g., creative works which take
