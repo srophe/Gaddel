@@ -398,6 +398,113 @@
               </egXML> --> This use of the <gi>foreign</gi> element, moreover, enables the HTML view to
               more precisely display content with bidirectional text (i.e., a mixture of
               right-to-left and left-to-right writing systems). </p>
+            <table>
+              <head>Language codes and names</head>
+              <row role="label">
+                <cell>Code</cell>
+                <cell>Language</cell>
+              </row>
+              <row role="data">
+                <cell>la</cell>
+                <cell>Latin</cell>
+              </row>
+              <row role="data">
+                <cell>de</cell>
+                <cell>German</cell>
+              </row>
+              <row role="data">
+                <cell>grc</cell>
+                <cell>Ancient Greek</cell>
+              </row>
+              <row role="data">
+                <cell>gez</cell>
+                <cell>Geʽez</cell>
+              </row>
+              <row role="data">
+                <cell>sog</cell>
+                <cell>Sogdian</cell>
+              </row>
+              <row role="data">
+                <cell>ar</cell>
+                <cell>Arabic</cell>
+              </row>
+              <row role="data">
+                <cell>hy</cell>
+                <cell>Armenian</cell>
+              </row>
+              <row role="data">
+                <cell>ka</cell>
+                <cell>Georgian</cell>
+              </row>
+              <row role="data">
+                <cell>sog</cell>
+                <cell>Soghdian</cell>
+              </row>
+              <row role="data">
+                <cell>cu</cell>
+                <cell>Old Church Slavonic</cell>
+              </row>
+              <row role="data">
+                <cell>cop</cell>
+                <cell>Coptic</cell>
+              </row>
+              <row role="data">
+                <cell>gez</cell>
+                <cell>Ethiopic</cell>
+              </row>
+              <row role="data">
+                <cell>syr-pal</cell>
+                <cell>Christian Palestinian Aramaic</cell>
+              </row>
+              <row role="data">
+                <cell>ar-Syrc</cell>
+                <cell>Arabic in Syriac script (Garshuni)</cell>
+              </row>
+              <row role="data">
+                <cell>ar-syr</cell>
+                <cell>Karshuni</cell>
+              </row>
+              <row role="data">
+                <cell>de</cell>
+                <cell>German</cell>
+              </row>
+              <row role="data">
+                <cell>fr</cell>
+                <cell>French</cell>
+              </row>
+              <row role="data">
+                <cell>en</cell>
+                <cell>English</cell>
+              </row>
+              <row role="data">
+                <cell>it</cell>
+                <cell>Italian</cell>
+              </row>
+              <row role="data">
+                <cell>pt</cell>
+                <cell>Portugese</cell>
+              </row>
+              <row role="data">
+                <cell>ru</cell>
+                <cell>Russian</cell>
+              </row>
+              <row role="data">
+                <cell>nl</cell>
+                <cell>Dutch</cell>
+              </row>
+              <row role="data">
+                <cell>ar</cell>
+                <cell>Arabic</cell>
+              </row>
+              <row role="data">
+                <cell>es</cell>
+                <cell>Spanish</cell>
+              </row>
+              <row role="data">
+                <cell>tr</cell>
+                <cell>Turkish</cell>
+              </row>
+            </table>
           </div>
           <div xml:id="dates">
             <head>Recording Date Information for Mansucripts</head>
@@ -849,7 +956,7 @@
                     evidence (incipits, manuscripts, editions, etc.). This is the most common record type in <title>NHSL</title> records. The Peshitta version of <title>Genesis</title> (<ref target="http://syriaca.org/work/1"
                       >http://syriaca.org/work/1</ref>) is an example of a conceptual work record because it is a constituent work within a literarary tradition.</item>
                 </list>
-                <p>It should be noted that the relationship between these two types in the <title>NHSL</title> data model is not symmetrical. Specifically, not every conceptual work record is contained as a constituent part of a literary tradition. This fact is merely due to editorial convenience. <title>NHSL</title> only has literary tradition records for works in which there are multiple recensions or translations which need differentiation. Technically, any conceptual works could be considered as a consituent parts of a literary tradition whose parts are n=1. Since such a proliferation of literarry tradition records would serve little use, they have been excluded. A second point to note is that while some conceptual works could be further divided into constituent recensions, as an editorial rule we have only implemented a single literary tradition which contains all conceptual works (rather than a hierarchical tree of recensions or works).</p>
+                <p>It should be noted that the relationship between these two types in the <title>NHSL</title> data model is not symmetrical. Specifically, not every conceptual work record is contained as a constituent part of a literary tradition. This fact is merely due to editorial convenience. <title>NHSL</title> only has literary tradition records for works in which there are multiple recensions or translations which need differentiation. Technically, any conceptual work could be considered as a consituent part of a literary tradition whose parts are n=1. Since such a proliferation of literarry tradition records would serve little use, they have been excluded. A second point to note is that while some conceptual works could be further divided into constituent recensions, as an editorial rule we have only implemented a single literary tradition which contains all conceptual works (rather than a hierarchical tree of recensions or works).</p>
               </div>
 
               <div xml:id="anaAttr">
@@ -928,7 +1035,7 @@
                 <item><q>supplied</q>: a title supplied by an editor or cataloger, often describing
                   the literary work in terms of its contents, rather than a title transcribed or
                   otherwise derived from a specific manuscript witness.</item>
-                <item><q>type="final-rubric"</q>: the title as it appears in a subscription, or
+                <item><q>final-rubric</q>: the title as it appears in a subscription, or
                   closing rubric, of a specific manuscript witness.</item>
               </list>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1143,10 +1250,10 @@
                 <p>
                   The following excerpt types are permitted, and should be included in the following order:
                   <list>
-                    <item>Prologue: <att>type</att> attribute value of <q>prologue</q>: Used to record the preamble, preface, or other content associated with the work that precedes its opening line.</item>
-                    <item>Incipit: <att>type</att>attribute value of <q>incipit</q>: Used to record the opening line of the work.</item>
-                    <item>Excerpt: <att>type</att>attribute value of <q>excerpt</q>: Used for any excerpt that does not fall into one of the other categories.</item>
-                    <item>Explicit: <att>type</att>attribute value of <q>explicit</q>: Used to record the closing line of the work.</item>
+                    <item>Prologue: <att>type</att> value of <q>prologue</q>: Used to record the preamble, preface, or other content associated with the work that precedes its opening line.</item>
+                    <item>Incipit: <att>type</att> value of <q>incipit</q>: Used to record the opening line of the work.</item>
+                    <item>Excerpt: <att>type</att> value of <q>excerpt</q>: Used for any excerpt that does not fall into one of the other categories.</item>
+                    <item>Explicit: <att>type</att> value of <q>explicit</q>: Used to record the closing line of the work.</item>
                   </list>
                   The following example shows the use of multiple types of excerpts:
                   <egXML xmlns="http://www.tei-c.org/ns/Examples">
