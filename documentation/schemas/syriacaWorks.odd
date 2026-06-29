@@ -635,38 +635,8 @@
                     ><code>http://syriaca.org/cbss/63ZKDBEH</code></ref>).</p>
             </div>
             <div xml:id="allusionsBibliographic">
-              <head>Allusions to Bibliographic Items (<gi>bibl</gi>/<gi>ref</gi>/<att>target</att>)
-                -- Planned Implementation</head>
-              <p><emph>The encoding feature below has not yet been implemented but is planned for
-                  the future.</emph></p>
-              <p>References to Bibliographic Items can appear in <gi>desc</gi>, <gi>quote</gi>, or
-                  <gi>note</gi> elements (including when these are children of <gi>location</gi>,
-                  <gi>event</gi>, <gi>state</gi>). In these cases, these items should be linked to
-                Syriaca.org URIs.</p>
-              <p><emph>Nota Bene</emph>: The <gi>bibl</gi> element is used in two ways in
-                  <title>NHSL</title>. This present section refers only to the secondary use of
-                  <gi>bibl</gi> elements in marking up prose descriptions in <title>NHSL</title>
-                with URIs. The primary use of the <gi>bibl</gi> element is to create the individual
-                entries for the <q>Works Cited</q> section for a <title>NHSL</title> record. For the
-                  <q>Works Cited</q> use case of the <gi>bibl</gi> element please see the <ref
-                  target="#bibl"><q>Works Cited</q> (<gi>bibl</gi>)</ref> section below.</p>
-              <p><emph>In addition: This feature is currently not implemented in NHSL.</emph></p>
-              <p>When the title of secondary biblographic items (books, articles, etc.) are
-                mentioned, they can be tagged with the <gi>bibl</gi> element. The bibliographic item
-                may be linked with a <title>CBSS</title> URI by using a child <gi>ref</gi> element
-                with the URI placed in a <att>target</att> attribute of the <gi>ref</gi> element.
-                Note the distinction here in the use of a <gi>ref</gi> element rather than a
-                  <att>ref</att> attribute as used for linking URIs for persons, places, or literary
-                works as described above.</p>
-              <p>In the following example, a <gi>note</gi> on the settlement Ayn Dābā (<ref
-                  target="http://syriaca.org/place/434"
-                  ><code>http://syriaca.org/place/434</code></ref>) includes a scholarly discussion
-                of a modern translation: <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <note xml:lang="en" type="errata" resp="http://syriaca.org"><bibl><ref
-                        target="http://syriaca.org/cbss/SGBVKKGH">Dolabani's Syriac
-                        translation</ref></bibl> erroneously identifies this place with <placeName
-                      ref="http://syriaca.org/place/9">Anazarba</placeName>.</note>
-                </egXML></p>
+              <head>Allusions to Bibliographic Items (<gi>bibl</gi>/<gi>ref</gi>/<att>target</att>)</head>
+              <p>The encoding feature below has not yet been implemented but is planned for the future.</p>
             </div>
           </div>
         </div>
