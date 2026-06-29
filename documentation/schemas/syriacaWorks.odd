@@ -549,6 +549,7 @@
               included following the closing tag since the grammar demands it. </p>
             <div xml:id="allusionsPersons">
               <head>Allusions to Persons (<gi>persName</gi>/<att>ref</att>)</head>
+              <!-- DLS I need the list of allowed elements please. -->
               <p>References to persons can appear in <gi>desc</gi>, <gi>quote</gi>, or <gi>note</gi>
                 elements (including when these are children of <gi>location</gi>, <gi>event</gi>,
                   <gi>state</gi>). In these cases, these persons should be linked to Syriaca.org
@@ -558,26 +559,26 @@
                 linked to the URI using <att>ref</att>. The Syriaca.org person URI should be first
                 confirmed as valid in the <ref target="https://syriaca.org/persons/index.html"
                     ><title>Syriac Biographical Dictionary</title></ref>. In the following example,
-                the place Tagai (<ref target="http://syriaca.org/place/1475"
-                    ><code>http://syriaca.org/place/1475</code></ref>) is identified based on its
-                relationship to a person: <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <desc type="abstract" xml:lang="en" resp="http://syriaca.org"
-                    corresp="http://syriaca.org/geo">A location with a monastery whose inhabitants
-                    received a letter from <persName ref="http://syriaca.org/person/51">Severus of
-                      Antioch</persName>.</desc>
+                the work <title>Peter the Iberian (text)</title> (<ref target="http://syriaca.org/work/928"
+                    ><code>http://syriaca.org/work/928</code></ref>) is identified based on its
+                relationship to two persons: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <note xml:lang="en" type="abstract" source="#bib928-6 #bib928-14 #bib928-15 #bib928-16">The authorship of this anti-Chalcedonian life of <persName ref="http://syriaca.org/person/680">Peter the Iberian</persName> is unknown and disputed, but widely thought to be
+                    <persName ref="http://syriaca.org/person/39">John Rufus</persName>, since the author appears to have been a close associate of Peter. 
+                  </note>
                 </egXML></p>
               <p>Because the URI and not the personal name serves as the identifier, it is not
                 necessary to use a <q>preferred form</q> of the personal name. If the allusion is a
                 quotation, the encoder should leave the wording as found in the original.</p>
               <p>Person URIs should be attached only to direct references to persons. When a
                 personal name occurs as part of a title of a work (e.g. <title>The Homilies of John
-                  Chrysostom</title>) or as part of a place name (e.g. The Convent of Mar Isaac),
+                  Chrysostom</title>) or as part of a place name (e.g. <q>The Convent of Mar Isaac</q>),
                 these entities should be treated as works or places respectively. In these cases the
                 prose is marked with a <gi>title</gi> or <gi>placeName</gi> element instead and the
                 personal name must not be tagged nor person URIs attached.</p>
             </div>
             <div xml:id="allusionsPlaces">
               <head>Allusions to Places (<gi>placeName</gi>/<att>ref</att>)</head>
+              <!-- DLS I need the list of allowed elements please. -->
               <p>References to places can appear in <gi>desc</gi>, <gi>quote</gi>, or <gi>note</gi>
                 elements (including when these are children of <gi>location</gi>, <gi>event</gi>,
                   <gi>state</gi>). In these cases, these places should be linked to Syriaca.org
@@ -585,24 +586,12 @@
               <p>When descriptive prose in a <title>NHSL</title> record refers to a place that has a
                 Syriaca.org URI, the mention of the place should be tagged using the
                   <gi>placeName</gi> element and linked to a URI.</p>
-              <p><emph>Nota Bene</emph>: The <gi>placeName</gi> element is used in two ways in
-                  <title>NHSL</title>. This present section refers only to the secondary use of
-                  <gi>placeName</gi> elements in marking up prose descriptions in
-                  <title>NHSL</title> with URIs. The primary use of the <gi>placeName</gi> element
-                is to collate place name variants related to a <title>NHSL</title> entry. For the
-                name variant use case of <gi>placeName</gi> please see the <ref target="#placeName"
-                  >Place Names (<gi>placeName</gi>)</ref> section below.</p>
-              <p>All <gi>placeName</gi> elements used in this secondary, descriptive usage are
-                required to have a <att>ref</att> attribute which points to a Syriaca.org place URI.
-                In the following example, the settlement Gazarta (<ref
-                  target="http://syriaca.org/place/88"
-                  ><code>http://syriaca.org/place/88</code></ref>) is identified based on its
-                relationship to three other places:<egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <desc type="abstract" xml:lang="en" resp="http://syriaca.org"
-                    corresp="http://syriaca.org/geo">A city on the <placeName
-                      ref="http://syriaca.org/place/202">Tigris river</placeName> between <placeName
-                      ref="http://syriaca.org/place/8">Amida</placeName> and <placeName
-                      ref="http://syriaca.org/place/139">Mosul</placeName>.</desc>
+              <p>When possible <gi>placeName</gi> elements should be assigned a <att>ref</att> attribute which points to a Syriaca.org place URI.
+                In the following example, the settlement Antioch and the region of Syria are identified as places mentioned in the incipit of the work: <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <note xml:lang="en" type="incipit">
+                    <quote source="#bib1868-2">Again the history of <persName ref="http://syriaca.org/person/2080">Mariam the Maccabean woman who was called Shamuni</persName> and her seven sons who were martyrs in <placeName ref="http://syriaca.org/place/10">Antioch</placeName> in <placeName ref="http://syriaca.org/place/486">Syria</placeName>
+                    </quote>
+                  </note>
                 </egXML>
               </p>
               <p>Places URIs should be attached only to direct references to places. When a personal
@@ -614,6 +603,7 @@
             </div>
             <div xml:id="allusionsWorks">
               <head>Allusions to Literary Works (<gi>title</gi>/<att>ref</att>)</head>
+              <!-- DLS I need the list of allowed elements please. -->
               <p>References to texts or literary works can appear in <gi>desc</gi>, <gi>quote</gi>,
                 or <gi>note</gi> elements (including when these are children of <gi>location</gi>,
                   <gi>event</gi>, <gi>state</gi>). In these cases, these works should be linked to
@@ -621,18 +611,12 @@
               <p>When a <title>NHSL</title> record refers to a literary work that has a Syriaca.org
                 URI, the title or mention of the work should be tagged using the <gi>title</gi>
                 element and linked to the URI using the <att>ref</att> attribute.</p>
-              <p><emph>Nota Bene</emph>: At present Syriaca.org's authority file for literary works
-                is incomplete, so not all works may have available URIs.</p>
-              <p>In the following example, the church of Mar Thomas the Apostle (<ref
-                  target="http://syriaca.org/place/2593"
-                  ><code>http://syriaca.org/place/2593</code></ref>) is identified based on its
-                relationship to a primary source. relationship to three other places: <egXML
+              <p>In the following example, the work <title xml:lang="en" ref="http://syriaca.org/work/78">1 Corinthians (Peshitta version)</title> is identified based on its
+                relationship to a another work: <egXML
                   xmlns="http://www.tei-c.org/ns/Examples">
-                  <desc type="abstract" xml:lang="en" source="#bib2593-1 #bib2593-2"
-                    corresp="http://syriaca.org/geo">A church in Edessa where the coffin of
-                      <persName ref="http://syriaca.org/person/2123">Thomas the Apostle</persName>
-                    was placed, according to a tradition recorded in the <title
-                      ref="http://syriaca.org/work/8559">Chronicle of Edessa</title>. </desc>
+                  <note corresp="http://syriaca.org/nhsl http://syriaca.org/bible" xml:lang="en" type="abstract" resp="http://syriaca.org">
+                    <title xml:lang="en" ref="http://syriaca.org/work/78">1 Corinthians (Peshitta version)</title> is extant as early as the 5th-6th century 
+                    and consistently circulates as one of the <title xml:lang="en" ref="http://syriaca.org/work/159">Pauline Epistles (Peshitta version)</title>.</note>
                 </egXML>
               </p>
               <p>Work URIs should be attached only to direct references to works. When the title of
@@ -645,7 +629,8 @@
                   <q>bibliographic item</q>. The former is an abstract concept (<title>The Chronicle
                   of Edessa</title>, URI: <ref target="http://syriaca.org/work/8559"
                     ><code>http://syriaca.org/work/8559</code></ref>), while a bibliographic item
-                refers to a specific instance of a publication (e.g. Guidi's 1902 edition, URI: <ref
+                refers to a specific instance of a publication (e.g. Guidi's 1902 edition of the <title>The Chronicle
+                  of Edessa</title>, URI: <ref
                   target="https://syriaca.org/cbss/63ZKDBEH"
                     ><code>http://syriaca.org/cbss/63ZKDBEH</code></ref>).</p>
             </div>
