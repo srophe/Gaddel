@@ -801,8 +801,8 @@
             <head>Description of the Literary Work (<gi>bibl</gi>)</head>
             <p>The primary container for all data about a literary work is the <gi>bibl</gi>
               element. This usage adapts the TEI <gi>bibl</gi> element — normally used for
-              bibliographic references — to serve as the top-level element which contains the work description.
-              This choice reflects the strongly bibliographic character of <title>NHSL</title>
+              bibliographic references — to serve as the top-level element which contains the work description. As a short hand, this <gi>bibl</gi> element may be described as the <q>top-level <gi>bibl</gi></q> or <q>body/bibl</q> or <q>main <gi>bibl</gi></q>.
+              This use of <gi>bibl</gi> reflects the strongly bibliographic character of <title>NHSL</title>
               records, which describe works primarily in terms of their titles, editions, manuscripts, and
               scholarly literature, rather than providing discursive prose descriptions.</p>
             <!-- This could be deprecated The <gi>bibl</gi> element must carry an <att>xml:id</att> attribute of the form
@@ -830,14 +830,13 @@
             </list>
 
             <div xml:id="biblType">
-              <head>Work Types (<att>type</att> and <att>ana</att>)</head>
-              <p>The <gi>bibl</gi> element must carry two classificatory attributes: <att>type</att>
-                and <att>ana</att>. Together these attributes identify the ontological category of
-                the work and its thematic classification within <title>NHSL</title>.</p>
+              <head>Work Attributes (<att>type</att> and <att>ana</att>)</head>
+              <p>The <gi>bibl</gi> element can carry two classificatory attributes: <att>type</att>
+                and <att>ana</att>. These attributes are used internally in the data model to classify and group types of work within <title>NHSL</title>.</p>
 
               <div xml:id="typeAttr">
-                <head>Ontological Type (<att>type</att>)</head>
-                <p>The <att>type</att> attribute on <gi>bibl</gi> distinguishes between the two
+                <head>Literary Traditions and Constituent Works (<code>body/bibl/@type</code>)</head>
+                <p>The <att>type</att> attribute on the top-level <gi>bibl</gi> distinguishes between the two
                   fundamental kinds of work record used in <title>NHSL</title>. Its value must be
                   one of the following:</p>
                 <list>
