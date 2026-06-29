@@ -832,7 +832,7 @@
             <div xml:id="biblType">
               <head>Work Attributes (<att>type</att> and <att>ana</att>)</head>
               <p>The <gi>bibl</gi> element can carry two classificatory attributes: <att>type</att>
-                and <att>ana</att>. These attributes are used internally in the data model to classify and group types of work within <title>NHSL</title>.</p>
+                and <att>ana</att>. These attributes are used internally in the data model to classify and group types of works within <title>NHSL</title>.</p>
 
               <div xml:id="typeAttr">
                 <head>Literary Traditions and Constituent Works (<code>body/bibl/@type</code>)</head>
@@ -840,51 +840,29 @@
                   fundamental kinds of work record used in <title>NHSL</title>. Its value must be
                   one of the following:</p>
                 <list>
-                  <item><code>lawd:ConceptualWork</code> — used for a specific textual work,
-                    recension, or version that can be identified by concrete textual and material
-                    evidence (incipits, manuscripts, editions, etc.). This is the most common type
-                    and covers the majority of <title>NHSL</title> records. Example: the Peshitta
-                    version of Genesis (<ref target="http://syriaca.org/work/1"
-                        ><code>http://syriaca.org/work/1</code></ref>).</item>
-                  <item><code>syriaca:LiteraryTradition</code> — used for a broader literary
-                    tradition that encompasses multiple versions, translations, or adaptations of
-                    the same underlying work. LiteraryTradition records generally do not carry
-                    incipits or explicits and do not reference specific manuscripts. They serve
+                  <item><code>syriaca:LiteraryTradition</code> — this category is used to identify the literary
+                    tradition that encompasses all of the multiple versions, translations, or adaptations of a work. The URI assigned to a literary tradition is used to link together individual conceptual works. For example, the <title>Genesis</title> literary tradition URI (<ref target="http://syriaca.org/work/9628">http://syriaca.org/work/9628</ref>) refers collectively to the various Syriac translations such as the Peshitta <title>Genesis</title> and Syriac translations of <title>Genesis</title> from the Greek Septuagint. Because of their abstract nature, literarytradition records do not carry
+                    incipits or explicits and do not cite specific manuscripts. They serve
                     primarily as organizing nodes in the knowledge graph, linking specific
-                    conceptual works to a common tradition. Example: the Genesis literary tradition
-                      (<ref target="http://syriaca.org/work/9628"
-                        ><code>http://syriaca.org/work/9628</code></ref>).</item>
+                    conceptual works to a common tradition.</item>
+                  <item><code>lawd:ConceptualWork</code> — this category of record is used for a more specific conceptual work that can be identified by concrete textual and material
+                    evidence (incipits, manuscripts, editions, etc.). This is the most common record type in <title>NHSL</title> records. The Peshitta version of <title>Genesis</title> (<ref target="http://syriaca.org/work/1"
+                      >http://syriaca.org/work/1</ref>) is an example of a conceptual work record because it is a constituent work within a literarary tradition.</item>
                 </list>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <!-- A specific textual work: -->
-                  <bibl xml:id="work-1" type="lawd:ConceptualWork" ana="#syriaca-biblical"
-                    >...</bibl>
-                  <!-- A broader literary tradition: -->
-                  <bibl xml:id="work-9628" type="syriaca:LiteraryTradition" ana="#syriaca-biblical"
-                    >...</bibl>
-                </egXML>
+                <p>It should be noted that the relationship between these two types in the <title>NHSL</title> data model is not symmetrical. Specifically, not every conceptual work record is contained as a constituent part of a literary tradition. This fact is merely due to editorial convenience. <title>NHSL</title> only has literary tradition records for works in which there are multiple recensions or translations which need differentiation. Technically, any conceptual works could be considered as a consituent parts of a literary tradition whose parts are n=1. Since such a proliferation of literarry tradition records would serve little use, they have been excluded. A second point to note is that while some conceptual works could be further divided into constituent recensions, as an editorial rule we have only implemented a single literary tradition which contains all conceptual works (rather than a hierarchical tree of recensions or works).</p>
               </div>
 
               <div xml:id="anaAttr">
                 <head>Thematic Classification (<att>ana</att>)</head>
-                <p>The <att>ana</att> attribute on <gi>bibl</gi> supplies a thematic classification
-                  for the work using a Syriaca.org taxonomy term. Its value is a hashtag-prefixed
-                  token that corresponds to one of the category identifiers defined in the
-                    <gi>classDecl</gi>/<gi>taxonomy</gi> section of the <gi>encodingDesc</gi>.
+                <p>The <att>ana</att> attribute on <gi>bibl</gi> supplies a thematic classification used to divide work records into the thematic sub-volumes of <title>NHSL</title>.
                   Permitted values include:</p>
                 <list>
                   <item><code>#syriaca-biblical</code> — the work is a version, commentary on, or
                     liturgical adaptation of a biblical text</item>
                   <item><code>#syriaca-hagiographic</code> — the work is a hagiographic text, such
                     as a saint's life, martyrdom account, or commemoration</item>
+                  <item><code>#syriaca-scientific</code> — the work is a philosophical or scientific work</item>
                 </list>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <bibl xml:id="work-567" ana="#syriaca-hagiographic">...</bibl>
-                </egXML>
-                <p>Note that <att>ana</att> is distinct from <att>type</att>: <att>type</att>
-                  describes what <emph>kind</emph> of entity the record represents (conceptual work
-                  vs. literary tradition), while <att>ana</att> describes its thematic
-                    <emph>content</emph> (biblical, hagiographic, etc.).</p>
               </div>
             </div>
           </div>
