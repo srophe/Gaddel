@@ -364,7 +364,7 @@
           <head>Syriaca.org Encoding Conventions (Applies to Multiple Elements)</head>
           <p>This section describes encoding conventions which can be employed with a number of
             different elements. In particular these conventions are used with the following
-            elements, unless otherwise specified: <!-- This list needs revision <gi>desc</gi>, <gi>event</gi>, <gi>location</gi>,
+            elements, unless otherwise specified: <!-- DLS This list needs revision <gi>desc</gi>, <gi>event</gi>, <gi>location</gi>,
               <gi>placeName</gi>, <gi>quote</gi>, <gi>relation</gi>, and <gi>state</gi>.--></p>
           <div xml:id="languageCodes">
             <head>Recording Language Information (<att>xml:lang</att>)</head>
@@ -380,7 +380,7 @@
                 target="https://syriaca.org/documentation/isostandards.html">Syriaca.org
                 Documentation: Language and Script Identifiers</ref>. </p>
             <p>Explict tagging of language codes using <att>xml:lang</att> attributes is required on
-              the following elements: <!-- <gi>placeName</gi>, <gi>desc</gi>, and <gi>note</gi>--></p>
+              the following elements: <!-- DLS can you help with this please: <gi>placeName</gi>, <gi>desc</gi>, and <gi>note</gi>--></p>
             <p>Finally, in some instances a <gi>desc</gi> or <gi>note</gi> element may contain
               content in multiple languages, such as an English description that includes a Syriac
               phrase that is transcribed, rather than transliterated. In such cases, the
@@ -390,11 +390,10 @@
               contents are in a <q>foreign</q> language <emph>from the perspective of the containing
                 element</emph>. The <gi>foreign</gi> element should have its own <att>xml:lang</att>
               attribute whose contents are the ISO 639 langauge code corresponding to the language
-              of its contents, as seen in the following example: <!-- <egXML
+              of its contents, as seen in the following example: <egXML
                 xmlns="http://www.tei-c.org/ns/Examples">
-                <desc xml:lang="en">Attestation of name <foreign xml:lang="syr">ܐܘܿܪܫܠܹܡ</foreign>
-                  in a note in <title>Jerusalem, Saint Mark's Monastery, Ms. 181 [HMML SMMJ
-                    00181]</title>.</desc>
+                <author ref="http://syriaca.org/person/480" source="#bib180-13 #bib180-17" xml:lang="en">Eusebius of Caesarea — <foreign xml:lang="syr">ܐܘܣܒܝܣ ܕܩܣܪܝܐ</foreign>
+                </author>
               </egXML> --> This use of the <gi>foreign</gi> element, moreover, enables the HTML view to
               more precisely display content with bidirectional text (i.e., a mixture of
               right-to-left and left-to-right writing systems). </p>
@@ -533,7 +532,7 @@
             <p>When encoding child elements nested within the main <gi>bibl</gi> element, <title>NHSL</title>
               records are required to cite their sources using either the <att>source</att> or
                 <att>resp</att> attributes. These attributes can be placed on any of these elements:
-                <!--  <gi>desc</gi>, <gi>event</gi>, <gi>location</gi>, <gi>placeName</gi>,
+                <!-- DLS can you help with this please? <gi>desc</gi>, <gi>event</gi>, <gi>location</gi>, <gi>placeName</gi>,
               <gi>quote</gi>, <gi>relation</gi>, and <gi>state</gi>.--> </p>
             <p>Whenever possible, the editorial policy of <title>NHSL</title> is that all
               information in a record should have citations to bibliographic references found in the
@@ -558,7 +557,7 @@
               <p>Once a <gi>bibl</gi> element for the item has been created, citations to that same
                 bibliographic item can be inserted (and repeated) almost anywhere in the place
                 record. These citations are inserted using the <att>source</att> attribute which is
-                permitted on the following elements: <!-- <gi>desc</gi>, <gi>event</gi>,
+                permitted on the following elements: <!-- DLS can you help please? <gi>desc</gi>, <gi>event</gi>,
                   <gi>location</gi>, <gi>placeName</gi>, <gi>quote</gi>, <gi>relation</gi>, and
                   <gi>state</gi> -->. For example <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <title xml:id="name1-5" xml:lang="en" source="#bib1-9 #bib1-24 #bib1-26">Genesis</title>
@@ -1067,10 +1066,10 @@
               for the creator should include an <att>xml:lang</att> attribute value of <q>en</q>. </p>
             <p>For creators other than authors, the <att>role</att> attribute must be used to
               further specify the peron's contribution. Allowed values include:
-              <!-- TBD: add this list from the schema --></p>
+              <!-- DLS can you help please? --></p>
             <p>Attribution of creators may also be included even in cases of dubious, disputed, or
               pseudopigraphic attribution. The <att>role</att> attribute may also be used for this
-              purpose, in which case the following values should be used: <!--TBD: add this list from the schema -->
+              purpose, in which case the following values should be used: <!--DLS can you help please? -->
               <!--Proposed convention: include a note (what type?) explaining cases of uncertain or incorrect attribution -->
             </p>
           </div>
@@ -1113,7 +1112,7 @@
                 elements must have a <att>type</att> attribute value of <q>number</q>. Their
                   <att>subtype</att> attribute specifies the reference work or identifier schema to
                 which the refrence number belongs. The following sources are permitted:
-                <!--Add with labels from the schema -->
+                <!-- DLS can you help please? -->
               </p>
               <p> Example: <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <idno type="number" subtype="BHS">347</idno>
@@ -1152,7 +1151,7 @@
                 <gi>noteGrp</gi> element must have a <att>type</att> attribute and a child
                 <gi>desc</gi> element. The <att>type</att> attribute's value and the text node of
               the <gi>desc</gi> element must match those in the following table:
-              <!--list these and describe? abstract, scope, versions, content, disambiguation, prologue, incipit, excerpt, explicit -->
+              <!--DLS can you help please?abstract, scope, versions, content, disambiguation, prologue, incipit, excerpt, explicit -->
               One or more child <gi>note</gi> elements may be included in a <gi>noteGrp</gi>
               element. These <gi>note</gi> elements must have a <att>type</att> attribute whose
               value corresponds to that of its parent <gi>noteGrp</gi> element. The language of the
@@ -1565,7 +1564,7 @@
                     </bibl>
                   </listBibl>
                 </egXML>
-                <!-- Need to add allowed values below -->
+                <!-- DLS can you help please? Need to add allowed values below -->
                 <p>The <gi>label</gi> element will usually contain an <gi>idno</gi> child. This
                     <gi>idno</gi> should have a <att>type</att> (such as <q>shelfmark</q> or
                     <q>number</q>) and may have a <att>subtype</att> identifying the library (e.g.,
