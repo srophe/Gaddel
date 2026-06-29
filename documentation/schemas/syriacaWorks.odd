@@ -801,26 +801,27 @@
             <head>Description of the Literary Work (<gi>bibl</gi>)</head>
             <p>The primary container for all data about a literary work is the <gi>bibl</gi>
               element. This usage adapts the TEI <gi>bibl</gi> element — normally used for
-              bibliographic references — to serve as the top-level container for work descriptions.
+              bibliographic references — to serve as the top-level element which contains the work description.
               This choice reflects the strongly bibliographic character of <title>NHSL</title>
-              records, which describe works primarily in terms of their editions, manuscripts, and
+              records, which describe works primarily in terms of their titles, editions, manuscripts, and
               scholarly literature, rather than providing discursive prose descriptions.</p>
-            <p>The <gi>bibl</gi> element must carry an <att>xml:id</att> attribute of the form
+            <!-- This could be deprecated The <gi>bibl</gi> element must carry an <att>xml:id</att> attribute of the form
                 <code>work-[n]</code> (where <code>[n]</code> is the numeric portion of the work
               URI) and must carry <att>type</att> and <att>ana</att> attributes (see <ref
-                target="#biblType">Work Types</ref> below). The <gi>bibl</gi> element can contain
+                target="#biblType">Work Types</ref> below). --> 
+            <p>The <gi>bibl</gi> element can contain
               the following child elements in the order listed, some of which are required:</p>
-            <list>
+            <!-- DLS I need the list of allowed elements please. --><list>
               <item><gi>title</gi>* — one or more work title variants (see <ref target="#title"
                   >Titles</ref>)</item>
               <item><gi>author</gi> or <gi>editor</gi>— the work's attributed creator(s) (see <ref
                   target="#creator">Creators</ref>)</item>
-              <item><gi>idno</gi>* — one or more identifiers, including the canonical Syriaca.org
+              <item><gi>idno</gi>* — one or more identifiers, including the Syriaca.org
                 URI (see <ref target="#idno">Identifiers</ref>)</item>
               <item><gi>textLang</gi> — the primary language of the work (see <ref
                   target="#textLang">Text Language</ref>)</item>
               <item><gi>noteGrp</gi> — groups of notes recording incipits, explicits, and prologues
-                (see <ref target="#noteGrp">Incipits, Explicits, and Prologues</ref>)</item>
+                (see <ref target="#noteGrp">Prologues, Incipits, and Explicits</ref>)</item>
               <item><gi>listRelation</gi> — relationships to other works, persons, or entities (see
                   <ref target="#listRelation">Relations</ref>)</item>
               <item><gi>listBibl</gi>* — bibliographic information grouped by type (editions,
