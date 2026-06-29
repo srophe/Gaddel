@@ -1109,8 +1109,7 @@
           </div>
 
           <div xml:id="noteGrp">
-            <!--Generic header for noteGrps -->
-            <head>Work Description, Notes, and Excerpts (<gi>noteGrp</gi>)</head>
+            <head>Work Descriptions, Scholarly Annotations, and Excerpts (<gi>noteGrp</gi>)</head>
             <p>Each work record contains one or more <gi>noteGrp</gi> elements that help to
               disambiguate this work from other similar works. These note groups include record
               abstracts; descriptive and discursive notes about the work; and excerpts from the
@@ -1131,7 +1130,7 @@
               per the above guidelines. <!-- example -->
             </p>
             <div xml:id="abstract">
-              <head>Abstract</head>
+              <head>Abstract (<code>noteGrp type="abstract"</code>)</head>
               <p><emph>An English-language abstract is required. A record may have any number of
                   additional <gi>note</gi> elements.</emph></p>
               <p>Every record must have an abstract, i.e. a short description or one to two lines of
@@ -1155,20 +1154,53 @@
               </p>
             </div>
             <div xml:id="note">
-              <head>Scholarly Annotation</head>
+              <head>Scholarly Annotation (<code>noteGrp type="scope", "versions", "content", or "disambiguation"</code>)</head>
               <p>
-                <!--
-              - scope, versions, content, disambiguation notes
-              -->
+                <title>NHSL</title> provides several additional mechanisms for contributors to contextualize the literary work. These include
+                the following kinds of notes, all recorded in <gi>note</gi> element children of <gi>noteGrp</gi> as described above:
+                <list>
+                  <item>Scope: <att>type</att>attribute value of <q>scope</q>: Used to provide information about the topical coverage of a given work, especially as it may relate to a larger work of which it is a part.</item>
+                  <item>Ancient Versions: <att>type</att>attribute value of <q>versions</q>: Used to record information about the various ancient versions associated with this work, such as translations in other ancient languages or different recensions. This information may also be more formally recorded as described below under <ref target="#ancientVersions">Ancient Versions</ref>.</item>
+                  <item>Content: <att>type</att>attribute value of <q>content</q>: Used to provide information about the contents of a given work, which may include its internal structure or sections.</item>
+                  <item>Disambiguation: <att>type</att>attribute value of <q>disambiguation</q>: Used to call attention to distinctive features of this work that distinguish it from other, similar works. This information may also be recorded in a <ref target="#disambiguatingRelationship">Disambiguation Relationship</ref>, in which case the disambiguation note can provide further context to that relationship.</item>
+                </list>
+                The following examples illustrate the various kinds of information that may be recoreded in these notes:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <noteGrp type="scope">
+                    <desc xml:lang="en">Scope</desc>
+                    <note xml:lang="en" type="scope" resp="http://syriaca.org">Secular world history from Creation 
+                        through the 13th century A.D. Part of a larger work which also contains the
+                        <title ref="http://syriaca.org/work/2502">an ecclesiastical history
+                        </title>.</note>
+                </noteGrp>
+                <noteGrp type="contents">
+                    <desc xml:lang="en">Contents</desc>
+                    <note xml:lang="en" type="content" source="#bib2501-8 #bib2501-14">Through the 12th century, this work is largely an abridgement of 
+                        <persName ref="http://syriaca.org/person/217">Michael the Syrian</persName>'s <title>Chronicle</title>. The portion following this is 
+                        particularly valuable for its representation of events during <persName ref="http://syriaca.org/person/239">Bar Hebraeus</persName>' 
+                        own lifetime.</note>
+                </noteGrp>
+                <noteGrp type="disambiguation">
+                    <desc xml:lang="en">Disambiguation</desc>
+                    <note xml:lang="en" type="disambiguation" resp="http://syriaca.org">This work should be distinguished from the Arabic <title>History of the Dynasties</title>, which reflects a similar structure but has significant differences, 
+                        including some additions that may be from Islamic sources.</note>
+                </noteGrp>
+                </egXML>
               </p>
             </div>
-            <div>
-              <head>Prologues, Incipits, Excerpts, and Explicits (<gi>noteGrp</gi>)</head>
-              <p>To assist users with disambiguating similar works, textual excerpts of various
-                types may be included. <!--
-              TBD: stopped here
-              -->
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <div xml:id="excerpt">
+              <head>Prologues, Incipits, Excerpts, and Explicits (<code>noteGrp type="prologue", "incipit", "excerpt", or "explicit"</code>)</head>
+              <p>To assist users with disambiguating similar works, various textual excerpts may be included. These excerpts must
+                be recorded in a <gi>note</gi> element within a <gi>noteGrp</gi> element. Excerpts may be transcriptions of the text from
+              the original language, e.g. Syriac, deriving from an edition or manuscript source. Translations of excerpts into modern languages
+            may also be recorded, and each should be recorded in its own <gi>note</gi> element. The language of the
+              excerpt must be recorded as described in <ref target="#languageCodes">Recording Language
+                Information (<att>xml:lang</att>)</ref> above. The contents of the <gi>note</gi>
+              element should be sourced as described in the guidelines on <ref target="#source"
+                >Inserting Citations</ref>. If the contents are a direct quotation from the source,
+              however, a child <gi>quote</gi> element should be included, and that element sourced
+              per the above guidelines.
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <noteGrp type="incipit">
                     <desc xml:lang="en">Incipit</desc>
                     <note xml:lang="syr" type="incipit">
@@ -1180,7 +1212,17 @@
                     </note>
                   </noteGrp>
                 </egXML>
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              </p>
+                <p>
+                  The following excerpt types are permitted, and should be included in the following order:
+                  <list>
+                    <item>Prologue: <att>type</att> attribute value of <q>prologue</q>: Used to record the preamble, preface, or other content associated with the work that precedes its opening line.</item>
+                    <item>Incipit: <att>type</att>attribute value of <q>incipit</q>: Used to record the opening line of the work.</item>
+                    <item>Excerpt: <att>type</att>attribute value of <q>excerpt</q>: Used for any excerpt that does not fall into one of the other categories.</item>
+                    <item>Explicit: <att>type</att>attribute value of <q>explicit</q>: Used to record the closing line of the work.</item>
+                  </list>
+                  The following example shows the use of multiple types of excerpts:
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <noteGrp type="prologue">
                     <desc xml:lang="en">Prologue</desc>
                     <note xml:lang="syr" type="prologue">
@@ -1195,7 +1237,7 @@
                     </note>
                   </noteGrp>
                 </egXML>
-              </p>
+                </p>
             </div>
           </div>
 
