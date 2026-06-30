@@ -51,42 +51,42 @@
       <head>A New Handbook of Syriac Literature: Encoding Guidelines and TEI P5 Schema
         Customization</head>
       <opener> This version of the encoding guidelines for <ref target="https://syriaca.org/nhsl"
-            ><title>A New Handbook of Syriac Literature</title></ref> were drafted in 2026 by Nathan
+          ><title>A New Handbook of Syriac Literature</title></ref> were drafted in 2026 by Nathan
         P. Gibson, Jeanne-Nicole Mellon Saint-Laurent, David A. Michelson, William L. Potter, and
         Daniel L. Schwartz. These guidelines are part of an ongoing community effort to develop
         uniform good practice in describing literary data using TEI XML. These guidelines remain
         under development and contributions are welcome via pull requests or issues submitted to the
-          <ref target="https://github.com/srophe/Gaddel/tree/main/documentation/schemas">GitHub
+        <ref target="https://github.com/srophe/Gaddel/tree/main/documentation/schemas">GitHub
           repository</ref> hosted by <ref target="http://syriaca.org">Syriaca.org</ref>. They are
         licensced under a <ref target="https://creativecommons.org/licenses/by/4.0/">Creative
           Commons Attribution 4.0 International license</ref>. Users may cite the guidelines in this
         way: David A. Michelson, et. al., eds. <title>A New Handbook of Syriac Literature: TEI P5
           Customization and Encoding Guidelines</title> (Syriaca.org: 2026), <ref
-          target="https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaWorks.odd"
-          >https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaWorks.odd</ref>.
+            target="https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaWorks.odd"
+            >https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaWorks.odd</ref>.
         <!-- Need to update URL to production URL? -->
       </opener>
-
+      
       <divGen type="toc" xml:id="toc"/>
-
-
+      
+      
       <div xml:id="documentation">
         <head>NHSL Encoding Guidelines</head>
         <div xml:id="introduction">
           <head>Introduction</head>
           <p>Welcome to the encoding guidelines for the second edition of <ref
               target="https://syriaca.org/nhsl"><title>A New Handbook of Syriac
-              Literature</title></ref> (hereafter <title>NHSL</title>). <title>NHSL</title> a
+                Literature</title></ref> (hereafter <title>NHSL</title>). <title>NHSL</title> a
             born-digital TEI-encoded reference work for the study of Syriac literature. The first
             volume, <title level="m"><ref target="http://syriaca.org/bhse">Bibliotheca Hagiographica
                 Syriaca Electronica</ref></title>, was published by <ref target="http://syriaca.org"
-              >Syriaca.org</ref> in 2016 using a simple TEI schema to describe a single genre
+                  >Syriaca.org</ref> in 2016 using a simple TEI schema to describe a single genre
             (hagiography). Past TEI-encoding practice has focused on describing specific manuscripts
             or creating editions of works. By contrast, the <title level="s">NHSL</title> seeks to
             describe abstract or conceptual works (including unpublished ones) and to relate them to
             people, places, and other works, as well as to the manuscripts, editions, and
             translations that embody them. Two key features of this encoding model include using
-              <gi>bibl</gi> for description of works and fully leveraging <att>source</att> for
+            <gi>bibl</gi> for description of works and fully leveraging <att>source</att> for
             scholarly citations. These guidelines describe the methodology used to create <ref
               target="https://www.tei-c.org">TEI</ref> XML files for encoding Syriac literary data
             according to the schema implemented by Syriaca.org. We have chosen to use the TEI
@@ -113,16 +113,16 @@
             of the <ref target="https://creativecommons.org/licenses/by/4.0/">Creative Commons
               Attribution 4.0 International license</ref>. The current document represents
             guidelines for the second edition of <title>A New Handbook of Syriac
-            Literature</title>.</p>
+              Literature</title>.</p>
           <p>In addition, prose and examples have been reused from the following sources: <list>
               <item>Nathan P. Gibson, David A. Michelson, and Daniel L. Schwartz. "From Manuscript
                 Catalogues to a Handbook of Syriac Literature: Modeling an Infrastructure for
                 Syriaca.org," <title>Journal of Data Mining and Digital Humanities</title>,
-                  <title>Special Issue on Computer-Aided Processing of Intertextuality in Ancient
+                <title>Special Issue on Computer-Aided Processing of Intertextuality in Ancient
                   Languages</title> (2017), <ref target="http://jdmdh.episciences.org/1395"
-                  >http://jdmdh.episciences.org/1395</ref>, under the terms of the <ref
-                  target="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution
-                  4.0 International license</ref>.</item>
+                    >http://jdmdh.episciences.org/1395</ref>, under the terms of the <ref
+                      target="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution
+                      4.0 International license</ref>.</item>
               <item>David A. Michelson, "Using Linked Open Data to Model Cultural Heritage
                 Information: The Research Questions and Data Structures of the Syriaca.org Knowledge
                 Graph," in <title>Linked Open Data for the Ancient Mediterranean: Structures,
@@ -130,23 +130,23 @@
                 Horne, <title>ISAW Papers</title> 20 (2021), <ref
                   target="http://hdl.handle.net/2333.1/69p8d8cc"
                   >http://hdl.handle.net/2333.1/69p8d8cc</ref>, under the terms of the <ref
-                  target="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution
-                  4.0 International license</ref>.</item>
+                    target="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution
+                    4.0 International license</ref>.</item>
               <item>David A. Michelson, et. al., eds. <title>Syriac Manuscripts in the British
                   Library: TEI P5 Customization and Encoding Guidelines for Manuscript
                   Description</title> (Syriaca.org: 2024), <ref
-                  target="https://github.com/srophe/britishLibrary/blob/main/documentation/schema/Syriacamsdesc.html"
-                  >https://github.com/srophe/britishLibrary/blob/main/documentation/schema/Syriacamsdesc.html</ref>,
+                    target="https://github.com/srophe/britishLibrary/blob/main/documentation/schema/Syriacamsdesc.html"
+                    >https://github.com/srophe/britishLibrary/blob/main/documentation/schema/Syriacamsdesc.html</ref>,
                 under the terms of the <ref target="https://creativecommons.org/licenses/by/4.0/"
                   >Creative Commons Attribution 4.0 International license</ref> (which was in turn
                 developed from guidelines published by the Bodleian Library, Oxford and James
                 Cummings as <ref target="https://github.com/msDesc/consolidated-tei-schema"
-                    ><title>TEI P5 Customization and Encoding Guidelines for Manuscript
+                  ><title>TEI P5 Customization and Encoding Guidelines for Manuscript
                     Description</title></ref> and licenced under CC BY 4.0).</item>
               <item>Daniel L. Schwartz, et. al., <title>The Syriac Gazetteer: Encoding Guidelines
                   and TEI P5 Customization</title> (Syriaca.org, 2025), <ref
-                  target="https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.compiled.html"
-                  >https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.compiled.html</ref>,
+                    target="https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.compiled.html"
+                    >https://github.com/srophe/Gaddel/blob/main/documentation/schemas/syriacaPlaces.compiled.html</ref>,
                 under the terms of the <ref target="https://creativecommons.org/licenses/by/3.0/"
                   >Creative Commons Attribution 3.0 Unported License</ref>.</item>
               <item>Pat Riva, Patrick Le Bœuf, Maja Žumer, <title>IFLA Library Reference Model: A
@@ -157,7 +157,7 @@
                   >https://repository.ifla.org/handle/20.500.14598/40.2</ref>, under the terms of
                 the <ref target="https://creativecommons.org/licenses/by/4.0/">Creative Commons
                   Attribution 4.0 International license</ref>.</item>
-            </list>
+          </list>
           </p>
           <p>Many of the work records in <title>NHSL</title> incorporate data from Ugo Zanetti and
             Claude Detienne, <title>Bibliotheca Hagiographica Syriaca</title> (unpublished database). That database was incorporated into <title>NHSL</title> by permission under the terms of the <ref target="https://creativecommons.org/licenses/by/3.0/"
@@ -180,10 +180,10 @@
                     ><code>http://syriaca.org/person/13</code></ref>)</item>
                 <item>Literary Works, e.g., <title>The Life of Abraham Quidounaya</title> by Ephrem
                   the Syrian (URI: <ref target="http://syriaca.org/work/567"
-                      ><code>http://syriaca.org/work/567</code></ref>)</item>
+                    ><code>http://syriaca.org/work/567</code></ref>)</item>
                 <item>Bibliographic Items (modern publications), e.g., Robert Murray, <title>Symbols
                     of Church and Kingdom</title> (1975) (URI: <ref
-                    target="http://syriaca.org/cbss/M8NJIL53"
+                      target="http://syriaca.org/cbss/M8NJIL53"
                       ><code>http://syriaca.org/cbss/M8NJIL53</code></ref>)</item>
                 <item>Subject Headings (thematic keywords related to Syriac Studies), e.g.,
                   “asceticism” (URI: <emph>under development</emph>)</item>
@@ -219,7 +219,7 @@
               identified by the URI. Although perhaps obvious to state, the web document which is
               returned from a Syriaca.org URI is only a definition of the concept named by the URI,
               not the entity itself (thus the address <ref target="http://syriaca.org/place/78"
-                  ><code>http://syriaca.org/place/78</code></ref> does <emph>not</emph> allow one to
+                ><code>http://syriaca.org/place/78</code></ref> does <emph>not</emph> allow one to
               download the real-world city of Edessa, but a web page describing that city!).</p>
             <p>In the Syriaca.org data model, each URI represents a conceptual thing with a mental
               existence related to, but not reducible to, its historical or physical manifestation.
@@ -234,14 +234,14 @@
             <p><title>NHSL</title> is the Syriaca.org publication dedicated to describing works of
               literature and is responsible for assinging URIs to individual texts and textual
               traditions in the Syriaca.org data model. Descriptions of literary works in
-                <title>NHSL</title> can also refer to URIs for any of the seven entities, thus a
-                <title>NHSL</title> record for a particular work may define that text in relation to
+              <title>NHSL</title> can also refer to URIs for any of the seven entities, thus a
+              <title>NHSL</title> record for a particular work may define that text in relation to
               other works, as well as to persons, modern bibliography, etc. In each instance, these
               relationships will be encoded in the <title>NSHL</title> record as references to
               Syriaca.org URIs. Taken as a whole, the entire Syriaca.org dataset of linked URIs
               forms a "knowledge graph" or a map of relationships between URIs from the seven core
               entitites. In the example of Ephrem the Syrian
-                (<code>http://syriaca.org/person/13</code>) and his work <title>Hymns on
+              (<code>http://syriaca.org/person/13</code>) and his work <title>Hymns on
                 Nisibis</title> (<code>http://syriaca.org/work/8737</code>) the relationship between
               these two entities is part of the Syriaca.org knowledge graph. </p>
           </div>
@@ -258,7 +258,7 @@
             <p>We have adopted the concept of a <q>work</q> from two standards developed within the
               field of library science. These standards are the <q>Functional Requirements for
                 Bibliographic Records (FRBR)</q> and the <q>International Federation of Library
-                Associations and Institutions Library Reference Model (IFLA LRM)</q>. The IFLA LRM
+                  Associations and Institutions Library Reference Model (IFLA LRM)</q>. The IFLA LRM
               was issued in 2024 and was developed out of the earlier FRBR model (published in
               1998). <title>NHSL</title> was developed using the FRBR standard and updated for the
               second edition of <title>NHSL</title> to also comply with the IFLA LRM (as published
@@ -270,7 +270,7 @@
                 >https://repository.ifla.org/handle/20.500.14598/40.2</ref>).</p>
             <p>The IFLA LRM defines a <q>work</q> as <q>the intellectual or artistic content of a
                 distinct creation</q>. For our purposes we limit <q>works</q> to <q>literary
-                works</q> by which we mean all Syriac <q>texts</q> (e.g., creative works which take
+                  works</q> by which we mean all Syriac <q>texts</q> (e.g., creative works which take
               written form, as opposed to visual art).</p>
             <div xml:id="assigningURIs">
               <head>Assigning Work URIs (Uniform Resource Identifiers)</head>
@@ -282,7 +282,7 @@
                 Resource Identifier), a technical standard established by the <ref
                   target="https://www.w3.org/TR/webarch/#identification">World Wide Web Consortium
                   (W3C)</ref>. In <title>NHSL</title>, the URIs have the following format:
-                  <code>http://syriaca.org/work/{\d+}</code> (where <code>{\d+}</code> signifies a
+                <code>http://syriaca.org/work/{\d+}</code> (where <code>{\d+}</code> signifies a
                 unique string of digits). For example, the work by Ephrem the Syrian <ref
                   target="http://syriaca.org/work/8737"><title>Hymns on Nisibis</title></ref> is
                 assigned the following URI: <code>http://syriaca.org/work/8737</code>. Syriaca.org
@@ -291,21 +291,21 @@
                 address leading to a file which provides a definition of the entity associated with
                 the URI.</p>
               <p>Or in simple terms, <title>NHSL</title> assigns the unique URI
-                  <code>http://syriaca.org/work/8737</code> as an ID number for the concept of the
-                  <title>Hymns on Nisibis</title>, but that URI is also a working URL which will
+                <code>http://syriaca.org/work/8737</code> as an ID number for the concept of the
+                <title>Hymns on Nisibis</title>, but that URI is also a working URL which will
                 load the <title>NHSL</title> record describing the <title>Hymns on Nisibis</title>
                 (see <ref target="http://syriaca.org/work/8737"
-                >http://syriaca.org/work/8737</ref>).</p>
+                  >http://syriaca.org/work/8737</ref>).</p>
               <p>In each <title>NHSL</title> record, this URI is encoded in an <gi>idno</gi> element
                 in the <gi>body</gi> of the XML document. For a discussion of how to endcode the
                 assigned URI as an <gi>idno</gi> element, see the documentation section below on
-                  <ref target="#idno">Identifiers (<gi>indo</gi>)</ref> .</p>
+                <ref target="#idno">Identifiers (<gi>indo</gi>)</ref> .</p>
             </div>
             <div xml:id="scope">
               <head>Scope of <title>NSHL</title></head>
               <p>In terms of including works in <title>NHSL</title>, the editors interpret the scope
                 of Syriac <q>literary works</q> in a maximal rather than restrictive sense.
-                  <title>NHSL</title> does not intend the adjective <q>literary</q> to be a limiting
+                <title>NHSL</title> does not intend the adjective <q>literary</q> to be a limiting
                 qualifier based on quality. For our purposes, all registers of Syriac texts from
                 poetry to legal documents are <q>literary works</q>. In practical terms, we define a
                 Syriac text as any item that one might want to identify in a list of contents in a
@@ -324,7 +324,7 @@
           <div xml:id="bibliographicCitation">
             <head>Bibliographic Citation Requirement</head>
             <p>Bibliographic citation is an essential and required element for every entry in
-                <title>NHSL</title>.</p>
+              <title>NHSL</title>.</p>
             <p>The intellectual contribution and purpose of <title>NHSL</title> is to establish URIs
               to compile and connect data from previous scholarship on the topic of Syriac Studies.
               Accordingly, our editorial policy assumes that our records will be primarily composed
@@ -332,7 +332,7 @@
               works in the field such as the <title>Bibliotheca Hagiographica Syriaca</title>
               (<title>BHS</title>), the <title>Bibliotheca Hagiographica Orientalis</title>
               (<title>BHO</title>), critical editions, and manuscript catalogues. As a reference work,
-                <title>NHSL</title> is not intended as a venue for the first publication of original
+              <title>NHSL</title> is not intended as a venue for the first publication of original
               research. In general, our default editorial position will be to accept scholarly
               consensus and the results of existing scholarship as published. It is not within the
               scope of <title>NHSL</title> to systematically review and correct past scholarship in
@@ -354,10 +354,10 @@
               readers are encouraged to consult the following technical publication: David A.
               Michelson, “Using Linked Open Data to Model Cultural Heritage Information: The
               Research Questions and Data Structures of the Syriaca.org Knowledge Graph,” in
-                <title>Linked Open Data for the Ancient Mediterranean: Structures, Practices,
+              <title>Linked Open Data for the Ancient Mediterranean: Structures, Practices,
                 Prospects</title>, edited by Sarah E. Bond, Paul Dilley, and Ryan Horne, <title>ISAW
-                Papers</title> 20 (2021), <ref target="http://hdl.handle.net/2333.1/69p8d8cc"
-                >http://hdl.handle.net/2333.1/69p8d8cc</ref>. </p>
+                  Papers</title> 20 (2021), <ref target="http://hdl.handle.net/2333.1/69p8d8cc"
+                    >http://hdl.handle.net/2333.1/69p8d8cc</ref>. </p>
           </div>
         </div>
         <div xml:id="conventions">
@@ -375,17 +375,18 @@
               possible, e.g. <q>en</q> rather than <q>eng</q>. If no two-character code is
               available, use a three-character code from ISO 639-2 or ISO639-3. For textual contents
               in the Syriac language, Syriaca's convention is to use <q>syr</q> rather than
-                <q>syc</q> to avoid confusion over distinguishing "Classical Syriac". For more on
+              <q>syc</q> to avoid confusion over distinguishing "Classical Syriac". For more on
               language code usage, see <ref
                 target="https://syriaca.org/documentation/isostandards.html">Syriaca.org
                 Documentation: Language and Script Identifiers</ref>. </p>
             <p>Explict tagging of language codes using <att>xml:lang</att> attributes is required on
-              the following elements: <!-- DLS can you help with this please: <gi>placeName</gi>, <gi>desc</gi>, and <gi>note</gi>--></p>
+              the following elements: <gi>desc</gi>, <gi>foreign</gi>, and <gi>note</gi>. 
+              This is also required on many <gi>author</gi> and <gi>editor</gi> elements.</p>
             <p>Finally, in some instances a <gi>desc</gi> or <gi>note</gi> element may contain
               content in multiple languages, such as an English description that includes a Syriac
               phrase that is transcribed, rather than transliterated. In such cases, the
               language of the majority of the textual contents should be used as the
-                <att>xml:lang</att> of the containing element. The portions of text in a different
+              <att>xml:lang</att> of the containing element. The portions of text in a different
               language should be tagged with a <gi>foreign</gi> element, indicating that its
               contents are in a <q>foreign</q> language <emph>from the perspective of the containing
                 element</emph>. The <gi>foreign</gi> element should have its own <att>xml:lang</att>
@@ -513,7 +514,7 @@
               1000).</p>
             
             <p>The values of these temporal attributes must be expressed as a date following the
-                <ref target="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601 Date
+              <ref target="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601 Date
                 and Time format</ref>, that is <code>YYYY-MM-DD</code>, i.e. the year followed by
               month followed by day. In most cases, however, only the year can or should be
               included, e.g. <q>1014</q>. For dates prior to the year 1000, leading zeroes must be
@@ -531,17 +532,17 @@
             <head>Sources and Attribution of Intellectual Credit</head>
             <p>When encoding child elements nested within the main <gi>bibl</gi> element, <title>NHSL</title>
               records are required to cite their sources using either the <att>source</att> or
-                <att>resp</att> attributes. These attributes can be placed on any of these elements:
-                <!-- DLS can you help with this please? <gi>desc</gi>, <gi>event</gi>, <gi>location</gi>, <gi>placeName</gi>,
-              <gi>quote</gi>, <gi>relation</gi>, and <gi>state</gi>.--> </p>
+              <att>resp</att> attributes. These attributes can be placed on any of these elements:
+              <!-- DLS can you help with this please? <gi>desc</gi>, <gi>event</gi>, <gi>location</gi>, <gi>placeName</gi>,
+                <gi>quote</gi>, <gi>relation</gi>, and <gi>state</gi>.--> </p>
             <p>Whenever possible, the editorial policy of <title>NHSL</title> is that all
               information in a record should have citations to bibliographic references found in the
               <ref
                 target="https://syriaca.org/cbss/index.html"><title>Comprehensive Bibliography on
                   Syriac Studies</title></ref>. Citations should be made using
-                <att>source</att> as described below in <ref target="#source">Inserting
+              <att>source</att> as described below in <ref target="#source">Inserting
                 Bibliographic Citations (<att>source</att>)</ref>. In rare cases, editors of
-                <title>NHSL</title> may provide attribution information not sourced to a primary or
+              <title>NHSL</title> may provide attribution information not sourced to a primary or
               secondary source using the <att>resp</att> attribute as described below; see <ref
                 target="resp">Asserting Information without a Source (<att>resp</att>)</ref>. The
               use of <att>source</att> and <att>resp</att> are mutually exclusive. Editors should
@@ -550,19 +551,19 @@
               <head>Inserting Bibliographic Citations (<att>source</att>)</head>
               <p>Use of the <att>source</att> attribute is a method for pointing to a bibliographic
                 item found in the <q>Works Cited</q> section of the XML document. Before using
-                  <att>source</att>, editors must first encode an entry for the bibliographic item
+                <att>source</att>, editors must first encode an entry for the bibliographic item
                 using the <gi>bibl</gi> element and a assign it an ID as described in the
                 documentation section <ref target="#bibl"><q>Works Cited</q>
-                (<gi>bibl</gi>)</ref>.</p>
+                  (<gi>bibl</gi>)</ref>.</p>
               <p>Once a <gi>bibl</gi> element for the item has been created, citations to that same
                 bibliographic item can be inserted (and repeated) almost anywhere in the place
                 record. These citations are inserted using the <att>source</att> attribute which is
                 permitted on the following elements: <!-- DLS can you help please? <gi>desc</gi>, <gi>event</gi>,
                   <gi>location</gi>, <gi>placeName</gi>, <gi>quote</gi>, <gi>relation</gi>, and
                   <gi>state</gi> -->. For example <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <title xml:id="name1-5" xml:lang="en" source="#bib1-9 #bib1-24 #bib1-26">Genesis</title>
-              </egXML>
-              In this example, the English title "Genesis" is attested in three separate sources,
+                  <title xml:id="name1-5" xml:lang="en" source="#bib1-9 #bib1-24 #bib1-26">Genesis</title>
+                </egXML>
+                In this example, the English title "Genesis" is attested in three separate sources,
                 whose bibliographic details are encoded in <gi>bibl</gi> elements with the
                 <att>xml:id</att> values <code>bib1-9</code>, <code>bib1-24</code>, and
                 <code>bib1-26</code>.</p>
@@ -583,24 +584,24 @@
               <div>
                 <head>Transcribing Titles (<gi>title</gi>)</head>
                 <p>Transcriptions of name variants should be collected and encoded in
-                    <gi>title</gi> elements as a direct child of the main <gi>bibl</gi> element.
+                  <gi>title</gi> elements as a direct child of the main <gi>bibl</gi> element.
                   These <gi>title</gi> elements must include a citation (using
                   <att>source</att>) and their contents are be defintion interpreted to be verbatim
                   quotations, with no further markup needed. See the discussion above concerning
-                    <ref target="#source">Inserting Bibliographic Citations
+                  <ref target="#source">Inserting Bibliographic Citations
                     (<att>source</att>)</ref>. For more on supplying title variants in
-                    <title>NHSL</title> entries, see below under <ref target="#title">title (<gi>title</gi>)</ref></p>
+                  <title>NHSL</title> entries, see below under <ref target="#title">title (<gi>title</gi>)</ref></p>
               </div>
               <div>
                 <head>Reporting Direct Quotations (<gi>quote</gi>)</head>
                 <p>In all other instances, direct quotations should be encoded by use of the
-                    <gi>quote</gi> element. The opening and closing of the <gi>quote</gi> element
+                  <gi>quote</gi> element. The opening and closing of the <gi>quote</gi> element
                   should mark the start and conclusion of the quotation. There is no need to use
                   quotation marks in addition to the <gi>quote</gi> element. Quotation marks will be
                   auto-generated and added to the HTML view of the record. All <gi>quote</gi>
                   elements must include a citation (using <att>source</att>) following the method
                   described above concerning <ref target="#source">Inserting Bibliographic Citations
-                      (<att>source</att>)</ref>.</p>
+                    (<att>source</att>)</ref>.</p>
               </div>
             </div>
             <div xml:id="resp">
@@ -608,7 +609,7 @@
               <p>In rare cases, editors of <title>NHSL</title> supply information not sourced to a
                 primary or secondary source. To ensure that even this information is attributable to
                 a source, elements that should be sourced but are otherwise lacking a
-                  <att>source</att> attribute should receive a <att>resp</att> attribute with the
+                <att>source</att> attribute should receive a <att>resp</att> attribute with the
                 value <q>http://syriaca.org</q> to indicate that the editors of the
                 <title>NHSL</title> are responsible for the inclusion of the information: <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <title xml:id="name9628-1" xml:lang="en" srophe:tags="#syriaca-headword"
@@ -620,53 +621,51 @@
             <head>Linking Persons, Places, Works, and Bibliography to Syriaca.org URIs</head>
             <p>As discussed above in the section <ref target="#syriacaDataModel">The Seven Core
                 Entities of the Syriaca.org Data Model</ref>, one of the distinctive features of
-                <title>NHSL</title> is its integration with the <ref
+              <title>NHSL</title> is its integration with the <ref
                 target="https://syriaca.org/index.html">Syriaca.org</ref> knowledge graph through
               the use of URIs to identify and link persons, places, literary works, and
               bibliography. For each of these entity types, Syriaca.org has published an
-                <q>authority file</q> which assigns a URI or Uniform Resource Identifier to every
+              <q>authority file</q> which assigns a URI or Uniform Resource Identifier to every
               unique entry. Besides <title>NHSL</title> (the title authority file), these
               authority files include <ref target="https://syriaca.org/persons/index.html"
-                  ><title>The Syriac Biographical Dictionary</title></ref>, <ref
-                target="https://syriaca.org/geo/index.html"><title>The Syriac
-                  Gazetteer</title></ref>, and the <ref
-                target="https://syriaca.org/cbss/index.html"><title>Comprehensive Bibliography on
-                  Syriac Studies</title></ref>.</p>
+                ><title>The Syriac Biographical Dictionary</title></ref>, <ref
+                  target="https://syriaca.org/geo/index.html"><title>The Syriac
+                    Gazetteer</title></ref>, and the <ref
+                      target="https://syriaca.org/cbss/index.html"><title>Comprehensive Bibliography on
+                        Syriac Studies</title></ref>.</p>
             <p>In <title>NHSL</title>, it is possible to link to Syriaca.org URIs within the
               following descriptive elements: <gi>desc</gi>, <gi>quote</gi>, or <gi>note</gi>. <!-- DLS I need a list of these attributes please. -->Use
               of Syriaca.org URIs to identify prose allusions to persons, places, works, etc. is
               strongly encouraged whenever possible. It should be noted that the use of Syriaca.org
               URIs in these sections is for descriptive purposes (i.e. relating the subject of the
-                <title>NHSL</title> record to other places, persons, etc.). The inclusion of URIs in
+              <title>NHSL</title> record to other places, persons, etc.). The inclusion of URIs in
               these cases does <emph>NOT</emph> assign a URI to the work record. For that separate
               function, see the section below: <ref target="#idno">Identifiers
-              (<gi>indo</gi>)</ref>.</p>
+                (<gi>indo</gi>)</ref>.</p>
             <p>In all of the below cases, care should be taken with the placement of whitespace in
               the elements. When marking a string of text as a personal name, place name, work
               title, or bibliographic item, The opening and closing element tags must avoid leading
               and trailing whitespace. Whitespace must instead be placed outside of the element:
-                <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                  <note xml:lang="en" type="abstract" source="#bib928-6 #bib928-14 #bib928-15 #bib928-16">The authorship of this anti-Chalcedonian life of <persName ref="http://syriaca.org/person/680">Peter the Iberian</persName> is unknown and disputed, but widely thought to be
-                    <persName ref="http://syriaca.org/person/39">John Rufus</persName>, since the author appears to have been a close associate of Peter. 
-                    </note>
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <note xml:lang="en" type="abstract" source="#bib928-6 #bib928-14 #bib928-15 #bib928-16">The authorship of this anti-Chalcedonian life of <persName ref="http://syriaca.org/person/680">Peter the Iberian</persName> is unknown and disputed, but widely thought to be
+                  <persName ref="http://syriaca.org/person/39">John Rufus</persName>, since the author appears to have been a close associate of Peter. 
+                </note>
               </egXML> Notice, in the above example, the presence of a space between "life of" and the opening
               tag of the <gi>persName</gi> element, the lack of space between the opening tag and
-                <q>Peter</q>, and no space between <q>Iberian</q> and the closing tag. A space is also
+              <q>Peter</q>, and no space between <q>Iberian</q> and the closing tag. A space is also
               included following the closing tag since the grammar demands it. </p>
             <div xml:id="allusionsPersons">
               <head>Allusions to Persons (<gi>persName</gi>/<att>ref</att>)</head>
-              <!-- DLS I need the list of allowed elements please. -->
               <p>References to persons can appear in <gi>desc</gi>, <gi>quote</gi>, or <gi>note</gi>
-                elements (including when these are children of <gi>location</gi>, <gi>event</gi>,
-                  <gi>state</gi>). In these cases, these persons should be linked to Syriaca.org
+                elements. In these cases, these persons should be linked to Syriaca.org
                 URIs.</p>
               <p>When a <title>NHSL</title> record refers to a person who has a Syriaca.org URI, the
                 mention of a personal name should be tagged using the <gi>persName</gi> element and
                 linked to the URI using <att>ref</att>. The Syriaca.org person URI should be first
                 confirmed as valid in the <ref target="https://syriaca.org/persons/index.html"
-                    ><title>Syriac Biographical Dictionary</title></ref>. In the following example,
+                  ><title>Syriac Biographical Dictionary</title></ref>. In the following example,
                 the work <title>Peter the Iberian (text)</title> (<ref target="http://syriaca.org/work/928"
-                    ><code>http://syriaca.org/work/928</code></ref>) is identified based on its
+                  ><code>http://syriaca.org/work/928</code></ref>) is identified based on its
                 relationship to two persons: <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <note xml:lang="en" type="abstract" source="#bib928-6 #bib928-14 #bib928-15 #bib928-16">The authorship of this anti-Chalcedonian life of <persName ref="http://syriaca.org/person/680">Peter the Iberian</persName> is unknown and disputed, but widely thought to be
                     <persName ref="http://syriaca.org/person/39">John Rufus</persName>, since the author appears to have been a close associate of Peter. 
@@ -684,14 +683,12 @@
             </div>
             <div xml:id="allusionsPlaces">
               <head>Allusions to Places (<gi>placeName</gi>/<att>ref</att>)</head>
-              <!-- DLS I need the list of allowed elements please. -->
               <p>References to places can appear in <gi>desc</gi>, <gi>quote</gi>, or <gi>note</gi>
-                elements (including when these are children of <gi>location</gi>, <gi>event</gi>,
-                  <gi>state</gi>). In these cases, these places should be linked to Syriaca.org
+                elements. In these cases, these places should be linked to Syriaca.org
                 URIs.</p>
               <p>When descriptive prose in a <title>NHSL</title> record refers to a place that has a
                 Syriaca.org URI, the mention of the place should be tagged using the
-                  <gi>placeName</gi> element and linked to a URI.</p>
+                <gi>placeName</gi> element and linked to a URI.</p>
               <p>When possible <gi>placeName</gi> elements should be assigned a <att>ref</att> attribute which points to a Syriaca.org place URI.
                 In the following example, the settlement Antioch and the region of Syria are identified as places mentioned in the incipit of the work: <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <note xml:lang="en" type="incipit">
@@ -711,8 +708,7 @@
               <head>Allusions to Literary Works (<gi>title</gi>/<att>ref</att>)</head>
               <!-- DLS I need the list of allowed elements please. -->
               <p>References to texts or literary works can appear in <gi>desc</gi>, <gi>quote</gi>,
-                or <gi>note</gi> elements (including when these are children of <gi>location</gi>,
-                  <gi>event</gi>, <gi>state</gi>). In these cases, these works should be linked to
+                or <gi>note</gi> elements. In these cases, these works should be linked to
                 Syriaca.org URIs.</p>
               <p>When a <title>NHSL</title> record refers to a literary work that has a Syriaca.org
                 URI, the title or mention of the work should be tagged using the <gi>title</gi>
@@ -730,14 +726,14 @@
                   Homilies</title>) or in a yet unidentified case where a work title might occur as
                 part of a place name, these entities should be treated as persons or places
                 respectively. In these cases the prose is marked with a <gi>persName</gi> or a
-                  <gi>placeName</gi> instead and the work title must not be tagged nor work URIs
+                <gi>placeName</gi> instead and the work title must not be tagged nor work URIs
                 attached. It is also useful to distinguish between a <q>work</q> and a
-                  <q>bibliographic item</q>. The former is an abstract concept (<title>The Chronicle
+                <q>bibliographic item</q>. The former is an abstract concept (<title>The Chronicle
                   of Edessa</title>, URI: <ref target="http://syriaca.org/work/8559"
                     ><code>http://syriaca.org/work/8559</code></ref>), while a bibliographic item
                 refers to a specific instance of a publication (e.g. Guidi's 1902 edition of the <title>The Chronicle
                   of Edessa</title>, URI: <ref
-                  target="https://syriaca.org/cbss/63ZKDBEH"
+                    target="https://syriaca.org/cbss/63ZKDBEH"
                     ><code>http://syriaca.org/cbss/63ZKDBEH</code></ref>).</p>
             </div>
             <div xml:id="allusionsBibliographic">
@@ -750,16 +746,16 @@
           <head>Record Structure</head>
           <p>This section describes the TEI XML structure of each <title>NHSL</title> work record,
             following the order in which elements appear in the document.</p>
-
+          
           <div xml:id="rootElement">
             <head>The TEI Root Element (<gi>TEI</gi>)</head>
             <p>Every <title>NHSL</title> record begins with the <gi>TEI</gi> root element, which
               must include the namespace declarations and an <att>xml:lang</att> attribute with the
               value <q>en</q>, reflecting that the primary language of record data is English. </p>
             <p>The <gi>TEI</gi> root element must always contain exactly two child elements:
-                <gi>teiHeader</gi> and <gi>text</gi>.</p>
+              <gi>teiHeader</gi> and <gi>text</gi>.</p>
           </div>
-
+          
           <div xml:id="header">
             <head>The TEI Header (<gi>teiHeader</gi>)</head>
             <p>The <gi>teiHeader</gi> element contains metadata about the record itself: who created
@@ -779,14 +775,14 @@
                 <revisionDesc>...</revisionDesc>
               </teiHeader>
             </egXML>
-
+            
             <div xml:id="titleStmt">
               <head>Title Statement (<gi>titleStmt</gi>)</head>
               <p>The <gi>titleStmt</gi> records the title of the record (which mirrors the work's
                 primary English headword title), the institutional sponsors and funders, and the
                 editors and contributors. The <gi>title</gi> in the <gi>titleStmt</gi> gives both an
                 English form and a Syriac form separated by an em dash, enclosed in a
-                  <gi>foreign</gi> element:</p>
+                <gi>foreign</gi> element:</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <titleStmt>
                   <title level="a" xml:lang="en">Genesis (Peshitta version) — <foreign
@@ -803,12 +799,12 @@
                 </titleStmt>
               </egXML>
               <p>The <gi>editor</gi> element must carry a <att>role</att> attribute (either
-                  <q>creator</q> or <q>contributor</q>) and a <att>ref</att> attribute pointing to
+                <q>creator</q> or <q>contributor</q>) and a <att>ref</att> attribute pointing to
                 the Syriaca.org editor URI. Editor URIs take the form
-                  <code>http://syriaca.org/documentation/editors.xml#[initials]</code>. New
+                <code>http://syriaca.org/documentation/editors.xml#[initials]</code>. New
                 contributors should contact the Syriaca editors to obtain an editor URI.</p>
             </div>
-
+            
             <div xml:id="publicationStmt">
               <head>Publication Statement (<gi>publicationStmt</gi>)</head>
               <p>The <gi>publicationStmt</gi> records the publishing authority, the URI of this TEI
@@ -828,10 +824,10 @@
               </egXML>
               <p>When a record incorporates data from a third-party source under a specific license
                 (such as the <title>Bibliotheca Hagiographica Syriaca</title>), an additional
-                  <gi>p</gi> element within <gi>licence</gi> notes the copyrighted material and its
+                <gi>p</gi> element within <gi>licence</gi> notes the copyrighted material and its
                 license terms.</p>
             </div>
-
+            
             <div xml:id="seriesStmt">
               <head>Series Statements (<gi>seriesStmt</gi>)</head>
               <p>Each <title>NHSL</title> record belongs to the overarching series and to one or
@@ -839,7 +835,7 @@
                 element. Every record must include at minimum the top-level <title>NHSL</title>
                 series statement. Additional <gi>seriesStmt</gi> elements record membership in
                 thematic sub-series such as <title>A Guide to the Bible in Syriac</title> or the
-                  <title>Bibliotheca Hagiographica Syriaca Electronica</title>:</p>
+                <title>Bibliotheca Hagiographica Syriaca Electronica</title>:</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <seriesStmt>
                   <title level="s" xml:lang="en">A New Handbook of Syriac Literature</title>
@@ -862,18 +858,18 @@
                 </seriesStmt>
               </egXML>
             </div>
-
+            
             <div xml:id="revisionDesc">
               <head>Record Change Log (<gi>revisionDesc</gi>)</head>
               <p>The <gi>revisionDesc</gi> element records the editorial history of the record. It
                 must carry a <att>status</att> attribute indicating the current state of the record.
                 Permitted values include <q>draft</q>, <q>uncorrected-draft</q>, and
-                  <q>published</q>. Within <gi>revisionDesc</gi>, each editorial action is recorded
+                <q>published</q>. Within <gi>revisionDesc</gi>, each editorial action is recorded
                 in a <gi>change</gi> element, listed in reverse chronological order (most recent
                 first). Each <gi>change</gi> element must have <att>who</att> (the editor URI of the
                 person making the change) and <att>when</att> (an ISO 8601 datetime) attributes. The
                 text of the <gi>change</gi> element should begin with one of the following terms:
-                  <q>CREATED</q> (used only for the initial creation of the record), <q>ADDED</q>,
+                <q>CREATED</q> (used only for the initial creation of the record), <q>ADDED</q>,
                 or <q>CHANGED</q>:</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <revisionDesc status="uncorrected-draft">
@@ -885,13 +881,13 @@
               </egXML>
             </div>
           </div>
-
+          
           <div xml:id="bodyStructure">
             <head>The Body Structure (<gi>text</gi> and <gi>body</gi>)</head>
             <p>The intellectual content of each <title>NHSL</title> record is contained in the
-                <gi>text</gi> element, which holds a <gi>body</gi> element containing a single
-                <gi>bibl</gi> element. The XPath to the main data element is therefore
-                <code>/TEI/text/body/bibl</code>. The overall structure is as follows:</p>
+              <gi>text</gi> element, which holds a <gi>body</gi> element containing a single
+              <gi>bibl</gi> element. The XPath to the main data element is therefore
+              <code>/TEI/text/body/bibl</code>. The overall structure is as follows:</p>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <text>
                 <body>
@@ -902,7 +898,7 @@
               </text>
             </egXML>
           </div>
-
+          
           <div xml:id="biblElement">
             <head>Description of the Literary Work (<gi>bibl</gi>)</head>
             <p>The primary container for all data about a literary work is the <gi>bibl</gi>
@@ -912,9 +908,9 @@
               records, which describe works primarily in terms of their titles, editions, manuscripts, and
               scholarly literature, rather than providing discursive prose descriptions.</p>
             <!-- This could be deprecated The <gi>bibl</gi> element must carry an <att>xml:id</att> attribute of the form
-                <code>work-[n]</code> (where <code>[n]</code> is the numeric portion of the work
+              <code>work-[n]</code> (where <code>[n]</code> is the numeric portion of the work
               URI) and must carry <att>type</att> and <att>ana</att> attributes (see <ref
-                target="#biblType">Work Types</ref> below). --> 
+              target="#biblType">Work Types</ref> below). --> 
             <p>The <gi>bibl</gi> element can contain
               the following child elements in the order listed, some of which are required:</p>
             <list>
@@ -931,17 +927,17 @@
               <item><gi>noteGrp</gi> — groups of notes recording incipits, explicits, and prologues
                 (see <ref target="#noteGrp">Prologues, Incipits, and Explicits</ref>)</item>
               <item><gi>listRelation</gi> — relationships to other works, persons, or entities (see
-                  <ref target="#listRelation">Relations</ref>)</item>
+                <ref target="#listRelation">Relations</ref>)</item>
               <item><gi>listBibl</gi>* — bibliographic information grouped by type (editions,
                 manuscripts, translations, secondary literature) (see <ref target="#listBibl"
                   >Bibliography</ref>)</item>
             </list>
-
+            
             <div xml:id="biblType">
               <head>Work Attributes (<att>type</att> and <att>ana</att>)</head>
               <p>The <gi>bibl</gi> element can carry two classificatory attributes: <att>type</att>
                 and <att>ana</att>. These attributes are used internally in the data model to classify and group types of works within <title>NHSL</title>.</p>
-
+              
               <div xml:id="typeAttr">
                 <head>Literary Traditions and Constituent Works (<code>body/bibl/@type</code>)</head>
                 <p>The <att>type</att> attribute on the top-level <gi>bibl</gi> distinguishes between the two
@@ -959,7 +955,7 @@
                 </list>
                 <p>It should be noted that the relationship between these two types in the <title>NHSL</title> data model is not symmetrical. Specifically, not every conceptual work record is contained as a constituent part of a literary tradition. This fact is merely due to editorial convenience. <title>NHSL</title> only has literary tradition records for works in which there are multiple recensions or translations which need differentiation. Technically, any conceptual work could be considered as a consituent part of a literary tradition whose parts are n=1. Since such a proliferation of literarry tradition records would serve little use, they have been excluded. A second point to note is that while some conceptual works could be further divided into constituent recensions, as an editorial rule we have only implemented a single literary tradition which contains all conceptual works (rather than a hierarchical tree of recensions or works).</p>
               </div>
-
+              
               <div xml:id="anaAttr">
                 <head>Thematic Classification (<att>ana</att>)</head>
                 <p>The <att>ana</att> attribute on <gi>bibl</gi> supplies a thematic classification used to divide work records into the thematic sub-volumes of <title>NHSL</title>.
@@ -974,7 +970,7 @@
               </div>
             </div>
           </div>
-
+          
           <div xml:id="title">
             <head>Work Titles (<gi>title</gi>)</head>
             <p>Titles are essential for identifying and disambiguating individual literary works.
@@ -982,7 +978,7 @@
               additional number of <gi>title</gi> elements. The text node of this element should
               contain a title by which the literary work is or was known. Name variants may be
               recorded for any language, and that language should be recorded as described in the
-                <ref target="#languageCodes">Recording Language Information
+              <ref target="#languageCodes">Recording Language Information
                 (<att>xml:lang</att>)</ref> section. Each record must have at least one title in
               English or English transliteration indicated as the <ref target="#headword"
                 >headword</ref>. Multiple titles attested in manuscripts or in scholarly use may be
@@ -996,11 +992,11 @@
               </egXML> Finally, as seen in the preceding example, all <gi>title</gi> elements must
               indicate the source of the name form as detailed in the <ref target="#source"
                 >Inserting Citations</ref> section of these Guidelines. </p>
-
+            
             <div xml:id="headwordTitles">
               <head>Syriaca Headwords</head>
               <p>At least one <gi>title</gi> element must be tagged as a Syriaca Headword using a
-                  <att>srophe:tags</att> attribute with the value of <q>#syriaca-headword</q>. As
+                <att>srophe:tags</att> attribute with the value of <q>#syriaca-headword</q>. As
                 the headwords are used as preferred labels and for alphabetization in search/browse
                 results, at least one title in English or English transliteration should be tagged
                 as a headword. At most one headword per language may be defined. <egXML
@@ -1015,14 +1011,14 @@
               </p>
               <!--
                 From the Claude output, include?:
-              <p>Headword titles for biblical works in <title>NHSL</title> are typically
+                <p>Headword titles for biblical works in <title>NHSL</title> are typically
                 constructed by appending a parenthetical qualifier (e.g., <q>(Peshitta version)</q>,
                 <q>(literary tradition)</q>) to the standard English title to ensure disambiguation.
                 For hagiographic texts, the convention is to append <q>(text)</q> to distinguish
                 the work record from a person record about the same saint.</p>
               -->
             </div>
-
+            
             <div xml:id="titleTypes">
               <head>Title Types (<att>type</att>)</head>
               <p>Titles may be further classified using a <att>type</att> attribute. This practice
@@ -1049,16 +1045,16 @@
               </egXML>
             </div>
           </div>
-
+          
           <div xml:id="creator">
             <head>Creators (<gi>author</gi> and <gi>editor</gi>)</head>
             <p>Authors and other creators (translators, compilers, etc.) are recorded using
-                <gi>author</gi> or <gi>editor</gi> elements, depending on the individual person's
+              <gi>author</gi> or <gi>editor</gi> elements, depending on the individual person's
               responsibility for the creation of the literary work. In both cases, the creator
               should have en entry in the <ref target="http://syriaca.org/persons"><title>Syriac
                   Biographical Dictionary</title></ref>, and the Syriaca.org person URI should be
               included as the value of the <att>ref</att> attribute of the <gi>author</gi> or
-                <gi>editor</gi> element. The contents of these elements, moreover, should be the
+              <gi>editor</gi> element. The contents of these elements, moreover, should be the
               text node of the person record's <code>/TEI/titleStmt/title</code> element: <egXML
                 xmlns="http://www.tei-c.org/ns/Examples">
                 <author ref="http://syriaca.org/person/13" source="#bib567-1" xml:lang="en"> Ephrem
@@ -1067,16 +1063,15 @@
               </egXML> As seen in the above example, the <gi>author</gi> or <gi>editor</gi> element
               for the creator should include an <att>xml:lang</att> attribute value of <q>en</q>. </p>
             <p>For creators other than authors, the <att>role</att> attribute must be used to
-              further specify the peron's contribution. Allowed values include: <q>scribe</q> and
-              <q>translator</q>.
-              <!-- DLS can you help please? --></p>
+              further specify the peron's contribution. Currently allowed values include: <q>scribe</q> and
+              <q>translator</q>.</p>
             <p>Attribution of creators may also be included even in cases of dubious, disputed, or
               pseudopigraphic attribution. The <att>role</att> attribute may also be used for this
               purpose, in which case the following values should be used: <!--DLS can you help please? -->
               <!--Proposed convention: include a note (what type?) explaining cases of uncertain or incorrect attribution -->
             </p>
           </div>
-
+          
           <div xml:id="idno">
             <head>Identifiers (<gi>idno</gi>)</head>
             <p><emph>This element is required. A record must have at least one <gi>idno</gi>
@@ -1085,52 +1080,53 @@
                 number of additional <gi>idno</gi> elements.</emph></p>
             <p>As discussed above in the section on the <ref target="#concept">Concept of a
                 Work</ref>, URIs are an important part of delineating a literary work. Each
-                <title>NHSL</title> record must include one or more <gi>idno</gi> elements recording
+              <title>NHSL</title> record must include one or more <gi>idno</gi> elements recording
               the unique identifiers associated with the work. The first of these <gi>idno</gi>
               elements must have the <att>type</att> attribute with a value of <q>URI</q>, and it
               must contain the Syriaca.org work URI for literary work which the record describes, of
               the form <code>http://syriaca.org/work/{\d+}</code>. Other <gi>idno</gi> elements with
-                <att>type</att> attributes of <q>URI</q> may be included to connect the
-                <title>NHSL</title> record with related concepts in other databases, such as <ref
+              <att>type</att> attributes of <q>URI</q> may be included to connect the
+              <title>NHSL</title> record with related concepts in other databases, such as <ref
                 target="https://viaf.org"><title>Virtual International Authority File</title></ref>,
               or <ref target="https://www.wikidata.org/wiki/Wikidata:Main_Page"
-                  ><title>WikiData</title></ref>. <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <idno type="URI">http://syriaca.org/work/1</idno>
-                <idno type="URI">https://en.wikipedia.org/wiki/Book_of_Genesis</idno>
-                <idno type="URI">https://www.wikidata.org/wiki/Q9184</idno>
-                <idno type="URI">https://viaf.org/viaf/174582712</idno>
-              </egXML>
+                ><title>WikiData</title></ref>. <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <idno type="URI">http://syriaca.org/work/1</idno>
+                  <idno type="URI">https://en.wikipedia.org/wiki/Book_of_Genesis</idno>
+                  <idno type="URI">https://www.wikidata.org/wiki/Q9184</idno>
+                  <idno type="URI">https://viaf.org/viaf/174582712</idno>
+                </egXML>
             </p>
             <p>Less commonly, <gi>idno</gi> elements with <att>type</att> attribute values of
-                <q>URN</q>, referring to the <ref target="https://www.rfc-editor.org/info/rfc8141/"
+              <q>URN</q>, referring to the <ref target="https://www.rfc-editor.org/info/rfc8141/"
                 >Uniform Resource Names</ref> URI scheme, may be included: <egXML
-                xmlns="http://www.tei-c.org/ns/Examples">
-                <idno type="URN">urn:cts:greekLit:tlg0086.tlg028</idno>
-              </egXML>
+                  xmlns="http://www.tei-c.org/ns/Examples">
+                  <idno type="URN">urn:cts:greekLit:tlg0086.tlg028</idno>
+                </egXML>
             </p>
             <div xml:id="referenceNumbers">
               <head>Standard Reference Numbers</head>
               <p>A work record may include additional <gi>idno</gi> elements identifying it
                 according to standard schemas or in standard reference works. These <gi>idno</gi>
                 elements must have a <att>type</att> attribute value of <q>number</q>. Their
-                  <att>subtype</att> attribute specifies the reference work or identifier schema to
+                <att>subtype</att> attribute specifies the reference work or identifier schema to
                 which the refrence number belongs. The following sources are permitted:
+                <q>Bekker</q>, "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi".
                 <!-- DLS can you help please? -->
               </p>
               <p> Example: <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <idno type="number" subtype="BHS">347</idno>
                   <idno type="number" subtype="BHO">870</idno>
-                </egXML>
+              </egXML>
               </p>
             </div>
           </div>
-
+          
           <div xml:id="textLang">
             <head>Text Language (<gi>textLang</gi>)</head>
             <p>The primary language of the work's text is recorded using a <gi>textLang</gi> element
               with a <att>mainLang</att> attribute whose value is an <ref
                 target="https://www.iso.org/iso-639-language-code">ISO 639 Language code</ref>. See
-                <ref target="#languageCodes">Recording Language Information
+              <ref target="#languageCodes">Recording Language Information
                 (<att>xml:lang</att>)</ref>, above for more general information about using these
               language codes. For the overwhelming majority of <title>NHSL</title> records, the
               attribute value will be <q>syr</q>, for Syriac. This is the case even for literary
@@ -1143,7 +1139,7 @@
               or multilingual, additional languages may be recorded in the <att>otherLangs</att>
               attribute as a space-separated list of ISO 639 Language codes.</p>
           </div>
-
+          
           <div xml:id="noteGrp">
             <head>Work Descriptions, Scholarly Annotations, and Excerpts (<gi>noteGrp</gi>)</head>
             <p>Each work record contains one or more <gi>noteGrp</gi> elements that help to
@@ -1151,8 +1147,8 @@
               abstracts; descriptive and discursive notes about the work; and excerpts from the
               work.</p>
             <p>The general structure of a <gi>noteGrp</gi> element is as follows. Each
-                <gi>noteGrp</gi> element must have a <att>type</att> attribute and a child
-                <gi>desc</gi> element. The <att>type</att> attribute's value and the text node of
+              <gi>noteGrp</gi> element must have a <att>type</att> attribute and a child
+              <gi>desc</gi> element. The <att>type</att> attribute's value and the text node of
               the <gi>desc</gi> element must match those in the following table:
               <!--DLS can you help please?abstract, scope, versions, content, disambiguation, prologue, incipit, excerpt, explicit -->
               One or more child <gi>note</gi> elements may be included in a <gi>noteGrp</gi>
@@ -1171,18 +1167,18 @@
                   additional <gi>note</gi> elements.</emph></p>
               <p>Every record must have an abstract, i.e. a short description or one to two lines of
                 prose describing the literary work. The purpose of the abstract is to help users of
-                  <title>NHSL</title> to easily disambiguate search results and quickly identify the
+                <title>NHSL</title> to easily disambiguate search results and quickly identify the
                 work for which they are searching. Abstracts should be written as complete sentences
                 with proper punctuation. Ideally, an abstract should be at least one sentence in
                 legnth Every record must have an abstract written in English. It is also possible to
                 add additional abstracts in other languages. Additionally, individual sub-volumes of
-                  <title>NHSL</title> may have their own, distinct abstracts. <!-- Example-->
+                <title>NHSL</title> may have their own, distinct abstracts. <!-- Example-->
                 Abstracts may be included in languages other than English, and each abstract must
                 have its language recorded as described in the <ref target="#languageCodes"
                   >Recording Language Information (<att>xml:lang</att>)</ref> section, above </p>
               <p> Abstracts must also have a <att>corresp</att> attribute that contains one or more
                 space-separated URIs that correspond to the <gi>idno</gi> element in the
-                  <gi>seriesStmt</gi> elements. These URIs identify <title>NHSL</title> and its
+                <gi>seriesStmt</gi> elements. These URIs identify <title>NHSL</title> and its
                 sub-volumes, such as the <title>Bibliotheca Hagiographica Syriaca
                   Electronica</title>. If there are multiple abstracts, only one can reference a
                 given series URI, and every series URI must be referenced by one of the abstracts.
@@ -1205,22 +1201,22 @@
                   <noteGrp type="scope">
                     <desc xml:lang="en">Scope</desc>
                     <note xml:lang="en" type="scope" resp="http://syriaca.org">Secular world history from Creation 
-                        through the 13th century A.D. Part of a larger work which also contains the
-                        <title ref="http://syriaca.org/work/2502">an ecclesiastical history
-                        </title>.</note>
-                </noteGrp>
-                <noteGrp type="contents">
+                      through the 13th century A.D. Part of a larger work which also contains the
+                      <title ref="http://syriaca.org/work/2502">an ecclesiastical history
+                      </title>.</note>
+                  </noteGrp>
+                  <noteGrp type="contents">
                     <desc xml:lang="en">Contents</desc>
                     <note xml:lang="en" type="content" source="#bib2501-8 #bib2501-14">Through the 12th century, this work is largely an abridgement of 
-                        <persName ref="http://syriaca.org/person/217">Michael the Syrian</persName>'s <title>Chronicle</title>. The portion following this is 
-                        particularly valuable for its representation of events during <persName ref="http://syriaca.org/person/239">Bar Hebraeus</persName>' 
-                        own lifetime.</note>
-                </noteGrp>
-                <noteGrp type="disambiguation">
+                      <persName ref="http://syriaca.org/person/217">Michael the Syrian</persName>'s <title>Chronicle</title>. The portion following this is 
+                      particularly valuable for its representation of events during <persName ref="http://syriaca.org/person/239">Bar Hebraeus</persName>' 
+                      own lifetime.</note>
+                  </noteGrp>
+                  <noteGrp type="disambiguation">
                     <desc xml:lang="en">Disambiguation</desc>
                     <note xml:lang="en" type="disambiguation" resp="http://syriaca.org">This work should be distinguished from the Arabic <title>History of the Dynasties</title>, which reflects a similar structure but has significant differences, 
-                        including some additions that may be from Islamic sources.</note>
-                </noteGrp>
+                      including some additions that may be from Islamic sources.</note>
+                  </noteGrp>
                 </egXML>
               </p>
             </div>
@@ -1228,15 +1224,15 @@
               <head>Prologues, Incipits, Excerpts, and Explicits (<code>noteGrp type="prologue", "incipit", "excerpt", or "explicit"</code>)</head>
               <p>To assist users with disambiguating similar works, various textual excerpts may be included. These excerpts must
                 be recorded in a <gi>note</gi> element within a <gi>noteGrp</gi> element. Excerpts may be transcriptions of the text from
-              the original language, e.g. Syriac, deriving from an edition or manuscript source. Translations of excerpts into modern languages
-            may also be recorded, and each should be recorded in its own <gi>note</gi> element. The language of the
-              excerpt must be recorded as described in <ref target="#languageCodes">Recording Language
-                Information (<att>xml:lang</att>)</ref> above. The contents of the <gi>note</gi>
-              element should be sourced as described in the guidelines on <ref target="#source"
-                >Inserting Citations</ref>. If the contents are a direct quotation from the source,
-              however, a child <gi>quote</gi> element should be included, and that element sourced
-              per the above guidelines.
-            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                the original language, e.g. Syriac, deriving from an edition or manuscript source. Translations of excerpts into modern languages
+                may also be recorded, and each should be recorded in its own <gi>note</gi> element. The language of the
+                excerpt must be recorded as described in <ref target="#languageCodes">Recording Language
+                  Information (<att>xml:lang</att>)</ref> above. The contents of the <gi>note</gi>
+                element should be sourced as described in the guidelines on <ref target="#source"
+                  >Inserting Citations</ref>. If the contents are a direct quotation from the source,
+                however, a child <gi>quote</gi> element should be included, and that element sourced
+                per the above guidelines.
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <noteGrp type="incipit">
                     <desc xml:lang="en">Incipit</desc>
                     <note xml:lang="syr" type="incipit">
@@ -1249,16 +1245,16 @@
                   </noteGrp>
                 </egXML>
               </p>
-                <p>
-                  The following excerpt types are permitted, and should be included in the following order:
-                  <list>
-                    <item>Prologue: <att>type</att> value of <q>prologue</q>: Used to record the preamble, preface, or other content associated with the work that precedes its opening line.</item>
-                    <item>Incipit: <att>type</att> value of <q>incipit</q>: Used to record the opening line of the work.</item>
-                    <item>Excerpt: <att>type</att> value of <q>excerpt</q>: Used for any excerpt that does not fall into one of the other categories.</item>
-                    <item>Explicit: <att>type</att> value of <q>explicit</q>: Used to record the closing line of the work.</item>
-                  </list>
-                  The following example shows the use of multiple types of excerpts:
-                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <p>
+                The following excerpt types are permitted, and should be included in the following order:
+                <list>
+                  <item>Prologue: <att>type</att> value of <q>prologue</q>: Used to record the preamble, preface, or other content associated with the work that precedes its opening line.</item>
+                  <item>Incipit: <att>type</att> value of <q>incipit</q>: Used to record the opening line of the work.</item>
+                  <item>Excerpt: <att>type</att> value of <q>excerpt</q>: Used for any excerpt that does not fall into one of the other categories.</item>
+                  <item>Explicit: <att>type</att> value of <q>explicit</q>: Used to record the closing line of the work.</item>
+                </list>
+                The following example shows the use of multiple types of excerpts:
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <noteGrp type="prologue">
                     <desc xml:lang="en">Prologue</desc>
                     <note xml:lang="syr" type="prologue">
@@ -1273,16 +1269,16 @@
                     </note>
                   </noteGrp>
                 </egXML>
-                </p>
+              </p>
             </div>
           </div>
-
+          
           <div xml:id="listRelation">
             <head>Related Entities (<gi>listRelation</gi>)</head>
             <p><title>NHSL</title> uses the <gi>relation</gi> element (which must appear inside a
-                single <gi>listRelation</gi> element) to 
-                record relations between a literary work record and other entities in the <ref target="#dataModel">Syriaca.org Knowledge Graph</ref>. The
-                <gi>relation</gi> element must have a <att>ref</att> attribute with one of the
+              single <gi>listRelation</gi> element) to 
+              record relations between a literary work record and other entities in the <ref target="#dataModel">Syriaca.org Knowledge Graph</ref>. The
+              <gi>relation</gi> element must have a <att>ref</att> attribute with one of the
               following values: "skos:broader", "dcterms:isPartOf", "syriaca:commemorates" or "syriaca:different-from". The use cases for each of these
               values are described below. The relation is expressed using <att>active</att> and <att>passive</att> attributes,
               which contain the Syriaca entity URIs for the related entities. Finally, <gi>relation</gi> elements must be sourced as described in 
@@ -1292,7 +1288,7 @@
             <p>Common to all <gi>relation</gi> elements is a child <gi>desc</gi> element offering a
               human-readable version of the relationship. The <gi>desc</gi> element must have an <att>xml:lang</att> attribute 
               with the value of "en" for "English". A generic example of a relation follows, though see below for the 
-            specific combination of values to use in the various relationship cases:
+              specific combination of values to use in the various relationship cases:
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <relation ref="skos:broader" active="http://syriaca.org/work/1" passive="http://syriaca.org/work/9628">
                   <desc xml:lang="en">
@@ -1301,7 +1297,7 @@
                 </relation>
               </egXML>
             </p>
-
+            
             <div xml:id="broaderRelation">
               <head>Relationship between Constituent Work and Literary Tradition (<code>skos:broader</code>)</head>
               <p>The relationship between a constituent work and its conceptually broader literary tradition
@@ -1324,7 +1320,7 @@
                 In other words, multiple constituent work records may point to the single broader literary tradition reccord.
               </p>
             </div>
-
+            
             <div xml:id="partRelation">
               <head>Part to Whole Relationships (<code>dcterms:isPartOf</code>)</head>
               <p>A relationship between a work and a larger work or collection of which is part should be
@@ -1350,7 +1346,7 @@
                 (e.g., <q>book</q>, <q>part</q>, etc.). An <att>n</att> attribute records the work's sequence within
                 the larger work. The <gi>label</gi> element's text node should record this information in a human-readable format.</p>
             </div>
-
+            
             <div xml:id="commemoratesRelation">
               <head>Commemoration of Hagiographic Subjects (<code>syriaca:commemorates</code>)</head>
               <p>Subjects who are commemorated by hagiographic works are related via a <gi>relation</gi> element
@@ -1370,16 +1366,16 @@
                 </listRelation>
               </egXML>
             </div>
-
+            
             <div xml:id="differentFromRelation">
               <head>Disambiguation Relationship (<code>syriaca:different-from</code>)</head>
               <p>While the minting of distinct URIs implicitly asserts that two works are
                 distinct, it may be necessary in some cases to exlicitly declare a distinction between two
                 literary works, especially when users might confuse them. A <gi>relation</gi> element with
-               a <att>ref</att> attribute value of <q>syriaca:different-from</q> is used for this purpose.
-               The <att>active</att> attribute contains the URI of the current work record and the <att>passive</att>
-               attribute contains the value of the work being asserted as explicitly distinct from the current work.
-              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                a <att>ref</att> attribute value of <q>syriaca:different-from</q> is used for this purpose.
+                The <att>active</att> attribute contains the URI of the current work record and the <att>passive</att>
+                attribute contains the value of the work being asserted as explicitly distinct from the current work.
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <relation type="disambiguation" ref="syriaca:different-from"
                     active="http://syriaca.org/work/67" passive="http://syriaca.org/work/10508">
                     <desc xml:lang="en">
@@ -1391,17 +1387,17 @@
               </p>
             </div>
           </div>
-
+          
           <div xml:id="listBibl">
             <head>Bibliography Related to the Work (<gi>listBibl</gi>)</head>
             <p>The bibliographic information related to the work is organized into sections
               describing editions, manuscripts, modern translations, ancient versions, and secondary
               sources. These classifications are derived from the IFLA LRM entities
-                <q>expression</q>, <q>manifestation</q>, and <q>item</q>. For example, editions and
+              <q>expression</q>, <q>manifestation</q>, and <q>item</q>. For example, editions and
               manuscripts contain particular <q>expressions</q> and <q>manifestations</q> of the
               work. Translations and versions are <q>expressions</q> that are different from the
               Syriac language <q>expression</q> of the work. Each of these expressions" and
-                <q>manifestations</q> are identified through particular bibliographic <q>items</q>
+              <q>manifestations</q> are identified through particular bibliographic <q>items</q>
               for which a publication citation, manuscript shelmark, or other bibliographic
               information is provided. Each section is encoded as a separate <gi>listBibl</gi>
               element with a <att>type</att> attribute identifying the category. These sections are
@@ -1413,23 +1409,23 @@
               linked data graph, so there may be other bibliography related to each literary work
               which can be found through the <title>Comprehensive Bibliographty on Syriac
                 Studies</title>.</p>
-
+            
             <div xml:id="editions">
               <head>Editions (<code>listBibl type="editions"</code>)</head>
               <p>Published editions of Syriac texts offer some of the most comprehensive
                 descriptions of distinct literary works, especially if the published text is a
                 critical edition with apparatus. Accordingly, at the time of composition
-                  <title>NHSL</title> entries should try to cite all printed editions of the work
+                <title>NHSL</title> entries should try to cite all printed editions of the work
                 (including diplomatic and eclectic editions). Because of the constant publication of
                 new scholarship, however, readers should not assume that the list of editions is
                 complete in any given record (a prewritten <gi>desc</gi> element is provided with a
                 note to this effect).</p>
               <p>The <code>listBibl type="editions"</code> section records the citations for editions of
                 the work. Each edition is encoded as a separate <gi>bibl</gi> element with
-                  <code>type="lawd:Edition"</code>. Each <gi>bibl</gi> must be assigned a unique
-                  <att>xml:id</att> as documented above. Because Syriaca.org manages the publication
+                <code>type="lawd:Edition"</code>. Each <gi>bibl</gi> must be assigned a unique
+                <att>xml:id</att> as documented above. Because Syriaca.org manages the publication
                 information for all citations of modern publications in a separate reference work,
-                  <ref target="https://syriaca.org/cbss/index.html"><title>The Comprehensive
+                <ref target="https://syriaca.org/cbss/index.html"><title>The Comprehensive
                     Bibliography on Syriac Studies (CBSS)</title></ref>, it is not necessary to
                 include the full citation in the <gi>bibl</gi> element. Instead, the first step in
                 adding a citation for an edition into a work record in <title>NSHL</title> is to
@@ -1439,10 +1435,10 @@
                   >https://syriaca.org/cbss/search.html</ref>. Once the item to be cited is located,
                 editors should note the URI for the bibliographic item. This URI will have the
                 format <code>http://syriaca.org/cbss/[A-Z0-9]{8}$</code> (where
-                  <code>"[A-Z0-9]{8}$"</code> signifies a unique string of 8 uppercase alphanumeric
+                <code>"[A-Z0-9]{8}$"</code> signifies a unique string of 8 uppercase alphanumeric
                 characters). For example, the URI for J.B. Segal, <title>Edessa, ‘The Blessed
                   City’</title> (Oxford: Clarendon Press, 1970) is <ref
-                  target="http://syriaca.org/cbss/FQCVBMNS"
+                    target="http://syriaca.org/cbss/FQCVBMNS"
                     ><code>http://syriaca.org/cbss/FQCVBMNS</code></ref>. If the desired
                 bibliographic item is not found in <title>CBSS</title>, editors should request the
                 creation of an entry in <title>CBSS</title>.</p>
@@ -1464,11 +1460,11 @@
                 another source (such as Zanetti and Detienne, <title>Bibliotheca Hagiographica
                   Syriaca</title>) then that other source should be cited using <att>source</att>.
                 If the edition itself has been consulted directly by the Syriaca.org editor, then an
-                  <att>resp</att> should be used with the value <q>http://syriaca.org</q> to
+                <att>resp</att> should be used with the value <q>http://syriaca.org</q> to
                 indicate that the editors of <title>NSHL</title> are responsible for the inclusion
                 of the citation. (This practice avoids creating a circular citation back to the
                 edition itself). Other information encoded as attributes includes <att>unit</att> on
-                  <gi>citedRange</gi> and <att>xml:lang</att> on <gi>title</gi> as described
+                <gi>citedRange</gi> and <att>xml:lang</att> on <gi>title</gi> as described
                 above.</p>
               <p> Here is an example of an edition citation from work record <ref
                   target="http://syriaca.org/work/567"
@@ -1490,14 +1486,14 @@
                 <head>Linking Editions to Manuscripts (<code>relation type="mssWitnesses"
                     ref="dcterms:source"</code>)</head>
                 <p>As an optional note, within an edition's <gi>bibl</gi> entry, a nested
-                    <gi>listRelation</gi> may be used to record the manuscript(s) consulted as the
+                  <gi>listRelation</gi> may be used to record the manuscript(s) consulted as the
                   base text(s) for that edition. This relationship is expressed using a
-                    <gi>relation</gi> with <code>type="mssWitnesses"</code> and
-                    <code>ref="dcterms:source"</code>. The <att>active</att> attribute refers to the
+                  <gi>relation</gi> with <code>type="mssWitnesses"</code> and
+                  <code>ref="dcterms:source"</code>. The <att>active</att> attribute refers to the
                   xml:id of the edition entry (with the <code>#</code> prefix); the
-                    <att>passive</att> attribute gives the xml:id of the manuscript entry (with the
-                    <code>#</code> prefix) found in the manuscripts section of the same record. A
-                    <gi>desc</gi> provides a human-readable shelfmark in the following the format
+                  <att>passive</att> attribute gives the xml:id of the manuscript entry (with the
+                  <code>#</code> prefix) found in the manuscripts section of the same record. A
+                  <gi>desc</gi> provides a human-readable shelfmark in the following the format
                   described below (see <ref target="#manuscripts">Manuscripts</ref>: </p>
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <listRelation>
@@ -1512,7 +1508,7 @@
                 </egXML>
               </div>
             </div>
-
+            
             <div xml:id="manuscripts">
               <head>Manuscript Witnesses (<code>listBibl type="manuscripts"</code>)</head>
               <p>Manuscript witnesses are essential sources for the study of Syriac texts. If
@@ -1520,16 +1516,16 @@
                 an attestation of the work. If desired, editors may list multiple manuscripts. Given
                 the current state of cataloging of Syriac manuscripts, however, readers should not
                 assume that the list of manuscripts is complete in any given record (a prewritten
-                  <gi>desc</gi> element is provided with a note to this effect).</p>
+                <gi>desc</gi> element is provided with a note to this effect).</p>
               <p>The <code>listBibl type="manuscripts"</code> section records the manuscript citations.
                 Each manuscript entry is a <gi>bibl</gi> element with
-                  <code>type="syriaca:Manuscript"</code>. Each <gi>bibl</gi> must be assigned a
+                <code>type="syriaca:Manuscript"</code>. Each <gi>bibl</gi> must be assigned a
                 unique <att>xml:id</att> as documented above. A manuscript entry should include one
                 or more <gi>label</gi> elements providing a human-readable identification of the
                 manuscript (library, collection, shelfmark). Multiple <gi>label</gi> elements can be
                 used if the manuscript has been known by multiple shelfmarks or names. The numeric
                 portion of the label should be contained in a child element <gi>idno</gi>. The
-                  <gi>bibl</gi> element may also include an optional <gi>ptr</gi> element linking to
+                <gi>bibl</gi> element may also include an optional <gi>ptr</gi> element linking to
                 manuscript records in external online catalogs. Whenever possible, the <gi>bibl</gi>
                 element should also contain a <gi>biblScope</gi> specifying the folios where the
                 work appears and a <gi>date</gi> indicating the date of the manuscript.</p>
@@ -1549,32 +1545,33 @@
               <p> Here is an example of an edition citation from work record <ref
                   target="http://syriaca.org/work/567"
                   ><code>http://syriaca.org/work/567</code></ref> : <egXML
-                  xmlns="http://www.tei-c.org/ns/Examples">
-                  <listBibl type="manuscripts">
-                    <head>Manuscripts</head>
-                    <desc xml:lang="en">This is not a comprehensive list of manuscripts related to
-                      this work. Further citations may be available through Syriac.Nexus.</desc>
-                    <bibl type="syriaca:Manuscript" xml:id="bib1-12" source="#bib1-20 #bib1-21">
-                      <label>London, British Library, Add MS 12172</label>
-                      <ptr target="http://syriaca.org/manuscript/1182"/>
-                      <biblScope unit="fol" from="136b" to="164">Foll. 136b-164</biblScope>
-                      <date notBefore="0800" notAfter="1000">9th-10th century</date>
-                    </bibl>
-                    <bibl xml:id="bib836-4" source="#bib836-1" type="syriaca:Manuscript">
-                      <label>London, British Library <idno type="shelfmark" subtype="BL">Add.
-                          14647</idno></label>
-                      <biblScope unit="fol">f. 109v-110v</biblScope>
-                    </bibl>
-                  </listBibl>
-                </egXML>
-                <!-- DLS can you help please? Need to add allowed values below -->
-                <p>The <gi>label</gi> element will usually contain an <gi>idno</gi> child. This
-                    <gi>idno</gi> should have a <att>type</att> (such as <q>shelfmark</q> or
-                    <q>number</q>) and may have a <att>subtype</att> identifying the library (e.g.,
-                    <q>BL</q> for British Library, <q>BNF</q> for Bibliothèque nationale de France,
-                    <q>BAV</q> for Biblioteca Apostolica Vaticana).</p>
-                <p>Notes about a particular manuscript witness can be provided with a <gi>note</gi>
-                  element: </p>
+                    xmlns="http://www.tei-c.org/ns/Examples">
+                    <listBibl type="manuscripts">
+                      <head>Manuscripts</head>
+                      <desc xml:lang="en">This is not a comprehensive list of manuscripts related to
+                        this work. Further citations may be available through Syriac.Nexus.</desc>
+                      <bibl type="syriaca:Manuscript" xml:id="bib1-12" source="#bib1-20 #bib1-21">
+                        <label>London, British Library, Add MS 12172</label>
+                        <ptr target="http://syriaca.org/manuscript/1182"/>
+                        <biblScope unit="fol" from="136b" to="164">Foll. 136b-164</biblScope>
+                        <date notBefore="0800" notAfter="1000">9th-10th century</date>
+                      </bibl>
+                      <bibl xml:id="bib836-4" source="#bib836-1" type="syriaca:Manuscript">
+                        <label>London, British Library <idno type="shelfmark" subtype="BL">Add.
+                            14647</idno></label>
+                        <biblScope unit="fol">f. 109v-110v</biblScope>
+                      </bibl>
+                    </listBibl>
+                  </egXML>
+              </p>
+              <!-- DLS can you help please? Need to add allowed values below -->
+              <p>The <gi>label</gi> element will usually contain an <gi>idno</gi> child. This
+                <gi>idno</gi> should have a <att>type</att> (such as <q>shelfmark</q> or
+                <q>number</q>) and may have a <att>subtype</att> identifying the library (e.g.,
+                <q>BL</q> for British Library, <q>BNF</q> for Bibliothèque nationale de France,
+                <q>BAV</q> for Biblioteca Apostolica Vaticana).</p>
+              <p>Notes about a particular manuscript witness can be provided with a <gi>note</gi>
+                element: 
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <bibl type="syriaca:Manuscript" xml:id="bib1-15" source="#bib1-26 #bib1-27">
                     <label>London, British Library, Add MS 14671</label>
@@ -1586,7 +1583,7 @@
                 </egXML>
               </p>
             </div>
-
+            
             <div xml:id="modernTranslations">
               <head>Modern Translations (<code>listBibl type="modernTranslations"</code>)</head>
               <p>The <code>listBibl type="modernTranslations"</code> section records modern translations
@@ -1595,14 +1592,14 @@
                 should not assume that the list of translations is complete in any given record (a
                 prewritten <gi>desc</gi> element is provided with a note to this effect). Each
                 translation is encoded as a <gi>bibl</gi> element with
-                  <code>type="syriaca:ModernTranslation"</code>. Each <gi>bibl</gi> must be assigned
+                <code>type="syriaca:ModernTranslation"</code>. Each <gi>bibl</gi> must be assigned
                 a unique <att>xml:id</att> as documented above. In addition, each <gi>bibl</gi> must
                 contain a title (<gi>title</gi>) and a pointer (<gi>ptr</gi>) to the URI of a CBSS
                 bibliographic URI, and one or more <gi>citedRange</gi> elements specifying the
                 location within the publication where the translation appears. In this regard, the
                 citations of modern translations follows the same workflow and conventions as the
                 citation of editions described above (i.e. relying upon the full citations found in
-                  <ref target="https://syriaca.org/cbss/index.html"><title>The Comprehensive
+                <ref target="https://syriaca.org/cbss/index.html"><title>The Comprehensive
                     Bibliography on Syriac Studies [CBSS]</title></ref>). In addition, it is also
                 possible to cite the existence of an unpublished modern translation directly from a
                 manuscript rather than a print publication. In such cases, the editor should format
@@ -1612,7 +1609,7 @@
                 <title>CBSS</title>, the contents of the <gi>title</gi> are for reference purposes
                 within the XML document only. When the XML file is converted for publication online,
                 the GADDEL app will use the CBSS URI to look up the full publication information in
-                  <title>CBSS</title> and insert it into the record. Special care should be taken to
+                <title>CBSS</title> and insert it into the record. Special care should be taken to
                 include the <gi>citedRange</gi> because that information is unique and cannot be
                 inserted based on the CBSS URI.</p>
               <p>The following additional information should be encoded using attribute values
@@ -1621,16 +1618,16 @@
                 attributes as described above. If the information about an modern translation is
                 derived from another source (such as Zanetti and Detienne, <title>Bibliotheca
                   Hagiographica Syriaca</title>) then that other source should be cited using
-                  <att>source</att>. If the translation itself has been consulted directly by the
+                <att>source</att>. If the translation itself has been consulted directly by the
                 Syriaca.org editor, then an <att>resp</att> should be used with the value
-                  <q>http://syriaca.org</q> to indicate that the editors of <title>NSHL</title> are
+                <q>http://syriaca.org</q> to indicate that the editors of <title>NSHL</title> are
                 responsible for the inclusion of the citation. (This practice avoids creating a
                 circular citation back to the translation itself). Other information encoded as
                 attributes includes <att>unit</att> on <gi>citedRange</gi> as described above.</p>
               <p>For modern translations and ancient versions, there is an additional element
-                  (<gi>textLang</gi>) which is used to indicate the language of the translation or
+                (<gi>textLang</gi>) which is used to indicate the language of the translation or
                 version. (<emph>Nota bene</emph>: this usage is distinct from the use of
-                  <att>xml:lang</att> on <gi>title</gi> where the purpose is to indicate the
+                <att>xml:lang</att> on <gi>title</gi> where the purpose is to indicate the
                 language of the title. Thus in the example below from the <title>Corpus Scriptorum
                   Christianorum Orientalium</title>, the title is in Latin but the translation
                 itself is in German.)</p>
@@ -1648,17 +1645,17 @@
                   </bibl>
                 </listBibl>
               </egXML>
-
+              
               <div xml:id="translationLink">
                 <head>Linking Translations to Editions and Manuscripts (<code>relation
                     type="translationSource" ref="dcterms:source"</code>)</head>
                 <p>As an optional note, within an modern translation's <gi>bibl</gi> entry, a nested
-                    <gi>listRelation</gi> may be used to record the edition(s) or manuscript(s) used
+                  <gi>listRelation</gi> may be used to record the edition(s) or manuscript(s) used
                   as the base text(s) for that translation. This relationship is expressed using a
-                    <gi>relation</gi> with <code>type="translationSource"</code> and
-                    <code>ref="dcterms:source"</code>. The <att>active</att> attribute refers to the
+                  <gi>relation</gi> with <code>type="translationSource"</code> and
+                  <code>ref="dcterms:source"</code>. The <att>active</att> attribute refers to the
                   xml:id of the translation entry (with the <code>#</code> prefix); the
-                    <att>passive</att> attribute gives the xml:id of the edition or manuscript entry
+                  <att>passive</att> attribute gives the xml:id of the edition or manuscript entry
                   (with the <code>#</code> prefix) found in the manuscripts section of the same
                   record. A <gi>desc</gi> provides a human-readable <gi>label</gi> or
                   <gi>title</gi>:
@@ -1676,7 +1673,7 @@
                   </listRelation>
                 </egXML>
               </div>
-
+              
             </div>
             <div xml:id="ancientVersions">
               <head>Ancient Versions (<code>listBibl type="ancientVersions"</code>)</head>
@@ -1697,21 +1694,21 @@
               <p><emph>Nota bene</emph>: Ancient versions are distinguished by chronological era
                 from modern scholarly translations, which are recorded separately in <code>listBibl
                   type="modernTranslations"</code> (see <ref target="#modernTranslations">Modern
-                  Translations</ref>).</p>
+                    Translations</ref>).</p>
               <p>The <code>listBibl type="ancientVersions"</code> section records citations for ancient
                 versions of the work. Each version is encoded as a separate <gi>bibl</gi> element
                 with <code>type="lawd:Expression"</code>, reflecting the IFLA LRM model that that an
                 ancient version in a different language constitutes a distinct
-                  <emph>expression</emph> of the same work. Each <gi>bibl</gi> must be assigned a
+                <emph>expression</emph> of the same work. Each <gi>bibl</gi> must be assigned a
                 unique <att>xml:id</att> following the pattern described above. As in other
                 instances, readers should not assume that the list of ancient versions is complete
                 in any given record (a prewritten <gi>desc</gi> element is provided with a note to
                 this effect).</p>
               <p>As with modern translations, <title>NHSL</title> manages citation information for
                 ancient versions through the <ref target="https://syriaca.org/cbss/index.html"
-                    ><title>Comprehensive Bibliography on Syriac Studies (CBSS)</title></ref>.
+                  ><title>Comprehensive Bibliography on Syriac Studies (CBSS)</title></ref>.
                 Editors should first locate the publication which they wish to cite in
-                  <title>CBSS</title> and record its URI in a <gi>ptr</gi> element. A <gi>title</gi>
+                <title>CBSS</title> and record its URI in a <gi>ptr</gi> element. A <gi>title</gi>
                 element should be included for reference within the XML document; the Gaddel app
                 will use the CBSS URI to retrieve and display the full publication information.
                 Unlike in the citations of editions modern translations above, these citations need
@@ -1722,9 +1719,9 @@
                 publication. In such cases, the editor should format the <gi>bibl</gi> following the
                 guidelines above for the type <code>bibl type="syriaca:Manuscript"</code>.</p>
               <p>As in the case of modern translations, the ancient versions use the
-                  <gi>textLang</gi> element as a child of <gi>bibl</gi> with a <att>mainLang</att>
+                <gi>textLang</gi> element as a child of <gi>bibl</gi> with a <att>mainLang</att>
                 attribute to record the language of the version. If possible, one or more
-                  <gi>citedRange</gi> elements should specify the location within the cited
+                <gi>citedRange</gi> elements should specify the location within the cited
                 publication where information about the version appears.</p>
               <p>If the information about an ancient version is derived from a secondary source
                 (such as Zanetti and Detienne, <title>Bibliotheca Hagiographica Syriaca</title>),
@@ -1754,18 +1751,18 @@
                 purposes in <title>NHSL</title> records. First, editors may use it to list a small
                 number of the most notable scholarly secondary literature about the work. Since
                 items in <title>CBSS</title> can also be linked within <title>CBSS</title> to
-                  <title>NHSL</title>, this section should not be used to create a comprehensive
+                <title>NHSL</title>, this section should not be used to create a comprehensive
                 bibliography (as a reminder to readers, a prewritten <gi>desc</gi> element is
                 provided with a note to this effect in the record). Second — and equally important —
                 this secondary literature sections functions as place where editors may include the
                 citation for any other bibliographic items they wish to refer to using the
-                  <att>source</att> attribute if these citations have not already been included in
+                <att>source</att> attribute if these citations have not already been included in
                 the editions, manuscripts, modern translations, or ancient versions sections.</p>
               <p>Each secondary literature entry is encoded as a <gi>bibl</gi> element with
-                  <code>type="lawd:Citation"</code>. Each entry must have an <att>xml:id</att>
+                <code>type="lawd:Citation"</code>. Each entry must have an <att>xml:id</att>
                 following the pattern documented above. At minimum, a secondary literature entry
                 must include a <gi>title</gi> for reference, a <gi>ptr</gi> pointing to the item's
-                  <title>CBSS</title> URI, and a <gi>citedRange</gi> element specifying the exact
+                <title>CBSS</title> URI, and a <gi>citedRange</gi> element specifying the exact
                 location within that work to which the citation refers. Two examples are as
                 follows:</p>
               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -1803,12 +1800,12 @@
           xml:lang="en"
           defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML​ http://www.example.org/ns/">
           <moduleRef key="core" include="author bibl biblScope citedRange date desc editor 
-          foreign head label listBibl name note noteGrp p ptr quote ref resp respStmt textLang title"/>
+            foreign head label listBibl name note noteGrp p ptr quote ref resp respStmt textLang title"/>
           <moduleRef key="header" include="authority availability catDesc category 
-          change classDecl edition editionStmt editorialDecl encodingDesc 
-          fileDesc funder idno interpretation langUsage licence profileDesc 
-          publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy
-          teiHeader titleStmt"/>
+            change classDecl edition editionStmt editorialDecl encodingDesc 
+            fileDesc funder idno interpretation langUsage licence profileDesc 
+            publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy
+            teiHeader titleStmt"/>
           <moduleRef key="namesdates" include="listRelation persName placeName relation"/>
           <moduleRef key="tei"/>
           <moduleRef key="textstructure" include="body text TEI"/>
@@ -1816,10 +1813,10 @@
           <classRef key="att.global.analytic"/>
           <classRef key="att.global.change"/>
           <classRef key="att.global.linking"/>
-
-
-
-
+          
+          
+          
+          
           <elementSpec ident="author" module="core" mode="change">
             <constraintSpec ident="ref-on-author" scheme="schematron">
               <constraint>
@@ -1841,21 +1838,21 @@
               </constraint>
             </constraintSpec>
           </elementSpec>
-
-
-
+          
+          
+          
           <!--<elementSpec ident="authority" module="header" mode="change">
+            
+            </elementSpec>
+            
+            
+            
+            <elementSpec ident="availability" module="header" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>
           
           
-          
-          <elementSpec ident="availability" module="header" mode="change">
-          
-          </elementSpec>-->
-
-
-
           <elementSpec ident="bibl" module="core" mode="change">
             <content>
               <sequence preserveOrder="true">
@@ -2041,11 +2038,11 @@
               </attDef>
             </attList>
           </elementSpec>
-
-
-
+          
+          
+          
           <elementSpec ident="biblScope" module="core" mode="change">
-
+            
             <content>
               <sequence preserveOrder="false">
                 <textNode/>
@@ -2065,19 +2062,19 @@
               <!-- Look into @n, @from, @to -->
             </attList>
           </elementSpec>
-
-
-
+          
+          
+          
           <elementSpec ident="body" module="textstructure" mode="change">
             <content>
               <elementRef key="bibl" minOccurs="1" maxOccurs="1"/>
             </content>
           </elementSpec>
-
-
-
+          
+          
+          
           <elementSpec ident="catDesc" module="header" mode="change">
-
+            
             <content>
               <sequence preserveOrder="false">
                 <textNode/>
@@ -2085,20 +2082,20 @@
               </sequence>
             </content>
           </elementSpec>
-
-
-
+          
+          
+          
           <elementSpec ident="category" module="header" mode="change">
-
+            
             <content>
               <elementRef key="catDesc" minOccurs="1"/>
             </content>
           </elementSpec>
-
-
-
+          
+          
+          
           <elementSpec ident="change" module="header" mode="change">
-
+            
             <content>
               <sequence preserveOrder="false">
                 <textNode/>
@@ -2106,24 +2103,24 @@
               </sequence>
             </content>
           </elementSpec>
-
-
-
+          
+          
+          
           <!--<elementSpec ident="citedRange" module="core" mode="change">
+            
+            
+            </elementSpec>-->
           
           
-          </elementSpec>-->
-
-
-
+          
           <elementSpec ident="classDecl" module="header" mode="change">
             <content>
               <elementRef key="taxonomy" minOccurs="1" maxOccurs="1"/>
             </content>
           </elementSpec>
-
-
-
+          
+          
+          
           <elementSpec ident="date" module="core" mode="change">
             <content>
               <textNode/>
@@ -2147,9 +2144,9 @@
               </attDef>
             </attList>
           </elementSpec>
-
-
-
+          
+          
+          
           <elementSpec ident="desc" module="core" mode="change">
             <content>
               <sequence preserveOrder="false">
@@ -2197,69 +2194,117 @@
               </constraint>
             </constraintSpec>
           </elementSpec>
-
-
-
-          <!--<elementSpec ident="editionStmt" module="header" mode="change">
           
-          </elementSpec>-->
-
-
-
+          
+          
+          <!--<elementSpec ident="editionStmt" module="header" mode="change">
+            
+            </elementSpec>-->
+          
+          
+          
+          <!--<elementSpec ident="editorialDecl" module="header" mode="change">
+            
+            </elementSpec>-->
+          
+          
+          
+          <!--<elementSpec ident="encodingDesc" module="header" mode="change">
+            
+            </elementSpec>-->
+          
+          
+          
+          <!--<elementSpec ident="fileDesc" module="header" mode="change">
+            
+            </elementSpec>-->
+          
+          
+          
+          <!--<elementSpec ident="foreign" module="core" mode="change">
+            
+            </elementSpec>-->
+          
+          
+          
+          <!--<elementSpec ident="funder" module="header" mode="change">
+            
+            </elementSpec>-->
+          
+          
+          
+          <!--<elementSpec ident="interpretation" module="header" mode="change">
+            
+            </elementSpec>-->
+          
+          
+          
+          
+          
+          
+          
+          <!--<elementSpec ident="editionStmt" module="header" mode="change">
+            
+            </elementSpec>-->
+          
+          
+          
           <elementSpec ident="editor" module="core" mode="change">
             <constraintSpec ident="ref-on-editor" scheme="schematron">
               <constraint>
                 <sch:rule context="tei:body/child::tei:bibl/child::tei:editor">
-                  <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
-                    role="error"> This &lt;editor&gt; element must take a @ref attribute with a
-                    Syriaca.org person URI which reqires the form 'http://syriaca.org/person/{\d+}'
-                    (where {\d+} is a number). </sch:assert>
+                  <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
+                    This &lt;editor&gt; element must take a @ref attribute 
+                    with a Syriaca.org person URI which reqires 
+                    the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                  </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
             <constraintSpec ident="editor-in-context" scheme="schematron">
               <constraint>
                 <sch:rule context="tei:body/child::tei:bibl/child::tei:editor">
-                  <sch:report test="tei:persName"> This &lt;editor&gt; element allows only a text
-                    node with an English name or a &lt;foreign&gt; element with a non-English name.
+                  <sch:report test="tei:persName">
+                    This &lt;author&gt; element allows only a text node with an English name 
+                    or a &lt;foreign&gt; element with a non-English name.
                   </sch:report>
                 </sch:rule>
               </constraint>
             </constraintSpec>
           </elementSpec>
-
-
-
+          
+          
+          
           <!--<elementSpec ident="editorialDecl" module="header" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>-->
-
-
-
+          
+          
           <!--<elementSpec ident="encodingDesc" module="header" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>-->
-
-
-
+          
+          
           <!--<elementSpec ident="fileDesc" module="header" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>-->
-
-
-
+          
+          
           <!--<elementSpec ident="foreign" module="core" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>-->
-
-
-
+          
+          
           <!--<elementSpec ident="funder" module="header" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>-->
-
-
-
+          
+          
           <elementSpec ident="head" module="core" mode="change">
             <content>
               <textNode/>
@@ -2273,23 +2318,20 @@
                   <sch:assert test=". = 'Manuscripts'">Text node must be "Manuscripts".</sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:listBibl[@type='modernTranslations']/tei:head">
-                  <sch:assert test=". = 'Modern Translations'">Text node must be "Modern
-                    Translations".</sch:assert>
+                  <sch:assert test=". = 'Modern Translations'">Text node must be "Modern Translations".</sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:listBibl[@type='ancientVersions']/tei:head">
-                  <sch:assert test=". = 'Ancient Versions'">Text node must be "Ancient
-                    Version".</sch:assert>
+                  <sch:assert test=". = 'Ancient Versions'">Text node must be "Ancient Version".</sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:listBibl[@type='secondaryLiterature']/tei:head">
-                  <sch:assert test=". = 'Secondary Literature'">Text node must be "Secondary
-                    Literature".</sch:assert>
+                  <sch:assert test=". = 'Secondary Literature'">Text node must be "Secondary Literature".</sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
           </elementSpec>
-
-
-
+          
+          
+          
           <elementSpec ident="idno" module="header" mode="change">
             <content>
               <textNode/>
@@ -2297,77 +2339,72 @@
             <constraintSpec ident="work-idno-types" scheme="schematron">
               <constraint>
                 <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
-                  <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')"> The only acceptable
-                    values for @type on a work &lt;idno&gt; are "deprecated", "number", "URI" or
-                    "URN". </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[1]">
-                  <sch:let name="workURI"
-                    value="substring-before(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '/tei')"/>
-                  <sch:assert test=". = $workURI"> The text node of this &lt;idno&gt; element must
-                    be <sch:value-of select="$workURI"/>. </sch:assert>
-                </sch:rule>
-                <sch:rule
-                  context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
-                  <sch:assert
-                    test=". = ('accession-number', 'catalog-number', 'number', 'project-number', 'shelfmark', 'URL')"
-                    > In the context of manuscripts, this @type value may only be
-                    "accession-number", "number", "project-number", or "shelfmark". </sch:assert>
-                </sch:rule>
-                <sch:rule
-                  context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker' or @subtype='CPG' or @subtype='Fichtner']/@type">
-                  <sch:assert test=". = 'number'"> When an &lt;indo&gt; has @subtype="<sch:value-of
-                      select="./parent::tei:idno/@subtype"/>", the @type value must be "number".
+                  <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')">
+                    The only acceptable values for @type on a work &lt;idno&gt; are "deprecated", "number", 
+                    "URI" or "URN". 
                   </sch:assert>
                 </sch:rule>
-                <sch:rule
-                  context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL']/@type">
-                  <sch:assert test=". = 'shelfmark'"> When an &lt;indo&gt; has
-                      @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", the @type
-                    value must be "shelfmark". </sch:assert>
+                <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[1]">
+                  <sch:let name="workURI" value="substring-before(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '/tei')"/>
+                  <sch:assert test=". = $workURI">
+                    The text node of this &lt;idno&gt; element must be <sch:value-of select="$workURI"/>. 
+                  </sch:assert>
                 </sch:rule>
-                <sch:rule
-                  context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='HMML']/@type">
-                  <sch:assert test=". = 'project-number'"> When an &lt;indo&gt; has
-                      @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", the @type
-                    value must be "project-number". </sch:assert>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
+                  <sch:assert test=". = ('accession-number', 'catalog-number', 'number', 'project-number', 'shelfmark', 'URL')">
+                    In the context of manuscripts, this @type value may only be "accession-number", "number",
+                    "project-number", or "shelfmark". 
+                  </sch:assert>
                 </sch:rule>
-                <sch:rule
-                  context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Rosen']/@type">
-                  <sch:assert test=". = 'catalog-number'"> When an &lt;indo&gt; has
-                      @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", the @type
-                    value must be "catalog-number". </sch:assert>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker' or @subtype='CPG' or @subtype='Fichtner']/@type">
+                  <sch:assert test=". = 'number'">
+                    When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                    the @type value must be "number".
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL']/@type">
+                  <sch:assert test=". = 'shelfmark'">
+                    When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                    the @type value must be "shelfmark".
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='HMML']/@type">
+                  <sch:assert test=". = 'project-number'">
+                    When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                    the @type value must be "project-number".
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Rosen']/@type">
+                  <sch:assert test=". = 'catalog-number'">
+                    When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                    the @type value must be "catalog-number".
+                  </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
             <constraintSpec ident="idno-subtypes" scheme="schematron">
               <constraint>
-                <sch:rule
-                  context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
-                  <sch:assert
-                    test=". = ('Bekker', 'BHO', 'BHS', 'CPG', 'Fichtner', 'Kühn', 'Takahashi')"> The
-                    only acceptable values for @subtype on a work &lt;idno&gt; with @type="number"
-                    are "Bekker", "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi".
+                <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
+                  <sch:assert test=". = ('Bekker', 'BHO', 'BHS', 'CPG', 'Fichtner', 'Kühn', 'Takahashi')">
+                    The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are 
+                    "Bekker", "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi". 
                   </sch:assert>
                 </sch:rule>
-                <sch:rule
-                  context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype"
-                  role="warning">
-                  <sch:assert
-                    test=". = ('BAV', 'BL', 'BML', 'BNF', 'Berlin', 'Cambridge', 'Crawford', 'Haddad-Isaac', 'Harris', 'HMML', 'Leiden', 'Mingana', 'Rosen', 'SOAH', 'Sachau', 'Sinai', 'UCL')"
-                    > In the context of manuscripts, this @subtype value may only be "BAV" (for the
-                    Vatican Apostolic Library), "BML" (for The Laurentian Library), "Berlin",
-                    "Cambridge", "Crawford", "Haddad-Isaac", "Harris", "HMML", "Leiden", "Mingana",
-                    "Rosen", "SOAH", "Sachau", or "UCL". If none of these options is correct, please
-                    write in an appropriate value and the warning message will prompt editors to
-                    ensure that it is the correct value. </sch:assert>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype" role="warning">
+                  <sch:assert test=". = ('BAV', 'BL', 'BML', 'BNF', 'Berlin', 'Cambridge', 'Crawford', 'Haddad-Isaac', 'Harris', 'HMML', 'Leiden', 'Mingana', 'Rosen', 'SOAH', 'Sachau', 'Sinai', 'UCL', 'Yale')">
+                    In the context of manuscripts, this @subtype value may only be 
+                    "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), 
+                    "Berlin", "Cambridge", "Crawford", "Haddad-Isaac", "Harris", "HMML", 
+                    "Leiden", "Mingana", "Rosen", "SOAH", "Sachau", "UCL", or "Yale". 
+                    If none of these options is correct, please write in an appropriate
+                    value and the warning message will prompt editors to ensure that it is the correct value.
+                  </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
             <attList>
               <attDef ident="type" mode="change" usage="req">
-                <desc>The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier
-                  contained in the text value.</desc>
+                <desc>The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc>
                 <valList mode="replace" type="closed">
                   <valItem ident="accession-number"/>
                   <valItem ident="catalog-number"/>
@@ -2404,404 +2441,109 @@
                   <valItem ident="Sachau"/>
                   <valItem ident="SOAH"/>
                   <valItem ident="Sinai"/>
+                  <valItem ident="Yale"/>
                 </valList>
               </attDef>
             </attList>
           </elementSpec>
-
-
-
+          
+          
+          
           <!--<elementSpec ident="interpretation" module="header" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>-->
-        
-        
-        
-        <elementSpec ident="classDecl" module="header" mode="change">
-          <content>
-            <elementRef key="taxonomy" minOccurs="1" maxOccurs="1"/>
-          </content>
-        </elementSpec>
-        
-        
-        
-        <elementSpec ident="date" module="core" mode="change">
-          <content>
-            <textNode/>
-          </content>
-          <attList>
-            <!-- Regarding @calendar and @datingMethod, see SPEAR ODD -->
-            <attDef ident="type" mode="change" usage="rec">
-              <!-- might need to revisit this -->
-              <desc>specifies how the date is associated with the work to
-                which it refers</desc>
-              <valList mode="replace" type="closed">
-                <valItem ident="original-composition">
-                  <desc>the date a work was originally composed</desc>
-                </valItem>
-                <valItem ident="revision">
-                  <desc>the date a work was revised</desc>
-                </valItem>
-                <valItem ident="translation">
-                  <desc>the date a work was translated</desc>
-                </valItem>
-              </valList>
-            </attDef>
-          </attList>
-        </elementSpec>
-        
-        
-        
-        <elementSpec ident="desc" module="core" mode="change">
-          <content>
-            <sequence preserveOrder="false">
-              <textNode/>
-              <elementRef key="label" minOccurs="0" maxOccurs="1"/>
-              <elementRef key="persName" minOccurs="0" maxOccurs="1"/>
-              <elementRef key="placeName" minOccurs="0" maxOccurs="1"/>
-              <elementRef key="ref" minOccurs="0" maxOccurs="1"/>
-              <elementRef key="title" minOccurs="0" maxOccurs="1"/>
-            </sequence>
-          </content>
-          <constraintSpec ident="noteGrp-desc-values" scheme="schematron">
-            <constraint>
-              <sch:rule context="tei:noteGrp[@type='abstract']/tei:desc">
-                <sch:assert test=". = 'Abstract'">Text node must be "Abstract".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='contents']/tei:desc">
-                <sch:assert test=". = 'Contents'">Text node must be "Contents".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='excerpts']/tei:desc">
-                <sch:assert test=". = 'Excerpts'">Text node must be "Excerpts".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='disambiguation']/tei:desc">
-                <sch:assert test=". = 'Disambiguation'">Text node must be "Disambiguation".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='excerpts']/tei:desc">
-                <sch:assert test=". = 'Excerpts'">Text node must be "Excerpt".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='explicit']/tei:desc">
-                <sch:assert test=". = 'Explicit'">Text node must be "Explicit".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='incipit']/tei:desc">
-                <sch:assert test=". = 'Incipit'">Text node must be "Incipit".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='prologue']/tei:desc">
-                <sch:assert test=". = 'Prologue'">Text node must be "Prologue".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='scope']/tei:desc">
-                <sch:assert test=". = 'Scope'">Text node must be "Scope".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:noteGrp[@type='versions']/tei:desc">
-                <sch:assert test=". = 'Ancient Versions'">Text node must be "Versions".</sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        
-        
-        <!--<elementSpec ident="editionStmt" module="header" mode="change">
           
-          </elementSpec>-->
-        
-        
-        
-        <elementSpec ident="editor" module="core" mode="change">
-          <constraintSpec ident="ref-on-editor" scheme="schematron">
-            <constraint>
-              <sch:rule context="tei:body/child::tei:bibl/child::tei:editor">
-                <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
-                  This &lt;editor&gt; element must take a @ref attribute 
-                  with a Syriaca.org person URI which reqires 
-                  the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
-                </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <constraintSpec ident="editor-in-context" scheme="schematron">
-            <constraint>
-              <sch:rule context="tei:body/child::tei:bibl/child::tei:editor">
-                <sch:report test="tei:persName">
-                  This &lt;author&gt; element allows only a text node with an English name 
-                  or a &lt;foreign&gt; element with a non-English name.
-                </sch:report>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        
-        
-        <!--<elementSpec ident="editorialDecl" module="header" mode="change">
           
-          </elementSpec>-->
-        
-        
-        
-        <!--<elementSpec ident="encodingDesc" module="header" mode="change">
+          <elementSpec ident="label" module="core" mode="change">
+            <content>
+              <sequence preserveOrder="false">
+                <textNode/>
+                <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
+                <elementRef key="ptr" minOccurs="0" maxOccurs="1"/>
+                <elementRef key="title" minOccurs="0" maxOccurs="1"/>
+              </sequence>
+            </content>
+            <constraintSpec ident="ptr-with-label" scheme="schematron">
+              <constraint>
+                <sch:rule context="tei:label[not(ancestor::tei:relation)]">
+                  <sch:report test="tei:ptr">
+                    A &lt;ptr&gt; child of &lt;label&gt; should only be used
+                    when &lt;label&gt; is the descendant of &lt;relation&gt;.
+                  </sch:report>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="label-values" scheme="schematron">
+              <constraint>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
+                  <sch:assert test="starts-with(., 'Bekker')">
+                    This text should begin "Bekker". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
+                  <sch:assert test="starts-with(., 'The Laurentian Library')">
+                    This text should begin "The Laurentian Library". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
+                  <sch:assert test="starts-with(., 'Fichtner')">
+                    This text should begin "Fichtner". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']">
+                  <sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')">
+                    This text should begin "Hill Museum and Manuscript Library". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
+                  <sch:assert test="starts-with(., 'Kühn')">
+                    This text should begin "Kühn". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']">
+                  <sch:assert test="starts-with(., 'Rosen')">
+                    This text should begin "Rosen". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
+                  <sch:assert test="starts-with(., 'Takahashi')">
+                    This text should begin "Takahashi". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='UCL']">
+                  <sch:assert test="starts-with(., 'University College London')">
+                    This text should begin "University College London". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
+                  <sch:assert test="starts-with(., 'Vatican Apostolic Library')">
+                    This text should begin "The Vatican Apostolic Library". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Yale']">
+                  <sch:assert test="starts-with(., 'New Haven, Yale University, Beinecke Library')">
+                    This text should begin "New Haven, Yale University, Beinecke Library". 
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+          </elementSpec>
           
-          </elementSpec>-->
-        
-        
-        
-        <!--<elementSpec ident="fileDesc" module="header" mode="change">
           
-          </elementSpec>-->
-        
-        
-        
-        <!--<elementSpec ident="foreign" module="core" mode="change">
           
-          </elementSpec>-->
-        
-        
-        
-        <!--<elementSpec ident="funder" module="header" mode="change">
+          <!--<elementSpec ident="langUsage" module="header" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>-->
-        
-        
-        
-        <elementSpec ident="head" module="core" mode="change">
-          <content>
-            <textNode/>
-          </content>
-          <constraintSpec ident="listBibl-head-values" scheme="schematron">
-            <constraint>
-              <sch:rule context="tei:listBibl[@type='editions']/tei:head">
-                <sch:assert test=". = 'Editions'">Text node must be "Editions".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:head">
-                <sch:assert test=". = 'Manuscripts'">Text node must be "Manuscripts".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='modernTranslations']/tei:head">
-                <sch:assert test=". = 'Modern Translations'">Text node must be "Modern Translations".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='ancientVersions']/tei:head">
-                <sch:assert test=". = 'Ancient Versions'">Text node must be "Ancient Version".</sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='secondaryLiterature']/tei:head">
-                <sch:assert test=". = 'Secondary Literature'">Text node must be "Secondary Literature".</sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        
-        
-        <elementSpec ident="idno" module="header" mode="change">
-          <content>
-            <textNode/>
-          </content>
-          <constraintSpec ident="work-idno-types" scheme="schematron">
-            <constraint>
-              <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
-                <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')">
-                  The only acceptable values for @type on a work &lt;idno&gt; are "deprecated", "number", 
-                  "URI" or "URN". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[1]">
-                <sch:let name="workURI" value="substring-before(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '/tei')"/>
-                <sch:assert test=". = $workURI">
-                  The text node of this &lt;idno&gt; element must be <sch:value-of select="$workURI"/>. 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
-                <sch:assert test=". = ('accession-number', 'catalog-number', 'number', 'project-number', 'shelfmark', 'URL')">
-                  In the context of manuscripts, this @type value may only be "accession-number", "number",
-                  "project-number", or "shelfmark". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker' or @subtype='CPG' or @subtype='Fichtner']/@type">
-                <sch:assert test=". = 'number'">
-                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
-                  the @type value must be "number".
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL']/@type">
-                <sch:assert test=". = 'shelfmark'">
-                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
-                  the @type value must be "shelfmark".
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='HMML']/@type">
-                <sch:assert test=". = 'project-number'">
-                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
-                  the @type value must be "project-number".
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Rosen']/@type">
-                <sch:assert test=". = 'catalog-number'">
-                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
-                  the @type value must be "catalog-number".
-                </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <constraintSpec ident="idno-subtypes" scheme="schematron">
-            <constraint>
-              <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
-                <sch:assert test=". = ('Bekker', 'BHO', 'BHS', 'CPG', 'Fichtner', 'Kühn', 'Takahashi')">
-                  The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are 
-                  "Bekker", "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype" role="warning">
-                <sch:assert test=". = ('BAV', 'BL', 'BML', 'BNF', 'Berlin', 'Cambridge', 'Crawford', 'Haddad-Isaac', 'Harris', 'HMML', 'Leiden', 'Mingana', 'Rosen', 'SOAH', 'Sachau', 'Sinai', 'UCL', 'Yale')">
-                  In the context of manuscripts, this @subtype value may only be 
-                  "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), 
-                  "Berlin", "Cambridge", "Crawford", "Haddad-Isaac", "Harris", "HMML", 
-                  "Leiden", "Mingana", "Rosen", "SOAH", "Sachau", "UCL", or "Yale". 
-                  If none of these options is correct, please write in an appropriate
-                  value and the warning message will prompt editors to ensure that it is the correct value.
-                </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <attList>
-            <attDef ident="type" mode="change" usage="req">
-              <desc>The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc>
-              <valList mode="replace" type="closed">
-                <valItem ident="accession-number"/>
-                <valItem ident="catalog-number"/>
-                <valItem ident="deprecated"/>
-                <valItem ident="number"/>
-                <valItem ident="project-number"/>
-                <valItem ident="shelfmark"/>
-                <valItem ident="URI"/>
-                <valItem ident="URL"/>
-                <valItem ident="URN"/>
-              </valList>
-            </attDef>
-            <attDef ident="subtype" mode="change" usage="opt">
-              <valList mode="replace" type="semi">
-                <valItem ident="BAV"/>
-                <valItem ident="Bekker"/>
-                <valItem ident="Berlin"/>
-                <valItem ident="BHS"/>
-                <valItem ident="BHO"/>
-                <valItem ident="BL"/>
-                <valItem ident="BML"/>
-                <valItem ident="BNF"/>
-                <valItem ident="Cambridge"/>
-                <valItem ident="CPG"/>
-                <valItem ident="Crawford"/>
-                <valItem ident="Fichtner"/>
-                <valItem ident="Haddad-Isaac"/>
-                <valItem ident="Harris"/>
-                <valItem ident="Kühn"/>
-                <valItem ident="Leiden"/>
-                <valItem ident="Mingana"/>
-                <valItem ident="Rosen"/>
-                <valItem ident="Takashi"/>
-                <valItem ident="Sachau"/>
-                <valItem ident="SOAH"/>
-                <valItem ident="Sinai"/>
-                <valItem ident="Yale"/>
-              </valList>
-            </attDef>
-          </attList>
-        </elementSpec>
-        
-        
-        
-        <!--<elementSpec ident="interpretation" module="header" mode="change">
           
-          </elementSpec>-->
-        
-        
-        
-        <elementSpec ident="label" module="core" mode="change">
-          <content>
-            <sequence preserveOrder="false">
-              <textNode/>
-              <elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/>
-              <elementRef key="ptr" minOccurs="0" maxOccurs="1"/>
-              <elementRef key="title" minOccurs="0" maxOccurs="1"/>
-            </sequence>
-          </content>
-          <constraintSpec ident="ptr-with-label" scheme="schematron">
-            <constraint>
-              <sch:rule context="tei:label[not(ancestor::tei:relation)]">
-                <sch:report test="tei:ptr">
-                  A &lt;ptr&gt; child of &lt;label&gt; should only be used
-                  when &lt;label&gt; is the descendant of &lt;relation&gt;.
-                </sch:report>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <constraintSpec ident="label-values" scheme="schematron">
-            <constraint>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
-                <sch:assert test="starts-with(., 'Bekker')">
-                  This text should begin "Bekker". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
-                <sch:assert test="starts-with(., 'The Laurentian Library')">
-                  This text should begin "The Laurentian Library". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
-                <sch:assert test="starts-with(., 'Fichtner')">
-                  This text should begin "Fichtner". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']">
-                <sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')">
-                  This text should begin "Hill Museum and Manuscript Library". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
-                <sch:assert test="starts-with(., 'Kühn')">
-                  This text should begin "Kühn". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']">
-                <sch:assert test="starts-with(., 'Rosen')">
-                  This text should begin "Rosen". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
-                <sch:assert test="starts-with(., 'Takahashi')">
-                  This text should begin "Takahashi". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='UCL']">
-                <sch:assert test="starts-with(., 'University College London')">
-                  This text should begin "University College London". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
-                <sch:assert test="starts-with(., 'Vatican Apostolic Library')">
-                  This text should begin "The Vatican Apostolic Library". 
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Yale']">
-                <sch:assert test="starts-with(., 'New Haven, Yale University, Beinecke Library')">
-                  This text should begin "New Haven, Yale University, Beinecke Library". 
-                </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-        </elementSpec>
-        
-        
-        
-        <!--<elementSpec ident="langUsage" module="header" mode="change">
           
-          </elementSpec>-->
-
-
-
           <!--<elementSpec ident="licence" module="header" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>-->
-
-
-
+          
+          
           <elementSpec ident="listBibl" module="core" mode="change">
             <content>
               <sequence preserveOrder="true">
@@ -2838,21 +2580,21 @@
               </attDef>
             </attList>
           </elementSpec>
-
-
-
+          
+          
+          
           <!--<elementSpec ident="listRelation" module="namesdates" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>-->
-
-
-
+          
+          
           <!--<elementSpec ident="name" module="core" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>-->
-
-
-
+          
+          
           <elementSpec ident="note" module="core" mode="change">
             <content>
               <sequence preserveOrder="false">
@@ -2908,7 +2650,7 @@
             <constraintSpec ident="quotes-in-notes" scheme="schematron">
               <constraint>
                 <sch:rule context="
-                tei:body//tei:note[@type=('excerpt','explicit','incipit','prologue')]">
+                  tei:body//tei:note[@type=('excerpt','explicit','incipit','prologue')]">
                   <sch:assert test="tei:quote and count(*) = count(tei:quote)"> When &lt;note&gt;
                     has type excerpt, explicit, incipit, or prologue, it must contain only
                     &lt;quote&gt; elements. </sch:assert>
@@ -2962,10 +2704,10 @@
               </attDef>
             </attList>
           </elementSpec>
-
-
-
-
+          
+          
+          
+          
           <elementSpec ident="noteGrp" module="core" mode="change">
             <content>
               <sequence preserveOrder="true">
@@ -2989,11 +2731,11 @@
               </attDef>
             </attList>
           </elementSpec>
-
-
-
+          
+          
+          
           <elementSpec ident="p" module="core" mode="change">
-
+            
             <content>
               <sequence preserveOrder="false">
                 <elementRef key="listBibl" minOccurs="0" maxOccurs="1"/>
@@ -3003,9 +2745,9 @@
               </sequence>
             </content>
           </elementSpec>
-
-
-
+          
+          
+          
           <elementSpec ident="persName" module="namesdates" mode="change">
             <constraintSpec ident="ref-on-persName" scheme="schematron">
               <constraint>
@@ -3018,125 +2760,125 @@
               </constraint>
             </constraintSpec>
           </elementSpec>
-
-
-
+          
+          
+          
           <!--<elementSpec ident="profileDesc" module="header" mode="change">
+            
+            </elementSpec>
+            
+            
+            
+            <elementSpec ident="ptr" module="core" mode="change">
+            
+            </elementSpec>
+            
+            
+            
+            <elementSpec ident="publicationStmt" module="header" mode="change">
+            
+            </elementSpec>
+            
+            
+            
+            <elementSpec ident="ref" module="core" mode="change">
+            <!-\- Not sure the @target attribute needs to be constrained. -\->
+            
+            </elementSpec>-->
           
+          
+          
+          <elementSpec ident="relation" module="namesdates" mode="change">
+            <constraintSpec ident="passive-values" scheme="schematron">
+              <constraint>
+                <sch:rule context="tei:body//tei:relation/@passive">
+                  <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
+                  <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
+                  <sch:report test="matches(., '\s')">
+                    The @passive attribute may only take one value.
+                  </sch:report>
+                  <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
+                    The @passive attribute must either point to an existing @xml:id in this
+                    document starting with "#" or point to a URI/URL outside of this document 
+                    starting with "http".
+                  </sch:assert>
+                  <sch:assert test="
+                    not(starts-with(., '#'))
+                    or substring(.,2) =
+                    root(.)//tei:body//tei:bibl/@xml:id
+                    ">
+                    This @passive attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
+                    include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="active-values" scheme="schematron">
+              <constraint>
+                <sch:rule context="tei:body//tei:relation/@active">
+                  <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
+                  <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
+                  <sch:report test="matches(., '\s')">
+                    The @active attribute may only take one value.
+                  </sch:report>
+                  <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
+                    The @active attribute must either point to an existing @xml:id in this
+                    document starting with "#" or point to a URI/URL outside of this document 
+                    starting with "http".
+                  </sch:assert>
+                  <sch:assert test="
+                    not(starts-with(., '#'))
+                    or substring(.,2) =
+                    root(.)//tei:body//tei:bibl/@xml:id
+                    ">
+                    This @active attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
+                    include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
+                  </sch:assert>
+                  
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            <attList>
+              <attDef ident="name" mode="delete"/>
+              <attDef ident="ref" mode="change" usage="req">
+                <valList type="closed">
+                  <valItem ident="dcterms:isPartOf"/>
+                  <valItem ident="dcterms:source"/>
+                  <valItem ident="skos:broader"/>
+                  <valItem ident="syriaca:commemorates"/>
+                  <valItem ident="syriaca:different-from"/>
+                </valList>
+              </attDef>
+            </attList>
           </elementSpec>
           
           
           
-          <elementSpec ident="ptr" module="core" mode="change">
-          
-          </elementSpec>
-          
-          
-          
-          <elementSpec ident="publicationStmt" module="header" mode="change">
-          
-          </elementSpec>
-          
-          
-          
-          <elementSpec ident="ref" module="core" mode="change">
-          <!-\- Not sure the @target attribute needs to be constrained. -\->
-          
-          </elementSpec>-->
-        
-        
-        
-        <elementSpec ident="relation" module="namesdates" mode="change">
-          <constraintSpec ident="passive-values" scheme="schematron">
-            <constraint>
-              <sch:rule context="tei:body//tei:relation/@passive">
-                <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
-                <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
-                <sch:report test="matches(., '\s')">
-                  The @passive attribute may only take one value.
-                </sch:report>
-                <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
-                  The @passive attribute must either point to an existing @xml:id in this
-                  document starting with "#" or point to a URI/URL outside of this document 
-                  starting with "http".
-                </sch:assert>
-                <sch:assert test="
-                  not(starts-with(., '#'))
-                  or substring(.,2) =
-                  root(.)//tei:body//tei:bibl/@xml:id
-                  ">
-                  This @passive attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
-                  include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
-                </sch:assert>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <constraintSpec ident="active-values" scheme="schematron">
-            <constraint>
-              <sch:rule context="tei:body//tei:relation/@active">
-                <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
-                <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
-                <sch:report test="matches(., '\s')">
-                  The @active attribute may only take one value.
-                </sch:report>
-                <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
-                  The @active attribute must either point to an existing @xml:id in this
-                  document starting with "#" or point to a URI/URL outside of this document 
-                  starting with "http".
-                </sch:assert>
-                <sch:assert test="
-                  not(starts-with(., '#'))
-                  or substring(.,2) =
-                  root(.)//tei:body//tei:bibl/@xml:id
-                  ">
-                  This @active attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
-                  include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
-                </sch:assert>
-                
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <attList>
-            <attDef ident="name" mode="delete"/>
-            <attDef ident="ref" mode="change" usage="req">
-              <valList type="closed">
-                <valItem ident="dcterms:isPartOf"/>
-                <valItem ident="dcterms:source"/>
-                <valItem ident="skos:broader"/>
-                <valItem ident="syriaca:commemorates"/>
-                <valItem ident="syriaca:different-from"/>
-              </valList>
-            </attDef>
-          </attList>
-        </elementSpec>
-        
-        
-        
-        <!--<elementSpec ident="resp" module="core" mode="change">
-          
-          </elementSpec>
+          <!--<elementSpec ident="resp" module="core" mode="change">
+            
+            </elementSpec>
+            
+            
+            
+            <elementSpec ident="respStmt" module="core" mode="change">
+            
+            </elementSpec>
+            
+            
+            
+            <elementSpec ident="revisionDesc" module="header" mode="change">
+            
+            </elementSpec>-->
           
           
           
-          <elementSpec ident="respStmt" module="core" mode="change">
-          
-          </elementSpec>
-          
-          
-          
-          <elementSpec ident="revisionDesc" module="header" mode="change">
-          
-          </elementSpec>-->
-
-
-
           <elementSpec ident="seriesStmt" module="header" mode="change">
             <constraintSpec ident="seriesStmt-series" scheme="schematron">
               <constraint>
                 <sch:rule context="//tei:seriesStmt//tei:title[@level='s']">
                   <sch:assert test="
-                  ./node() = 'A New Handbook of Syriac Literature' or 
-                  ./node() = 'Gateway to the Syriac Saints'"> This &lt;title&gt;
+                    ./node() = 'A New Handbook of Syriac Literature' or 
+                    ./node() = 'Gateway to the Syriac Saints'"> This &lt;title&gt;
                     element must be "A New Handbook of Syriac Literature" or "Gateway to the Syriac
                     Saints". </sch:assert>
                 </sch:rule>
@@ -3156,9 +2898,9 @@
               <constraint>
                 <sch:rule context="//tei:seriesStmt//tei:title[@level='m']">
                   <sch:assert test="
-                  ./node() = 'Bibliotheca Hagiographica Syriaca Electronica' or
-                  ./node() = 'A Guide to the Bible in Syriac' or
-                  ./node() = 'Syriac Scientific and Philosophical Literature'">
+                    ./node() = 'Bibliotheca Hagiographica Syriaca Electronica' or
+                    ./node() = 'A Guide to the Bible in Syriac' or
+                    ./node() = 'Syriac Scientific and Philosophical Literature'">
                     This &lt;title&gt; element must be "Bibliotheca Hagiographica Syriaca
                     Electronica" or "Guide to the Bible in Syriac" or "Syriac Scientific and
                     Philosophical Literature". </sch:assert>
@@ -3187,33 +2929,33 @@
               </constraint>
             </constraintSpec>
           </elementSpec>
-
-
-
+          
+          
+          
           <!--<elementSpec ident="sourceDesc" module="header" mode="change">
+            
+            </elementSpec>
+            
+            
+            
+            <elementSpec ident="sponsor" module="header" mode="change">
+            
+            </elementSpec>
+            
+            
+            
+            <elementSpec ident="taxonomy" module="header" mode="change">
+            
+            </elementSpec>
+            
+            
+            
+            <elementSpec ident="text" module="textstructure" mode="change">
+            
+            </elementSpec>-->
           
-          </elementSpec>
           
           
-          
-          <elementSpec ident="sponsor" module="header" mode="change">
-          
-          </elementSpec>
-          
-          
-          
-          <elementSpec ident="taxonomy" module="header" mode="change">
-          
-          </elementSpec>
-          
-          
-          
-          <elementSpec ident="text" module="textstructure" mode="change">
-          
-          </elementSpec>-->
-
-
-
           <elementSpec ident="textLang" module="core" mode="change">
             <attList>
               <attDef ident="mainLang" mode="replace">
@@ -3498,9 +3240,9 @@
               </attDef>
             </attList>
           </elementSpec>
-
-
-
+          
+          
+          
           <elementSpec ident="title" module="core" mode="change">
             <classes>
               <memberOf key="att.global"/>
@@ -3568,13 +3310,13 @@
               </attDef>
             </attList>
           </elementSpec>
-
-
-
-          <!--<elementSpec ident="titleStmt" module="header" mode="change">
           
-          </elementSpec>-->
-
+          
+          
+          <!--<elementSpec ident="titleStmt" module="header" mode="change">
+            
+            </elementSpec>-->
+          
         </schemaSpec>
       </div>
     </body>

@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-06-25T18:45:50Z. . 
+Schema generated from ODD source 2026-06-30T22:11:25Z. . 
 TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
   
@@ -886,9 +886,6 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                <ref name="tei_placeName"/>
             </optional>
             <optional>
-               <ref name="tei_ref"/>
-            </optional>
-            <optional>
                <ref name="tei_title"/>
             </optional>
          </interleave>
@@ -1341,8 +1338,10 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:label[not(ancestor::tei:relation)]">
-               <sch:report test="tei:ptr"> A &lt;ptr&gt; child of &lt;label&gt; should only be
-                    used when &lt;label&gt; is the descendant of &lt;relation&gt;. </sch:report>
+               <sch:report test="tei:ptr">
+                    A &lt;ptr&gt; child of &lt;label&gt; should only be used
+                    when &lt;label&gt; is the descendant of &lt;relation&gt;.
+                  </sch:report>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
@@ -1352,72 +1351,81 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
-               <sch:assert test="starts-with(., 'Bekker')"> This text should begin "Bekker".
+               <sch:assert test="starts-with(., 'Bekker')">
+                    This text should begin "Bekker". 
                   </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
-               <sch:assert test="starts-with(., 'The Laurentian Library')"> This text should
-                    begin "The Laurentian Library". </sch:assert>
+               <sch:assert test="starts-with(., 'The Laurentian Library')">
+                    This text should begin "The Laurentian Library". 
+                  </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
-               <sch:assert test="starts-with(., 'Fichtner')"> This text should begin "Fichtner".
+               <sch:assert test="starts-with(., 'Fichtner')">
+                    This text should begin "Fichtner". 
                   </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']">
-               <sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')"> This text
-                    should begin "Hill Museum and Manuscript Library". </sch:assert>
+               <sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')">
+                    This text should begin "Hill Museum and Manuscript Library". 
+                  </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
-               <sch:assert test="starts-with(., 'Kühn')"> This text should begin "Kühn".
+               <sch:assert test="starts-with(., 'Kühn')">
+                    This text should begin "Kühn". 
                   </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']">
-               <sch:assert test="starts-with(., 'Rosen')"> This text should begin "Rosen".
+               <sch:assert test="starts-with(., 'Rosen')">
+                    This text should begin "Rosen". 
                   </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
-               <sch:assert test="starts-with(., 'Takahashi')"> This text should begin
-                    "Takahashi". </sch:assert>
+               <sch:assert test="starts-with(., 'Takahashi')">
+                    This text should begin "Takahashi". 
+                  </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='UCL']">
-               <sch:assert test="starts-with(., 'University College London')"> This text should
-                    begin "University College London". </sch:assert>
+               <sch:assert test="starts-with(., 'University College London')">
+                    This text should begin "University College London". 
+                  </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
-               <sch:assert test="starts-with(., 'Vatican Apostolic Library')"> This text should
-                    begin "The Vatican Apostolic Library". </sch:assert>
+               <sch:assert test="starts-with(., 'Vatican Apostolic Library')">
+                    This text should begin "The Vatican Apostolic Library". 
+                  </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Yale']">
                <sch:assert test="starts-with(., 'New Haven, Yale University, Beinecke Library')">
-                  This text should begin "New Haven, Yale University, Beinecke Library". 
-                </sch:assert>
+                    This text should begin "New Haven, Yale University, Beinecke Library". 
+                  </sch:assert>
             </sch:rule>
          </pattern>
          <ref name="tei_att.global.attributes"/>
@@ -1469,22 +1477,19 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='modernTranslations']/tei:head">
-               <sch:assert test=". = 'Modern Translations'">Text node must be "Modern
-                    Translations".</sch:assert>
+               <sch:assert test=". = 'Modern Translations'">Text node must be "Modern Translations".</sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='ancientVersions']/tei:head">
-               <sch:assert test=". = 'Ancient Versions'">Text node must be "Ancient
-                    Version".</sch:assert>
+               <sch:assert test=". = 'Ancient Versions'">Text node must be "Ancient Version".</sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='secondaryLiterature']/tei:head">
-               <sch:assert test=". = 'Secondary Literature'">Text node must be "Secondary
-                    Literature".</sch:assert>
+               <sch:assert test=". = 'Secondary Literature'">Text node must be "Secondary Literature".</sch:assert>
             </sch:rule>
          </pattern>
          <ref name="tei_att.global.attributes"/>
@@ -1592,7 +1597,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
-                      context="                 tei:body//tei:note[@type=('excerpt','explicit','incipit','prologue')]">
+                      context="                   tei:body//tei:note[@type=('excerpt','explicit','incipit','prologue')]">
                <sch:assert test="tei:quote and count(*) = count(tei:quote)"> When &lt;note&gt;
                     has type excerpt, explicit, incipit, or prologue, it must contain only
                     &lt;quote&gt; elements. </sch:assert>
@@ -1816,9 +1821,11 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       xmlns:srophe="https://srophe.app"
                       context="tei:body/child::tei:bibl/child::tei:editor">
                <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
-                           role="error"> This &lt;editor&gt; element must take a @ref attribute with a
-                    Syriaca.org person URI which reqires the form 'http://syriaca.org/person/{\d+}'
-                    (where {\d+} is a number). </sch:assert>
+                           role="error">
+                    This &lt;editor&gt; element must take a @ref attribute 
+                    with a Syriaca.org person URI which reqires 
+                    the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                  </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
@@ -1828,8 +1835,9 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:body/child::tei:bibl/child::tei:editor">
-               <sch:report test="tei:persName"> This &lt;editor&gt; element allows only a text
-                    node with an English name or a &lt;foreign&gt; element with a non-English name.
+               <sch:report test="tei:persName">
+                    This &lt;author&gt; element allows only a text node with an English name 
+                    or a &lt;foreign&gt; element with a non-English name.
                   </sch:report>
             </sch:rule>
          </pattern>
@@ -2897,9 +2905,10 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:body/child::tei:bibl/child::tei:idno/@type">
-               <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')"> The only acceptable
-                    values for @type on a work &lt;idno&gt; are "deprecated", "number", "URI" or
-                    "URN". </sch:assert>
+               <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')">
+                    The only acceptable values for @type on a work &lt;idno&gt; are "deprecated", "number", 
+                    "URI" or "URN". 
+                  </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -2907,46 +2916,54 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                       context="tei:body/child::tei:bibl/child::tei:idno[1]">
                <sch:let name="workURI"
                         value="substring-before(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '/tei')"/>
-               <sch:assert test=". = $workURI"> The text node of this &lt;idno&gt; element must
-                    be <sch:value-of select="$workURI"/>. </sch:assert>
+               <sch:assert test=". = $workURI">
+                    The text node of this &lt;idno&gt; element must be <sch:value-of select="$workURI"/>. 
+                  </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
-               <sch:assert test=". = ('accession-number', 'catalog-number', 'number', 'project-number', 'shelfmark', 'URL')"> In the context of manuscripts, this @type value may only be
-                    "accession-number", "number", "project-number", or "shelfmark". </sch:assert>
+               <sch:assert test=". = ('accession-number', 'catalog-number', 'number', 'project-number', 'shelfmark', 'URL')">
+                    In the context of manuscripts, this @type value may only be "accession-number", "number",
+                    "project-number", or "shelfmark". 
+                  </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker' or @subtype='CPG' or @subtype='Fichtner']/@type">
-               <sch:assert test=". = 'number'"> When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", the @type value must be "number".
+               <sch:assert test=". = 'number'">
+                    When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                    the @type value must be "number".
                   </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL']/@type">
-               <sch:assert test=". = 'shelfmark'"> When an &lt;indo&gt; has
-                      @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", the @type
-                    value must be "shelfmark". </sch:assert>
+               <sch:assert test=". = 'shelfmark'">
+                    When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                    the @type value must be "shelfmark".
+                  </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='HMML']/@type">
-               <sch:assert test=". = 'project-number'"> When an &lt;indo&gt; has
-                      @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", the @type
-                    value must be "project-number". </sch:assert>
+               <sch:assert test=". = 'project-number'">
+                    When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                    the @type value must be "project-number".
+                  </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Rosen']/@type">
-               <sch:assert test=". = 'catalog-number'"> When an &lt;indo&gt; has
-                      @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", the @type
-                    value must be "catalog-number". </sch:assert>
+               <sch:assert test=". = 'catalog-number'">
+                    When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                    the @type value must be "catalog-number".
+                  </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
@@ -2956,9 +2973,9 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
-               <sch:assert test=". = ('Bekker', 'BHO', 'BHS', 'CPG', 'Fichtner', 'Kühn', 'Takahashi')"> The
-                    only acceptable values for @subtype on a work &lt;idno&gt; with @type="number"
-                    are "Bekker", "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi".
+               <sch:assert test=". = ('Bekker', 'BHO', 'BHS', 'CPG', 'Fichtner', 'Kühn', 'Takahashi')">
+                    The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are 
+                    "Bekker", "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi". 
                   </sch:assert>
             </sch:rule>
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
@@ -2967,13 +2984,13 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                       context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype"
                       role="warning">
                <sch:assert test=". = ('BAV', 'BL', 'BML', 'BNF', 'Berlin', 'Cambridge', 'Crawford', 'Haddad-Isaac', 'Harris', 'HMML', 'Leiden', 'Mingana', 'Rosen', 'SOAH', 'Sachau', 'Sinai', 'UCL', 'Yale')">
-                  In the context of manuscripts, this @subtype value may only be 
-                  "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), 
-                  "Berlin", "Cambridge", "Crawford", "Haddad-Isaac", "Harris", "HMML", 
-                  "Leiden", "Mingana", "Rosen", "SOAH", "Sachau", "UCL", or "Yale". 
-                  If none of these options is correct, please write in an appropriate
-                  value and the warning message will prompt editors to ensure that it is the correct value.
-                </sch:assert>
+                    In the context of manuscripts, this @subtype value may only be 
+                    "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), 
+                    "Berlin", "Cambridge", "Crawford", "Haddad-Isaac", "Harris", "HMML", 
+                    "Leiden", "Mingana", "Rosen", "SOAH", "Sachau", "UCL", or "Yale". 
+                    If none of these options is correct, please write in an appropriate
+                    value and the warning message will prompt editors to ensure that it is the correct value.
+                  </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
@@ -3154,7 +3171,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="//tei:seriesStmt//tei:title[@level='s']">
-               <sch:assert test="                   ./node() = 'A New Handbook of Syriac Literature' or                    ./node() = 'Gateway to the Syriac Saints'"> This &lt;title&gt;
+               <sch:assert test="                     ./node() = 'A New Handbook of Syriac Literature' or                      ./node() = 'Gateway to the Syriac Saints'"> This &lt;title&gt;
                     element must be "A New Handbook of Syriac Literature" or "Gateway to the Syriac
                     Saints". </sch:assert>
             </sch:rule>
@@ -3180,7 +3197,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="//tei:seriesStmt//tei:title[@level='m']">
-               <sch:assert test="                   ./node() = 'Bibliotheca Hagiographica Syriaca Electronica' or                   ./node() = 'A Guide to the Bible in Syriac' or                   ./node() = 'Syriac Scientific and Philosophical Literature'">
+               <sch:assert test="                     ./node() = 'Bibliotheca Hagiographica Syriaca Electronica' or                     ./node() = 'A Guide to the Bible in Syriac' or                     ./node() = 'Syriac Scientific and Philosophical Literature'">
                     This &lt;title&gt; element must be "Bibliotheca Hagiographica Syriaca
                     Electronica" or "Guide to the Bible in Syriac" or "Syriac Scientific and
                     Philosophical Literature". </sch:assert>
@@ -3661,17 +3678,17 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
                <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
                <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
                <sch:report test="matches(., '\s')">
-                  The @passive attribute may only take one value.
-                </sch:report>
+                    The @passive attribute may only take one value.
+                  </sch:report>
                <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
-                  The @passive attribute must either point to an existing @xml:id in this
-                  document starting with "#" or point to a URI/URL outside of this document 
-                  starting with "http".
-                </sch:assert>
-               <sch:assert test="                   not(starts-with(., '#'))                   or substring(.,2) =                   root(.)//tei:body//tei:bibl/@xml:id                   ">
-                  This @passive attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
-                  include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
-                </sch:assert>
+                    The @passive attribute must either point to an existing @xml:id in this
+                    document starting with "#" or point to a URI/URL outside of this document 
+                    starting with "http".
+                  </sch:assert>
+               <sch:assert test="                     not(starts-with(., '#'))                     or substring(.,2) =                     root(.)//tei:body//tei:bibl/@xml:id                     ">
+                    This @passive attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
+                    include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
+                  </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
@@ -3684,17 +3701,17 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
                <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
                <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
                <sch:report test="matches(., '\s')">
-                  The @active attribute may only take one value.
-                </sch:report>
+                    The @active attribute may only take one value.
+                  </sch:report>
                <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
-                  The @active attribute must either point to an existing @xml:id in this
-                  document starting with "#" or point to a URI/URL outside of this document 
-                  starting with "http".
-                </sch:assert>
-               <sch:assert test="                   not(starts-with(., '#'))                   or substring(.,2) =                   root(.)//tei:body//tei:bibl/@xml:id                   ">
-                  This @active attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
-                  include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
-                </sch:assert>
+                    The @active attribute must either point to an existing @xml:id in this
+                    document starting with "#" or point to a URI/URL outside of this document 
+                    starting with "http".
+                  </sch:assert>
+               <sch:assert test="                     not(starts-with(., '#'))                     or substring(.,2) =                     root(.)//tei:body//tei:bibl/@xml:id                     ">
+                    This @active attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
+                    include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
+                  </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
