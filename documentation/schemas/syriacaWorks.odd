@@ -532,9 +532,13 @@
             <head>Sources and Attribution of Intellectual Credit</head>
             <p>When encoding child elements nested within the main <gi>bibl</gi> element, <title>NHSL</title>
               records are required to cite their sources using either the <att>source</att> or
-              <att>resp</att> attributes. These attributes can be placed on any of these elements:
-              <!-- DLS can you help with this please? <gi>desc</gi>, <gi>event</gi>, <gi>location</gi>, <gi>placeName</gi>,
-                <gi>quote</gi>, <gi>relation</gi>, and <gi>state</gi>.--> </p>
+              <att>resp</att> attributes. A <gi>quote</gi> element always requires a <att>source</att> 
+              attribute. Either <att>source</att> or <att>resp</att> is required on <gi>note</gi>
+              elements throughout the document unless that element has a child 
+              <gi>quote</gi> element. Either is also required when the following
+              elements are part of the main work <gi>bibl</gi> for the record:
+              <gi>author</gi>, <gi>date</gi>, <gi>editor</gi>, or <gi>title</gi>. Either may 
+              also appear on <gi>bibl</gi> and <gi>relation</gi> elements. </p>
             <p>Whenever possible, the editorial policy of <title>NHSL</title> is that all
               information in a record should have citations to bibliographic references found in the
               <ref
