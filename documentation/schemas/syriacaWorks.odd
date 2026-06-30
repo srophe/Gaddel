@@ -1117,7 +1117,8 @@
                 according to standard schemas or in standard reference works. These <gi>idno</gi>
                 elements must have a <att>type</att> attribute value of <q>number</q>. Their
                 <att>subtype</att> attribute specifies the reference work or identifier schema to
-                which the refrence number belongs. The following sources are currently permitted:
+                which the refrence number belongs. The sources in the following table are currently 
+                permitted:
                 <table rows="8" cols="2">
                   <row role="label">
                     <cell role="label"><att>subtype</att></cell>
@@ -1188,9 +1189,13 @@
               work.</p>
             <p>The general structure of a <gi>noteGrp</gi> element is as follows. Each
               <gi>noteGrp</gi> element must have a <att>type</att> attribute and a child
-              <gi>desc</gi> element. The <att>type</att> attribute's value and the text node of
-              the <gi>desc</gi> element must match those in the following table:
-              <!--DLS can you help please?abstract, scope, versions, content, disambiguation, prologue, incipit, excerpt, explicit -->
+              <gi>desc</gi> element. The available <att>type</att> attribute values are:
+              <q>abstract</q>, <q>contents</q>, <q>disambiguation</q>, <q>excerpts</q>, 
+              <q>explicit</q>, <q>incipit</q>, <q>prologue</q>, <q>scope</q>, and <q>versions</q>.
+              In each case, the <gi>noteGrp</gi> requires a child <gi>desc</gi> element
+              with a text node containing a capitalized version of this <att>type</att>
+              attribute.</p>
+            <p>
               One or more child <gi>note</gi> elements may be included in a <gi>noteGrp</gi>
               element. These <gi>note</gi> elements must have a <att>type</att> attribute whose
               value corresponds to that of its parent <gi>noteGrp</gi> element. The language of the
@@ -1604,12 +1609,116 @@
                     </listBibl>
                   </egXML>
               </p>
-              <!-- DLS can you help please? Need to add allowed values below -->
-              <p>The <gi>label</gi> element will usually contain an <gi>idno</gi> child. This
-                <gi>idno</gi> should have a <att>type</att> (such as <q>shelfmark</q> or
-                <q>number</q>) and may have a <att>subtype</att> identifying the library (e.g.,
-                <q>BL</q> for British Library, <q>BNF</q> for Bibliothèque nationale de France,
-                <q>BAV</q> for Biblioteca Apostolica Vaticana).</p>
+              <p>The <gi>label</gi> element will usually contain an <gi>idno</gi> child with a 
+              pair of <att>type</att>/<att>subtype</att> values as indicated in the table below:
+                <table rows="10" cols="3">
+                  <row role="label">
+                    <cell role="label"><att>type</att></cell>
+                    <cell role="label"><att>subtype</att></cell>
+                    <cell role="label">Subtype Description</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">shelfmark</cell>
+                    <cell role="data">BAV</cell>
+                    <cell role="data">Vatican Apostolic Library</cell>
+                  </row>
+                  <!-- Dave, should Bekker be included? -->
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">BL</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">shelfmark</cell>
+                    <cell role="data">BML</cell>
+                    <cell role="data">Florence, The Laurentian Library</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">BNF</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">Berlin</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">Cambridge</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">Crawford</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">Haddad-Issac</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">Harris</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">BNF</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">project-number</cell>
+                    <cell role="data">HMML</cell>
+                    <cell role="data">Hill Museum and Manuscript Library</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">Leiden</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">Mingana</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">Rosen</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">SOAH</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">Sachau</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data"><!-- DAM, please fill in, schema needs updating --></cell>
+                    <cell role="data">Sinai</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">shelfmark</cell>
+                    <cell role="data">UCL</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">shelfmark</cell>
+                    <cell role="data">Yale</cell>
+                    <cell role="data">Yale University, Beinecke Library</cell>
+                  </row>
+                </table>
+                If this table does not contain the <att>subtype</att> value needed for your work, please choose 
+                appropriate <att>subtype</att> and <att>type</att> values. The schema will give a yellow "warning"
+                message that will inform the editors that there is something in the document that requires their
+                attention.
+              </p>
               <p>Notes about a particular manuscript witness can be provided with a <gi>note</gi>
                 element: 
                 <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -2205,9 +2314,6 @@
                 <sch:rule context="tei:noteGrp[@type='contents']/tei:desc">
                   <sch:assert test=". = 'Contents'">Text node must be "Contents".</sch:assert>
                 </sch:rule>
-                <sch:rule context="tei:noteGrp[@type='excerpts']/tei:desc">
-                  <sch:assert test=". = 'Excerpts'">Text node must be "Excerpts".</sch:assert>
-                </sch:rule>
                 <sch:rule context="tei:noteGrp[@type='disambiguation']/tei:desc">
                   <sch:assert test=". = 'Disambiguation'">Text node must be
                     "Disambiguation".</sch:assert>
@@ -2396,13 +2502,13 @@
                     "project-number", or "shelfmark". 
                   </sch:assert>
                 </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker' or @subtype='CPG' or @subtype='Fichtner']/@type">
+                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker'/@type">
                   <sch:assert test=". = 'number'">
                     When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
                     the @type value must be "number".
                   </sch:assert>
                 </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL']/@type">
+                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL' or @subtype='Yale']/@type">
                   <sch:assert test=". = 'shelfmark'">
                     When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
                     the @type value must be "shelfmark".
