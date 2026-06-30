@@ -562,9 +562,10 @@
               <p>Once a <gi>bibl</gi> element for the item has been created, citations to that same
                 bibliographic item can be inserted (and repeated) almost anywhere in the place
                 record. These citations are inserted using the <att>source</att> attribute which is
-                permitted on the following elements: <!-- DLS can you help please? <gi>desc</gi>, <gi>event</gi>,
-                  <gi>location</gi>, <gi>placeName</gi>, <gi>quote</gi>, <gi>relation</gi>, and
-                  <gi>state</gi> -->. For example <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                permitted on the following elements in at least some contexts: <gi>author</gi>, 
+                <gi>bibl</gi>, <gi>date</gi>, <gi>editor</gi>, <gi>note</gi>, and
+                <gi>relation</gi> . For example 
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <title xml:id="name1-5" xml:lang="en" source="#bib1-9 #bib1-24 #bib1-26">Genesis</title>
                 </egXML>
                 In this example, the English title "Genesis" is attested in three separate sources,
@@ -623,23 +624,26 @@
           </div>
           <div xml:id="syriacaURIs">
             <head>Linking Persons, Places, Works, and Bibliography to Syriaca.org URIs</head>
-            <p>As discussed above in the section <ref target="#syriacaDataModel">The Seven Core
-                Entities of the Syriaca.org Data Model</ref>, one of the distinctive features of
-              <title>NHSL</title> is its integration with the <ref
-                target="https://syriaca.org/index.html">Syriaca.org</ref> knowledge graph through
+            <p>As discussed above in the section 
+              <ref target="#syriacaDataModel">The Seven Core Entities of the Syriaca.org Data Model</ref>, 
+              one of the distinctive features of<title>NHSL</title> is its integration with the 
+              <ref target="https://syriaca.org/index.html">Syriaca.org</ref> knowledge graph through
               the use of URIs to identify and link persons, places, literary works, and
               bibliography. For each of these entity types, Syriaca.org has published an
               <q>authority file</q> which assigns a URI or Uniform Resource Identifier to every
               unique entry. Besides <title>NHSL</title> (the title authority file), these
-              authority files include <ref target="https://syriaca.org/persons/index.html"
-                ><title>The Syriac Biographical Dictionary</title></ref>, <ref
-                  target="https://syriaca.org/geo/index.html"><title>The Syriac
-                    Gazetteer</title></ref>, and the <ref
-                      target="https://syriaca.org/cbss/index.html"><title>Comprehensive Bibliography on
-                        Syriac Studies</title></ref>.</p>
+              authority files include 
+              <ref target="https://syriaca.org/persons/index.html">
+                <title>The Syriac Biographical Dictionary</title>
+              </ref>, 
+              <ref target="https://syriaca.org/geo/index.html">
+                <title>The Syriac Gazetteer</title></ref>, 
+              and the 
+              <ref target="https://syriaca.org/cbss/index.html">
+                <title>Comprehensive Bibliography on Syriac Studies</title></ref>.</p>
             <p>In <title>NHSL</title>, it is possible to link to Syriaca.org URIs within the
-              following descriptive elements: <gi>desc</gi>, <gi>quote</gi>, or <gi>note</gi>. <!-- DLS I need a list of these attributes please. -->Use
-              of Syriaca.org URIs to identify prose allusions to persons, places, works, etc. is
+              following descriptive elements: <gi>desc</gi>, <gi>note</gi>, or <gi>quote</gi>. 
+              Use of Syriaca.org URIs to identify prose allusions to persons, places, works, etc. is
               strongly encouraged whenever possible. It should be noted that the use of Syriaca.org
               URIs in these sections is for descriptive purposes (i.e. relating the subject of the
               <title>NHSL</title> record to other places, persons, etc.). The inclusion of URIs in
