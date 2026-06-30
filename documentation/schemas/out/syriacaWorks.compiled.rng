@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-06-30T19:30:26Z. . 
+Schema generated from ODD source 2026-06-30T19:53:07Z. . 
 TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
   
@@ -1817,7 +1817,7 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:body/child::tei:bibl/child::tei:editor">
-               <sch:report test="tei:persName"> This &lt;author&gt; element allows only a text
+               <sch:report test="tei:persName"> This &lt;editor&gt; element allows only a text
                     node with an English name or a &lt;foreign&gt; element with a non-English name.
                   </sch:report>
             </sch:rule>

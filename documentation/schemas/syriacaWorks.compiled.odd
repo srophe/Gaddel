@@ -984,7 +984,8 @@
               </egXML> As seen in the above example, the <gi>author</gi> or <gi>editor</gi> element
               for the creator should include an <att>xml:lang</att> attribute value of <q>en</q>. </p>
             <p>For creators other than authors, the <att>role</att> attribute must be used to
-              further specify the peron's contribution. Allowed values include:
+              further specify the peron's contribution. Allowed values include: <q>scribe</q> and
+              <q>translator</q>.
               <!-- DLS can you help please? --></p>
             <p>Attribution of creators may also be included even in cases of dubious, disputed, or
               pseudopigraphic attribution. The <att>role</att> attribute may also be used for this
@@ -5943,7 +5944,7 @@ psychological significance.
             </constraintSpec><constraintSpec ident="editor-in-context" scheme="schematron">
               <constraint>
                 <sch:rule context="tei:body/child::tei:bibl/child::tei:editor">
-                  <sch:report test="tei:persName"> This &lt;author&gt; element allows only a text
+                  <sch:report test="tei:persName"> This &lt;editor&gt; element allows only a text
                     node with an English name or a &lt;foreign&gt; element with a non-English name.
                   </sch:report>
                 </sch:rule>
