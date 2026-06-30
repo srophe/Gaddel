@@ -917,7 +917,7 @@
                 target="#biblType">Work Types</ref> below). --> 
             <p>The <gi>bibl</gi> element can contain
               the following child elements in the order listed, some of which are required:</p>
-            <!-- DLS I need the list of allowed elements please. --><list>
+            <list>
               <item><gi>title</gi>* — one or more work title variants (see <ref target="#title"
                   >Titles</ref>)</item>
               <item><gi>author</gi> or <gi>editor</gi>— the work's attributed creator(s) (see <ref
@@ -926,6 +926,8 @@
                 URI (see <ref target="#idno">Identifiers</ref>)</item>
               <item><gi>textLang</gi> — the primary language of the work (see <ref
                   target="#textLang">Text Language</ref>)</item>
+              <item><gi>date</gi> — the work's attributed creator(s) (see <ref
+                  target="#creator">Creators</ref>)</item>
               <item><gi>noteGrp</gi> — groups of notes recording incipits, explicits, and prologues
                 (see <ref target="#noteGrp">Prologues, Incipits, and Explicits</ref>)</item>
               <item><gi>listRelation</gi> — relationships to other works, persons, or entities (see
