@@ -1073,8 +1073,9 @@
               further specify the peron's contribution. Currently allowed values include: <q>scribe</q> and
               <q>translator</q>.</p>
             <p>Attribution of creators may also be included even in cases of dubious, disputed, or
-              pseudopigraphic attribution. The <att>role</att> attribute may also be used for this
-              purpose, in which case the following values should be used: <!--DLS can you help please? -->
+              pseudopigraphic attribution. The <att>ana</att> attribute can be used for this
+              purpose, in which case the following values should be used: 
+              <q>attributed</q>, <q>disputed</q>, and <q>pseudo</q>.
               <!--Proposed convention: include a note (what type?) explaining cases of uncertain or incorrect attribution -->
             </p>
           </div>
