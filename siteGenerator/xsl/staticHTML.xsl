@@ -80,7 +80,7 @@
     -->
     
     <xsl:param name="applicationPath" select="'/Users/wsalesky/syriaca/syriaca/Gaddel'"/>
-    <xsl:param name="staticSitePath" select="'/Users/wsalesky/syriaca/syriaca/Gaddel-temp'"/>
+    <xsl:param name="staticSitePath" select="'/Users/wsalesky/syriaca/syriaca/Gaddel'"/>
     <xsl:param name="dataPath" select="'/Users/wsalesky/syriaca/syriaca/syriaca-data'"/>
     <!-- <xsl:param name="dataPath" select="'/Users/wsalesky/syriaca/syriaca/syriaca-data/data/'"/> -->
     
@@ -239,9 +239,9 @@
                                 </xsl:when>
                             </xsl:choose>
                         </xsl:variable>
-                        <path idno="{$altIdno}"><xsl:value-of select="concat(replace($altIdno,$base-uri,concat($staticSitePath,'data')),'.html')"/></path>
+                        <path idno="{$altIdno}"><xsl:value-of select="concat(replace($altIdno,$base-uri,concat($staticSitePath,'/data')),'.html')"/></path>
                     </xsl:if>
-                    <path idno="{$idno}"><xsl:value-of select="concat(replace($idno,$base-uri,concat($staticSitePath,'data')),'.html')"/></path>
+                    <path idno="{$idno}"><xsl:value-of select="concat(replace($idno,$base-uri,concat($staticSitePath,'/data')),'.html')"/></path>
                 </xsl:when>
                 <xsl:when test="$fileType = 'RDF'">
                     <!-- Output a page for each rdf:Description (with http://syriaca.org/taxonomy/) -->
@@ -428,6 +428,10 @@
                         <xsl:choose>
                             <xsl:when test="$template/descendant::html:nav">
                                 <xsl:copy-of select="$template/descendant::html:nav"/>
+                            </xsl:when>
+                            <xsl:when test="$template/descendant::html:div[@id = 'navbar-container']">
+                                <xsl:copy-of select="$template/descendant::html:div[@id = 'navbar-container']/preceding-sibling::html:script[1]"/>
+                                <div id="navbar-container"></div>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:message>No template found for html:head element</xsl:message>
@@ -931,47 +935,7 @@
             <script type="text/javascript" src="/resources/keyboard/layouts/ms-Russian.min.js"/>
             <script type="text/javascript" src="/resources/keyboard/layouts/ms-Arabic.min.js"/>
             <script type="text/javascript" src="/resources/keyboard/layouts/ms-Hebrew.min.js"/>
-            <script type="text/javascript">
-                <xsl:text disable-output-escaping="yes">
-                    <![CDATA[
-                $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip({ container: 'body' })
-                
-                $('.keyboard').keyboard({
-                openOn: null,
-                stayOpen: false,
-                alwaysOpen: false,
-                autoAccept: true,
-                usePreview: false,
-                initialFocus: true,
-                rtl : true,
-                layout: 'syriac-phonetic',
-                hidden: function(event, keyboard, el){
-                //  keyboard.destroy();
-                }
-                });
-                
-                $('.keyboard-select').click(function () {
-                var keyboardID = '#' + $(this).data("keyboard-id")
-                var kb = $(keyboardID).getkeyboard();
-                //var kb = $('#searchField').getkeyboard();
-                // change layout based on link ID
-                kb.options.layout = this.id
-                // open keyboard if layout is different, or time from it last closing is &gt; 200 ms
-                if (kb.last.layout !== kb.options.layout || (new Date().getTime() - kb.last.eventTime) < 200) {
-                kb.reveal();
-                }
-                });
-                //Change fonts
-                $('.swap-font').on('click', function(){
-                var selectedFont = $(this).data("font-id")
-                $('.selectableFont').not('.syr').css('font-family', selectedFont);
-                $("*:lang(syr)").css('font-family', selectedFont)
-                });
-                
-                })]]>
-                </xsl:text>
-            </script>
+            <script type="text/javascript" src="/resources/js/keyboard.js" />
         </head>
     </xsl:template>
     <xsl:template name="genericNav">

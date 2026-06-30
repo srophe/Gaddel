@@ -4798,42 +4798,40 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
     dell'applicazione di un elemento, attributo, o valore di attributo.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-04" xml:lang="de">enthält eine kurze
   Beschreibung des Objekts, das von seinem übergeordneten Element
   annotiert wird, üblicherweise einem Dokumentationselement oder einer
-  Einheit.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.labelLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><textNode/><elementRef key="label" minOccurs="0" maxOccurs="1"/><elementRef key="persName" minOccurs="0" maxOccurs="1"/><elementRef key="placeName" minOccurs="0" maxOccurs="1"/><elementRef key="title" minOccurs="0" maxOccurs="1"/></sequence></content><constraintSpec ident="noteGrp-desc-values" scheme="schematron">
-              <constraint>
-                <sch:rule context="tei:noteGrp[@type='abstract']/tei:desc">
-                  <sch:assert test=". = 'Abstract'">Text node must be "Abstract".</sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:noteGrp[@type='contents']/tei:desc">
-                  <sch:assert test=". = 'Contents'">Text node must be "Contents".</sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:noteGrp[@type='excerpts']/tei:desc">
-                  <sch:assert test=". = 'Excerpts'">Text node must be "Excerpts".</sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:noteGrp[@type='disambiguation']/tei:desc">
-                  <sch:assert test=". = 'Disambiguation'">Text node must be
-                    "Disambiguation".</sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:noteGrp[@type='excerpts']/tei:desc">
-                  <sch:assert test=". = 'Excerpts'">Text node must be "Excerpt".</sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:noteGrp[@type='explicit']/tei:desc">
-                  <sch:assert test=". = 'Explicit'">Text node must be "Explicit".</sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:noteGrp[@type='incipit']/tei:desc">
-                  <sch:assert test=". = 'Incipit'">Text node must be "Incipit".</sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:noteGrp[@type='prologue']/tei:desc">
-                  <sch:assert test=". = 'Prologue'">Text node must be "Prologue".</sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:noteGrp[@type='scope']/tei:desc">
-                  <sch:assert test=". = 'Scope'">Text node must be "Scope".</sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:noteGrp[@type='versions']/tei:desc">
-                  <sch:assert test=". = 'Ancient Versions'">Text node must be
-                    "Versions".</sch:assert>
-                </sch:rule>
-              </constraint>
-            </constraintSpec><constraintSpec ident="lang-on-desc" scheme="schematron">
+  Einheit.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.labelLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><textNode/><elementRef key="label" minOccurs="0" maxOccurs="1"/><elementRef key="persName" minOccurs="0" maxOccurs="1"/><elementRef key="placeName" minOccurs="0" maxOccurs="1"/><elementRef key="ref" minOccurs="0" maxOccurs="1"/><elementRef key="title" minOccurs="0" maxOccurs="1"/></sequence></content><constraintSpec ident="noteGrp-desc-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:noteGrp[@type='abstract']/tei:desc">
+                <sch:assert test=". = 'Abstract'">Text node must be "Abstract".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='contents']/tei:desc">
+                <sch:assert test=". = 'Contents'">Text node must be "Contents".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='excerpts']/tei:desc">
+                <sch:assert test=". = 'Excerpts'">Text node must be "Excerpts".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='disambiguation']/tei:desc">
+                <sch:assert test=". = 'Disambiguation'">Text node must be "Disambiguation".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='excerpts']/tei:desc">
+                <sch:assert test=". = 'Excerpts'">Text node must be "Excerpt".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='explicit']/tei:desc">
+                <sch:assert test=". = 'Explicit'">Text node must be "Explicit".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='incipit']/tei:desc">
+                <sch:assert test=". = 'Incipit'">Text node must be "Incipit".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='prologue']/tei:desc">
+                <sch:assert test=". = 'Prologue'">Text node must be "Prologue".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='scope']/tei:desc">
+                <sch:assert test=". = 'Scope'">Text node must be "Scope".</sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:noteGrp[@type='versions']/tei:desc">
+                <sch:assert test=". = 'Ancient Versions'">Text node must be "Versions".</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><constraintSpec ident="lang-on-desc" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:body//tei:desc">
                 <sch:assert test="./@xml:lang">
@@ -5101,53 +5099,69 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
     dans les glossaires, il marque le terme qui est défini.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene un concepto o enunciado asociado con un ítem en
     una lista; en un glosario marca el término que se define.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene l'etichetta associata ad una voce in una lista;
     nei glossari indica il dermine che viene definito</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2017-06-25" xml:lang="de">enthält ein Label oder eine Überschrift zur 
-    Identifikation eines Textteils, insbesondere in einer Liste oder einem Glossar.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.labelLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="true"><textNode/><elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/><elementRef key="ptr" minOccurs="0" maxOccurs="1"/><elementRef key="title" minOccurs="0" maxOccurs="1"/></sequence></content><constraintSpec ident="ptr-with-label" scheme="schematron">
-              <constraint>
-                <sch:rule context="tei:label[not(ancestor::tei:relation)]">
-                  <sch:report test="tei:ptr"> A &lt;ptr&gt; child of &lt;label&gt; should only be
-                    used when &lt;label&gt; is the descendant of &lt;relation&gt;. </sch:report>
-                </sch:rule>
-              </constraint>
-            </constraintSpec><constraintSpec ident="label-values" scheme="schematron">
-              <constraint>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
-                  <sch:assert test="starts-with(., 'Bekker')"> This text should begin "Bekker".
-                  </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
-                  <sch:assert test="starts-with(., 'The Laurentian Library')"> This text should
-                    begin "The Laurentian Library". </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
-                  <sch:assert test="starts-with(., 'Fichtner')"> This text should begin "Fichtner".
-                  </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']">
-                  <sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')"> This text
-                    should begin "Hill Museum and Manuscript Library". </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
-                  <sch:assert test="starts-with(., 'Kühn')"> This text should begin "Kühn".
-                  </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']">
-                  <sch:assert test="starts-with(., 'Rosen')"> This text should begin "Rosen".
-                  </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
-                  <sch:assert test="starts-with(., 'Takahashi')"> This text should begin
-                    "Takahashi". </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='UCL']">
-                  <sch:assert test="starts-with(., 'University College London')"> This text should
-                    begin "University College London". </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
-                  <sch:assert test="starts-with(., 'Vatican Apostolic Library')"> This text should
-                    begin "The Vatican Apostolic Library". </sch:assert>
-                </sch:rule>
-              </constraint>
-            </constraintSpec><attList><attDef ident="subtype" mode="change">
+    Identifikation eines Textteils, insbesondere in einer Liste oder einem Glossar.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.labelLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><textNode/><elementRef key="idno" minOccurs="0" maxOccurs="unbounded"/><elementRef key="ptr" minOccurs="0" maxOccurs="1"/><elementRef key="title" minOccurs="0" maxOccurs="1"/></sequence></content><constraintSpec ident="ptr-with-label" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:label[not(ancestor::tei:relation)]">
+                <sch:report test="tei:ptr">
+                  A &lt;ptr&gt; child of &lt;label&gt; should only be used
+                  when &lt;label&gt; is the descendant of &lt;relation&gt;.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><constraintSpec ident="label-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
+                <sch:assert test="starts-with(., 'Bekker')">
+                  This text should begin "Bekker". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
+                <sch:assert test="starts-with(., 'The Laurentian Library')">
+                  This text should begin "The Laurentian Library". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
+                <sch:assert test="starts-with(., 'Fichtner')">
+                  This text should begin "Fichtner". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']">
+                <sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')">
+                  This text should begin "Hill Museum and Manuscript Library". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
+                <sch:assert test="starts-with(., 'Kühn')">
+                  This text should begin "Kühn". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']">
+                <sch:assert test="starts-with(., 'Rosen')">
+                  This text should begin "Rosen". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
+                <sch:assert test="starts-with(., 'Takahashi')">
+                  This text should begin "Takahashi". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='UCL']">
+                <sch:assert test="starts-with(., 'University College London')">
+                  This text should begin "University College London". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
+                <sch:assert test="starts-with(., 'Vatican Apostolic Library')">
+                  This text should begin "The Vatican Apostolic Library". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Yale']">
+                <sch:assert test="starts-with(., 'New Haven, Yale University, Beinecke Library')">
+                  This text should begin "New Haven, Yale University, Beinecke Library". 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><attList><attDef ident="subtype" mode="change">
               <valList type="closed">
                 <valItem ident="book"/>
                 <valItem ident="collection"/>
@@ -7540,59 +7554,70 @@ element in the TEI header.
           </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD24">2.2.4. Publication, Distribution, Licensing, etc.</ref>
   </listRef></elementSpec><elementSpec rend="add" module="header" xml:id="gi-idno" ident="idno"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2010-04-30" xml:lang="en">identifier</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2009-01-05" xml:lang="fr">identifiant</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">식별 숫자</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">識別代碼</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-11-17" xml:lang="de">Identifikator</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">número identificativo</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">numero identificatore</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2010-04-30" xml:lang="en">supplies any form of identifier used to identify some object, such as a bibliographic item, a person, a title, an organization, etc. in a standardized way.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-02-15" xml:lang="fr">donne un identifiant standardisé qui peut être utilisé pour identifier une référence bibliographique, une personne, un titre d'ouvrage ou une organisation.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">서지 정보 항목을 식별하기 위해 사용되는 표준 또는 비표준 숫자를 제시한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">提供任何用來識別書目項目的標準或非標準編碼。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-02-15" xml:lang="ja">書誌項目、人物、タイトル、組織など、何らかのオブジェクトを標準化された方法で識別するために使用される任意の形式の識別子を提供する。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2016-11-17" xml:lang="de">enthält einen frei wählbaren Identifikator, der ein beliebiges Objekt, z. B. eine bibliografische Einheit, eine Person, einen Titel, eine Organisation, in standardisierter Weise identifiziert.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2021-02-15" xml:lang="es">proporciona un identificador estándar para un objecto; se usa parla la identificación de, por ejemplo, un elemento bibliográfico, una persona, un título o una organización.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2020-10-25" xml:lang="it">fornisce un identificatore, standard o meno, usato per identificare un oggetto, come per esempio un'unità bibliografica, una persona, un titolo, un'organizzazione, ecc.</desc><classes><memberOf key="att.global"/><memberOf key="att.typed"/><memberOf key="model.nameLike"/></classes><content><textNode/></content><constraintSpec ident="work-idno-types" scheme="schematron">
-              <constraint>
-                <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
-                  <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')"> The only acceptable
-                    values for @type on a work &lt;idno&gt; are "deprecated", "number", "URI" or
-                    "URN". </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[1]">
-                  <sch:let name="workURI" value="substring-before(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '/tei')"/>
-                  <sch:assert test=". = $workURI"> The text node of this &lt;idno&gt; element must
-                    be <sch:value-of select="$workURI"/>. </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
-                  <sch:assert test=". = ('accession-number', 'catalog-number', 'number', 'project-number', 'shelfmark', 'URL')"> In the context of manuscripts, this @type value may only be
-                    "accession-number", "number", "project-number", or "shelfmark". </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker' or @subtype='CPG' or @subtype='Fichtner']/@type">
-                  <sch:assert test=". = 'number'"> When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", the @type value must be "number".
-                  </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL']/@type">
-                  <sch:assert test=". = 'shelfmark'"> When an &lt;indo&gt; has
-                      @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", the @type
-                    value must be "shelfmark". </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='HMML']/@type">
-                  <sch:assert test=". = 'project-number'"> When an &lt;indo&gt; has
-                      @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", the @type
-                    value must be "project-number". </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Rosen']/@type">
-                  <sch:assert test=". = 'catalog-number'"> When an &lt;indo&gt; has
-                      @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", the @type
-                    value must be "catalog-number". </sch:assert>
-                </sch:rule>
-              </constraint>
-            </constraintSpec><constraintSpec ident="idno-subtypes" scheme="schematron">
-              <constraint>
-                <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
-                  <sch:assert test=". = ('Bekker', 'BHO', 'BHS', 'CPG', 'Fichtner', 'Kühn', 'Takahashi')"> The
-                    only acceptable values for @subtype on a work &lt;idno&gt; with @type="number"
-                    are "Bekker", "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi".
-                  </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype" role="warning">
-                  <sch:assert test=". = ('BAV', 'BL', 'BML', 'BNF', 'Berlin', 'Cambridge', 'Crawford', 'Haddad-Isaac', 'Harris', 'HMML', 'Leiden', 'Mingana', 'Rosen', 'SOAH', 'Sachau', 'Sinai', 'UCL')"> In the context of manuscripts, this @subtype value may only be "BAV" (for the
-                    Vatican Apostolic Library), "BML" (for The Laurentian Library), "Berlin",
-                    "Cambridge", "Crawford", "Haddad-Isaac", "Harris", "HMML", "Leiden", "Mingana",
-                    "Rosen", "SOAH", "Sachau", or "UCL". If none of these options is correct, please
-                    write in an appropriate value and the warning message will prompt editors to
-                    ensure that it is the correct value. </sch:assert>
-                </sch:rule>
-              </constraint>
-            </constraintSpec><constraintSpec ident="idno-uri" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
+                <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')">
+                  The only acceptable values for @type on a work &lt;idno&gt; are "deprecated", "number", 
+                  "URI" or "URN". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[1]">
+                <sch:let name="workURI" value="substring-before(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '/tei')"/>
+                <sch:assert test=". = $workURI">
+                  The text node of this &lt;idno&gt; element must be <sch:value-of select="$workURI"/>. 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@type">
+                <sch:assert test=". = ('accession-number', 'catalog-number', 'number', 'project-number', 'shelfmark', 'URL')">
+                  In the context of manuscripts, this @type value may only be "accession-number", "number",
+                  "project-number", or "shelfmark". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker' or @subtype='CPG' or @subtype='Fichtner']/@type">
+                <sch:assert test=". = 'number'">
+                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                  the @type value must be "number".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='BAV' or @subtype='BML' or @subtype='UCL']/@type">
+                <sch:assert test=". = 'shelfmark'">
+                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                  the @type value must be "shelfmark".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='HMML']/@type">
+                <sch:assert test=". = 'project-number'">
+                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                  the @type value must be "project-number".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Rosen']/@type">
+                <sch:assert test=". = 'catalog-number'">
+                  When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
+                  the @type value must be "catalog-number".
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><constraintSpec ident="idno-subtypes" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
+                <sch:assert test=". = ('Bekker', 'BHO', 'BHS', 'CPG', 'Fichtner', 'Kühn', 'Takahashi')">
+                  The only acceptable values for @subtype on a work &lt;idno&gt; with @type="number" are 
+                  "Bekker", "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno/@subtype" role="warning">
+                <sch:assert test=". = ('BAV', 'BL', 'BML', 'BNF', 'Berlin', 'Cambridge', 'Crawford', 'Haddad-Isaac', 'Harris', 'HMML', 'Leiden', 'Mingana', 'Rosen', 'SOAH', 'Sachau', 'Sinai', 'UCL', 'Yale')">
+                  In the context of manuscripts, this @subtype value may only be 
+                  "BAV" (for the Vatican Apostolic Library), "BML" (for The Laurentian Library), 
+                  "Berlin", "Cambridge", "Crawford", "Haddad-Isaac", "Harris", "HMML", 
+                  "Leiden", "Mingana", "Rosen", "SOAH", "Sachau", "UCL", or "Yale". 
+                  If none of these options is correct, please write in an appropriate
+                  value and the warning message will prompt editors to ensure that it is the correct value.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><constraintSpec ident="idno-uri" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:publicationStmt/tei:idno[@type='URI']/text()">
                 <sch:let name="fileNo" value="replace(document-uri(/), '.*?(\d{1,5}).xml', '$1')"/>
@@ -7618,32 +7643,32 @@ element in the TEI header.
               </sch:rule>
             </constraint>
           </constraintSpec><attList><attDef ident="subtype" mode="change" usage="opt">
-                <valList mode="replace" type="semi">
-                  <valItem ident="BAV"/>
-                  <valItem ident="Bekker"/>
-                  <valItem ident="Berlin"/>
-                  <valItem ident="BHS"/>
-                  <valItem ident="BHO"/>
-                  <valItem ident="BL"/>
-                  <valItem ident="BML"/>
-                  <valItem ident="BNF"/>
-                  <valItem ident="Cambridge"/>
-                  <valItem ident="CPG"/>
-                  <valItem ident="Crawford"/>
-                  <valItem ident="Fichtner"/>
-                  <valItem ident="Haddad-Isaac"/>
-                  <valItem ident="Harris"/>
-                  <valItem ident="Kühn"/>
-                  <valItem ident="Leiden"/>
-                  <valItem ident="Mingana"/>
-                  <valItem ident="Rosen"/>
-                  <valItem ident="Takashi"/>
-                  <valItem ident="Sachau"/>
-                  <valItem ident="SOAH"/>
-                  <valItem ident="Sinai"/>
-                </valList>
-              </attDef><attDef ident="type" mode="change" rend="change" usage="req"><desc rend="replace">The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier
-                  contained in the text value.</desc><datatype xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+              <valList mode="replace" type="semi">
+                <valItem ident="BAV"/>
+                <valItem ident="Bekker"/>
+                <valItem ident="Berlin"/>
+                <valItem ident="BHS"/>
+                <valItem ident="BHO"/>
+                <valItem ident="BL"/>
+                <valItem ident="BML"/>
+                <valItem ident="BNF"/>
+                <valItem ident="Cambridge"/>
+                <valItem ident="CPG"/>
+                <valItem ident="Crawford"/>
+                <valItem ident="Fichtner"/>
+                <valItem ident="Haddad-Isaac"/>
+                <valItem ident="Harris"/>
+                <valItem ident="Kühn"/>
+                <valItem ident="Leiden"/>
+                <valItem ident="Mingana"/>
+                <valItem ident="Rosen"/>
+                <valItem ident="Takashi"/>
+                <valItem ident="Sachau"/>
+                <valItem ident="SOAH"/>
+                <valItem ident="Sinai"/>
+                <valItem ident="Yale"/>
+              </valList>
+            </attDef><attDef ident="type" mode="change" rend="change" usage="req"><desc rend="replace">The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier contained in the text value.</desc><datatype xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
         <dataRef key="teidata.enumerated"/>
       </datatype><valList type="closed"><valItem ident="accession-number"/><valItem ident="catalog-number"/><valItem ident="deprecated"/><valItem ident="number"/><valItem ident="project-number"/><valItem ident="shelfmark"/><valItem ident="URI"/><valItem ident="URL"/><valItem ident="URN"/></valList></attDef></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="und">
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-idno-egXML-ei">
@@ -8806,13 +8831,45 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
     
     
   </listRef></elementSpec><elementSpec rend="add" module="namesdates" xml:id="gi-relation" ident="relation"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2005-01-14" xml:lang="en">relationship</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">관련성</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">人際關係</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-06-12" xml:lang="fr">relation</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">relación</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">relazione</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2013-04-12" xml:lang="en">describes any kind of relationship or linkage amongst a specified group of places, events, persons, objects or other items.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-12-20" xml:lang="ko">명시된 참여자군 사이에 관련성 또는 연결 종류를 기술한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-02" xml:lang="zh-TW">描述在特定團體中，參與者彼此之間的關係或關聯。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2008-04-05" xml:lang="ja">指定された参加者グループ間の関連性の種類を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2009-03-19" xml:lang="fr">décrit tout type de relation ou de lien à l'intérieur d'un groupe donné de participants.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-05-04" xml:lang="es">describe cualquier tipo de relación o vínculo entre un determinato grupo de personas.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" versionDate="2007-01-21" xml:lang="it">descrive una qualsiasi relazione o legame all'interno di un determinato gruppo di persone</desc><classes><memberOf key="att.datable.w3c"/><memberOf key="att.global"/><memberOf key="att.canonical"/><memberOf key="att.typed"/></classes><content><elementRef key="desc" minOccurs="1" maxOccurs="1"/></content><constraintSpec ident="passive-values" scheme="schematron">
-              <constraint>
-                <sch:rule context="tei:body//tei:relation">
-                  <sch:report test="contains(., '\s')"> The @passive attribute may only take one
-                    value. </sch:report>
-                </sch:rule>
-              </constraint>
-            </constraintSpec><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" ident="ref-or-key-or-name" scheme="schematron" xml:lang="en">
+            <constraint>
+              <sch:rule context="tei:body//tei:relation/@passive">
+                <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
+                <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
+                <sch:report test="matches(., '\s')">
+                  The @passive attribute may only take one value.
+                </sch:report>
+                <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
+                  The @passive attribute must either point to an existing @xml:id in this
+                  document starting with "#" or point to a URI/URL outside of this document 
+                  starting with "http".
+                </sch:assert>
+                <sch:assert test="                   not(starts-with(., '#'))                   or substring(.,2) =                   root(.)//tei:body//tei:bibl/@xml:id                   ">
+                  This @passive attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
+                  include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><constraintSpec ident="active-values" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:body//tei:relation/@active">
+                <sch:let name="IDValues" value="root(.)//tei:body//tei:bibl/@xml:id"/>
+                <sch:let name="IDPtrValues" value="for $i in $IDValues return concat('#', $i)"/>
+                <sch:report test="matches(., '\s')">
+                  The @active attribute may only take one value.
+                </sch:report>
+                <sch:assert test="starts-with(., '#') or starts-with(., 'http')">
+                  The @active attribute must either point to an existing @xml:id in this
+                  document starting with "#" or point to a URI/URL outside of this document 
+                  starting with "http".
+                </sch:assert>
+                <sch:assert test="                   not(starts-with(., '#'))                   or substring(.,2) =                   root(.)//tei:body//tei:bibl/@xml:id                   ">
+                  This @active attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
+                  include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
+                </sch:assert>
+                
+              </sch:rule>
+            </constraint>
+          </constraintSpec><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" ident="ref-or-key-or-name" scheme="schematron" xml:lang="en">
     <constraint>
       <sch:rule context="tei:relation">
         <sch:assert test="@ref or @key or @name">One of the attributes @name, @ref or @key must be supplied</sch:assert>
