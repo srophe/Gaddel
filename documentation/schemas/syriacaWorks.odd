@@ -1117,9 +1117,41 @@
                 according to standard schemas or in standard reference works. These <gi>idno</gi>
                 elements must have a <att>type</att> attribute value of <q>number</q>. Their
                 <att>subtype</att> attribute specifies the reference work or identifier schema to
-                which the refrence number belongs. The following sources are permitted:
-                <q>Bekker</q>, "BHO", "BHS", "CPG", "Fichtner", "Kühn", and "Takahashi".
-                <!-- DLS can you help please? -->
+                which the refrence number belongs. The following sources are currently permitted:
+                <table rows="8" cols="2">
+                  <row role="label">
+                    <cell role="label"><att>subtype</att></cell>
+                    <cell role="label">Reference Work</cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">Bekker</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">BHO</cell>
+                    <cell role="data"><foreign xml:lang="la">Bibliotheca Hagiographica Orientalis</foreign></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">BHS</cell>
+                    <cell role="data"><foreign xml:lang="la">Bibliotheca Hagiographica Syriaca</foreign></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">CPG</cell>
+                    <cell role="data"><foreign xml:lang="la">Clavis Patrum Graecorum</foreign></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">Fichtner</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">Kühn</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                  <row role="data">
+                    <cell role="data">Takahashi</cell>
+                    <cell role="data"><!-- DAM, please fill in --></cell>
+                  </row>
+                </table>
               </p>
               <p> Example: <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <idno type="number" subtype="BHS">347</idno>
