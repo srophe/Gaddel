@@ -714,7 +714,6 @@
             </div>
             <div xml:id="allusionsWorks">
               <head>Allusions to Literary Works (<gi>title</gi>/<att>ref</att>)</head>
-              <!-- DLS I need the list of allowed elements please. -->
               <p>References to texts or literary works can appear in <gi>desc</gi>, <gi>quote</gi>,
                 or <gi>note</gi> elements. In these cases, these works should be linked to
                 Syriaca.org URIs.</p>
