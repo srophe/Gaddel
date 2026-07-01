@@ -6133,15 +6133,15 @@ psychological significance.
                   <sch:assert test="@source or @resp"> The &lt;editor&gt; element for the main work
                     &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
                   </sch:assert>
+                  <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))">
+                    This &lt;editor&gt; element must take a @ref attribute 
+                    with a Syriaca.org person URI which reqires 
+                    the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                  </sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:body/child::tei:bibl/child::tei:editor/@role">
                   <sch:assert test=". = 'scribe' or . = 'translator'">
                     The only @role values allowed on this &lt;editor&gt; element are "scribe" or "translator".
-                  </sch:assert>
-                  <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
-                    This &lt;editor&gt; element must take a @ref attribute 
-                    with a Syriaca.org person URI which reqires 
-                    the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
                   </sch:assert>
                 </sch:rule>
               </constraint>
