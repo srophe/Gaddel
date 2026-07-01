@@ -2303,6 +2303,7 @@
                 <elementRef key="label" minOccurs="0" maxOccurs="1"/>
                 <elementRef key="persName" minOccurs="0" maxOccurs="1"/>
                 <elementRef key="placeName" minOccurs="0" maxOccurs="1"/>
+                <elementRef key="ref" minOccurs="0" maxOccurs="1"/>
                 <elementRef key="title" minOccurs="0" maxOccurs="1"/>
               </sequence>
             </content>
