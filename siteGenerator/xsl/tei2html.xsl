@@ -1000,7 +1000,57 @@
                     <!-- Relationships -->
                     <!-- Needs testing and work -->
                     <xsl:for-each-group select="t:listRelation/t:relation" group-by="@ref">
-                        <xsl:apply-templates select="."/>    
+                        <div class="tei-listRelation">
+                            <xsl:choose>
+                                <xsl:when test="current-grouping-key() = 'syriaca:commemorates'">
+                                    <xsl:variable name="total" select="count(current-group())"/>
+                                    <span class="tei-relation">
+                                        This work commemorates 
+                                        <xsl:for-each select="current-group()">
+                                            <xsl:apply-templates mode="plain"/>
+                                            <xsl:choose>
+                                                <xsl:when test="position() = ($total - 1)"><xsl:text>; and </xsl:text></xsl:when>
+                                                <xsl:when test="position() = last()"/>
+                                                <xsl:when test="position() != last()"><xsl:text>; </xsl:text></xsl:when>
+                                            </xsl:choose>
+                                        </xsl:for-each>
+                                    </span>
+                                </xsl:when>
+                                <xsl:when test="current-grouping-key() = 'skos:broader'">
+                                    <span class="tei-relation">
+                                        This work is one version within 
+                                        <xsl:for-each select="current-group()">
+                                            <xsl:for-each select="t.desc">
+                                                <xsl:apply-templates select="."/>
+                                                <xsl:if test="position != last()">, </xsl:if>
+                                            </xsl:for-each>
+                                        </xsl:for-each>
+                                    </span>
+                                </xsl:when>
+                                <xsl:when test="current-grouping-key() = 'syriaca:different-from'">
+                                    <span class="tei-relation">
+                                        Not the same conceptual work as 
+                                        <xsl:for-each select="current-group()">
+                                            <xsl:for-each select="t.desc">
+                                                <xsl:apply-templates select="."/>
+                                                <xsl:if test="position != last()">, </xsl:if>
+                                            </xsl:for-each>
+                                        </xsl:for-each>
+                                    </span>
+                                </xsl:when>
+                                <xsl:when test="current-grouping-key() = 'dcterms:source'">
+                                    <span class="tei-relation">
+                                        Based on 
+                                        <xsl:for-each select="current-group()">
+                                            <xsl:for-each select="t.desc">
+                                                <xsl:apply-templates select="."/>
+                                                <xsl:if test="position != last()">, </xsl:if>
+                                            </xsl:for-each>
+                                        </xsl:for-each>
+                                    </span>
+                                </xsl:when>
+                            </xsl:choose>
+                        </div>
                     </xsl:for-each-group>
                     
                     <xsl:for-each-group select="t:noteGrp[@type = ('incipit','prologue','exerpt','excerpts','explicit')]" group-by="@type">
