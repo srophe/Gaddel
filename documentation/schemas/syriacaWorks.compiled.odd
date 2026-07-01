@@ -5818,35 +5818,35 @@ entre les Romains.</label>
                 </sch:rule>
                 <sch:rule context="tei:body//tei:noteGrp[@type='content']/tei:note">
                   <sch:assert test="@type='content'"> This &lt;note&gt; must contain a @type
-                    attribute with value "abstract". </sch:assert>
+                    attribute with value "content". </sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:body//tei:noteGrp[@type='disambiguation']/tei:note">
                   <sch:assert test="@type='disambiguation'"> This &lt;note&gt; must contain a @type
-                    attribute with value "abstract". </sch:assert>
+                    attribute with value "disambiguation". </sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:body//tei:noteGrp[@type='exerpts']/tei:note">
                   <sch:assert test="@type='exerpt'"> This &lt;note&gt; must contain a @type
-                    attribute with value "abstract". </sch:assert>
+                    attribute with value "exerpt". </sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:body//tei:noteGrp[@type='explicit']/tei:note">
                   <sch:assert test="@type='explicit'"> This &lt;note&gt; must contain a @type
-                    attribute with value "abstract". </sch:assert>
+                    attribute with value "explicit". </sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:body//tei:noteGrp[@type='incipit']/tei:note">
                   <sch:assert test="@type='incipit'"> This &lt;note&gt; must contain a @type
-                    attribute with value "abstract". </sch:assert>
+                    attribute with value "incipit". </sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:body//tei:noteGrp[@type='prologue']/tei:note">
                   <sch:assert test="@type='prologue'"> This &lt;note&gt; must contain a @type
-                    attribute with value "abstract". </sch:assert>
+                    attribute with value "prologue". </sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:body//tei:noteGrp[@type='scope']/tei:note">
                   <sch:assert test="@type='scope'"> This &lt;note&gt; must contain a @type attribute
-                    with value "abstract". </sch:assert>
+                    with value "scope". </sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:body//tei:noteGrp[@type='versions']/tei:note">
                   <sch:assert test="@type='version'"> This &lt;note&gt; must contain a @type
-                    attribute with value "abstract". </sch:assert>
+                    attribute with value "version". </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec><constraintSpec ident="quotes-in-notes" scheme="schematron">
