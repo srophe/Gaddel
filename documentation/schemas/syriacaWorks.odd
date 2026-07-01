@@ -3036,7 +3036,10 @@
               </constraint>
             </constraintSpec>
             <attList>
+              <attDef ident="active" mode="change" usage="req"/>
               <attDef ident="name" mode="delete"/>
+              <attDef ident="mutual" mode="delete"/>
+              <attDef ident="passive" mode="change" usage="req"/>
               <attDef ident="ref" mode="change" usage="req">
                 <valList type="closed">
                   <valItem ident="dcterms:isPartOf"/>
