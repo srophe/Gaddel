@@ -1967,13 +1967,13 @@
           
           
           <elementSpec ident="author" module="core" mode="change">
-            <constraintSpec ident="ref-on-author" scheme="schematron">
+            <constraintSpec ident="ana-on-author" scheme="schematron">
               <constraint>
-                <sch:rule context="tei:body/child::tei:bibl/child::tei:author">
-                  <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
-                    role="error"> This &lt;author&gt; element must take a @ref attribute with a
-                    Syriaca.org person URI which reqires the form 'http://syriaca.org/person/{\d+}'
-                    (where {\d+} is a number). </sch:assert>
+                <sch:rule context="tei:body/child::tei:bibl/child::tei:author/@ana">
+                  <sch:assert test=". = 'attributed' or . = 'disputed' or . = 'pseudo'">
+                    In this context, the acceptable @ana attributes are "attributed",
+                    "disputed", or "pseudo".
+                  </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
@@ -1989,6 +1989,10 @@
                   <sch:assert test="@source or @resp"> The &lt;author&gt; element for the main work
                     &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
                   </sch:assert>
+                  <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
+                    role="error"> This &lt;author&gt; element must take a @ref attribute with a
+                    Syriaca.org person URI which reqires the form 'http://syriaca.org/person/{\d+}'
+                    (where {\d+} is a number). </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
@@ -2413,13 +2417,12 @@
           
           
           <elementSpec ident="editor" module="core" mode="change">
-            <constraintSpec ident="ref-on-editor" scheme="schematron">
+            <constraintSpec ident="ana-on-editor" scheme="schematron">
               <constraint>
-                <sch:rule context="tei:body/child::tei:bibl/child::tei:editor">
-                  <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
-                    This &lt;editor&gt; element must take a @ref attribute 
-                    with a Syriaca.org person URI which reqires 
-                    the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                <sch:rule context="tei:body/child::tei:bibl/child::tei:editor/@ana">
+                  <sch:assert test=". = 'attributed' or . = 'disputed' or . = 'pseudo'">
+                    In this context, the acceptable @ana attribute values are "attributed",
+                    "disputed", or "pseudo".
                   </sch:assert>
                 </sch:rule>
               </constraint>
@@ -2441,6 +2444,11 @@
                 <sch:rule context="tei:body/child::tei:bibl/child::tei:editor/@role">
                   <sch:assert test=". = 'scribe' or . = 'translator'">
                     The only @role values allowed on this &lt;editor&gt; element are "scribe" or "translator".
+                  </sch:assert>
+                  <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))" role="error">
+                    This &lt;editor&gt; element must take a @ref attribute 
+                    with a Syriaca.org person URI which reqires 
+                    the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
                   </sch:assert>
                 </sch:rule>
               </constraint>

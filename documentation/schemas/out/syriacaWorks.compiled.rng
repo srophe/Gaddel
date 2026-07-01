@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-07-01T00:47:06Z. . 
+Schema generated from ODD source 2026-07-01T00:59:35Z. . 
 TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
   
@@ -1803,15 +1803,15 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-author-ref-on-author-constraint-rule-68">
+                  id="syriacaWorks-author-ana-on-author-constraint-rule-68">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
-                      context="tei:body/child::tei:bibl/child::tei:author">
-               <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
-                           role="error"> This &lt;author&gt; element must take a @ref attribute with a
-                    Syriaca.org person URI which reqires the form 'http://syriaca.org/person/{\d+}'
-                    (where {\d+} is a number). </sch:assert>
+                      context="tei:body/child::tei:bibl/child::tei:author/@ana">
+               <sch:assert test=". = 'attributed' or . = 'disputed' or . = 'pseudo'">
+                    In this context, the acceptable @ana attributes are "attributed",
+                    "disputed", or "pseudo".
+                  </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
@@ -1830,6 +1830,10 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                <sch:assert test="@source or @resp"> The &lt;author&gt; element for the main work
                     &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
                   </sch:assert>
+               <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
+                           role="error"> This &lt;author&gt; element must take a @ref attribute with a
+                    Syriaca.org person URI which reqires the form 'http://syriaca.org/person/{\d+}'
+                    (where {\d+} is a number). </sch:assert>
             </sch:rule>
          </pattern>
          <ref name="tei_att.global.attributes"/>
@@ -1855,16 +1859,14 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          </interleave>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-editor-ref-on-editor-constraint-rule-70">
+                  id="syriacaWorks-editor-ana-on-editor-constraint-rule-70">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
-                      context="tei:body/child::tei:bibl/child::tei:editor">
-               <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
-                           role="error">
-                    This &lt;editor&gt; element must take a @ref attribute 
-                    with a Syriaca.org person URI which reqires 
-                    the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                      context="tei:body/child::tei:bibl/child::tei:editor/@ana">
+               <sch:assert test=". = 'attributed' or . = 'disputed' or . = 'pseudo'">
+                    In this context, the acceptable @ana attribute values are "attributed",
+                    "disputed", or "pseudo".
                   </sch:assert>
             </sch:rule>
          </pattern>
@@ -1892,6 +1894,12 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                       context="tei:body/child::tei:bibl/child::tei:editor/@role">
                <sch:assert test=". = 'scribe' or . = 'translator'">
                     The only @role values allowed on this &lt;editor&gt; element are "scribe" or "translator".
+                  </sch:assert>
+               <sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
+                           role="error">
+                    This &lt;editor&gt; element must take a @ref attribute 
+                    with a Syriaca.org person URI which reqires 
+                    the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
                   </sch:assert>
             </sch:rule>
          </pattern>

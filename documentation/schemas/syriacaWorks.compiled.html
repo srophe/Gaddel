@@ -350,11 +350,10 @@ element TEI
  <span class="element">&lt;orgName <span class="attribute">key</span>="<span class="attributevalue">BBC</span>"&gt;</span>British Broadcasting
    Corporation<span class="element">&lt;/orgName&gt;</span>: Radio 3 Network
 <span class="element">&lt;/author&gt;</span></div></td></tr><tr><td class="wovenodd-col1"><span xml:lang="en" lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><div class="pre">
-&lt;sch:rule context="tei:body/child::tei:bibl/child::tei:author"&gt;
-&lt;sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
- role="error"&gt; This &lt;author&gt; element must take a @ref attribute with a
- Syriaca.org person URI which reqires the form 'http://syriaca.org/person/{\d+}'
- (where {\d+} is a number). &lt;/sch:assert&gt;
+&lt;sch:rule context="tei:body/child::tei:bibl/child::tei:author/@ana"&gt;
+&lt;sch:assert test=". = 'attributed' or . = 'disputed' or . = 'pseudo'"&gt; In this context, the acceptable @ana attributes are "attributed",
+ "disputed", or "pseudo".
+&lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span xml:lang="en" lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><div class="pre">
 &lt;sch:rule context="tei:body/child::tei:bibl/child::tei:author"&gt;
 &lt;sch:report test="tei:persName"&gt; This &lt;author&gt; element allows only a text
@@ -365,6 +364,10 @@ element TEI
 &lt;sch:assert test="@source or @resp"&gt; The &lt;author&gt; element for the main work
  &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
 &lt;/sch:assert&gt;
+&lt;sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
+ role="error"&gt; This &lt;author&gt; element must take a @ref attribute with a
+ Syriaca.org person URI which reqires the form 'http://syriaca.org/person/{\d+}'
+ (where {\d+} is a number). &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span xml:lang="en" lang="en" class="label">Content model</span></td><td class="wovenodd-col2"><pre id="index.xml-eg-d30e3989" class="pre_eg cdata">
 &lt;content&gt;
  &lt;sequence minOccurs="1" maxOccurs="1"
@@ -1173,11 +1176,9 @@ element editionStmt { tei_att.global.attributes, tei_edition }<a href="#index.xm
  <span class="element">&lt;/editor&gt;</span>
  <span class="element">&lt;idno <span class="attribute">type</span>="<span class="attributevalue">URI</span>"&gt;</span>http://syriaca.org/geo<span class="element">&lt;/idno&gt;</span>
 <span class="element">&lt;/seriesStmt&gt;</span></div></td></tr><tr><td class="wovenodd-col1"><span xml:lang="en" lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><div class="pre">
-&lt;sch:rule context="tei:body/child::tei:bibl/child::tei:editor"&gt;
-&lt;sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
- role="error"&gt; This &lt;editor&gt; element must take a @ref attribute
- with a Syriaca.org person URI which reqires
- the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+&lt;sch:rule context="tei:body/child::tei:bibl/child::tei:editor/@ana"&gt;
+&lt;sch:assert test=". = 'attributed' or . = 'disputed' or . = 'pseudo'"&gt; In this context, the acceptable @ana attribute values are "attributed",
+ "disputed", or "pseudo".
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span xml:lang="en" lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><div class="pre">
 &lt;sch:rule context="tei:body/child::tei:bibl/child::tei:editor"&gt;
@@ -1192,6 +1193,11 @@ element editionStmt { tei_att.global.attributes, tei_edition }<a href="#index.xm
 &lt;/sch:rule&gt;
 &lt;sch:rule context="tei:body/child::tei:bibl/child::tei:editor/@role"&gt;
 &lt;sch:assert test=". = 'scribe' or . = 'translator'"&gt; The only @role values allowed on this &lt;editor&gt; element are "scribe" or "translator".
+&lt;/sch:assert&gt;
+&lt;sch:assert test="matches(@ref, concat('http://syriaca.org/person/', '\d+'))"
+ role="error"&gt; This &lt;editor&gt; element must take a @ref attribute
+ with a Syriaca.org person URI which reqires
+ the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span xml:lang="en" lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><div class="pre">
 &lt;sch:rule context="//tei:teiHeader//tei:editor"&gt;
@@ -3458,6 +3464,6 @@ tei_teidata.version = token { pattern = "[\d]+(\.[\d]+){0,2}" }<a href="#index.x
 tei_teidata.word = token { pattern = "[^\p{C}\p{Z}]+" }<a href="#index.xml-eg-d30e24057" class="anchorlink">⚓</a></pre></td></tr><tr><td class="wovenodd-col1"><span xml:lang="en" lang="en" class="label">Note</span></td><td class="wovenodd-col2"><p>Attributes using this datatype must contain a single ‘word’ which contains only letters, digits, punctuation characters, or symbols: thus it cannot include whitespace.</p></td></tr></table></div></div></div></section></div><!--TEI back--><div class="stdfooter autogenerated"><div class="footer"><!--standard links to project, institution etc--><a class="plain" href="/">Home</a> </div><address>Date: 2026<br/><!--
  Generated from index.xml using XSLT stylesheets version 7.60.0
 		 based on http://www.tei-c.org/Stylesheets/
-		 on 2026-07-01T00:47:02Z.
+		 on 2026-07-01T00:59:30Z.
 		 SAXON HE 12.9.
 		   --></address></div></body></html>
