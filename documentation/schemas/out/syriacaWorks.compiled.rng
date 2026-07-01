@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-07-01T16:00:20Z. . 
+Schema generated from ODD source 2026-07-01T17:41:53Z. . 
 TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
   
@@ -2399,12 +2399,13 @@ Suggested values include: 1] abbreviation (Abbreviation); 2] final-rubric (Final
                <sch:assert test="tei:title and tei:idno and tei:listBibl"> Every work-level
                     &lt;bibl&gt; element must have as child elements at least &lt;title&gt;,
                     &lt;idno&gt;, and &lt;listBibl&gt;. </sch:assert>
-               <sch:report test="tei:note"> Notes under a work &lt;bibl&gt; must be encoded in a
-                    &lt;noteGrp&gt; element. </sch:report>
-               <sch:report test="tei:bibl"> Bibliography under a work &lt;bibl&gt; must be
-                    encoded in a &lt;listBibl&gt; element. </sch:report>
-               <sch:report test="tei:label"> The work &lt;bibl&gt; does not take a child
+               <sch:report test="tei:label">  &lt;label&gt; not allowed here.  The work &lt;bibl&gt; does not take a child
                     &lt;label&gt; element. </sch:report>
+               <sch:report test="tei:ptr"> &lt;ptr&gt; not allowed here. </sch:report>
+               <sch:report test="tei:citedRange"> &lt;citedRange&gt; not allowed here. </sch:report>
+               <sch:report test="tei:biblScope"> &lt;biblScope&gt; not allowed here. </sch:report>
+               <sch:report test="tei:note"> &lt;note&gt; not allowed here. Notes under a work &lt;bibl&gt; must be encoded in a
+                    &lt;noteGrp&gt; element. </sch:report>
                <sch:assert test="@xml:id"> The main work &lt;bibl&gt; must have an @xml:id.
                   </sch:assert>
             </sch:rule>
@@ -3777,7 +3778,27 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-ref-or-key-or-name-constraint-rule-139">
+                  id="syriacaWorks-relation-ref-values-in-context-constraint-rule-139">
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:body/child::tei:bibl/child::tei:listRelation/tei:relation/@ref">
+               <sch:report test="matches(., 'dcterms:source')">
+                    "dcterms:source" not allowed here.
+                  </sch:report>
+            </sch:rule>
+            <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="tei:body/child::tei:bibl//tei:bibl//tei:listRelation/tei:relation/@ref">
+               <sch:assert test="matches(., 'dcterms:source')">
+                    The only value allowed here is "dcterms:source". 
+                  </sch:assert>
+            </sch:rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                  id="syriacaWorks-relation-ref-or-key-or-name-constraint-rule-141">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3788,7 +3809,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-active-mutual-constraint-rule-140">
+                  id="syriacaWorks-relation-active-mutual-constraint-rule-142">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3799,7 +3820,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-relation-active-passive-constraint-rule-141">
+                  id="syriacaWorks-relation-active-passive-constraint-rule-143">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3832,45 +3853,23 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             </choice>
          </attribute>
-         <optional>
-            <attribute name="passive">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the passive participants in a non-mutual relationship.</a:documentation>
-               <list>
-                  <oneOrMore>
-                     <data type="anyURI">
-                        <param name="pattern">\S+</param>
-                     </data>
-                  </oneOrMore>
-               </list>
-            </attribute>
-         </optional>
-         <choice>
-            <optional>
-               <attribute name="active">
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the active participants in a non-mutual relationship, or all the participants in a mutual one.</a:documentation>
+         <attribute name="passive">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the passive participants in a non-mutual relationship.</a:documentation>
+            <list>
+               <oneOrMore>
                   <data type="anyURI">
                      <param name="pattern">\S+</param>
                   </data>
-               </attribute>
-            </optional>
-            <optional>
-               <attribute name="mutual">
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a list of participants amongst all of whom the relationship holds equally.</a:documentation>
-                  <list>
-                     <data type="anyURI">
-                        <param name="pattern">\S+</param>
-                     </data>
-                     <data type="anyURI">
-                        <param name="pattern">\S+</param>
-                     </data>
-                     <zeroOrMore>
-                        <data type="anyURI">
-                           <param name="pattern">\S+</param>
-                        </data>
-                     </zeroOrMore>
-                  </list>
-               </attribute>
-            </optional>
+               </oneOrMore>
+            </list>
+         </attribute>
+         <choice>
+            <attribute name="active">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the active participants in a non-mutual relationship, or all the participants in a mutual one.</a:documentation>
+               <data type="anyURI">
+                  <param name="pattern">\S+</param>
+               </data>
+            </attribute>
          </choice>
          <empty/>
       </element>
@@ -3915,7 +3914,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
          <ref name="tei_body"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                  id="syriacaWorks-text-source-within-text-constraint-rule-142">
+                  id="syriacaWorks-text-source-within-text-constraint-rule-144">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4002,7 +4001,7 @@ Suggested values include: 1] BAV; 2] Bekker; 3] Berlin; 4] BHS; 5] BHO; 6] BL; 7
       </optional>
    </define>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="syriacaWorks-att.global.change-change-att-values-constraint-rule-143">
+            id="syriacaWorks-att.global.change-change-att-values-constraint-rule-145">
       <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 xmlns:srophe="https://srophe.app"
