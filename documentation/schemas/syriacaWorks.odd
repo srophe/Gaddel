@@ -1986,10 +1986,14 @@
                   <sch:assert test="@xml:lang">
                     This &lt;author&gt; element requires an @xml:lang attribute.
                   </sch:assert>
+                  <sch:assert test="@source or @resp"> The &lt;author&gt; element for the main work
+                    &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
+                  </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
           </elementSpec>
+          
           
           
           
@@ -2277,6 +2281,15 @@
             <content>
               <textNode/>
             </content>
+            <constraintSpec ident="date-in-context" scheme="schematron">
+              <constraint>
+                <sch:rule context="tei:body/child::tei:bibl/child::tei:date">
+                  <sch:assert test="@source or @resp"> The &lt;date&gt; element for the main work
+                    &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
             <attList>
               <!-- Regarding @calendar and @datingMethod, see SPEAR ODD -->
               <attDef ident="type" mode="change" usage="rec">
@@ -2420,6 +2433,9 @@
                   </sch:report>
                   <sch:assert test="@xml:lang">
                     This &lt;editor&gt; element requires an @xml:lang attribute.
+                  </sch:assert>
+                  <sch:assert test="@source or @resp"> The &lt;editor&gt; element for the main work
+                    &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
                   </sch:assert>
                 </sch:rule>
               </constraint>
