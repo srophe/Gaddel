@@ -2074,12 +2074,13 @@
                   <sch:assert test="tei:title and tei:idno and tei:listBibl"> Every work-level
                     &lt;bibl&gt; element must have as child elements at least &lt;title&gt;,
                     &lt;idno&gt;, and &lt;listBibl&gt;. </sch:assert>
-                  <sch:report test="tei:note"> Notes under a work &lt;bibl&gt; must be encoded in a
-                    &lt;noteGrp&gt; element. </sch:report>
-                  <sch:report test="tei:bibl"> Bibliography under a work &lt;bibl&gt; must be
-                    encoded in a &lt;listBibl&gt; element. </sch:report>
-                  <sch:report test="tei:label"> The work &lt;bibl&gt; does not take a child
+                  <sch:report test="tei:label">  &lt;label&gt; not allowed here.  The work &lt;bibl&gt; does not take a child
                     &lt;label&gt; element. </sch:report>
+                  <sch:report test="tei:ptr"> &lt;ptr&gt; not allowed here. </sch:report>
+                  <sch:report test="tei:citedRange"> &lt;citedRange&gt; not allowed here. </sch:report>
+                  <sch:report test="tei:biblScope"> &lt;biblScope&gt; not allowed here. </sch:report>
+                  <sch:report test="tei:note"> &lt;note&gt; not allowed here. Notes under a work &lt;bibl&gt; must be encoded in a
+                    &lt;noteGrp&gt; element. </sch:report>
                   <sch:assert test="@xml:id"> The main work &lt;bibl&gt; must have an @xml:id.
                   </sch:assert>
                 </sch:rule>
@@ -3017,7 +3018,20 @@
                     This @active attribute must point to a single @xml:id on a &lt;bibl&gt; element. Available values 
                     include: <sch:value-of select="string-join($IDPtrValues, '; ')"/>.
                   </sch:assert>
-                  
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="ref-values-in-context" scheme="schematron">
+              <constraint>
+                <sch:rule context="tei:body/child::tei:bibl/child::tei:listRelation/tei:relation/@ref">
+                  <sch:report test="dcterms:source">
+                    "dcterms:source" not allowed here.
+                  </sch:report>
+                </sch:rule>
+                <sch:rule context="tei:body/child::tei:bibl//tei:bibl//tei:listRelation/tei:relation/@ref">
+                  <sch:assert test="dcterms:source">
+                    The only value allowed here is "dcterms:source". 
+                  </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
