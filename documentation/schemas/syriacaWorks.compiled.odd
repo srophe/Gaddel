@@ -7856,12 +7856,7 @@ element in the TEI header.
                     When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
                     the @type value must be "catalog-number".
                   </sch:assert>
-                  <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='SOAH']/@type">
-                    <sch:assert test=". = 'shelfmark'">
-                      When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
-                      the @type value must be "shelfmark".
-                    </sch:assert>
-                  </sch:rule>
+                  
                   <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Sachau']/@type">
                     <sch:assert test=". = 'catalog-number'">
                       When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
