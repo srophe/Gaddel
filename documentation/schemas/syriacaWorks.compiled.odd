@@ -352,114 +352,115 @@
                 </author>
               </egXML> --&gt; This use of the <gi>foreign</gi> element, moreover, enables the HTML view to
               more precisely display content with bidirectional text (i.e., a mixture of
-              right-to-left and left-to-right writing systems). </p>
-            <table>
+              right-to-left and left-to-right writing systems). 
+            <table rows="26" cols="2">
               <head>Language codes and names</head>
               <row role="label">
-                <cell>Code</cell>
-                <cell>Language</cell>
+                <cell role="label">Code</cell>
+                <cell role="label">Language</cell>
               </row>
               <row role="data">
-                <cell>la</cell>
-                <cell>Latin</cell>
+                <cell role="data">la</cell>
+                <cell role="data">Latin</cell>
               </row>
               <row role="data">
-                <cell>de</cell>
-                <cell>German</cell>
+                <cell role="data">de</cell>
+                <cell role="data">German</cell>
               </row>
               <row role="data">
-                <cell>grc</cell>
-                <cell>Ancient Greek</cell>
+                <cell role="data">grc</cell>
+                <cell role="data">Ancient Greek</cell>
               </row>
               <row role="data">
-                <cell>gez</cell>
-                <cell>Geʽez</cell>
+                <cell role="data">gez</cell>
+                <cell role="data">Geʽez</cell>
               </row>
               <row role="data">
-                <cell>sog</cell>
-                <cell>Sogdian</cell>
+                <cell role="data">sog</cell>
+                <cell role="data">Sogdian</cell>
               </row>
               <row role="data">
-                <cell>ar</cell>
-                <cell>Arabic</cell>
+                <cell role="data">ar</cell>
+                <cell role="data">Arabic</cell>
               </row>
               <row role="data">
-                <cell>hy</cell>
-                <cell>Armenian</cell>
+                <cell role="data">hy</cell>
+                <cell role="data">Armenian</cell>
               </row>
               <row role="data">
-                <cell>ka</cell>
-                <cell>Georgian</cell>
+                <cell role="data">ka</cell>
+                <cell role="data">Georgian</cell>
               </row>
               <row role="data">
-                <cell>sog</cell>
-                <cell>Soghdian</cell>
+                <cell role="data">sog</cell>
+                <cell role="data">Soghdian</cell>
               </row>
               <row role="data">
-                <cell>cu</cell>
-                <cell>Old Church Slavonic</cell>
+                <cell role="data">cu</cell>
+                <cell role="data">Old Church Slavonic</cell>
               </row>
               <row role="data">
-                <cell>cop</cell>
-                <cell>Coptic</cell>
+                <cell role="data">cop</cell>
+                <cell role="data">Coptic</cell>
               </row>
               <row role="data">
-                <cell>gez</cell>
-                <cell>Ethiopic</cell>
+                <cell role="data">gez</cell>
+                <cell role="data">Ethiopic</cell>
               </row>
               <row role="data">
-                <cell>syr-pal</cell>
-                <cell>Christian Palestinian Aramaic</cell>
+                <cell role="data">syr-pal</cell>
+                <cell role="data">Christian Palestinian Aramaic</cell>
               </row>
               <row role="data">
-                <cell>ar-Syrc</cell>
-                <cell>Arabic in Syriac script (Garshuni)</cell>
+                <cell role="data">ar-Syrc</cell>
+                <cell role="data">Arabic in Syriac script (Garshuni)</cell>
               </row>
               <row role="data">
-                <cell>ar-syr</cell>
-                <cell>Karshuni</cell>
+                <cell role="data">ar-syr</cell>
+                <cell role="data">Karshuni</cell>
               </row>
               <row role="data">
-                <cell>de</cell>
-                <cell>German</cell>
+                <cell role="data">de</cell>
+                <cell role="data">German</cell>
               </row>
               <row role="data">
-                <cell>fr</cell>
-                <cell>French</cell>
+                <cell role="data">fr</cell>
+                <cell role="data">French</cell>
               </row>
               <row role="data">
-                <cell>en</cell>
-                <cell>English</cell>
+                <cell role="data">en</cell>
+                <cell role="data">English</cell>
               </row>
               <row role="data">
-                <cell>it</cell>
-                <cell>Italian</cell>
+                <cell role="data">it</cell>
+                <cell role="data">Italian</cell>
               </row>
               <row role="data">
-                <cell>pt</cell>
-                <cell>Portugese</cell>
+                <cell role="data">pt</cell>
+                <cell role="data">Portugese</cell>
               </row>
               <row role="data">
-                <cell>ru</cell>
-                <cell>Russian</cell>
+                <cell role="data">ru</cell>
+                <cell role="data">Russian</cell>
               </row>
               <row role="data">
-                <cell>nl</cell>
-                <cell>Dutch</cell>
+                <cell role="data">nl</cell>
+                <cell role="data">Dutch</cell>
               </row>
               <row role="data">
-                <cell>ar</cell>
-                <cell>Arabic</cell>
+                <cell role="data">ar</cell>
+                <cell role="data">Arabic</cell>
               </row>
               <row role="data">
-                <cell>es</cell>
-                <cell>Spanish</cell>
+                <cell role="data">es</cell>
+                <cell role="data">Spanish</cell>
               </row>
               <row role="data">
-                <cell>tr</cell>
-                <cell>Turkish</cell>
+                <cell role="data">tr</cell>
+                <cell role="data">Turkish</cell>
               </row>
             </table>
+            </p>
           </div>
           <div xml:id="dates">
             <head>Recording Date Information for Mansucripts</head>
