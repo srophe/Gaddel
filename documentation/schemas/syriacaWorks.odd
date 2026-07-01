@@ -2509,7 +2509,7 @@
             <content>
               <textNode/>
             </content>
-            <constraintSpec ident="work-idno-types" scheme="schematron">
+            <!--<constraintSpec ident="work-idno-types" scheme="schematron">
               <constraint>
                 <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
                   <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')">
@@ -2600,12 +2600,12 @@
                     When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
                     the @type value must be "catalog-number".
                   </sch:assert>
-                  <!--<sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='SOAH']/@type">
+                  <!-\-<sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='SOAH']/@type">
                     <sch:assert test=". = 'shelfmark'">
                       When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
                       the @type value must be "shelfmark".
                     </sch:assert>
-                  </sch:rule>-->
+                  </sch:rule>-\->
                   <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Sachau']/@type">
                     <sch:assert test=". = 'catalog-number'">
                       When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
@@ -2626,7 +2626,7 @@
                   </sch:rule>
                 </sch:rule>
               </constraint>
-            </constraintSpec>
+            </constraintSpec>-->
             <constraintSpec ident="idno-subtypes" scheme="schematron">
               <constraint>
                 <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[@type='number']/@subtype">
