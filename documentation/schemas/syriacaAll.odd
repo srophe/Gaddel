@@ -1462,6 +1462,7 @@
               <textNode/>
             </sequence>
           </content>
+          <constraintSpec ident=""></constraintSpec>
           <attList>
             <attDef ident="xml:id" mode="delete"/>
             <attDef ident="n" mode="delete"/>
@@ -1471,6 +1472,7 @@
             <attDef ident="resp" mode="delete"/>
             <attDef ident="rend" mode="delete"/>
             <attDef ident="corresp" mode="delete"/>
+            <attDef ident="source" mode="change" usage="req"/>
           </attList>
         </elementSpec>
         

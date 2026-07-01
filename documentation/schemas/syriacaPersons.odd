@@ -952,13 +952,9 @@
         
         
         
-        <elementSpec ident="quote" module="core" mode="change">
-          <attList>
-            <attDef ident="source" mode="change" usage="req">
-              <!-- write a schematron rule in syriacaAll.odd that requires the @source value to point to an xml:id in the doc. -->
-            </attDef>
-          </attList>
-        </elementSpec>
+        <!--<elementSpec ident="quote" module="core" mode="change">
+          
+        </elementSpec>-->
         
         
         
