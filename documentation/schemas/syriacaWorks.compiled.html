@@ -1808,40 +1808,73 @@ element interpretation { tei_att.global.attributes, tei_p }<a href="#index.xml-e
  when &lt;label&gt; is the descendant of &lt;relation&gt;.
 &lt;/sch:report&gt;
 &lt;/sch:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span xml:lang="en" lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><div class="pre">
-&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']"&gt;
-&lt;sch:assert test="starts-with(., 'Bekker')"&gt; This text should begin "Bekker".
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']"&gt;
+&lt;sch:assert test="starts-with(., 'Vatican Apostolic Library')"&gt; This text should begin "The Vatican Apostolic Library".
+&lt;/sch:assert&gt;
+&lt;/sch:rule&gt;
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BL']"&gt;
+&lt;sch:assert test="starts-with(., 'London, British Library')"&gt; This text should begin "London, British Library".
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;
 &lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']"&gt;
-&lt;sch:assert test="starts-with(., 'The Laurentian Library')"&gt; This text should begin "The Laurentian Library".
+&lt;sch:assert test="starts-with(., 'Florence, The Laurentian Library')"&gt; This text should begin "Florence, The Laurentian Library".
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;
-&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']"&gt;
-&lt;sch:assert test="starts-with(., 'Fichtner')"&gt; This text should begin "Fichtner".
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BNF']"&gt;
+&lt;sch:assert test="starts-with(., 'Paris, Bibliothèque nationale')"&gt; This text should begin "Paris, Bibliothèque nationale".
+&lt;/sch:assert&gt;
+&lt;/sch:rule&gt;
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Berlin']"&gt;
+&lt;sch:assert test="starts-with(., 'Berlin, Staatsbibliothek zu Berlin')"&gt; This text should begin "Berlin, Staatsbibliothek zu Berlin".
+&lt;/sch:assert&gt;
+&lt;/sch:rule&gt;
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Cambridge']"&gt;
+&lt;sch:assert test="starts-with(., 'Cambridge, University Library')"&gt; This text should begin "Cambridge, University Library".
+&lt;/sch:assert&gt;
+&lt;/sch:rule&gt;
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Crawford']"&gt;
+&lt;sch:assert test="starts-with(., 'Manchester, The University of Manchester, Crawford 
+ Collection')"&gt; This text should begin "Manchester, The University of Manchester, Crawford Collection".
+&lt;/sch:assert&gt;
+&lt;/sch:rule&gt;
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Haddad-Issac']"&gt;
+&lt;sch:assert test="starts-with(., 'P. Haddad and J. Isaac')"&gt; This text should begin "P. Haddad and J. Isaac".
+&lt;/sch:assert&gt;
+&lt;/sch:rule&gt;
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Harris']"&gt;
+&lt;sch:assert test="starts-with(., 'J. Rendell Harris Number')"&gt; This text should begin "J. Rendell Harris Number".
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;
 &lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']"&gt;
 &lt;sch:assert test="starts-with(., 'Hill Museum and Manuscript Library')"&gt; This text should begin "Hill Museum and Manuscript Library".
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;
-&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']"&gt;
-&lt;sch:assert test="starts-with(., 'Kühn')"&gt; This text should begin "Kühn".
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Leiden']"&gt;
+&lt;sch:assert test="starts-with(., 'Peshitta Institute Leiden Manuscript Siglum')"&gt; This text should begin "Peshitta Institute Leiden Manuscript Siglum".
+&lt;/sch:assert&gt;
+&lt;/sch:rule&gt;
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Mingana']"&gt;
+&lt;sch:assert test="starts-with(., 'Birmingham, Selly Oak College Library, Mingana Collection')"&gt; This text should begin "Birmingham, Selly Oak College Library, Mingana Collection".
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;
 &lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']"&gt;
-&lt;sch:assert test="starts-with(., 'Rosen')"&gt; This text should begin "Rosen".
+&lt;sch:assert test="starts-with(., 'Rosen and Forshall')"&gt; This text should begin "Rosen and Forshall".
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;
-&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']"&gt;
-&lt;sch:assert test="starts-with(., 'Takahashi')"&gt; This text should begin "Takahashi".
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='SOAH']"&gt;
+&lt;sch:assert test="starts-with(., 'Homs, Syriac Orthodox Church, Archdiocese of Homs')"&gt; This text should begin "Homs, Syriac Orthodox Church, Archdiocese of Homs".
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;
-&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']"&gt;
-&lt;sch:assert test="starts-with(., 'Vatican Apostolic Library')"&gt; This text should begin "The Vatican Apostolic Library".
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Sachau']"&gt;
+&lt;sch:assert test="starts-with(., 'Sachau')"&gt; This text should begin "Sachau".
+&lt;/sch:assert&gt;
+&lt;/sch:rule&gt;
+&lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Sinai']"&gt;
+&lt;sch:assert test="starts-with(., 'Sinai, St. Catherine's Monastery')"&gt; This text should begin "Sinai, St. Catherine's Monastery".
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;
 &lt;sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Yale']"&gt;
-&lt;sch:assert test="starts-with(., 'New Haven, Yale University, Beinecke Library')"&gt; This text should begin "New Haven, Yale University, Beinecke Library".
+&lt;sch:assert test="starts-with(., 'Yale University, Beinecke Library')"&gt; This text should begin "Yale University, Beinecke Library".
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span xml:lang="en" lang="en" class="label">Content model</span></td><td class="wovenodd-col2"><pre id="index.xml-eg-d30e11279" class="pre_eg cdata">
 &lt;content&gt;
@@ -3468,6 +3501,6 @@ tei_teidata.version = token { pattern = "[\d]+(\.[\d]+){0,2}" }<a href="#index.x
 tei_teidata.word = token { pattern = "[^\p{C}\p{Z}]+" }<a href="#index.xml-eg-d30e24081" class="anchorlink">⚓</a></pre></td></tr><tr><td class="wovenodd-col1"><span xml:lang="en" lang="en" class="label">Note</span></td><td class="wovenodd-col2"><p>Attributes using this datatype must contain a single ‘word’ which contains only letters, digits, punctuation characters, or symbols: thus it cannot include whitespace.</p></td></tr></table></div></div></div></section></div><!--TEI back--><div class="stdfooter autogenerated"><div class="footer"><!--standard links to project, institution etc--><a class="plain" href="/">Home</a> </div><address>Date: 2026<br/><!--
  Generated from index.xml using XSLT stylesheets version 7.60.0
 		 based on http://www.tei-c.org/Stylesheets/
-		 on 2026-07-01T19:21:10Z.
+		 on 2026-07-01T19:49:46Z.
 		 SAXON HE 12.9.
 		   --></address></div></body></html>

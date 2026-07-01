@@ -2649,19 +2649,59 @@
             </constraintSpec>
             <constraintSpec ident="label-values" scheme="schematron">
               <constraint>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
+                  <sch:assert test="starts-with(., 'Vatican Apostolic Library')">
+                    This text should begin "The Vatican Apostolic Library". 
+                  </sch:assert>
+                </sch:rule>
+                <!--<sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Bekker']">
                   <sch:assert test="starts-with(., 'Bekker')">
                     This text should begin "Bekker". 
                   </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
-                  <sch:assert test="starts-with(., 'The Laurentian Library')">
-                    This text should begin "The Laurentian Library". 
+                </sch:rule>-->
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BL']">
+                  <sch:assert test="starts-with(., 'London, British Library')">
+                    This text should begin "London, British Library". 
                   </sch:assert>
                 </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BML']">
+                  <sch:assert test="starts-with(., 'Florence, The Laurentian Library')">
+                    This text should begin "Florence, The Laurentian Library". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BNF']">
+                  <sch:assert test="starts-with(., 'Paris, Bibliothèque nationale')">
+                    This text should begin "Paris, Bibliothèque nationale". 
+                  </sch:assert>
+                </sch:rule>
+                <!--<sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Fichtner']">
                   <sch:assert test="starts-with(., 'Fichtner')">
                     This text should begin "Fichtner". 
+                  </sch:assert>
+                </sch:rule>-->
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Berlin']">
+                  <sch:assert test="starts-with(., 'Berlin, Staatsbibliothek zu Berlin')">
+                    This text should begin "Berlin, Staatsbibliothek zu Berlin". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Cambridge']">
+                  <sch:assert test="starts-with(., 'Cambridge, University Library')">
+                    This text should begin "Cambridge, University Library". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Crawford']">
+                  <sch:assert test="starts-with(., 'Manchester, The University of Manchester, Crawford Collection')">
+                    This text should begin "Manchester, The University of Manchester, Crawford Collection". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Haddad-Issac']">
+                  <sch:assert test="starts-with(., 'P. Haddad and J. Isaac')">
+                    This text should begin "P. Haddad and J. Isaac". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Harris']">
+                  <sch:assert test="starts-with(., 'J. Rendell Harris Number')">
+                    This text should begin "J. Rendell Harris Number". 
                   </sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='HMML']">
@@ -2669,29 +2709,49 @@
                     This text should begin "Hill Museum and Manuscript Library". 
                   </sch:assert>
                 </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Leiden']">
+                  <sch:assert test="starts-with(., 'Peshitta Institute Leiden Manuscript Siglum')">
+                    This text should begin "Peshitta Institute Leiden Manuscript Siglum". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Mingana']">
+                  <sch:assert test="starts-with(., 'Birmingham, Selly Oak College Library, Mingana Collection')">
+                    This text should begin "Birmingham, Selly Oak College Library, Mingana Collection". 
+                  </sch:assert>
+                </sch:rule>
+                <!--<sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Kühn']">
                   <sch:assert test="starts-with(., 'Kühn')">
                     This text should begin "Kühn". 
                   </sch:assert>
-                </sch:rule>
+                </sch:rule>-->
                 <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Rosen']">
-                  <sch:assert test="starts-with(., 'Rosen')">
-                    This text should begin "Rosen". 
+                  <sch:assert test="starts-with(., 'Rosen and Forshall')">
+                    This text should begin "Rosen and Forshall". 
                   </sch:assert>
                 </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='SOAH']">
+                  <sch:assert test="starts-with(., 'Homs, Syriac Orthodox Church, Archdiocese of Homs')">
+                    This text should begin "Homs, Syriac Orthodox Church, Archdiocese of Homs". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Sachau']">
+                  <sch:assert test="starts-with(., 'Sachau')">
+                    This text should begin "Sachau". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Sinai']">
+                  <sch:assert test="starts-with(., 'Sinai, St. Catherine's Monastery')">
+                    This text should begin "Sinai, St. Catherine's Monastery". 
+                  </sch:assert>
+                </sch:rule>
+                <!--<sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
                   <sch:assert test="starts-with(., 'Takahashi')">
                     This text should begin "Takahashi". 
                   </sch:assert>
-                </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='BAV']">
-                  <sch:assert test="starts-with(., 'Vatican Apostolic Library')">
-                    This text should begin "The Vatican Apostolic Library". 
-                  </sch:assert>
-                </sch:rule>
+                </sch:rule>-->
                 <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Yale']">
-                  <sch:assert test="starts-with(., 'New Haven, Yale University, Beinecke Library')">
-                    This text should begin "New Haven, Yale University, Beinecke Library". 
+                  <sch:assert test="starts-with(., 'Yale University, Beinecke Library')">
+                    This text should begin "Yale University, Beinecke Library". 
                   </sch:assert>
                 </sch:rule>
               </constraint>
