@@ -160,7 +160,19 @@
     </xsl:template>
     
     <!-- Q -->
+    <!-- 
+     <xsl:template match="t:quote">
+        <span class="tei-quote">
+            <xsl:choose>
+                <xsl:when test="@xml:lang"><xsl:sequence select="local:attributes(.)"/></xsl:when>
+                <xsl:when test="parent::*/@xml:lang"><xsl:sequence select="local:attributes(parent::*[@xml:lang])"/></xsl:when>
+                <xsl:otherwise><xsl:sequence select="local:attributes(.)"/></xsl:otherwise>
+            </xsl:choose>
+            <xsl:text>“</xsl:text><xsl:call-template name="rend"/><xsl:text>”</xsl:text></span>
+    </xsl:template>
+    -->
     <xsl:template match="t:quote">
+        <!--
         <span class="tei-quote" dir="ltr" lang="en"><xsl:choose>
                 <xsl:when test="@xml:lang">
                     <span dir="ltr"><xsl:text>“</xsl:text></span><span><xsl:sequence select="local:attributes(.)"/><xsl:call-template name="rend"/></span><span dir="ltr"><xsl:text>”</xsl:text></span>
@@ -171,7 +183,20 @@
                 <xsl:otherwise>
                     <xsl:text>“</xsl:text><xsl:apply-templates/><xsl:text>”</xsl:text>
                 </xsl:otherwise>
-            </xsl:choose><!--<xsl:sequence select="local:add-footnotes(@source,ancestor::t:*[@xml:lang][1])"/>-->
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="@source"><xsl:sequence select="local:add-footnotes(@source,ancestor::t:*[@xml:lang][1])"/></xsl:when>
+                <xsl:when test="parent::*[1]/@source"><xsl:sequence select="local:add-footnotes(parent::*[1]/@source,ancestor::t:*[@xml:lang][1])"/></xsl:when>
+            </xsl:choose>
+        </span>
+        -->
+        <span class="tei-quote">
+            <xsl:choose>
+                <xsl:when test="@xml:lang"><xsl:sequence select="local:attributes(.)"/></xsl:when>
+                <xsl:when test="parent::*/@xml:lang"><xsl:sequence select="local:attributes(parent::*[@xml:lang])"/></xsl:when>
+                <xsl:otherwise><xsl:sequence select="local:attributes(.)"/></xsl:otherwise>
+            </xsl:choose>
+            <xsl:text>“</xsl:text><xsl:call-template name="rend"/><xsl:text>”</xsl:text>
             <xsl:choose>
                 <xsl:when test="@source"><xsl:sequence select="local:add-footnotes(@source,ancestor::t:*[@xml:lang][1])"/></xsl:when>
                 <xsl:when test="parent::*[1]/@source"><xsl:sequence select="local:add-footnotes(parent::*[1]/@source,ancestor::t:*[@xml:lang][1])"/></xsl:when>

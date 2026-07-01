@@ -9,7 +9,7 @@
  */
 body {background-color:#666;}
 #main {background-color:#cccccc;}
-
+.mainTitles .tei-title {font-style:normal;}
 /* Banner styles SPEAR */
 .banner-index {
 	background-image:url('../images/nhsl-banner.png');
@@ -25,3 +25,5 @@ body {background-color:#666;}
 }
 
 .banner-solid{ background-color:#456889; border-top:4px solid #456889; padding-top:.5em;}
+
+.tei-relation {margin-top:1em;}
