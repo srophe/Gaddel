@@ -1983,6 +1983,9 @@
                   <sch:report test="tei:persName"> This &lt;author&gt; element allows only a text
                     node with an English name or a &lt;foreign&gt; element with a non-English name.
                   </sch:report>
+                  <sch:assert test="@xml:lang">
+                    This &lt;author&gt; element requires an @xml:lang attribute.
+                  </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
@@ -2415,6 +2418,9 @@
                     This &lt;author&gt; element allows only a text node with an English name 
                     or a &lt;foreign&gt; element with a non-English name.
                   </sch:report>
+                  <sch:assert test="@xml:lang">
+                    This &lt;editor&gt; element requires an @xml:lang attribute.
+                  </sch:assert>
                 </sch:rule>
               </constraint>
             </constraintSpec>
