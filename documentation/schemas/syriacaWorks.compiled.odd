@@ -9055,12 +9055,12 @@ codes used elsewhere in the text.</desc><desc xmlns:rng="http://relaxng.org/ns/s
             </constraintSpec><constraintSpec ident="ref-values-in-context" scheme="schematron">
               <constraint>
                 <sch:rule context="tei:body/child::tei:bibl/child::tei:listRelation/tei:relation/@ref">
-                  <sch:report test="dcterms:source">
+                  <sch:report test="matches(., 'dcterms:source')">
                     "dcterms:source" not allowed here.
                   </sch:report>
                 </sch:rule>
                 <sch:rule context="tei:body/child::tei:bibl//tei:bibl//tei:listRelation/tei:relation/@ref">
-                  <sch:assert test="dcterms:source">
+                  <sch:assert test="matches(., 'dcterms:source')">
                     The only value allowed here is "dcterms:source". 
                   </sch:assert>
                 </sch:rule>
