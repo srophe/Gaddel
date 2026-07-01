@@ -1127,7 +1127,7 @@
                   </row>
                   <row role="data">
                     <cell role="data">Bekker</cell>
-                    <cell role="data"><!-- DAM, please fill in --></cell>
+                    <cell role="data">Bekker Number (assigned to the works of Aristotle)</cell>
                   </row>
                   <row role="data">
                     <cell role="data">BHO</cell>
@@ -1143,15 +1143,15 @@
                   </row>
                   <row role="data">
                     <cell role="data">Fichtner</cell>
-                    <cell role="data"><!-- DAM, please fill in --></cell>
+                    <cell role="data">Fichtner Number (assigned to the <foreign xml:lang="la">Corpus Galenicum</foreign>)</cell>
                   </row>
                   <row role="data">
                     <cell role="data">Kühn</cell>
-                    <cell role="data"><!-- DAM, please fill in --></cell>
+                    <cell role="data">Kühn Pagination (assigned to the <foreign xml:lang="la">Corpus Galenicum</foreign>)</cell>
                   </row>
                   <row role="data">
                     <cell role="data">Takahashi</cell>
-                    <cell role="data"><!-- DAM, please fill in --></cell>
+                    <cell role="data">Number from Takahashi, <title>Barhebraeus: A Bio-Bibliography</title>,  (2013).</cell>
                   </row>
                 </table>
               </p>
