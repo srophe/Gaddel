@@ -6131,6 +6131,11 @@ psychological significance.
                     &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
                   </sch:assert>
                 </sch:rule>
+                <sch:rule context="tei:body/child::tei:bibl/child::tei:editor/@role">
+                  <sch:assert test=". = 'scribe' or . = 'translator'">
+                    The only @role values allowed on this &lt;editor&gt; element are "scribe" or "translator".
+                  </sch:assert>
+                </sch:rule>
               </constraint>
             </constraintSpec><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="role-on-editor" scheme="schematron">
             <constraint>
