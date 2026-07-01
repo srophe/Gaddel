@@ -2502,7 +2502,7 @@
                     "project-number", or "shelfmark". 
                   </sch:assert>
                 </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker'/@type">
+                <sch:rule context="tei:listBibl[@type='manuscripts']/tei:bibl/tei:label/tei:idno[@subtype='Bekker']/@type">
                   <sch:assert test=". = 'number'">
                     When an &lt;indo&gt; has @subtype="<sch:value-of select="./parent::tei:idno/@subtype"/>", 
                     the @type value must be "number".
