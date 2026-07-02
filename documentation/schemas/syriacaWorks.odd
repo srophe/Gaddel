@@ -2812,7 +2812,7 @@
                   </sch:assert>
                 </sch:rule>
                 <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Sinai']">
-                  <sch:assert test="starts-with(., 'Sinai, St. Catherine's Monastery')">
+                  <sch:assert test="starts-with(., 'Sinai, St. Catherine\'s Monastery')">
                     This text should begin "Sinai, St. Catherine's Monastery". 
                   </sch:assert>
                 </sch:rule>
