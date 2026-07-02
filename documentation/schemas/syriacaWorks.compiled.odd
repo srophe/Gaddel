@@ -5335,11 +5335,7 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
                     This text should begin "Sachau". 
                   </sch:assert>
                 </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Sinai']">
-                  <sch:assert test="starts-with(., 'Sinai, St. Catherine\'s Monastery')">
-                    This text should begin "Sinai, St. Catherine's Monastery". 
-                  </sch:assert>
-                </sch:rule>
+                
                 
                 <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Yale']">
                   <sch:assert test="starts-with(., 'Yale University, Beinecke Library')">

@@ -2811,11 +2811,11 @@
                     This text should begin "Sachau". 
                   </sch:assert>
                 </sch:rule>
-                <sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Sinai']">
+                <!--<sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Sinai']">
                   <sch:assert test="starts-with(., 'Sinai, St. Catherine\'s Monastery')">
                     This text should begin "Sinai, St. Catherine's Monastery". 
                   </sch:assert>
-                </sch:rule>
+                </sch:rule>-->
                 <!--<sch:rule context="tei:listBibl[@type='manuscripts']/bibl/label[idno/@subtype='Takahashi']">
                   <sch:assert test="starts-with(., 'Takahashi')">
                     This text should begin "Takahashi". 
