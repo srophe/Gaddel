@@ -299,6 +299,81 @@ Data directories (`json-data/`, `person/`, `place/`, `work/`, `cbss/`, etc.) are
 - **Creative Commons licensing** — CC BY 4.0 on all content with clear attribution requirements
 - **Git version control** — Full history of all data and code changes across both code and data repositories
 
+## Local Development
+
+The static site can be served locally without AWS for development and testing.
+
+### Prerequisites
+- A local web server (Python, Node.js, or any static file server)
+- Saxon-HE or Saxon-EE (for XSLT 3.0 transformations)
+- TEI XML data from the [syriaca-data](https://github.com/srophe/syriaca-data) repository
+
+### Serving the Static Site
+
+Using Python:
+```bash
+cd /path/to/Gaddel
+python3 -m http.server 8080
+```
+
+Using Node.js (npx):
+```bash
+cd /path/to/Gaddel
+npx serve -l 8080
+```
+
+Then open http://localhost:8080 in your browser.
+
+> **Note:** Search and browse features require the OpenSearch API backend. When running locally, search calls to the API Gateway endpoint will still work if you have network access. For a fully offline experience, you would need to run a local OpenSearch instance and update the `apiUrl` in `resources/js/search.js`.
+
+### Generating Static HTML from TEI
+
+To regenerate HTML pages from TEI XML data using Saxon:
+```bash
+java -jar saxon-he.jar \
+  -xsl:siteGenerator/xsl/staticHTML.xsl \
+  -s:path/to/tei-record.xml \
+  applicationPath=/path/to/Gaddel \
+  staticSitePath=/path/to/output \
+  dataPath=/path/to/syriaca-data/data/ \
+  convert=false
+```
+
+To generate OpenSearch index JSON from a TEI record:
+```bash
+java -jar saxon-he.jar \
+  -xsl:siteGenerator/xsl/json.xsl \
+  -s:path/to/tei-record.xml \
+  staticSitePath=/path/to/Gaddel \
+  dataPath=/path/to/syriaca-data/data/
+```
+
+To generate the OpenSearch index mapping:
+```bash
+java -jar saxon-he.jar \
+  -xsl:siteGenerator/xsl/createSiteIndex.xsl \
+  -s:siteGenerator/components/repo-config.xml \
+  staticSitePath=/path/to/Gaddel
+```
+
+### Running OpenSearch Locally (Optional)
+
+For fully offline search, run OpenSearch via Docker:
+```bash
+docker run -d --name opensearch \
+  -p 9200:9200 \
+  -e "discovery.type=single-node" \
+  -e "DISABLE_SECURITY_PLUGIN=true" \
+  opensearchproject/opensearch:latest
+```
+
+Then update the API URL in `resources/js/search.js`:
+```javascript
+const apiUrl = "http://localhost:9200/syriaca/_search";
+```
+
+Load the generated index mapping and JSON documents into the local instance using the OpenSearch bulk API.
+
 ## License
 
 GPL-3.0 — See [LICENSE](LICENSE) for details.
