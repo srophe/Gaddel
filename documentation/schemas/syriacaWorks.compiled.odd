@@ -507,10 +507,10 @@
             <div xml:id="source">
               <head>Inserting Bibliographic Citations (<att>source</att>)</head>
               <p>Use of the <att>source</att> attribute is a method for pointing to a bibliographic
-                item found in the <q>Works Cited</q> section of the XML document. Before using
+                item found in the <q>Bibliography Related to the Work</q> section of the XML document. Before using
                 <att>source</att>, editors must first encode an entry for the bibliographic item
                 using the <gi>bibl</gi> element and a assign it an ID as described in the
-                documentation section <ref target="#bibl"><q>Works Cited</q>
+                documentation section <ref target="#listBibl"><q>Bibliography Related to the Work</q>
                   (<gi>bibl</gi>)</ref>.</p>
               <p>Once a <gi>bibl</gi> element for the item has been created, citations to that same
                 bibliographic item can be inserted (and repeated) almost anywhere in the place
@@ -925,10 +925,11 @@
               of the form <code>name\d+-\d+</code>. The first digits derive from the numerical
               portion of the Syriaca URI for the literary work, and the latter is a sequential
               integer: <egXML xmlns="http://www.tei-c.org/ns/Examples">
-                <title xml:id="name1-2" xml:lang="syr" srophe:tags="#syriaca-headword" source="#bib1-1">ܣܦܪܐ ܕܒܪܝܫܝܬ</title>
-              </egXML> Finally, as seen in the preceding example, all <gi>title</gi> elements must
+                <title xml:id="name938-2" xml:lang="syr" srophe:tags="#syriaca-headword" source="#bib938-6">ܣܦܪܐ ܕܒܪܝܫܝܬ</title>
+              </egXML><emph>Nota bene</emph>: The xml:id numbers should be created and assigned in sequetial order (for example if <q>name938-2</q> already exists in file 938.xml, then the next title should be assigned <q>name938-3</q>). Although the xml:id numbers for names are created sequentially, their occurence in the document need not be sequential. Once an xml:id has been assigned in the document (whether to a title or to a bibliographic item) that xml:id should <emph>never</emph> be renumbered or changed as doing so may break references to it. If an editor wishes to insert a new title inbetween <q>name938-2</q> and <q>name938-3</q> it is acceptable to assign that title <q>name938-4</q> or whatever number is next available.
+            </p>
+            <p>Finally, as seen in the preceding example, all <gi>title</gi> elements must
               indicate the source of the name form as detailed in the <ref target="#source">Inserting Citations</ref> section of these Guidelines. </p>
-            
             <div xml:id="headwordTitles">
               <head>Syriaca Headwords</head>
               <p>At least one <gi>title</gi> element must be tagged as a Syriaca Headword using a
@@ -1363,7 +1364,24 @@
               linked data graph, so there may be other bibliography related to each literary work
               which can be found through the <title>Comprehensive Bibliographty on Syriac
                 Studies</title>.</p>
-            
+            <div xml:id="footnoteNumbers">
+<head>Footnote Numbers (<att>xml:id</att> assigned to <gi>bibl</gi>)</head>
+<p>All <gi>bibl</gi> elements contained within <gi>listBibl</gi> must be assigned a unique <att>xml:id</att> attribute
+              of the form <code>bib\d+-\d+</code>. The first digits derive from the numerical
+              portion of the Syriaca URI for the literary work, and the latter is a sequential
+              integer:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <bibl source="#bib567-1" xml:id="bib567-3" type="lawd:Edition">
+                    <title xml:lang="de">Des heiligen Ephraem des Syrers Hymnen auf Abraham Kidunaya
+                      und Julianos Saba</title>
+                    <ptr target="http://syriaca.org/cbss/YN3NJHST"/>
+                    <citedRange unit="p">3-6</citedRange>
+                  </bibl>
+              </egXML>
+              This id is used to create the <q>footnotes</q> in the document through use of TEI specific pointing guidelines (appending <q>#</q> to the xml:id; see the discussion in <ref target="#source">Inserting
+Bibliographic Citations</ref>).</p>
+<p><emph>Nota bene</emph>: The xml:id numbers should be created and assigned in sequetial order (for example if <q>bib567-2</q> already exists in file 567.xml, then the next bibliographic item should be assigned <q>bib567-3</q>). Although the xml:id for <gi>bibl</gi> elements are created and assigned sequentially, their occurence in the document need not be sequential. <emph>Once an xml:id has been assigned to a bibliographic item, that xml:id should never be renumbered or changed as doing so may break references to it.</emph> If an editor wishes to insert a new <gi>bibl</gi> between existing items, for example between <q>bib567-2</q> and <q>bib567-3</q>, it is acceptable to assign that new item whatever number is next available (such as <q>bib567-4</q>) even if the numbers become out of sequence according to the order of occurance in the document.</p>
+            </div>
             <div xml:id="editions">
               <head>Editions (<code>listBibl type="editions"</code>)</head>
               <p>Published editions of Syriac texts offer some of the most comprehensive
