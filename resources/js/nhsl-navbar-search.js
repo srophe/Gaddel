@@ -37,7 +37,7 @@ $('#navbar-container').load('/resources/components/nhsl-navbar.html', function()
         e.preventDefault();
         const keyword = $('#keywordNav').val();
         if (keyword) {
-            window.location.href = '/search.html?fullText=' + encodeURIComponent(keyword);
+            window.location.href = '/nhsl/search.html?fullText=' + encodeURIComponent(keyword);
         }
     });
     
@@ -46,7 +46,7 @@ $('#navbar-container').load('/resources/components/nhsl-navbar.html', function()
             e.preventDefault();
             const keyword = $(this).val();
             if (keyword) {
-                window.location.href = '/search.html?fullText=' + encodeURIComponent(keyword);
+                window.location.href = '/nhsl/search.html?fullText=' + encodeURIComponent(keyword);
             }
         }
     }); 
