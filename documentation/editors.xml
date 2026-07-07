@@ -46,7 +46,7 @@
                <licence target="http://creativecommons.org/licenses/by/3.0/"> Distributed under a
                   Creative Commons Attribution 3.0 Unported License </licence>
             </availability>
-            <date>2026-04-28</date>
+            <date>2026-07-07</date>
          </publicationStmt>
          <sourceDesc>
             <p>Born digital.</p>
@@ -69,6 +69,7 @@
       <revisionDesc>
          <change type="reminder">Please be sure to update the publication date when changes are made
             here!</change>
+         <change when="2026-07-07" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: 2026 Workshop Contributors</change>
          <change when="2026-04-28" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Louis Wu</change>
          <change when="2025-06-18" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Syriac World contributors</change>
          <change when="2023-12-15" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Silvio Roggo</change>
@@ -130,6 +131,12 @@
                   <title>Dayroyo</title>
                   <forename>Roger-Youssef</forename>
                   <surname>Akhrass</surname>
+               </persName>
+            </person>
+            <person xml:id="makyuz">
+               <persName xml:lang="en">
+                  <forename>Mihayel</forename>
+                  <surname>Akyüz</surname> 
                </persName>
             </person>
             <person xml:id="halthani">
@@ -224,6 +231,12 @@
                   <surname>Chamseddine</surname>
                </persName>
             </person>
+            <person xml:id="jcausin">
+               <persName xml:lang="en">
+                  <forename>Jonah</forename>
+                  <surname>Causin</surname> 
+               </persName>
+            </person>
             <person xml:id="schoi">
                <persName xml:lang="ko">
                   <forename>성현</forename>
@@ -303,6 +316,12 @@
                   <surname>Doerfler</surname>
                </persName>
             </person>
+            <person xml:id="adraper">
+               <persName xml:lang="en">
+                  <forename>Andrew</forename>
+                  <surname>Draper</surname> 
+               </persName>
+            </person>
             <person xml:id="rdurmaz">
                <persName xml:lang="en">
                   <forename>Reyhan</forename>
@@ -313,6 +332,12 @@
                <persName xml:lang="en">
                   <forename>Nick</forename>
                   <surname>Elder</surname>
+               </persName>
+            </person>
+            <person xml:id="crvandenelzen">
+               <persName xml:lang="en">
+                  <forename>Calvin</forename>
+                  <surname>van den Elzen</surname> 
                </persName>
             </person>
             <person xml:id="jfalconer">
@@ -338,6 +363,13 @@
                <persName xml:lang="en">
                   <forename>Philip</forename>
                   <surname>Forness</surname>
+               </persName>
+            </person>
+            <person xml:id="lmfrenkellmf">
+               <persName xml:lang="en">
+                  <forename>Luise</forename>
+                  <addName>Marion</addName>
+                  <surname>Frenkel</surname> 
                </persName>
             </person>
             <person xml:id="ewalsh">
@@ -376,6 +408,12 @@
                   <forename>Nathan</forename>
                   <addName type="middle-initial">P.</addName>
                   <surname>Gibson</surname>
+               </persName>
+            </person>
+            <person xml:id="algram">
+               <persName xml:lang="en">
+                  <forename>Alexandros</forename>
+                  <surname>Grammatikopoulos</surname> 
                </persName>
             </person>
             <person xml:id="dgreeson">
@@ -421,6 +459,12 @@
                <persName xml:lang="en">
                   <forename>John</forename>
                   <surname>Healey</surname>
+               </persName>
+            </person>
+            <person xml:id="xji">
+               <persName xml:lang="en">
+                  <forename>Xiaoyan</forename>
+                  <surname>Ji</surname> 
                </persName>
             </person>
             <person xml:id="cjohnson">
@@ -514,6 +558,12 @@
                   <surname>Lindtner</surname>
                </persName>
             </person>
+            <person xml:id="clong">
+               <persName xml:lang="en">
+                  <forename>Christopher</forename>
+                  <surname>Long</surname> 
+               </persName>
+            </person>
             <person xml:id="jloopstra">
                <persName xml:lang="en">
                   <forename>Jonathan</forename>
@@ -590,10 +640,22 @@
                   <surname>Nations-Quiroz</surname>
                </persName>
             </person>
+            <person xml:id="noshea">
+               <persName xml:lang="en">
+                  <forename>Nidanu</forename>
+                  <surname>O’Shea</surname> 
+               </persName>
+            </person>
             <person xml:id="jpagan">
                <persName xml:lang="en">
                   <forename>Jessica</forename>
                   <surname>Pagan</surname>
+               </persName>
+            </person>
+            <person xml:id="epaparidianat">
+               <persName xml:lang="en">
+                  <forename>Erfan</forename>
+                  <surname>PapariDianat</surname> 
                </persName>
             </person>
             <person xml:id="iperczel">
@@ -613,6 +675,25 @@
                   <forename>William</forename>
                   <addName type="middle-initial">L.</addName>
                   <surname>Potter</surname>
+               </persName>
+            </person>
+            <person xml:id="mpragt">
+               <persName xml:lang="en">
+                  <forename>Marion</forename>
+                  <surname>Pragt</surname> 
+               </persName>
+            </person>
+            <person xml:id="spuchkova">
+               <persName xml:lang="en">
+                  <forename>Sofia</forename>
+                  <surname>Puchkova</surname> 
+               </persName>
+            </person>
+            <person xml:id="hrey">
+               <persName xml:lang="en">
+                  <forename>Hélène</forename>
+                  <addName type="middle-initial">L.</addName>
+                  <surname>Rey</surname> 
                </persName>
             </person>
             <person xml:id="fruani">
@@ -637,6 +718,13 @@
                <persName xml:lang="en">
                   <forename>Winona</forename>
                   <surname>Salesky</surname>
+               </persName>
+            </person>
+            <person xml:id="msaunders">
+               <persName xml:lang="en">
+                  <forename>Matthew</forename>
+                  <addName type="middle-initial">J.</addName>
+                  <surname>Saunders</surname> 
                </persName>
             </person>
             <person xml:id="tscheunchen">
@@ -724,6 +812,13 @@
                <persName xml:lang="en">
                   <forename>Emilie</forename>
                   <surname>Villey</surname>
+               </persName>
+            </person>
+            <person xml:id="jwall">
+               <persName xml:lang="en">
+                  <forename>Justin</forename>
+                  <addName type="middle-initial">M.</addName>
+                  <surname>Wall</surname> 
                </persName>
             </person>
             <person xml:id="ewalston">
