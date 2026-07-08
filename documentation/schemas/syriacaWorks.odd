@@ -1236,8 +1236,8 @@
                 </egXML>
                 Abstracts may be included in languages other than English, and each abstract must
                 have its language recorded as described in the <ref target="#languageCodes"
-                  >Recording Language Information (<att>xml:lang</att>)</ref> section, above </p>
-              <p> Abstracts must also have a <att>corresp</att> attribute that contains one or more
+                  >Recording Language Information (<att>xml:lang</att>)</ref> section, above.</p>
+              <p>Abstracts must also have a <att>corresp</att> attribute that contains one or more
                 space-separated URIs that correspond to the <gi>idno</gi> element in the
                 <gi>seriesStmt</gi> elements. These URIs identify <title>NHSL</title> and its
                 sub-volumes, such as the <title>Bibliotheca Hagiographica Syriaca
