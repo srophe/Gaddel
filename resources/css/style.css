@@ -525,6 +525,7 @@ pre {
 li .tei-note, li .tei-desc {display:inline; margin:0;}
 .tei-title {font-style: italic;}
 .tei-quote .tei-placeName {color: #6699cc; font-weight:bold;}
+.tei-quote {display:block;}
 /*.tei-title > .tei-title {font-style:italic;} */
 .top-padding {margin-top:4.5em !important;}
 .text-block {margin-left:1em; display:block;}
