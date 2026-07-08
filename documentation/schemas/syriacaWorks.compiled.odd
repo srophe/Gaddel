@@ -20,7 +20,7 @@
               License. Used by permission.</p>
             <p>The comments on element and attribute use contained in <gi>remarks</gi> elements
               below share some text with other Syriaca.org documentation distributed under a
-              Creative Commons Attributiion 3.0 Unported License. This documentation can be found at
+              Creative Commons Attribution 3.0 Unported License. This documentation can be found at
               various links available here: <ref target="http://syriaca.org/documentation/index.html">http://syriaca.org/documentation/index.html</ref> Used by permission. </p>
           </licence>
         </availability>
@@ -32,11 +32,16 @@
       <!-- Instructions for processing the Syriaca.org chained ODD in oXygen.
         - First, be sure that schemaSpec/@source in this document points to "syriacaAll.compiled.odd".
         - Then process this ODD file into a compiled ODD using the transformation scenario "ODD to Compiled ODD".
-        - Save this as syriacaWorks.compiled.odd and then delete the @start attribute from tei:schemaSpec.
+        - Save this as syriacaWorks.compiled.odd and then delete the @source attribute from tei:schemaSpec.
         - This compiled ODD (without a tei:schemaSpec/@source attribute) will be the starting point for the next step in the chained ODD.
         - This compiled ODD can also be used to generate a .rng file against which you can validate a TEI document. 
         - You generate this file using the transformation scenario "TEI ODD to RELAX NG XML".
-        - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file. -->
+        - After you have generated the Relax NG, you need to add xmlns:srophe="https://srophe.app" to the grammar element at the top of that file.
+        - If you are generating XHTML (using the built-in Oxygen scenario "TEI ODD XHTML") and the result will be linked to Syriaca.org documentation
+          you will want to delete the TOC that lists the elements, etc. Open the XHTML in Oxygen and 
+          search "<li class="toc"><span class="headingNumber">2. </span>". Deleting that <li> element will delete the
+          proper material from the resulting XHTML.
+      -->
     </fileDesc><tei:encodingDesc xmlns:tei="http://www.tei-c.org/ns/1.0"><tei:constraintDecl scheme="schematron" queryBinding="xslt2">
         <sch:ns xmlns:rng="http://relaxng.org/ns/structure/1.0" prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
         <sch:ns xmlns:rng="http://relaxng.org/ns/structure/1.0" prefix="xs" uri="http://www.w3.org/2001/XMLSchema"/>
@@ -1144,8 +1149,8 @@
                     An early Syriac translation of the Pauline epistle of <title ref="http://syriaca.org/work/9595">1 Corinthians</title>. This common Syriac translation of a <title ref="http://syriaca.org/work/9587">New Testament</title> book was extant as early as the 5th-6th century. In Syriac tradition, <title ref="http://syriaca.org/work/78">1 Corinthians</title> consistently circulates as part ofthe <title xml:lang="en" ref="http://syriaca.org/work/9643">Pauline Epistles</title>.</note>
                 </egXML>
                 Abstracts may be included in languages other than English, and each abstract must
-                have its language recorded as described in the <ref target="#languageCodes">Recording Language Information (<att>xml:lang</att>)</ref> section, above </p>
-              <p> Abstracts must also have a <att>corresp</att> attribute that contains one or more
+                have its language recorded as described in the <ref target="#languageCodes">Recording Language Information (<att>xml:lang</att>)</ref> section, above.</p>
+              <p>Abstracts must also have a <att>corresp</att> attribute that contains one or more
                 space-separated URIs that correspond to the <gi>idno</gi> element in the
                 <gi>seriesStmt</gi> elements. These URIs identify <title>NHSL</title> and its
                 sub-volumes, such as the <title>Bibliotheca Hagiographica Syriaca

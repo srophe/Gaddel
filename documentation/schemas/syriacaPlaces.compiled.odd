@@ -981,7 +981,7 @@
                 electronic edition of <ref target="https://gedsh.bethmardutho.org/index.html"><title>Gorgias Encyclopedic Dictionary of the Syriac Heritage
                   (GEDSH)</title></ref>, <title>TSG</title> has reused the abstracts from
                   <title>GEDSH</title> (this is done with permission and through verbatim quotation
-                and citation). Ideally, an abstract should be at least one sentence in legnth, but
+                and citation). Ideally, an abstract should be at least one sentence in length, but
                 in the case of some very well known places, the abstracts quoted from
                   <title>GEDSH</title> are simply an entry number and phrase.</p>
               <p>The abstract is encoded in a <gi>desc</gi> element with a <att>type</att> attribute
