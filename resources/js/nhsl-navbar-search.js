@@ -1,4 +1,4 @@
-// Navbar search functionality
+// Navbar search functionality 
 $(document).ready(function() {
 $('#navbar-container').load('/resources/components/nhsl-navbar.html', function() {
     
