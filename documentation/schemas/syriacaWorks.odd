@@ -1002,11 +1002,18 @@
               integer: <egXML xmlns="http://www.tei-c.org/ns/Examples">
                 <title xml:id="name938-2" xml:lang="syr" srophe:tags="#syriaca-headword"
                   source="#bib938-6">ܣܦܪܐ ܕܒܪܝܫܝܬ</title>
-              </egXML><emph>Nota bene</emph>: The xml:id numbers should be created and assigned in sequetial order (for example if <q>name938-2</q> already exists in file 938.xml, then the next title should be assigned <q>name938-3</q>). Although the xml:id numbers for names are created sequentially, their occurence in the document need not be sequential. Once an xml:id has been assigned in the document (whether to a title or to a bibliographic item) that xml:id should <emph>never</emph> be renumbered or changed as doing so may break references to it. If an editor wishes to insert a new title inbetween <q>name938-2</q> and <q>name938-3</q> it is acceptable to assign that title <q>name938-4</q> or whatever number is next available.
+              </egXML><emph>Nota bene</emph>: The xml:id numbers should be created and assigned in sequetial order (for example if <q>name938-2</q> already exists in file 938.xml, then the next title should be assigned <q>name938-3</q>). Although the xml:id numbers for names are created sequentially, their occurence in the document need not be sequential. Once an xml:id has been assigned in the document (whether to a title or to a bibliographic item) that xml:id should <emph>never</emph> be renumbered or changed as doing so may break references to it. If an editor wishes to insert a new title between <q>name938-2</q> and <q>name938-3</q> it is acceptable to assign that title <q>name938-4</q> or whatever number is next available.
             </p>
             <p>Finally, as seen in the preceding example, all <gi>title</gi> elements must
               indicate the source of the name form as detailed in the <ref target="#source"
                 >Inserting Citations</ref> section of these Guidelines. </p>
+            <p>When a personal name or a place name occur within a title, these names are <emph>not</emph> marked with <gi>persName</gi> or <gi>placeName</gi>. When encoding titles, if a work is known both by a version containing the name of the author and a more generic title, the editor should encode both titles. For example:
+              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                <title xml:id="name10542-1" xml:lang="en" source="#bib10542-1" srophe:tags="#syriaca-headword">The Select Letters of Severus of Antioch</title>
+                <title xml:id="name10542-3" xml:lang="en" source="#bib10542-1">The Select Letters</title>
+              </egXML>
+              In selecting the <ref target="#headwordTitles">headword</ref>, the editor should choose the title that best follows the consensus in the field while also facilitating disambiguation and clarity. Thus it may make sense to use <q>The Select Letters of Severus of Antioch</q> as the head word, even if, of course, the author himself would never have referred to his work this way.
+            </p>
             <div xml:id="headwordTitles">
               <head>Syriaca Headwords</head>
               <p>At least one <gi>title</gi> element must be tagged as a Syriaca Headword using a
@@ -1215,21 +1222,17 @@
             </p>
             <div xml:id="abstract">
               <head>Abstract (<code>noteGrp type="abstract"</code>)</head>
-              <p><emph>An English-language abstract is required. A record may have any number of
-                  additional <gi>note</gi> elements.</emph></p>
-              <p>Every record must have an abstract, i.e. a short description or one to two lines of
-                prose describing the literary work. The purpose of the abstract is to help users of
+              <p>An English-language abstract is required for every record. A record may have any number of
+                additional abstracts as <gi>note</gi> elements. Additionally, individual sub-volumes of <title>NHSL</title> may have
+                their own, distinct abstracts.</p>
+              <p>The abstract is a short description in prose describing the literary work. The purpose of the abstract is to help users of
                 <title>NHSL</title> to easily disambiguate search results and quickly identify the
-                work for which they are searching. Abstracts should be written as complete sentences
-                with proper punctuation. Ideally, an abstract should be at least one sentence in
-                legnth. Every record must have an abstract written in English. It is also possible to
-                add additional abstracts in other languages. Additionally, individual sub-volumes of
-                <title>NHSL</title> may have their own, distinct abstracts.
-                <egXML
+                work for which they are searching.</p>
+              <p>Abstracts should be written as complete sentences
+                with proper punctuation. The first sentence should be a definitional phrase without a verb which begins with a mention of the type of work (e.g. “a memra” or “a chronicle”). This first sentence should end with a period and be able to stand alone as an abbreviated description without the rest of the abstract. Subsequent sentences should take a subject and a verb. The whole abstract should be no more than five sentences long and ideally less than that in length. The abstract should both give a general description of the work and, when useful, some specific mention of its relevance to the field of Syriac studies.                <egXML
                   xmlns="http://www.tei-c.org/ns/Examples">
                   <note corresp="http://syriaca.org/nhsl http://syriaca.org/bible" xml:lang="en" type="abstract" resp="http://syriaca.org">
-                    <title xml:lang="en" ref="http://syriaca.org/work/78">1 Corinthians (Peshitta version)</title> is extant as early as the 5th-6th century 
-                    and consistently circulates as one of the <title xml:lang="en" ref="http://syriaca.org/work/159">Pauline Epistles (Peshitta version)</title>.</note>
+                    An early Syriac translation of the Pauline epistle of <title ref="http://syriaca.org/work/9595">1 Corinthians</title>. This common Syriac translation of a <title ref="http://syriaca.org/work/9587">New Testament</title> book was extant as early as the 5th-6th century. In Syriac tradition, <title ref="http://syriaca.org/work/78">1 Corinthians</title> consistently circulates as part ofthe <title xml:lang="en" ref="http://syriaca.org/work/9643">Pauline Epistles</title>.</note>
                 </egXML>
                 Abstracts may be included in languages other than English, and each abstract must
                 have its language recorded as described in the <ref target="#languageCodes"

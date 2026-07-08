@@ -1048,23 +1048,22 @@
             </div>
             <div xml:id="abstracts">
               <head>Abstracts (<gi>desc</gi>)</head>
-              <p><emph>An English-language abstract is required. A record may have any number of
-                  additional <gi>desc</gi> elements.</emph></p>
-              <p>Every record must have an abstract, i.e. a short description or one to two lines of
-                prose describing the place. The purpose of the abstract is to help users of
+              <p>An English-language abstract is required for every record. A record may have any number of
+                additional abstracts as <gi>desc</gi> elements. Additionally, individual sub-volumes of <title>TSG</title> may have
+                their own, distinct abstracts.</p>
+              <p>The abstract is a short description in prose describing the place. The purpose of the abstract is to help users of
                   <title>TSG</title> to easily disambiguate search results and quickly identify the
-                place for which they are searching. Abstracts should be written as complete sentences
-                with proper punctuation. For places which also have entries in the
+                place for which they are searching.</p>
+                <p>Abstracts should be written as complete sentences
+                  with proper punctuation. The first sentence should be a definitional phrase without a verb which begins with a mention of the place type (e.g. “a city” or “a river”). This first sentence should end with a period and be able to stand alone as an abbreviated description without the rest of the abstract. Subsequent sentences should take a subject and a verb. The whole abstract should be no more than five sentences long and ideally less than that in length. The abstract should both give a general description of the place and, when possible, some mention of its relevance to the field of Syriac studies.</p>
+                  <p>For places which also have entries in the
                 electronic edition of <ref target="https://gedsh.bethmardutho.org/index.html"
                     ><title>Gorgias Encyclopedic Dictionary of the Syriac Heritage
                   (GEDSH)</title></ref>, <title>TSG</title> has reused the abstracts from
                   <title>GEDSH</title> (this is done with permission and through verbatim quotation
                 and citation). Ideally, an abstract should be at least one sentence in legnth, but
                 in the case of some very well known places, the abstracts quoted from
-                  <title>GEDSH</title> are simply an entry number and phrase. Every record must have
-                an abstract written in English. It is also possible to add additional abstracts in
-                other languages. Additionally, individual sub-volumes of <title>TSG</title> may have
-                their own, distinct abstracts.</p>
+                  <title>GEDSH</title> are simply an entry number and phrase.</p>
               <p>The abstract is encoded in a <gi>desc</gi> element with a <att>type</att> attribute
                 whose value is "abstract": <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <desc type="abstract" xml:lang="en" resp="http://syriaca.org"
