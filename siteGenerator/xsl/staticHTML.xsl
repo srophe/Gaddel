@@ -428,19 +428,21 @@
                         <xsl:choose>
                             <xsl:when test="$template/descendant::html:nav">
                                 <xsl:copy-of select="$template/descendant::html:nav"/>
+                                <xsl:message>DEBUG: Template with html:nav</xsl:message>
                             </xsl:when>
-                            <xsl:when test="$template/descendant::html:div[@id = 'navbar-container']">
-                                <xsl:copy-of select="$template/descendant::html:div[@id = 'navbar-container']/preceding-sibling::html:script[1]"/>
+                            <xsl:when test="$template/descendant::*:div[@id = 'navbar-container']">
+                                <xsl:copy-of select="$template/descendant::*:div[@id = 'navbar-container']/preceding-sibling::*:script[1]"/>
                                 <div id="navbar-container"></div>
+                                <xsl:message>DEBUG: Template with navbar-container</xsl:message>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:message>No template found for html:head element</xsl:message>
+                                <xsl:message>DEBUG: No html:nav template found for html:nav element, use generic nav</xsl:message>
                                 <xsl:call-template name="genericNav"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:message>No template found for html:head element</xsl:message>
+                        <xsl:message>DEBUG: No template found for html:nav element</xsl:message>
                         <xsl:call-template name="genericNav"/>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -463,6 +465,7 @@
                                         </xsl:call-template>
                                         <div class="row">
                                             <div class="col-md-7 col-lg-8">
+                                                <div class="hidden"/>
                                                 <xsl:apply-templates select="$nodes/ancestor-or-self::t:TEI">
                                                     <xsl:with-param name="collection" select="$collection"/>
                                                     <xsl:with-param name="idno" select="$idno" tunnel="yes"/>
