@@ -267,6 +267,7 @@ img{ margin:0px }
   /*font-size:large;*/
   font-size:1.25em; 
   line-height:1em;
+  display:inline-block;
   
 }
 
@@ -274,6 +275,7 @@ img{ margin:0px }
  font-family: "SertoBatnan", "Serto Batnan", Verdana, Arial, Helvetica, sans-serif;
   font-size:1.25em; 
   line-height:1em;
+  display:inline-block;
  
 }
 
@@ -281,6 +283,7 @@ img{ margin:0px }
  font-family: "EastSyriacAdiabene", "East Syriac Adiabene", Verdana, Arial, Helvetica, sans-serif;
  font-size:1.25em; 
  line-height:1em;
+ display:inline-block;
 
 }
 
@@ -288,6 +291,7 @@ img{ margin:0px }
  font-family: arial, sans-serif;
  font-size:1.25em; 
  line-height:1em;
+ display:inline-block;
 }
 
 /* M */

@@ -1,4 +1,4 @@
-// Navbar search functionality
+// Navbar search functionality 
 $(document).ready(function() {
 $('#navbar-container').load('/resources/components/nhsl-navbar.html', function() {
     
@@ -37,7 +37,7 @@ $('#navbar-container').load('/resources/components/nhsl-navbar.html', function()
         e.preventDefault();
         const keyword = $('#keywordNav').val();
         if (keyword) {
-            window.location.href = '/nhsl/search.html?series=A+New+Handbook+of+Syriac+Literature&keyword=' + encodeURIComponent(keyword);
+            window.location.href = '/nhsl/search.html?series=A+New+Handbook+of+Syriac+Literature&fullText=' + encodeURIComponent(keyword);
         }
     });
     
@@ -46,7 +46,7 @@ $('#navbar-container').load('/resources/components/nhsl-navbar.html', function()
             e.preventDefault();
             const keyword = $(this).val();
             if (keyword) {
-                window.location.href = '/nhsl/search.html?series=A+New+Handbook+of+Syriac+Literature&keyword=' + encodeURIComponent(keyword);
+                window.location.href = '/nhsl/search.html?series=A+New+Handbook+of+Syriac+Literature&fullText=' + encodeURIComponent(keyword);
             }
         }
     }); 
