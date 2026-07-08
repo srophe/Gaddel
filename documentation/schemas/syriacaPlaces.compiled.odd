@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:srophe="https://srophe.app" xml:base="file:/C:/Users/daniel.schwartz/Documents/GitHub/Gaddel/documentation/schemas/syriacaPlaces.odd"><?TEIVERSION 2025?>
+<?xml version="1.0" encoding="utf-8"?><TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:srophe="https://srophe.app" xml:base="file:/Users/michelda/Documents/GitHub/Gaddel/documentation/schemas/syriacaPlaces.odd"><?TEIVERSION 2025?>
 
   <teiHeader><fileDesc>
       <titleStmt>
@@ -969,22 +969,21 @@
             </div>
             <div xml:id="abstracts">
               <head>Abstracts (<gi>desc</gi>)</head>
-              <p><emph>An English-language abstract is required. A record may have any number of
-                  additional <gi>desc</gi> elements.</emph></p>
-              <p>Every record must have an abstract, i.e. a short description or one to two lines of
-                prose describing the place. The purpose of the abstract is to help users of
+              <p>An English-language abstract is required for every record. A record may have any number of
+                additional abstracts as <gi>desc</gi> elements. Additionally, individual sub-volumes of <title>TSG</title> may have
+                their own, distinct abstracts.</p>
+              <p>The abstract is a short description in prose describing the place. The purpose of the abstract is to help users of
                   <title>TSG</title> to easily disambiguate search results and quickly identify the
-                place for which they are searching. Abstracts should be written as complete sentences
-                with proper punctuation. For places which also have entries in the
+                place for which they are searching.</p>
+                <p>Abstracts should be written as complete sentences
+                  with proper punctuation. The first sentence should be a definitional phrase without a verb which begins with a mention of the place type (e.g. “a city” or “a river”). This first sentence should end with a period and be able to stand alone as an abbreviated description without the rest of the abstract. Subsequent sentences should take a subject and a verb. The whole abstract should be no more than five sentences long and ideally less than that in length. The abstract should both give a general description of the place and, when possible, some mention of its relevance to the field of Syriac studies.</p>
+                  <p>For places which also have entries in the
                 electronic edition of <ref target="https://gedsh.bethmardutho.org/index.html"><title>Gorgias Encyclopedic Dictionary of the Syriac Heritage
                   (GEDSH)</title></ref>, <title>TSG</title> has reused the abstracts from
                   <title>GEDSH</title> (this is done with permission and through verbatim quotation
                 and citation). Ideally, an abstract should be at least one sentence in legnth, but
                 in the case of some very well known places, the abstracts quoted from
-                  <title>GEDSH</title> are simply an entry number and phrase. Every record must have
-                an abstract written in English. It is also possible to add additional abstracts in
-                other languages. Additionally, individual sub-volumes of <title>TSG</title> may have
-                their own, distinct abstracts.</p>
+                  <title>GEDSH</title> are simply an entry number and phrase.</p>
               <p>The abstract is encoded in a <gi>desc</gi> element with a <att>type</att> attribute
                 whose value is "abstract": <egXML xmlns="http://www.tei-c.org/ns/Examples">
                   <desc type="abstract" xml:lang="en" resp="http://syriaca.org" corresp="http://syriaca.org/geo http://syriaca.org/johnofephesus http://syriaca.org/johnofephesus/places"> A city of <placeName ref="http://syriaca.org/place/124">Mesopotamia</placeName>, the capital of the ancient kingdom of <placeName ref="http://syriaca.org/place/145">Osrhoene</placeName>, modern Urfa. </desc>
@@ -5715,9 +5714,7 @@ Ce ne seroyt que bon que nous rendissiez noz cloches...</egXML>
       Sprachregister oder Varietäten gehören, auszuzeichnen.</p>
   </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COHQHF">3.3.2.1. Foreign Words or Expressions</ref>
-  </listRef></elementSpec><elementSpec rend="add" module="core" xml:id="gi-quote" ident="quote"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">quotation</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">인용</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">引文</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">citation</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">cita</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">citazione</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains a phrase or passage attributed by the narrator or author to some agency external to the text.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko"> 해설자 또는 저자에 의해, 텍스트의 외부 주체에 의해 생성된 것이라 밝혀진 구 또는 단락을 포함한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">包含敘述者或作者引用自文本以外來源的字 (句) 詞或段落。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">語り手や著者が、当該テキスト外にあるものに向けた、一節を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">contient une expression ou un passage que le narrateur ou l'auteur attribue à une origine extérieure au texte.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene una frase o pasaje atribuido por el narrador o autor a un agente externo al texto.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene una frase o un brano attribuito dall'autore o dal narratore a soggetti esterni al testo</desc><classes><memberOf key="att.global"/><memberOf key="att.cmc"/><memberOf key="att.typed"/><memberOf key="model.quoteLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="bibl" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="measure" minOccurs="0" maxOccurs="unbounded"/><elementRef key="offset" minOccurs="0" maxOccurs="unbounded"/><elementRef key="orgName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><attList><attDef ident="source" mode="change" usage="req">
-                
-              </attDef><attDef ident="xml:id" mode="delete"/><attDef ident="n" mode="delete"/><attDef ident="ana" mode="delete"/><attDef ident="change" mode="delete"/><attDef ident="previous" mode="delete"/><attDef ident="resp" mode="delete"/><attDef ident="rend" mode="delete"/><attDef ident="corresp" mode="delete"/></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
+  </listRef></elementSpec><elementSpec rend="add" module="core" xml:id="gi-quote" ident="quote"><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">quotation</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">인용</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">引文</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">citation</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">cita</gloss><gloss xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">citazione</gloss><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains a phrase or passage attributed by the narrator or author to some agency external to the text.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko"> 해설자 또는 저자에 의해, 텍스트의 외부 주체에 의해 생성된 것이라 밝혀진 구 또는 단락을 포함한다.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">包含敘述者或作者引用自文本以外來源的字 (句) 詞或段落。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">語り手や著者が、当該テキスト外にあるものに向けた、一節を示す。</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-06" xml:lang="fr">contient une expression ou un passage que le narrateur ou l'auteur attribue à une origine extérieure au texte.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">contiene una frase o pasaje atribuido por el narrador o autor a un agente externo al texto.</desc><desc xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">contiene una frase o un brano attribuito dall'autore o dal narratore a soggetti esterni al testo</desc><classes><memberOf key="att.global"/><memberOf key="att.cmc"/><memberOf key="att.typed"/><memberOf key="model.quoteLike"/></classes><content><sequence minOccurs="1" maxOccurs="1" preserveOrder="false"><elementRef key="bibl" minOccurs="0" maxOccurs="unbounded"/><elementRef key="foreign" minOccurs="0" maxOccurs="unbounded"/><elementRef key="measure" minOccurs="0" maxOccurs="unbounded"/><elementRef key="offset" minOccurs="0" maxOccurs="unbounded"/><elementRef key="orgName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/><elementRef key="title" minOccurs="0" maxOccurs="unbounded"/><textNode/></sequence></content><constraintSpec ident=""/><attList><attDef ident="xml:id" mode="delete"/><attDef ident="n" mode="delete"/><attDef ident="ana" mode="delete"/><attDef ident="change" mode="delete"/><attDef ident="previous" mode="delete"/><attDef ident="resp" mode="delete"/><attDef ident="rend" mode="delete"/><attDef ident="corresp" mode="delete"/><attDef ident="source" mode="change" usage="req"/></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
     <egXML xmlns="http://www.tei-c.org/ns/Examples" xml:id="gi-quote-egXML-am" source="#COHQQ-eg-29">Lexicography has shown little sign of being affected by the
       work of followers of J.R. Firth, probably best summarized in his
       slogan, <quote>You shall know a word by the company it
@@ -6931,9 +6928,9 @@ psychological significance.
                   past-general, or past-technical. </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:body//tei:editor/@role">
-                <sch:assert test=". = 'editor' or . = 'general' or . = 'translator'"> The acceptable
+                <sch:assert test=". = 'editor' or . = 'general' or . = 'scribe' or . = 'translator'"> The acceptable
                   attribute values for @role on the &lt;editor&gt; element inside the &lt;body&gt;
-                  are: editor, general, or translator. </sch:assert>
+                  are: editor, general, scribe, or translator. </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec><constraintSpec xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="date-past-editor" scheme="schematron">
@@ -6997,6 +6994,9 @@ psychological significance.
                 </valItem>
                 <valItem ident="past-technical">
                   <desc>A former editor responsible for the data model</desc>
+                </valItem>
+                <valItem ident="scribe">
+                  <desc>An editor who copied the text of a work onto a physical object</desc>
                 </valItem>
                 <valItem ident="technical">
                   <desc>An editor responsible for the data model</desc>
@@ -7218,8 +7218,12 @@ psychological significance.
           </constraintSpec><constraintSpec ident="title-in-desc-note" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:desc//tei:title/@ref | //tei:text//tei:note//tei:title/@ref">
-                <sch:assert test="matches(., concat('http://syriaca.org/work/', '\d+$'))">
-                  This @ref attribute must take the form "http://syriaca.org/work/{\d+$}} where {\d+$} is a number.
+                <sch:assert test="                   matches(., '^http://syriaca\.org/work/\d+$')                   or                   matches(., '^http://syriaca\.org/cbss/[0-9A-Z]+$')                   ">
+                  This @ref attribute must take either a Syriaca.org work URI or a Comprehensive Bibliography 
+                  of Syriac Studies URI. For a work URI, the form is "http://syriaca.org/work/{\d+$} where {\d+$} 
+                  is a number. For a bibliography URI, the form is "http://syriaca.org/cbss/{0-9A-Z} where {0-9A-Z} 
+                  is a string made up of numbers and capital letters. In both cases these @ref values should point to
+                  URIs for specific work or bibliography items.
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:text//tei:desc//tei:title | //tei:text//tei:note//tei:title">
@@ -7549,6 +7553,9 @@ psychological significance.
                 </valItem>
                 <valItem ident="URL">
                   <desc>the element identifies a URL where information is located</desc>
+                </valItem>
+                <valItem ident="verse">
+                  <desc>Used for verse references in sacred texts like the Bible</desc>
                 </valItem>
                 <valItem ident="vol">
                   <desc>the element identifies a volume of a multi-volume work</desc>
