@@ -1132,9 +1132,14 @@
                 <title>NHSL</title> to easily disambiguate search results and quickly identify the
                 work for which they are searching. Abstracts should be written as complete sentences
                 with proper punctuation. Ideally, an abstract should be at least one sentence in
-                legnth Every record must have an abstract written in English. It is also possible to
+                legnth. Every record must have an abstract written in English. It is also possible to
                 add additional abstracts in other languages. Additionally, individual sub-volumes of
-                <title>NHSL</title> may have their own, distinct abstracts. <!-- Example-->
+                <title>NHSL</title> may have their own, distinct abstracts.
+                <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                  <note corresp="http://syriaca.org/nhsl http://syriaca.org/bible" xml:lang="en" type="abstract" resp="http://syriaca.org">
+                    <title xml:lang="en" ref="http://syriaca.org/work/78">1 Corinthians (Peshitta version)</title> is extant as early as the 5th-6th century 
+                    and consistently circulates as one of the <title xml:lang="en" ref="http://syriaca.org/work/159">Pauline Epistles (Peshitta version)</title>.</note>
+                </egXML>
                 Abstracts may be included in languages other than English, and each abstract must
                 have its language recorded as described in the <ref target="#languageCodes">Recording Language Information (<att>xml:lang</att>)</ref> section, above </p>
               <p> Abstracts must also have a <att>corresp</att> attribute that contains one or more
@@ -1142,7 +1147,7 @@
                 <gi>seriesStmt</gi> elements. These URIs identify <title>NHSL</title> and its
                 sub-volumes, such as the <title>Bibliotheca Hagiographica Syriaca
                   Electronica</title>. If there are multiple abstracts, only one can reference a
-                given series URI, and every series URI must be referenced by one of the abstracts.
+                given series URI, and every series URI must be referenced by one of the abstracts. While some abstracts in <title>NHSL</title> may contain an xml:id, this is legacy data and should be ignored. It is not necessary to assign an xml:id to the abstracts.
                 <!--Example of a rec with multiple, distinct? -->
               </p>
             </div>
