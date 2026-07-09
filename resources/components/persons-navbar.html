@@ -1,53 +1,57 @@
-<nav xmlns="http://www.w3.org/1999/xhtml" class="navbar navbar-default navbar-fixed-top" role="navigation">    
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <span class="icon-bar"/>
+            <span class="icon-bar"/>
+            <span class="icon-bar"/>
         </button>
-        <a class="navbar-brand banner-container" href="/nhsl/index.html">
-            <span class="syriaca-icon syriaca-nhsl banner-icon"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
-            <span class="banner-text">New Handbook of Syriac Literature</span>
+        <a class="navbar-brand banner-container" href="/persons/index.html"> 
+            <span class="syriaca-icon syriaca-sbd banner-icon">
+                <span class="path1"/><span class="path2"/><span class="path3"/><span class="path4"/>
+            </span>
+            <span class="banner-text">The Syriac Biographical Dictionary</span>
         </a>
     </div>
     <div class="navbar-collapse collapse pull-right" id="navbar-collapse-1">
         <ul class="nav navbar-nav">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle lonely-caret" data-toggle="dropdown"><span class="mobile-submenu">Browse </span>  <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle lonely-caret" data-toggle="dropdown"> 
+                    <span class="mobile-submenu">Browse</span>  <b class="caret"/>
+                </a>
                 <ul class="dropdown-menu pull-right">
                     <li>
-                        <a href="/nhsl/browse.html">
-                            <span class="syriaca-icon syriaca-nhsl icon-nav"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
-                            <span class="icon-text">Browse NHSL</span>
+                        <a href="/persons/browse.html" class="icon-container">
+                            <span class="syriaca-icon syriaca-sbd icon-nav">
+                                <span class="path1"/><span class="path2"/><span class="path3"/><span class="path4"/>
+                            </span>
+                            <span class="icon-text">Browse SBD</span>
                         </a>
                     </li>
-                    <li role="presentation" class="divider"></li>
+                    <li role="presentation" class="divider"/>
                     <li>
-                        <a href="/bhse/browse.html">
-                            <span class="syriaca-icon syriaca-bhse icon-nav"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
-                            <span class="icon-text">Browse BHSE</span>
-                        </a>                        
-                    </li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle lonely-caret" data-toggle="dropdown"><span class="mobile-submenu">About </span>  <b class="caret"></b></a>
-                <ul class="dropdown-menu pull-right">
-                    <li>
-                        <a href="/nhsl/about.html">
-                            <span class="syriaca-icon syriaca-nhsl icon-nav"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
-                            <span class="icon-text">About NHSL</span>
-                        </a>                        
-                    </li>
-                    <li role="presentation" class="divider"></li>
-                    <li>
-                        <a href="/bhse/about.html"><span class="syriaca-icon syriaca-bhse icon-nav"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
-                            <span class="icon-text">About BHSE</span>
+                        <a href="/q/browse.html" class="icon-container">
+                            <span class="syriaca-icon syriaca-q icon-nav">
+                                <span class="path1"/><span class="path2"/><span class="path3"/><span class="path4"/>
+                            </span>
+                            <span class="icon-text">Browse Qadishe</span>
                         </a>
                     </li>
+                    <li role="presentation" class="divider"/>
+                    <li>
+                        <a href="/authors/browse.html" class="icon-container">
+                            <span class="syriaca-icon syriaca-authors icon-nav">
+                                <span class="path1"/><span class="path2"/><span class="path3"/><span class="path4"/>
+                            </span>
+                            <span class="icon-text">Browse Authors</span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="divider"/>
+                    <li>
+                        <a href="/persons/map.html">Map</a>
+                    </li>
                 </ul>
-            </li>
+            </li> 
             <li xmlns="http://www.w3.org/1999/xhtml" class="dropdown">
                 <a href="#" class="dropdown-toggle lonely-caret" data-toggle="dropdown">
                     <span class="mobile-submenu">Publications </span>  <b class="caret"/>
@@ -119,26 +123,17 @@
                 </ul>
             </li>
             <li>
-                <a href="/nhsl/search.html" class="nav-text">Advanced Search</a>
+                <a href="/persons/search.html" class="nav-text">Advanced Search</a>
             </li>
             <li>
                 <div id="search-wrapper">
-                    <form class="navbar-form navbar-right search-box" role="search" action="/nhsl/search.html" method="get">
+                    <form class="navbar-form navbar-right search-box" role="search" action="/persons/search.html" method="get">
                         <div class="form-group">
-                            <input type="text" class="form-control keyboard" placeholder="search" name="keyword" id="keywordNav" />
-                            <input type="hidden" id="series" name="series" value="A New Handbook of Syriac Literature" />
-                            <span class="keyboard-menu">             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">                  <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span>             </button>             
-                                <ul class="dropdown-menu">                 
-                                    <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="keywordNav">Syriac Phonetic</a></li>                 
-                                    <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="keywordNav">Syriac Standard</a></li>                 
-                                    <li> <a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="keywordNav">Arabic Mod. Standard</a></li>                 
-                                    <li><a href="#" class="keyboard-select" id="ms-Hebrew" data-keyboard-id="keywordNav">Hebrew</a></li>                 
-                                    <li><a href="#" class="keyboard-select" id="ms-Russian" data-keyboard-id="keywordNav">Russian</a></li>                 
-                                    <li><a href="#" class="keyboard-select" id="ms-Greek" data-keyboard-id="keywordNav">Greek</a></li>                 
-                                    <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="keywordNav">English QWERTY</a></li>             
-                                </ul>         </span>
+                            <input type="text" class="form-control keyboard" placeholder="search" name="keyword" id="keywordNav"/>
+                            <input type="hidden" id="series" name="series" value="The Syriac Biographical Dictionary"/>
+                            <span xmlns="http://www.w3.org/1999/xhtml" class="keyboard-menu">             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">                 &#160;<span class="syriaca-icon syriaca-keyboard">&#160; </span><span class="caret"/>             </button>             <ul class="dropdown-menu">                 <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="keywordNav">Syriac Phonetic</a></li>                 <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="keywordNav">Syriac Standard</a></li>                 <li> <a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="keywordNav">Arabic Mod. Standard</a></li>                 <li><a href="#" class="keyboard-select" id="ms-Hebrew" data-keyboard-id="keywordNav">Hebrew</a></li>                 <li><a href="#" class="keyboard-select" id="ms-Russian" data-keyboard-id="keywordNav">Russian</a></li>                 <li><a href="#" class="keyboard-select" id="ms-Greek" data-keyboard-id="keywordNav">Greek</a></li>                 <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="keywordNav">English QWERTY</a></li>             </ul>         </span>
                             <button class="btn btn-default search-btn" id="searchbtn" type="submit" title="Search">
-                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="glyphicon glyphicon-search"/>
                             </button>                                    
                         </div>
                     </form>
@@ -147,7 +142,7 @@
             <li>
                 <div class="btn-nav">
                     <button class="btn btn-default navbar-btn" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Font">
-                        <span class="glyphicon glyphicon-font"></span>
+                        <span class="glyphicon glyphicon-font"/>
                     </button>  
                     <ul class="dropdown-menu dropdown-menu-right" id="swap-font">
                         <li>
@@ -163,8 +158,9 @@
                             <a href="#" class="swap-font" id="SertoBatnanSelect" data-font-id="SertoBatnan">Serto Batnan</a>
                         </li>
                         <li>
-                            <a href="/documentation/wiki.html?wiki-page=/How-to-view-Syriac-script&amp;wiki-uri=https://github.com/srophe/syriaca-data/wiki">Help <span class="glyphicon glyphicon-question-sign"></span></a>                            
-                        </li>                        
+                            <a href="/documentation/wiki.html?wiki-page=/How-to-view-Syriac-script&amp;wiki-uri=https://github.com/srophe/syriaca-data/wiki">Help <span class="glyphicon glyphicon-question-sign"/>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
