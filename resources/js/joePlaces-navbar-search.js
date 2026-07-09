@@ -1,6 +1,6 @@
 // Navbar search functionality 
 $(document).ready(function() {
-$('#navbar-container').load('/resources/components/bhse-navbar.html', function() {
+$('#navbar-container').load('/resources/components/joePlaces-navbar.html', function() {
     
     $('[data-toggle="tooltip"]').tooltip({ container: 'body' });
 
@@ -37,7 +37,7 @@ $('#navbar-container').load('/resources/components/bhse-navbar.html', function()
         e.preventDefault();
         const keyword = $('#keywordNav').val();
         if (keyword) {
-            window.location.href = '/bhse/search.html?series=Bibliotheca+Hagiographica+Syriaca+Electronica&fullText=' + encodeURIComponent(keyword);
+            window.location.href = '/johnofephesus/places/search.html?series=Gazetteer+to+John+of+Ephesus’s+Ecclesiastical+History&fullText=' + encodeURIComponent(keyword);
         }
     });
     
@@ -46,7 +46,7 @@ $('#navbar-container').load('/resources/components/bhse-navbar.html', function()
             e.preventDefault();
             const keyword = $(this).val();
             if (keyword) {
-                window.location.href = '/bhse/search.html?series=Bibliotheca+Hagiographica+Syriaca+Electronica&fullText=' + encodeURIComponent(keyword);
+                window.location.href = '/johnofephesus/places/search.html?series=Gazetteer+to+John+of+Ephesus’s+Ecclesiastical+History&fullText=' + encodeURIComponent(keyword);
             }
         }
     }); 

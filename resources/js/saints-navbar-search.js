@@ -1,6 +1,6 @@
 // Navbar search functionality 
 $(document).ready(function() {
-$('#navbar-container').load('/resources/components/bhse-navbar.html', function() {
+$('#navbar-container').load('/resources/components/saints-navbar.html', function() {
     
     $('[data-toggle="tooltip"]').tooltip({ container: 'body' });
 
@@ -37,7 +37,7 @@ $('#navbar-container').load('/resources/components/bhse-navbar.html', function()
         e.preventDefault();
         const keyword = $('#keywordNav').val();
         if (keyword) {
-            window.location.href = '/bhse/search.html?series=Bibliotheca+Hagiographica+Syriaca+Electronica&fullText=' + encodeURIComponent(keyword);
+            window.location.href = '/saints/search.html?series=Qadishe%3A+A+Guide+to+the+Syriac+Saints&fullText=' + encodeURIComponent(keyword);
         }
     });
     
@@ -46,7 +46,7 @@ $('#navbar-container').load('/resources/components/bhse-navbar.html', function()
             e.preventDefault();
             const keyword = $(this).val();
             if (keyword) {
-                window.location.href = '/bhse/search.html?series=Bibliotheca+Hagiographica+Syriaca+Electronica&fullText=' + encodeURIComponent(keyword);
+                window.location.href = '/saints/search.html?series=Qadishe%3A+A+Guide+to+the+Syriac+Saints&fullText=' + encodeURIComponent(keyword);
             }
         }
     }); 
