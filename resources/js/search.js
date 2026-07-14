@@ -21,6 +21,7 @@ const state = {
     cbssPubDateStart: '',
     cbssPubDateEnd: '',
     cbssSubject: '',
+    creator: '',
     deathRangeStart: '',
     deathRangeEnd: '',
     editor: '',
@@ -452,6 +453,7 @@ function initializeStateFromURL() {
     state.floruitRangeEnd = urlParams.get('floruitRangeEnd') || '';
     state.title = urlParams.get('title') || '';
     state.author = urlParams.get('author') || '';
+    state.creator = urlParams.get('creator') || '';
     state.editor = urlParams.get('editor') || '';
     state.BHO = urlParams.get('BHO') || '';
     state.BHS = urlParams.get('BHS') || '';
@@ -1324,6 +1326,7 @@ function updateStateFromForm(form) {
     state.explicit = formData.get('explicit') || '';
     state.title = formData.get('title') || '';
     state.author = formData.get('author') || '';
+    state.creator = formData.get('creator') || '';
     state.editor = formData.get('editor') || '';
     console.log('editor', state.editor);
 
@@ -1358,6 +1361,7 @@ function buildQueryParams() {
         attestationRangeStart: state.attestationRangeStart,
         attestationRangeEnd: state.attestationRangeEnd,
         author: state.author,
+        creator: state.creator,
         birthRangeStart: state.birthRangeStart,
         birthRangeEnd: state.birthRangeEnd,
         deathRangeStart: state.deathRangeStart,
@@ -1471,6 +1475,7 @@ function resetState() {
     
     state.title = '';
     state.author = '';
+    state.creator = '';
     state.editor = '';
     state.idno = '';
     state.prologue = '';
