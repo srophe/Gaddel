@@ -54,6 +54,25 @@
             <div class="row">
                 <div class="col-md-4">
                     <form method="get" action="search.html" class="form-horizontal search" role="form" id="advancedSearch">
+                        <!-- Work Type -->
+                        <div class="form-group"><label for="coll" class="col-sm-2 col-md-3  control-label">Search in Resource: </label>
+                            <div class="col-sm-10 col-md-9"><label class="checkbox-inline">
+                                <input type="radio" name="series" value="A New Handbook of Syriac Literature" aria-label="NHSL" >
+                                NHSL (all entries)
+                            </label>
+                                
+                                <label class="checkbox-inline">
+                                    <input type="radio" name="series" value="Bibliotheca Hagiographica Syriaca Electronica" checked="checked" aria-label="BHSE">
+                                    BHSE (NHSL Vol. I)
+                                </label>
+                                <!--
+                              <label class="checkbox-inline">
+                                 <input type="radio" name="series" value="A Guide to Syriac Authors" aria-label="Authors">
+                                 Authors (SBD Vol. 2)
+                              </label>
+                              -->
+                            </div>
+                        </div>
                                 <div class="form-group">
                                     <label for="title" class="col-sm-2 col-md-3  control-label">Title: </label>
                                     <div class="col-sm-10 col-md-9">
@@ -165,7 +184,7 @@
                                         <label class="checkbox-inline"><input type="radio" name="idnoType" value="CPG" aria-label="CPG"/> CPG</label>
                                     </div>
                                 </div>
-                        <input type="hidden" id="series" name="series" value="Bibliotheca Hagiographica Syriaca Electronica"/>
+<!--                        <input type="hidden" id="series" name="series" value="Bibliotheca Hagiographica Syriaca Electronica"/>-->
                                 <button type="submit" class="btn btn-info">Search</button> 
                                 <button type="reset" class="btn">Clear</button>
                     </form>
