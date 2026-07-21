@@ -21,8 +21,10 @@ const state = {
     cbssPubDateStart: '',
     cbssPubDateEnd: '',
     cbssSubject: '',
+    creator: '',
     deathRangeStart: '',
     deathRangeEnd: '',
+    editor: '',
     eventRangeStart: '',
     eventRangeEnd: '',
     explicit: '',
@@ -50,25 +52,43 @@ const state = {
 // Base API URL
 const apiUrl = "https://50fnejdk87.execute-api.us-east-1.amazonaws.com/opensearch-api-test";
 
-// Fetch results and update UI
 function fetchAndRenderAdvancedSearchResults() {
-    // if (state.isLoading) return; // Prevent duplicate requests
-    // state.isLoading = true;
-
-    // Build query parameters from state
     const queryParams = new URLSearchParams(buildQueryParams());
-    
+    const countQueryParams = new URLSearchParams(queryParams);
+    countQueryParams.set("searchType", "count");
+
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
         .then(response => response.json())
         .then(data => {
-            state.totalResults = data.hits.total.value;
-            displayResultsInfo(state.totalResults);
-            if (state.series === 'Comprehensive Bibliography on Syriac Studies'){displayCBSSAuthorResults(data);}
-            else {displayResults(data);}
+            clearSearchResults();
+
+            const defaultHitCount = data.hits?.total?.value || 0;
+
+            // If default results hit the 10k cap, get true count
+            if (defaultHitCount === 10000) {
+                fetch(`${apiUrl}?${countQueryParams.toString()}`, { method: 'GET' })
+                    .then(countResponse => countResponse.json())
+                    .then(countData => {
+                        state.totalResults = countData.count || 10000;
+                        displayResultsInfo(state.totalResults);
+                        displayResultsBasedOnSeries(data);
+                    })
+                    .catch(error => {
+                        console.warn("Count query failed, falling back to capped result count.");
+                        state.totalResults = defaultHitCount;
+                        displayResultsInfo(state.totalResults);
+                        displayResultsBasedOnSeries(data);
+                    });
+            } else {
+                // Use default count if under 10k
+                state.totalResults = defaultHitCount;
+                displayResultsInfo(state.totalResults);
+                displayResultsBasedOnSeries(data);
+            }
+
             if (state.totalResults > state.size) {
                 renderPagination(state.totalResults, state.size, state.currentPage, changePage);
             }
-            
         })
         .catch(error => {
             handleError('search-results', 'Error fetching search results.');
@@ -77,53 +97,74 @@ function fetchAndRenderAdvancedSearchResults() {
 
     state.isLoading = false;
     window.history.pushState({}, '', `?${queryParams.toString()}`);
+    //Add function to update search boxes WS:Note, seems to have a caching issue?   
 
+    // window.onload = function() {
+    // const urlParams = new URLSearchParams(window.location.search);
+
+    // for (const [key, value] of urlParams) {
+
+    // const field = document.getElementById(key) || document.querySelector(`input[name="${key}"]`) || document.querySelector(`select[name="${key}"]`);
+
+    //   if (field) {
+
+    //     field.value = value;
+
+    //   }
+
+    // }
+
+    // }
+}
+
+function displayResultsBasedOnSeries(data) {
+    if (state.series === 'Comprehensive Bibliography on Syriac Studies') {
+        displayCBSSAuthorResults(data);
+    } else {
+        displayResults(data);
+    }
 }
 
 
 // Display search results
+
 function displayResults(data) {
-    //Add series selector here for JoE display? 
-    
-    //Set displat for selected menu item
-    const items = document.querySelectorAll('.ui-menu-item');
-    //On initial load add badge to first letter if no other letter is selected. 
-    // Check if any item has the 'selected' class
-    const anyItemSelected = Array.from(items).some(item => 
-      item.classList.contains('badge')
-    );
-  
-    // If no item is selected, add the class to the first one
-    if (!anyItemSelected && items.length > 0) {
-      items[0].classList.add('badge');
-    }
-    
-    //Add class badge to selected letter
-    items.forEach(item => {
-      item.addEventListener('click', () => {
-        // Remove 'selected' class from all items
-        items.forEach(el => el.classList.remove('badge'));
+    clearSearchResults(); // Clear previous results
 
-        // Add 'selected' class to the clicked item
-        item.classList.add('badge');
-      });
-      
-    });
-
-    
+    const totalResults = data.hits.total.value || 0;
     const resultsContainer = document.getElementById("search-results");
-    resultsContainer.innerHTML = ''; // Clear previous results
-    if(document.getElementById("toggleSearchForm")){
+    resultsContainer.innerHTML = '';
+
+    const shouldRestrictByLetter = totalResults >= 100;
+
+    // Show/hide the letter badge menu based on result count
+    const items = document.querySelectorAll('.ui-menu-item');
+    if (shouldRestrictByLetter) {
+        const anyItemSelected = Array.from(items).some(item =>
+            item.classList.contains('badge')
+        );
+        if (!anyItemSelected && items.length > 0) {
+            items[0].classList.add('badge');
+        }
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                items.forEach(el => el.classList.remove('badge'));
+                item.classList.add('badge');
+            });
+        });
+    } else {
+        // Optional: Hide or disable the alphabet menu if < 100 results
+        // const abcMenu = document.getElementById('abcMenu');
+        // if (abcMenu) abcMenu.style.display = 'none';
+    }
+
+    if (document.getElementById("toggleSearchForm")) {
         const toggleButton = document.getElementById("toggleSearchForm");
         const searchFormContainer = document.getElementById("advancedSearch");
-        
-        // Show the toggle button
+
         toggleButton.style.display = "inline-block";
-
-        // Hide the advanced search form
         searchFormContainer.style.display = "none";
-
-        // Update the button text
         toggleButton.textContent = "Show Search";
     }
 
@@ -131,91 +172,142 @@ function displayResults(data) {
         data.hits.hits.forEach(hit => {
             const resultItem = document.createElement("div");
             resultItem.classList.add("result-item");
-            resultItem.style.marginBottom = "15px"; // Add spacing between items
+            resultItem.style.marginBottom = "15px";
+
+            const displayTitle = cleanDisplayData(hit._source.displayTitleEnglish || '');
             
-            // Extract the title, prologue, and idno fields from the response
-            const title = hit._source.title || 'No Title';
-            const syriacTitle = hit._source.titleSyriac || 'No Syriac Title';
+            const syriacTitle = hit._source.displayTitleSyriac || '';
             const arabicTitle = hit._source.titleArabic || 'No Arabic Title';
             const type = hit._source.type || '';
             if(hit._source.placeName){
-                var placeName = hit._source.placeName || '';
-                var names = placeName.join(", ")
-                var nameString = names ? ` <br/>Names: ${names} `: '';
-            }else if(hit._source.persName){
-                var persName = hit._source.persName || '';
-                var names = persName.join(", ")
-                var nameString = names ? ` <br/>Names: ${names} `: '';
-            } else {
-                nameString = '';
-            }
-            if(hit._source.placeName){
-                var typeString = type ? ` (${type}) `: '';
-            }else if(hit._source.persName){
                 var typeString = type ? ` (${type}) `: '';
             } else {
                 typeString = '';
             }
-            const abstract = hit._source.abstract || '';
-            const abstractString = abstract ? ` ${abstract} <br/>`: '';
-            const prologue = hit._source.prologue || ' ';
-            const idno = hit._source.idno || ''; // Fallback if no idno
-            const coordinates = hit._source.coordinates || ''; // Fallback if no idno
-            // Construct the URL using the idno field
-            //const url = idno ? `${idno}`: '#';
+  
+            const title = syriacTitle && syriacTitle.trim() !== ''
+              ? `${displayTitle}`
+              : displayTitle;
 
-             //URL if JoE
-           if (state.series === 'Prosopography to John of Ephesus’s Ecclesiastical History'){
-                var idnoString = idno.replace('\/person\/', '\/johnofephesus\/persons\/');
-                var url = idnoString ? `${idnoString}`: '#';
-            } else if(state.series === 'Gazetteer to John of Ephesus’s Ecclesiastical History'){
-                var idnoString = idno.replace('\/place\/', '\/johnofephesus\/places\/');
-                var url = idnoString ? `${idnoString}`: '#';
-            } else {
-                 var url = idno ? `${idno}`: '#';
+            let names = '';
+            if (hit._source.placeName || hit._source.persName) {
+                const nameArray = hit._source.placeName || hit._source.persName || [];
+                names = nameArray.map(name => name.trim()).join(", ");
             }
-           
+            const nameString = names ? `<br/>Names: ${names}` : '';
+            const birth = trimYear(hit._source.birthDate);
+            const death = trimYear(hit._source.deathDate);
+            const floruitStart = trimYearList(hit._source.floruitDatesStart);
+            const floruitEnd = trimYearList(hit._source.floruitDatesEnd);
             
-            // Populate the result item with the link and details
-            if(state.lang === 'syr'){
+            let dateInfo = '';
+            
+            if (birth || death || floruitStart || floruitEnd) {
+                const dates = [];
+                if (birth) dates.push(`Born: ${birth}`);
+                if (death) dates.push(`Died: ${death}`);
+                if (floruitStart || floruitEnd) {
+                    if (floruitStart && floruitEnd) {
+                        dates.push(`Floruit: ${floruitStart[0]}–${floruitEnd[floruitEnd.length - 1]}`);
+                    } else if (floruitStart) {
+                        dates.push(`Floruit from: ${floruitStart}`);
+                    } else if (floruitEnd) {
+                        dates.push(`Floruit until: ${floruitEnd}`);
+                    }
+                }
+                dateInfo = `<br/><strong>Dates:</strong> ${dates.join(', ')}`;
+            }
+
+            const abstract = hit._source.abstract || '';
+            const abstractString = abstract ? `<br/>${abstract}` : '';
+            const idno = hit._source.idno || '';
+            const originURL = window.location.origin;
+            let url = idno.replace('http://syriaca.org', originURL);
+
+            // Handle special cases of JOE: search and browse
+            if (state.series === 'Prosopography to John of Ephesus’s Ecclesiastical History'|| state.query === 'Prosopography to John of Ephesus’s Ecclesiastical History') {
+                url = url.replace('/person/', '/johnofephesus/persons/');
+            } else if (state.series === 'Gazetteer to John of Ephesus’s Ecclesiastical History' || state.query === 'Gazetteer to John of Ephesus’s Ecclesiastical History') {
+                url = url.replace('/place/', '/johnofephesus/places/');
+            }
+
+            if (state.lang === 'syr') {
                 resultItem.innerHTML = `
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${syriacTitle}</span> ${typeString}
-                </a>
-                ${nameString}
-                <br/>URI: 
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${url}</span>
-                </a>
+                    <div dir="rtl">
+                    <span class="tei-title title-analytic" xml:lang="syr" lang="syr" dir="rtl">${syriacTitle}</span>
+                    <br/>
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${title}</span> ${typeString}
+                    </a>
+                    ${nameString}
+                    ${dateInfo}
+                    <br/>URI: 
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${url}</span> 
+                    </a>
+                    </div>
+                `;
+            } else if (state.lang === 'ar') {
+                resultItem.innerHTML = `
+                    <div dir="rtl">
+                    <span class="tei-title title-analytic" lang="ar" dir="rtl">${arabicTitle}</span>
+                    <br/>
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${title}</span> ${typeString}
+                    </a>
+                    ${nameString}
+                    ${dateInfo}
+                    <br/>URI: 
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${url}</span>
+                    </a>
+                    </div>
+                `;
+            } else {
+                resultItem.innerHTML = `
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${title}</span> ${typeString}
+                    </a>
+                    ${abstractString}
+                    ${nameString}
+                    ${dateInfo}
+                    <br/>URI: 
+                    <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
+                        <span class="tei-title title-analytic">${url}</span>
+                    </a>
                 `;
             }
-            if(state.lang === 'ar'){
-                resultItem.innerHTML = `
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${arabicTitle}</span> ${typeString}
-                </a>
-                ${nameString}
-                <br/>URI: 
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${url}</span>
-                </a>
-                `;
-            } else (
-                resultItem.innerHTML = `
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${title}</span> ${typeString}
-                </a>
-                ${nameString}
-                <br/>URI: 
-                <a href="${url}" target="_blank" style="text-decoration: none; color: #007bff;">
-                    <span class="tei-title title-analytic">${url}</span>
-                </a>
-                `);
 
             resultsContainer.appendChild(resultItem);
         });
     } else {
-    resultsContainer.innerHTML = '<p>No results found.</p>';
+        resultsContainer.innerHTML = '<p>No results found.</p>';
+    }
+}
+function cleanDisplayData(entryValue) {
+  return entryValue
+    .replace(/^«+/, '')    // Remove leading «
+    .replace(/»+$/, '')    // Remove trailing »
+    .replace(/,+\s*$/, '')  // Remove trailing commas and optional whitespace
+    .trim(); // Trim leading and trailing whitespace
+}
+
+function trimYear(value) {
+    if (!value) return '';
+    const str = String(value);
+
+    // Remove last 4 characters if the string is longer than 4
+    const trimmed = str.length > 4 ? str.slice(0, -4) : str;
+
+    // Remove leading zeros using regex
+    return trimmed.replace(/^0+/, '');
+}
+
+function trimYearList(input) {
+    if (Array.isArray(input)) {
+        return input.map(trimYear);
+    } else {
+        return trimYear(input);
     }
 }
 
@@ -230,8 +322,8 @@ function getBrowse(series) {
     //This defines a first page load browse, retains letter and series in state, lang
     state.query = series; // Retain the series in state.query
     state.series = series; // Set the series in state.series also
-    state.from = 0; // Reset for the first page
-    state.letter = state.letter || 'a'; // Default to 'a' if undefined
+    state.from = state.from || 0; // Reset for the first page if not already set
+    state.letter = state.letter || 'A'; // Default 
     state.searchType = 'letter'; 
     const params = {
         searchType: 'letter',
@@ -239,7 +331,8 @@ function getBrowse(series) {
         letter: state.letter,
         from: state.from,
         size: state.size,
-        lang: state.lang
+        lang: state.lang,
+        series: state.series
     };
 
     // Remove empty or undefined parameters
@@ -267,7 +360,7 @@ function getBrowse(series) {
 
 function getPaginatedBrowse() {
     state.query = state.query || 'cbssAuthor';  
-    state.series = state.series || 'Comprehensive Bibliography on Syriac Studies'; 
+    state.series = state.series || state.query; // Set the series to the current query
     const params = {
         searchType: state.searchType,
         q: state.query, // Retain the query which is the series name in the case of browse
@@ -276,7 +369,7 @@ function getPaginatedBrowse() {
         size: state.size,
         lang: state.lang,
         series: state.series,
-        subject: state.subject
+        subject: state.cbssSubject
     };
 
     // Remove empty or undefined parameters
@@ -286,6 +379,7 @@ function getPaginatedBrowse() {
 
     // Create URLSearchParams with filtered parameters
     const queryParams = new URLSearchParams(filteredBrowseParams);
+    window.history.pushState({}, '', `?${queryParams.toString()}`); // Update URL
 
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
         .then(response => response.json())
@@ -299,29 +393,38 @@ function getPaginatedBrowse() {
             handleError('search-results', 'Error fetching browse results.');
             console.error(error);
         });
+        // window.history.pushState({}, '', `?${queryParams.toString()}`); // Update URL
+
 }
 
 function displayResultsInfo(totalResults) {
     const browseInfoContainer = document.getElementById('search-info');
-    
     // Clear previous browse info and pagination
     browseInfoContainer.innerHTML = '';
 
-    // Display total results count
-    if (state.query != 'cbssSubject') {
+    // Display total results count for non-subject queries-- subject query results has bug
+    // if (state.query != 'cbssSubject') {
+    // browseInfoContainer.innerHTML = `
+    //     <br/>
+    //     <p>Total Results: ${totalResults}</p>
+    // `;
+    // }
     
     browseInfoContainer.innerHTML = `
         <br/>
         <p>Total Results: ${totalResults}</p>
     `;
+    
+    if (!state.letter && state.lang !== 'en' && state.lang !== 'rus') {
+    browseInfoContainer.innerHTML += `<p>Showing all ${state.lang.toUpperCase()} entries</p>`;
     }
-    const paginationContainer = document.getElementById('searchPagination');
-    paginationContainer.innerHTML = '';
+    const paginationContainers = document.getElementsByClassName('searchPagination');
+    Array.from(paginationContainers).forEach(container => {
+        container.innerHTML = ''; // Clear existing buttons
+    });
     if (totalResults > state.size && state.query === 'cbssAuthor' || (totalResults > state.size && state.query != 'cbssSubject')) {
         renderPagination(totalResults, state.size, state.currentPage, changePage);
     } 
-    
-
 }
 
 function initializeStateFromURL() {
@@ -350,6 +453,8 @@ function initializeStateFromURL() {
     state.floruitRangeEnd = urlParams.get('floruitRangeEnd') || '';
     state.title = urlParams.get('title') || '';
     state.author = urlParams.get('author') || '';
+    state.creator = urlParams.get('creator') || '';
+    state.editor = urlParams.get('editor') || '';
     state.BHO = urlParams.get('BHO') || '';
     state.BHS = urlParams.get('BHS') || '';
     state.CPG = urlParams.get('CPG') || '';
@@ -366,84 +471,32 @@ function initializeStateFromURL() {
     state.sortFactor = urlParams.get('sortFactor') || 'author';
     state.fullText = urlParams.get('fullText') || '';
     state.type = urlParams.getAll('type') || [];
-
+    console.log("editor", state.editor);
     if (state.keyword) {
         fetchAndRenderAdvancedSearchResults();
     }
 }
+function getSeriesFromPath(pathname = window.location.pathname) {
+  if (pathname.includes('/geo')) {
+    return 'The+Syriac+Gazetteer';
+  } else if (pathname.includes('/cbss')) {
+    return 'Comprehensive+Bibliography+on+Syriac+Studies';
+  } else if (pathname.includes('/johnofephesus/persons')) {
+    return 'Prosopography to John of Ephesus’s Ecclesiastical History';
+  } else if (pathname.includes('/johnofephesus/places')) {
+    return 'Gazetteer to John of Ephesus’s Ecclesiastical History';
+  } else {
+    return ''; // Default to empty string if path doesn't match any series
+  }
+}
 
-
-// function browseAlphaMenu() {
-//     const urlParams = new URLSearchParams(window.location.search);
-//     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
-
-//     // Define alphabets
-//     const alphabets = {
-//         en: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z',
-//         syr: 'ܐ ܒ ܓ ܕ ܗ ܘ ܙ ܚ ܛ ܝ ܟ ܠ ܡ ܢ ܣ ܥ ܦ ܨ ܩ ܪ ܫ ܬ',
-//         ar: 'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي'
-//     };
-
-//     // Select the appropriate alphabet for the current language
-//     const alphabet = alphabets[state.lang] || alphabets.en;
-//     // Set the default letter based on the language-- this is not yet necessary
-//     if (state.lang === 'syr') {
-//         state.letter =  'ܐ'; // Default to first Syriac letter
-//     } else if (state.lang === 'ar') {
-//         state.letter = 'ا'; // Default to first Arabic letter
-//     } else { state.letter = 'A'; } // Default to first English letter
-
-//     const menuContainer = document.getElementById('abcMenu');
-//     menuContainer.innerHTML = ''; // Clear previous menu
-
-//     // Set direction for right-to-left languages
-//     menuContainer.setAttribute('dir', ['syr', 'ar'].includes(state.lang) ? 'rtl' : 'ltr');
-
-//     alphabet.split(' ').forEach(letter => {
-//         const menuItem = document.createElement('li');
-//         menuItem.classList.add('ui-menu-item');
-//         menuItem.setAttribute('role', 'menuitem');
-
-//         const menuLink = document.createElement('a');
-//         menuLink.classList.add('ui-all');
-//         menuLink.textContent = letter;
-//         menuLink.href = `?searchType=letter&letter=${letter}&q=${encodeURIComponent(state.query)}&size=${state.size}&lang=${state.lang}`;
-
-      
-//         menuLink.addEventListener('click', (event) => {
-//             event.preventDefault(); 
-//             state.letter = letter; 
-//             state.from = 0; // Reset pagination
-//             state.currentPage = 1;
-
-//             const newUrlParams = new URLSearchParams({
-//                 searchType: 'letter',
-//                 q: state.query,
-//                 letter: state.letter, 
-//                 size: state.size,
-//                 lang: state.lang
-//             });
-
-//             window.history.pushState({}, '', `?${newUrlParams.toString()}`); // Update URL
-
-//             console.log("Updated Letter:", state.letter); 
-//             console.log("Updated URL:", window.location.href); 
-//             console.log("Series: ", state.query);
-//             console.log("Lang: ", state.lang);
-//             getBrowse(state.query, state.letter, state.lang);
-//         });
-
-//         menuItem.appendChild(menuLink);
-//         menuContainer.appendChild(menuItem);
-//     });
-// }
 
 function browseAlphaMenu() {
     const urlParams = new URLSearchParams(window.location.search);
     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
-    
+    state.letter = urlParams.get('letter') || 'a'; // Default to 'A' if no letter is set
 
-    const engAlphabet = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z';
+    const engAlphabet = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ʾ ʿ #';
     const syrAlphabet = 'ܐ ܒ ܓ ܕ ܗ ܘ ܙ ܚ ܛ ܝ ܟ ܠ ܡ ܢ ܣ ܥ ܦ ܩ ܪ ܫ ܬ';
     const arAlphabet = 'ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي';
 
@@ -455,7 +508,7 @@ function browseAlphaMenu() {
     } else if (state.lang === 'ar') {
         alphabet = arAlphabet;
         state.letter = 'ا'; // Default to first Arabic letter
-    }
+    } 
 
     // Create the menu container
     const menuContainer = document.getElementById('abcMenu');
@@ -477,26 +530,25 @@ function browseAlphaMenu() {
         const menuLink = document.createElement('a');
         menuLink.classList.add('ui-all');
         menuLink.textContent = letter;
-        menuLink.href = `?searchType=letter&letter=${letter}&q=${encodeURIComponent(state.query)}&size=${state.size}&lang=${state.lang}`;
+        letterLowerCase = letter.toLowerCase();
+        const seriesFromPath = getSeriesFromPath(); // Get series from the current path
+        menuLink.href = `?searchType=letter&letter=${letterLowerCase}&q=${encodeURIComponent(state.query)}&size=${state.size}&lang=${state.lang}`;
         
         // Attach event listener for letter selection
         menuLink.addEventListener('click', (event) => {
             event.preventDefault(); // Prevent page reload
             state.letter = letter; // Update state
             state.from = 0; // Reset pagination
-                        const newUrlParams = new URLSearchParams({
+
+            state.query = state.query || state.series || seriesFromPath || 'Gazetteer to John of Ephesus’s Ecclesiastical History'; // Ensure query is set
+            const newUrlParams = new URLSearchParams({
                 searchType: 'letter',
                 q: state.query,
                 letter: state.letter, 
-                size: state.size,
+                size: state.size, 
                 lang: state.lang
             });
             window.history.pushState({}, '', `?${newUrlParams.toString()}`); // Update URL
-
-            console.log("Updated Letter:", state.letter); 
-            console.log("Updated URL:", window.location.href); 
-            console.log("Series: ", state.query);
-            console.log("Lang: ", state.lang);
             getBrowse(state.query); // Trigger browse function
         });
 
@@ -508,10 +560,13 @@ function browseAlphaMenu() {
 function browseCbssAlphaMenu() {
     const urlParams = new URLSearchParams(window.location.search);
     state.lang = urlParams.get('lang') || 'en'; // Default to English if no language is set
-    state.searchType = urlParams.get('searchType') || 'browse'; // Retrieve searchType from the URL
-    state.query = urlParams.get('q') || 'cbssAuthor'; // Retrieve query from the URL
+    // state.searchType = urlParams.get('searchType') || 'browse'; // Retrieve searchType from the URL
+    state.searchType = 'browse'; // Do not Retrieve searchType from the URL, set as browse
+    state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
+
+    state.query = urlParams.get('q') || 'cbssSubject'; // Retrieve query from the URL
     const alphabets = {
-        en: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z',
+        en: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ʾ ʿ #',
         rus: 'А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я',
         gr: 'Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω',
         arm: 'Ա Բ Գ Դ Ե Զ Է Ը Թ Ժ Ի Լ Խ Ծ Կ Հ Ձ Ղ Ճ Մ Յ Ն Շ Ո Չ Պ Ջ Ռ Ս Վ Տ Ր Ց Ու Փ Ք Օ Ֆ',
@@ -522,7 +577,7 @@ function browseCbssAlphaMenu() {
 
     // Select the appropriate alphabet for the current language
     const alphabet = alphabets[state.lang] || alphabets.en;
-    // Set the default letter based on the language-- this is not yet necessary
+    // Set the default letter based on the language-- 
     if (state.lang === 'syr') {
         state.letter =  'ܐ'; // Default to first Syriac letter
     } else if (state.lang === 'ar') {
@@ -534,9 +589,9 @@ function browseCbssAlphaMenu() {
     } else if (state.lang === 'gr') {
         state.letter = 'Α'; // Default to first Greek letter
     } else if (state.lang === 'rus') {
-        state.letter = 'А'; // Default to first Russian letter
+        state.letter = 'А';     
     } else { state.letter = 'A'; } // Default to first English letter
-
+    // if (state.lang === 'rus' || state.lang === 'en') {state.letter = 'A';} else {state.letter = '';}
     // Create the menu container
     const menuContainer = document.getElementById('abcMenu');
     menuContainer.innerHTML = ''; // Clear previous menu
@@ -564,18 +619,19 @@ function browseCbssAlphaMenu() {
             state.letter = letter; // Update state
             state.from = 0; // Reset pagination
             state.currentPage = 1;
+            state.searchType = 'browse'; // Set searchType to 'browse'
             const newUrlParams = new URLSearchParams({
-                searchType: 'letter',
-                q: state.query,
-                letter: state.letter, 
+                searchType: 'browse',
+                q: state.query || 'cbssSubject', // Default to 'cbssSubject' if query is not set
                 size: state.size,
                 lang: state.lang
             });
+            if (state.letter) {
+                newUrlParams.set('letter', state.letter);
+            }
 
             window.history.pushState({}, '', `?${newUrlParams.toString()}`); // Update URL
-
-            console.log("Updated Letter:", state.letter); 
-            console.log("Updated URL:", window.location.href); 
+ 
 
             getCBSSBrowse(); // Trigger the CBSS browse function
         });
@@ -587,22 +643,22 @@ function browseCbssAlphaMenu() {
 
 
 function getCBSSBrowse() {
-    // Set state for CBSS browse
-    //initializeStateFromURL();
-    state.from = 0; // Reset for the first page
-    state.letter = state.letter || 'a'; // Default letter if not already set
-    state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
-    state.searchType = state.searchType || 'browse'; // Set search type to 'browse'
-    state.query = state.query || 'cbssAuthor'; // Set query to 'cbssAuthor' by default
-    const queryParams = new URLSearchParams({
-        searchType: state.searchType,
-        q: state.query,
-        letter: state.letter,
-        from: state.from,
-        size: state.size,
-        lang: state.lang,
-        series: state.series
-    });
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Only apply defaults if no search parameters are in the URL
+    if (!urlParams.has('searchType')) {
+        state.from = 0; // Reset for the first page
+        state.letter = state.letter || 'A'; // Default letter if not already set
+        state.series = 'Comprehensive Bibliography on Syriac Studies'; // Set series to CBSS
+        state.searchType = state.searchType || 'browse'; // Set search type to 'browse'
+        state.query = state.query || 'cbssSubject'; // Set query to 'cbssSubject' by default
+    } else {
+        initializeStateFromURL();
+    }
+
+    // Set query parameters for url and search
+    const queryParams = new URLSearchParams(buildQueryParams());
+
     window.history.pushState({}, '', `?${queryParams.toString()}`);
 
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
@@ -610,24 +666,36 @@ function getCBSSBrowse() {
         .then(data => {
             state.totalResults = data.hits.total.value;
             displayResultsInfo(state.totalResults); 
-            if(state.query === 'cbssAuthor' ){ displayCBSSAuthorResults(data); }
-            if(state.query === 'cbssSubject' ){ displayCBSSSubjectResults(data); }   })
+            if (state.query === 'cbssAuthor') { displayCBSSAuthorResults(data); }
+            if (state.query === 'cbssSubject' && state.searchType === 'browse' ) { displayCBSSSubjectResults(data); }
+            if (state.searchType === 'cbssSubject') {
+            // Display the results
+            console.log("displayCBSSDocumentResults", data, state.cbssSubject);
+            displayCBSSDocumentResults(data, state.cbssSubject);
+            fetchCbssRelatedSubjects();
+            
+            //Change this for infinite scrolling?
+            createSortDocumentResultButton(data);            }
+        })
         .catch(error => {
             handleError('search-results', 'Error fetching CBSS browse results.');
             console.error(error);
         });
+
+    updateURLFromState();
 }
 
 function displayCBSSSubjectResults(data) {
     setupInfiniteScroll(); // Initialize infinite scroll
-    const resultsContainer = document.getElementById("search-results");
+    
+    const resultsContainer = document.getElementById("cbss-subject-search-results");
     resultsContainer.innerHTML = ''; // Clear previous results
     const docResultsContainer = document.getElementById("document-search-results");
     docResultsContainer.innerHTML = ''; // Clear previous results
     const submenuResultsContainer = document.getElementById("common-subject-menu");
     submenuResultsContainer.innerHTML = ''; // Clear previous results
+    // clearSearchResults(); // Clear previous search results
     // Ensure aggregation data is available
-    console.log("Current Letter in State:", state.letter);
     const subjects = data.aggregations?.unique_subjects?.buckets || [];
 
     // Sort subjects alphabetically (ignoring case)
@@ -639,23 +707,25 @@ function displayCBSSSubjectResults(data) {
     //     subject.key.trim().toLowerCase().startsWith(state.letter.toLowerCase())
     // );
     const filteredSubjects = subjects;
-    console.log(`Filtered subjects for letter "${state.letter}":`, filteredSubjects);
     // Filter subjects that start with the designated letter
    
     state.totalResults = filteredSubjects.length;
     displayResultsInfo(state.totalResults); 
 
     if (filteredSubjects.length > 0) {
+        resultsContainer.style.columnCount = "3";
+        resultsContainer.style.width = "";
         const list = document.createElement("div"); // Create a list to display subjects
         //list.classList.add("subject-list"); // Add a class for styling
-        list.style.display = "flex";
-        list.style.flexDirection = "column";
-        list.style.alignItems = "left"; // Center the list
-        list.style.margin = "20px auto"; // Center horizontally
-        list.style.width = "fit-content"; // Adjust width based on content
+        // list.style.display = "flex";
+        // list.style.flexDirection = "column";
+        // list.style.alignItems = "left"; // Center the list
+        // list.style.margin = "20px auto"; // Center horizontally
+        // list.style.width = "fit-content"; // Adjust width based on content
 
         filteredSubjects.forEach(subject => {
             const listItem = document.createElement("div");
+            listItem.className = "cbss-subject-item"; // <- ADD THIS LINE
             const link = document.createElement("a");
 
             link.href = "#"; // Placeholder, will be handled by the click event
@@ -666,8 +736,10 @@ function displayCBSSSubjectResults(data) {
             link.addEventListener("click", (event) => {
                 event.preventDefault(); // Prevent default anchor behavior
                 state.subject = subject.key;
-
+                state.cbssSubject = subject.key; // Store the selected subject in state
+                state.letter = '';
                 fetchCBSSRecordsBySubject(subject.key); // Fetch records for the clicked subject
+                updateURLFromState(); // Update URL based on the current state
             });
 
             listItem.appendChild(link);
@@ -676,22 +748,26 @@ function displayCBSSSubjectResults(data) {
 
         resultsContainer.appendChild(list); // Add the list to the results container
     } else {
+        resultsContainer.style.columnCount = "1";
+        resultsContainer.style.width = "100%";
         resultsContainer.innerHTML = `<p>No subjects found starting with "${state.letter}".</p>`;
     }
 }
 // Function to fetch CBSS document entries by subject
 function fetchCBSSRecordsBySubject(subjectKey) {
-
+    document.querySelectorAll(".cbss-subject-item").forEach(el => el.remove());
+    const previousResultsContainer = document.getElementById("cbss-subject-search-results");
+    previousResultsContainer.innerHTML = ''; // Clear previous results
     if (state.isLoading) return; // Prevent multiple calls
     state.isLoading = true; 
     state.searchType = "cbssSubject";   
     //Not sure if this is necessary  
     state.subject = subjectKey;
+    state.cbssSubject = subjectKey; // Store the selected subject in state
     // Build query parameters
-    console.log("sortFactor", state.sortFactor);
     const queryParams = new URLSearchParams({
         searchType: "cbssSubject",        
-        subject: state.subject, 
+        subject: state.cbssSubject, 
         size: state.size, 
         from: state.from,
         sort: state.sortFactor
@@ -722,14 +798,16 @@ function fetchCBSSRecordsBySubject(subjectKey) {
             handleError('search-results', 'Error fetching CBSS records.');
             state.isLoading = false;
         });
+        
+    updateURLFromState(); // Update URL based on the current state
 
 }
+// These queries should not be reflected in the URL
 function fetchCbssRelatedSubjects() {
         // Build related subject query parameters //don't need to do this for every subject search
-        console.log("fetchCBSSRecordsBySubject RelSearch", state.subject);   
         const queryParamsRelSubject = new URLSearchParams({
             searchType: "cbssRelSubject",        
-            subject: state.subject
+            subject: state.cbssSubject
         });  
     
         fetch(`${apiUrl}?${queryParamsRelSubject.toString()}`, { method: 'GET' })  
@@ -742,7 +820,7 @@ function fetchCbssRelatedSubjects() {
             .then(data => {
                 // state.totalResults = data.hits.total.value;
                 // Display the results
-                displayCBSSSubjectsinCommonResults(data, state.subject);
+                displayCBSSSubjectsinCommonResults(data, state.cbssSubject);
             })
             .catch(error => {
                 console.error('Error fetching CBSS related subject records:', error);
@@ -750,11 +828,12 @@ function fetchCbssRelatedSubjects() {
     
             });  
 }
+// Function to display related subjects in common: not reflected in URL
 function displayCBSSSubjectsinCommonResults(data, selectedSubject) {
     const menuContainer = document.getElementById("common-subject-menu"); // Fix incorrect ID
     menuContainer.innerHTML = ""; // Clear existing menu
     
-
+    console.log("function: displayCBSSSubjectsinCommonResults", data, selectedSubject);
     if (!data.aggregations || !data.aggregations.unique_subjects) {
         console.error("No subjects found in aggregation.");
         menuContainer.innerHTML = `<p>No related subjects found.</p>`;
@@ -806,9 +885,11 @@ function displayCBSSSubjectsinCommonResults(data, selectedSubject) {
 // Function to display CBSS document results
 function displayCBSSDocumentResults(data, subjectKey) {
     // Split subjects if there are multiple
+    console.log("within displayCBSSDocumentResults function", data, subjectKey);
     let subjectsArray = subjectKey.split(",").map(s => s.trim());
     const previousResultsContainer = document.getElementById("search-results");
     previousResultsContainer.innerHTML = ''; // Clear previous results
+
     const resultsContainer = document.getElementById("document-search-results");
     if (state.currentPage === 0 || state.currentPage === 1) {
         resultsContainer.innerHTML = ''; // Clear previous results only on first load
@@ -857,11 +938,11 @@ function displayCBSSDocumentResults(data, subjectKey) {
                 subjectsArray = subjectsArray.filter(s => s !== subject);
 
                 // Update state & trigger new search
-                state.subject = subjectsArray.join(", ");
+                state.cbssSubject = subjectsArray.join(", ");
                 if (subjectsArray.length > 0) {
                     state.currentPage = 1;
                     state.from = 0;
-                    fetchCBSSRecordsBySubject(state.subject);
+                    fetchCBSSRecordsBySubject(state.cbssSubject);
                 } else {
                     resultsContainer.innerHTML = "<p>No subjects selected.</p>";
                 }
@@ -952,7 +1033,7 @@ function displayCBSSDocumentResults(data, subjectKey) {
             // Append result item to the results container
             resultsContainer.appendChild(resultItem);
         });
-        isLoading = false; // Allow more requests
+        state.isLoading = false; // Allow more requests
 
     } else {
         if (state.currentPage === 0) {
@@ -960,10 +1041,18 @@ function displayCBSSDocumentResults(data, subjectKey) {
         }
     }
 }
+function clearPaginationContainers() {
+    const paginationContainers = document.getElementsByClassName('searchPagination');
+    Array.from(paginationContainers).forEach(container => {
+        container.innerHTML = ''; // Clear existing buttons
+    });
+}
 function createSortDocumentResultButton(data) {
-    const container = document.getElementById('searchPagination');
-    container.innerHTML = '';
+        clearPaginationContainers();
         // Create a Sort Button
+        const container = document.getElementById('sort-button-container');
+        container.innerHTML = ''; // ✅ Prevent multiple buttons
+ 
         const sortButton = document.createElement("button");
         sortButton.textContent = "Sort by Date";
         sortButton.style.display = "block";
@@ -978,8 +1067,8 @@ function createSortDocumentResultButton(data) {
             state.from = 0;
             state.currentPage = 1;
             state.sortFactor = "date";
-            fetchCBSSRecordsBySubject(state.subject);
-            // displayCBSSDocumentResults(data, state.subject);
+            fetchCBSSRecordsBySubject(state.cbssSubject);
+            // displayCBSSDocumentResults(data, state.cbssSubject);
         });
     
         container.appendChild(sortButton);
@@ -987,7 +1076,6 @@ function createSortDocumentResultButton(data) {
 }
 
 function sortDocumentResultRequest(data, factor) {
-    console.log("Sort Factor:", factor);
     const sortedHits = data.hits.hits.sort((a, b) => {
         if (factor === "author"|| !factor) {
         const authorA = Array.isArray(a._source.author)
@@ -1006,19 +1094,35 @@ function sortDocumentResultRequest(data, factor) {
         const titleB = b._source.title || "No Title";
         return titleA.toLowerCase().localeCompare(titleB.toLowerCase());
     } else if (factor === "date") {  
-        console.log("PubDateStarts: "+a._source.cbssPubDateStart, b._source.cbssPubDateStart);
 
-        // Convert date strings to actual Date objects (assuming ISO or YYYY-MM-DD format)
+        // Convert date strings to actual Date objects (assuming ISO or YYYY-MM-DD format): probably not needed, sorting is done in opensearch
         const dateA = a._source.cbssPubDateStart ? new Date(a._source.cbssPubDateStart) : new Date(0);
         const dateB = b._source.cbssPubDateStart ? new Date(b._source.cbssPubDateStart) : new Date(0);
 
-        return dateA - dateB; // Sort ascending (earliest first)
+        return  dateB - dateA; // Sort descending
+
     }
     });
     return sortedHits;
 }
+// Function to explain search hits based on the query letter for CSBBAUTHOR browse
+function explainSearchHit(hit, queryLetter) {
+    if (state.query !== 'cbssAuthor' ) {
+        return ''; // Only explain if searchType is 'letter'
+    } 
+  const authors = hit._source.author || [];
+  const matchingLastNames = authors
+    .map(author => author.split(' ').slice(0, -1).join(' ')) // Remove last word
+    .filter(lastName => lastName.toLowerCase().startsWith(queryLetter.toLowerCase()));
 
-//Winona's styling implementation
+  if (matchingLastNames.length > 0) {
+    return `Relevant author(s): ${matchingLastNames.join(', ')}`;
+  }
+
+  return '';
+}
+
+//Winona's styling implementation with explanation for letter search results
 function displayCBSSAuthorResults(data) {
     const resultsContainer = document.getElementById("search-results");
           resultsContainer.innerHTML = ''; // Clear previous results
@@ -1057,8 +1161,13 @@ function displayCBSSAuthorResults(data) {
             //divElement.appendChild(bdiElement); 
             
             // Extract the title, prologue, and idno fields from the response
-            const title = hit._source.citation || hit._source.title + ' Missing Citation';
+            const title = cleanDisplayData(hit._source.displayTitleEnglish || '');
+
+            const citation = hit._source.citation || ' ';
             const type = hit._source.type || '';
+            
+            const explanation = explainSearchHit(hit, state.letter);
+            
             const typeString = type ? ` (${type}) `: '';
             const prologue = hit._source.prologue || ' ';
             const idno = hit._source.idno || ''; // Fallback if no idno
@@ -1067,11 +1176,15 @@ function displayCBSSAuthorResults(data) {
             
             // Populate the result item with the link and details
             bdiElement.innerHTML = `
-                ${title}
-                <br/>URI: 
+                <a href="${url}" target="_blank"  ">
+                    <span class="tei-title title-analytic"><i>${title}</i></span>
+                </a>
+                <p>${citation}</p>
+                URI: 
                 <a href="${url}" target="_blank"  ">
                     <span class="tei-title title-analytic">${url}</span>
                 </a>
+                ${explanation ? `<p>${explanation}</p><br/>` : ''}
               `;
             resultItem.appendChild(bdiElement);
             resultsContainer.appendChild(resultItem);
@@ -1087,16 +1200,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if(document.getElementById('advancedSearch')){
         const advancedSearchForm = document.getElementById('advancedSearch');
 
-        advancedSearchForm.addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent the default form submission behavior (page reload)
+        advancedSearchForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission behavior (page reload)
     
             updateStateFromForm(this); // Update state with form data
             fetchAndRenderAdvancedSearchResults(); 
         });
     }
-    console.log(state.searchType);
     if(document.getElementById('document-search-results') && state.searchType === 'cbssSubject' ){
-        console.log("Document Search Results Div Found");
         setupInfiniteScroll();
     }
     // currently not needed: url params are used to initialize state
@@ -1110,7 +1221,15 @@ document.addEventListener('DOMContentLoaded', () => {
     //         fetchAndRenderAdvancedSearchResults(); 
     //     });
     // }
-
+    // if(state.searchType === 'letter' ){
+    //     getBrowse(state.query);
+    // }    
+    if (window.location.pathname.includes('search.html')) {
+        window.addEventListener('popstate', () => {
+            console.log('Back/forward on search page — reloading search.');
+            runSearch();
+        });
+    }
 });
 // Function set in search.html files to run search on page load
 function runSearch() {
@@ -1118,10 +1237,29 @@ function runSearch() {
     initializeStateFromURL();
     // Fetch and render search results if URL search parameters are present
     if(window.location.search){
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        console.log("Setting seach fields from URL Params: ", urlParams);
+        for (const [key, value] of urlParams) {
+            const field = document.getElementById(key) || document.querySelector(`input[name="${key}"]`) || document.querySelector(`select[name="${key}"]`);
+            if (field) {
+                field.value = value;
+            }
+        }
         fetchAndRenderAdvancedSearchResults();
     }
 }
-
+// Function set in browse.html files to get results on initial page load
+function runBrowse(series) {
+    // Initialize state from existing URL parameters
+    initializeStateFromURL();
+    state.series = series || ''; // Set series to the provided value or default to empty string
+    // Fetch and render search results if URL search parameters are present
+    
+    getBrowse(series);
+    
+    
+}
 
 // Helper function to get form data and update state
 function updateStateFromForm(form) {
@@ -1188,6 +1326,9 @@ function updateStateFromForm(form) {
     state.explicit = formData.get('explicit') || '';
     state.title = formData.get('title') || '';
     state.author = formData.get('author') || '';
+    state.creator = formData.get('creator') || '';
+    state.editor = formData.get('editor') || '';
+    console.log('editor', state.editor);
 
     if(formData.get('idnoText')){
         if(formData.get('idnoType') === 'BHO'){
@@ -1220,10 +1361,12 @@ function buildQueryParams() {
         attestationRangeStart: state.attestationRangeStart,
         attestationRangeEnd: state.attestationRangeEnd,
         author: state.author,
+        creator: state.creator,
         birthRangeStart: state.birthRangeStart,
         birthRangeEnd: state.birthRangeEnd,
         deathRangeStart: state.deathRangeStart,
         deathRangeEnd: state.deathRangeEnd,
+        editor: state.editor,
         eventRangeStart: state.eventRangeStart,
         eventRangeEnd: state.eventRangeEnd,
         floruitRangeStart: state.floruitRangeStart,
@@ -1250,7 +1393,12 @@ function buildQueryParams() {
         cbssPubRangeEnd: state.cbssPubDateEnd,
         publisher: state.publisher,
         cbssPubPlace: state.pubPlace,
-        subject: state.cbssSubject,
+        subject: state.cbssSubject
+            ? state.cbssSubject
+                .split(',')
+                .map(s => s.trim())
+                .join(', ')
+            : '',
         keyword: state.keyword,
         //idno types
         BHO: state.BHO,
@@ -1263,22 +1411,24 @@ function buildQueryParams() {
 }
 //NavBar
 document.querySelector(".navbar-form").addEventListener("submit", (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
+    event.preventDefault();
 
-    // Reset state variables to ensure a clean slate
-    resetState();
-
-    // Get form values
     const form = event.target;
     const formData = new FormData(form);
-    // Map form inputs to state variables
-    state.keyword = formData.get('q') || formData.get('fullText')||formData.get('keyword')||'';
-    state.series = formData.get('series') || ''; // 
+    const keyword = formData.get('q') || formData.get('fullText') || formData.get('keyword') || '';
+    const series = formData.get('series') || '';
+    const lang = state.lang || 'en'; // Default language if not already in state
 
-    // Call your search function
-    fetchAndRenderAdvancedSearchResults();
+    // Build URL to redirect to search.html with query parameters
+    const queryParams = new URLSearchParams({
+        keyword: keyword,
+        series: series,
+        lang: lang
+    });
+    const currentDir = window.location.pathname.replace(/\/[^\/]*$/, '/');
+    // Redirect to search.html with the params
+    window.location.href = `${currentDir}search.html?${queryParams.toString()}`;
 });
-
 
 // Helper function to reset the state to its default values
 function resetState() {
@@ -1325,6 +1475,8 @@ function resetState() {
     
     state.title = '';
     state.author = '';
+    state.creator = '';
+    state.editor = '';
     state.idno = '';
     state.prologue = '';
     state.abstract = '';
@@ -1336,6 +1488,8 @@ function resetState() {
     state.pubPlace = '';
     
     state.cbssSubject = '';
+    state.allCbssSubjects= '';
+
     state.keyword = '';
 }
 // Toggle Advanced Search Form
@@ -1364,23 +1518,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function setupInfiniteScroll() {
     window.addEventListener("scroll", () => {
-        console.log("Scroll event triggered");
-        console.log("search type", state.searchType);
+
         if (state.isLoading || state.searchType != 'cbssSubject') return;  // Prevent excessive requests
-        console.log("Infinite Scroll set up");
+       
         const scrollPosition = window.innerHeight + window.scrollY;
         const pageHeight = document.documentElement.scrollHeight;
-        console.log("Scroll Position:", scrollPosition, "Page Height:", pageHeight);
 
         if (scrollPosition >= pageHeight - 200) { // Trigger when near bottom
             state.currentPage++;
             state.from = (state.currentPage - 1) * state.size;
-            console.log("Fetching next page of results...");
-            console.log("Current Page:", state.currentPage);
-            console.log("Subject:", state.subject);
+ 
             // Ensure we are not fetching beyond the total results
-            if (state.totalResults > state.from + state.size) {
-                fetchCBSSRecordsBySubject(state.subject);
+            if (state.totalResults > state.from) {
+                fetchCBSSRecordsBySubject(state.cbssSubject);
             }
         }
     });
@@ -1390,8 +1540,9 @@ function setupInfiniteScroll() {
 function changePage(page) {
     state.currentPage = page;
     state.from = (page - 1) * state.size;
+    document.getElementById('search-info')?.scrollIntoView({ behavior: 'smooth' });
+
     if(state.searchType === 'browse' || state.query === 'cbssAuthor' || state.searchType === 'letter' || state.searchType === 'cbssSubject'){
-        console.log("change page search type: " + state.searchType);
         getPaginatedBrowse();
     } else {
         fetchAndRenderAdvancedSearchResults();
@@ -1402,29 +1553,29 @@ function changePage(page) {
 // Render pagination buttons
 function renderPagination(totalResults, resultsPerPage, currentPage, onPageChange) {
     const totalPages = Math.ceil(totalResults / resultsPerPage);
-    const paginationContainer = document.getElementById('searchPagination');
-    paginationContainer.innerHTML = '';
-    const maxPageNumbers = 5; // Maximum number of page numbers to display
+    const paginationContainers = document.getElementsByClassName('searchPagination'); // Select all matching elements
 
-    // Calculate the start and end page range dynamically
+    const maxPageNumbers = 5; // Max page buttons
+
     let startPage = Math.max(1, currentPage - Math.floor(maxPageNumbers / 2));
     let endPage = Math.min(totalPages, startPage + maxPageNumbers - 1);
 
-    // Adjust the startPage if we are near the last pages and need to show exactly `maxPageNumbers`
     if (endPage - startPage + 1 < maxPageNumbers) {
         startPage = Math.max(1, endPage - maxPageNumbers + 1);
     }
 
+    // Clear and populate each pagination container
+    Array.from(paginationContainers).forEach(container => {
+        container.innerHTML = ''; // Clear existing buttons
 
-    // Add page number buttons
-    for (let page = startPage; page <= endPage; page++) {
-        const pageButton = createPaginationButton(page, () => onPageChange(page));
-        if (page === state.currentPage) {
-            pageButton.classList.add('active'); // Highlight the current page
+        for (let page = startPage; page <= endPage; page++) {
+            const pageButton = createPaginationButton(page, () => onPageChange(page));
+            if (page === currentPage) {
+                pageButton.classList.add('active');
+            }
+            container.appendChild(pageButton);
         }
-        paginationContainer.appendChild(pageButton);
-}
-
+    });
 }
 
 // Create a pagination button
@@ -1437,3 +1588,170 @@ function createPaginationButton(text, onClick) {
     button.onclick = onClick;
     return button;
 }
+
+function clearSearchResults() {
+    const resultsContainer = document.getElementById("search-results");
+    if (resultsContainer) resultsContainer.innerHTML = '';
+
+    const cbssResultsContainer = document.getElementById("cbss-subject-search-results");
+    if (cbssResultsContainer) cbssResultsContainer.innerHTML = '';
+
+    const docResultsContainer = document.getElementById("document-search-results");
+    if (docResultsContainer) docResultsContainer.innerHTML = '';
+
+    const submenuResultsContainer = document.getElementById("common-subject-menu");
+    if (submenuResultsContainer) submenuResultsContainer.innerHTML = '';
+}
+function updateURLFromSearchFields() {
+    const params = new URLSearchParams();
+
+    // Loop over all input and select elements with a name
+    document.querySelectorAll('input[name], select[name]').forEach(field => {
+        if (field.value && field.value.trim() !== '') {
+            params.set(field.name, field.value);
+        }
+    });
+
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.pushState({}, '', newUrl);
+}
+function updateURLFromState() {
+    const queryParams = new URLSearchParams(buildQueryParams());
+    const newUrl = `${window.location.pathname}?${queryParams.toString()}`;
+    window.history.pushState({}, '', newUrl);
+}
+function populateFieldsFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    for (const [key, value] of urlParams) {
+        const field = document.getElementById(key) || document.querySelector(`input[name="${key}"]`) || document.querySelector(`select[name="${key}"]`);
+        if (field) {
+            field.value = value;
+        }
+    }
+}
+
+// Eras Browse CBSS subjects
+
+
+function runEraQuery(terms) {
+    const subjectString = terms.join(',');
+    console.log(`Running era group query for: ${subjectString}`);
+  // Update global state
+  state.searchType = "cbssSubject";
+  state.subject = subjectString;
+  state.cbssSubject = subjectString;
+    state.sortFactor = "author"; // Default sort for CBSS subject queries
+  state.from = 0;
+  state.currentPage = 1;
+
+  // Clear other result areas
+  clearSearchResults();
+  console.log("Cleared search results for era group query.");
+
+  const newUrl = new URL(window.location);
+  newUrl.searchParams.set("searchType", "cbssSubject");
+  newUrl.searchParams.set("sort", "author");
+  newUrl.searchParams.set("subject", subjectString);
+  window.history.pushState({}, '', newUrl);
+  console.log(`Updated URL to: ${newUrl}`);
+  console.log(`Running era query for: ${subjectString}`);
+  // Fetch results
+  fetchCBSSRecordsBySubject(subjectString)
+
+    setTimeout(() => {
+    const resultsEl = document.getElementById('search-division');
+    if (resultsEl) {
+        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    }, 500); // wait half a second; adjust if needed
+
+    updateURLFromState(); // Update URL with new search parameters
+    console.log(`Updated URL with new search parameters: ${newUrl}`);
+}
+
+function renderEraMenu() {
+  const container = document.getElementById('historicalEraBrowse');
+  if (!container) return;
+
+  const groupList = container.querySelector('ul:nth-of-type(1)');
+  const centuryList = container.querySelector('#eraList');
+
+  if (groupList) {
+    groupList.innerHTML = ''; // Clear default HTML
+    Object.entries(eraGroups).forEach(([label, terms]) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#';
+      a.textContent = label;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        runEraQuery(terms); // Use the first term in the group, used array for future expansion   
+      });
+      li.appendChild(a);
+      groupList.appendChild(li);
+    });
+  }
+
+  if (centuryList) {
+    centuryList.innerHTML = '';
+    specificCenturies.forEach(({ label, query }) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#';
+      a.textContent = label;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        runEraQuery([query]);
+      });
+      li.appendChild(a);
+      centuryList.appendChild(li);
+    });
+  }
+}
+
+const specificCenturies = [
+  { label: 'First Century CE (I CE or the period circa 0-100)', query: 'I CE' },
+  { label: 'Second Century CE (II CE or the period circa 100-200)', query: 'II CE' },
+  { label: 'Third Century CE (III CE or the period circa 200-300)', query: 'III CE' },
+  { label: 'Fourth Century CE (IV CE or the period circa 300-400)', query: 'IV CE' },
+  { label: 'Fifth Century CE (V CE or the period circa 400-500)', query: 'V CE' },
+  { label: 'Sixth Century CE (VI CE or the period circa 500-600)', query: 'VI CE' },
+  { label: 'Seventh Century CE (VII CE or the period circa 600-700)', query: 'VII CE' },
+  { label: 'Eighth Century CE (VIII CE or the period circa 700-800)', query: 'VIII CE' },
+  { label: 'Ninth Century CE (IX CE or the period circa 800-900)', query: 'IX CE' },
+  { label: 'Tenth Century CE (X CE or the period circa 900-1000)', query: 'X CE' },
+  { label: 'Eleventh Century CE (XI CE or the period circa 1000-1100)', query: 'XI CE' },
+  { label: 'Twelfth Century CE (XII CE or the period circa 1100-1200)', query: 'XII CE' },
+  { label: 'Thirteenth Century CE (XIII CE or the period circa 1200-1300)', query: 'XIII CE' },
+  { label: 'Fourteenth Century CE (XIV CE or the period circa 1300-1400)', query: 'XIV CE' },
+  { label: 'Fifteenth Century CE (XV CE or the period circa 1400-1500)', query: 'XV CE' },
+  { label: 'Sixteenth Century CE (XVI CE or the period circa 1500-1600)', query: 'XVI CE' },
+  { label: 'Seventeenth Century CE (XVII CE or the period circa 1600-1700)', query: 'XVII CE' },
+  { label: 'Eighteenth Century CE (XVIII CE or the period circa 1700-1800)', query: 'XVIII CE' },
+  { label: 'Nineteenth Century CE (XIX CE or the period circa 1800-1900)', query: 'XIX CE' },
+  { label: 'Twentieth Century CE (XX CE or the period circa 1900-2000)', query: 'XX CE' },
+  { label: 'Twenty First Century CE (XXI CE or the period circa 2000-present)', query: 'XXI CE' },
+];
+
+const eraList = document.getElementById('eraList');
+if (eraList) {
+    specificCenturies.forEach(era => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#';
+        a.textContent = era.label;
+        a.dataset.era = era.query;
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            runEraQuery(era.query);
+        });
+        li.appendChild(a);
+        eraList.appendChild(li);
+    });
+}  
+const eraGroups = {
+  'First to Third Centuries CE (circa 0–300)': ['I-III CE'],
+  'Fourth to Seventh Centuries CE (circa 300–700)': ['IV-VII CE'],
+  'Seventh to Eighteenth Centuries CE (circa 600–1800)': ['VII-XVIII CE'],
+  'Nineteenth to Twenty First Centuries CE (circa 1800–present)': ['XIX-XXI CE']
+};

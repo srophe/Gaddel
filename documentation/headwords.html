@@ -64,248 +64,11 @@
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Russian.min.js"></script>
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Arabic.min.js"></script>
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Hebrew.min.js"></script>
-      <script type="text/javascript">
-            $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip({ container: 'body' })
-
-                $('.keyboard').keyboard({
-                    openOn: null,
-                    stayOpen: false,
-                    alwaysOpen: false,
-                    autoAccept: true,
-                    usePreview: false,
-                    initialFocus: true,
-                    rtl : true,
-                    layout: 'syriac-phonetic',
-                    hidden: function(event, keyboard, el){
-                       //  keyboard.destroy();
-                     }
-                });
-
-                $('.keyboard-select').click(function () {
-                    var keyboardID = '#' + $(this).data("keyboard-id")
-                    var kb = $(keyboardID).getkeyboard();
-                    //var kb = $('#searchField').getkeyboard();
-                    // change layout based on link ID
-                    kb.options.layout = this.id
-                    // open keyboard if layout is different, or time from it last closing is &amp;gt; 200 ms
-                    if (kb.last.layout !== kb.options.layout || (new Date().getTime() - kb.last.eventTime) &lt; 200) {
-                        kb.reveal();
-                    }
-                });
-                //Change fonts
-                $('.swap-font').on('click', function(){
-                    var selectedFont = $(this).data("font-id")
-                    $('.selectableFont').not('.syr').css('font-family', selectedFont);
-                    $("*:lang(syr)").css('font-family', selectedFont)
-                });
-
-            })
-        </script>
-      </head>
+      <script type="text/javascript" src="/resources/js/keyboard.js"></script>
+   </head>
    <body id="body">
-      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-         
-         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               </button>
-            <a class="navbar-brand banner-container" href="/index.html"> 
-               <span class="syriaca-icon syriaca-syriaca banner-icon">
-                  <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
-                  </span>
-               <span class="banner-text">Syriaca.org</span>
-               </a>
-            
-         </div>
-         
-         <div class="navbar-collapse collapse pull-right" id="navbar-collapse-1">
-            
-            <ul class="nav navbar-nav">
-               
-               <li class="dropdown">     <a href="#" class="dropdown-toggle lonely-caret" data-toggle="dropdown">         <span class="mobile-submenu">Publications </span>  <b class="caret"></b>     </a>     
-                  <ul class="dropdown-menu pull-right">         
-                     <li>             <a href="/geo/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-geo icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Gazetteer</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/persons/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-sbd icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">SBD</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/authors/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-authors icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Authors</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/saints/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-saints icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Gateway to the Saints</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/q/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-q icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Qadishe</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/bhse/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-bhse icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">BHSE</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/cbss/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-bibl icon-nav"></span>                 <span class="icon-text">Works Cited</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-syriaca icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="mobile-submenu icon-text">Syriaca.org</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>     
-                  </ul> 
-               </li>
-               
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle lonely-caret" data-toggle="dropdown"> 
-                     <span class="mobile-submenu">About</span>  <b class="caret"></b>
-                     </a>
-                  
-                  <ul class="dropdown-menu pull-right">
-                     
-                     <li>
-                        <a href="/about-syriac.html">What is Syriac?</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/about-srophe.html">Project Overview</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/project-team.html">Project Team</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/project-partners.html">Project Partners</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/geo/index.html">
-                           <span class="icon-text">Gazetteer</span>
-                           </a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="http://vu.edu/syriac">Support Our Work</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/contact-us.html">Contact Us</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/documentation/index.html">
-                           <span class="syriaca-icon syriaca-book icon-nav" style="color:red;"></span>
-                           <span class="icon-text">Documentation</span>
-                           </a>
-                        
-                     </li>
-                     
-                  </ul>
-                  
-               </li>
-               
-               <li>
-                  <a href="/search.html" class="nav-text">Advanced Search</a>
-                  
-               </li>
-               
-               <li>
-                  
-                  <div id="search-wrapper">
-                     
-                     <form class="navbar-form navbar-right search-box" role="search" action="/search.html" method="get">
-                        
-                        <div class="form-group">
-                           <input type="text" class="form-control keyboard" placeholder="search" name="keyword" id="keywordNav" />
-                           <span class="keyboard-menu">             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">                  <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span>             </button>             
-                              <ul class="dropdown-menu">                 
-                                 <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="keywordNav">Syriac Phonetic</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="keywordNav">Syriac Standard</a></li>                 
-                                 <li> <a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="keywordNav">Arabic Mod. Standard</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="ms-Hebrew" data-keyboard-id="keywordNav">Hebrew</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="ms-Russian" data-keyboard-id="keywordNav">Russian</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="ms-Greek" data-keyboard-id="keywordNav">Greek</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="keywordNav">English QWERTY</a></li>             
-                              </ul>         </span>
-                           <button class="btn btn-default search-btn" id="searchbtn" type="submit" title="Search">
-                              <span class="glyphicon glyphicon-search"></span>
-                              </button>                                    
-                           
-                        </div>
-                        
-                     </form>
-                     
-                  </div>
-                  
-               </li>
-               
-               <li>
-                  
-                  <div class="btn-nav">
-                     <button class="btn btn-default navbar-btn" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Font">
-                        <span class="glyphicon glyphicon-font"></span>
-                        </button>  
-                     
-                     <ul class="dropdown-menu dropdown-menu-right" id="swap-font">
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="DefaultSelect" data-font-id="EstrangeloEdessa">Default</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="EstrangeloEdessaSelect" data-font-id="EstrangeloEdessa">Estrangelo Edessa</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="EastSyriacAdiabeneSelect" data-font-id="EastSyriacAdiabene">East Syriac Adiabene</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="SertoBatnanSelect" data-font-id="SertoBatnan">Serto Batnan</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="/documentation/wiki.html?wiki-page=/How-to-view-Syriac-script&amp;wiki-uri=https://github.com/srophe/syriaca-data/wiki">Help <span class="glyphicon glyphicon-question-sign"></span>
-                              </a>
-                           
-                        </li>
-                        
-                     </ul>
-                     
-                  </div>
-                  
-               </li>
-               
-            </ul>
-            
-         </div>
-         
-      </nav>
+      <script src="/resources/js/generic-navbar-search.js"></script>
+      <div id="navbar-container"></div>
       <div xmlns:xi="http://www.w3.org/2001/XInclude" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
          
          <div class="image-banner">
@@ -381,7 +144,29 @@
                      
                      <div class="panel-body">
                         
-                        <div data-template="app:shared-content" data-template-path="/about-menu.html"></div>
+                        <ul>
+                           <li>
+                              <a href="/about-syriac.html">What is Syriac?</a>
+                           </li>
+                           <li>
+                              <a href="/about-srophe.html">Project Overview</a>
+                           </li>
+                           <li>
+                              <a href="/project-team.html">Project Team</a>
+                           </li>
+                           <li>
+                              <a href="/project-partners.html">Project Partners</a>
+                           </li>
+                           <li>
+                              <a href="/media-releases.html">Media Releases</a>
+                           </li>
+                           <li>
+                              <a href="http://vu.edu/syriac">Support Our Work</a>
+                           </li>
+                           <li>
+                              <a href="/contact-us.html">Contact Us</a>
+                           </li>
+                        </ul>
                         
                      </div>
                      
@@ -396,9 +181,22 @@
                      </div>
                      
                      <div class="panel-body">
-                        
-                        <div data-template="app:wiki-menu" data-template-wiki-uri="https://github.com/srophe/syriaca-data/wiki"></div>
-                        
+                        <ul>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki">Home</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/Archive-of-Deprecated-Encoding-Standards">Archive of Deprecated Encoding Standards</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/Composite-URIs">Composite URIs</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/Comprehensive-Bibliography-on-Syriac-Studies">Comprehensive Bibliography on Syriac Studies</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/Dating-Conventions">Dating Conventions</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/Deprecated-Records">Deprecated Records</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/Editing-Source-Citations">Editing Source Citations</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/How-to-View-Syriac-Script">How to View Syriac Script</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/Introductory-Videos-for-New-Users">Introductory Videos for New Users</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/Literary-Traditions">Literary Traditions</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/Proposal-Guidelines-for-Volumes-within-Syriaca.org-Publications">Proposal Guidelines for Volumes within Syriaca.org Publications</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/Syriaca.org-Schema-Customizations">Syriaca.org Schema Customizations</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/TEI-Encoding-Manual-for-The-Syriac-Gazetteer">TEI Encoding Manual for The Syriac Gazetteer</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/syriaca-data/wiki/Transliteration-and-Vocalization-Standards">Transliteration and Vocalization Standards</a></li>
+                        </ul> 
                      </div>
                      
                   </div>
@@ -413,7 +211,48 @@
                      
                      <div class="panel-body">
                         
-                        <div data-template="app:shared-content" data-template-path="/documentation/menu.html"></div>
+                        <ul>
+                           <li>
+                              <a href="/documentation/dates.html">Dates</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/faq.html">Frequently Asked Questions</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/headwords.html">Headwords</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/isostandards.html">Language and Script Identifiers</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/place-types.html">Place Types</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/relations.html">Relations</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/confessions.html">Religious Communities</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/terms.html">Technical Terminology</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/view-teiDocs.html">TEI Tag usage in Gazetteer</a>
+                           </li>
+                           <li>
+                              <a href="/api-documentation/index.html">Syriaca.org API Documentation</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/uris.html">URI Policies</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/tei-mss-tutorials.html">Using TEI to Catalog Syriac Manuscripts</a>
+                           </li>
+                           <li>
+                              <a href="/documentation/editors.html">Contributing Editors</a>
+                           </li>
+                        </ul>
+                        
                         
                      </div>
                      
@@ -428,9 +267,12 @@
                      </div>
                      
                      <div class="panel-body">
-                        
-                        <div data-template="app:wiki-menu" data-template-wiki-uri="https://github.com/srophe/srophe-eXist-app/wiki"></div>
-                        
+                        <ul>
+                           <li><a target="_blank" href="https://github.com/srophe/srophe-eXist-app/wiki">Home</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/srophe-eXist-app/wiki/Creating-a-new-content-submodule">Creating a new content submodule</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/srophe-eXist-app/wiki/Perseids-Submission-Process">Perseids Submission Process</a></li>
+                           <li><a target="_blank" href="https://github.com/srophe/srophe-eXist-app/wiki/The-Syriaca.org-web-application">The Syriaca.org web application</a></li>
+                        </ul> 
                      </div>
                      
                   </div>
@@ -443,15 +285,5 @@
          </div>
          
       </div>
-      <footer>
-         
-         <div class="container">
-            <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">
-               <img alt="Creative Commons License" style="border-width:0" src="/resources/images/cc.png" height="18px" />
-               </a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.
-            <br />Copyright Vanderbilt University, Princeton University, and the Contributor(s), 2014.
-            
-         </div>
-         
-      </footer>
+      <footer>                    <div class="container">             <a rel="license"><img alt="Creative Commons License" style="border-width:0" src="/resources/images/cc.svg" height="18px" /><img alt="Creative Commons Attribution (CC-BY) License" style="border-width:0" src="/resources/images/by.svg" height="18px" /></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.<br />Copyright by the contributors. See "<a href="/how-to-cite.html">How to Cite</a>" for attribution information.          </div>                 </footer>
    </body><script type="text/javascript" src="/resources/js/jquery.validate.min.js"></script><script type="text/javascript" src="/resources/js/require.min.js"></script><script type="text/javascript" src="/resources/js/srophe.js"></script><script type="text/javascript" src="/resources/js/lightslider.min.js"></script><script type="text/javascript" src="/resources/js/lightslider-functions.js"></script><script data-template="app:google-analytics"></script></html>

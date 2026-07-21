@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:srophe="https://srophe.app">
    <head>
+      <meta charset="UTF-8">
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
       <title data-template="app:record-title">Syriaca.org</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,252 +53,35 @@
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Russian.min.js"></script>
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Arabic.min.js"></script>
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Hebrew.min.js"></script>
-      <script type="text/javascript">
-  $(document).ready(function () {
-             $('[data-toggle="tooltip"]').tooltip({ container: 'body' });
-     
-             $('.keyboard').keyboard({
-                 openOn: null,
-                 stayOpen: false,
-                 alwaysOpen: false,
-                 autoAccept: true,
-                 usePreview: false,
-                 initialFocus: true,
-                 rtl: true,
-                 layout: 'syriac-phonetic',
-                 hidden: function(event, keyboard, el){
-                    //  keyboard.destroy();
-                 }
-             });
-     
-             $('.keyboard-select').click(function () {
-                 var keyboardID = '#' + $(this).data("keyboard-id");
-                 var kb = $(keyboardID).getkeyboard();
-                 // change layout based on link ID
-                 kb.options.layout = this.id;
-                 // open keyboard if layout is different, or if the time since last closing is < 200 ms
-                 if (kb.last.layout !== kb.options.layout || (new Date().getTime() - kb.last.eventTime) < 200) {
-                     kb.reveal();
-                 }
-             });
-     
-             // Change fonts
-             $('.swap-font').on('click', function(){
-                 var selectedFont = $(this).data("font-id");
-                 $('.selectableFont').not('.syr').css('font-family', selectedFont);
-                 $("*:lang(syr)").css('font-family', selectedFont);
-             });
-         });
-        </script>
+      <script type="text/javascript" src="/resources/js/keyboard.js"></script>
    </head>
    <body id="body">
-      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               </button>
-            <a class="navbar-brand banner-container" href="/index.html"> 
-               <span class="syriaca-icon syriaca-syriaca banner-icon">
-                  <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
-                  </span>
-               <span class="banner-text">Syriaca.org</span>
-               </a>
-            
-         </div>
-         
-         <div class="navbar-collapse collapse pull-right" id="navbar-collapse-1">
-            
-            <ul class="nav navbar-nav">
-               
-               <li class="dropdown">     <a href="#" class="dropdown-toggle lonely-caret" data-toggle="dropdown">         <span class="mobile-submenu">Publications </span>  <b class="caret"></b>     </a>     
-                  <ul class="dropdown-menu pull-right">         
-                     <li>             <a href="/geo/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-geo icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Gazetteer</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/persons/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-sbd icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">SBD</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/authors/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-authors icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Authors</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/saints/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-saints icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Gateway to the Saints</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/q/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-q icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Qadishe</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/bhse/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-bhse icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">BHSE</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/cbss/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-bibl icon-nav"></span>                 <span class="icon-text">Works Cited</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-syriaca icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="mobile-submenu icon-text">Syriaca.org</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>     
-                  </ul> 
-               </li>
-               
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle lonely-caret" data-toggle="dropdown"> 
-                     <span class="mobile-submenu">About</span>  <b class="caret"></b>
-                     </a>
-                  
-                  <ul class="dropdown-menu pull-right">
-                     
-                     <li>
-                        <a href="/about-syriac.html">What is Syriac?</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/about-srophe.html">Project Overview</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/project-team.html">Project Team</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/project-partners.html">Project Partners</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/geo/index.html">
-                           <span class="icon-text">Gazetteer</span>
-                           </a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="http://vu.edu/syriac">Support Our Work</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/contact-us.html">Contact Us</a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/documentation/index.html">
-                           <span class="syriaca-icon syriaca-book icon-nav" style="color:red;"></span>
-                           <span class="icon-text">Documentation</span>
-                           </a>
-                        
-                     </li>
-                     
-                  </ul>
-                  
-               </li>
-               
-               <li>
-                  <a href="/search.html" class="nav-text">Advanced Search</a>
-                  
-               </li>
-               
-               <li>
-                  
-                  <div id="search-wrapper">
-                     
-                     <form class="navbar-form navbar-right search-box" role="search" action="/search.html" method="get">
-                        
-                        <div class="form-group">
-                           <input type="text" class="form-control keyboard" placeholder="search" name="keyword" id="keywordNav" />
-                           <span class="keyboard-menu">             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">                  <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span>             </button>             
-                              <ul class="dropdown-menu">                 
-                                 <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="keywordNav">Syriac Phonetic</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="keywordNav">Syriac Standard</a></li>                 
-                                 <li> <a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="keywordNav">Arabic Mod. Standard</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="ms-Hebrew" data-keyboard-id="keywordNav">Hebrew</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="ms-Russian" data-keyboard-id="keywordNav">Russian</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="ms-Greek" data-keyboard-id="keywordNav">Greek</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="keywordNav">English QWERTY</a></li>             
-                              </ul>         </span>
-                           <button class="btn btn-default search-btn" id="searchbtn" type="submit" title="Search">
-                              <span class="glyphicon glyphicon-search"></span>
-                              </button>                                    
-                           
-                        </div>
-                        
-                     </form>
-                     
-                  </div>
-                  
-               </li>
-               
-               <li>
-                  
-                  <div class="btn-nav">
-                     <button class="btn btn-default navbar-btn" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Font">
-                        <span class="glyphicon glyphicon-font"></span>
-                        </button>  
-                     
-                     <ul class="dropdown-menu dropdown-menu-right" id="swap-font">
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="DefaultSelect" data-font-id="EstrangeloEdessa">Default</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="EstrangeloEdessaSelect" data-font-id="EstrangeloEdessa">Estrangelo Edessa</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="EastSyriacAdiabeneSelect" data-font-id="EastSyriacAdiabene">East Syriac Adiabene</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="SertoBatnanSelect" data-font-id="SertoBatnan">Serto Batnan</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="/documentation/wiki.html?wiki-page=/How-to-view-Syriac-script&amp;wiki-uri=https://github.com/srophe/syriaca-data/wiki">Help <span class="glyphicon glyphicon-question-sign"></span>
-                              </a>
-                           
-                        </li>
-                        
-                     </ul>
-                     
-                  </div>
-                  
-               </li>
-               
-            </ul>
-            
-         </div>
-         
-      </nav>
+      <script src="/resources/js/generic-navbar-search.js"></script>
+      <div id="navbar-container"></div>
       <div class="main-content-block">
          
          <div class="full-page hide-search" style="background-color:#666; border-bottom:4px solid #456889;margin:0 0 1em 0; padding:0;">
             
             <ul id="lightSlider">
-               
+               <li class="slide top-button bibl-slide overlay">
+                  <a href="cbss/index.html" class="gradient">Comprehensive Bibliography</a>
+                  <span class="more-info">
+                     <br />
+                     
+                     <p><b>
+                        <em>The Comprehensive Bibliography on Syriac Studies</em>
+                     </b> contains over 27,000 publications on the topic of Syriac, classified according to more than 1,000 subject headings and topics.
+                     </p>
+                     
+                     <p><a href="cbss/browse.html?q=cbssSubject" style="color:white;">Explore the Database</a></p>
+                  </span>
+                  <span class="slide-credit">
+                     <a href="cbss/index.html" class="icon-container">
+                        <span class="syriaca-icon syriaca-bibl icon-nav"></span>
+                        <span class="icon-text">CBSS</span>
+                     </a>
+                  </span>
+               </li>
                <li class="slide top-button places-slide overlay">
                   <a href="geo/index.html" class="gradient">
                      Places    
@@ -359,53 +143,41 @@
                </li>
                
                <li class="slide top-button saints-slide overlay">
-                  <a href="q/index.html" class="gradient">
+                  <a href="/saints/index.html" class="gradient">
                      Saints
                      </a>
                   <span class="more-info">
-                     <br />
-                     
-                     <p>
-                        <b>
-                           <em>Qadishe</em>
-                           </b> is a digital catalogue of saints venerated in the
-                        Syriac tradition.
-                     </p>
-                     
-                     <p>
-                        Example record:<br />
-                        <a href="person/1102" style="color:white;" class="indent">Abdalmasih</a>
-                        
-                     </p>
-                     </span>
+                     <br/>
+                     <p><b><em>Qadishe</em></b> is a digital catalogue of saints venerated in the Syriac tradition.</p>
+                     <p>Example record:<br /><a href="person/1102" style="color:white;" class="indent">Abdalmasih</a></p>
+                     <p></p>
+                     <p><b><em>Bibliotheca Hagiographica Syriaca Electronica</em></b> is a database of Syriac hagiographic literature.</p>
+                     <p>Example record:<br /><a href="work/694" style="color:white;" class="indent">Abraham of the High Mountain (text)</a></p>
+                  </span>
+                  
                   <span class="slide-credit">
-                     <a href="q/index.html" class="icon-container">
+                     <a href="/saints/index.html" class="icon-container">
                         <span class="syriaca-icon syriaca-q icon-nav">
                            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
                            </span>
-                        <span class="icon-text">Qadishe</span>
+                        <span class="icon-text">Saints</span>
                         </a>
                      </span>
-                  
                </li>
-               
                <li class="slide top-button authors-slide overlay">
                   <a href="authors/index.html" class="gradient">
                      Authors
                      </a>
                   <span class="more-info">
                      <br />
-                     
                      <p>
                         <b>
                            <em>A Guide to Syriac Authors</em>
                            </b> is a handbook of persons who wrote in Syriac or otherwise had an influence on Syriac
                         literature.
                      </p>
-                     
                      <p>Example record:<br />
                         <a href="person/13" style="color:white;" class="indent">Ephrem</a>
-                        
                      </p>
                      </span>
                   <span class="slide-credit">
@@ -416,40 +188,7 @@
                         <span class="icon-text">Authors</span>
                         </a>
                      </span>
-                  
                </li>
-               
-               <li class="slide top-button works-slide overlay">
-                  <a href="bhse/index.html" class="gradient">
-                     Hagiography
-                     </a>
-                  <span class="more-info">
-                     <br />
-                     
-                     <p>
-                        <b>
-                           <em>Bibliotheca Hagiographica Syriaca Electronica</em>
-                           </b> is a database of Syriac
-                        hagiographic literature.
-                     </p>
-                     
-                     <p>
-                        Example record:<br />
-                        <a href="work/694" style="color:white;" class="indent">Abraham of the High Mountain (text)</a>
-                        
-                     </p>
-                     </span>
-                  <span class="slide-credit">
-                     <a href="bhse/index.html" class="icon-container">
-                        <span class="syriaca-icon syriaca-bhse icon-nav">
-                           <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
-                           </span>
-                        <span class="icon-text">BHSE</span>
-                        </a>
-                     </span>
-                  
-               </li>
-               
                <!--
             <li class="slide top-button mss-slide overlay">
                 <a href="mss/index.html" class="gradient">
@@ -498,77 +237,22 @@
                 </span>
             </li>
             -->
-               
-               <li class="slide top-button bibl-slide overlay">
-                  <a href="cbss/index.html" class="gradient">Comprehensive Bibliography on Syriac Studies</a>
-                  <span class="more-info">
-                     <br />
-                     
-                     <p>Reference list of works cited in all Syriaca.org publications.</p>
-                     
-                     <p>Example record:<br /><a href="bibl/1396" style="color:white;" class="indent">Le martyrologe de Rabban Ṣalība</a></p>
-                     </span>
-                  <span class="slide-credit">
-                     <a href="bibl/index.html" class="icon-container">
-                        <span class="syriaca-icon syriaca-bibl icon-nav"></span>
-                        <span class="icon-text">Works Cited</span>
-                        </a>
-                     </span>
-                  <span class="img-credit img-credit-home">
-                     <label>Photo Credit:</label> "John the Evangelist." Florence, Biblioteca Mediceo Laurenziana, cod. Plut. I, 56,
-                     f. 9b.
-                     <button class="btn btn-link white-link" data-toggle="collapse" data-target="#cbssRights">
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                        </button>
-                     
-                     <div id="cbssRights" class="collapse">
-                        <br />
-                        Source: http://teca.bmlonline.it Used with permission for non-commerical purposes
-                        ["Copyright 2009 Ministero per i Beni e le Attività Cultura, ora Ministero dei beni
-                        e delle attività culturali e del turismo – Biblioteca Medicea Laurenziana
-                        Tutti i diritti riservati. I contenuti del sito - codice di script, grafica, testi,
-                        tabelle, immagini, suoni, e ogni altra informazione disponibile in qualunque forma
-                        - sono protetti ai sensi della normativa vigente in tema di opere dell'ingegno. I
-                        prodotti software e i contenuti informativi, salvo diverse specifiche indicazioni,
-                        possono essere scaricati o utilizzati solo per uso personale, o comunque non commerciale
-                        citando la fonte (http://teca.bmlonline.it). Per usi diversi (lucro, commerciale)
-                        è consentito utilizzare, copiare e distribuire i documenti e le relative immagini
-                        disponibili su questo sito solo dietro permesso scritto da parte della Biblioteca
-                        Medicea Laurenziana. Le note di copyright, gli autori ove indicati o la fonte stessa
-                        devono in tutti i casi essere citati nelle pubblicazioni in qualunque forma realizzate
-                        e diffuse."].
-                        
-                     </div>
-                     </span>
-                  
-               </li>
-               
             </ul>
-            
          </div>
-         
          <div class="row main-content-block">
-            
             <div class="col-md-8">
-               
                <div class="indent">
-                  
                   <h2>What is Syriac?</h2>
-                  
                   <p class="indent">Syriac is a language which once flourished on the Mesopotamian plateau. A dialect
-                     of
-                     Aramaic, Syriac was widely used during much of the first millenium of the common
+                     of Aramaic, Syriac was widely used during much of the first millenium of the common
                      era. Syriac speaking communities could be found in what today would be Turkey,
                      Lebanon, Syria, Iraq, Iran, India, Central Asia, China, and Mongolia. Sources in
                      Syriac hold immense value for increasing our historical understanding of the
                      Mediterranean, the Middle East and Asia. In particular, Syriac sources document key
                      moments in the development and interaction of Judaism, Christianity, Islam, and
                      other religions of Late Antiquity. <a href="about-syriac.html">Learn more…</a>
-                     
                   </p>
-                  
                   <h2>What is Syriaca.org?</h2>
-                  
                   <p class="indent">
                      <em>Syriaca.org: The Syriac Reference Portal</em> is a digital project for the study of Syriac literature, culture, and history. Today,
                      a number of heritage communities around the world have linguistic, religious or cultural
@@ -579,31 +263,31 @@
                      the diverse needs of users, the design of Syriaca.org is inherently collaborative
                      and fluid.
                   </p>
-                  
                   <p class="indent">The primary function of Syriaca.org is to be a reference hub for digitally linking
                      research findings. Syriaca.org's publications compile and classify core data for the
                      study of Syriac sources, offer the scholarly community digital tools for freely disseminating
                      that data, and facilitate further research through the creation of shared digital
                      tools and infrastructure. <a href="about-srophe.html">Learn more…</a>
-                     
                   </p>
-                  
+                  <h2>How to Cite?</h2>
+                  <p class="indent"><b>Notes:</b> David A. Michelson, general editor; Daniel L. Schwartz, director; Jeanne-Nicole Mellon
+                     Saint-Laurent, associate director; Nathan Gibson, William L. Potter, and James E. Walters, editors;
+                     Erin Geier and Winona Salesky, senior programmers, <i>Syriaca.org: The Syriac Reference Portal</i>
+                     (2014-), <a href="http://syriaca.org">http://syriaca.org</a></p>
+                  <p class="indent"><b>Bibliography:</b> Michelson, David A., general editor; Daniel L. Schwartz, director; Jeanne-Nicole Mellon
+                     Saint-Laurent, associate director; Nathan Gibson, William L. Potter, and James E. Walters, editors;
+                     Erin Geier and Winona Salesky, senior programmers. <i>Syriaca.org: The Syriac Reference Portal</i>.
+                     2014-. <a href="http://syriaca.org">http://syriaca.org</a></p>
                   <div style="display:none;">
-                     
                      <h2>Online Resources</h2>
-                     
                      <p>The publications of <i>Syriaca.org</i> combine emerging methods in the field of <a href="http://digitalhumanities.org:8080/dhq/vol/3/1/index.html">digital
                            humanities</a> with the rigour of traditional scholarship in history and
                         philology. Several digital reference works are currently in preparation:
                      </p>
-                     
                      <p>
                         <b>Published:</b>
-                        
                      </p>
-                     
                      <ul>
-                        
                         <li>
                            <a href="geo/index.html">
                               <i>The Syriac Gazetteer</i>
@@ -739,16 +423,46 @@
             </div>
             
             <div class="col-md-4">
-               
-               <div class="blog indent">
-                  
-                  <h2>Project News</h2>
-                  
-                  <div class="dynamicContent" data-url="https://blog.vuexistapps.us/feed/"></div>
-                  
-               </div>
-               
+              <div class="blog indent">
+                <h2>Project News</h2>
+                <div class="dynamicContent" data-url="https://blog.syriaca.org/wp-json/wp/v2/posts?per_page=5"></div>
+              </div>
             </div>
+            
+            <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              const dynamicContentDiv = document.querySelector('.dynamicContent');
+              const feedUrl = dynamicContentDiv.getAttribute('data-url');
+            
+              fetch(feedUrl)
+                .then(response => response.json())
+                .then(posts => {
+                  posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    
+                    // Format the date
+                    const dateObj = new Date(post.date);
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    const formattedDate = dateObj.toLocaleDateString(undefined, options);
+            
+                     postElement.innerHTML = `
+                       <div style="margin-bottom: 1em;">
+                         <p style="margin-bottom: 0;"><a href="${post.link}" target="_blank">${post.title.rendered}</a></p>
+                         <small style="color: gray;">${formattedDate}</small>
+                       </div>
+                     `;
+
+                    
+                    dynamicContentDiv.appendChild(postElement);
+                  });
+                })
+                .catch(error => {
+                  console.error('Error loading blog posts:', error);
+                  dynamicContentDiv.innerHTML = '<p>Unable to load blog posts at this time.</p>';
+                });
+            });
+            </script>
+
             
          </div>
          
@@ -762,21 +476,21 @@
                   
                   <li>
                      <a href="http://www.balzan.org/en">
-                        <img src="resources/images/marchioBALZANblu_bianco.png" alt="Fondazione Internazionale Balzan" height="45px" /> Fondazione Internazionale
+                        <img src="resources/images/marchioBALZANblu_bianco.png" alt="Fondazione Internazionale Balzan" height="55px" /> Fondazione Internazionale
                         Balzan </a>
                      
                   </li>
                   
                   <li>
                      <a href="http://www.neh.gov/">
-                        <img src="resources/images/neh_logo_horizontal_rgb.jpg" alt="NEH" height="45px" />
+                        <img src="resources/images/neh_logo_horizontal_rgb.jpg" alt="NEH" height="55px" />
                         </a>
                      
                   </li>
                   
                   <li>
                      <a href="http://www.bethmardutho.org/">
-                        <img src="resources/images/beth-mardutho.png" alt="Beth Mardutho" height="85px" />
+                        <img src="resources/images/beth-mardutho.png" alt="Beth Mardutho" height="75px" />
                         </a>
                      
                   </li>
@@ -788,19 +502,20 @@
                   </li>
                   
                   <li>
-                     <a href="http://www.vanderbilt.edu/">
-                        <img src="resources/images/vu07b.gif" alt="Vanderbilt University" height="65px" />
+                     <a href="http://www.vanderbilt.edu/"><img src="resources/images/vulogo.png" alt="Vanderbilt University" height="65px" /></a>
+                  </li>
+                  
+                  <li>
+                     <a href="http://www.library.vanderbilt.edu/">
+                        <img src="resources/images/JAH_LIBRARIES.png" alt="Jean and Alexander Heard Library, Vanderbilt University" height="55px" />
                         </a>
                      
                   </li>
                   
                   <li>
-                     <a href="http://www.library.vanderbilt.edu/">
-                        <img src="resources/images/JAH_LIBRARIES.png" alt="Jean and Alexander Heard Library, Vanderbilt University" height="50px" />
-                        </a>
-                     
+                     <a href="https://www.library.vanderbilt.edu/digital-lab/"><img src="resources/images/digital-lab-log.png" alt="The Digital Lab, Jean and Alexander Heard Library, Vanderbilt University" height="60px" /></a>
                   </li>
-                  
+
                   <li>
                      <a href="http://www.princeton.edu/main/">
                         <img src="resources/images/PU-standard.png" alt="Princeton University" height="60px" />
@@ -831,7 +546,14 @@
                   
                   <li>
                      <a href="http://www.bollandistes.org/online-resources.php?pg=bollandistdatabases">
-                        <img src="resources/images/bollandiste.png" alt="Société des Bollandistes" height="50px" style="padding-left:1em;" />
+                        <img src="resources/images/bollandiste.png" alt="Société des Bollandistes" height="55px" style="padding-left:1em;" />
+                        </a>
+                     
+                  </li>
+                  
+                   <li>
+                     <a href="https://ctl.yalespace.org/">
+                        <img src="resources/images/ctl.png" alt="Computational Theology Lab" height="55px" style="padding-left:1em;" /><span style="color:#00356B;">Computational Theology Lab, Yale Divinity Library</span>
                         </a>
                      
                   </li>
@@ -850,15 +572,6 @@
          </div>
          
       </div>
-      <footer>
-         
-         <div class="container">
-            <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">
-               <img alt="Creative Commons License" style="border-width:0" src="/resources/images/cc.png" height="18px" />
-               </a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.
-            <br />Copyright Vanderbilt University, Princeton University, and the Contributor(s), 2014.
-            
-         </div>
-         
-      </footer>
-   </body><script type="text/javascript" src="/resources/js/jquery.validate.min.js"></script><script type="text/javascript" src="/resources/js/require.min.js"></script><script type="text/javascript" src="/resources/js/srophe.js"></script><script type="text/javascript" src="/resources/js/lightslider.min.js"></script><script type="text/javascript" src="/resources/js/lightslider-functions.js"></script><script data-template="app:google-analytics"></script></html>
+      <footer>                    <div class="container">             <a rel="license"><img alt="Creative Commons License" style="border-width:0" src="/resources/images/cc.svg" height="18px" /><img alt="Creative Commons Attribution (CC-BY) License" style="border-width:0" src="/resources/images/by.svg" height="18px" /></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.<br />Copyright by the contributors. See "<a href="/how-to-cite.html">How to Cite</a>" for attribution information.          </div>                 </footer>
+      <script type="text/javascript" src="/resources/js/jquery.validate.min.js"></script><script type="text/javascript" src="/resources/js/require.min.js"></script><script type="text/javascript" src="/resources/js/srophe.js"></script><script type="text/javascript" src="/resources/js/lightslider.min.js"></script><script type="text/javascript" src="/resources/js/lightslider-functions.js"></script><script data-template="app:google-analytics"></script>
+   </body></html>

@@ -80,226 +80,11 @@
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Russian.min.js"></script>
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Arabic.min.js"></script>
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Hebrew.min.js"></script>
-      <script type="text/javascript">
-    $(document).ready(function () {
-             $('[data-toggle="tooltip"]').tooltip({ container: 'body' });
-     
-             $('.keyboard').keyboard({
-                 openOn: null,
-                 stayOpen: false,
-                 alwaysOpen: false,
-                 autoAccept: true,
-                 usePreview: false,
-                 initialFocus: true,
-                 rtl: true,
-                 layout: 'syriac-phonetic',
-                 hidden: function(event, keyboard, el){
-                    //  keyboard.destroy();
-                 }
-             });
-     
-             $('.keyboard-select').click(function () {
-                 var keyboardID = '#' + $(this).data("keyboard-id");
-                 var kb = $(keyboardID).getkeyboard();
-                 // change layout based on link ID
-                 kb.options.layout = this.id;
-                 // open keyboard if layout is different, or if the time since last closing is < 200 ms
-                 if (kb.last.layout !== kb.options.layout || (new Date().getTime() - kb.last.eventTime) < 200) {
-                     kb.reveal();
-                 }
-             });
-     
-             // Change fonts
-             $('.swap-font').on('click', function(){
-                 var selectedFont = $(this).data("font-id");
-                 $('.selectableFont').not('.syr').css('font-family', selectedFont);
-                 $("*:lang(syr)").css('font-family', selectedFont);
-             });
-         });
-        </script>
+      <script type="text/javascript" src="/resources/js/keyboard.js"></script>
       </head>
    <body id="body">
-      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-         
-         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               </button>
-            <a class="navbar-brand banner-container" href="/persons/index.html"> 
-               <span class="syriaca-icon syriaca-sbd banner-icon">
-                  <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
-                  </span>
-               <span class="banner-text">The Syriac Biographical Dictionary</span>
-               </a>
-            
-         </div>
-         
-         <div class="navbar-collapse collapse pull-right" id="navbar-collapse-1">
-            
-            <ul class="nav navbar-nav">
-               
-               <li class="dropdown">
-                  <a href="#" class="dropdown-toggle lonely-caret" data-toggle="dropdown"> 
-                     <span class="mobile-submenu">Browse</span>  <b class="caret"></b>
-                     </a>
-                  
-                  <ul class="dropdown-menu pull-right">
-                     
-                     <li>
-                        <a href="/persons/browse.html" class="icon-container">
-                           <span class="syriaca-icon syriaca-sbd icon-nav">
-                              <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
-                              </span>
-                           <span class="icon-text">Browse SBD</span>
-                           </a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/q/browse.html" class="icon-container">
-                           <span class="syriaca-icon syriaca-q icon-nav">
-                              <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
-                              </span>
-                           <span class="icon-text">Browse Qadishe</span>
-                           </a>
-                        
-                     </li>
-                     
-                     <li role="presentation" class="divider"></li>
-                     
-                     <li>
-                        <a href="/authors/browse.html" class="icon-container">
-                           <span class="syriaca-icon syriaca-authors icon-nav">
-                              <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
-                              </span>
-                           <span class="icon-text">Browse Authors</span>
-                           </a>
-                        
-                     </li>
-                     <li role="presentation" class="divider"/>
-                     <li>
-                        <a href="/persons/map.html">Map</a>
-                     </li>
-                  </ul>
-                  
-               </li> 
-               
-               <li class="dropdown">     <a href="#" class="dropdown-toggle lonely-caret" data-toggle="dropdown">         <span class="mobile-submenu">Publications </span>  <b class="caret"></b>     </a>     
-                  <ul class="dropdown-menu pull-right">         
-                     <li>             <a href="/geo/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-geo icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Gazetteer</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/persons/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-sbd icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">SBD</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/authors/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-authors icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Authors</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/saints/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-saints icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Gateway to the Saints</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/q/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-q icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Qadishe</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/bhse/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-bhse icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">BHSE</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/cbss/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-bibl icon-nav"></span>                 <span class="icon-text">Works Cited</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-syriaca icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="mobile-submenu icon-text">Syriaca.org</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>     
-                  </ul> 
-               </li>
-               
-               <li>
-                  <a href="/persons/search.html" class="nav-text">Advanced Search</a>
-                  
-               </li>
-               
-               <li>
-                  
-                  <div id="search-wrapper">
-                     
-                     <form class="navbar-form navbar-right search-box" role="search" action="/persons/search.html" method="get">
-                        
-                        <div class="form-group">
-                           <input type="text" class="form-control keyboard" placeholder="search" name="keyword" id="keywordNav" />
-                           <input type="hidden" id="series" name="series" value="The Syriac Biographical Dictionary"/>
-                           <span class="keyboard-menu">             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Keyboard">                  <span class="syriaca-icon syriaca-keyboard">  </span><span class="caret"></span>             </button>             
-                              <ul class="dropdown-menu">                 
-                                 <li><a href="#" class="keyboard-select" id="syriac-phonetic" data-keyboard-id="keywordNav">Syriac Phonetic</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="syriac-standard" data-keyboard-id="keywordNav">Syriac Standard</a></li>                 
-                                 <li> <a href="#" class="keyboard-select" id="ms-Arabic (101)" data-keyboard-id="keywordNav">Arabic Mod. Standard</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="ms-Hebrew" data-keyboard-id="keywordNav">Hebrew</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="ms-Russian" data-keyboard-id="keywordNav">Russian</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="ms-Greek" data-keyboard-id="keywordNav">Greek</a></li>                 
-                                 <li><a href="#" class="keyboard-select" id="qwerty" data-keyboard-id="keywordNav">English QWERTY</a></li>             
-                              </ul>         </span>
-                           <button class="btn btn-default search-btn" id="searchbtn" type="submit" title="Search">
-                              <span class="glyphicon glyphicon-search"></span>
-                              </button>                                    
-                           
-                        </div>
-                        
-                     </form>
-                     
-                  </div>
-                  
-               </li>
-               
-               <li>
-                  
-                  <div class="btn-nav">
-                     <button class="btn btn-default navbar-btn" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Font">
-                        <span class="glyphicon glyphicon-font"></span>
-                        </button>  
-                     
-                     <ul class="dropdown-menu dropdown-menu-right" id="swap-font">
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="DefaultSelect" data-font-id="EstrangeloEdessa">Default</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="EstrangeloEdessaSelect" data-font-id="EstrangeloEdessa">Estrangelo Edessa</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="EastSyriacAdiabeneSelect" data-font-id="EastSyriacAdiabene">East Syriac Adiabene</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="#" class="swap-font" id="SertoBatnanSelect" data-font-id="SertoBatnan">Serto Batnan</a>
-                           
-                        </li>
-                        
-                        <li>
-                           <a href="/documentation/wiki.html?wiki-page=/How-to-view-Syriac-script&amp;wiki-uri=https://github.com/srophe/syriaca-data/wiki">Help <span class="glyphicon glyphicon-question-sign"></span>
-                              </a>
-                           
-                        </li>
-                        
-                     </ul>
-                     
-                  </div>
-                  
-               </li>
-               
-            </ul>
-            
-         </div>
-         
-      </nav>
+      <script src="/resources/js/persons-navbar-search.js"></script>
+      <div id="navbar-container"></div>
       <div xmlns:xi="http://www.w3.org/2001/XInclude" data-template="templates:surround" data-template-with="templates/persons.html" data-template-at="content">
          
          <div class="main-content-block">
@@ -349,22 +134,26 @@
                      
                      <div class="col-md-6">
                         
-                        <h2>General Editor</h2>
+                        <h2>General Editors</h2>
                         
                         <ul>
                            
                            <li>David A. Michelson, Vanderbilt University</li>
-                           
-                        </ul>
-                        
-                        <h2>Associate Editors</h2>
-                        
-                        <ul>
-                           
+
                            <li>Jeanne-Nicole Mellon Saint-Laurent, Marquette University</li>
                            
                            <li>Nathan P. Gibson, Vanderbilt University</li>
                            
+                           <li>Daniel L. Schwartz, Texas A&amp;M University</li>
+                           
+                        </ul>
+                        
+                        <h2>Technical Editors</h2>
+                        
+                        <ul>
+                           
+                           <li>William L. Potter, Vanderbilt University</li>
+
                            <li>Daniel L. Schwartz, Texas A&amp;M University</li>
                            
                         </ul>
@@ -393,6 +182,20 @@
                      </div>
                      
                   </div>
+                  
+                  <h2>How to Cite <i>The Syriac Biographical Dictionary</i></h2>
+                  <p><b>Notes:</b> Nathan P. Gibson, David A. Michelson, Jeanne-Nicole Mellon Saint-Laurent, and Daniel L. Schwartz,
+                     general editors; Daniel L. Schwartz and William L. Potter, technical editors, <i>The Syriac
+                        Biographical Dictionary</i> (Syriaca.org: The Syriac Reference Portal, 2016-), <a
+                        href="http://syriaca.org/persons">http://syriaca.org/persons</a>
+                  </p>
+                  <p><b>Bibliography:</b> Gibson, Nathan P., David A. Michelson, Jeanne-Nicole Mellon Saint-Laurent, and Daniel L. Schwartz,
+                     general editors; Daniel L. Schwartz and William L. Potter, technical editors. <i>The Syriac
+                        Biographical Dictionary</i>. Syriaca.org: The Syriac Reference Portal, 2016-. <a
+                        href="http://syriaca.org/persons">http://syriaca.org/persons</a>
+                  </p>
+                  
+                  <hr >
                   
                   <p>The Syriac Biographical Dictionary (SBD) is a multi-volume name and biographic authority
                      record documenting persons relevant to the field of Syriac studies.
@@ -499,15 +302,5 @@
          </div>
          
       </div>
-      <footer>
-         
-         <div class="container">
-            <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">
-               <img alt="Creative Commons License" style="border-width:0" src="/resources/images/cc.png" height="18px" />
-               </a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.
-            <br />Copyright Vanderbilt University, Princeton University, and the Contributor(s), 2014.
-            
-         </div>
-         
-      </footer>
+      <footer>                    <div class="container">             <a rel="license"><img alt="Creative Commons License" style="border-width:0" src="/resources/images/cc.svg" height="18px" /><img alt="Creative Commons Attribution (CC-BY) License" style="border-width:0" src="/resources/images/by.svg" height="18px" /></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.<br />Copyright by the contributors. See "<a href="/how-to-cite.html">How to Cite</a>" for attribution information.          </div>                 </footer>
    </body><script type="text/javascript" src="/resources/leaflet/leaflet.js"></script><script type="text/javascript" src="/resources/js/maps.js"></script><script type="text/javascript" src="/resources/js/jquery.validate.min.js"></script><script type="text/javascript" src="/resources/js/require.min.js"></script><script type="text/javascript" src="/resources/js/srophe.js"></script><script type="text/javascript" src="/resources/js/lightslider.min.js"></script><script type="text/javascript" src="/resources/js/lightslider-functions.js"></script><script data-template="app:google-analytics"></script></html>

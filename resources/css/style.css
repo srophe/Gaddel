@@ -9,7 +9,11 @@
 /* A */
 .abstract {}
 .alpha-pages {margin:-1.5em 0 1em 0;}
-#advancedSearch {padding:2em 1em; background-color:#F7F7F9;}
+#advancedSearch {
+border-right:1px solid #eee;
+padding:3em .5em;
+background-color:#fff;
+/* position:fixed;*/ }
 .api-path {width:15%}
 .api-param {width:20%}
 .api-desc {width:55%}
@@ -243,7 +247,7 @@ img{ margin:0px }
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
 }
-
+.img-credit a{color: white; }
 /* J */
 .js-wiki-sidebar-toc-toggle-chevron-button {display:none;}
 /* K */
@@ -263,6 +267,7 @@ img{ margin:0px }
   /*font-size:large;*/
   font-size:1.25em; 
   line-height:1em;
+  display:inline-block;
   
 }
 
@@ -270,6 +275,7 @@ img{ margin:0px }
  font-family: "SertoBatnan", "Serto Batnan", Verdana, Arial, Helvetica, sans-serif;
   font-size:1.25em; 
   line-height:1em;
+  display:inline-block;
  
 }
 
@@ -277,6 +283,7 @@ img{ margin:0px }
  font-family: "EastSyriacAdiabene", "East Syriac Adiabene", Verdana, Arial, Helvetica, sans-serif;
  font-size:1.25em; 
  line-height:1em;
+ display:inline-block;
 
 }
 
@@ -284,6 +291,7 @@ img{ margin:0px }
  font-family: arial, sans-serif;
  font-size:1.25em; 
  line-height:1em;
+ display:inline-block;
 }
 
 /* M */
@@ -292,6 +300,7 @@ img{ margin:0px }
 .map-md #map {height:300px !important;}
 .map-sm #map {height:250px !important;}
 /* #map {height:325px !important; } */
+#map { height: 100% }
 #map .leaflet-tile-container img {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.05);
     margin:0px;
@@ -478,7 +487,9 @@ pre {
 
 .search-box .navbar-form {overflow:visible;}
 
-
+#search-info {
+  scroll-margin-top: 80px; /* Match header height */
+}
 
 /* T */
 .tab-content {padding-top:.25em;}
@@ -497,7 +508,8 @@ pre {
     }
     
 /* TEI styles */
-.tei-desc {display:block;margin:1em;}
+.tei-desc {display:block;margin:.5em 0 ;}
+.tei-listRelation .tei-desc {display:inline; margin:0;}
 /* .tei-event {display:block;} */
 .tei-footnote-refs, .tei-footnote-tgt {
     font-size: .7em;
@@ -512,8 +524,12 @@ pre {
     padding-right:.5em;    
 }
 .tei-event p {display:inline-block;}
-.tei-note {margin: 1em;}
+.tei-note {display:block; margin:1em;}
+.tei-noteGrp {display:block;  margin:1em;}
+li .tei-note, li .tei-desc {display:inline; margin:0;}
+.tei-title {font-style: italic;}
 .tei-quote .tei-placeName {color: #6699cc; font-weight:bold;}
+.tei-quote {display:block;}
 /*.tei-title > .tei-title {font-style:italic;} */
 .top-padding {margin-top:4.5em !important;}
 .text-block {margin-left:1em; display:block;}
@@ -527,9 +543,23 @@ pre {
     color:white;
 }
 .well-white {background-color:white;}
-.pagination-container{float:right !important; }
+.pagination-container{
+    float:right; 
+    margin-right: 1em;
+    padding-right: 2em;
+  }
+.header {margin-top:3em; color:white; padding-left:2em;}  
 /* Special styles for small screens */
+@media only screen and (max-width: 1500px) {
+    .header {margin-top:4em;}
+}
+@media only screen and (max-width: 991px) and (min-width: 769px){
+ /* CSS that should be displayed if width is equal to or less than 991px and larger 
+  than 768px goes here */
+  .header {margin-top:5em;}
+}
 @media screen and (max-width: 480px) {
+.header {margin-top:5em;}
 .navbar-collapse, .dropdown-menu {float:none; width:100% !important;}
 .navbar-nav li {width:100% !important; float:none;}
 .mobile-submenu {

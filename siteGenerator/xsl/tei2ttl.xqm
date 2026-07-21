@@ -25,7 +25,13 @@ declare function local:make-uri($uri){
  :)
 declare function local:make-literal($string as xs:string*, $lang as xs:string*, $datatype as xs:string?) as xs:string?{
     concat('"',replace(normalize-space(string-join($string,' ')),'"',''),'"',
-        if($lang != '') then concat('@',$lang) 
+        if($lang != '') then 
+            let $langString := 
+                if(contains($lang,'-')) then substring-before($lang,'-')
+                else if(contains($lang,'en')) then 'en'
+                else if(contains($lang,'syr')) then 'syr'
+                else $lang
+            return concat('@',$langString) 
         else (), 
         if($datatype != '') then concat('^^',$datatype) else()) 
 };
@@ -49,7 +55,9 @@ declare function local:make-date($date){
     else if($date castable as xs:date) then 
         local:make-literal($date, (),'xsd:date')                        
     else if($date castable as xs:gYear) then 
-        local:make-literal($date, (),'xsd:gYear') 
+        local:make-literal($date, (),'xsd:gYear')
+    else if($date castable as xs:gMonthDay) then 
+        local:make-literal($date, (),'xsd:gMonthDay')
     else local:make-literal($date, (),())        
 };
 
@@ -101,16 +109,16 @@ declare function local:places($node, $id, $idShort, $typeShort){
     let $lang := $headword/@xml:lang
     return local:make-triple(local:make-uri($id), 'rdfs:label', local:make-literal($headword/descendant-or-self::text(),$lang,'')),
 (: hasCitation - bibl referenes :)
-    for $citation in $node/descendant::tei:bibl/tei:ptr/@target[contains(., 'syriaca.org')]
+    for $citation in $node/descendant::tei:bibl/tei:ptr/@target[contains(., 'syriaca.org/')]
     return local:make-triple(local:make-uri($id), 'lawd:hasCitation', local:make-uri($citation)),
 (:primaryTopicOf idno in publication statement :)
-    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.tei'))),
-    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.html'))),
-    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.ttl'))),
+    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(concat($id,'.tei'))),
+    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(concat($id,'.html'))),
+    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(concat($id,'.ttl'))),
 (: dcterms:hasFormat idno in publication statement :)
-    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.tei'))),
-    local:make-triple(local:make-uri($id), 'dcterms:hasFormat', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.html'))),
-    local:make-triple(local:make-uri($id), 'dcterms:hasFormat', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.ttl'))),
+    local:make-triple(local:make-uri($id), 'dcterms:hasFormat', local:make-uri(concat($id,'.tei'))),
+    local:make-triple(local:make-uri($id), 'dcterms:hasFormat', local:make-uri(concat($id,'.html'))),
+    local:make-triple(local:make-uri($id), 'dcterms:hasFormat', local:make-uri(concat($id,'.ttl'))),
 (: Description/abstract :)
     for $note in $node/descendant::tei:note[@type='abstract']
     return local:make-triple(local:make-uri($id), 'schema:description', local:make-literal($note/descendant-or-self::text(),$note/@xml:lang,'')),
@@ -121,9 +129,22 @@ declare function local:places($node, $id, $idShort, $typeShort){
     for $note in $node/descendant::tei:note[@type='abstract']
     return local:make-triple('', 'rdfs:XMLLiteral', concat('"',$note/self::*,'"')),
     :) 
+(: Place type :)
+    for $placeType at $p in tokenize($node/descendant::tei:place/@ana,' ')
+    let $ana := 
+        if(starts-with($placeType,'http')) then
+            local:make-uri($placeType)
+        else concat('swd:',$placeType)
+    return 
+        (
+        local:make-triple(local:make-uri($id), 'swdt:place-type', $ana),
+        local:make-triple(local:make-uri($id), 'sp:place-type', concat('swds:place-type-',$idShort, '-',$p)),
+        local:make-triple(concat('swds:place-type-',$idShort, '-',$p), 'sps:place-type', $ana),
+        local:make-triple(concat('swds:place-type-',$idShort, '-',$p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
+        ),
 (: relations :)
     let $relPersons := distinct-values($node/descendant::tei:text/descendant::tei:persName/@ref)
-    for $relPers in $relPersons
+    for $relPers in $relPersons[. != $id]
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPers)),
     let $relPlaces := distinct-values($node/descendant::tei:text/descendant::tei:placeName/@ref)
     for $relPlace in $relPlaces[. != $id]
@@ -140,7 +161,7 @@ declare function local:places($node, $id, $idShort, $typeShort){
         local:make-triple(concat('swds:',$typeShort,'-',$idShort,'-',$p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
         ),
 (:IDNO :) 
-    for $closeMatch at $p in $node/descendant::tei:text/descendant::tei:idno[@type ='URI'][not(contains(., "syriaca.org"))]
+    for $closeMatch at $p in $node/descendant::tei:text/descendant::tei:idno[@type ='URI'][not(contains(., "syriaca.org"))][not(contains(., "/viaf.org/viaf/"))]
     return 
         (local:make-triple(local:make-uri($id), 'swdt:closeMatch', local:make-uri($closeMatch)),
         local:make-triple(local:make-uri($id), 'sp:closeMatch', concat('swds:closeMatch-',$idShort, '-',$p)),
@@ -181,9 +202,9 @@ declare function local:places($node, $id, $idShort, $typeShort){
     for $gps at $p in $node/descendant::tei:text/descendant::tei:location[@type='gps']
     return
         (
-            local:make-triple(local:make-uri($id), 'swdt:has-gps-coordinates', local:make-literal($gps/descendant::text(),'','')),
+            local:make-triple(local:make-uri($id), 'swdt:has-gps-coordinates', local:make-literal($gps/descendant::text(),'','geosparql:wktLiteral')),
             local:make-triple(local:make-uri($id), 'sp:has-gps-coordinates', concat('swds:coordinates','-',$idShort,'-',$p)),
-            local:make-triple(concat('swds:coordinates','-',$idShort,'-',$p), 'sps:exist-to', local:make-literal($gps/descendant::text(),'','')),
+            local:make-triple(local:make-uri($id), 'swd:has-gps-coordinates', local:make-literal($gps/descendant::text(),'','geosparql:wktLiteral')),
             local:make-triple(concat('swds:coordinates','-',$idShort,'-',$p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
         ),
 (: Religious community has-religious-community  place/state[@type='confession']/@ref :)
@@ -253,19 +274,21 @@ declare function local:persons($node, $id, $idShort, $typeShort){
     let $lang := $headword/@xml:lang
     return local:make-triple(local:make-uri($id), 'rdfs:label', local:make-literal($headword/descendant-or-self::text(),$lang,'')), 
 (: hasCitation - bibl referenes :)
-    for $citation in $node/descendant::tei:bibl/tei:ptr/@target[contains(., 'syriaca.org')]
+    for $citation in $node/descendant::tei:bibl/tei:ptr/@target[contains(., 'syriaca.org/')]
     return local:make-triple(local:make-uri($id), 'lawd:hasCitation', local:make-uri($citation)),
 (:primaryTopicOf idno in publication statement :)
-    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.tei'))),
-    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.html'))),
-    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.ttl'))),
+    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(concat($id,'.tei'))),
+    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(concat($id,'.html'))),
+    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(concat($id,'.ttl'))),
 (: dcterms:hasFormat idno in publication statement :)
-    local:make-triple(local:make-uri($id), 'foaf:primaryTopicOf', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.tei'))),
-    local:make-triple(local:make-uri($id), 'dcterms:hasFormat', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.html'))),
-    local:make-triple(local:make-uri($id), 'dcterms:hasFormat', local:make-uri(replace($node/descendant::tei:publicationStmt/tei:idno[1]/text(),'/tei','.ttl'))),
+    local:make-triple(local:make-uri($id), 'dcterms:hasFormat', local:make-uri(concat($id,'.tei'))),
+    local:make-triple(local:make-uri($id), 'dcterms:hasFormat', local:make-uri(concat($id,'.html'))),
+    local:make-triple(local:make-uri($id), 'dcterms:hasFormat', local:make-uri(concat($id,'.ttl'))),
 (: Description/abstract :)
     for $note in $node/descendant::tei:note[@type='abstract']
     return local:make-triple(local:make-uri($id), 'schema:description', local:make-literal($note/descendant-or-self::text(),$note/@xml:lang,'')),
+    for $note in $node/descendant::tei:desc[@type='abstract']
+     return local:make-triple(local:make-uri($id), 'schema:description', local:make-literal($note/descendant-or-self::text(),$note/@xml:lang,'')),
 (:WS:NOTE literal does not work
     Description/abstract as an XML literal
     for $note in $node/descendant::tei:note[@type='abstract']
@@ -274,10 +297,11 @@ declare function local:persons($node, $id, $idShort, $typeShort){
 (: relations :)
     let $relPersons := distinct-values($node/descendant::tei:text/descendant::tei:persName/@ref)
     for $relPers in $relPersons[. != $id]
-    return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPers)),
+    return local:make-triple(local:make-uri($id), 'foaf:relation', local:make-uri($relPers)),
     let $relPlaces := distinct-values($node/descendant::tei:text/descendant::tei:placeName/@ref)
-    for $relPlace in $relPlaces
-    return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPlace)),
+    for $relPlace in $relPlaces[. != $id]
+    return local:make-triple(local:make-uri($id), 'foaf:relation', local:make-uri($relPlace)),
+
 (: Name varients :)
     for $nameVariant in $node/descendant::tei:person/tei:persName | $node/descendant::tei:personGrp/tei:persName
     return local:make-triple(local:make-uri($id), 'swdt:name-variant', local:make-literal($nameVariant/descendant-or-self::text(),$nameVariant/@xml:lang,'')),
@@ -290,7 +314,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
         local:make-triple(concat('swds:',$typeShort,'-',$idShort,'-',$p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
         ),
 (:IDNO :) 
-    for $closeMatch at $p in $node/descendant::tei:text/descendant::tei:idno[@type ='URI'][not(contains(., "syriaca.org"))]
+    for $closeMatch at $p in $node/descendant::tei:text/descendant::tei:idno[@type ='URI'][not(contains(., "syriaca.org"))][not(contains(., "/viaf.org/viaf/"))]
     return 
         (local:make-triple(local:make-uri($id), 'swdt:closeMatch', local:make-uri($closeMatch)),
         local:make-triple(local:make-uri($id), 'sp:closeMatch', concat('swds:closeMatch-',$idShort, '-',$p)),
@@ -632,8 +656,8 @@ declare function local:persons($node, $id, $idShort, $typeShort){
                local:make-triple(local:make-uri($sRef), concat('sp:',$relRef), concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p)),
                local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p), concat('swd:',$relRef), local:make-uri($oRef)),
                local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
-               )
-        )          
+
+        ))          
 )
 
 
@@ -657,6 +681,7 @@ declare function local:prefix() as xs:string{
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf:	<http://xmlns.com/foaf/0.1/> .
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix lawd:	<http://lawd.info/ontology/> .
 @prefix owl:	<http://www.w3.org/2002/07/owl#> .
 @prefix periodo:	<http://n2t.net/ark:/99152/p0v#> .

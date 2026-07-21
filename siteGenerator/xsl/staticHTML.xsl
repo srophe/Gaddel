@@ -79,9 +79,9 @@
     <xsl:param name="convert" select="'true'"/>
     -->
     
-    <xsl:param name="applicationPath" select="'../../'"/>
-    <xsl:param name="staticSitePath" select="'../../'"/>
-    <xsl:param name="dataPath" select="'./data/'"/>
+    <xsl:param name="applicationPath" select="'/Users/wsalesky/syriaca/syriaca/Gaddel'"/>
+    <xsl:param name="staticSitePath" select="'/Users/wsalesky/syriaca/syriaca/Gaddel'"/>
+    <xsl:param name="dataPath" select="'/Users/wsalesky/syriaca/syriaca/syriaca-data'"/>
     <!-- <xsl:param name="dataPath" select="'/Users/wsalesky/syriaca/syriaca/syriaca-data/data/'"/> -->
     
     <!-- Example: generate new index.html page for places collection -->
@@ -239,9 +239,9 @@
                                 </xsl:when>
                             </xsl:choose>
                         </xsl:variable>
-                        <path idno="{$altIdno}"><xsl:value-of select="concat(replace($altIdno,$base-uri,concat($staticSitePath,'data')),'.html')"/></path>
+                        <path idno="{$altIdno}"><xsl:value-of select="concat(replace($altIdno,$base-uri,concat($staticSitePath,'/data')),'.html')"/></path>
                     </xsl:if>
-                    <path idno="{$idno}"><xsl:value-of select="concat(replace($idno,$base-uri,concat($staticSitePath,'data')),'.html')"/></path>
+                    <path idno="{$idno}"><xsl:value-of select="concat(replace($idno,$base-uri,concat($staticSitePath,'/data')),'.html')"/></path>
                 </xsl:when>
                 <xsl:when test="$fileType = 'RDF'">
                     <!-- Output a page for each rdf:Description (with http://syriaca.org/taxonomy/) -->
@@ -386,7 +386,36 @@
                     <xsl:when test="$template/descendant::*:head">
                         <xsl:choose>
                             <xsl:when test="$template/descendant::*:head">
-                                <xsl:copy-of select="$template/descendant::*:head"/>
+                                <xsl:choose>
+                                    <xsl:when test="$pageType = 'TEI'">
+                                            <!--<xsl:sequence select="$collectionTemplate"/>-->
+                                            <head xmlns="http://www.w3.org/1999/xhtml">
+                                                <!--<xsl:sequence select="$collectionTemplate"/>-->
+                                                <xsl:for-each select="$collectionTemplate/descendant::*:head/child::*">
+                                                    <xsl:choose>
+                                                        <xsl:when test="local-name() = 'title'">
+                                                            <title xmlns="http://www.w3.org/1999/xhtml">
+                                                                <xsl:choose>
+                                                                    <xsl:when test="$nodes/descendant::t:body[descendant::*[@srophe:tags = '#syriaca-headword']]">
+                                                                        <xsl:value-of select="$nodes/descendant::t:body/descendant::*[@srophe:tags = '#syriaca-headword'][@xml:lang = 'en']"/>
+                                                                    </xsl:when>
+                                                                    <xsl:otherwise>
+                                                                       <xsl:value-of select="$nodes/descendant-or-self::t:titleStmt/t:title[1]"/>                
+                                                                    </xsl:otherwise>            
+                                                                </xsl:choose> 
+                                                            </title> 
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            <xsl:copy-of select="."/>
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
+                                                </xsl:for-each>
+                                            </head> 
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:copy-of select="$template/descendant::*:head"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </xsl:when>
                             <xsl:otherwise><xsl:message>Error in template, check template for html:head </xsl:message></xsl:otherwise>
                         </xsl:choose>
@@ -399,15 +428,21 @@
                         <xsl:choose>
                             <xsl:when test="$template/descendant::html:nav">
                                 <xsl:copy-of select="$template/descendant::html:nav"/>
+                                <xsl:message>DEBUG: Template with html:nav</xsl:message>
+                            </xsl:when>
+                            <xsl:when test="$template/descendant::*:div[@id = 'navbar-container']">
+                                <xsl:copy-of select="$template/descendant::*:div[@id = 'navbar-container']/preceding-sibling::*:script[1]"/>
+                                <div id="navbar-container"></div>
+                                <xsl:message>DEBUG: Template with navbar-container</xsl:message>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:message>No template found for html:head element</xsl:message>
+                                <xsl:message>DEBUG: No html:nav template found for html:nav element, use generic nav</xsl:message>
                                 <xsl:call-template name="genericNav"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:message>No template found for html:head element</xsl:message>
+                        <xsl:message>DEBUG: No template found for html:nav element</xsl:message>
                         <xsl:call-template name="genericNav"/>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -424,15 +459,16 @@
                                 <div class="main-content-block">
                                     <div class="interior-content">
                                         <xsl:call-template name="otherDataFormats">
-                                        <xsl:with-param name="node" select="t:TEI"/>
-                                        <xsl:with-param name="idno" select="$idno"/>
+                                            <xsl:with-param name="node" select="t:TEI"/>
+                                            <xsl:with-param name="idno" select="$idno"/>
                                             <xsl:with-param name="formats" select="'print,tei,rdf'"/>
                                         </xsl:call-template>
                                         <div class="row">
                                             <div class="col-md-7 col-lg-8">
-                                        <xsl:apply-templates select="$nodes/ancestor-or-self::t:TEI">
-                                            <xsl:with-param name="collection" select="$collection"/>
-                                        </xsl:apply-templates>
+                                                <xsl:apply-templates select="$nodes/ancestor-or-self::t:TEI">
+                                                    <xsl:with-param name="collection" select="$collection"/>
+                                                    <xsl:with-param name="idno" select="$idno" tunnel="yes"/>
+                                                </xsl:apply-templates>
                                             </div>
                                             <div class="col-md-5 col-lg-4 right-menu">
                                                 <!-- Make dynamic -->
@@ -590,11 +626,11 @@
                             <a href="javascript:window.print();" type="button" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to send this page to the printer." >
                                 <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                             </a><xsl:text>&#160;</xsl:text>
-                            <!-- WS:NOTE needs work on the link.  -->
+                            <!-- WS:NOTE needs work on the link. 
                             <a href="{concat($dataPath,'.rdf')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the RDF-XML data for this record." >
                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> RDF/XML
                             </a><xsl:text>&#160;</xsl:text>
-                            
+                            -->
                         </div>
                         <div class="row">
                             <div class="col-md-7 col-lg-8">
@@ -734,43 +770,49 @@
             <div class="container otherFormats" xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:for-each select="tokenize($formats,',')">
                     <xsl:choose>
+                        <!--
                         <xsl:when test=". = 'geojson'">
-                            <a href="{concat($dataPath,'.geojson')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the GeoJSON data for this record." >
+                            <a href="{concat($dataPath,'.geojson')}" class="btn btn-default btn-xs" id="geojsonBtn" data-toggle="tooltip" title="Click to view the GeoJSON data for this record." >
                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> GeoJSON
                             </a><xsl:text>&#160;</xsl:text>
                         </xsl:when>
                         <xsl:when test=". = 'json'">
-                            <a href="{concat($dataPath,'.json')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the GeoJSON data for this record." >
+                            <a href="{concat($dataPath,'.json')}" class="btn btn-default btn-xs" id="jsonBtn" data-toggle="tooltip" title="Click to view the GeoJSON data for this record." >
                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> JSON-LD
                             </a><xsl:text>&#160;</xsl:text> 
                         </xsl:when>
                         <xsl:when test=". = 'kml'">
                             <xsl:if test="$node/descendant::t:location/t:geo">
-                                <a href="{concat($dataPath,'.kml')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the KML data for this record." >
+                                <a href="{concat($dataPath,'.kml')}" class="btn btn-default btn-xs" id="kmmlBtn" data-toggle="tooltip" title="Click to view the KML data for this record." >
                                     <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> KML
                                 </a><xsl:text>&#160;</xsl:text>
                             </xsl:if>
                         </xsl:when>
+                        -->
                         <xsl:when test=". = 'print'">
-                            <a href="javascript:window.print();" type="button" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to send this page to the printer." >
+                            <a href="javascript:window.print();" type="button" class="btn btn-default btn-xs" id="printBtn" data-toggle="tooltip" title="Click to send this page to the printer." >
                                 <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
                             </a><xsl:text>&#160;</xsl:text>
                         </xsl:when>
+                        <!--
                         <xsl:when test=". = 'rdf'">
-                            <a href="{concat($dataPath,'.rdf')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the RDF-XML data for this record." >
+                            <a href="{concat($dataPath,'.rdf')}" class="btn btn-default btn-xs" id="rdfBtn" data-toggle="tooltip" title="Click to view the RDF-XML data for this record." >
                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> RDF/XML
                             </a><xsl:text>&#160;</xsl:text>
                         </xsl:when>
+                        -->
                         <xsl:when test=". = 'tei'">
-                            <a href="{concat($teiRec,'.tei')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the TEI XML data for this record." >
+                            <a href="{concat(tokenize($idno,'/')[last()],'.xml')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the TEI XML data for this record." >
                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> TEI/XML
                             </a><xsl:text>&#160;</xsl:text>
                         </xsl:when>
+                        <!--
                         <xsl:when test=". = 'text'">
-                            <a href="{concat($dataPath,'.txt')}" class="btn btn-default btn-xs" id="teiBtn" data-toggle="tooltip" title="Click to view the plain text data for this record." >
+                            <a href="{concat($dataPath,'.txt')}" class="btn btn-default btn-xs" id="txtBtn" data-toggle="tooltip" title="Click to view the plain text data for this record." >
                                 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Text
                             </a><xsl:text>&#160;</xsl:text>
                         </xsl:when>
+                        -->
                         <xsl:when test=". = 'citations'">
                             <xsl:variable name="zoteroGrp" select="$config/descendant::*:zotero/@group"/>
                             <xsl:if test="$zoteroGrp != ''">
@@ -895,47 +937,7 @@
             <script type="text/javascript" src="/resources/keyboard/layouts/ms-Russian.min.js"/>
             <script type="text/javascript" src="/resources/keyboard/layouts/ms-Arabic.min.js"/>
             <script type="text/javascript" src="/resources/keyboard/layouts/ms-Hebrew.min.js"/>
-            <script type="text/javascript">
-                <xsl:text disable-output-escaping="yes">
-                    <![CDATA[
-                $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip({ container: 'body' })
-                
-                $('.keyboard').keyboard({
-                openOn: null,
-                stayOpen: false,
-                alwaysOpen: false,
-                autoAccept: true,
-                usePreview: false,
-                initialFocus: true,
-                rtl : true,
-                layout: 'syriac-phonetic',
-                hidden: function(event, keyboard, el){
-                //  keyboard.destroy();
-                }
-                });
-                
-                $('.keyboard-select').click(function () {
-                var keyboardID = '#' + $(this).data("keyboard-id")
-                var kb = $(keyboardID).getkeyboard();
-                //var kb = $('#searchField').getkeyboard();
-                // change layout based on link ID
-                kb.options.layout = this.id
-                // open keyboard if layout is different, or time from it last closing is &gt; 200 ms
-                if (kb.last.layout !== kb.options.layout || (new Date().getTime() - kb.last.eventTime) < 200) {
-                kb.reveal();
-                }
-                });
-                //Change fonts
-                $('.swap-font').on('click', function(){
-                var selectedFont = $(this).data("font-id")
-                $('.selectableFont').not('.syr').css('font-family', selectedFont);
-                $("*:lang(syr)").css('font-family', selectedFont)
-                });
-                
-                })]]>
-                </xsl:text>
-            </script>
+            <script type="text/javascript" src="/resources/js/keyboard.js" />
         </head>
     </xsl:template>
     <xsl:template name="genericNav">

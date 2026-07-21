@@ -158,5 +158,5 @@ $(document).ready(function () {
     } else {
         $('.nav-tabs li').first().addClass('active');
     }
-           
+    
 });

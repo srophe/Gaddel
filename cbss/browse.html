@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:srophe="https://srophe.app">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-      <title>Comprehensive Bibliography on Syriac Studies Advanced Search</title>
+      <title>Comprehensive Bibliography on Syriac Studies Browse</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/>
       <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
@@ -50,43 +50,7 @@
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Russian.min.js"></script>
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Arabic.min.js"></script>
       <script type="text/javascript" src="/resources/keyboard/layouts/ms-Hebrew.min.js"></script>
-      <script type="text/javascript">
- $(document).ready(function () {
-             $('[data-toggle="tooltip"]').tooltip({ container: 'body' });
-     
-             $('.keyboard').keyboard({
-                 openOn: null,
-                 stayOpen: false,
-                 alwaysOpen: false,
-                 autoAccept: true,
-                 usePreview: false,
-                 initialFocus: true,
-                 rtl: true,
-                 layout: 'syriac-phonetic',
-                 hidden: function(event, keyboard, el){
-                    //  keyboard.destroy();
-                 }
-             });
-     
-             $('.keyboard-select').click(function () {
-                 var keyboardID = '#' + $(this).data("keyboard-id");
-                 var kb = $(keyboardID).getkeyboard();
-                 // change layout based on link ID
-                 kb.options.layout = this.id;
-                 // open keyboard if layout is different, or if the time since last closing is < 200 ms
-                 if (kb.last.layout !== kb.options.layout || (new Date().getTime() - kb.last.eventTime) < 200) {
-                     kb.reveal();
-                 }
-             });
-     
-             // Change fonts
-             $('.swap-font').on('click', function(){
-                 var selectedFont = $(this).data("font-id");
-                 $('.selectableFont').not('.syr').css('font-family', selectedFont);
-                 $("*:lang(syr)").css('font-family', selectedFont);
-             });
-         });
-        </script>
+      <script type="text/javascript" src= "/resources/js/keyboard.js"></script>
    </head>
    <body id="body">
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation" data-template="app:fix-links">
@@ -98,7 +62,7 @@
                <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand banner-container" href="/cbss/index.html">
-               <img src="/resources/images/cbsc/cbsc-logo-picpng.png" alt="CBSC logo." class="cbsc-logo" height="25px"/>
+               <span class="syriaca-icon syriaca-bibl icon-header"></span>
                <span class="banner-text">Comprehensive Bibliography on Syriac Studies</span>
             </a>
          </div>
@@ -114,56 +78,32 @@
                   <ul class="dropdown-menu pull-right">
                      <li>
                         <a href="/cbss/introduction.html" class="icon-container">
-                           <span class="icon-text">Introduction</span>
+                           Introduction
                         </a>
                      </li>
                      <li role="presentation" class="divider"></li>
                      <li>
                         <a href="/cbss/team.html" class="icon-container">
-                           <span class="icon-text">Project Team</span>
+                           Project Team
                         </a>
                      </li>
+                     <li role="presentation" class="divider"></li>
                      <li>
                         <a href="/cbss/documentation.html" class="icon-container">
-                           <span class="icon-text">Documentation</span>
+                           Documentation
                         </a>
                      </li>
-                     <li role="presentation" class="divider"/>
+                     <li role="presentation" class="divider"></li>
                      <li>
                         <a href="/index.html" class="icon-container">
-                           <span class="icon-text">About Syriaca.org</span>
+                           About Syriaca.org
                         </a>
                      </li>
                      <li role="presentation" class="divider"></li>
                   </ul>
                </li>
-               <li class="dropdown">     <a href="#" class="dropdown-toggle lonely-caret" data-toggle="dropdown">         <span class="mobile-submenu">Publications </span>  <b class="caret"></b>     </a>     
-                  <ul class="dropdown-menu pull-right">         
-                     <li>             <a href="/geo/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-geo icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Gazetteer</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/persons/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-sbd icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">SBD</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/authors/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-authors icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Authors</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/saints/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-saints icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Gateway to the Saints</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/q/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-q icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">Qadishe</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/bhse/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-bhse icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="icon-text">BHSE</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/cbss/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-bibl icon-nav"></span>                 <span class="icon-text">Works Cited</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>         
-                     <li>             <a href="/index.html" class="icon-container">                 <span class="syriaca-icon syriaca-syriaca icon-nav">                     <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>                 </span>                 <span class="mobile-submenu icon-text">Syriaca.org</span>             </a>         
-                     </li>         
-                     <li role="presentation" class="divider"></li>     
-                  </ul> 
+               <li>
+                  <a href="/index.html" class="nav-text">Syriaca.org</a>
                </li>
                <li>
                   <a href="/cbss/search.html" class="nav-text">Advanced Search</a>
@@ -220,11 +160,14 @@
       <div id="content" class="text">
       <div class="main-content-block">
          <div class="container">
-            <h1 style="margin-top:3em;">Browse Bibliography by Author</h1>
-            <!-- searchType=letter&letter=a&q=The Syriac Gazetteer&size=25 
-            searchType=browse&q=cbssAuthor
-            -->
-            <ul class="nav nav-tabs">
+            <h2 style="margin-top:3em;">
+               <a class="cbss-heading-link" href="browse.html?searchType=browse&q=cbssSubject&letter=a&size=25">Browse Bibliography by Subject</a>
+                     &nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="cbss-heading-link" id="browseByEraTab" style="cursor: pointer;">Browse Bibliography by Era</a>
+                     &nbsp;&nbsp;&nbsp;&nbsp;
+               <a class="cbss-heading-link" href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=en">Browse Bibliography by Author</a>
+            </h2>
+            <ul class="nav nav-tabs cbssAuthor-alpha-tabs" style="display: none;">
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=eng">A-Z</a></li>
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=rus">А-Я</a></li>
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=gr">Α-Ω</a></li>
@@ -232,7 +175,6 @@
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=he">א-ת</a></li>
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=syr">ܐ-ܬ</a></li>
                <li><a href="browse.html?searchType=browse&q=cbssAuthor&letter=a&size=25&lang=ar">ا-ي</a></li>
-               <li><a href="browse.html?searchType=browse&q=cbssSubject&letter=a&size=25">Keyword</a></li>
             </ul>
             <div class="tab-content">
                <div id="english" class="tab-pane fade in active">
@@ -241,45 +183,100 @@
                         <ul class="list-inline" id="abcMenu">
                         </ul>
                      </div>
+                    <div id="historicalEraBrowse" style="display: none; margin-top: 2em; margin-left: 20em;margin-bottom: 4em;">
+                    <p>
+                        Users can browse the <em>Comprehensive Bibliography</em> topically by historical eras.
+                        <br><br>
+                        Each link below will limit the results to publications which cover the historical period(s) selected.
+                        After selecting one link below, please use the facet menu which will appear on the left to limit your search further if you desire.
+                    </p>
+
+                    <h4>Browse publications which discuss the following century ranges: </h4>
+                    <ul id="eraGroupList" style="list-style: none; padding-left: 0;"></ul>
+
+                    <h4>Browse publications which cover specific centuries:</h4>
+                    <ul id="eraList" style="list-style: none; padding-left: 0;"></ul>
+<div id="search-division" style="scroll-margin-top: 20px;"></div><br/>
+                    <p>Please note that the browse by historical eras feature is still under development and not all publications in the <em>Comprehensive Bibliography</em> have been classified by coverage of historical eras at this time.</p>
+                    </div>
                      <div class="row alpha-pages">
                         <div class="col-md-5">
                            <div id="search-info"></div>
                         </div>
                         <div class="col-md-7" class="pull-right">
                            <div id="pagination" class="pagination-container pull-right paging">
-                              <ul id="searchPagination" class="pagination pull-right"></ul>
+                              <ul class="searchPagination pagination pull-right"></ul>
                            </div>      
                         </div>
+                        <div class="col-md-7">
+                           <div id="sort-button-container"></div>      
+                        </div>
                      </div>
+                     
                      <div id="search-results"></div>
+                     <div id="cbss-subject-search-results" style="width: 20%; padding-right: 20px; column-count: 3; column-gap: 20em;margin-left: 2em;"></div>
                      <div style="display: flex;">
                          <div id="common-subject-menu" style="width: 20%; padding-right: 20px;"></div>
-                         <div id="document-search-results" style="width: 80%;"></div>
+                        <div id="document-search-results" style="width: 80%;"></div>
+                     </div>
+                     <div class="col-md-7" class="pull-right">
+                        <div id="pagination" class="pagination-container pull-right paging">
+                           <ul class="searchPagination pagination pull-right"></ul>
+                        </div>      
                      </div>
                   </div>
                </div>
             </div>
             <script type="text/javascript" src="/resources/js/search.js"></script>
             <script type="text/javascript">
-                  $(document).ready(function () {
-                     browseCbssAlphaMenu();
-                     getCBSSBrowse();
-                  });
-               </script>
+            $(document).ready(function () {
+                const urlParams = new URLSearchParams(window.location.search);
+                const query = urlParams.get('q');
+                
+                if (query === 'cbssAuthor') {
+                $('.cbssAuthor-alpha-tabs').show();
+                }
+
+                $('.cbss-heading-link').each(function () {
+                if (this.href.includes(`q=${query}`)) {
+                    $(this).addClass('active');
+                }
+                });
+
+                browseCbssAlphaMenu();
+                getCBSSBrowse();
+
+                document.getElementById('browseByEraTab').addEventListener('click', () => {
+                $('.cbss-heading-link').removeClass('active');
+                document.getElementById('browseByEraTab').classList.add('active');
+                document.getElementById('abcMenu').style.display = 'none';
+                document.getElementById('historicalEraBrowse').style.display = 'block';
+
+                const elIds = [
+                    'document-search-results',
+                    'cbss-subject-search-results',
+                    'search-results',
+                    'common-subject-menu',
+                    'search-info',
+                    'pagination',
+                    'sort-button-container'
+                ];
+                elIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.innerHTML = '';
+                });
+                });
+
+                if (typeof renderEraMenu === 'function') {
+                renderEraMenu();
+                }
+            });
+            </script>
+
          </div>
       </div>
       </div>
-      <footer>
-         <div class="container">
-            <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">
-               <img alt="Creative Commons License" style="border-width:0"
-                  src="/resources/images/cc.png" height="18px" />
-            </a> This work is licensed under a <a rel="license"
-               href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons
-               Attribution 3.0 Unported License</a>. <br />Copyright Vanderbilt University,
-            Princeton University, and the Contributor(s), 2014. </div>
-
-      </footer>
+      <footer>                    <div class="container">             <a rel="license"><img alt="Creative Commons License" style="border-width:0" src="/resources/images/cc.svg" height="18px" /><img alt="Creative Commons Attribution (CC-BY) License" style="border-width:0" src="/resources/images/by.svg" height="18px" /></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.<br />Copyright by the contributors. See "<a href="/how-to-cite.html">How to Cite</a>" for attribution information.          </div>                 </footer>
    </body>
    <script type="text/javascript" src="/resources/js/jquery.validate.min.js"></script>
    <script type="text/javascript" src="/resources/js/require.min.js"></script>

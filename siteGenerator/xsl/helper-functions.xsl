@@ -8,7 +8,7 @@
             <xsl:sequence select="doc(concat($applicationPath,'/documentation/syriaca-tei-main.odd'))"/>
         </xsl:if>
     </xsl:variable>
-    
+
     <!-- Add a lang attribute to HTML elements -->
     <xsl:function name="local:attributes">
         <xsl:param name="node"/>
@@ -290,8 +290,17 @@
             <xsl:when test="$lang='la'">
                 <xsl:text>Latin</xsl:text>
             </xsl:when>
+            <xsl:when test="$lang='de'">
+                <xsl:text>German</xsl:text>
+            </xsl:when>
             <xsl:when test="$lang='grc'">
-                <xsl:text>Greek</xsl:text>
+                <xsl:text>Ancient Greek</xsl:text>
+            </xsl:when>
+            <xsl:when test="$lang='gez'">
+                <xsl:text>Geʽez</xsl:text>
+            </xsl:when>
+            <xsl:when test="$lang='sog'">
+                <xsl:text>Sogdian</xsl:text>
             </xsl:when>
             <xsl:when test="$lang='ar'">
                 <xsl:text>Arabic</xsl:text>
@@ -306,7 +315,7 @@
                 <xsl:text>Soghdian</xsl:text>
             </xsl:when>
             <xsl:when test="$lang='cu'">
-                <xsl:text>Slavic</xsl:text>
+                <xsl:text>Old Church Slavonic</xsl:text>
             </xsl:when>
             <xsl:when test="$lang='cop'">
                 <xsl:text>Coptic</xsl:text>
@@ -315,7 +324,10 @@
                 <xsl:text>Ethiopic</xsl:text>
             </xsl:when>
             <xsl:when test="$lang='syr-pal'">
-                <xsl:text>Syro-Palestinian</xsl:text>
+                <xsl:text>Christian Palestinian Aramaic</xsl:text>
+            </xsl:when>
+            <xsl:when test="$lang='ar-Syrc'">
+                <xsl:text>Arabic in Syriac script (Garshuni)</xsl:text>
             </xsl:when>
             <xsl:when test="$lang='ar-syr'">
                 <xsl:text>Karshuni</xsl:text>
@@ -463,7 +475,7 @@
         </xsl:choose>
     </xsl:function>
     
-    
+   
     <!-- =================================================================== -->
     <!-- Helper templates -->
     <!-- =================================================================== -->
@@ -472,51 +484,23 @@
         <xsl:choose>
             <xsl:when test="@rend">
                 <xsl:choose>
-                    <xsl:when test="@rend = 'bold'">
-                        <b>
-                            <xsl:call-template name="ref"/>
-                        </b>
-                    </xsl:when>
-                    <xsl:when test="@rend = 'italic'">
-                        <i>
-                            <xsl:call-template name="ref"/>
-                        </i>
-                    </xsl:when>
-                    <xsl:when test="@rend = ('superscript','sup')">
-                        <sup>
-                            <xsl:call-template name="ref"/>
-                        </sup>
-                    </xsl:when>
-                    <xsl:when test="@rend = ('subscript','sub')">
-                        <sub>
-                            <xsl:call-template name="ref"/>
-                        </sub>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <span class="tei-rend-{string(@rend)}">
-                            <xsl:call-template name="ref"/>
-                        </span>
-                    </xsl:otherwise>
+                    <xsl:when test="@rend = 'bold'"><b><xsl:call-template name="ref"/></b></xsl:when>
+                    <xsl:when test="@rend = 'italic'"><i><xsl:call-template name="ref"/></i></xsl:when>
+                    <xsl:when test="@rend = ('superscript','sup')"><sup><xsl:call-template name="ref"/></sup></xsl:when>
+                    <xsl:when test="@rend = ('subscript','sub')"><sub><xsl:call-template name="ref"/></sub></xsl:when>
+                    <xsl:otherwise><span class="tei-rend-{string(@rend)}"><xsl:call-template name="ref"/></span></xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:call-template name="ref"/> 
-            </xsl:otherwise>
+            <xsl:otherwise><xsl:call-template name="ref"/></xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     <xsl:template name="ref">
         <xsl:choose>
-            <xsl:when test="parent::t:ref or parent::t:ptr or parent::*[1]/@ref">
-                <xsl:apply-templates/>
-            </xsl:when>
+            <xsl:when test="parent::t:ref or parent::t:ptr or parent::*[1]/@ref"><xsl:apply-templates/></xsl:when>
             <xsl:when test="@ref">
-                <a href="{@ref}">
-                    <xsl:apply-templates/>
-                </a>
+                <a href="{@ref}"><xsl:apply-templates/></a>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:apply-templates/>
-            </xsl:otherwise>
+            <xsl:otherwise><xsl:apply-templates/></xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>

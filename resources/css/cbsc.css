@@ -13,14 +13,20 @@ body {font-size:16px;}
 .navbar {
     border-bottom: 4px solid #0285A1 !important;
 }
+.icon-header {
+    vertical-align: bottom;
+    font-size:32px;
+    margin-left:1em;
+    display:inline-block;
+}
 .banner-bibl {
     position:relative;
     margin-top:-100px;
     padding-top:0;
-	/* background-image:url('../images/cbsc/CBSC-banner.jpg');*/
+	background-image:url('../images/cbss-banner.jpg');
 	background-size:cover;
 	background-position:top;
-    height:300px;
+    height:450px;
     width:100%;
    /*  border-bottom:4px solid #E39E38; */
 } 
@@ -70,3 +76,87 @@ h1, h2 {color:gray; padding-top: 0; padding-bottom: 0;}
     font-size:24px;
     }
 }
+/*3 columns cbss subject lists  */
+.cbss-subject-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em 2em; /* row gap, column gap */
+  padding-right: 20px;
+  width: 100%;
+}
+
+.cbss-subject-item {
+  flex: 1 1 calc(33.33% - 2em); /* 3 columns */
+  min-width: 250px;
+  box-sizing: border-box;
+}
+
+.cbss-subject-item a {
+  display: block;
+  padding: 0.5em 0;
+  
+  text-decoration: none;
+}
+
+.cbss-subject-item a:hover {
+  text-decoration: underline;
+
+}
+/*Header links styling  */
+
+.cbss-heading-link {
+  color: #7b7b7b; 
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.cbss-heading-link:hover,
+.cbss-heading-link:focus,
+.cbss-heading-link:active {
+  color: #282828;
+  text-decoration: none;
+}
+.cbss-heading-link.active {
+  color: #282828;
+  text-decoration: none;
+}
+.cbss-heading-group {
+  margin-top: 3em;
+/*   text-align: center; */
+}
+
+.cbss-heading-wrap {
+  display: flex;
+  flex-wrap: wrap;
+/*   justify-content: center; */
+  gap: 5em; 
+}
+
+/* Stack headers vertically on small screens */
+@media (max-width: 600px) {
+  .cbss-heading-wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;	  
+  }
+ .cbss-heading-group {
+  margin-top: 1em;
+ }	
+}
+
+/*Stack cbss subject documents and related subjects menus vertically on small screens */
+@media (max-width: 768px) {
+  .cbss-document-results-container {
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+
+  #cbss-subject-menu,
+  #document-search-results {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
