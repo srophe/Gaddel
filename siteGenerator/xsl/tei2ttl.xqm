@@ -149,7 +149,6 @@ declare function local:places($node, $id, $idShort, $typeShort){
     let $relPlaces := distinct-values($node/descendant::tei:text/descendant::tei:placeName/@ref)
     for $relPlace in $relPlaces[. != $id]
     return local:make-triple(local:make-uri($id), 'dcterms:relation', local:make-uri($relPlace)),
-
 (: Name varients :)
     for $nameVariant in $node/descendant::tei:place/tei:placeName 
     return local:make-triple(local:make-uri($id), 'swdt:name-variant', local:make-literal($nameVariant/descendant-or-self::text(),$nameVariant/@xml:lang,'')),
@@ -249,7 +248,7 @@ declare function local:places($node, $id, $idShort, $typeShort){
           let $sRef := $s
           return   
             for $o at $m2p in tokenize($relation/@mutual,' ')[. != $s]
-            let $oRef :=$o
+            let $oRef := $o
             return 
                (
                local:make-triple(local:make-uri($sRef), concat('swdt:',$relRef), local:make-uri($oRef)),
@@ -302,6 +301,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
     let $relPlaces := distinct-values($node/descendant::tei:text/descendant::tei:placeName/@ref)
     for $relPlace in $relPlaces[. != $id]
     return local:make-triple(local:make-uri($id), 'foaf:relation', local:make-uri($relPlace)),
+
 (: Name varients :)
     for $nameVariant in $node/descendant::tei:person/tei:persName | $node/descendant::tei:personGrp/tei:persName
     return local:make-triple(local:make-uri($id), 'swdt:name-variant', local:make-literal($nameVariant/descendant-or-self::text(),$nameVariant/@xml:lang,'')),
@@ -656,6 +656,7 @@ declare function local:persons($node, $id, $idShort, $typeShort){
                local:make-triple(local:make-uri($sRef), concat('sp:',$relRef), concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p)),
                local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p), concat('swd:',$relRef), local:make-uri($oRef)),
                local:make-triple(concat('swds:activeRelation',$relRef,'-',$idShort,'-',$p,$m1p), 'spr:reference-URL', local:make-uri(concat($id,'.tei')))
+
         ))          
 )
 
