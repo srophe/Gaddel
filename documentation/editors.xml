@@ -69,6 +69,7 @@
       <revisionDesc>
          <change type="reminder">Please be sure to update the publication date when changes are made
             here!</change>
+         <change when="2026-08-04" who="http://syriaca.org/documentation/editors.xml#dschwartz">ADDED: Evan Chrisanthus</change>
          <change when="2026-07-22" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Mikey Tang</change>
          <change when="2026-07-07" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: 2026 Workshop Contributors</change>
          <change when="2026-04-28" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Louis Wu</change>
@@ -236,6 +237,12 @@
                <persName xml:lang="en">
                   <forename>Jonah</forename>
                   <surname>Causin</surname> 
+               </persName>
+            </person>
+            <person xml:id="echrisanthus">
+               <persName xml:lang="en">
+                  <forename>Evangelos</forename>
+                  <surname>Chrisanthus</surname>
                </persName>
             </person>
             <person xml:id="schoi">
