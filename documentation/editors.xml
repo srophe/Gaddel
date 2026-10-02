@@ -672,6 +672,12 @@
                   <surname>Perczel</surname>
                </persName>
             </person>
+            <person xml:id="mpinson">
+               <persName xml:lang="en">
+                  <forename>Matthew</forename>
+                  <surname>Pinson</surname>
+               </persName>
+            </person>
             <person xml:id="upossekel">
                <persName xml:lang="en">
                   <forename>Ute</forename>
@@ -820,6 +826,12 @@
                <persName xml:lang="en">
                   <forename>Alex</forename>
                   <surname>Vawter</surname>
+               </persName>
+            </person>
+            <person xml:id="avega">
+               <persName xml:lang="en">
+                  <forename>Armando</forename>
+                  <surname>Vega</surname>
                </persName>
             </person>
             <person xml:id="evilley">
