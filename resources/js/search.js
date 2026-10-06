@@ -1,3 +1,32 @@
+$(document).ready(function () {
+    $('form.search').each(function (index) {
+        var form = $(this);
+        var formId = form.attr('id') || 'advanced-search-' + index;
+        var narrowScreen = window.matchMedia('(max-width: 991px)');
+        var expanded = false;
+        var toggle = $('<button>', {
+            type: 'button',
+            'class': 'btn btn-default advanced-search-toggle',
+            'aria-controls': formId
+        });
+
+        function updateToggle() {
+            var visible = !narrowScreen.matches || expanded;
+            form.toggleClass('search-expanded', expanded);
+            toggle.attr('aria-expanded', String(visible));
+            toggle.text(visible ? 'Hide Advanced Search' : 'Show Advanced Search');
+        }
+
+        toggle.on('click', function () {
+            expanded = !expanded;
+            updateToggle();
+        });
+        narrowScreen.addListener(updateToggle);
+        form.attr('id', formId).before(toggle).addClass('search-collapsible');
+        updateToggle();
+    });
+});
+
 const state = {
     totalResults: 0,
     currentPage: 1,
