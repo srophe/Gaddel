@@ -15,6 +15,7 @@
       <link rel="stylesheet" type="text/css" href="/resources/css/syriaca.css" />
       <link rel="stylesheet" type="text/css" href="/resources/css/slider.css" />
       <link rel="stylesheet" type="text/css" href="/resources/css/lightslider.css" />
+      <link rel="stylesheet" type="text/css" href="/resources/css/partner-projects.css" />
       <link rel="stylesheet" type="text/css" media="print" href="/resources/css/print.css" />
       
       <!-- Leaflet -->
@@ -63,6 +64,68 @@
          <div class="full-page hide-search" style="background-color:#666; border-bottom:4px solid #456889;margin:0 0 1em 0; padding:0;">
             
             <ul id="lightSlider">
+               <li id="partner-projects" class="slide top-button overlay">
+                  <span class="gradient partner-header">Partner<br />Projects</span>
+                  <div class="partner-project john-project" data-project="John of Ephesus" tabindex="0" role="group" aria-label="A Guide to John of Ephesus">
+                     <img class="partner-image" src="/resources/images/johnEphesus/personsBanner.png" alt="Obverse and reverse of a gold solidus of Justin II" aria-describedby="john-photo-credit" />
+                     <span class="more-info">
+                        <br />
+                        <p><b><em>A Guide to John of Ephesus</em></b></p>
+                        <p>Silvio Roggo, editor</p>
+                        <p>This research portal facilitates the study of persons and places found in the Ecclesiastical History of John of Ephesus.</p>
+                        <p><a href="https://syriaca.org/johnofephesus" style="color:white;">Explore the database.</a></p>
+                        <span id="john-photo-credit" class="img-credit">Photo Credit: Solidus of Justin II (&#169; <a href="http://www.cngcoins.com/">http://www.cngcoins.com/</a>)</span>
+                     </span>
+                     <span class="slide-credit">
+                        <a href="https://syriaca.org/johnofephesus" class="icon-container" aria-label="A Guide to John of Ephesus">
+                           <img class="partner-logo" src="/resources/images/fav-icons/joe-favicon.ico" alt="John of Ephesus project icon" />
+                           <span class="icon-text">JoE</span>
+                        </a>
+                     </span>
+                  </div>
+                  <div class="partner-project saints-slide" data-project="Saints" hidden="hidden">
+                     <span class="more-info">
+                        <br/>
+                        <p><b><em>Qadishe</em></b> is a digital catalogue of saints venerated in the Syriac tradition.</p>
+                        <p>Example record:<br /><a href="person/1102" style="color:white;" class="indent">Abdalmasih</a></p>
+                        <p></p>
+                        <p><b><em>Bibliotheca Hagiographica Syriaca Electronica</em></b> is a database of Syriac hagiographic literature.</p>
+                        <p>Example record:<br /><a href="work/694" style="color:white;" class="indent">Abraham of the High Mountain (text)</a></p>
+                     </span>
+                     <span class="slide-credit">
+                        <a href="/saints/index.html" class="icon-container">
+                           <span class="syriaca-icon syriaca-q icon-nav">
+                              <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                           </span>
+                           <span class="icon-text">Saints</span>
+                        </a>
+                     </span>
+                  </div>
+                  <div class="partner-project authors-slide" data-project="Authors" hidden="hidden">
+                     <span class="more-info">
+                        <br />
+                        <p><b><em>A Guide to Syriac Authors</em></b> is a handbook of persons who wrote in Syriac or otherwise had an influence on Syriac
+                           literature.</p>
+                        <p>Example record:<br /><a href="person/13" style="color:white;" class="indent">Ephrem</a></p>
+                     </span>
+                     <span class="slide-credit">
+                        <a href="authors/index.html" class="icon-container">
+                           <span class="syriaca-icon syriaca-authors icon-nav">
+                              <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                           </span>
+                           <span class="icon-text">Authors</span>
+                        </a>
+                     </span>
+                  </div>
+                  <!-- TODO: Replace with final GEDSH content supplied by project team. -->
+                  <div class="partner-project" data-project="GEDSH" data-placeholder="true" hidden="hidden">
+                     <span class="slide-credit"><span class="icon-text">GEDSH</span><br /><small>Development placeholder</small></span>
+                  </div>
+                  <!-- TODO: Replace with final SMBL content supplied by project team. -->
+                  <div class="partner-project" data-project="SMBL" data-placeholder="true" hidden="hidden">
+                     <span class="slide-credit"><span class="icon-text">SMBL</span><br /><small>Development placeholder</small></span>
+                  </div>
+               </li>
                <li class="slide top-button bibl-slide overlay">
                   <a href="cbss/index.html" class="gradient">Comprehensive Bibliography</a>
                   <span class="more-info">
@@ -142,50 +205,24 @@
                   
                </li>
                
-               <li class="slide top-button saints-slide overlay">
-                  <a href="/saints/index.html" class="gradient">
-                     Saints
-                     </a>
-                  <span class="more-info">
-                     <br/>
-                     <p><b><em>Qadishe</em></b> is a digital catalogue of saints venerated in the Syriac tradition.</p>
-                     <p>Example record:<br /><a href="person/1102" style="color:white;" class="indent">Abdalmasih</a></p>
-                     <p></p>
-                     <p><b><em>Bibliotheca Hagiographica Syriaca Electronica</em></b> is a database of Syriac hagiographic literature.</p>
-                     <p>Example record:<br /><a href="work/694" style="color:white;" class="indent">Abraham of the High Mountain (text)</a></p>
-                  </span>
-                  
-                  <span class="slide-credit">
-                     <a href="/saints/index.html" class="icon-container">
-                        <span class="syriaca-icon syriaca-q icon-nav">
-                           <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
-                           </span>
-                        <span class="icon-text">Saints</span>
-                        </a>
-                     </span>
-               </li>
-               <li class="slide top-button authors-slide overlay">
-                  <a href="authors/index.html" class="gradient">
-                     Authors
-                     </a>
-                  <span class="more-info">
+               <li class="slide top-button nhsl-slide overlay">
+                  <a href="/nhsl/index.html" class="gradient">Works</a>
+                  <div class="more-info">
                      <br />
                      <p>
                         <b>
-                           <em>A Guide to Syriac Authors</em>
-                           </b> is a handbook of persons who wrote in Syriac or otherwise had an influence on Syriac
-                        literature.
+                           <em>The New Handbook of Syriac Literature</em>
+                           </b> is a reference guide to Syriac works.
                      </p>
-                     <p>Example record:<br />
-                        <a href="person/13" style="color:white;" class="indent">Ephrem</a>
+                     <p> Example record:<br />
+                        <a href="/work/2501" style="color:white;" class="indent">Chronography, Part
+                           1 (Chronicon Syriacum)</a>
                      </p>
-                     </span>
+                  </div>
                   <span class="slide-credit">
-                     <a href="authors/index.html" class="icon-container">
-                        <span class="syriaca-icon syriaca-authors icon-nav">
-                           <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
-                           </span>
-                        <span class="icon-text">Authors</span>
+                     <a href="/nhsl/index.html" class="icon-container">
+                        <span class="syriaca-icon syriaca-nhsl icon-nav"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
+                        <span class="icon-text">NHSL</span>
                         </a>
                      </span>
                </li>
@@ -574,4 +611,5 @@
       </div>
       <footer>                    <div class="container">             <a rel="license"><img alt="Creative Commons License" style="border-width:0" src="/resources/images/cc.svg" height="18px" /><img alt="Creative Commons Attribution (CC-BY) License" style="border-width:0" src="/resources/images/by.svg" height="18px" /></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.<br />Copyright by the contributors. See "<a href="/how-to-cite.html">How to Cite</a>" for attribution information.          </div>                 </footer>
       <script type="text/javascript" src="/resources/js/jquery.validate.min.js"></script><script type="text/javascript" src="/resources/js/require.min.js"></script><script type="text/javascript" src="/resources/js/srophe.js"></script><script type="text/javascript" src="/resources/js/lightslider.min.js"></script><script type="text/javascript" src="/resources/js/lightslider-functions.js"></script><script data-template="app:google-analytics"></script>
-   </body></html>
+      <script type="text/javascript" src="/resources/js/partner-projects.js"></script>
+      </body></html>
