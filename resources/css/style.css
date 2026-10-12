@@ -549,17 +549,22 @@ li .tei-note, li .tei-desc {display:inline; margin:0;}
     padding-right: 2em;
   }
 .header {margin-top:3em; color:white; padding-left:2em;}  
+
 /* Special styles for small screens */
 @media only screen and (max-width: 1500px) {
     .header {margin-top:4em;}
+    .icon-header {font-size: 24px; margin-left: .25em;}
+    .navbar {font-size:smaller;}
 }
 @media only screen and (max-width: 991px) and (min-width: 769px){
  /* CSS that should be displayed if width is equal to or less than 991px and larger 
   than 768px goes here */
   .header {margin-top:5em;}
+  .navbar {font-size:smaller;}
 }
 @media screen and (max-width: 480px) {
 .header {margin-top:5em;}
+.navbar {font-size:small;}
 .navbar-collapse, .dropdown-menu {float:none; width:100% !important;}
 .navbar-nav li {width:100% !important; float:none;}
 .mobile-submenu {
