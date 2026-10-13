@@ -1,3 +1,56 @@
+(() => {
+    const searchOptions = window.matchMedia('(max-width: 991px)');
+
+    document.querySelectorAll('form.search').forEach((form, index) => {
+        const formId = form.id || `advanced-search-${index + 1}`;
+        const toggle = document.createElement('button');
+        const optionsColumn = form.parentElement;
+        const layoutRow = form.closest('.row');
+        const resultsColumn = layoutRow && Array.from(layoutRow.children).find(column =>
+            column !== optionsColumn && column.classList.contains('col-md-8')
+        );
+        let expanded = !searchOptions.matches;
+
+        form.id = formId;
+        form.classList.add('search-collapsible');
+        optionsColumn.classList.add('search-options-column');
+        if (resultsColumn) {
+            resultsColumn.classList.add('search-results-column');
+        }
+        toggle.type = 'button';
+        toggle.className = 'btn btn-default advanced-search-toggle';
+        toggle.setAttribute('aria-controls', formId);
+        form.parentNode.insertBefore(toggle, form);
+
+        const updateToggle = () => {
+            form.classList.toggle('search-expanded', expanded);
+            if (layoutRow) {
+                layoutRow.classList.toggle('search-options-collapsed', !expanded && !searchOptions.matches);
+            }
+            toggle.setAttribute('aria-expanded', String(expanded));
+            toggle.textContent = expanded ? 'Hide Search options' : 'Show Search options';
+        };
+
+        toggle.addEventListener('click', () => {
+            expanded = !expanded;
+            updateToggle();
+        });
+
+        const updateForBreakpoint = () => {
+            expanded = !searchOptions.matches;
+            updateToggle();
+        };
+
+        if (searchOptions.addEventListener) {
+            searchOptions.addEventListener('change', updateForBreakpoint);
+        } else {
+            searchOptions.addListener(updateForBreakpoint);
+        }
+
+        updateToggle();
+    });
+})();
+
 const state = {
     totalResults: 0,
     currentPage: 1,
