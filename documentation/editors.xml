@@ -46,7 +46,7 @@
                <licence target="http://creativecommons.org/licenses/by/3.0/"> Distributed under a
                   Creative Commons Attribution 3.0 Unported License </licence>
             </availability>
-            <date>2026-07-22</date>
+            <date>2026-10-16</date>
          </publicationStmt>
          <sourceDesc>
             <p>Born digital.</p>
@@ -69,6 +69,7 @@
       <revisionDesc>
          <change type="reminder">Please be sure to update the publication date when changes are made
             here!</change>
+         <change when="2026-10-16" who="http://syriaca.org/documentation/editors.xml#dschwartz">ADDED: Elijah Sturges</change>
          <change when="2026-08-04" who="http://syriaca.org/documentation/editors.xml#dschwartz">ADDED: Evan Chrisanthus</change>
          <change when="2026-07-22" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Mikey Tang</change>
          <change when="2026-07-07" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: 2026 Workshop Contributors</change>
@@ -739,6 +740,12 @@
                   <forename>Matthew</forename>
                   <addName type="middle-initial">J.</addName>
                   <surname>Saunders</surname> 
+               </persName>
+            </person>
+            <person xml:id="esturges">
+               <persName xml:lang="en">
+                  <forename>Elijah</forename>
+                  <surname>Sturges</surname>
                </persName>
             </person>
             <person xml:id="mtang">
