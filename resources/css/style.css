@@ -553,14 +553,17 @@ li .tei-note, li .tei-desc {display:inline; margin:0;}
 /* Special styles for small screens */
 @media only screen and (max-width: 1500px) {
     .header {margin-top:4em;}
-    .icon-header {font-size: 24px; margin-left: .25em;}
     .navbar {font-size:smaller;}
+    .navbar .nav-text {margin-left:2px; margin-right:2px; padding-left:2px; padding-right:2px; }
+    .otherFormats {padding-top:3em;}
 }
 @media only screen and (max-width: 991px) and (min-width: 769px){
  /* CSS that should be displayed if width is equal to or less than 991px and larger 
   than 768px goes here */
   .header {margin-top:5em;}
   .navbar {font-size:smaller;}
+  .navbar .nav-text {margin-left:2px; margin-right:2px; padding-left:2px; padding-right:2px; }
+  .otherFormats {padding-top:3em;}
 }
 @media screen and (max-width: 480px) {
 .header {margin-top:5em;}
@@ -572,7 +575,8 @@ li .tei-note, li .tei-desc {display:inline; margin:0;}
     float:left;
     margin-left:3em;
     }
-.caret {float:left; margin-left: -.5em!important; margin-top:.5em; margin-right:1em;}    
+.caret {float:left; margin-left: -.5em!important; margin-top:.5em; margin-right:1em;}
+.otherFormats {padding-top:1em;}
 }
 
 
