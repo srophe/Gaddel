@@ -45,9 +45,9 @@ background-color:#fff;
     width:100%;
     border-bottom:4px solid #456889;
 }
-.banner-container {display:inline-block; line-height:2.5em;}
-.banner-text {color: #888; display:inline-block; letter-spacing: -1px; font:1.35em Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;}
-.banner-icon img{height:50px; overflow:hidden; padding-left: 1em; vertical-align: middle; margin:-.25em .5em 0 .5em; padding:0;}
+.banner-container {display:inline-block;}
+.banner-text {color: #888; display:inline-block; letter-spacing: -1px; word-spacing: -0.1em; font:1.35em Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;}
+.banner-icon img{height:50px; overflow:hidden; padding-left: .5em; vertical-align: middle; margin:-.25em .5em 0 .5em; padding:0;}
 
 .bg-light {
   background-color: rgb(248,249,250, .85);
@@ -560,10 +560,10 @@ li .tei-note, li .tei-desc {display:inline; margin:0;}
   than 768px goes here */
 /*  .header {margin-top:5em;}*/
 /*  .navbar {font-size:smaller;}*/
+  .navbar-default .navbar-nav>li>a {font-size:small;}
   .navbar .nav-text {margin-left:2px; margin-right:2px; padding-left:2px; padding-right:2px; }
-  .otherFormats {padding-top:3em;}
-  .banner-text {font-size:smaller;}
-  .otherFormats {padding-top:1em;}
+  .banner-text {font-size:small;}
+  .otherFormats {padding-top:4em;}
 }
 @media screen and (max-width: 480px) {
 .header {margin-top:5em;}
