@@ -562,14 +562,12 @@ li .tei-note, li .tei-desc {display:inline; margin:0;}
 /*  .navbar {font-size:smaller;}*/
   .navbar-default .navbar-nav>li>a {font-size:small;}
   .navbar .nav-text {margin-left:2px; margin-right:2px; padding-left:2px; padding-right:2px; }
-  .banner-text {font-size:small;}
   .otherFormats {padding-top:4em;}
 }
 @media screen and (max-width: 480px) {
 .header {margin-top:5em;}
 .navbar-collapse, .dropdown-menu {float:none; width:100% !important;}
 .navbar-nav li {width:100% !important; float:none;}
-.banner-text {font-size:smaller;}
 .mobile-submenu {
     display: block;
     float:left;
