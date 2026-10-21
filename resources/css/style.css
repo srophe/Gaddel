@@ -552,24 +552,21 @@ li .tei-note, li .tei-desc {display:inline; margin:0;}
 
 /* Special styles for small screens */
 @media only screen and (max-width: 1500px) {
-    .header {margin-top:4em;}
-    .navbar {font-size:smaller;}
     .navbar .nav-text {margin-left:2px; margin-right:2px; padding-left:2px; padding-right:2px; }
     .otherFormats {padding-top:3em;}
-    .banner-text {font-size:smaller;}
 }
 @media only screen and (max-width: 991px) and (min-width: 769px){
  /* CSS that should be displayed if width is equal to or less than 991px and larger 
   than 768px goes here */
-  .header {margin-top:5em;}
-  .navbar {font-size:smaller;}
+/*  .header {margin-top:5em;}*/
+/*  .navbar {font-size:smaller;}*/
   .navbar .nav-text {margin-left:2px; margin-right:2px; padding-left:2px; padding-right:2px; }
   .otherFormats {padding-top:3em;}
   .banner-text {font-size:smaller;}
+  .otherFormats {padding-top:1em;}
 }
 @media screen and (max-width: 480px) {
 .header {margin-top:5em;}
-.navbar {font-size:small;}
 .navbar-collapse, .dropdown-menu {float:none; width:100% !important;}
 .navbar-nav li {width:100% !important; float:none;}
 .banner-text {font-size:smaller;}
