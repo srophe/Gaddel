@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:srophe="https://srophe.app">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Project News Archive | Syriaca.org</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="/resources/images/fav-icons/syriaca-favicon.ico" />
+      <!-- Bootstrap 3 -->
+      <link rel="stylesheet" type="text/css" href="/resources/bootstrap/css/bootstrap.min.css" />
+      <link rel="stylesheet" type="text/css" href="/resources/css/sm-core-css.css" />
+      <!-- Srophe styles -->
+      <link rel="stylesheet" type="text/css" href="/resources/css/syr-icon-fonts.css" />
+      <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
+      <link rel="stylesheet" type="text/css" href="/resources/css/syriaca.css" />
+      <link rel="stylesheet" type="text/css" media="print" href="/resources/css/print.css" />
+
+      <!-- Plausible -->
+      <script defer data-domain="d2iy9xuv4su69v.cloudfront.net" src="https://plausible.io/js/script.js"></script>
+
+      <!-- JQuery -->
+      <link href="/resources/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+      <script type="text/javascript" src="/resources/js/jquery.min.js"></script>
+      <script type="text/javascript" src="/resources/jquery-ui/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="/resources/js/jquery.smartmenus.min.js"></script>
+
+      <!-- Bootstrap -->
+      <script type="text/javascript" src="/resources/bootstrap/js/bootstrap.min.js"></script>
+   </head>
+   <body id="body">
+      <script src="/resources/js/generic-navbar-search.js"></script>
+      <div id="navbar-container"></div>
+
+      <div class="main-content-block">
+         <div class="container" style="margin-top: 2em; margin-bottom: 3em;">
+            <div class="row">
+               <div class="col-md-12">
+                  <h1>Project News</h1>
+                  <p><a href="/index.html">&larr; Back to home</a></p>
+                  <hr />
+                  <!-- Full Project News archive, maintained internally in /project-news.json
+                       (array of { "title", "date" (YYYY-MM-DD), "content" (HTML) }, newest first).
+                       No external blog dependency. -->
+                  <div id="news-archive">
+                     <p>Loading project news&hellip;</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <footer>
+         <div class="container">
+            <a rel="license"><img alt="Creative Commons License" style="border-width:0" src="/resources/images/cc.svg" height="18px" /><img alt="Creative Commons Attribution (CC-BY) License" style="border-width:0" src="/resources/images/by.svg" height="18px" /></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.<br />Copyright by the contributors. See "<a href="/how-to-cite.html">How to Cite</a>" for attribution information.
+         </div>
+      </footer>
+
+      <script type="text/javascript" src="/resources/js/require.min.js"></script>
+      <script type="text/javascript" src="/resources/js/srophe.js"></script>
+
+      <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById('news-archive');
+        if (!container) return;
+
+        function formatDate(dateStr) {
+          const parts = (dateStr || '').split('-');
+          if (parts.length === 3) {
+            const d = new Date(parts[0], parts[1] - 1, parts[2]);
+            if (!isNaN(d)) {
+              return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+            }
+          }
+          return dateStr || '';
+        }
+
+        fetch('/project-news.json')
+          .then(response => response.json())
+          .then(posts => {
+            container.innerHTML = '';
+            if (!posts.length) {
+              container.innerHTML = '<p>No project news available.</p>';
+              return;
+            }
+            posts.forEach(post => {
+              const article = document.createElement('article');
+              article.style.marginBottom = '2.5em';
+
+              const h2 = document.createElement('h2');
+              h2.style.marginBottom = '0.1em';
+              // Plain-text title (no links)
+              h2.textContent = post.title || '';
+
+              const dateEl = document.createElement('p');
+              dateEl.style.color = 'gray';
+              dateEl.style.marginTop = '0';
+              dateEl.innerHTML = '<small>' + formatDate(post.date) + '</small>';
+
+              const body = document.createElement('div');
+              body.className = 'news-body';
+              // content is trusted first-party HTML (own posts; blog links already removed)
+              body.innerHTML = post.content || '';
+
+              article.appendChild(h2);
+              article.appendChild(dateEl);
+              article.appendChild(body);
+              article.appendChild(document.createElement('hr'));
+              container.appendChild(article);
+            });
+          })
+          .catch(error => {
+            console.error('Error loading project news archive:', error);
+            container.innerHTML = '<p>Unable to load project news at this time.</p>';
+          });
+      });
+      </script>
+   </body>
+</html>

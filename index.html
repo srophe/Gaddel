@@ -425,43 +425,57 @@
             <div class="col-md-4">
               <div class="blog indent">
                 <h2>Project News</h2>
-                <div class="dynamicContent" data-url="https://blog.syriaca.org/wp-json/wp/v2/posts?per_page=5"></div>
+                <!-- Project News is maintained internally in /project-news.json
+                     (array of { "title", "date" (YYYY-MM-DD), "content" }, newest first).
+                     Homepage shows the latest 5 titles + dates; full archive at /news.html.
+                     To add news, edit /project-news.json. No external blog dependency. -->
+                <div class="dynamicContent" data-url="/project-news.json"></div>
+                <p style="margin-top: 0.5em;"><a href="/news.html">See all project news &rarr;</a></p>
               </div>
             </div>
-            
+
             <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function () {
               const dynamicContentDiv = document.querySelector('.dynamicContent');
+              if (!dynamicContentDiv) return;
               const feedUrl = dynamicContentDiv.getAttribute('data-url');
-            
+
               fetch(feedUrl)
                 .then(response => response.json())
                 .then(posts => {
-                  posts.forEach(post => {
-                    const postElement = document.createElement('div');
-                    
-                    // Format the date
-                    const dateObj = new Date(post.date);
-                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                    const formattedDate = dateObj.toLocaleDateString(undefined, options);
-            
-                     postElement.innerHTML = `
-                       <div style="margin-bottom: 1em;">
-                         <p style="margin-bottom: 0;"><a href="${post.link}" target="_blank">${post.title.rendered}</a></p>
-                         <small style="color: gray;">${formattedDate}</small>
-                       </div>
-                     `;
+                  posts.slice(0, 5).forEach(post => {
+                    // Parse YYYY-MM-DD as a local date to avoid timezone day-shift
+                    const parts = (post.date || '').split('-');
+                    let formattedDate = post.date || '';
+                    if (parts.length === 3) {
+                      const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+                      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                      if (!isNaN(dateObj)) {
+                        formattedDate = dateObj.toLocaleDateString(undefined, options);
+                      }
+                    }
 
-                    
+                    const postElement = document.createElement('div');
+                    postElement.style.marginBottom = '1em';
+                    // Title as plain text (no links); textContent avoids injecting markup
+                    const titleP = document.createElement('p');
+                    titleP.style.marginBottom = '0';
+                    titleP.textContent = post.title || '';
+                    const dateSmall = document.createElement('small');
+                    dateSmall.style.color = 'gray';
+                    dateSmall.textContent = formattedDate;
+                    postElement.appendChild(titleP);
+                    postElement.appendChild(dateSmall);
                     dynamicContentDiv.appendChild(postElement);
                   });
                 })
                 .catch(error => {
-                  console.error('Error loading blog posts:', error);
-                  dynamicContentDiv.innerHTML = '<p>Unable to load blog posts at this time.</p>';
+                  console.error('Error loading project news:', error);
+                  dynamicContentDiv.innerHTML = '<p>Unable to load project news at this time.</p>';
                 });
             });
             </script>
+
 
             
          </div>
