@@ -1195,10 +1195,10 @@ function displayCBSSAuthorResults(data) {
         
             // Append subject links with a comma separator
             subjectLinks.forEach((link, index) => {
-                docSubjectContainer.appendChild(link);
-                if (index < subjectLinks.length - 1) {
-                    docSubjectContainer.appendChild(document.createTextNode(", ")); // Add comma separator
-                }
+                    docSubjectContainer.appendChild(link);
+                    if (index < subjectLinks.length - 1) {
+                        docSubjectContainer.appendChild(document.createTextNode(", ")); // Add comma separator
+                    }
             });
             
             // Populate the result item with the link and details
@@ -1213,9 +1213,10 @@ function displayCBSSAuthorResults(data) {
                 </a>
                 ${explanation ? `<p>${explanation}</p><br/>` : ''}
               `;
-            resultItem.appendChild(bdiElement);
+
+             resultItem.appendChild(bdiElement);
             // Append subjects to result item
-            resultItem.appendChild(docSubjectContainer);
+            if(subjectLinks.length > 0) {resultItem.appendChild(docSubjectContainer);}
             resultsContainer.appendChild(resultItem);
         });
     } else {
