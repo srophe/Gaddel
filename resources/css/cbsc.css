@@ -16,7 +16,6 @@ body {font-size:16px;}
 .icon-header {
     vertical-align: bottom;
     font-size:32px;
-    margin-left:1em;
     display:inline-block;
 }
 .banner-bibl {
@@ -31,7 +30,7 @@ body {font-size:16px;}
    /*  border-bottom:4px solid #E39E38; */
 } 
 .cbsc-logo {
-    margin-left:1em;
+    margin-left:0em;
     margin-top:100px; 
 }
 .navbar-brand .cbsc-logo{
@@ -39,8 +38,7 @@ body {font-size:16px;}
     margin-top:.5em;
 }
 .navbar-brand .banner-text {
-  display:inline-block;
-    margin-left:.5em;   
+    display:inline-block;   
     margin-top:.5em; 
 }
 h1.cbsc-header {
