@@ -1183,9 +1183,8 @@ function displayCBSSAuthorResults(data) {
             }
             // Create a container for the subject links
             const docSubjectContainer = document.createElement("p");
-            const docSubjectHeading = document.createElement("span");
-            docSubjectHeading.textContent = "Subjects:";
             docSubjectContainer.textContent = "Subjects: ";
+            docSubjectContainer.style.marginBottom = "30px"; // Add spacing below subjects
         
             // Create a comma-separated list of clickable subject links
             const subjectLinks = subjects.map(subject => {
