@@ -164,3 +164,13 @@ nb-configuration.xml
 *.code-workspace
 
 aws/*
+
+##############################
+## Project News build artifacts
+##############################
+# Local one-off transform script used to generate project-news.json from the
+# WordPress export (see also blog-export/). Remove this line if you want the
+# script tracked as documentation of how project-news.json was produced.
+/build-project-news.py
+# Raw WordPress REST export used only to build project-news.json
+/blog-export/
