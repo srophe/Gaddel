@@ -991,7 +991,7 @@ function displayCBSSDocumentResults(data, subjectKey) {
         
             // Create a comma-separated list of clickable subject links
             const subjectLinks = subjects.map(subject => {
-                const subjectLink = document.createElement("a");
+                const subjectLink = document.createElement("span");//change from a to span 
                 subjectLink.textContent = subject;
                 subjectLink.href = "#"; // Prevents full page reload
                 // subjectLink.style.color = "#007bff"; // Makes text blue
@@ -999,12 +999,14 @@ function displayCBSSDocumentResults(data, subjectKey) {
                 subjectLink.style.cursor = "pointer"; // Shows pointer on hover
         
                 // Attach event listener to trigger subject search
+                /* Remove event listener, no links on subjects
                 subjectLink.addEventListener("click", (event) => {
                     event.preventDefault(); // Prevents default anchor behavior
                     state.currentPage = 1;
                     state.from = 0;
                     fetchCBSSRecordsBySubject(subject);
                 });
+                */
         
                 return subjectLink;
             });
@@ -1174,6 +1176,32 @@ function displayCBSSAuthorResults(data) {
             // Construct the URL using the idno field
             const url = idno ? `${idno}`: '#';
             
+            //Add subjects
+            let subjects = hit._source.subject || [];
+            if (!Array.isArray(subjects)) {
+                subjects = subjects.split(",").map(s => s.trim());
+            }
+            // Create a container for the subject links
+            const docSubjectContainer = document.createElement("p");
+            const docSubjectHeading = document.createElement("span");
+            docSubjectHeading.textContent = "Subjects:";
+            docSubjectContainer.textContent = "Subjects: ";
+        
+            // Create a comma-separated list of clickable subject links
+            const subjectLinks = subjects.map(subject => {
+                const subjectLink = document.createElement("span");//change from a to span 
+                subjectLink.textContent = subject;
+                return subjectLink;
+            });
+        
+            // Append subject links with a comma separator
+            subjectLinks.forEach((link, index) => {
+                docSubjectContainer.appendChild(link);
+                if (index < subjectLinks.length - 1) {
+                    docSubjectContainer.appendChild(document.createTextNode(", ")); // Add comma separator
+                }
+            });
+            
             // Populate the result item with the link and details
             bdiElement.innerHTML = `
                 <a href="${url}" target="_blank"  ">
@@ -1187,6 +1215,8 @@ function displayCBSSAuthorResults(data) {
                 ${explanation ? `<p>${explanation}</p><br/>` : ''}
               `;
             resultItem.appendChild(bdiElement);
+            // Append subjects to result item
+            resultItem.appendChild(docSubjectContainer);
             resultsContainer.appendChild(resultItem);
         });
     } else {
