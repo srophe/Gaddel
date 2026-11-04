@@ -1,31 +1,55 @@
-$(document).ready(function () {
-    $('form.search').each(function (index) {
-        var form = $(this);
-        var formId = form.attr('id') || 'advanced-search-' + index;
-        var narrowScreen = window.matchMedia('(max-width: 991px)');
-        var expanded = false;
-        var toggle = $('<button>', {
-            type: 'button',
-            'class': 'btn btn-default advanced-search-toggle',
-            'aria-controls': formId
-        });
+(() => {
+    const searchOptions = window.matchMedia('(max-width: 991px)');
 
-        function updateToggle() {
-            var visible = !narrowScreen.matches || expanded;
-            form.toggleClass('search-expanded', expanded);
-            toggle.attr('aria-expanded', String(visible));
-            toggle.text(visible ? 'Hide Advanced Search' : 'Show Advanced Search');
+    document.querySelectorAll('form.search').forEach((form, index) => {
+        const formId = form.id || `advanced-search-${index + 1}`;
+        const toggle = document.createElement('button');
+        const optionsColumn = form.parentElement;
+        const layoutRow = form.closest('.row');
+        const resultsColumn = layoutRow && Array.from(layoutRow.children).find(column =>
+            column !== optionsColumn && column.classList.contains('col-md-8')
+        );
+        let expanded = !searchOptions.matches;
+
+        form.id = formId;
+        form.classList.add('search-collapsible');
+        optionsColumn.classList.add('search-options-column');
+        if (resultsColumn) {
+            resultsColumn.classList.add('search-results-column');
         }
+        toggle.type = 'button';
+        toggle.className = 'btn btn-default advanced-search-toggle';
+        toggle.setAttribute('aria-controls', formId);
+        form.parentNode.insertBefore(toggle, form);
 
-        toggle.on('click', function () {
+        const updateToggle = () => {
+            form.classList.toggle('search-expanded', expanded);
+            if (layoutRow) {
+                layoutRow.classList.toggle('search-options-collapsed', !expanded && !searchOptions.matches);
+            }
+            toggle.setAttribute('aria-expanded', String(expanded));
+            toggle.textContent = expanded ? 'Hide Search options' : 'Show Search options';
+        };
+
+        toggle.addEventListener('click', () => {
             expanded = !expanded;
             updateToggle();
         });
-        narrowScreen.addListener(updateToggle);
-        form.attr('id', formId).before(toggle).addClass('search-collapsible');
+
+        const updateForBreakpoint = () => {
+            expanded = !searchOptions.matches;
+            updateToggle();
+        };
+
+        if (searchOptions.addEventListener) {
+            searchOptions.addEventListener('change', updateForBreakpoint);
+        } else {
+            searchOptions.addListener(updateForBreakpoint);
+        }
+
         updateToggle();
     });
-});
+})();
 
 const state = {
     totalResults: 0,
