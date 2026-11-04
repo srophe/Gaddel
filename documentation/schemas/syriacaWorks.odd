@@ -2884,7 +2884,22 @@ Bibliographic Citations</ref>).</p>
                 <elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/>
               </sequence>
             </content>
-            <constraintSpec ident="listBibl-in-body" scheme="schematron">
+            <constraintSpec ident="listBibl-order-check" scheme="schematron">
+              <constraint>
+                <sch:rule context="tei:bibl/tei:listBibl[@type]">
+                  <sch:let name="allowedTypes" value="('editions', 'manuscripts', 'modernTranslations', 'ancientVersions', 'secondaryLiterature')"/>
+                  <!-- Safe lookups that guard against empty values -->
+                  <sch:let name="currentPos" value="if (@type) then index-of($allowedTypes, string(@type)) else ()"/>
+                  <sch:let name="prevType" value="string(preceding-sibling::tei:listBibl[@type][1]/@type)"/>
+                  <sch:let name="prevPos" value="if ($prevType) then index-of($allowedTypes, $prevType) else ()"/>
+                  <sch:assert test="empty($prevPos) or empty($currentPos) or $currentPos &gt; $prevPos">
+                    The listBibl section "<sch:value-of select="@type"/>" is out of order. &lt;listBibl&gt; elements 
+                    should appear in the following order: "editions", "manuscripts", "modernTranslations", "ancientVersions", "secondaryLiterature".
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            <constraintSpec ident="listBibl-in-body-head" scheme="schematron">
               <constraint>
                 <sch:rule context="tei:body//tei:listBibl">
                   <sch:assert test="tei:head"> This &lt;listBibl&gt; requires a &lt;head&gt;.
