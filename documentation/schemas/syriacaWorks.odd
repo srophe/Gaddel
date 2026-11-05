@@ -3635,24 +3635,28 @@ Bibliographic Citations</ref>).</p>
               <constraint>
                 <sch:ns prefix="srophe" uri="https://srophe.app"/>
                 <sch:ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
-                <sch:rule context="tei:body/child::tei:bibl/child::tei:title">
-                  <sch:assert test="@xml:lang"> This &lt;title&gt; must have an @xml:lang attribute. </sch:assert>
-                  <sch:assert test="@source or @resp"> The &lt;title&gt; element for the main work
-                    &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
-                  </sch:assert>
-                </sch:rule>
-                
                 <sch:rule context="tei:body/child::tei:bibl">
                   <sch:assert test="tei:title[@xml:lang = 'en' and contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')]">
                     Every bibl element MUST contain at least one English title (@xml:lang="en") tagged as a headword (@srophe:tags="#syriaca-headword").
                   </sch:assert>
                 </sch:rule>
                 
-                <sch:rule context="tei:body/child::tei:bibl/child::tei:title[contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')]">
-                  <sch:let name="lang" value="@xml:lang"/>
-                  <sch:let name="sameLangHeadwords" value="../tei:title[@xml:lang = $lang and contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')]"/>
+                <sch:rule context="tei:body/child::tei:bibl/child::tei:title">
+                  <!-- Always required -->
+                  <sch:assert test="@xml:lang">
+                    This &lt;title&gt; must have an @xml:lang attribute.
+                  </sch:assert>
                   
-                  <sch:assert test="count($sameLangHeadwords) &lt;= 1">
+                  <sch:assert test="@source or @resp">
+                    The &lt;title&gt; element for the main work &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
+                  </sch:assert>
+                  
+                  <!-- Only enforced when the title is tagged as a headword -->
+                  <sch:let name="lang" value="@xml:lang"/>
+                  <sch:let name="sameLangHeadwords" 
+                    value="../tei:title[@xml:lang = $lang and contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')]"/>
+                  
+                  <sch:assert test="not(contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')) or count($sameLangHeadwords) &lt;= 1">
                     There can be only one title with @srophe:tags="#syriaca-headword" per language. Found <sch:value-of select="count($sameLangHeadwords)"/> headwords for language "<sch:value-of select="$lang"/>".
                   </sch:assert>
                 </sch:rule>
