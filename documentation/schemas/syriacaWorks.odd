@@ -2542,6 +2542,25 @@ Bibliographic Citations</ref>).</p>
               <textNode/>
             </content>
             
+            
+            <constraintSpec ident="work-idno-types" scheme="schematron">
+              <constraint>
+                <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
+                  <sch:assert test=". = ('deprecated', 'number', 'URI', 'URN')">
+                    The only acceptable values for @type on a work &lt;idno&gt; are "deprecated", "number", 
+                    "URI" or "URN". 
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:body/child::tei:bibl/child::tei:idno[1]">
+                  <sch:let name="workURI" value="substring-before(//tei:publicationStmt/tei:idno[@type='URI'][not(@type='deprecated')]/text(), '/tei')"/>
+                  <sch:assert test=". = $workURI">
+                    The first &lt;idno&gt; element must be <sch:value-of select="$workURI"/>. 
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
+            
+            
             <!--<constraintSpec ident="work-idno-types" scheme="schematron">
               <constraint>
                 <sch:rule context="tei:body/child::tei:bibl/child::tei:idno/@type">
