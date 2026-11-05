@@ -3633,6 +3633,7 @@ Bibliographic Citations</ref>).</p>
             </content>
             <constraintSpec ident="atts-on-title" scheme="schematron">
               <constraint>
+                <sch:ns prefix="srophe" uri="https://srophe.app"/>
                 <sch:rule context="tei:body/child::tei:bibl/child::tei:title">
                   <sch:assert test="@xml:lang"> This &lt;title&gt; must have an @xml:lang attribute. </sch:assert>
                   <sch:assert test="@source or @resp"> The &lt;title&gt; element for the main work
