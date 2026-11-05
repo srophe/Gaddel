@@ -3081,6 +3081,28 @@ Bibliographic Citations</ref>).</p>
                 <elementRef key="note" minOccurs="1" maxOccurs="unbounded"/>
               </sequence>
             </content>
+            <constraintSpec ident="noteGrp-types" scheme="schematron">
+              <constraint>
+                <sch:rule context="tei:body/child::tei:bibl">
+                  <sch:assert test="tei:noteGrp[@type='abstract']">
+                    Every work record must have an abstract contained in a &lt;noteGrp&gt;
+                    with @type="abstract".
+                  </sch:assert>
+                </sch:rule>
+                <sch:rule context="tei:noteGrp[@type]">
+                  <sch:let name="allowedTypes" value="('abstract', 'scope', 'versions', 'content', 'disambiguation', 'prologue', 'incipit', 'excerpt', 'explicit')"/>
+                  <!-- Safe lookups that guard against empty values -->
+                  <sch:let name="currentPos" value="if (@type) then index-of($allowedTypes, string(@type)) else ()"/>
+                  <sch:let name="prevType" value="string(preceding-sibling::tei:noteGrp[@type][1]/@type)"/>
+                  <sch:let name="prevPos" value="if ($prevType) then index-of($allowedTypes, $prevType) else ()"/>
+                  <sch:assert test="empty($prevPos) or empty($currentPos) or $currentPos &gt; $prevPos">
+                    The &lt;noteGrp&gt; section "<sch:value-of select="@type"/>" is out of order. &lt;noteGrp&gt; 
+                    elements should appear in the following order: 
+                    <sch:value-of select="string-join($allowedTypes ! concat('&quot;', ., '&quot;'), ', ')"/>.
+                  </sch:assert>
+                </sch:rule>
+              </constraint>
+            </constraintSpec>
             <attList>
               <attDef ident="type" mode="change" usage="req">
                 <valList type="closed">
