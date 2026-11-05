@@ -1376,13 +1376,15 @@
           </classes>
           <constraintSpec ident="target-in-ptr" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:body[not(child::tei:bibl)]//tei:bibl/tei:ptr/@target" role="warning">
+              <sch:rule context="//tei:body//tei:bibl/tei:ptr/@target">
                 <sch:let name="error" value="."/>
-                <sch:assert test="matches(., 'http://syriaca.org/cbss/[A-Z\d]{8}')">
-                  The @target value: "<sch:value-of select="$error"/>" is not a Syriaca.org cbss URI. These URIs take the form of 
-                  "http://syriaca.org/cbss/[A-Z\d]{8}" where [A-Z\d]{8} indicates an 8-character alpha-numeric string. In circumstances 
-                  where the &lt;ptr&gt; element indicates an external web address (i.e. http://pleiades.stoa.org/places/922698), 
-                  the @target should indicate the correct URL for that resource and this warning message should be ignored.
+                <sch:assert test="if (contains(., 'syriaca') or contains(., 'cbss')) then matches(., 'http://syriaca.org/cbss/[A-Z\d]{8}') else true()">
+                  The @target value: "<sch:value-of select="$error"/>" is not a Syriaca.org CBSS URI. These URIs take the form of 
+                  "http://syriaca.org/cbss/[A-Z\d]{8}" where [A-Z\d]{8} indicates an 8-character, upper-case, alpha-numeric string.
+                </sch:assert>
+                <sch:assert test="if (not(contains(., 'syriaca')) and not(contains(., 'cbss'))) then false() else true()" role="warning">
+                  This points to a URL/URI outside of Syriaca.org (i.e. http://pleiades.stoa.org/places/922698). Ensure that this @target 
+                  indicates the correct URL for the resource and then ignore this warning.
                 </sch:assert>
               </sch:rule>
             </constraint>
