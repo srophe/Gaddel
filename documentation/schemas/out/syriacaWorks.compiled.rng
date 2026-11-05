@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2026-11-05T18:31:41Z. . 
+Schema generated from ODD source 2026-11-05T18:40:16Z. . 
 TEI Edition: P5 Version 4.11.0. Last updated on 18th February 2026, revision 358d2e48e 
 TEI Edition Location: https://www.tei-c.org/Vault/P5/4.11.0/ 
   
@@ -2174,11 +2174,11 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
                <sch:assert test="@source or @resp">
                     The &lt;title&gt; element for the main work &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
                   </sch:assert>
-               <sch:let name="lang" value="@xml:lang"/>
+               <sch:let name="lang" value="string(@xml:lang | @*[local-name()='lang'])"/>
                <sch:let name="sameLangHeadwords"
-                        value="../tei:title[@xml:lang = $lang and contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')]"/>
-               <sch:assert test="not(contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')) or count($sameLangHeadwords) &lt;= 1">
-                    There can be only one title with @srophe:tags="#syriaca-headword" per language. Found <sch:value-of select="count($sameLangHeadwords)"/> headwords for language "<sch:value-of select="$lang"/>".
+                        value="../tei:title[string(@xml:lang | @*[local-name()='lang']) = $lang and contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')]"/>
+               <sch:assert test="not(contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')) or (string-length($lang) &gt; 0 and count($sameLangHeadwords) &lt;= 1)">
+                    There can be only one &lt;title&gt; with @srophe:tags="#syriaca-headword" per language. Found <sch:value-of select="count($sameLangHeadwords)"/> headwords for language "<sch:value-of select="$lang"/>".
                   </sch:assert>
             </sch:rule>
          </pattern>

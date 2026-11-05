@@ -3635,6 +3635,7 @@ Bibliographic Citations</ref>).</p>
               <constraint>
                 <sch:ns prefix="srophe" uri="https://srophe.app"/>
                 <sch:ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
+                
                 <sch:rule context="tei:body/child::tei:bibl">
                   <sch:assert test="tei:title[@xml:lang = 'en' and contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')]">
                     Every bibl element MUST contain at least one English title (@xml:lang="en") tagged as a headword (@srophe:tags="#syriaca-headword").
@@ -3651,13 +3652,16 @@ Bibliographic Citations</ref>).</p>
                     The &lt;title&gt; element for the main work &lt;bibl&gt; must have either a @source attribute or a @resp attribute.
                   </sch:assert>
                   
-                  <!-- Only enforced when the title is tagged as a headword -->
-                  <sch:let name="lang" value="@xml:lang"/>
-                  <sch:let name="sameLangHeadwords" 
-                    value="../tei:title[@xml:lang = $lang and contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')]"/>
+                  <!-- Headword Uniqueness Check -->
+                  <!-- 1. Use string(@xml:lang) or attribute::*[local-name()='lang'] to prevent empty nodeset errors -->
+                  <sch:let name="lang" value="string(@xml:lang | @*[local-name()='lang'])"/>
                   
-                  <sch:assert test="not(contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')) or count($sameLangHeadwords) &lt;= 1">
-                    There can be only one title with @srophe:tags="#syriaca-headword" per language. Found <sch:value-of select="count($sameLangHeadwords)"/> headwords for language "<sch:value-of select="$lang"/>".
+                  <!-- 2. Locate sibling headwords matching this title's language -->
+                  <sch:let name="sameLangHeadwords" 
+                    value="../tei:title[string(@xml:lang | @*[local-name()='lang']) = $lang and contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')]"/>
+                  
+                  <sch:assert test="not(contains(concat(' ', normalize-space(@srophe:tags), ' '), ' #syriaca-headword ')) or (string-length($lang) > 0 and count($sameLangHeadwords) &lt;= 1)">
+                    There can be only one &lt;title&gt; with @srophe:tags="#syriaca-headword" per language. Found <sch:value-of select="count($sameLangHeadwords)"/> headwords for language "<sch:value-of select="$lang"/>".
                   </sch:assert>
                 </sch:rule>
               </constraint>
