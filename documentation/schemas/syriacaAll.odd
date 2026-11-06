@@ -1387,7 +1387,8 @@
                   "http://syriaca.org/manuscript/\d+" where \d{1,5} indicates a 5-digit number.
                 </sch:assert>
                 <sch:assert test="if (not(contains(., 'syriaca'))) then false() else true()" role="warning">
-                  This points to a URL/URI outside of Syriaca.org (i.e. http://pleiades.stoa.org/places/922698). Ensure that this @target 
+                  This is not a valid Syriaca.org URI. If you are pointing to a resource outside of Syriaca.org 
+                  (i.e. http://pleiades.stoa.org/places/922698), please ensure that this @target 
                   indicates the correct URL for the resource and then ignore this warning.
                 </sch:assert>
               </sch:rule>
