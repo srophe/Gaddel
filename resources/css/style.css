@@ -6,6 +6,38 @@
  
 @import url("syr-font-families.css");
 
+.advanced-search-toggle {
+  display: block;
+  margin: 1em 0;
+  max-width: 100%;
+  white-space: normal;
+}
+
+form.search.search-collapsible:not(.search-expanded) {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .search-options-column,
+  .search-results-column {
+    transition: width 0.2s ease;
+  }
+
+  .search-options-collapsed > .search-options-column {
+    width: 8.33333333%;
+  }
+
+  .search-options-collapsed > .search-results-column {
+    width: 91.66666667%;
+  }
+
+  .search-options-collapsed > .search-options-column > .advanced-search-toggle {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin: 1em auto;
+  }
+}
+
 /* A */
 .abstract {}
 .alpha-pages {margin:-1.5em 0 1em 0;}
