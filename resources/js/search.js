@@ -111,7 +111,12 @@ function fetchAndRenderAdvancedSearchResults() {
     countQueryParams.set("searchType", "count");
 
     fetch(`${apiUrl}?${queryParams.toString()}`, { method: 'GET' })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`OpenSearch HTTP ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             clearSearchResults();
 
@@ -144,8 +149,11 @@ function fetchAndRenderAdvancedSearchResults() {
             }
         })
         .catch(error => {
-            handleError('search-results', 'Error fetching search results.');
-            console.error(error);
+            console.warn(
+                '[search] OpenSearch unavailable; trying local JSON backup:',
+                error
+            );
+            fallbackSearch();
         });
 
     state.isLoading = false;
