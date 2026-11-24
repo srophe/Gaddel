@@ -1276,6 +1276,11 @@ function runSearch() {
                 field.value = value;
             }
         }
+        // Navbar/index searches send `keyword`; the search form's keyword box is #fullText
+        const keywordField = document.getElementById('fullText');
+        if (keywordField && !urlParams.get('fullText') && urlParams.get('keyword')) {
+            keywordField.value = urlParams.get('keyword');
+        }
         fetchAndRenderAdvancedSearchResults();
     }
 }
